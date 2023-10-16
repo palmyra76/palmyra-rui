@@ -4,10 +4,11 @@ class AbstractDataStore {
     baseUrl: string;
     instance: ReturnType<typeof axios.create>;
 
-    AbstractDataStore(baseURL: string) {
-        this.baseUrl = baseURL;
+    constructor(baseURL: string) {
+        var base = baseURL || '';
+        this.baseUrl = base;
         this.instance = axios.create({
-            baseURL: '/api'
+            baseURL: base
         });
     }
 
