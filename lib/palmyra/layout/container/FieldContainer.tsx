@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 
 const calcContainerClass = (options:any,field:any) => {
     var containerClass = 'palmyra-form-field-container';
@@ -44,7 +44,6 @@ type FieldContainerProps = {
 const FieldContainer = ({ label, children, options, field }:FieldContainerProps) => {
     const containerClass = calcContainerClass(options, field);
     const { labelClass, fieldClass } = calcFieldLabelClass(options, field);
-    const [data, setData] = useState({});
     
     return (
         <div className={containerClass}>
