@@ -30,6 +30,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
+        'axios',
         'react',
         'react-dom',
         'react/jsx-runtime',
