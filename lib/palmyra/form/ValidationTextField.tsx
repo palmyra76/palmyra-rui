@@ -56,7 +56,7 @@ const ValidationTextField = forwardRef(function ValidationTextField(props: Field
     }, [props.value]);
 
     var inputProps: any = { fullWidth: true, ...props.fieldDef, value: data };
-
+    
     return (
         <TextField {...inputProps}
             inputRef={inputRef}

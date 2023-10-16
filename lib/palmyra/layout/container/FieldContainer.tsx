@@ -37,8 +37,9 @@ var calcFieldLabelClass = (options:any,field:any) => {
 type FieldContainerProps = {
     label:any, 
     children:any, 
-    options:any, 
-    field:any
+    options?:any, 
+    field:any, 
+    index?:number
 }
 
 const FieldContainer = ({ label, children, options, field }:FieldContainerProps) => {
