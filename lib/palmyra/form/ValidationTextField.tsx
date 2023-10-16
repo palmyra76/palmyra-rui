@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
-import TextField from '@mui/material/TextField';
+import { TextField } from '@mui/material';
 import { delay } from '../utils';
 
 /**
