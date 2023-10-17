@@ -27,13 +27,13 @@ const PalmyraSelect = forwardRef(function PalmyraSelect(props: FieldProperties, 
         setData(props.value);
     }, [props.value]);
 
-    var inputProps: any = { fullWidth: true, ...props.fieldDef, value: data };
+    var inputProps: any = { ...props.fieldDef, value: data };
 
     return (
         <FormControl fullWidth error={error.status}>
             <Select {...inputProps} {...fieldCallbacks} inputRef={inputRef}>
                 {Object.keys(options).map((key, index) => (
-                    <MenuItem value={key}>{options[key]}</MenuItem>
+                    <MenuItem key={index} value={key}>{options[key]}</MenuItem>
                 )
                 )}
             </Select>

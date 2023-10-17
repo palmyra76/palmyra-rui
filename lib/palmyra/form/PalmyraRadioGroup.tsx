@@ -22,19 +22,17 @@ const PalmyraRadioGroup = forwardRef(function PalmyraRadioGroup(props: FieldProp
         };
     }, []);
 
-
-
     useEffect(() => {
         setData(props.value);
     }, [props.value]);
 
-    var inputProps: any = { fullWidth: true, ...props.fieldDef, value: data };
+    var inputProps: any = { ...props.fieldDef, value: data };
 
     return (
         <FormControl fullWidth error={error.status}>
             <RadioGroup row {...inputProps} {...fieldCallbacks}>
                 {Object.keys(options).map((key, index) => (
-                    <FormControlLabel value={key} control={<Radio inputRef={inputRef} />} label={options[key]} />
+                    <FormControlLabel key={index} value={key} control={<Radio inputRef={inputRef} />} label={options[key]} />
                 ))}
             </RadioGroup>
             <FormHelperText>{error.message}</FormHelperText>

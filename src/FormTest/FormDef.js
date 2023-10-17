@@ -12,6 +12,7 @@ const pageLayout = {
               "title": "Service Name",
               "required": true,
               "type": "string",
+              "validationRule": "string",
               "length": {
                 min: 3,
                 max: 20,
@@ -30,21 +31,24 @@ const pageLayout = {
               "attribute": "config.serverHost",
               "title": "Server Name",
               "required": true,
-              "type": "host",
+              "type": "string",
+              "validationRule": ["OR", "ip", "fqdn"],
               "errorMessageType": "Invalid Server Name/IP"
             },
             {
               "attribute": "config.port",
               "title": "Port Number",
               "required": true,
-              "type": "port",
+              "type": "string",
+              "validationRule": "port",
               "errorMessageType": "Invalid Port Number"
             },
             {
               "attribute": "config.targetFolder",
               "title": "Target Folder",
               "required": true,
-              "type": "folder",
+              "type": "string",
+              "validationRule": "folder",
               "errorMessageType": "Invalid Folder",
               "length": {
                 min: 3,
@@ -64,7 +68,8 @@ const pageLayout = {
               "attribute": "config.auth.userName",
               "title": "User Name",
               "required": true,
-              "type": "alphabets",
+              "type": "string",
+              "validationRule": "alphabets",
               "errorMessageType": "Only Alphabets are allowed",
               "length": {
                 min: 3,
@@ -77,6 +82,7 @@ const pageLayout = {
               "title": "Password",
               "required": true,
               "type": "string",
+              "validationRule": "string",
               "length": {
                 min: 3,
                 max: 20,
@@ -95,7 +101,8 @@ const pageLayout = {
               "attribute": "config.baseFolder",
               "title": "Base Folder",
               "required": true,
-              "type": "folder",
+              "type": "string",
+              "validationRule": "folder",
               "errorMessageType": "Invalid Folder",
               "length": {
                 min: 3,
@@ -131,6 +138,18 @@ const ViewPageLayout = {
         "formLayout": {
           "fields": [
             {
+              "attribute": "serviceName",
+              "title": "Service Name",
+              "required": true,
+              "type": "string",
+              "validationRule": "string",
+              "length": {
+                min: 3,
+                max: 20,
+                message: "Minimum 3 chars, and maximum of 20 chars"
+              }
+            },
+            {
               "attribute": "config.fileTransfer",
               "title": "File Transfer",
               "required": true,
@@ -152,21 +171,24 @@ const ViewPageLayout = {
               "attribute": "config.serverHost",
               "title": "Server Name",
               "required": true,
-              "type": "host",
+              "type": "string",
+              "validationRule": ["OR", "ip", "fqdn"],
               "errorMessageType": "Invalid Server Name/IP"
             },
             {
               "attribute": "config.port",
               "title": "Port Number",
               "required": true,
-              "type": "port",
+              "type": "string",
+              "validationRule": "port",
               "errorMessageType": "Invalid Port Number"
             },
             {
               "attribute": "config.targetFolder",
               "title": "Target Folder",
               "required": true,
-              "type": "folder",
+              "type": "string",
+              "validationRule": "folder",
               "errorMessageType": "Invalid Folder",
               "length": {
                 min: 3,
@@ -186,7 +208,8 @@ const ViewPageLayout = {
               "attribute": "config.auth.userName",
               "title": "User Name",
               "required": true,
-              "type": "alphabets",
+              "type": "string",
+              "validationRule": "alphabets",
               "errorMessageType": "Only Alphabets are allowed",
               "length": {
                 min: 3,
@@ -199,6 +222,7 @@ const ViewPageLayout = {
               "title": "Password",
               "required": true,
               "type": "string",
+              "validationRule": "string",
               "length": {
                 min: 3,
                 max: 20,
@@ -217,7 +241,8 @@ const ViewPageLayout = {
               "attribute": "config.baseFolder",
               "title": "Base Folder",
               "required": true,
-              "type": "folder",
+              "type": "string",
+              "validationRule": "folder",
               "errorMessageType": "Invalid Folder",
               "length": {
                 min: 3,
@@ -257,6 +282,7 @@ const NewPageLayout = {
               "title": "Service Name",
               "required": true,
               "type": "string",
+              "validationRule": "string",
               "length": {
                 min: 3,
                 max: 20,
@@ -285,21 +311,24 @@ const NewPageLayout = {
               "attribute": "config.serverHost",
               "title": "Server Name",
               "required": true,
-              "type": "host",
+              "type": "string",
+              "validationRule": ["OR", "ip", "fqdn"],
               "errorMessageType": "Invalid Server Name/IP"
             },
             {
               "attribute": "config.port",
               "title": "Port Number",
               "required": true,
-              "type": "port",
+              "type": "string",
+              "validationRule": "port",
               "errorMessageType": "Invalid Port Number"
             },
             {
               "attribute": "config.targetFolder",
               "title": "Target Folder",
               "required": true,
-              "type": "folder",
+              "type": "string",
+              "validationRule": "folder",
               "errorMessageType": "Invalid Folder",
               "length": {
                 min: 3,
@@ -320,6 +349,7 @@ const NewPageLayout = {
               "title": "User Name",
               "required": true,
               "type": "string",
+              "validationRule": "alphabets",
               "errorMessageType": "Only Alpha-numericals are allowed",
               "length": {
                 min: 3,
@@ -332,6 +362,7 @@ const NewPageLayout = {
               "title": "Password",
               "required": true,
               "type": "string",
+              "validationRule": "string",
               "length": {
                 min: 3,
                 max: 20,
@@ -350,7 +381,8 @@ const NewPageLayout = {
               "attribute": "config.baseFolder",
               "title": "Base Folder",
               "required": true,
-              "type": "folder",
+              "type": "string",
+              "validationRule": "folder",
               "errorMessageType": "Invalid Folder",
               "length": {
                 min: 3,
