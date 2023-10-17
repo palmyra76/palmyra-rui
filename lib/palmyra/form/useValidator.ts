@@ -14,7 +14,7 @@ function useValidator(props: FieldProperties) {
     const [data, setData] = useState(getDefaultValue(runtime, fieldDef, value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
 
-    const setValue = (value: any) => {
+    const setValue = (value: any) => {        
         setData(value || '');
         if (onDataChange) {
             onDataChange({ [fieldDef.attribute]: value })
@@ -24,32 +24,31 @@ function useValidator(props: FieldProperties) {
         });
     }
 
-    const checkConstraints = (value: String) => {
+    const checkConstraints = (value: String):FieldValidStatus => {
         if (constraint && constraint instanceof Function) {
-            return constraint(value);
+            const [status, message] = constraint(value);
+            return {status, message};
         }
-        return [false, ''];
+        return {status:true, message:''};
     };
 
+    const setValid = (valid:FieldValidStatus)=>{
+        setErrorMode({
+            status: !valid.status, 
+            message: valid.message
+        })
+    }
 
     const validate = (inputValue: String) => {
-        const [status, message] = checkConstraints(inputValue);
+        const validStatus = checkConstraints(inputValue);
 
-        if (!status) {
-            setErrorMode({
-                status: !status,
-                message: message
-            });
+        if (!validStatus.status) {
+            setValid(validStatus);
         } else if (eventHandler?.asyncValid) {
-            setErrorMode({
-                status: false, message: ""
-            });
+            resetError();
             eventHandler.asyncValid(inputValue, applyAttribute, setErrorMode);
         } else {
-            setErrorMode({
-                status: !status,
-                message: message
-            });
+            setValid(validStatus);
         }
     }
 
@@ -64,6 +63,12 @@ function useValidator(props: FieldProperties) {
                 message: ""
             });
         }
+    }
+
+    const resetError =() =>{
+        setErrorMode({
+            status: false, message: ""
+        });
     }
 
     const setErrorMode = (error: FieldValidStatus) => {
