@@ -1,8 +1,10 @@
 import { useMemo, useRef, useImperativeHandle, forwardRef } from 'react';
 import { default as DefaultFieldContainer } from '../container/FieldContainer';
 import getField from '../../form/FieldGenerator';
-import { FormLayout } from '../Types';
-import { FieldDefinition, FieldContext, FormData, FormContext } from '../../form/Types';
+
+import { FieldContext, FormContext } from '../../form/Types';
+import { FieldDefinition, FormData } from '../../form/Definitions';
+import { FormLayout } from './Definitions';
 
 interface EditFormRendererInput {
     formLayout: FormLayout,

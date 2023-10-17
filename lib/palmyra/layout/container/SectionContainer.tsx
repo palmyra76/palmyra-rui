@@ -1,8 +1,6 @@
-// title, collapse
+import { SectionContainerInput } from "../flexiLayout/Types";
 
-import { SectionDefinition } from "../Types";
-
-const SectionContainer = (props: SectionDefinition) => {
+const SectionContainer = (props: SectionContainerInput) => {
 
     const title = props.title;
 

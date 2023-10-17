@@ -1,5 +1,5 @@
 import { getDisplayValue } from '../../form/FormUtil';
-import { FieldDefinition, FormData } from '../../form/Types';
+import { FieldDefinition, FormData } from '../../form/Definitions';
 
 const ViewFieldProvider = (field: FieldDefinition, data: FormData) => {
     const displayValue: any = getDisplayValue(field, data);

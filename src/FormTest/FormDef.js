@@ -4,7 +4,7 @@ const pageLayout = {
       "sections": [
         {
           "name": "",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -23,7 +23,7 @@ const pageLayout = {
         },
         {
           "name": "Server Details",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -57,7 +57,7 @@ const pageLayout = {
         },
         {
           "name": "Credentials",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -88,7 +88,7 @@ const pageLayout = {
         },
         {
           "name": "Local Details",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -127,7 +127,7 @@ const pageLayout = {
       "sections": [
         {
           "name": "",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -145,7 +145,7 @@ const pageLayout = {
         },
         {
           "name": "Server Details",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -179,7 +179,7 @@ const pageLayout = {
         },
         {
           "name": "Credentials",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -210,7 +210,7 @@ const pageLayout = {
         },
         {
           "name": "Local Details",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -249,7 +249,7 @@ const pageLayout = {
       "sections": [
         {
           "name": "",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -278,7 +278,7 @@ const pageLayout = {
         },
         {
           "name": "Server Details",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -312,7 +312,7 @@ const pageLayout = {
         },
         {
           "name": "Credentials",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {
@@ -343,7 +343,7 @@ const pageLayout = {
         },
         {
           "name": "Local Details",
-          "layoutType": "form",
+          "type": "form",
           "formLayout": {
             "fields": [
               {

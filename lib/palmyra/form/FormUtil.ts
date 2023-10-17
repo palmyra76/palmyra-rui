@@ -1,4 +1,4 @@
-import { FieldDefinition, InputType, FormData } from "./Types";
+import { FieldDefinition, InputType, FormData } from "./Definitions";
 
 const getValueByKey = (fieldName: string, data: any): InputType => {
     if (data === undefined || data == null) {

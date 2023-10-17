@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { default as DefaultFieldContainer } from '../container/FieldContainer';
 
 import { getDisplayValue } from '../../form/FormUtil';
-import { FieldDefinition, FormData } from '../../form/Types';
+import { FieldDefinition, FormData } from '../../form/Definitions';
+import { FormLayout } from './Definitions';
 
-import { FormLayout } from '../Types'
 
 interface ViewFormRendererInput {
     formLayout: FormLayout,

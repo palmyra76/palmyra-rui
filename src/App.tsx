@@ -1,5 +1,5 @@
 
-import SectionRenderer from '../lib/palmyra/layout/flexiLayout/SectionRenderer.js';
+import { FlexiLayoutRenderer } from '../lib/main.js';
 import './App.css'
 
 import { viewSftpClientLayout } from './FormTest/FormDef.js'
@@ -7,10 +7,8 @@ import { viewSftpClientLayout } from './FormTest/FormDef.js'
 function App() {
 
   console.log(viewSftpClientLayout.tabs[0].sections[0]);
-
-  const def: any = viewSftpClientLayout.tabs[0].sections[1];
-
-  var formContext = {rules:{}, data:{}, onDataChange:(d) => {console.log(d.data)}};
+  
+  var formContext = { rules: {}, data: {}, onDataChange: (d) => { console.log(d.data) } };
 
   const pageContext = {
     formContext
@@ -18,9 +16,10 @@ function App() {
 
   return (
     <div>
-      <SectionRenderer
-        sectionLayout={def} context={pageContext}
-      ></SectionRenderer>
+      <FlexiLayoutRenderer
+        layout={viewSftpClientLayout}
+        formContext={formContext}
+      ></FlexiLayoutRenderer>
     </div>
   )
 }

@@ -13,9 +13,9 @@ import { SectionRendererInput } from './Types';
  */
 
 const SectionRenderer = (props: SectionRendererInput) => {
-    const { sectionLayout } = props;
+    const { layout } = props;
 
-    switch (sectionLayout.type) {
+    switch (layout.type) {
         case 'form':
             return <SectionRendererEditForm {...props}></SectionRendererEditForm>;
         case 'view':

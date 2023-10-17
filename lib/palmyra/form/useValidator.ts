@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { FieldDefinition, FieldProperties, FieldContext, FieldValidStatus, InputType } from "./Types";
+import { FieldProperties, FieldContext } from "./Types";
+import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 
 import { delay } from '../utils';
 
-const getDefaultValue = (runtime:FieldContext, fieldDef : FieldDefinition, value:InputType) => {
+const getDefaultValue = (runtime: FieldContext, fieldDef: FieldDefinition, value: InputType) => {
     return value || '';
 }
 
@@ -12,7 +13,7 @@ function useValidator(props: FieldProperties) {
     const { eventHandler, onDataChange, constraint } = runtime || {};
     const [data, setData] = useState(getDefaultValue(runtime, fieldDef, value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
-   
+
     const setValue = (value: any) => {
         setData(value || '');
         if (onDataChange) {

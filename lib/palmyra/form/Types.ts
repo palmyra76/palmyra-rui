@@ -1,35 +1,8 @@
+import { FieldDefinition, FormData } from "./Definitions";
 
-type FieldType = "string" | "number"
-    | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup";
-
-type InputType = string | number | Date;
-
-type FormData = { [key: string]: InputType | FormData }; // Record<string, InputType | FormData>;
 type EventHandler = Record<FieldEvents, Function>;
-type MuiVariant = "outline" | "standard";
 type FieldEvents = "onEntryComplete" | "onEntryClear" | "asyncValid";
 
-interface LengthValidation {
-    min: number,
-    max: number,
-    message: string
-}
-
-interface FieldDefinition {
-    attribute: string,
-    label: string,
-    defaultValue?: InputType,
-    value?: InputType,
-    targetUrl?: string,
-    required?: boolean,
-    disabled?: boolean,
-    variant?: MuiVariant,
-    type: FieldType,
-    errorMessageType?: string,
-    length?: LengthValidation,
-    options?: Record<string, string>
-}
 
 interface FieldContext {
     eventHandler?: EventHandler,
@@ -46,11 +19,9 @@ interface FormContext {
 }
 
 
-interface FieldValidStatus {
-    status: boolean;
-    message: string;
-}
-
+/**
+ * Field Renderer Input
+ */
 interface FieldProperties {
     fieldDef: FieldDefinition,
     runtime?: FieldContext,
@@ -58,6 +29,6 @@ interface FieldProperties {
 }
 
 
-export type { FieldDefinition, FieldContext, FieldValidStatus, FieldProperties, FormData, FormContext};
+export type { FieldContext, FieldProperties, FormContext };
 
-export type { InputType, EventHandler };
+export type { EventHandler };

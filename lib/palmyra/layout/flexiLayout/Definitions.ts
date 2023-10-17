@@ -1,6 +1,8 @@
-import { FieldDefinition, FormContext } from "../form/Types";
+import { FieldDefinition } from "../../form/Definitions";
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
+
+type flexiPrimaryType = 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'cardLayout';
 
 interface Positionable {
     height?: number,
@@ -33,15 +35,8 @@ interface ChartLayout extends Renderable {
 
 }
 
-
-
-interface PageContext {
-    formContext?: FormContext
-}
-
 interface SectionDefinition extends Positionable, Titleable, Renderable {
     type: SectionType,
-    children: any,
     collapsed?: boolean,
     collapsable?: boolean,
     formLayout?: FormLayout,
@@ -50,16 +45,19 @@ interface SectionDefinition extends Positionable, Titleable, Renderable {
 }
 
 interface TabDefinition extends Titleable, Renderable {
-    sections: SectionType[],
+    sections: SectionDefinition[],
     closeable: boolean
 }
 
-export type { TabDefinition, SectionDefinition };
+interface FlexiLayoutDefinition extends Titleable, Renderable{
+    tabs: TabDefinition[], 
+    type: flexiPrimaryType
+}
+
+export type { TabDefinition, SectionDefinition, FlexiLayoutDefinition };
 
 export type { FormLayout, TableLayout, ChartLayout };
 
 export type { Positionable, Titleable };
 
 export type { SectionType };
-
-export type {PageContext}

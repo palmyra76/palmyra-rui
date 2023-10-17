@@ -1,7 +1,9 @@
 
 import ValidationTextField from './ValidationTextField';
 import ValidationTextArea from './ValidationTextArea';
-import { FieldDefinition, FieldContext, InputType } from './Types';
+import { FieldContext } from './Types';
+import { FieldDefinition, InputType } from './Definitions';
+
 
 // import ValidationDatePicker from './ValidationDatePicker';
 // import PalmyraRadioGroup from './PalmyraRadioGroup';
@@ -10,8 +12,8 @@ import { FieldDefinition, FieldContext, InputType } from './Types';
 // import PalmyraCheckBox from './PalmyraCheckBox';
 // import ServerLookup from './ServerLookup';
 
-const getTextField = (props:FieldRequest) => {
-    const { fieldDef, fieldRuntime, fieldRefs, value } = props    
+const getTextField = (props: FieldRequest) => {
+    const { fieldDef, fieldRuntime, fieldRefs, value } = props
     var fieldProps = getMuiFieldProps(fieldDef, value);
 
     return <ValidationTextField
@@ -19,20 +21,20 @@ const getTextField = (props:FieldRequest) => {
             fieldRefs.current[fieldDef.attribute] = ref;
         }}
         runtime={fieldRuntime}
-        fieldDef= {fieldProps}
-        value = {value}
+        fieldDef={fieldProps}
+        value={value}
     />;
 }
 
-const getTextArea = (props:FieldRequest) => {
+const getTextArea = (props: FieldRequest) => {
     const { fieldDef, fieldRuntime, fieldRefs, value } = props
     return <ValidationTextArea
         ref={ref => {
             fieldRefs.current[fieldDef.attribute] = ref;
         }}
         runtime={fieldRuntime}
-        fieldDef= {fieldDef}
-        value = {value}
+        fieldDef={fieldDef}
+        value={value}
     />;
 }
 
@@ -105,27 +107,27 @@ const getTextArea = (props:FieldRequest) => {
 // }
 
 interface FieldRequest {
-    fieldDef: FieldDefinition, 
-    fieldRuntime: FieldContext, 
-    fieldRefs:any, 
-    value:InputType
+    fieldDef: FieldDefinition,
+    fieldRuntime: FieldContext,
+    fieldRefs: any,
+    value: InputType
 }
 
-const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType):FieldDefinition => {
+const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType): FieldDefinition => {
     var disabled = field.disabled;
     var defaultValue = field.defaultValue;
     var variant = field.variant || "standard";
     // var targetUrl = field.targetUrl || {};
     if (disabled) {
-        return  {...field, variant, disabled:disabled, defaultValue};
+        return { ...field, variant, disabled: disabled, defaultValue };
     } else {
-        return  {...field, variant, defaultValue};
+        return { ...field, variant, defaultValue };
     }
 }
 
-const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs:any, value:InputType) => {
+const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs: any, value: InputType) => {
     const { type } = fieldDef;
-    const props:FieldRequest = {fieldDef, fieldRuntime, fieldRefs, value};
+    const props: FieldRequest = { fieldDef, fieldRuntime, fieldRefs, value };
     switch (type) {
         // case 'date':
         //     return getDateField(props);

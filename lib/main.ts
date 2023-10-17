@@ -1,6 +1,7 @@
 import { FieldContainer } from "./palmyra/layout/container"
 
-// import {ValidationTextField} from "./palmyra/form"
+import { FlexiLayoutRenderer } from "./palmyra/layout/flexiLayout"
+
 import { AbstractDataStore } from "./palmyra/store"
 
-export { FieldContainer, AbstractDataStore }
+export { FieldContainer, AbstractDataStore, FlexiLayoutRenderer }

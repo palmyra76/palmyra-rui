@@ -1,15 +1,17 @@
 
 import { default as FormRenderer } from './FormEditRenderer';
-import { FormLayout } from '../Types';
 import { default as DefaultSectionContainer } from '../container/SectionContainer';
+
 import { SectionRendererInput } from './Types';
+import { FormLayout } from './Definitions';
+
 
 const SectionRendererEditForm = (props: SectionRendererInput) => {
-    const { sectionLayout, context } = props;
+    const { layout, context } = props;
     const { formContext } = context;
 
-    var ChildRenderer = sectionLayout.Renderer || FormRenderer;
-    var Container = sectionLayout.Container || DefaultSectionContainer;
+    var ChildRenderer = layout.Renderer || FormRenderer;
+    var Container = layout.Container || DefaultSectionContainer;
 
     const getFormLayout = (formLayout: FormLayout) => {
         return (<ChildRenderer formContext={formContext}
@@ -18,8 +20,8 @@ const SectionRendererEditForm = (props: SectionRendererInput) => {
     };
 
     return (
-        <Container  {...sectionLayout}>
-            {getFormLayout(sectionLayout.formLayout)}
+        <Container  {...layout}>
+            {getFormLayout(layout.formLayout)}
         </Container>
     );
 };
