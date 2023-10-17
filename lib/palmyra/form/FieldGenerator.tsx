@@ -4,11 +4,10 @@ import ValidationTextArea from './ValidationTextArea';
 import { FieldContext } from './Types';
 import { FieldDefinition, InputType, MuiFieldDef } from './Definitions';
 import PalmyraRadioGroup from './PalmyraRadioGroup';
+import PalmyraSelect from './PalmyraSelect';
 
 
 // import ValidationDatePicker from './ValidationDatePicker';
-// import PalmyraRadioGroup from './PalmyraRadioGroup';
-// import PalmyraSelect from './PalmyraSelect';
 // import ValidationDateTimePicker from './ValidationDateTimePicker';
 // import PalmyraCheckBox from './PalmyraCheckBox';
 // import ServerLookup from './ServerLookup';
@@ -45,8 +44,23 @@ const getTextArea = (props: FieldRequest) => {
 const getRadioField = (props: FieldRequest) => {
     const { fieldDef, fieldRuntime, fieldRefs, value } = props;
     var fieldProps = getMuiFieldProps(fieldDef, value);
-  
+
     return <PalmyraRadioGroup
+        ref={ref => {
+            fieldRefs.current[fieldDef.attribute] = ref;
+        }}
+        runtime={fieldRuntime}
+        muiFieldDef={fieldProps}
+        fieldDef={fieldDef}
+        value={value}
+    />;
+}
+
+const getSelectField = (props: FieldRequest) => {
+    const { fieldDef, fieldRuntime, fieldRefs, value } = props;
+    var fieldProps = getMuiFieldProps(fieldDef, value);
+
+    return <PalmyraSelect
         ref={ref => {
             fieldRefs.current[fieldDef.attribute] = ref;
         }}
@@ -80,18 +94,6 @@ const getInvalidField = (props: FieldRequest) => {
 //     />;
 // }
 
-// const getSelectField = ({ fieldProps, rule, field, fieldRefs }) => {
-//     const options = field.options || {};
-
-//     return <PalmyraSelect
-//         ref={ref => {
-//             fieldRefs.current[fieldProps.name] = ref;
-//         }}
-//         {...fieldProps}
-//         menu={options}
-//         constraint={rule}
-//     />;
-// }
 
 // const getCheckBoxField = ({ fieldProps, rule, field, fieldRefs }) => {
 //     const options = field.options || {};
@@ -141,11 +143,12 @@ const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRe
             return getTextField(props);
         case 'radio':
             return getRadioField(props);
+        case 'select':
+            return getSelectField(props);
+
         // case 'date':
         //     return getDateField(props);
-        // case 'select':
-        //     return getSelectField(props);
-        // case 'datetime':
+        // case 'datetime':    
         //     return getDateTimeField(props);
         // case 'checkbox':
         //     return getCheckBoxField(props);
