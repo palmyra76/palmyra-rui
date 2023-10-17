@@ -149,7 +149,7 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
             {
                 formLayout.fields.map((field, index) => (
                     <FieldContainer key={field.attribute} index={index}
-                        field={field} label={field.label} options={options}>
+                        field={field} label={field.title} options={options}>
                         {generateField(field)}
                     </FieldContainer>
                 ))

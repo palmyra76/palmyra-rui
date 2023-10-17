@@ -21,7 +21,8 @@ interface LengthValidation {
 
 interface FieldDefinition {
     attribute: string,
-    label: string,
+    title: string,
+    hideTitle: boolean,
     defaultValue?: InputType,
     value?: InputType,
     targetUrl?: string,
@@ -29,6 +30,7 @@ interface FieldDefinition {
     disabled?: boolean,
     variant?: MuiVariant,
     type: FieldType,
+    validationRule?: string | string[],
     errorMessageType?: string,
     length?: LengthValidation,
     options?: Record<string, string>
@@ -39,5 +41,13 @@ interface FieldValidStatus {
     message: string;
 }
 
+interface MuiFieldDef {
+    value: any,
+    required?: boolean,
+    disabled?: boolean,
+    variant: MuiVariant,
+    options?: any
+}
 
-export type { FieldDefinition, FieldValidStatus, FormData, InputType };
+
+export type { FieldDefinition, FieldValidStatus, FormData, InputType, MuiFieldDef };

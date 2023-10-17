@@ -2,7 +2,8 @@
 import ValidationTextField from './ValidationTextField';
 import ValidationTextArea from './ValidationTextArea';
 import { FieldContext } from './Types';
-import { FieldDefinition, InputType } from './Definitions';
+import { FieldDefinition, InputType, MuiFieldDef } from './Definitions';
+import PalmyraRadioGroup from './PalmyraRadioGroup';
 
 
 // import ValidationDatePicker from './ValidationDatePicker';
@@ -21,21 +22,44 @@ const getTextField = (props: FieldRequest) => {
             fieldRefs.current[fieldDef.attribute] = ref;
         }}
         runtime={fieldRuntime}
-        fieldDef={fieldProps}
+        muiFieldDef={fieldProps}
+        fieldDef={fieldDef}
         value={value}
     />;
 }
 
 const getTextArea = (props: FieldRequest) => {
-    const { fieldDef, fieldRuntime, fieldRefs, value } = props
+    const { fieldDef, fieldRuntime, fieldRefs, value } = props;
+    var fieldProps = getMuiFieldProps(fieldDef, value);
     return <ValidationTextArea
         ref={ref => {
             fieldRefs.current[fieldDef.attribute] = ref;
         }}
         runtime={fieldRuntime}
+        muiFieldDef={fieldProps}
         fieldDef={fieldDef}
         value={value}
     />;
+}
+
+const getRadioField = (props: FieldRequest) => {
+    const { fieldDef, fieldRuntime, fieldRefs, value } = props;
+    var fieldProps = getMuiFieldProps(fieldDef, value);
+  
+    return <PalmyraRadioGroup
+        ref={ref => {
+            fieldRefs.current[fieldDef.attribute] = ref;
+        }}
+        runtime={fieldRuntime}
+        muiFieldDef={fieldProps}
+        fieldDef={fieldDef}
+        value={value}
+    />;
+}
+
+const getInvalidField = (props: FieldRequest) => {
+    const { fieldDef } = props;
+    return <div>{"invalid type " + fieldDef.type} </div>
 }
 
 // const getDateField = ({ fieldProps, rule, fieldRefs }) => {
@@ -53,19 +77,6 @@ const getTextArea = (props: FieldRequest) => {
 //         dataFormat="DD-MM-YYYY hh:mm a"
 //         format="DD-MM-YYYY hh:mm a"
 //         slotProps={{ textField: { variant: 'standard', fullWidth: true } }}
-//     />;
-// }
-
-// const getRadioField = ({ fieldProps, field, rule, fieldRefs }) => {
-//     const options = field.options || {};
-
-//     return <PalmyraRadioGroup
-//         ref={ref => {
-//             fieldRefs.current[fieldProps.name] = ref;
-//         }}
-//         {...fieldProps}
-//         options={options}
-//         constraint={rule}
 //     />;
 // }
 
@@ -106,6 +117,7 @@ const getTextArea = (props: FieldRequest) => {
 //     />;
 // }
 
+
 interface FieldRequest {
     fieldDef: FieldDefinition,
     fieldRuntime: FieldContext,
@@ -113,26 +125,24 @@ interface FieldRequest {
     value: InputType
 }
 
-const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType): FieldDefinition => {
-    var disabled = field.disabled;
-    var defaultValue = field.defaultValue;
-    var variant = field.variant || "standard";
-    // var targetUrl = field.targetUrl || {};
-    if (disabled) {
-        return { ...field, variant, disabled: disabled, defaultValue };
-    } else {
-        return { ...field, variant, defaultValue };
-    }
+const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType): MuiFieldDef => {
+    return {
+        value: field.value,
+        required: field.required, disabled: field.disabled == true,
+        variant: field.variant || 'standard'
+    };
 }
 
 const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs: any, value: InputType) => {
     const { type } = fieldDef;
     const props: FieldRequest = { fieldDef, fieldRuntime, fieldRefs, value };
     switch (type) {
+        case 'string':
+            return getTextField(props);
+        case 'radio':
+            return getRadioField(props);
         // case 'date':
         //     return getDateField(props);
-        // case 'radio':
-        //     return getRadioField(props);
         // case 'select':
         //     return getSelectField(props);
         // case 'datetime':
@@ -144,7 +154,7 @@ const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRe
         case 'textarea':
             return getTextArea(props);
         default:
-            return getTextField(props);
+            return getInvalidField(props);
     }
 };
 

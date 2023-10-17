@@ -1,4 +1,4 @@
-import { FieldDefinition, FormData } from "./Definitions";
+import { FieldDefinition, FormData, MuiFieldDef } from "./Definitions";
 
 type EventHandler = Record<FieldEvents, Function>;
 type FieldEvents = "onEntryComplete" | "onEntryClear" | "asyncValid";
@@ -24,6 +24,7 @@ interface FormContext {
  */
 interface FieldProperties {
     fieldDef: FieldDefinition,
+    muiFieldDef: MuiFieldDef,
     runtime?: FieldContext,
     value: any
 }

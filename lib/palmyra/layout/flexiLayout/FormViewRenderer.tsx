@@ -33,7 +33,7 @@ const FormViewRenderer = (props: ViewFormRendererInput) => {
         <div className="palmyra-form-field-container-wrapper">
             {
                 formLayout.fields.map((field, index) => (
-                    <FieldContainer label={field.label} field={field}
+                    <FieldContainer label={field.title} field={field}
                         key={field.attribute}
                         options={options} index={index}>
                         {getField(field)}
