@@ -15,7 +15,6 @@ import PalmyraSelect from './PalmyraSelect';
 const getTextField = (props: FieldRequest) => {
     const { fieldDef, fieldRuntime, fieldRefs, value } = props
     var fieldProps = getMuiFieldProps(fieldDef, value);
-
     return <ValidationTextField
         ref={ref => {
             fieldRefs.current[fieldDef.attribute] = ref;
@@ -129,7 +128,7 @@ interface FieldRequest {
 
 const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType): MuiFieldDef => {
     return {
-        value: field.value,
+        value: fieldValue,
         required: field.required, disabled: field.disabled == true,
         variant: field.variant || 'standard'
     };

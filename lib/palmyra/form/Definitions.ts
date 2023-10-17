@@ -10,7 +10,7 @@ type InputType = string | number | Date;
 
 type FormData = { [key: string]: InputType | FormData }; // Record<string, InputType | FormData>;
 
-type MuiVariant = "outline" | "standard";
+type MuiVariant = "outlined" | "standard" | "filled" ;
 
 interface RangeValidation<T> {
     is?:T,
