@@ -69,8 +69,8 @@ const pageLayout = {
               "title": "User Name",
               "required": true,
               "type": "string",
-              "validationRule": "alphabets",
-              "errorMessageType": "Only Alphabets are allowed",
+              "validationRule": "string",
+              "errorMessageType": "Invalid User Name",
               "length": {
                 min: 3,
                 max: 64,
@@ -181,7 +181,10 @@ const ViewPageLayout = {
               "required": true,
               "type": "string",
               "validationRule": "port",
-              "errorMessageType": "Invalid Port Number"
+              "errorMessage": {
+                required: "Mandatory",
+                rule: "Invalid Port Number"
+              }
             },
             {
               "attribute": "config.targetFolder",
@@ -209,8 +212,8 @@ const ViewPageLayout = {
               "title": "User Name",
               "required": true,
               "type": "string",
-              "validationRule": "alphabets",
-              "errorMessageType": "Only Alphabets are allowed",
+              "validationRule": "string",
+              "errorMessageType": "Invalid User Name",
               "length": {
                 min: 3,
                 max: 64,
@@ -349,8 +352,8 @@ const NewPageLayout = {
               "title": "User Name",
               "required": true,
               "type": "string",
-              "validationRule": "alphabets",
-              "errorMessageType": "Only Alpha-numericals are allowed",
+              "validationRule": "string",
+              "errorMessageType": "Invalid User Name",
               "length": {
                 min: 3,
                 max: 64,

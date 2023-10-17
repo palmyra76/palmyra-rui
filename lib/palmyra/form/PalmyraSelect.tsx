@@ -27,7 +27,7 @@ const PalmyraSelect = forwardRef(function PalmyraSelect(props: FieldProperties, 
         setData(props.value);
     }, [props.value]);
 
-    var inputProps: any = { ...props.fieldDef, value: data };
+    var inputProps: any = { ...props.muiFieldDef, value: data };
 
     return (
         <FormControl fullWidth error={error.status}>
