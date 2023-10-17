@@ -3,6 +3,7 @@ import { FieldDefinition, FormData, MuiFieldDef } from "./Definitions";
 type EventHandler = Record<FieldEvents, Function>;
 type FieldEvents = "onEntryComplete" | "onEntryClear" | "asyncValid";
 
+type FormMode = 'view' | 'new' | 'edit';
 
 interface FieldContext {
     eventHandler?: EventHandler,
@@ -32,4 +33,4 @@ interface FieldProperties {
 
 export type { FieldContext, FieldProperties, FormContext };
 
-export type { EventHandler };
+export type { EventHandler, FormMode};
