@@ -29,30 +29,66 @@ const validate = (format: FieldDefinition) => {
 
     if (format.validationRule) {
         var rules = format.validationRule;
-        if (rules instanceof Array) {
-            rules.map((rule, index) => {
-                var typeValidator = getRuleValidator(format, rule);
-                var typeMessage = format.errorMessage?.[rule] || "Invalid";
-                validators.push(constructMethod(typeValidator, typeMessage));
-            })
+        if (rules instanceof Array && rules.length > 0) {
+            const clause = rules[0];
+            validators.push(getRuleValidators(format, clause == 'OR'));           
         } else {
-            const rule = rules;
+            const rule: any = rules;
             var typeValidator = getRuleValidator(format, rule);
             var typeMessage = format.errorMessage?.[rule] || "Invalid";
             validators.push(constructMethod(typeValidator, typeMessage));
         }
     }
 
-    return (value:any):FieldValidStatus => {
+    return (value: any): FieldValidStatus => {
         if (!required && isEmpty(value))
-            return {status:true, message:''};
+            return { status: true, message: '' };
 
-        for (var validator of validators) {            
-            const validStatus:FieldValidStatus = validator.call(null, value);
-            if(!validStatus.status)
+        for (var validator of validators) {
+            const validStatus: FieldValidStatus = validator.call(null, value);
+            if (!validStatus.status)
                 return validStatus;
         }
-        return {status:true, message:''};
+        return { status: true, message: '' };
+    }
+}
+
+const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
+    var validators = [];
+    var rules = format.validationRule;
+    if (rules instanceof Array) {
+        rules.map((rule, index) => {
+            if(anyMatch && 0 == index)
+                return;
+            var typeValidator = getRuleValidator(format, rule);
+            var typeMessage = format.errorMessage?.[rule] || "Invalid";
+            validators.push(constructMethod(typeValidator, typeMessage));
+        })
+    }
+
+    if (anyMatch) {
+        return (value: any): FieldValidStatus => {
+            if (validators.length > 0) {
+                var message = '';
+                for (var validator of validators) {
+                    const validStatus: FieldValidStatus = validator.call(null, value);
+                    if (validStatus.status) {
+                        return validStatus;
+                    } else
+                        message = validStatus.message;
+                }
+                return { status: false, message };
+            }
+        }
+    } else {
+        return (value: any): FieldValidStatus => {
+            for (var validator of validators) {
+                const validStatus: FieldValidStatus = validator.call(null, value);
+                if (!validStatus.status)
+                    return validStatus;
+            }
+            return { status: true, message: '' };
+        }
     }
 }
 
@@ -150,11 +186,11 @@ const isNotEmpty = (val) => {
 }
 
 function constructMethod(func, message) {
-    return (val):FieldValidStatus => {
+    return (val): FieldValidStatus => {
         if (func.call(null, val)) {
-            return {status:true, message:''};
+            return { status: true, message: '' };
         } else {
-            return {status:false, message};
+            return { status: false, message };
         }
     };
 }
