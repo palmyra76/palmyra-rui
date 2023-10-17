@@ -1,3 +1,4 @@
+import { FormData } from "../../form/Definitions";
 import { FormContext } from "../../form/Types";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition } from "./Definitions";
 
@@ -16,10 +17,15 @@ interface TabRendererInput {
     context: PageContext
 }
 
+interface FlexiEventHandlers {
+    onFormValidChange?: Function
+}
+
 interface FlexiLayoutRendererInput {
     layout: FlexiLayoutDefinition,
     recordId?: string,
-    formContext? : FormContext
+    data?: FormData,
+    callbacks?: FlexiEventHandlers,
     options?: any
 }
 
@@ -39,4 +45,4 @@ interface SectionContainerInput extends SectionDefinition, Parent {
 
 export type { SectionRendererInput, TabRendererInput, PageContext }
 
-export type { TabContainerInput, SectionContainerInput, FlexiLayoutRendererInput }
+export type { TabContainerInput, SectionContainerInput, FlexiLayoutRendererInput, FlexiEventHandlers }

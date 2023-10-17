@@ -1,24 +1,47 @@
 
+import { useRef } from 'react';
 import { FlexiLayoutRenderer } from '../lib/main.js';
+import { FlexiEventHandlers } from '../lib/palmyra/layout/flexiLayout/Types.js';
 import './App.css'
 
 import { viewSftpClientLayout } from './FormTest/FormDef.js'
 
 function App() {
-
+  const form = useRef(null);
   console.log(viewSftpClientLayout.tabs[0].sections[0]);
-  
-  var formContext = { rules: {}, data: {}, onDataChange: (d) => { console.log(d.data) } };
 
-  const pageContext = {
-    formContext
-  };
+  function onValidChange(isValid) {
+    console.log("validityChange called " + isValid);
+    console.log(form.current.getData());
+  }
+
+  const callbacks: FlexiEventHandlers = {
+    onFormValidChange: onValidChange
+  }
+
+  const data = {
+    "config": {
+      "scanInterval": "15",
+      "fileTransfer": "Upload",
+      "serverHost": "127.0.0.1",
+      "port": "2023",
+      "targetFolder": "asf",
+      "auth": {
+        "userName": "hgasfg",
+        "password": "24234s"
+      },
+      "baseFolder": "asfdasdf"
+    },
+    "serviceName": "asfdfileupload"
+  }
 
   return (
     <div>
       <FlexiLayoutRenderer
+        ref={form}
+        data={data}
         layout={viewSftpClientLayout}
-        formContext={formContext}
+        callbacks={callbacks}
       ></FlexiLayoutRenderer>
     </div>
   )

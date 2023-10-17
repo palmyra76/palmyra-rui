@@ -14,28 +14,28 @@ function useValidator(props: FieldProperties) {
     const [data, setData] = useState(getDefaultValue(runtime, fieldDef, value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
 
-    const setValue = (value: any) => {        
+    const setValue = (value: any) => {
         setData(value || '');
-        if (onDataChange) {
-            onDataChange({ [fieldDef.attribute]: value })
-        }
         delay(() => {
             validate(value);
+            if (onDataChange) {
+                onDataChange({ [fieldDef.attribute]: value })
+            }
         });
     }
 
-    const checkConstraints = (value: String):FieldValidStatus => {
+    const checkConstraints = (value: String): FieldValidStatus => {
         if (constraint && constraint instanceof Function) {
             const validStatus = constraint(value);
-            if(!validStatus.status)
+            if (!validStatus.status)
                 return validStatus;
         }
-        return {status:true, message:''};
+        return { status: true, message: '' };
     };
 
-    const setValid = (valid:FieldValidStatus)=>{
+    const setValid = (valid: FieldValidStatus) => {
         setErrorMode({
-            status: !valid.status, 
+            status: !valid.status,
             message: valid.message
         })
     }
@@ -66,7 +66,7 @@ function useValidator(props: FieldProperties) {
         }
     }
 
-    const resetError =() =>{
+    const resetError = () => {
         setErrorMode({
             status: false, message: ""
         });

@@ -5,10 +5,11 @@
 import { getValidators } from "../../validator/DataValidator";
 import { FlexiLayoutDefinition } from "./Definitions";
 import { getValueByKey, setValueByKey } from "../../form/FormUtil";
-import { FieldDefinition, FieldValidStatus, FormData } from "../../form/Definitions";
+import { FieldDefinition, FieldValidStatus } from "../../form/Definitions";
 import { useEffect, useMemo, useRef } from "react";
+import { mergeDeep } from "../../utils";
 import { FormMode } from "../../form/Types";
-
+import { FlexiLayoutRendererInput } from "./Types";
 
 
 const calcValidationStatus = (incomingData, validFunctions) => {
@@ -16,7 +17,7 @@ const calcValidationStatus = (incomingData, validFunctions) => {
     for (var field in validFunctions) {
         var validator = validFunctions[field];
         var value = getValueByKey(field, incomingData);
-        var isValid:FieldValidStatus = validator(value);
+        var isValid: FieldValidStatus = validator(value);
         validity[field] = isValid.status;
     }
     return validity;
@@ -59,7 +60,10 @@ const clone = (data) => {
 }
 
 
-function useFormValidator(pageLayout: FlexiLayoutDefinition, mode: FormMode, formData: FormData) {
+function useFormValidator(props : FlexiLayoutRendererInput, mode: FormMode) {
+    const { layout, callbacks } = props;
+    const formData = props.data;
+    const onDataValidityChange = callbacks.onFormValidChange;
 
     const isNewForm = () => {
         return mode && mode == 'new';
@@ -67,9 +71,9 @@ function useFormValidator(pageLayout: FlexiLayoutDefinition, mode: FormMode, for
 
     const { validationRules, defaultData } = useMemo(
         () => {
-            var validationFormat: Record<string, FieldDefinition> = getValidationFormat(pageLayout);
+            var validationFormat: Record<string, FieldDefinition> = getValidationFormat(layout);
             var validationRules = getValidators(validationFormat);
-            console.log(validationRules);
+
             if (isNewForm()) {
                 var defaultData = getDefaultData(validationFormat);
                 return { validationRules, defaultData };
@@ -77,25 +81,35 @@ function useFormValidator(pageLayout: FlexiLayoutDefinition, mode: FormMode, for
                 return { validationRules: validationRules, defaultData: {} };
             }
         },
-        [pageLayout, mode]
+        [layout, mode]
     );
 
     const data = useRef(clone({ ...defaultData, ...formData }));
+    const isValid = useRef(false)
 
     var dataValid = calcValidationStatus(data, validationRules);
 
     useEffect(() => {
         data.current = clone({ ...defaultData, ...formData });
         dataValid = calcValidationStatus(data.current, validationRules);
+        isValid.current = isValidForm(dataValid);
     }, [formData]);
 
     const onDataChange = (updateData) => {
         dataValid = Object.assign({}, dataValid, updateData.dataValid);
-        var allValid = isValid(dataValid);   
-        console.log(allValid);
+        mergeDeep(data.current, updateData.data);
+        const _isValid = isValidForm(dataValid);
+
+        if(_isValid != isValid.current)
+        {
+            isValid.current = _isValid;
+            if(onDataValidityChange){
+                onDataValidityChange(_isValid);
+            }
+        }
     }
 
-    const isValid = (dv) => {
+    const isValidForm = (dv) => {
         for (var key in dv) {
             if (dv[key] == false) {
                 return false;
@@ -104,7 +118,7 @@ function useFormValidator(pageLayout: FlexiLayoutDefinition, mode: FormMode, for
         return true;
     }
 
-    return { validationRules, data, onDataChange };
+    return { validationRules, data, onDataChange, isValid };
 }
 
 export { useFormValidator };
