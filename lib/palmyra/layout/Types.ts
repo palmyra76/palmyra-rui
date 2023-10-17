@@ -36,7 +36,7 @@ interface ChartLayout extends Renderable {
 
 
 interface PageContext {
-    formContext: FormContext
+    formContext?: FormContext
 }
 
 interface SectionDefinition extends Positionable, Titleable, Renderable {

@@ -1,12 +1,8 @@
 
 import { default as FormRenderer } from './FormEditRenderer';
-import { FormLayout, PageContext, SectionDefinition } from '../Types';
+import { FormLayout} from '../Types';
 import { default as DefaultSectionContainer } from '../container/SectionContainer';
-
-interface SectionRendererInput {
-    sectionLayout: SectionDefinition,
-    context: PageContext
-}
+import { SectionRendererInput } from './Types';
 
 const SectionRendererGrid = (props: SectionRendererInput) => {
     const { sectionLayout, context } = props;

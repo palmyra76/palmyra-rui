@@ -1,19 +1,23 @@
 
 import { default as FormRenderer } from './FormViewRenderer';
-import { FormLayout } from '../Types';
+import { FormLayout, PageContext, SectionDefinition } from '../Types';
 import { default as DefaultSectionContainer } from '../container/SectionContainer';
-import { SectionRendererInput } from './Types';
 
-const SectionRendererViewForm = (props: SectionRendererInput) => {
+interface SectionRendererInput {
+    sectionLayout: SectionDefinition,
+    context: PageContext
+}
+
+const SectionRendererInvalid = (props: SectionRendererInput) => {
     const { sectionLayout, context } = props;
-    const { formContext } = context;
+    const {formContext} = context;
 
     var ChildRenderer = sectionLayout.Renderer || FormRenderer;
     var Container = sectionLayout.Container || DefaultSectionContainer;
 
     const getFormLayout = (formLayout: FormLayout) => {
         return (<ChildRenderer data={formContext.data}
-            formLayout={formLayout}
+            formLayout={formLayout} 
         ></ChildRenderer>);
     };
 
@@ -24,5 +28,5 @@ const SectionRendererViewForm = (props: SectionRendererInput) => {
     );
 };
 
-export default SectionRendererViewForm;
+export default SectionRendererInvalid;
 

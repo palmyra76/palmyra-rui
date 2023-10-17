@@ -1,15 +1,16 @@
 
-import { PageContext, SectionDefinition } from '../Types';
 import SectionRendererChart from './SectionRendererChart';
 import SectionRendererEditForm from './SectionRendererEditForm';
 import SectionRendererGrid from './SectionRendererGrid';
+import SectionRendererInvalid from './SectionRendererInvalid';
 import SectionRendererViewForm from './SectionRendererViewForm';
 
+import { SectionRendererInput } from './Types';
 
-interface SectionRendererInput {
-    sectionLayout: SectionDefinition,
-    context: PageContext
-}
+/**
+ * This renderer will redirect to corresponding SectionRenderer based on the type. 
+ * 
+ */
 
 const SectionRenderer = (props: SectionRendererInput) => {
     const { sectionLayout } = props;
@@ -24,7 +25,7 @@ const SectionRenderer = (props: SectionRendererInput) => {
         case 'chart':
             return <SectionRendererChart {...props}></SectionRendererChart>;
         default:
-            return <SectionRendererEditForm {...props}></SectionRendererEditForm>;
+            return <SectionRendererInvalid {...props}></SectionRendererInvalid>;
     }
 };
 
