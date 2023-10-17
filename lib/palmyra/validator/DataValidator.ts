@@ -1,9 +1,9 @@
 import validator from 'validator';
 
-import RangeValidator from './RangeValidator';
 import { isHost, isFolder, isPortRange } from './Validation';
+import { FieldDefinition, FieldValidStatus } from '../form/Definitions';
 
-const getValidators = (fieldDefs) => {
+const getValidators = (fieldDefs: Record<string, FieldDefinition>) => {
     let fieldValidators = {};
     for (var key in fieldDefs) {
         var fieldDef = fieldDefs[key];
@@ -13,46 +13,50 @@ const getValidators = (fieldDefs) => {
     return fieldValidators;
 }
 
-const validate = (format) => {
+const validate = (format: FieldDefinition) => {
     let validators = [];
     let required = format.required;
 
     if (format.required == true) {
-        var message = format.errorMessageRequired || 'This field is mandatory';
+        var message = format.errorMessage?.required || 'This field is mandatory';
         validators.push(constructMethod(isNotEmpty, message));
     }
-
-    var typeValidator = getTypeValidator(format);
-    var typeMessage = format.errorMessageType || "Invalid";
-    validators.push(constructMethod(typeValidator, typeMessage));
 
     if (format.length) {
         var lengthMessage = format.length.message || 'Invalid size';
         validators.push(constructMethod(getLengthValidator(format), lengthMessage));
     }
 
-    if (format.range) {
-        var validatorMethod = RangeValidator(format);
-        if (validatorMethod) {
-            var rangeMessage = format.range.message || 'Invalid value';
-            validators.push(constructMethod(validatorMethod, rangeMessage));
+    if (format.validationRule) {
+        var rules = format.validationRule;
+        if (rules instanceof Array) {
+            rules.map((rule, index) => {
+                var typeValidator = getRuleValidator(format, rule);
+                var typeMessage = format.errorMessage?.[rule] || "Invalid";
+                validators.push(constructMethod(typeValidator, typeMessage));
+            })
+        } else {
+            const rule = rules;
+            var typeValidator = getRuleValidator(format, rule);
+            var typeMessage = format.errorMessage?.[rule] || "Invalid";
+            validators.push(constructMethod(typeValidator, typeMessage));
         }
     }
 
-    return (value) => {
-        if(!required && isEmpty(value))
-            return [true, ''];
-        
-        for (var validator of validators) {
-            const result = validator.call(null, value);
-            if (!result[0])
-                return result;
+    return (value:any):FieldValidStatus => {
+        if (!required && isEmpty(value))
+            return {status:true, message:''};
+
+        for (var validator of validators) {            
+            const validStatus:FieldValidStatus = validator.call(null, value);
+            if(!validStatus.status)
+                return validStatus;
         }
-        return [true, ''];
+        return {status:true, message:''};
     }
 }
 
-const getLengthValidator = (format) => {
+const getLengthValidator = (format: FieldDefinition) => {
     if (format.length) {
         const length = format.length.is;
         const minLength = format.length.min;
@@ -81,22 +85,21 @@ const getLengthValidator = (format) => {
     }
 }
 
-const getFormatValidator = (format) => {
+// const getFormatValidator = (format) => {
 
-}
+// }
 
-const getConstraintValidator = (format) => {
+// const getConstraintValidator = (format) => {
 
-}
+// }
 
-const getRangeValidator = (format) => {
+// const getRangeValidator = (format) => {
 
-}
+// }
 
-const getTypeValidator = (format) => {
-    var type = format.type;
-    if (type) {
-        switch (type) {
+const getRuleValidator = (format: FieldDefinition, rule: string) => {
+    if (rule) {
+        switch (rule) {
             case 'string':
                 return noopValid;
             case 'alphabets':
@@ -147,11 +150,11 @@ const isNotEmpty = (val) => {
 }
 
 function constructMethod(func, message) {
-    return (val) => {
+    return (val):FieldValidStatus => {
         if (func.call(null, val)) {
-            return [true, ''];
+            return {status:true, message:''};
         } else {
-            return [false, message];
+            return {status:false, message};
         }
     };
 }

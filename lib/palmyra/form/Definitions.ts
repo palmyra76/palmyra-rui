@@ -12,10 +12,10 @@ type FormData = { [key: string]: InputType | FormData }; // Record<string, Input
 
 type MuiVariant = "outline" | "standard";
 
-
-interface LengthValidation {
-    min: number,
-    max: number,
+interface RangeValidation<T> {
+    is?:T,
+    min?: T,
+    max?: T,
     message: string
 }
 
@@ -30,10 +30,11 @@ interface FieldDefinition {
     disabled?: boolean,
     variant?: MuiVariant,
     type: FieldType,
-    validationRule?: string | string[],
-    errorMessageType?: string,
-    length?: LengthValidation,
-    options?: Record<string, string>
+    validationRule?: string | string[],    
+    errorMessage: Record<string, string>,
+    length?: RangeValidation<number>,
+    options?: Record<string, string>,
+    range: RangeValidation<any>
 }
 
 interface FieldValidStatus {

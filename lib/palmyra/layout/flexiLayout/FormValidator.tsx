@@ -5,8 +5,8 @@
 import { getValidators } from "../../validator/DataValidator";
 import { FlexiLayoutDefinition } from "./Definitions";
 import { getValueByKey, setValueByKey } from "../../form/FormUtil";
-import { FieldDefinition, FormData } from "../../form/Definitions";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { FieldDefinition, FieldValidStatus, FormData } from "../../form/Definitions";
+import { useEffect, useMemo, useRef } from "react";
 import { FormMode } from "../../form/Types";
 
 
@@ -16,8 +16,8 @@ const calcValidationStatus = (incomingData, validFunctions) => {
     for (var field in validFunctions) {
         var validator = validFunctions[field];
         var value = getValueByKey(field, incomingData);
-        var [isValid] = validator(value);
-        validity[field] = isValid;
+        var isValid:FieldValidStatus = validator(value);
+        validity[field] = isValid.status;
     }
     return validity;
 }
@@ -69,7 +69,7 @@ function useFormValidator(pageLayout: FlexiLayoutDefinition, mode: FormMode, for
         () => {
             var validationFormat: Record<string, FieldDefinition> = getValidationFormat(pageLayout);
             var validationRules = getValidators(validationFormat);
-
+            console.log(validationRules);
             if (isNewForm()) {
                 var defaultData = getDefaultData(validationFormat);
                 return { validationRules, defaultData };
@@ -91,7 +91,8 @@ function useFormValidator(pageLayout: FlexiLayoutDefinition, mode: FormMode, for
 
     const onDataChange = (updateData) => {
         dataValid = Object.assign({}, dataValid, updateData.dataValid);
-        var allValid = isValid(dataValid);        
+        var allValid = isValid(dataValid);   
+        console.log(allValid);
     }
 
     const isValid = (dv) => {

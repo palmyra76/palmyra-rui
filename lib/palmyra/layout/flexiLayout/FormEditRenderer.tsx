@@ -73,8 +73,8 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
             var value = kv[field];
             var validator = rules[field];
             if(validator){
-                var [isValid] = validator(value);
-                dValid[field] = isValid;
+                var {status} = validator(value);
+                dValid[field] = status;
             }else{
                 dValid[field] = true;
             }

@@ -26,8 +26,9 @@ function useValidator(props: FieldProperties) {
 
     const checkConstraints = (value: String):FieldValidStatus => {
         if (constraint && constraint instanceof Function) {
-            const [status, message] = constraint(value);
-            return {status, message};
+            const validStatus = constraint(value);
+            if(!validStatus.status)
+                return validStatus;
         }
         return {status:true, message:''};
     };
