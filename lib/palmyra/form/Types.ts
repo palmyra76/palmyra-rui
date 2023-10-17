@@ -31,19 +31,20 @@ interface FieldDefinition {
     options?: Record<string, string>
 }
 
-interface FieldRuntime {
+interface FieldContext {
     eventHandler?: EventHandler,
     onDataChange?: Function,
     constraint?: Function,
     options?: Record<string, string>
 }
 
-interface FormRuntime {
+interface FormContext {
     rules: Record<string, Function>,
     data: FormData,
     onDataChange: Function,
     eventHandlers?: Record<string, EventHandler>
 }
+
 
 interface FieldValidStatus {
     status: boolean;
@@ -52,11 +53,11 @@ interface FieldValidStatus {
 
 interface FieldProperties {
     fieldDef: FieldDefinition,
-    runtime?: FieldRuntime,
+    runtime?: FieldContext,
     value: any
 }
 
 
-export type { FieldDefinition, FieldRuntime, FieldValidStatus, FieldProperties, FormData, FormRuntime };
+export type { FieldDefinition, FieldContext, FieldValidStatus, FieldProperties, FormData, FormContext};
 
 export type { InputType, EventHandler };

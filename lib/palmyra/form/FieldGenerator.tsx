@@ -1,7 +1,7 @@
 
 import ValidationTextField from './ValidationTextField';
 import ValidationTextArea from './ValidationTextArea';
-import { FieldDefinition, FieldRuntime, InputType } from './Types';
+import { FieldDefinition, FieldContext, InputType } from './Types';
 
 // import ValidationDatePicker from './ValidationDatePicker';
 // import PalmyraRadioGroup from './PalmyraRadioGroup';
@@ -106,7 +106,7 @@ const getTextArea = (props:FieldRequest) => {
 
 interface FieldRequest {
     fieldDef: FieldDefinition, 
-    fieldRuntime: FieldRuntime, 
+    fieldRuntime: FieldContext, 
     fieldRefs:any, 
     value:InputType
 }
@@ -123,7 +123,7 @@ const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType):FieldDe
     }
 }
 
-const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldRuntime, fieldRefs:any, value:InputType) => {
+const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs:any, value:InputType) => {
     const { type } = fieldDef;
     const props:FieldRequest = {fieldDef, fieldRuntime, fieldRefs, value};
     switch (type) {

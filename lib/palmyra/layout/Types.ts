@@ -1,6 +1,6 @@
-import { FieldDefinition } from "../form/Types";
+import { FieldDefinition, FormContext } from "../form/Types";
 
-type SectionType = 'view' | 'form' | 'table' | 'chart';
+type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
 interface Positionable {
     height?: number,
@@ -33,6 +33,12 @@ interface ChartLayout extends Renderable {
 
 }
 
+
+
+interface PageContext {
+    formContext: FormContext
+}
+
 interface SectionDefinition extends Positionable, Titleable, Renderable {
     type: SectionType,
     children: any,
@@ -55,3 +61,5 @@ export type { FormLayout, TableLayout, ChartLayout };
 export type { Positionable, Titleable };
 
 export type { SectionType };
+
+export type {PageContext}

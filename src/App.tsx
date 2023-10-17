@@ -10,10 +10,16 @@ function App() {
 
   const def: any = viewSftpClientLayout.tabs[0].sections[1];
 
+  var formContext = {rules:{}, data:{}, onDataChange:(d) => {console.log(d.data)}};
+
+  const pageContext = {
+    formContext
+  };
+
   return (
     <div>
       <SectionRenderer
-        sectionLayout={def} formContext={{rules:{}, data:{}, onDataChange:(d) => {console.log(d)}}}
+        sectionLayout={def} context={pageContext}
       ></SectionRenderer>
     </div>
   )

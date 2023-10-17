@@ -1,31 +1,31 @@
 
-import { default as FormRenderer } from './FormEditRenderer';
-import { FormLayout, SectionDefinition } from '../Types';
-import { FormRuntime } from '../../form/Types';
-import { default as DefaultSectionContainer } from '../container/SectionContainer';
+import { PageContext, SectionDefinition } from '../Types';
+import SectionRendererChart from './SectionRendererChart';
+import SectionRendererEditForm from './SectionRendererEditForm';
+import SectionRendererGrid from './SectionRendererGrid';
+import SectionRendererViewForm from './SectionRendererViewForm';
+
 
 interface SectionRendererInput {
     sectionLayout: SectionDefinition,
-    formContext: FormRuntime
+    context: PageContext
 }
 
 const SectionRenderer = (props: SectionRendererInput) => {
-    const { sectionLayout, formContext } = props;
+    const { sectionLayout } = props;
 
-    var ChildRenderer = sectionLayout.Renderer || FormRenderer;
-    var Container = sectionLayout.Container || DefaultSectionContainer;
-
-    const getFormLayout = (formLayout: FormLayout) => {
-        return (<ChildRenderer formContext={formContext}             
-            formLayout={formLayout} 
-        ></ChildRenderer>);
-    };
-
-    return (
-        <Container  {...sectionLayout}>
-            {getFormLayout(sectionLayout.formLayout)}
-        </Container>
-    );
+    switch (sectionLayout.type) {
+        case 'form':
+            return <SectionRendererEditForm {...props}></SectionRendererEditForm>;
+        case 'view':
+            return <SectionRendererViewForm {...props}></SectionRendererViewForm>;
+        case 'grid':
+            return <SectionRendererGrid {...props}></SectionRendererGrid>;
+        case 'chart':
+            return <SectionRendererChart {...props}></SectionRendererChart>;
+        default:
+            return <SectionRendererEditForm {...props}></SectionRendererEditForm>;
+    }
 };
 
 export default SectionRenderer;

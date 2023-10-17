@@ -1,12 +1,12 @@
-import { useState, useEffect, useMemo, useRef, useImperativeHandle, forwardRef } from 'react';
+import { useMemo, useRef, useImperativeHandle, forwardRef } from 'react';
 import { default as DefaultFieldContainer } from '../container/FieldContainer';
 import getField from '../../form/FieldGenerator';
 import { FormLayout } from '../Types';
-import { FieldDefinition, FieldRuntime, FormData, FormRuntime } from '../../form/Types';
+import { FieldDefinition, FieldContext, FormData, FormContext } from '../../form/Types';
 
 interface EditFormRendererInput {
     formLayout: FormLayout,
-    formContext: FormRuntime
+    formContext: FormContext
 }
 
 const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInput, ref) {
@@ -17,22 +17,21 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
     const eventHandlers = formContext.eventHandlers || {};
     //    const { fieldGenerators } = props; // TODO  generate custom fields using the array of generators provided
     const FieldContainer = formLayout.Container || DefaultFieldContainer;
-    const [data, setData] = useState<FormData>(formContext.data);
+    const dataRef = useRef<FormData>({...formContext.data});
     const fieldRefs = useRef({});
+    const data = dataRef.current;
 
-    const updateData = (kv) => {
-        var newData = { ...data };
+    const updateData = (kv) => {        
         for (var field in kv) {
             var value = kv[field];
-            setValueByKey(field, newData, value);
-        }
-        setData(newData);
-        setSubmitStatus(kv, newData);
+            setValueByKey(field, data, value);
+        }        
+        setSubmitStatus(kv, data);
     };
 
-    useEffect(() => {
-        setData(formContext.data);
-    }, [formContext.data]);
+    // useEffect(() => {
+    //     setData(formContext.data);
+    // }, [formContext.data]);
 
     const _focus = () => {
         var firstField = formLayout.fields[0];
@@ -78,7 +77,6 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
                 dValid[field] = true;
             }
         }
-        console.log(newData);
         onDataChange({ data: newData, dataValid: dValid });
     }
 
@@ -126,10 +124,10 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         return setValueByKey(fieldKey, data[objKey], value);
     }
 
-    const getFieldRuntime = (field: FieldDefinition, formData: FormData): FieldRuntime => {
+    const getFieldRuntime = (field: FieldDefinition, formData: FormData): FieldContext => {
         var eventHandler = eventHandlers[field.attribute]
         var constraint = rules[field.attribute]
-        var runtime: FieldRuntime = {}
+        var runtime: FieldContext = {}
 
         if (!field.disabled)
             runtime.onDataChange = updateData;

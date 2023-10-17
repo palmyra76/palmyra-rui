@@ -9,7 +9,7 @@ import { FormLayout } from '../Types'
 interface ViewFormRendererInput {
     formLayout: FormLayout,
     data: FormData,
-    FieldContainer: React.FC
+    FieldContainer?: React.FC
 }
 
 const FormViewRenderer = (props: ViewFormRendererInput) => {
