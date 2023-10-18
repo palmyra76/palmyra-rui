@@ -3,7 +3,9 @@ import { useRef } from 'react';
 import { FlexiLayoutRenderer } from '../lib/main.js';
 import { FlexiEventHandlers } from '../lib/palmyra/layout/flexiLayout/Types.js';
 import './App.css'
-
+import '../lib/palmyra/styles/Layout.css';
+import '../src/themes/blue/Colors.css';
+import '../src/themes/colorDef.css';
 import { viewSftpClientLayout } from './FormTest/FormDef.js'
 
 function App() {
