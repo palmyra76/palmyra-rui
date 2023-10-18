@@ -1,12 +1,12 @@
 
 
-const calcContainerClass = (options:any,field:any) => {
+const calcContainerClass = (options: any, field: any) => {
     var containerClass = 'palmyra-form-field-container';
     if (options && options.columns) {
         switch (options.columns) {
             case 2:
             case '2':
-                if(field.columnWrap && field.columnWrap > 1)
+                if (field.columnWrap && field.columnWrap > 1)
                     return containerClass;
                 return containerClass + ' palmyra-form-field-container-2column';
             case 3:
@@ -20,10 +20,10 @@ const calcContainerClass = (options:any,field:any) => {
     return containerClass;
 }
 
-var calcFieldLabelClass = (options:any,field:any) => {
+var calcFieldLabelClass = (options: any, field: any) => {
     var labelClass = 'palmyra-form-field-label';
     var fieldClass = 'palmyra-form-field-data';
-    
+
     if (field.topLabel || options && options.topLabel) {
         return {
             labelClass: 'palmyra-form-field-label palmyra-form-field-label-topLabel',
@@ -35,26 +35,28 @@ var calcFieldLabelClass = (options:any,field:any) => {
 }
 
 type FieldContainerProps = {
-    label:any, 
-    children:any, 
-    options?:any, 
-    field:any, 
-    index?:number
+    label: any,
+    children: any,
+    options?: any,
+    field: any,
+    index?: number
 }
 
-const FieldContainer = ({ label, children, options, field }:FieldContainerProps) => {
+const FieldContainer = ({ label, children, options, field }: FieldContainerProps) => {
     const containerClass = calcContainerClass(options, field);
     const { labelClass, fieldClass } = calcFieldLabelClass(options, field);
-    
+
     return (
-        <div className={containerClass}>
-            <div className={labelClass}>
-                {label}
+        <form noValidate>
+            <div className={containerClass}>
+                <div className={labelClass}>
+                    {label}
+                </div>
+                <div className={fieldClass}>
+                    {children}
+                </div>
             </div>
-            <div className={fieldClass}>
-                {children}
-            </div>
-        </div>
+        </form>
     )
 }
 
