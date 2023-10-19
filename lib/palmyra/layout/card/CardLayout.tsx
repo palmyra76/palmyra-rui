@@ -1,4 +1,6 @@
-const CardLayout = (props) => {
+import '../card/CardLayout.css';
+
+const CardLayout = (props :any) => {
     const { children, dataList, Child, childProps } = props;
 
     return (
