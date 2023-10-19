@@ -1,19 +1,20 @@
-import { GetRequest, QueryOptions, QueryRequest, QueryResponseHandler, ResponseHandler } from "./Types";
+import { GetRequest, QueryOptions, QueryRequest, QueryResponse } from "./Types";
 
 interface QueryStore<T> {
-    query(request: QueryRequest, handler: QueryResponseHandler<T>): void;
-    get(request: GetRequest, handler: ResponseHandler<T>): void;
+    query(request: QueryRequest): Promise<QueryResponse<T>>;
+    get(request: GetRequest): Promise<T>;
+    getIdentity(o: T): any;
 }
 
 interface TreeQueryStore<T> extends QueryStore<T> {
-    getChildren(data: T, handler: QueryResponseHandler<T>): void;
-    getRoot(handler: QueryResponseHandler<T>): void;
+    getChildren(data: T): Promise<QueryResponse<T>>;
+    getRoot(): Promise<QueryResponse<T>>;
 }
 
 interface Store<T> extends QueryStore<T> {
-    post(data: T, handler: ResponseHandler<T>, options?: QueryOptions): T;
-    put(data: T, handler: ResponseHandler<T>, options?: QueryOptions): T;
-    delete(key: T | any): T;
+    post(data: T, options?: QueryOptions): Promise<T>;
+    put(data: T, options?: QueryOptions): Promise<T>;
+    remote(key: T | any): Promise<T>;
 }
 
 export type { Store, QueryStore, TreeQueryStore };
