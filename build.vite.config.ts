@@ -33,12 +33,14 @@ export default defineConfig({
         'axios',
         'react',
         'react-dom',
+        'react-router-dom',
         'react/jsx-runtime',
         '@emotion/react',
         '@emotion/styled',
         '@mui/material',
         '@mui/icons-material',
-        '@mui/styled-engine'      
+        '@mui/styled-engine',
+        '@mui/x-tree-view'
       ],
       input: Object.fromEntries(
         glob.sync('lib/**/*.{ts,tsx}').map(file => [
