@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { TreeView, TreeItem } from "@mui/x-tree-view";
+import { Tree } from "../../store/Types";
 
 
-interface MenuDef {
+interface MenuDef extends Tree<MenuDef>{
     name: string,
     label?: string
     path?: string,
