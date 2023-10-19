@@ -40,7 +40,8 @@ function useValidator(props: FieldProperties) {
         })
     }
 
-    const validate = (inputValue: String) => {
+    const validate = (e) => {
+        const inputValue = e.target.value;
         const validStatus = checkConstraints(inputValue);
 
         if (!validStatus.status) {
@@ -82,7 +83,7 @@ function useValidator(props: FieldProperties) {
         }
     }
 
-    const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => { validate(e.target.value) };
+    const onBlur = () => { validate({ target: { value: data } }); };
     const onFocus = () => { hideErrorMessage() };
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) };
 
