@@ -7,6 +7,17 @@ import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { TreeView, TreeItem } from "@mui/x-tree-view";
 
 
+interface MenuDef {
+    name: string,
+    label?: string
+    path?: string,
+    children?: MenuDef[],
+    icon?: string,
+    isExternal?: boolean
+}
+
+export type { MenuDef };
+
 export default function TreeMenu({ appRoutes }) {
     const navigate = useNavigate();
 
@@ -16,7 +27,7 @@ export default function TreeMenu({ appRoutes }) {
       }
     `;
 
-    const renderTree = (parent, node, index) => {
+    const renderTree = (parent, node: MenuDef, index) => {
         if (node.name) {
             let path = parent ? parent + "/" + node.path : node.path;
             if (node.children) {

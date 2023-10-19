@@ -1,0 +1,35 @@
+{
+    "name": "root",
+    "children": [
+        {
+            "path": "/home",
+            "name": "Home"
+        },
+        {
+            "name": "Administration",
+            "children": [
+                {
+                    "label": "User Management",
+                    "name": "usermgmt",
+                    "children": [
+                        {
+                            "path": "/admin/usermgmt/group",
+                            "name": "Groups"
+                        },
+                        {
+                            "name": "Users"
+                        }
+                    ]
+                },
+                {
+                    "name": "Master Data",
+                    "children": [
+                        {
+                            "name": "Anganwadi"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
