@@ -35,7 +35,7 @@ const PalmyraRadioGroup = forwardRef(function PalmyraRadioGroup(props: FieldProp
                     <FormControlLabel key={index} value={key} control={<Radio inputRef={inputRef} />} label={options[key]} />
                 ))}
             </RadioGroup>
-            <FormHelperText>{error.message}</FormHelperText>
+            <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
         </FormControl>
     );
 });

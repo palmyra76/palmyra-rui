@@ -37,7 +37,7 @@ const PalmyraSelect = forwardRef(function PalmyraSelect(props: FieldProperties, 
                 )
                 )}
             </Select>
-            <FormHelperText>{error.message}</FormHelperText>
+            <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
         </FormControl>
     );
 });

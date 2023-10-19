@@ -45,12 +45,19 @@
     width: calc(25% - 30px) !important;
 }
 
-.palmyra-form-field-odd {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%,
-            rgba(128, 128, 128, 0.03) 20%, rgba(128, 128, 128, 0.03) 50%, rgba(0, 0, 0, 0) 70%)
+.card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-basis: 20%;
+    margin: 10px;
 }
 
-.palmyra-form-field-even {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%,
-            rgba(128, 128, 128, 0.01) 20%, rgba(128, 128, 128, 0.01) 50%, rgba(0, 0, 0, 0) 70%)
+.card-container {
+    height: 100% !important;
+    width: 100%;
+}
+
+.form-error-text {
+    margin-left: 0px !important;
 }

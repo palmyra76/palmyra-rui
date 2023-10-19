@@ -10,6 +10,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './testPage/HomePage.js';
 import GroupPage from './testPage/GroupPage.js';
 import TreeMenuPage from './testPage/TreeMenuPage.js';
+import CardLayout from './../lib/palmyra/layout/card/CardLayout';
+import ChildCard from './CardTest/ChildCard.js';
 
 function App() {
   const form = useRef(null);
@@ -41,7 +43,13 @@ function App() {
     "serviceName": "asfdfileupload"
   }
 
-
+const dataList =[
+  {
+    name:"surya",
+  },{
+    name:"karthi",
+  }
+]
 
 
   return (
@@ -64,6 +72,8 @@ function App() {
         layout={viewSftpClientLayout}
         callbacks={callbacks}
       ></FlexiLayoutRenderer> */}
+
+      <CardLayout Child={ChildCard} dataList={dataList}/>
     </div>
   )
 }
