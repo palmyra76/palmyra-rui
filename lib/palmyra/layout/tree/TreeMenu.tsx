@@ -8,16 +8,20 @@ import { TreeView, TreeItem } from "@mui/x-tree-view";
 import { Tree } from "../../store/Types";
 
 
-interface MenuDef extends Tree<MenuDef>{
+interface MenuDef extends Tree<MenuDef> {
     name: string,
-    label?: string
+    title?: string
     path?: string,
     children?: MenuDef[],
     icon?: string,
-    isExternal?: boolean
+    isExternal?: boolean;
 }
 
 export type { MenuDef };
+
+const getTitle = (d: MenuDef) => {
+    return d.title ? d.title : d.name;
+}
 
 export default function TreeMenu({ appRoutes }) {
     const navigate = useNavigate();
@@ -32,14 +36,14 @@ export default function TreeMenu({ appRoutes }) {
         if (node.name) {
             let path = parent ? parent + "/" + node.path : node.path;
             if (node.children) {
-                return (<StyledTreeItem key={index} nodeId={node.name} label={node.name}>
+                return (<StyledTreeItem key={index} nodeId={node.name} label={getTitle(node)}>
                     {Array.isArray(node.children)
                         ? node.children.filter((node) => node.name)
                             .map((childNode, index) => renderTree(path, childNode, index))
                         : null}
                 </StyledTreeItem>);
             } else {
-                return (<StyledTreeItem key={index} nodeId={node.name} label={node.name}
+                return (<StyledTreeItem key={index} nodeId={node.name} label={getTitle(node)}
                     onClick={(e) => { navigate(path); }} />);
             }
         }

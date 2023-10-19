@@ -12,7 +12,7 @@ interface Positionable {
 interface Titleable {
     name?: string,
     title?: string,
-    hideTitle: boolean
+    hideTitle?: boolean
 }
 
 interface Renderable{    
@@ -46,7 +46,7 @@ interface SectionDefinition extends Positionable, Titleable, Renderable {
 
 interface TabDefinition extends Titleable, Renderable {
     sections: SectionDefinition[],
-    closeable: boolean
+    closeable?: boolean
 }
 
 interface FlexiLayoutDefinition extends Titleable, Renderable{
