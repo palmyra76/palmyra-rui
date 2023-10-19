@@ -1,8 +1,6 @@
-import React from 'react';
-
 const CardLayout = (props) => {
-    const { children, dataList, Child, EmptyChild, childProps } = props;
-    
+    const { children, dataList, Child, childProps } = props;
+
     return (
         <div>{dataList.length == 0 ? (
             <div>No Data Avilable</div>
