@@ -58,16 +58,16 @@ const getDisplayValue = (field: FieldDefinition, data: FormData) => {
 
 const getDateValue = (value: InputType, field: FieldDefinition) => {
     //TODO : value to be converted
-    return { value };
+    return value;
 }
 
 const getDateTimeValue = (value: InputType, field: FieldDefinition) => {
     //TODO : value to be converted
-    return { value };
+    return value;
 }
 
 const getTextValue = (value: InputType, field: FieldDefinition) => {
-    return { value };
+    return value;
 }
 
 const getOptionsValue = (value: string, field: FieldDefinition) => {
