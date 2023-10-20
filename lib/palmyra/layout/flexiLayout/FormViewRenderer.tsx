@@ -4,7 +4,6 @@ import { default as DefaultFieldContainer } from '../container/FieldContainer';
 import { getDisplayValue } from '../../form/FormUtil';
 import { FieldDefinition, FormData } from '../../form/Definitions';
 import { FormLayout } from './Definitions';
-import '../../layout/container/FormLayout.css';
 
 
 interface ViewFormRendererInput {

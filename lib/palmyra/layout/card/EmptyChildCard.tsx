@@ -1,5 +1,3 @@
-import './CardLayout.css';
-
 const EmptyChildCard = () => {
   return (
     <div>
