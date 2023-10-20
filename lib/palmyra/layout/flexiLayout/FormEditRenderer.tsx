@@ -12,9 +12,10 @@ interface EditFormRendererInput {
 }
 
 const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInput, ref) {
+    checkInputs(props);
+
     const { formLayout, formContext } = props;
     const { rules, onDataChange } = formContext;
-
 
     const eventHandlers = formContext.eventHandlers || {};
     //    const { fieldGenerators } = props; // TODO  generate custom fields using the array of generators provided
@@ -159,3 +160,8 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
 });
 
 export default FormRenderer;
+
+function checkInputs(props: EditFormRendererInput) {
+    if(!props.formContext)
+        throw new Error('Form Context not available, if this the form page, set the type as "form" in the definition');
+}

@@ -1,49 +1,33 @@
-import { forwardRef, useImperativeHandle } from "react";
-import { FormContext } from "../../form/Types";
-import { useFormValidator } from "./FormValidator";
-import TabRenderer from "./TabRenderer";
-import { FlexiLayoutRendererInput, PageContext } from "./Types";
+
+import { FlexiLayoutRendererInput } from "./Types";
+import FlexiLayoutGridRenderer from "./FlexiLayoutGridRenderer";
+import FlexiLayoutFormRenderer from "./FlexiLayoutFormRenderer";
+import { forwardRef } from "react";
+
+const getRenderer = (type: string): React.FC => {
+    switch (type) {
+        case 'grid':
+            return FlexiLayoutGridRenderer;
+        case 'formEdit':
+        case 'form':
+            return FlexiLayoutFormRenderer;
+        default:
+            return FlexiLayoutGridRenderer;
+    }
+}
 
 
 const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer(props: FlexiLayoutRendererInput, ref) {
     const { layout } = props;
-    const { data, onDataChange, validationRules, isValid } = useFormValidator(props, "new");
+    const type = layout.type ? layout.type : "grid";
 
-
-    useImperativeHandle(ref, () => {
-        return {
-            getData() {
-                return data.current;
-            },
-            isValid() {
-                return isValid;
-            }
-        };
-    }, []);
-
-    var formCtx: FormContext = {
-        data: data.current,
-        onDataChange: onDataChange,
-        rules: validationRules
-    }
-
-
-    const pageContext: PageContext = { formContext: formCtx };
-    const tabs = layout.tabs;
+    const Renderer: any = getRenderer(type);
 
     return (
-        <div>
-            {
-                tabs.map((tab, index) => (
-                    <div key={tab.name + index}>
-                        <TabRenderer
-                            layout={tab}
-                            context={pageContext}
-                        ></TabRenderer>
-                    </div>
-                ))
-            }
-        </div>
+        <Renderer {...props} ref={ref => {
+            if(ref)
+                ref.current = ref;
+        }} ></Renderer>
     );
 });
 

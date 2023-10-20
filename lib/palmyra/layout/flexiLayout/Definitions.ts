@@ -4,7 +4,7 @@ import { QueryStore } from "../../store";
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
-type flexiPrimaryType = 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'cardLayout';
+type flexiPrimaryType = 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
 
 interface Positionable {
     height?: number,

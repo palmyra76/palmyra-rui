@@ -6,29 +6,38 @@
             "name": "Home"
         },
         {
-            "name": "Administration",
+            "name": "Layout Demo",
             "children": [
                 {
-                    "label": "User Management",
-                    "name": "usermgmt",
-                    "children": [
-                        {
-                            "path": "/admin/usermgmt/group",
-                            "name": "Groups"
-                        },
-                        {
-                            "name": "Users"
-                        }
-                    ]
+                    "title": "Grid Layout",
+                    "name": "gridLayout",
+                    "path": "/demo/layout/grid"                    
                 },
                 {
-                    "name": "Master Data",
-                    "children": [
-                        {
-                            "name": "Anganwadi"
-                        }
-                    ]
-                }
+                    "title": "Dashboard Layout",
+                    "name": "dashboardLayout",
+                    "path": "/demo/layout/dashboard"                    
+                },
+                {
+                    "title": "Card Layout",
+                    "name": "cardLayout",
+                    "path": "/demo/layout/card"                    
+                },
+                {
+                    "title": "Edit Form Layout",
+                    "name": "editFormLayout",
+                    "path": "/demo/layout/formEdit"                    
+                },
+                {
+                    "title": "View Form Layout",
+                    "name": "viewFormLayout",
+                    "path": "/demo/layout/formView"                    
+                },
+                {
+                    "title": "New Form Layout",
+                    "name": "newFormLayout",
+                    "path": "/demo/layout/formNew"                    
+                }                
             ]
         }
     ]
