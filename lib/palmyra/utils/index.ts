@@ -34,3 +34,4 @@ const delayGenerator = (ms: number) => {
 const delay = delayGenerator(300);
 
 export { delay };
+export * from './StringUtil'

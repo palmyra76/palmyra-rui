@@ -9,3 +9,5 @@ export * from "./palmyra/layout/flexiLayout/Types"
 export * from "./palmyra/store/Types"
 export * from './palmyra/form/Types'
 export * from './palmyra/form/Definitions'
+
+export {StringFormat} from './palmyra/utils/StringUtil'
