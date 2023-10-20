@@ -1,11 +1,12 @@
 import '../card/CardLayout.css';
+import EmptyChildCard from './EmptyChildCard';
 
 const CardLayout = (props :any) => {
     const { children, dataList, Child, childProps } = props;
 
     return (
         <div>{dataList.length == 0 ? (
-            <div>No Data Avilable</div>
+            <EmptyChildCard/>
         ) : (
             <div className="card-container" >
                 {children}
