@@ -1,6 +1,5 @@
 import { FieldDefinition } from "../../form/Definitions";
 import { ColumnDefinition } from "../../grid";
-import { QueryStore } from "../../store";
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
@@ -30,9 +29,9 @@ interface FormLayout extends Renderable {
 }
 
 interface TableLayout extends Renderable, Positionable {
+    reference?: string,
     pagination?: number[],
-    fields: ColumnDefinition[],
-    store: QueryStore<any>
+    fields: ColumnDefinition[]
 }
 
 interface ChartLayout extends Renderable {

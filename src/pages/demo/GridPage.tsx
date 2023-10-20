@@ -12,15 +12,10 @@ const GridPage = () => {
     const key = '/' + layout + '/';
     const storeFactory: AppStoreFactory = new AppStoreFactory();
 
-    const assignStore = (d: FlexiLayoutDefinition): FlexiLayoutDefinition => {
-        d.tabs[0].sections[0].tableLayout.store = new DummyGridStore();
-        return d;
-    }
-
     useEffect(() => {
         fetch(key + 'gridDef.json')
             .then((response) => response.json())
-            .then((d) => setPageDef(assignStore(d)));
+            .then((d) => setPageDef(d));
     }, [layout])
 
     return <>

@@ -1,7 +1,9 @@
-import { useImperativeHandle, forwardRef } from 'react';
+import { useImperativeHandle, forwardRef, useContext } from 'react';
 import { PageContext } from './Types';
 import { TableLayout } from '.';
 import { GridX } from '../../grid';
+
+import { StoreFactoryContext } from "./FlexiLayoutContext";
 
 interface GridRendererInput {
     layout: TableLayout,
@@ -10,8 +12,12 @@ interface GridRendererInput {
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, ref) {
     const tableLayout = props.layout;
-    const { fields, store } = tableLayout;
+    const { fields } = tableLayout;
     const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];
+
+    const storeFactory = useContext(StoreFactoryContext);
+    const request = { reference: tableLayout.reference }
+    const store = storeFactory.getGridStore(request);
 
     useImperativeHandle(ref, () => {
         return {
