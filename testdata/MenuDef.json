@@ -39,6 +39,26 @@
                     "path": "/demo/simple/formNew"                    
                 }                
             ]
+        },
+        {
+            "name": "Section Form Layout Demo",
+            "children": [
+                {
+                    "title": "Edit Form Layout",
+                    "name": "editFormLayout",
+                    "path": "/demo/section/formEdit"                    
+                },
+                {
+                    "title": "View Form Layout",
+                    "name": "viewFormLayout",
+                    "path": "/demo/section/formView"                    
+                },
+                {
+                    "title": "New Form Layout",
+                    "name": "newFormLayout",
+                    "path": "/demo/section/formNew"                    
+                }                
+            ]
         }
     ]
 }

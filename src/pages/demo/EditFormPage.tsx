@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { FlexiLayoutRenderer } from '../../../lib/main';
 import { AppStoreFactory } from '../../components/store/AppStoreFactory';
 
-
 const EditFormPage = () => {
     const { layout } = useParams();
     const [pageDef, setPageDef] = useState(null);
@@ -17,7 +16,7 @@ const EditFormPage = () => {
             .then((response) => response.json())
             .then((d) => setPageDef(d));
 
-        fetch(key + '/formData.json')
+        fetch(key + '/userData.json')
             .then((response) => response.json())
             .then((d) => setData(d));
     }, [layout])

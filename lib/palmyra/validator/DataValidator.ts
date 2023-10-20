@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-import { isHost, isFolder, isPortRange } from './Validation';
+import { isFolder, isPortRange } from './Validation';
 import { FieldDefinition, FieldValidStatus } from '../form/Definitions';
 
 const getValidators = (fieldDefs: Record<string, FieldDefinition>) => {
@@ -31,11 +31,11 @@ const validate = (format: FieldDefinition) => {
         var rules = format.validationRule;
         if (rules instanceof Array && rules.length > 0) {
             const clause = rules[0];
-            validators.push(getRuleValidators(format, clause == 'OR'));           
+            validators.push(getRuleValidators(format, clause == 'OR'));
         } else {
             const rule: any = rules;
             var typeValidator = getRuleValidator(format, rule);
-            var typeMessage = format.errorMessage?.[rule] || "Invalid";
+            var typeMessage = format.errorMessage?.rule || "Invalid";
             validators.push(constructMethod(typeValidator, typeMessage));
         }
     }
@@ -58,7 +58,7 @@ const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
     var rules = format.validationRule;
     if (rules instanceof Array) {
         rules.map((rule, index) => {
-            if(anyMatch && 0 == index)
+            if (anyMatch && 0 == index)
                 return;
             var typeValidator = getRuleValidator(format, rule);
             var typeMessage = format.errorMessage?.[rule] || "Invalid";
@@ -156,8 +156,6 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
                 return validator.isIP;
             case 'fqdn':
                 return validator.isFQDN;
-            case 'host':
-                return isHost;
             case 'folder':
                 return isFolder;
             case 'portrange':

@@ -5,8 +5,8 @@
             "name": "tab01",
             "sections": [
                 {
-                    "name": "",
-                    "type": "form",
+                    "title": "Personal Detail",
+                    "type": "view",
                     "formLayout": {
                         "fields": [
                             {
@@ -50,7 +50,15 @@
                                     "start": "01-01-1905",
                                     "end": "01-01-2005"
                                 }
-                            },
+                            }
+                        ]
+                    }
+                },
+                {
+                    "title": "Contact Detail",
+                    "type": "view",
+                    "formLayout": {
+                        "fields": [
                             {
                                 "attribute": "phoneNumber",
                                 "title": "Phone Number",

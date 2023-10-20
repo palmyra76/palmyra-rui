@@ -20,15 +20,15 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
     const eventHandlers = formContext.eventHandlers || {};
     //    const { fieldGenerators } = props; // TODO  generate custom fields using the array of generators provided
     const FieldContainer = formLayout.Container || DefaultFieldContainer;
-    const dataRef = useRef<FormData>({...formContext.data});
+    const dataRef = useRef<FormData>({ ...formContext.data });
     const fieldRefs = useRef({});
     const data = dataRef.current;
 
-    const updateData = (kv) => {        
+    const updateData = (kv) => {
         for (var field in kv) {
             var value = kv[field];
             setValueByKey(field, data, value);
-        }        
+        }
         setSubmitStatus(kv, data);
     };
 
@@ -73,10 +73,10 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         for (var field in kv) {
             var value = kv[field];
             var validator = rules[field];
-            if(validator){
-                var {status} = validator(value);
+            if (validator) {
+                var { status } = validator(value);
                 dValid[field] = status;
-            }else{
+            } else {
                 dValid[field] = true;
             }
         }
@@ -162,6 +162,6 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
 export default FormRenderer;
 
 function checkInputs(props: EditFormRendererInput) {
-    if(!props.formContext)
+    if (!props.formContext)
         throw new Error('Form Context not available, if this the form page, set the type as "form" in the definition');
 }

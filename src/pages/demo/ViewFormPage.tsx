@@ -1,33 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-
 import { FlexiLayoutRenderer } from '../../../lib/main';
-
+import { AppStoreFactory } from '../../components/store/AppStoreFactory';
 
 const ViewFormPage = () => {
-    const params = useParams();
+    const { layout } = useParams();
     const [pageDef, setPageDef] = useState(null);
-    const [data, setData] = useState({})
+    const [data, setData] = useState({});
+    const storeFactory: AppStoreFactory = new AppStoreFactory();
+    const key = '/' + layout + '/';
 
     useEffect(() => {
-        fetch('/layout/viewForm.json')
+        fetch(key + '/viewForm.json')
             .then((response) => response.json())
             .then((d) => setPageDef(d));
 
-            fetch('/layout/userData.json')
+        fetch(key + '/userData.json')
             .then((response) => response.json())
             .then((d) => setData(d));
 
-    }, [params])
+    }, [layout])
 
     const onValidChange = (valid: boolean) => {
         console.log(valid);
     }
 
     return <>
-        <div> {params.pageName} View Form</div>
+        <div> {layout} View Form</div>
         {pageDef ? <FlexiLayoutRenderer layout={pageDef}
-            data={data}
+            data={data} storeFactory={storeFactory}
             callbacks={{ onFormValidChange: onValidChange }}
         ></FlexiLayoutRenderer> : <div />}
     </>
