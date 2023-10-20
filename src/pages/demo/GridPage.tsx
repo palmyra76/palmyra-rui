@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 
 import { FlexiLayoutDefinition, FlexiLayoutRenderer } from '../../../lib/main';
 import { DummyGridStore } from '../../components/store/DummyGridStore';
+import { AppStoreFactory } from '../../components/store/AppStoreFactory';
 
 
 const GridPage = () => {
     const { layout } = useParams();
     const [pageDef, setPageDef] = useState(null);
     const key = '/' + layout + '/';
+    const storeFactory: AppStoreFactory = new AppStoreFactory();
 
     const assignStore = (d: FlexiLayoutDefinition): FlexiLayoutDefinition => {
         d.tabs[0].sections[0].tableLayout.store = new DummyGridStore();
@@ -23,7 +25,7 @@ const GridPage = () => {
 
     return <>
         <div> Grid Layout Demo </div>
-        {pageDef ? <FlexiLayoutRenderer layout={pageDef} /> : <div />}
+        {pageDef ? <FlexiLayoutRenderer layout={pageDef} storeFactory={storeFactory} /> : <div />}
     </>
 }
 

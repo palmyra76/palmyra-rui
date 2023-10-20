@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
 import { FlexiLayoutRenderer } from '../../../lib/main';
+import { AppStoreFactory } from '../../components/store/AppStoreFactory';
 
 
 const EditFormPage = () => {
     const { layout } = useParams();
     const [pageDef, setPageDef] = useState(null);
     const [data, setData] = useState({})
-
+    const storeFactory: AppStoreFactory = new AppStoreFactory();
     const key = '/' + layout + '/';
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const EditFormPage = () => {
     return <>
         <div> {layout} Edit Form</div>
         {pageDef ? <FlexiLayoutRenderer layout={pageDef}
-            data={data}
+            data={data} storeFactory={storeFactory}
             callbacks={{ onFormValidChange: onValidChange }}
         ></FlexiLayoutRenderer> : <div />}
     </>

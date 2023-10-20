@@ -51,6 +51,6 @@ interface SectionContainerInput extends SectionDefinition, Parent {
 }
 
 
-export type { SectionRendererInput, TabRendererInput, PageContext }
+export type { SectionRendererInput, TabRendererInput, PageContext, StoreFactory }
 
 export type { TabContainerInput, SectionContainerInput, FlexiLayoutRendererInput, FlexiEventHandlers }
