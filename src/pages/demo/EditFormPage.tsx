@@ -5,26 +5,28 @@ import { FlexiLayoutRenderer } from '../../../lib/main';
 
 
 const EditFormPage = () => {
-    const params = useParams();
+    const { layout } = useParams();
     const [pageDef, setPageDef] = useState(null);
     const [data, setData] = useState({})
 
+    const key = '/' + layout + '/';
+
     useEffect(() => {
-        fetch('/layout/editForm.json')
+        fetch(key + '/editForm.json')
             .then((response) => response.json())
             .then((d) => setPageDef(d));
 
-        fetch('/layout/userData.json')
+        fetch(key + '/formData.json')
             .then((response) => response.json())
             .then((d) => setData(d));
-    }, [params])
+    }, [layout])
 
     const onValidChange = (valid: boolean) => {
         console.log(valid);
     }
 
     return <>
-        <div> {params.pageName} Edit Form</div>
+        <div> {layout} Edit Form</div>
         {pageDef ? <FlexiLayoutRenderer layout={pageDef}
             data={data}
             callbacks={{ onFormValidChange: onValidChange }}

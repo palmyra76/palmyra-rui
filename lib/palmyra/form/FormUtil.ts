@@ -1,4 +1,4 @@
-import { FieldDefinition, InputType, FormData } from "./Definitions";
+import { AttributeDefinition, InputType, FormData } from "./Definitions";
 
 const getValueByKey = (fieldName: string, data: any): InputType => {
     if (data === undefined || data == null) {
@@ -35,7 +35,7 @@ const setValueByKey = (fieldName: string, data: any, value: InputType): void => 
 }
 
 
-const getDisplayValue = (field: FieldDefinition, data: FormData) => {
+const getDisplayValue = (field: AttributeDefinition, data: FormData) => {
     const value: any = getValueByKey(field.attribute, data);
 
     const type = field.type || 'string';
@@ -56,26 +56,26 @@ const getDisplayValue = (field: FieldDefinition, data: FormData) => {
     }
 }
 
-const getDateValue = (value: InputType, field: FieldDefinition) => {
+const getDateValue = (value: InputType, field: AttributeDefinition) => {
     //TODO : value to be converted
     return value;
 }
 
-const getDateTimeValue = (value: InputType, field: FieldDefinition) => {
+const getDateTimeValue = (value: InputType, field: AttributeDefinition) => {
     //TODO : value to be converted
     return value;
 }
 
-const getTextValue = (value: InputType, field: FieldDefinition) => {
+const getTextValue = (value: InputType, field: AttributeDefinition) => {
     return value;
 }
 
-const getOptionsValue = (value: string, field: FieldDefinition) => {
+const getOptionsValue = (value: string, field: AttributeDefinition) => {
     var options = field.options;
     return options[value];
 }
 
-const getServerLookUp = (value: string, field: FieldDefinition) => {
+const getServerLookUp = (value: string, field: AttributeDefinition) => {
     return value;
 }
 

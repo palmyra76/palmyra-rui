@@ -52,6 +52,7 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
                   return (
                     header.isPlaceholder ? null : (
                       <ColumnHeader header={header}
+                        key = {header.id}
                         onSortChange={onSort}
                         onHeaderStyle={onHeaderStyle}
                       >

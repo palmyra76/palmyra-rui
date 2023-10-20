@@ -1,14 +1,16 @@
 import { useImperativeHandle, forwardRef } from 'react';
 import { PageContext } from './Types';
 import { TableLayout } from '.';
+import { GridX } from '../../grid';
 
-interface GridRendererInput{
-    layout:TableLayout,
-    context:PageContext
+interface GridRendererInput {
+    layout: TableLayout,
+    context: PageContext
 }
 
-
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, ref) {
+    const tableLayout = props.layout;
+    const { fields, store } = tableLayout;
 
     useImperativeHandle(ref, () => {
         return {
@@ -18,10 +20,9 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
         };
     }, []);
 
-
     return (
         <div className="palmyra-form-field-container-wrapper">
-            Grid will be generated here
+            <GridX columns={fields} store={store}></GridX>
         </div>
     );
 });

@@ -20,12 +20,12 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout appTitle='RUI Demo' />} >
             <Route path="/home" element={<HomePage />} />
-            <Route path="/demo/layout/grid" element={<GridPage />} />
-            <Route path="/demo/layout/dashboard" element={<HomePage />} />
-            <Route path="/demo/layout/card" element={<HomePage />} />
-            <Route path="/demo/layout/formEdit" element={<EditFormPage />} />
-            <Route path="/demo/layout/formView" element={<ViewFormPage />} />
-            <Route path="/demo/layout/formNew" element={<NewFormPage />} />
+            <Route path="/demo/:layout/grid" element={<GridPage />} />
+            <Route path="/demo/:layout/dashboard" element={<HomePage />} />
+            <Route path="/demo/:layout/card" element={<HomePage />} />
+            <Route path="/demo/:layout/formEdit" element={<EditFormPage />} />
+            <Route path="/demo/:layout/formView" element={<ViewFormPage />} />
+            <Route path="/demo/:layout/formNew" element={<NewFormPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

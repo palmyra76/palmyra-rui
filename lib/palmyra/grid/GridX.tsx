@@ -54,14 +54,22 @@ function GridX(props: GridXOptions) {
     refreshData();
   }, [query, filter, sortOrder])
 
+  console.log(columns);
   const columnDefs = generateColumns(columns);
+  console.log(columnDefs);
 
   const refreshData = () => {
     const params = { page, filter, sortOrder };
-    store.query(params).then((d) => {
-      setData(d.result);
-      setTotalData(d.total);
-    });
+    if (store) {
+      store.query(params).then((d) => {
+        setData(d.result);
+        setTotalData(d.total);
+      });
+    } else {
+      console.error("Store is not provided for the Grid");
+      setData([{}]);
+      setTotalData(1);
+    }
   }
 
   const handleDensityChange = (density) => {

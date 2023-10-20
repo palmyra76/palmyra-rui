@@ -6,37 +6,37 @@
             "name": "Home"
         },
         {
-            "name": "Layout Demo",
+            "name": "Simple Layout Demo",
             "children": [
                 {
                     "title": "Grid Layout",
                     "name": "gridLayout",
-                    "path": "/demo/layout/grid"                    
+                    "path": "/demo/simple/grid"                    
                 },
                 {
                     "title": "Dashboard Layout",
                     "name": "dashboardLayout",
-                    "path": "/demo/layout/dashboard"                    
+                    "path": "/demo/simple/dashboard"                    
                 },
                 {
                     "title": "Card Layout",
                     "name": "cardLayout",
-                    "path": "/demo/layout/card"                    
+                    "path": "/demo/simple/card"                    
                 },
                 {
                     "title": "Edit Form Layout",
                     "name": "editFormLayout",
-                    "path": "/demo/layout/formEdit"                    
+                    "path": "/demo/simple/formEdit"                    
                 },
                 {
                     "title": "View Form Layout",
                     "name": "viewFormLayout",
-                    "path": "/demo/layout/formView"                    
+                    "path": "/demo/simple/formView"                    
                 },
                 {
                     "title": "New Form Layout",
                     "name": "newFormLayout",
-                    "path": "/demo/layout/formNew"                    
+                    "path": "/demo/simple/formNew"                    
                 }                
             ]
         }

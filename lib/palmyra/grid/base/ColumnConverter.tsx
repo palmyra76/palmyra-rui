@@ -17,18 +17,21 @@ function convert(columnDef: ColumnDefinition) {
 
     if (renderer) {
         return columnHelper.display({
-            id: columnDef.name,
+            id: getColumnId(columnDef),
             ...headerFn,
             cell: renderer
         });
     }
 
-
     let cell = getFormatFn(columnDef);
-    return columnHelper.accessor(columnDef.name, {
-        id: columnDef.name,
+    return columnHelper.accessor(getColumnId(columnDef), {
+        id: getColumnId(columnDef),
         ...headerFn, ...cell
     });
+}
+
+function getColumnId(columnDef:ColumnDefinition){
+    return columnDef.name ? columnDef.name : columnDef.attribute;
 }
 
 

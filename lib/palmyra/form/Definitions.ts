@@ -19,8 +19,13 @@ interface RangeValidation<T> {
     message: string
 }
 
-interface FieldDefinition {
+interface AttributeDefinition {
     attribute: string,
+    type: FieldType,
+    options?: Record<string, string>
+}
+
+interface FieldDefinition extends AttributeDefinition {
     title: string,
     hideTitle?: boolean,
     defaultValue?: InputType,
@@ -29,11 +34,9 @@ interface FieldDefinition {
     required?: boolean,
     disabled?: boolean,
     variant?: MuiVariant,
-    type: FieldType,
     validationRule?: string | string[],
     errorMessage: Record<string, string>,
     length?: RangeValidation<number>,
-    options?: Record<string, string>,
     range?: RangeValidation<any>
 }
 
@@ -65,6 +68,6 @@ const getFieldType = (type: string): FieldType => {
     }
 }
 
-export type { FieldDefinition, FieldValidStatus, FormData, InputType, MuiFieldDef };
+export type { AttributeDefinition, FieldDefinition, FieldValidStatus, FormData, InputType, MuiFieldDef };
 
 export { getFieldType }

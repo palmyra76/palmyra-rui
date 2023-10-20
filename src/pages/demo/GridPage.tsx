@@ -5,16 +5,17 @@ import { FlexiLayoutRenderer } from '../../../lib/main';
 
 
 const GridPage = () => {
-    const params = useParams();
+    const { layout } = useParams();
     const [pageDef, setPageDef] = useState(null);
-    
+    const key = '/' + layout + '/';
+
     useEffect(() => {
-        fetch('/layout/gridDef.json')
+        fetch(key + 'gridDef.json')
             .then((response) => response.json())
             .then((d) => setPageDef(d));
 
-    }, [params])
-  
+    }, [layout])
+
     return <>
         <div> Grid Layout Demo </div>
         {pageDef ? <FlexiLayoutRenderer layout={pageDef} /> : <div />}

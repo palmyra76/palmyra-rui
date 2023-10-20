@@ -1,13 +1,9 @@
-type FieldType = "string" | "number"
-    | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup";
+import { AttributeDefinition } from "../form/Definitions";
 
-interface ColumnDefinition {
-    name: string,
-    attribute: string,
+interface ColumnDefinition extends AttributeDefinition{
+    name: string,    
     title: string,
-    hideTitle?: boolean,
-    type: FieldType,
+    hideTitle?: boolean,    
     displayFormat?: string,
     searchable?: boolean,
     sortable?: boolean,
