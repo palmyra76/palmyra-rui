@@ -1,4 +1,4 @@
-
+import './FormLayout.css';
 
 const calcContainerClass = (options: any, field: any) => {
     var containerClass = 'palmyra-form-field-container';

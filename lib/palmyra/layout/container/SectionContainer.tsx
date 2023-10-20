@@ -1,4 +1,5 @@
 import { SectionContainerInput } from "../flexiLayout/Types";
+import './FormLayout.css';
 
 const SectionContainer = (props: SectionContainerInput) => {
 
