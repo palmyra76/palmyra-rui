@@ -22,7 +22,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     }, []);
 
     return (
-        <div className="palmyra-form-field-container-wrapper">
+        <div>
             <GridX columns={fields} store={store} pageSize={pageSize}></GridX>
         </div>
     );
