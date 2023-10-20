@@ -17,7 +17,7 @@ const getRenderer = (type: string): React.FC => {
 }
 
 
-const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer(props: FlexiLayoutRendererInput, ref) {
+const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
     const { layout } = props;
     const type = layout.type ? layout.type : "grid";
 

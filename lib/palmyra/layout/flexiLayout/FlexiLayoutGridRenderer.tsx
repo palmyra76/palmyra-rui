@@ -4,7 +4,7 @@ import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
 
 
-const FlexiLayoutGridRenderer = forwardRef(function FlexiLayoutRenderer(props: FlexiLayoutRendererInput, ref) {
+const FlexiLayoutGridRenderer = forwardRef(function FlexiLayoutGridRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
     const { layout } = props;
 
     useImperativeHandle(ref, () => {

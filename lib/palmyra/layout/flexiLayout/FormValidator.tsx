@@ -60,7 +60,7 @@ const clone = (data) => {
 }
 
 
-function useFormValidator(props : FlexiLayoutRendererInput, mode: FormMode) {
+function useFormValidator<T>(props : FlexiLayoutRendererInput<T>, mode: FormMode) {
     const { layout, callbacks } = props;
     const formData = props.data;
     const onDataValidityChange = callbacks.onFormValidChange;

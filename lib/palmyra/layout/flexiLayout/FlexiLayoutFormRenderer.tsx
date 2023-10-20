@@ -5,7 +5,7 @@ import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
 
 
-const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutRenderer(props: FlexiLayoutRendererInput, ref) {
+const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
     const { layout } = props;
     const { data, onDataChange, validationRules, isValid } = useFormValidator(props, "new");
 

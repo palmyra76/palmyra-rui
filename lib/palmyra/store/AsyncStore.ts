@@ -17,4 +17,8 @@ interface Store<T> extends QueryStore<T> {
     remote(key: T | any): Promise<T>;
 }
 
-export type { Store, QueryStore, TreeQueryStore };
+interface ChartStore<T> {
+    query(request: QueryRequest): Promise<T[]>;
+}
+
+export type { Store, QueryStore, TreeQueryStore, ChartStore };
