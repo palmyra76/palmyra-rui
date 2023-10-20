@@ -1,28 +1,13 @@
-
-import { default as FormRenderer } from './FormViewRenderer';
-import { default as DefaultSectionContainer } from '../container/SectionContainer';
-
 import { SectionRendererInput } from './Types';
-import { FormLayout } from './Definitions';
 
 
 const SectionRendererInvalid = (props: SectionRendererInput) => {
-    const { layout, context } = props;
-    const { formContext } = context;
-
-    var ChildRenderer = layout.Renderer || FormRenderer;
-    var Container = layout.Container || DefaultSectionContainer;
-
-    const getFormLayout = (formLayout: FormLayout) => {
-        return (<ChildRenderer data={formContext.data}
-            formLayout={formLayout}
-        ></ChildRenderer>);
-    };
-
+    const val: string = JSON.stringify(props.layout);
     return (
-        <Container  {...layout}>
-            {getFormLayout(layout.formLayout)}
-        </Container>
+        <>
+            <div>Invalid section definition, provide section 'type' in the definition</div>
+            <div>{val}</div>
+        </>
     );
 };
 

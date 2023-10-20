@@ -4,6 +4,7 @@ import { default as DefaultSectionContainer } from '../container/SectionContaine
 
 import { SectionRendererInput } from './Types';
 import { TableLayout } from '.';
+import { ErrorBoundary } from '../ErrorBoundary';
 
 
 const SectionRendererGrid = (props: SectionRendererInput) => {
@@ -19,9 +20,11 @@ const SectionRendererGrid = (props: SectionRendererInput) => {
     };
 
     return (
-        <Container  {...layout}>
-            {getTableLayout(layout.tableLayout)}
-        </Container>
+        <ErrorBoundary fallback={<p>SectionRendererGrid: Something went wrong</p>}>
+            <Container  {...layout}>
+                {getTableLayout(layout.tableLayout)}
+            </Container>
+        </ErrorBoundary>
     );
 };
 
