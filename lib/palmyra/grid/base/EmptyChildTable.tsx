@@ -1,4 +1,3 @@
-import './Grid.css';
 
 const EmptyChild = () => {
   return (
