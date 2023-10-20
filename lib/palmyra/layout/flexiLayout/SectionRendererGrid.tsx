@@ -1,27 +1,26 @@
 
-import { default as FormRenderer } from './FormEditRenderer';
+import { default as GridRenderer } from './GridRenderer'
 import { default as DefaultSectionContainer } from '../container/SectionContainer';
 
 import { SectionRendererInput } from './Types';
-import { FormLayout } from './Definitions';
+import { TableLayout } from '.';
 
 
 const SectionRendererGrid = (props: SectionRendererInput) => {
     const { layout, context } = props;
-    const { formContext } = context;
 
-    var ChildRenderer = layout.Renderer || FormRenderer;
+    // var ChildRenderer = layout.Renderer || GridRenderer;
     var Container = layout.Container || DefaultSectionContainer;
 
-    const getFormLayout = (formLayout: FormLayout) => {
-        return (<ChildRenderer formContext={formContext}
-            formLayout={formLayout}
-        ></ChildRenderer>);
+    const getTableLayout = (tableLayout: TableLayout) => {
+        return (<GridRenderer context={context}
+            layout={tableLayout}
+        ></GridRenderer>);
     };
 
     return (
         <Container  {...layout}>
-            {getFormLayout(layout.formLayout)}
+            {getTableLayout(layout.tableLayout)}
         </Container>
     );
 };

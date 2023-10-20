@@ -1,4 +1,6 @@
 import { FieldDefinition } from "../../form/Definitions";
+import { ColumnDefinition } from "../../grid";
+import { QueryStore } from "../../store";
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
@@ -15,7 +17,7 @@ interface Titleable {
     hideTitle?: boolean
 }
 
-interface Renderable{    
+interface Renderable {
     Container?: React.FC, // Current container
     Renderer?: React.FC // Child Renderer
 }
@@ -27,8 +29,9 @@ interface FormLayout extends Renderable {
     }
 }
 
-interface TableLayout extends Renderable {
-    fields: FieldDefinition[]
+interface TableLayout extends Renderable, Positionable {
+    fields: ColumnDefinition[],
+    store: QueryStore<any>
 }
 
 interface ChartLayout extends Renderable {
@@ -49,8 +52,8 @@ interface TabDefinition extends Titleable, Renderable {
     closeable?: boolean
 }
 
-interface FlexiLayoutDefinition extends Titleable, Renderable{
-    tabs: TabDefinition[], 
+interface FlexiLayoutDefinition extends Titleable, Renderable {
+    tabs: TabDefinition[],
     type: flexiPrimaryType
 }
 

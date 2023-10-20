@@ -40,7 +40,9 @@ export default defineConfig({
         '@mui/material',
         '@mui/icons-material',
         '@mui/styled-engine',
-        '@mui/x-tree-view'
+        '@mui/x-tree-view',
+        '@tanstack', 
+        '@tanstack/react-table'
       ],
       input: Object.fromEntries(
         glob.sync('lib/**/*.{ts,tsx}').map(file => [
