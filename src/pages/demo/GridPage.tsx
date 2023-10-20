@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
-import { FlexiLayoutRenderer } from '../../../lib/main';
+import { FlexiLayoutDefinition, FlexiLayoutRenderer } from '../../../lib/main';
+import { DummyGridStore } from '../../components/store/DummyGridStore';
 
 
 const GridPage = () => {
@@ -9,11 +10,15 @@ const GridPage = () => {
     const [pageDef, setPageDef] = useState(null);
     const key = '/' + layout + '/';
 
+    const assignStore = (d: FlexiLayoutDefinition): FlexiLayoutDefinition => {
+        d.tabs[0].sections[0].tableLayout.store = new DummyGridStore();
+        return d;
+    }
+
     useEffect(() => {
         fetch(key + 'gridDef.json')
             .then((response) => response.json())
-            .then((d) => setPageDef(d));
-
+            .then((d) => setPageDef(assignStore(d)));
     }, [layout])
 
     return <>

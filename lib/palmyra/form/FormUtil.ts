@@ -1,3 +1,4 @@
+import { formatMeridiem } from "@mui/x-date-pickers/internals/utils/date-utils";
 import { AttributeDefinition, InputType, FormData } from "./Definitions";
 
 const getValueByKey = (fieldName: string, data: any): InputType => {
@@ -37,7 +38,10 @@ const setValueByKey = (fieldName: string, data: any, value: InputType): void => 
 
 const getDisplayValue = (field: AttributeDefinition, data: FormData) => {
     const value: any = getValueByKey(field.attribute, data);
+    return formatValue(field, value);
+}
 
+const formatValue = (field: AttributeDefinition, value:any) => {
     const type = field.type || 'string';
     switch (type) {
         case 'date':
@@ -79,4 +83,4 @@ const getServerLookUp = (value: string, field: AttributeDefinition) => {
     return value;
 }
 
-export { getValueByKey, setValueByKey, getDisplayValue };
+export { getValueByKey, setValueByKey, getDisplayValue, formatValue };

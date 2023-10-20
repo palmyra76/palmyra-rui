@@ -1,7 +1,7 @@
 
 import { ColumnDefinition } from "..";
 import { FieldDefinition } from "../../form/Definitions";
-import { getDisplayValue } from "../../form/FormUtil";
+import { formatValue, getDisplayValue } from "../../form/FormUtil";
 
 const formatBIT = (columnDef) => {
     var pattern = columnDef.displayPattern || [{ "1": "Yes" }, { "0": "No" }];
@@ -29,7 +29,7 @@ const formatBIT = (columnDef) => {
 
 const formatColumn = (columnDef: ColumnDefinition) => {
     return (info) => {        
-        return getDisplayValue(columnDef, info.getValue());
+        return formatValue(columnDef, info.getValue());
     }
 }
 
