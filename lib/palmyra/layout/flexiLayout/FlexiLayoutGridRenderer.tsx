@@ -1,5 +1,4 @@
 import { forwardRef, useImperativeHandle } from "react";
-import { FormContext } from "../../form/Types";
 
 import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
