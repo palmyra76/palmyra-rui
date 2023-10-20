@@ -30,6 +30,7 @@ interface FormLayout extends Renderable {
 }
 
 interface TableLayout extends Renderable, Positionable {
+    pagination?: number[],
     fields: ColumnDefinition[],
     store: QueryStore<any>
 }

@@ -11,6 +11,7 @@ interface GridRendererInput {
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, ref) {
     const tableLayout = props.layout;
     const { fields, store } = tableLayout;
+    const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];
 
     useImperativeHandle(ref, () => {
         return {
@@ -22,7 +23,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
 
     return (
         <div className="palmyra-form-field-container-wrapper">
-            <GridX columns={fields} store={store}></GridX>
+            <GridX columns={fields} store={store} pageSize={pageSize}></GridX>
         </div>
     );
 });
