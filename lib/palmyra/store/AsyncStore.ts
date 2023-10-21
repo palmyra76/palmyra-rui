@@ -11,14 +11,19 @@ interface TreeQueryStore<T> extends QueryStore<T> {
     getRoot(): Promise<QueryResponse<T>>;
 }
 
-interface Store<T> extends QueryStore<T> {
+interface DataStore<T> extends QueryStore<T> {
     post(data: T, options?: QueryOptions): Promise<T>;
     put(data: T, options?: QueryOptions): Promise<T>;
-    remote(key: T | any): Promise<T>;
+    remove(key: T | any): Promise<T>;
 }
 
 interface ChartStore<T> {
     query(request: QueryRequest): Promise<T[]>;
 }
 
-export type { Store, QueryStore, TreeQueryStore, ChartStore };
+interface AuthDecorator {
+    decorate(request: any): void;
+}
+
+
+export type { DataStore, QueryStore, TreeQueryStore, ChartStore, AuthDecorator };

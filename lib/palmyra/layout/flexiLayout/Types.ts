@@ -1,6 +1,6 @@
 import { FormData } from "../../form/Definitions";
 import { FormContext } from "../../form/Types";
-import { ChartStore, QueryStore, Store } from "../../store";
+import { ChartStore, QueryStore, DataStore } from "../../store";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition } from "./Definitions";
 
 
@@ -24,7 +24,7 @@ interface FlexiEventHandlers {
 
 interface StoreFactory<T> {
     getGridStore(request: Record<string, string>): QueryStore<T>;
-    getFormStore(request: Record<string, string>): Store<T>;
+    getFormStore(request: Record<string, string>): DataStore<T>;
     getChartStore(request: Record<string, string>): ChartStore<T>;
 }
 

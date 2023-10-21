@@ -25,7 +25,7 @@ interface Renderable {
     Renderer?: React.FC // Child Renderer
 }
 
-interface FormLayout extends Renderable, storeBacked {
+interface FormLayout extends Renderable {
     fields: FieldDefinition[],
     options?: {
         columns: number
@@ -55,7 +55,7 @@ interface TabDefinition extends Titleable, Renderable {
     closeable?: boolean
 }
 
-interface FlexiLayoutDefinition extends Titleable, Renderable {
+interface FlexiLayoutDefinition extends Titleable, Renderable, storeBacked {
     tabs: TabDefinition[],
     type: flexiPrimaryType
 }
