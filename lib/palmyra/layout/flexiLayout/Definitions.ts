@@ -16,25 +16,28 @@ interface Titleable {
     hideTitle?: boolean
 }
 
+interface storeBacked {    
+    storeOptions?: Record<string, string>
+}
+
 interface Renderable {
     Container?: React.FC, // Current container
     Renderer?: React.FC // Child Renderer
 }
 
-interface FormLayout extends Renderable {
+interface FormLayout extends Renderable, storeBacked {
     fields: FieldDefinition[],
     options?: {
         columns: number
     }
 }
 
-interface TableLayout extends Renderable, Positionable {
-    reference?: string,
+interface TableLayout extends Renderable, Positionable, storeBacked {
     pagination?: number[],
     fields: ColumnDefinition[]
 }
 
-interface ChartLayout extends Renderable {
+interface ChartLayout extends Renderable, storeBacked {
 
 }
 

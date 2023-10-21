@@ -15,9 +15,8 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     const { fields } = tableLayout;
     const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];
 
-    const storeFactory = useContext(StoreFactoryContext);
-    const request = { reference: tableLayout.reference }
-    const store = storeFactory.getGridStore(request);
+    const storeFactory = useContext(StoreFactoryContext);    
+    const store = storeFactory.getGridStore(tableLayout.storeOptions);
 
     useImperativeHandle(ref, () => {
         return {
