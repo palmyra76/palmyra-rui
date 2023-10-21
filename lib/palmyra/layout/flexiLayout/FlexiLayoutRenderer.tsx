@@ -1,19 +1,25 @@
 
 import { FlexiLayoutRendererInput } from "./Types";
 import FlexiLayoutGridRenderer from "./FlexiLayoutGridRenderer";
-import FlexiLayoutFormRenderer from "./FlexiLayoutFormRenderer";
 import { forwardRef } from "react";
 import { ErrorBoundary } from "../ErrorBoundary";
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
+import FlexiLayoutFormViewRenderer from "./FlexiLayoutFormViewRenderer";
+import FlexiLayoutFormEditRenderer from "./FlexiLayoutFormEditRenderer";
+import FlexiLayoutFormNewRenderer from "./FlexiLayoutFormNewRenderer";
 
 const getRenderer = (type: string): React.FC => {
     switch (type) {
         case 'grid':
             return FlexiLayoutGridRenderer;
         case 'formEdit':
+            return FlexiLayoutFormEditRenderer;
+        case 'formNew':
+            return FlexiLayoutFormNewRenderer;
         case 'form':
-            return FlexiLayoutFormRenderer;
+        case 'formView':
+            return FlexiLayoutFormViewRenderer;
         default:
             return FlexiLayoutGridRenderer;
     }
@@ -22,7 +28,7 @@ const getRenderer = (type: string): React.FC => {
 
 const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
     const { layout } = props;
-    const type = layout.type ? layout.type : "grid";
+    const type = props.mode ? props.mode : layout.type ? layout.type : "grid";
     const layoutParams = props.layoutParams || {};
     const Renderer: any = getRenderer(type);
 

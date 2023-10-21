@@ -41,7 +41,7 @@ interface FlexiLayoutDefinition extends Titleable, Renderable, storeBacked {
     type: flexiPrimaryType
 }
 
-export type { TabDefinition, SectionDefinition, FlexiLayoutDefinition };
+export type { TabDefinition, SectionDefinition, FlexiLayoutDefinition, flexiPrimaryType };
 
 export type { FormLayout, TableLayout, ChartLayout };
 

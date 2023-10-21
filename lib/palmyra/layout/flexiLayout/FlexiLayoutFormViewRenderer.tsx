@@ -1,29 +1,26 @@
 import { forwardRef, useImperativeHandle } from "react";
 import { FormContext } from "../../form/Types";
-import { useFormValidator } from "./FormValidator";
 import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
 
 
-const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
+const FlexiLayoutFormViewRenderer = forwardRef(
+    function FlexiLayoutFormViewRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
     const { layout } = props;
-    const { data, onDataChange, validationRules, isValid } = useFormValidator(props, "new");
+    const { data } = props;
 
     useImperativeHandle(ref, () => {
         return {
             getData() {
                 return data.current;
-            },
-            isValid() {
-                return isValid;
             }
         };
     }, []);
 
     var formCtx: FormContext = {
-        data: data.current,
-        onDataChange: onDataChange,
-        rules: validationRules
+        data,
+        rules: {}, 
+        onDataChange: () => { }
     }
 
 
@@ -46,4 +43,4 @@ const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(p
     );
 });
 
-export default FlexiLayoutFormRenderer;
+export default FlexiLayoutFormViewRenderer;

@@ -1,7 +1,7 @@
 import { FormData } from "../../form/Definitions";
 import { FormContext } from "../../form/Types";
 import { ChartStore, QueryStore, DataStore } from "../../store";
-import { FlexiLayoutDefinition, SectionDefinition, TabDefinition } from "./Definitions";
+import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 
 
 interface Parent {
@@ -22,7 +22,7 @@ interface FlexiEventHandlers {
     onFormValidChange?: Function
 }
 
-interface LayoutParams extends Record<string, string>{
+interface LayoutParams extends Record<string, string> {
 
 }
 
@@ -35,6 +35,7 @@ interface StoreFactory<T> {
 interface FlexiLayoutRendererInput<T> {
     layoutParams: LayoutParams,
     layout: FlexiLayoutDefinition,
+    mode?: flexiPrimaryType,
     recordId?: string,
     data?: FormData,
     callbacks?: FlexiEventHandlers,
