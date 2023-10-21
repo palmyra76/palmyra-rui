@@ -1,14 +1,15 @@
 import { AttributeDefinition } from "../form/Definitions";
 
-interface ColumnDefinition extends AttributeDefinition{
-    name: string,    
+interface ColumnDefinition extends AttributeDefinition {
+    name: string,
     title: string,
-    hideTitle?: boolean,    
-    displayFormat?: string,
+    width?: string, // either in px  or percentage
+    hideTitle?: boolean,
+    hideColumn?: boolean,
     searchable?: boolean,
     sortable?: boolean,
     quickSearch?: boolean,
-    cellRenderer: React.FC
+    cellRenderer?: React.FC
 }
 
 

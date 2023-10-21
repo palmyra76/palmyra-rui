@@ -1,36 +1,10 @@
 import { FieldDefinition } from "../../form/Definitions";
 import { ColumnDefinition } from "../../grid";
+import { Positionable, Renderable, Titleable, storeBacked } from "../Types";
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
 type flexiPrimaryType = 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
-
-interface Positionable {
-    height?: number,
-    width?: number
-}
-
-interface Titleable {
-    name?: string,
-    title?: string,
-    hideTitle?: boolean
-}
-
-interface storeBacked {
-    storeOptions?: {
-        // alias for Query, if put,post, delete specific urls not provided, 
-        // this attribute will be considered
-        urlFormat?: string,  
-        urlFormatPut?: string,
-        urlFormatPost?: string,
-        urlFormatDelete?: string
-    }
-}
-
-interface Renderable {
-    Container?: React.FC, // Current container
-    Renderer?: React.FC // Child Renderer
-}
 
 interface FormLayout extends Renderable {
     fields: FieldDefinition[],
@@ -70,7 +44,5 @@ interface FlexiLayoutDefinition extends Titleable, Renderable, storeBacked {
 export type { TabDefinition, SectionDefinition, FlexiLayoutDefinition };
 
 export type { FormLayout, TableLayout, ChartLayout };
-
-export type { Positionable, Titleable };
 
 export type { SectionType };

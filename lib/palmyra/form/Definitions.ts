@@ -1,3 +1,5 @@
+import { storeBacked } from "../layout/Types";
+
 /**
  * This definitions will cater to the Form Definition format
  * 
@@ -19,9 +21,10 @@ interface RangeValidation<T> {
     message: string
 }
 
-interface AttributeDefinition {
+interface AttributeDefinition extends storeBacked {
     attribute: string,
     type: FieldType,
+    displayPattern?: string, // To be used for Date, DateTime etc.,
     options?: Record<string, string>
 }
 
