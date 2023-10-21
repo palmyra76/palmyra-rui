@@ -22,6 +22,10 @@ interface FlexiEventHandlers {
     onFormValidChange?: Function
 }
 
+interface LayoutParams extends Record<string, string>{
+
+}
+
 interface StoreFactory<T> {
     getGridStore(request: Record<string, string>): QueryStore<T>;
     getFormStore(request: Record<string, string>): DataStore<T>;
@@ -29,6 +33,7 @@ interface StoreFactory<T> {
 }
 
 interface FlexiLayoutRendererInput<T> {
+    layoutParams: LayoutParams,
     layout: FlexiLayoutDefinition,
     recordId?: string,
     data?: FormData,
@@ -51,6 +56,6 @@ interface SectionContainerInput extends SectionDefinition, Parent {
 }
 
 
-export type { SectionRendererInput, TabRendererInput, PageContext, StoreFactory }
+export type { SectionRendererInput, TabRendererInput, PageContext, StoreFactory, LayoutParams }
 
 export type { TabContainerInput, SectionContainerInput, FlexiLayoutRendererInput, FlexiEventHandlers }

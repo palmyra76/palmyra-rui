@@ -5,7 +5,7 @@ import FlexiLayoutFormRenderer from "./FlexiLayoutFormRenderer";
 import { forwardRef } from "react";
 import { ErrorBoundary } from "../ErrorBoundary";
 
-import { StoreFactoryContext } from "./FlexiLayoutContext";
+import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
 
 const getRenderer = (type: string): React.FC => {
     switch (type) {
@@ -23,16 +23,18 @@ const getRenderer = (type: string): React.FC => {
 const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
     const { layout } = props;
     const type = layout.type ? layout.type : "grid";
-
+    const layoutParams = props.layoutParams || {};
     const Renderer: any = getRenderer(type);
 
     return (
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <StoreFactoryContext.Provider value={props.storeFactory}>
-                <Renderer {...props} ref={ref => {
-                    if (ref)
-                        ref.current = ref;
-                }} ></Renderer>
+                <LayoutParamsContext.Provider value={layoutParams}>
+                    <Renderer {...props} ref={ref => {
+                        if (ref)
+                            ref.current = ref;
+                    }} ></Renderer>
+                </LayoutParamsContext.Provider>
             </StoreFactoryContext.Provider>
         </ErrorBoundary>
     );

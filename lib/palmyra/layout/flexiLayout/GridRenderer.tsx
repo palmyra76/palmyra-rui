@@ -3,7 +3,8 @@ import { PageContext } from './Types';
 import { TableLayout } from '.';
 import { GridX } from '../../grid';
 
-import { StoreFactoryContext } from "./FlexiLayoutContext";
+import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
+import { mergeDeep } from '../../utils';
 
 interface GridRendererInput {
     layout: TableLayout,
@@ -15,8 +16,14 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     const { fields } = tableLayout;
     const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];
 
-    const storeFactory = useContext(StoreFactoryContext);    
-    const store = storeFactory.getGridStore(tableLayout.storeOptions);
+    const storeFactory = useContext(StoreFactoryContext);
+    const layoutParams = useContext(LayoutParamsContext);
+    var storeOptions = tableLayout.storeOptions || {};
+    if(layoutParams){
+        mergeDeep(storeOptions, layoutParams);
+    }
+    
+    const store = storeFactory.getGridStore(storeOptions);
 
     useImperativeHandle(ref, () => {
         return {

@@ -54,9 +54,7 @@ function GridX(props: GridXOptions) {
     refreshData();
   }, [query, filter, sortOrder])
 
-  console.log(columns);
   const columnDefs = generateColumns(columns);
-  console.log(columnDefs);
 
   const refreshData = () => {
     const params = { page, filter, sortOrder };

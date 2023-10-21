@@ -16,8 +16,15 @@ interface Titleable {
     hideTitle?: boolean
 }
 
-interface storeBacked {    
-    storeOptions?: Record<string, string>
+interface storeBacked {
+    storeOptions?: {
+        // alias for Query, if put,post, delete specific urls not provided, 
+        // this attribute will be considered
+        urlFormat?: string,  
+        urlFormatPut?: string,
+        urlFormatPost?: string,
+        urlFormatDelete?: string
+    }
 }
 
 interface Renderable {
