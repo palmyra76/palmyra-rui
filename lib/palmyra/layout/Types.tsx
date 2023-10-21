@@ -19,10 +19,13 @@ interface storeBacked {
     storeOptions?: {
         // alias for Query, if put,post, delete specific urls not provided, 
         // this attribute will be considered
-        urlFormat?: string,  
+        urlFormat?: string,
         urlFormatPut?: string,
         urlFormatPost?: string,
-        urlFormatDelete?: string
+        urlFormatDelete?: string,
+        idAttribute?: string,
+        searchAttribute?: string,
+        titleAttribute?: string
     }
 }
 

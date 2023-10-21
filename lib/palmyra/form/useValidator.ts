@@ -8,7 +8,20 @@ const getDefaultValue = (runtime: FieldContext, fieldDef: FieldDefinition, value
     return value || '';
 }
 
-function useValidator(props: FieldProperties) {
+interface Callbacks {
+    onBlur: Function,
+    onFocus: Function,
+    onChange: Function
+}
+
+interface useValidatorResponse {
+    data: any,
+    setData: Function,
+    error: FieldValidStatus,
+    fieldCallbacks: Callbacks
+}
+
+function useValidator(props: FieldProperties):useValidatorResponse {
     const { runtime, fieldDef, value } = props;
     const { eventHandler, onDataChange, constraint } = runtime || {};
     const [data, setData] = useState(getDefaultValue(runtime, fieldDef, value));
@@ -41,6 +54,9 @@ function useValidator(props: FieldProperties) {
     }
 
     const validate = (e) => {
+        if(e == undefined || e.target == undefined)
+            return;
+
         const inputValue = e.target.value;
         const validStatus = checkConstraints(inputValue);
 
@@ -87,7 +103,7 @@ function useValidator(props: FieldProperties) {
     const onFocus = () => { hideErrorMessage() };
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) };
 
-    const fieldCallbacks = { onBlur, onFocus, onChange };
+    const fieldCallbacks:Callbacks = { onBlur, onFocus, onChange };
 
     return { data, setData: setValue, error, fieldCallbacks };
 }

@@ -10,7 +10,10 @@ import PalmyraSelect from './PalmyraSelect';
 // import ValidationDatePicker from './ValidationDatePicker';
 // import ValidationDateTimePicker from './ValidationDateTimePicker';
 // import PalmyraCheckBox from './PalmyraCheckBox';
-// import ServerLookup from './ServerLookup';
+import ServerLookup from './ServerLookup';
+import { LayoutParamsContext, StoreFactoryContext } from '../layout/flexiLayout/FlexiLayoutContext';
+import { useContext } from 'react';
+import { mergeDeep } from '../utils';
 
 const getTextField = (props: FieldRequest) => {
     const { fieldDef, fieldRuntime, fieldRefs, value } = props
@@ -107,16 +110,29 @@ const getInvalidField = (props: FieldRequest) => {
 //     />;
 // }
 
-// const getServerLookUp = ({ fieldProps, rule, field, fieldRefs }) => {
+const getServerLookUp = (props: FieldRequest) => {
+    const storeFactory = useContext(StoreFactoryContext);
+    const layoutParams = useContext(LayoutParamsContext);
 
-//     return <ServerLookup
-//         ref={ref => {
-//             fieldRefs.current[fieldProps.name] = ref;
-//         }}
-//         {...fieldProps}
-//         constraint={rule}
-//     />;
-// }
+    const { fieldDef, fieldRuntime, fieldRefs, value } = props
+    var storeOptions = fieldDef.storeOptions || {};
+    if(layoutParams){
+        mergeDeep(storeOptions, layoutParams);
+    }
+    const store = storeFactory.getGridStore(storeOptions);
+
+    var fieldProps = getMuiFieldProps(fieldDef, value);  
+    return <ServerLookup
+        ref={ref => {
+            fieldRefs.current[fieldDef.attribute] = ref;
+        }}
+        store={store}
+        runtime={fieldRuntime}
+        muiFieldDef={fieldProps}
+        fieldDef={fieldDef}
+        value={value}
+    />;
+}
 
 
 interface FieldRequest {
@@ -151,8 +167,8 @@ const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRe
         //     return getDateTimeField(props);
         // case 'checkbox':
         //     return getCheckBoxField(props);
-        // case 'serverlookup':
-        //     return getServerLookUp(props);
+        case 'serverlookup':
+            return getServerLookUp(props);
         case 'textarea':
             return getTextArea(props);
         default:

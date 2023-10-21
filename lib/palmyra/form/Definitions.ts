@@ -37,6 +37,7 @@ interface FieldDefinition extends AttributeDefinition {
     required?: boolean,
     disabled?: boolean,
     variant?: MuiVariant,
+    placeHolder?: string,
     validationRule?: string | string[],
     errorMessage: Record<string, string>,
     length?: RangeValidation<number>,

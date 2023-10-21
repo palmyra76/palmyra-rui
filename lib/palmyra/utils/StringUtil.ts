@@ -1,4 +1,13 @@
 
+const hasChar = (val: string, c: string): boolean => {
+    var index = val.indexOf(c)
+    return index >= 0;
+}
+
+const hasDot = (val: string): boolean => {
+    return hasChar(val, '.');
+}
+
 const StringFormat = function (str, data) {
     if (typeof str === 'string' && (data instanceof Array)) {
 
@@ -10,7 +19,7 @@ const StringFormat = function (str, data) {
         if (Object.keys(data).length === 0) {
             return str;
         }
-        
+
         return str.replace(/({([^}]+)})/g, function (i) {
             let key = i.replace(/{/, '').replace(/}/, '');
             if (!data[key]) {
@@ -29,4 +38,4 @@ const StringFormat = function (str, data) {
 };
 
 
-export { StringFormat };
+export { StringFormat, hasChar, hasDot };
