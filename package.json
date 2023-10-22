@@ -71,6 +71,7 @@
     "**/*.css"
   ],
   "dependencies": {
-    "autosuggest-highlight": "^3.3.4"
+    "autosuggest-highlight": "^3.3.4",
+    "pubsub-js": "^1.9.4"
   }
 }

@@ -37,5 +37,8 @@ const StringFormat = function (str, data) {
     }
 };
 
+function concatValues(param: Object): string {
+    return Object.values(param).join()
+}
 
-export { StringFormat, hasChar, hasDot };
+export { StringFormat, hasChar, hasDot, concatValues };

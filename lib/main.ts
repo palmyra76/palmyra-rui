@@ -10,4 +10,4 @@ export * from "./palmyra/store/Types"
 export * from './palmyra/form/Types'
 export * from './palmyra/form/Definitions'
 
-export {StringFormat} from './palmyra/utils/StringUtil'
+export {StringFormat, concatValues} from './palmyra/utils/StringUtil'
