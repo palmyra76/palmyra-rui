@@ -13,11 +13,13 @@ const getRenderer = (type: string): React.FC => {
     switch (type) {
         case 'grid':
             return FlexiLayoutGridRenderer;
+        case 'form':
+            console.info("type is provided as 'form', defaulting to formEdit mode");
+            return FlexiLayoutFormEditRenderer;
         case 'formEdit':
             return FlexiLayoutFormEditRenderer;
         case 'formNew':
             return FlexiLayoutFormNewRenderer;
-        case 'form':
         case 'formView':
             return FlexiLayoutFormViewRenderer;
         default:

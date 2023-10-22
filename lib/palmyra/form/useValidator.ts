@@ -21,7 +21,7 @@ interface useValidatorResponse {
     fieldCallbacks: Callbacks
 }
 
-function useValidator(props: FieldProperties):useValidatorResponse {
+function useValidator(props: FieldProperties): useValidatorResponse {
     const { runtime, fieldDef, value } = props;
     const { eventHandler, onDataChange, constraint } = runtime || {};
     const [data, setData] = useState(getDefaultValue(runtime, fieldDef, value));
@@ -53,13 +53,9 @@ function useValidator(props: FieldProperties):useValidatorResponse {
         })
     }
 
-    const validate = (e) => {
-        if(e == undefined || e.target == undefined)
-            return;
-
-        const inputValue = e.target.value;
+    const validate = (inputValue: any) => {
         const validStatus = checkConstraints(inputValue);
-
+        console.log(validStatus);
         if (!validStatus.status) {
             setValid(validStatus);
         } else if (eventHandler?.asyncValid) {
@@ -99,11 +95,11 @@ function useValidator(props: FieldProperties):useValidatorResponse {
         }
     }
 
-    const onBlur = () => { validate({ target: { value: data } }); };
+    const onBlur = () => { validate(data); };
     const onFocus = () => { hideErrorMessage() };
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) };
 
-    const fieldCallbacks:Callbacks = { onBlur, onFocus, onChange };
+    const fieldCallbacks: Callbacks = { onBlur, onFocus, onChange };
 
     return { data, setData: setValue, error, fieldCallbacks };
 }
