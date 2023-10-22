@@ -5,7 +5,7 @@ interface Pagination {
 }
 
 interface CriteriaOptions {
-    filter?: any,
+    filter?: Record<string, any>,
 }
 
 interface QueryRequest extends Pagination, CriteriaOptions {

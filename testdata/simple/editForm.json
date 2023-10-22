@@ -34,6 +34,16 @@
                                 }
                             },
                             {
+                                "attribute": "services",
+                                "title": "Service",
+                                "required": true,
+                                "type": "serverlookup",
+                                "storeOptions": {
+                                    "idAttribute": "email",
+                                    "titleAttribute": "userName"
+                                }
+                            },
+                            {
                                 "attribute": "dob",
                                 "title": "Dob",
                                 "required": true,
