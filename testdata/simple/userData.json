@@ -2,6 +2,7 @@
     "userName" : "Rolex",
     "gender": "M",
     "phoneNumber": "9876543210",
+    "service": "rolex@gmail.com",
     "email": "rolex@gmail.com",
     "address": "27/4, East Street, Tenkasi"
 }

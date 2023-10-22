@@ -83,10 +83,9 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         onDataChange({ data: newData, dataValid: dValid });
     }
 
-    const generateField = useMemo(() => (field: FieldDefinition) => {
-        const value = getValue(field, data);
+    const generateField = useMemo(() => (field: FieldDefinition) => {        
         const fieldRuntime = getFieldRuntime(field, data);
-        return getField(field, fieldRuntime, fieldRefs, value);
+        return getField(field, fieldRuntime, fieldRefs, data);
     }, [data]);
 
     const getValueByKey = (fieldName, data) => {
@@ -103,10 +102,6 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         var fieldKey = fieldName.substring(index + 1);
 
         return getValueByKey(fieldKey, data[objKey]);
-    }
-
-    const getValue = (field, data) => {
-        return getValueByKey(field.attribute, data);
     }
 
     const setValueByKey = (fieldName, data, value) => {

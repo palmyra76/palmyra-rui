@@ -22,10 +22,7 @@ interface storeBacked {
         urlFormat?: string,
         urlFormatPut?: string,
         urlFormatPost?: string,
-        urlFormatDelete?: string,
-        idAttribute?: string,
-        searchAttribute?: string,
-        titleAttribute?: string
+        urlFormatDelete?: string
     }
 }
 

@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import { DeleteOutlined } from '@mui/icons-material';
 import { TextField, Select, ListSubheader, InputAdornment, MenuItem, FormControl } from '@mui/material';
 import parse from 'autosuggest-highlight/parse';
@@ -7,7 +7,7 @@ import match from 'autosuggest-highlight/match';
 import { FieldProperties } from './Types';
 import { QueryRequest } from '../store/Types';
 
-import { getValueByKey } from './FormUtil';
+import { getValueByKey, setValueByKey } from './FormUtil';
 import { delay, hasDot } from '../utils';
 import { QueryStore } from '../store';
 import { Search } from '@mui/icons-material';
@@ -17,13 +17,14 @@ interface LookupFieldProperties extends FieldProperties {
 }
 
 const ServerLookup = forwardRef(function ServerLookup(props: LookupFieldProperties, ref) {
-    const { fieldDef, store, value } = props;
-    const storeOptions = fieldDef.storeOptions || {};
-    const idKey = storeOptions.idAttribute || 'id';
-    const labelKey = storeOptions.titleAttribute || 'name';
-    const searchKey = storeOptions.searchAttribute || labelKey;
-
-    const [options, setOptions] = useState([]);
+    const { fieldDef, store, value, displayValue } = props;
+    const lookupOptions = fieldDef.lookupOptions || {};
+    const idKey = lookupOptions.idAttribute || 'id';
+    const labelKey = lookupOptions.titleAttribute || 'name';
+    const selectedOption = useRef(null);
+    const searchKey = lookupOptions.searchAttribute || labelKey;
+    const [options, setOptions] = useState<Array<any>>([]);
+    const [dv] = useState(displayValue)
     const [searchText, setSearchText] = useState('');
     var v = value || '';
     const [data, setData] = useState(v);
@@ -31,9 +32,25 @@ const ServerLookup = forwardRef(function ServerLookup(props: LookupFieldProperti
     const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data[idKey]);
     const labelAccessor = hasDot(labelKey) ? (data: any) => (getValueByKey(labelKey, data)) : (data: any) => (data[labelKey]);
 
-    useEffect(() => {
-        refreshOptions();
-    }, []);
+    useMemo(() => {
+        var option: any = getSelectedOption();
+        if (option) {
+            setOptions([option]);
+            selectedOption.current = option;
+        }
+    }, [dv]);
+
+    function getSelectedOption(): any {
+        if(selectedOption.current)
+            return selectedOption.current;
+
+        if (displayValue) {
+            var option = {};
+            setValueByKey(idKey, option, value);
+            setValueByKey(labelKey, option, displayValue);
+            return option;
+        }
+    }
 
     useEffect(() => {
         delay(refreshOptions);
@@ -44,12 +61,30 @@ const ServerLookup = forwardRef(function ServerLookup(props: LookupFieldProperti
         if (searchText.length > 0) {
             request.filter = {};
             request.filter[searchKey] = searchText;
+        }else if (options.length > 1){
+            return;
         }
         store.query(request).then(d => updateOptions(d.result)).catch(() => updateOptions([]));
     }
 
+    function getMatch(result: any, key: any): any {
+        return result.find((r: any) => {
+            if(idAccessor(r) === key){
+                return r;
+            }
+        })
+    }
+
+    function updateData(data:string){
+        setData(data);
+        selectedOption.current = getMatch(options, data);
+    }
 
     function updateOptions(result: any[]): any {
+        const option = selectedOption.current;
+        if (result && option && !getMatch(result, idAccessor(option))) {
+            result.unshift(option);
+        }
         setOptions(result);
     }
 
@@ -82,9 +117,9 @@ const ServerLookup = forwardRef(function ServerLookup(props: LookupFieldProperti
         <Select
             MenuProps={{ autoFocus: false }}
             value={data}
-            onChange={(e) => { console.log(e.target); setData(e.target.value); }}
+            onOpen={(e) => { refreshOptions() }}
+            onChange={(e) => { updateData(e.target.value); }}
         >
-
             {hasMoreRecords() ?
                 <ListSubheader>
                     <div>

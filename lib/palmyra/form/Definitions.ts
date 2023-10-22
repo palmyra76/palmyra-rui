@@ -21,8 +21,15 @@ interface RangeValidation<T> {
     message: string
 }
 
+interface LookupOptions {
+    idAttribute?: string,
+    searchAttribute?: string,
+    titleAttribute?: string
+}
+
 interface AttributeDefinition extends storeBacked {
     attribute: string,
+    displayAttribute?: string, // To be used for select, links etc
     type: FieldType,
     displayPattern?: string, // To be used for Date, DateTime etc.,
     options?: Record<string, string>
@@ -33,7 +40,6 @@ interface FieldDefinition extends AttributeDefinition {
     hideTitle?: boolean,
     defaultValue?: InputType,
     value?: InputType,
-    targetUrl?: string,
     required?: boolean,
     disabled?: boolean,
     variant?: MuiVariant,
@@ -41,7 +47,8 @@ interface FieldDefinition extends AttributeDefinition {
     validationRule?: string | string[],
     errorMessage: Record<string, string>,
     length?: RangeValidation<number>,
-    range?: RangeValidation<any>
+    range?: RangeValidation<any>,
+    lookupOptions: LookupOptions // To be used by server lookup
 }
 
 interface FieldValidStatus {

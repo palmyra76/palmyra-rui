@@ -2,7 +2,7 @@
 import ValidationTextField from './ValidationTextField';
 import ValidationTextArea from './ValidationTextArea';
 import { FieldContext } from './Types';
-import { FieldDefinition, InputType, MuiFieldDef } from './Definitions';
+import { FieldDefinition, FormData, InputType, MuiFieldDef } from './Definitions';
 import PalmyraRadioGroup from './PalmyraRadioGroup';
 import PalmyraSelect from './PalmyraSelect';
 
@@ -14,6 +14,7 @@ import ServerLookup from './ServerLookup';
 import { LayoutParamsContext, StoreFactoryContext } from '../layout/flexiLayout/FlexiLayoutContext';
 import { useContext } from 'react';
 import { mergeDeep } from '../utils';
+import { getValueByKey } from './FormUtil';
 
 const getTextField = (props: FieldRequest) => {
     const { fieldDef, fieldRuntime, fieldRefs, value } = props
@@ -114,14 +115,14 @@ const getServerLookUp = (props: FieldRequest) => {
     const storeFactory = useContext(StoreFactoryContext);
     const layoutParams = useContext(LayoutParamsContext);
 
-    const { fieldDef, fieldRuntime, fieldRefs, value } = props
+    const { fieldDef, fieldRuntime, fieldRefs, value, displayValue } = props
     var storeOptions = fieldDef.storeOptions || {};
-    if(layoutParams){
+    if (layoutParams) {
         mergeDeep(storeOptions, layoutParams);
     }
     const store = storeFactory.getGridStore(storeOptions);
 
-    var fieldProps = getMuiFieldProps(fieldDef, value);  
+    var fieldProps = getMuiFieldProps(fieldDef, value);
     return <ServerLookup
         ref={ref => {
             fieldRefs.current[fieldDef.attribute] = ref;
@@ -131,6 +132,7 @@ const getServerLookUp = (props: FieldRequest) => {
         muiFieldDef={fieldProps}
         fieldDef={fieldDef}
         value={value}
+        displayValue={displayValue}
     />;
 }
 
@@ -139,7 +141,8 @@ interface FieldRequest {
     fieldDef: FieldDefinition,
     fieldRuntime: FieldContext,
     fieldRefs: any,
-    value: InputType
+    value: InputType,
+    displayValue?: InputType
 }
 
 const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType): MuiFieldDef => {
@@ -150,9 +153,20 @@ const getMuiFieldProps = (field: FieldDefinition, fieldValue: InputType): MuiFie
     };
 }
 
-const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs: any, value: InputType) => {
+const getFieldRequest = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs: any, data: FormData) => {
+    const value = getValueByKey(fieldDef.attribute, data);
+    if (fieldDef.displayAttribute) {
+        const displayValue = getValueByKey(fieldDef.displayAttribute, data);
+        return { fieldDef, fieldRuntime, fieldRefs, value, displayValue };
+    } else {
+        return { fieldDef, fieldRuntime, fieldRefs, value };
+    }
+}
+
+const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs: any, data: FormData) => {
     const { type } = fieldDef;
-    const props: FieldRequest = { fieldDef, fieldRuntime, fieldRefs, value };
+    const props: FieldRequest = getFieldRequest(fieldDef, fieldRuntime, fieldRefs, data);
+
     switch (type) {
         case 'string':
             return getTextField(props);

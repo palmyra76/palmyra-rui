@@ -27,10 +27,11 @@ interface FieldProperties {
     fieldDef: FieldDefinition,
     muiFieldDef: MuiFieldDef,
     runtime?: FieldContext,
-    value: any
+    value: any,
+    displayValue?: any
 }
 
 
 export type { FieldContext, FieldProperties, FormContext };
 
-export type { EventHandler, FormMode};
+export type { EventHandler, FormMode };

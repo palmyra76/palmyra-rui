@@ -34,11 +34,12 @@
                                 }
                             },
                             {
-                                "attribute": "services",
+                                "attribute": "service",
                                 "title": "Service",
+                                "displayAttribute":"userName",
                                 "required": true,
                                 "type": "serverlookup",
-                                "storeOptions": {
+                                "lookupOptions": {
                                     "idAttribute": "email",
                                     "titleAttribute": "userName"
                                 }
