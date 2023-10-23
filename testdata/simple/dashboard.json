@@ -10,7 +10,23 @@
                     "type": "chart",
                     "width": "50%",
                     "chartLayout": {
-                        "type": "Line"
+                        "type": "Line",
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
                     }
                 },
                 {
@@ -19,7 +35,23 @@
                     "type": "chart",
                     "width": "49%",
                     "chartLayout": {
-                        "type": "Bar"
+                        "type": "Bar",
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
                     }
                 },
                 {

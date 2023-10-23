@@ -23,6 +23,7 @@ ChartJS.register(
 
 export const defaultOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
         legend: {
             position: 'top'
@@ -33,7 +34,7 @@ export const defaultOptions = {
 const BarChart = (props: ChartInput) => {
     console.log(props);
     var options = props.chartOptions || defaultOptions;
-    return <Bar options={options} data={props.data} />;
+    return <Bar options={options} data={props.data} height={props.height} />;
 };
 
 export default BarChart;
