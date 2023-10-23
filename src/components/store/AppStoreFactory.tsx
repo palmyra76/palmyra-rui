@@ -1,5 +1,7 @@
 import { ChartStore, QueryStore,  DataStore,  StoreFactory } from "../../../lib/main";
+import { DummyChartStore } from "./DummyChartStore";
 import { DummyGridStore } from "./DummyGridStore";
+
 
 class AppStoreFactory implements StoreFactory<any>{
     getGridStore(request: Record<string, string>): QueryStore<any> {
@@ -9,7 +11,7 @@ class AppStoreFactory implements StoreFactory<any>{
         throw new Error("Method not implemented.");
     }
     getChartStore(request: Record<string, string>): ChartStore<any> {
-        throw new Error("Method not implemented.");
+        return new DummyChartStore();
     }   
 }
 

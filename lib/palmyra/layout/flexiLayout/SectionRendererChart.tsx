@@ -1,28 +1,30 @@
 
-import { default as FormRenderer } from './FormEditRenderer';
+import { default as ChartRenderer } from './ChartRenderer';
 import { default as DefaultSectionContainer } from '../container/SectionContainer';
 
 import { SectionRendererInput } from './Types';
-import { FormLayout } from './Definitions';
+import { ChartLayout } from './Definitions';
+import { ErrorBoundary } from '../ErrorBoundary';
 
 
 const SectionRendererChart = (props: SectionRendererInput) => {
-    const { layout, context } = props;
-    const { formContext } = context;
+    const { layout } = props;
 
-    var ChildRenderer = layout.Renderer || FormRenderer;
+    var ChildRenderer = layout.Renderer || ChartRenderer;
     var Container = layout.Container || DefaultSectionContainer;
 
-    const getFormLayout = (formLayout: FormLayout) => {
-        return (<ChildRenderer formContext={formContext}
-            formLayout={formLayout}
+    const getChart = (layout: ChartLayout) => {
+        return (<ChildRenderer
+            layout={layout}
         ></ChildRenderer>);
     };
 
     return (
-        <Container  {...layout}>
-            {getFormLayout(layout.formLayout)}
-        </Container>
+        <ErrorBoundary fallback={<div>Error while loading chart {layout.title}</div>}>
+            <Container  {...layout}>
+                {getChart(layout.chartLayout)}
+            </Container>
+        </ErrorBoundary>
     );
 };
 

@@ -6,6 +6,8 @@ type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
 type flexiPrimaryType = 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
 
+type ChartType = 'Bar' | 'Line';
+
 interface FormLayout extends Renderable {
     fields: FieldDefinition[],
     options?: {
@@ -18,8 +20,11 @@ interface TableLayout extends Renderable, Positionable, storeBacked {
     fields: ColumnDefinition[]
 }
 
-interface ChartLayout extends Renderable, storeBacked {
-
+interface ChartLayout extends Titleable, Positionable, Renderable, storeBacked {
+    chartOptions?: any,
+    converter?: string,
+    type: ChartType
+    // Options - to provide page context.
 }
 
 interface SectionDefinition extends Positionable, Titleable, Renderable {

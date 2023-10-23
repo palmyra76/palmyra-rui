@@ -11,6 +11,7 @@ import EditFormPage from './pages/demo/EditFormPage';
 import ViewFormPage from './pages/demo/ViewFormPage';
 import NewFormPage from './pages/demo/NewFormPage';
 import GridPage from './pages/demo/GridPage';
+import DashboardPage from './pages/demo/DashboardPage';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
           <Route path="/" element={<MainLayout appTitle='RUI Demo' />} >
             <Route path="/home" element={<HomePage />} />
             <Route path="/demo/:layout/grid" element={<GridPage />} />
-            <Route path="/demo/:layout/dashboard" element={<HomePage />} />
+            <Route path="/demo/:layout/dashboard" element={<DashboardPage />} />
             <Route path="/demo/:layout/card" element={<HomePage />} />
             <Route path="/demo/:layout/formEdit" element={<EditFormPage />} />
             <Route path="/demo/:layout/formView" element={<ViewFormPage />} />

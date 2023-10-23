@@ -1,0 +1,18 @@
+{
+    "type": "dashboard",
+    "tabs": [
+        {
+            "name": "tab01",
+            "sections": [
+                {
+                    "name": "Chart",
+                    "title": "My Chart",
+                    "type": "chart",
+                    "chartLayout": {
+                        "type": "Bar"
+                    }
+                }
+            ]
+        }
+    ]
+}

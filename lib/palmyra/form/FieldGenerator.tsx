@@ -6,7 +6,8 @@ import { FieldDefinition, FormData, InputType, MuiFieldDef } from './Definitions
 import PalmyraRadioGroup from './PalmyraRadioGroup';
 import PalmyraSelect from './PalmyraSelect';
 
-
+// Slider input
+// Rating input
 // import ValidationDatePicker from './ValidationDatePicker';
 // import ValidationDateTimePicker from './ValidationDateTimePicker';
 // import PalmyraCheckBox from './PalmyraCheckBox';
