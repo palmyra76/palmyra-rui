@@ -2,7 +2,7 @@ import { default as LineConverters } from './converters/LineConverter';
 import { default as BarConverters } from './converters/BarConverter';
 
 interface ChartDataConverter {
-    (data: any): any;
+    (data: any, options?: any): any;
 }
 
 const NoopConverter = (data: any): any => {
@@ -14,7 +14,7 @@ var dataMap: Record<string, Record<string, ChartDataConverter>> = {
     "Bar": BarConverters
 }
 
-const DataConverterFactory = (chartType: string, sourceType?: string) => {
+const DataConverterFactory = (chartType: string, sourceType?: string): ChartDataConverter => {
     var type = sourceType || "default";
     var converter = dataMap[chartType]?.[type];
     return (converter ? converter : NoopConverter);
