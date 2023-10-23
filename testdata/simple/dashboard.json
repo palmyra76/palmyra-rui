@@ -8,8 +8,77 @@
                     "name": "Chart",
                     "title": "My Chart",
                     "type": "chart",
+                    "width": "50%",
+                    "chartLayout": {
+                        "type": "Line"
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Bar Chart",
+                    "type": "chart",
+                    "width": "49%",
                     "chartLayout": {
                         "type": "Bar"
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Pie Chart",
+                    "type": "chart",
+                    "width": "50%",
+                    "chartLayout": {
+                        "type": "Pie"
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Doughnut Chart",
+                    "type": "chart",
+                    "width": "50%",
+                    "chartLayout": {
+                        "type": "Doughnut"
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "PolarArea Chart",
+                    "type": "chart",
+                    "width": "50%",
+                    "chartLayout": {
+                        "type": "PolarArea"
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Radar Chart",
+                    "type": "chart",
+                    "width": "50%",
+                    "chartLayout": {
+                        "type": "Radar"
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Scatter Chart",
+                    "type": "chart",
+                    "width": "50%",
+                    "chartLayout": {
+                        "type": "Scatter",
+                        "chartOptions": {
+                            "plugins": {
+                                "tooltip": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
+                    "title": "Bubble Chart",
+                    "type": "chart",
+                    "width": "50%",
+                    "chartLayout": {
+                        "type": "Bubble"
                     }
                 }
             ]

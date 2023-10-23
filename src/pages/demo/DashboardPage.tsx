@@ -18,7 +18,7 @@ const DashboardPage = () => {
     }, [layout])
 
     return <>
-        <div> Grid Layout Demo </div>
+        <div> Dashboard Layout Demo </div>
         {pageDef ? <FlexiLayoutRenderer layout={pageDef} storeFactory={storeFactory} /> : <div />}
     </>
 }

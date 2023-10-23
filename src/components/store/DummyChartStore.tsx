@@ -2,7 +2,7 @@ import { ChartStore, GetRequest, QueryRequest } from "../../../lib/main";
 
 class DummyChartStore implements ChartStore<any>{
     query(request: QueryRequest): Promise<any[]> {
-        return fetch('/simple/sampleChartData.json')
+        return fetch('/simple/chartData.json')
             .then((response) => response.json());
     }
     get(request: GetRequest): Promise<any> {
