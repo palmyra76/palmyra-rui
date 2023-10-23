@@ -14,9 +14,9 @@ const ValidationDatePicker = forwardRef(function ValidationDatePicker(props: Fie
         return dayjs(val, dataFormat)
     }
 
-    const formatDate = (val) => {
-        return dayjs(val).format(dataFormat)
-    }
+    // const formatDate = (val) => {
+    //     return dayjs(val).format(dataFormat)
+    // }
     const [data, setData] = useState(parseDate(props.value));
 
     useImperativeHandle(ref, () => {

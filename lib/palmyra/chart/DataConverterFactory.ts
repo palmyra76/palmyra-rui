@@ -7,6 +7,10 @@ import { default as PolarAreaConverters } from './converters/PolarConverter';
 import { default as PieConverters } from './converters/PieConverter';
 import { default as DoughnutConverters } from './converters/DoughnutConverter';
 
+
+import { getPointData as getLinePointData } from './converters/LineConverter';
+
+
 import { ChartLayout } from '../layout/flexiLayout';
 
 interface ChartDataConverter {
@@ -32,6 +36,11 @@ var dataMap: Record<string, Record<string, DataConverterGen>> = {
     "Doughnut": DoughnutConverters
 }
 
+var PointConverterMap: Record<string, Function> = {
+    "Line": getLinePointData,
+    "Bar": getLinePointData,
+}
+
 const getDataConverter = (chartType: string, layout?: ChartLayout): ChartDataConverter => {
     var options = layout.transformOptions || { sourceType: "default" };
     var type = options.sourceType || "default";
@@ -39,6 +48,11 @@ const getDataConverter = (chartType: string, layout?: ChartLayout): ChartDataCon
     return (converter ? converter(layout) : NoopConverter);
 }
 
+const getPointConverter = (chartType: string) => {
+    var converter = PointConverterMap[chartType];
+    return converter ? converter : () => { };
+}
 
-export type { DataConverterGen, ChartDataConverter }
+export type { DataConverterGen, ChartDataConverter};
+export {getPointConverter};
 export default getDataConverter;

@@ -7,11 +7,13 @@ import {
     LineElement,
     Title,
     Tooltip,
-    Legend,
+    Legend
 } from 'chart.js';
 
-import { Line } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import { ChartInput } from '../Types';
+import { useRef } from 'react';
+import { useListener } from '../ChartEventListener';
 
 ChartJS.register(
     CategoryScale,
@@ -33,9 +35,16 @@ export const defaultOptions = {
     },
 };
 
+
+
 const LineChart = (props: ChartInput) => {
+    const chartRef = useRef<ChartJS>(null);
     var options = props.chartOptions || defaultOptions;
-    return <Line options={options} data={props.data} height={props.height} />;
+    const { onClick } = useListener("Line", props, chartRef);
+
+    return <Chart type={'line'} ref={chartRef}
+        onClick={onClick}
+        options={options} data={props.data} height={props.height} />;
 };
 
 export default LineChart;

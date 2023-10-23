@@ -31,7 +31,7 @@ function getData(dataMap: Record<string, BubbleDataSet>, key: string, transformO
 
 function getKeys(layout: ChartLayout): { x: string, y: string, r: string, label: string } {
     const xLabel: string = layout.transformOptions?.xLabel || 'name';
-    const xKey: string = layout.transformOptions?.xKey || 'x';
+    const xKey: any = layout.transformOptions?.xKey || 'x';
     const yKey: any = layout.transformOptions?.yKey || 'y';
     const rKey: string = layout.transformOptions?.rKey || 'r';
 

@@ -11,6 +11,8 @@ import {
 
 import { Bar } from 'react-chartjs-2';
 import { ChartInput } from '../Types';
+import { useRef } from 'react';
+import { useListener } from '../ChartEventListener';
 
 ChartJS.register(
     CategoryScale,
@@ -31,9 +33,11 @@ export const defaultOptions = {
     },
 };
 
-const BarChart = (props: ChartInput) => {
+const BarChart = (props: ChartInput) => {    
     var options = props.chartOptions || defaultOptions;
-    return <Bar options={options} data={props.data} height={props.height} />;
+    const chartRef = useRef(null);
+    const { onClick } = useListener("Bar", props.transformOptions, props.data, chartRef);
+    return <Bar ref={chartRef} onClick={onClick} options={options} data={props.data} height={props.height} />;
 };
 
 export default BarChart;

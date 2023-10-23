@@ -1,3 +1,4 @@
+import { InteractionItem } from "chart.js";
 import { transformOptions } from "../../layout/Types";
 import { ChartLayout } from "../../layout/flexiLayout";
 import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
@@ -7,10 +8,9 @@ const NoopConverter = (layout: ChartLayout): ChartDataConverter => {
     return (data) => { data };
 }
 
-function getKeys(layout: ChartLayout) {
-    const xKey = layout.transformOptions?.xKey || 'name';
-    const yKe = layout.transformOptions?.yKey || 'value';
-
+function getKeys(transformOptions: transformOptions): { xKey: string, yKeys: string[] } {
+    const xKey: any = transformOptions?.xKey || 'name';
+    const yKe = transformOptions?.yKey || 'value';
     const yKeys = yKe instanceof Array ? yKe : [yKe];
 
     return {
@@ -21,7 +21,7 @@ function getKeys(layout: ChartLayout) {
 
 
 const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
-    const { xKey, yKeys } = getKeys(layout);
+    const { xKey, yKeys } = getKeys(layout.transformOptions);
     return (records: any[]): LineDataInput => {
         var result: LineDataInput = {
             labels: [],
@@ -56,11 +56,29 @@ const converters: Record<string, DataConverterGen> = {
     "noop": NoopConverter
 }
 
+
+const getPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
+    
+    var { xKey } = getKeys(transformOptions);    
+    var result = {[xKey]: data.labels[element[0].index]};
+
+    element.map((e) =>{
+        var { index, datasetIndex } = e;
+        var dataSet = data.datasets[datasetIndex];
+        var label = dataSet.label;
+        result[label] = dataSet.data[index];
+    });
+
+    return result;
+}
+
+
 export default converters;
+export { getPointData };
+
 
 function assignColors(transformOptions: transformOptions,
     key: string, data: ChartDataSet) {
-
     data.backgroundColor = transformOptions?.chart?.[key]?.backgroundColor || 'blue';
     data.borderColor = transformOptions?.chart?.[key]?.borderColor || 'grey';
 }

@@ -4,6 +4,7 @@ import { useContext, useMemo, useState } from 'react';
 import getDataConverter from '../../chart/DataConverterFactory';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
+import { transformOptions } from '../Types';
 
 interface ChartRendererInput {
   layout: ChartLayout
@@ -22,7 +23,11 @@ const ChartRenderer = (props: ChartRendererInput) => {
   }
   const store = storeFactory.getChartStore(storeOptions);
 
-  const [d, setData] = useState(null);
+  const [data, setData] = useState(null);
+
+  const onPointClick = (data) => {
+    console.log(data);
+  }
 
   function updateData(data: any) {
     setData(convertData(data));
@@ -34,16 +39,19 @@ const ChartRenderer = (props: ChartRendererInput) => {
       .catch(() => setData(null));
   }, []);
 
-  function getHeight(){
+  function getHeight() {
     //TODO calculate based on some logic - TBD
     return '300px';
   }
 
+  const transformOptions: transformOptions = props.layout.transformOptions || { sourceType: "default" };
+
   return (
     <div className="palmyra-chart-container-wrapper">
-      {(d) ?
-        <Renderer data={d} height={getHeight()}
-        chartOptions={layout.chartOptions} /> : <div>loading...</div>}
+      {(data) ?
+        <Renderer data={data} onPointClick={onPointClick} height={getHeight()}
+          transformOptions={transformOptions}
+          chartOptions={layout.chartOptions} /> : <div>loading...</div>}
     </div>
   );
 };

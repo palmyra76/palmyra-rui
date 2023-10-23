@@ -20,7 +20,7 @@ interface transformOptions {
     rKey?: string,
     xLabel?: string,
     yLabel?: strings,
-    chart: Record<string, chartOptions>
+    chart?: Record<string, chartOptions>
 }
 
 interface transformable {

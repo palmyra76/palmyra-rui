@@ -8,7 +8,7 @@ const NoopConverter = (layout: ChartLayout): ChartDataConverter => {
 }
 
 function getKeys(layout: ChartLayout) {
-    const xKey = layout.transformOptions?.xKey || 'name';
+    const xKey:any = layout.transformOptions?.xKey || 'name';
     const yKe = layout.transformOptions?.yKey || 'value';
 
     const yKeys = yKe instanceof Array ? yKe : [yKe];

@@ -10,7 +10,7 @@ const NoopConverter = (layout: ChartLayout): ChartDataConverter => {
 
 function getKeys(layout: ChartLayout): { x: string, y: string, label: string } {
     const xLabel: string = layout.transformOptions?.xLabel || 'name';
-    const xKey: string = layout.transformOptions?.xKey || 'x';
+    const xKey: any = layout.transformOptions?.xKey || 'x';
     const yKey: any = layout.transformOptions?.yKey || 'y';
 
     if (yKey instanceof Array) {
