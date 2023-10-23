@@ -1,6 +1,7 @@
 {
-    "userName" : "Rolex",
+    "userName": "Rolex",
     "gender": "M",
+    "dob": "2001-01-01",
     "phoneNumber": "9876543210",
     "service": "rolex@gmail.com",
     "email": "rolex@gmail.com",

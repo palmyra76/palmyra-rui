@@ -5,10 +5,10 @@ import { FieldContext } from './Types';
 import { FieldDefinition, FormData, InputType, MuiFieldDef } from './Definitions';
 import PalmyraRadioGroup from './PalmyraRadioGroup';
 import PalmyraSelect from './PalmyraSelect';
+import ValidationDatePicker from './ValidationDatePicker';
 
 // Slider input
 // Rating input
-// import ValidationDatePicker from './ValidationDatePicker';
 // import ValidationDateTimePicker from './ValidationDateTimePicker';
 // import PalmyraCheckBox from './PalmyraCheckBox';
 import ServerLookup from './ServerLookup';
@@ -80,14 +80,21 @@ const getInvalidField = (props: FieldRequest) => {
     return <div>{"invalid type " + fieldDef.type} </div>
 }
 
-// const getDateField = ({ fieldProps, rule, fieldRefs }) => {
-//     return <ValidationDatePicker
-//         {...fieldProps}
-//         dataFormat="YYYY-MM-DD"
-//         format="DD-MM-YYYY"
-//         slotProps={{ textField: { variant: 'standard', fullWidth: true } }}
-//     />;
-// }
+const getDateField = (props: FieldRequest) => {
+    const { fieldDef, fieldRuntime, fieldRefs, value } = props;
+    var fieldProps = getMuiFieldProps(fieldDef, value);
+
+    return <ValidationDatePicker
+        ref={ref => {
+            fieldRefs.current[fieldDef.attribute] = ref;
+        }}
+        {...fieldProps}
+        runtime={fieldRuntime}
+        muiFieldDef={fieldProps}
+        fieldDef={fieldDef}
+        value={value}
+    />;
+}
 
 // const getDateTimeField = ({ fieldProps, rule, fieldRefs }) => {
 //     return <ValidationDateTimePicker
@@ -175,9 +182,8 @@ const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRe
             return getRadioField(props);
         case 'select':
             return getSelectField(props);
-
-        // case 'date':
-        //     return getDateField(props);
+        case 'date':
+            return getDateField(props);
         // case 'datetime':    
         //     return getDateTimeField(props);
         // case 'checkbox':

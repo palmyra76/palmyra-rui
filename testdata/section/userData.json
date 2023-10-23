@@ -1,6 +1,7 @@
 {
-    "userName" : "Rolex",
+    "userName": "Rolex",
     "gender": "M",
+    "dob": "2001-01-01",
     "phoneNumber": "9876543210",
     "email": "rolex@gmail.com",
     "address": "27/4, East Street, Tenkasi"
