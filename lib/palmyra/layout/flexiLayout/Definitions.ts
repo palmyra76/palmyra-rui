@@ -1,6 +1,6 @@
 import { FieldDefinition } from "../../form/Definitions";
 import { ColumnDefinition } from "../../grid";
-import { Positionable, Renderable, Titleable, storeBacked } from "../Types";
+import { Positionable, Renderable, Titleable, storeBacked, transformable } from "../Types";
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
@@ -20,9 +20,8 @@ interface TableLayout extends Renderable, Positionable, storeBacked {
     fields: ColumnDefinition[]
 }
 
-interface ChartLayout extends Titleable, Positionable, Renderable, storeBacked {
+interface ChartLayout extends Titleable, Positionable, Renderable, storeBacked, transformable {
     chartOptions?: any,
-    converter?: string,
     type: ChartType
     // Options - to provide page context.
 }

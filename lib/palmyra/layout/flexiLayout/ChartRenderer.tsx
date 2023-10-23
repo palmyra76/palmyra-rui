@@ -1,7 +1,7 @@
 import { ChartLayout } from './Definitions';
 import ChartFactory from '../../chart/ChartFactory';
 import { useContext, useMemo, useState } from 'react';
-import DataConverterFactory from '../../chart/DataConverterFactory';
+import getDataConverter from '../../chart/DataConverterFactory';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
 
@@ -12,7 +12,7 @@ interface ChartRendererInput {
 const ChartRenderer = (props: ChartRendererInput) => {
   const layout = props.layout;
   const Renderer = ChartFactory(layout.type);
-  const convertData = DataConverterFactory(layout.type);
+  const convertData = getDataConverter(layout.type, layout);
 
   const storeFactory = useContext(StoreFactoryContext);
   const layoutParams = useContext(LayoutParamsContext);

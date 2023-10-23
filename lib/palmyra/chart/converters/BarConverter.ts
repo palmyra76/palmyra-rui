@@ -1,10 +1,11 @@
-import { ChartDataConverter } from "../DataConverterFactory";
+import { ChartLayout } from "../../layout/flexiLayout";
+import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
 
-const DefaultConverter = (data: any): any => {
-    return data;
+const DefaultConverter = (layout: ChartLayout): ChartDataConverter => {
+    return (data) => { data };
 }
 
-const converters: Record<string, ChartDataConverter> = {
+const converters: Record<string, DataConverterGen> = {
     "default": DefaultConverter
 }
 
