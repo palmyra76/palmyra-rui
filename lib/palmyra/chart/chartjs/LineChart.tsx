@@ -25,6 +25,7 @@ ChartJS.register(
 
 export const defaultOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
         legend: {
             position: 'top'
@@ -34,7 +35,7 @@ export const defaultOptions = {
 
 const LineChart = (props: ChartInput) => {
     var options = props.chartOptions || defaultOptions;
-    return <Line options={options} data={props.data} />;
+    return <Line options={options} data={props.data} height={props.height} />;
 };
 
 export default LineChart;

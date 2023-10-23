@@ -34,10 +34,16 @@ const ChartRenderer = (props: ChartRendererInput) => {
       .catch(() => setData(null));
   }, []);
 
+  function getHeight(){
+    //TODO calculate based on some logic - TBD
+    return '300px';
+  }
+
   return (
     <div className="palmyra-chart-container-wrapper">
       {(d) ?
-        <Renderer data={d} chartOptions={layout.chartOptions} /> : <div>loading...</div>}
+        <Renderer data={d} height={getHeight()}
+        chartOptions={layout.chartOptions} /> : <div>loading...</div>}
     </div>
   );
 };

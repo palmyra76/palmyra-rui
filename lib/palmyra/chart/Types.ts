@@ -1,7 +1,8 @@
 
 interface ChartInput {
     data: any,
-    chartOptions?: any
+    chartOptions?: any, 
+    height: string | number    
 }
 
 export type {ChartInput}
