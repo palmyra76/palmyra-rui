@@ -9,7 +9,7 @@ import { default as DoughnutConverters } from './converters/DoughnutConverter';
 
 
 import { getPointData as getLinePointData } from './converters/LineConverter';
-
+import { getPointData as getBubblePointData } from './converters/BubbleConverter';
 
 import { ChartLayout } from '../layout/flexiLayout';
 
@@ -39,6 +39,7 @@ var dataMap: Record<string, Record<string, DataConverterGen>> = {
 var PointConverterMap: Record<string, Function> = {
     "Line": getLinePointData,
     "Bar": getLinePointData,
+    "Bubble": getBubblePointData
 }
 
 const getDataConverter = (chartType: string, layout?: ChartLayout): ChartDataConverter => {

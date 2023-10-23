@@ -1,3 +1,4 @@
+import { InteractionItem } from "chart.js";
 import { transformOptions } from "../../layout/Types";
 import { ChartLayout } from "../../layout/flexiLayout";
 import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
@@ -29,14 +30,14 @@ function getData(dataMap: Record<string, BubbleDataSet>, key: string, transformO
     return r;
 }
 
-function getKeys(layout: ChartLayout): { x: string, y: string, r: string, label: string } {
-    const xLabel: string = layout.transformOptions?.xLabel || 'name';
-    const xKey: any = layout.transformOptions?.xKey || 'x';
-    const yKey: any = layout.transformOptions?.yKey || 'y';
-    const rKey: string = layout.transformOptions?.rKey || 'r';
+function getKeys(transformOptions: transformOptions): { x: string, y: string, r: string, label: string } {
+    const xLabel: string = transformOptions?.xLabel || 'name';
+    const xKey: any = transformOptions?.xKey || 'x';
+    const yKey: any = transformOptions?.yKey || 'y';
+    const rKey: string = transformOptions?.rKey || 'r';
 
     if (yKey instanceof Array) {
-        console.error("BubbleChart: yKey should be string only, not an array " + layout.transformOptions.yKey);
+        console.error("BubbleChart: yKey should be string only, not an array " + transformOptions.yKey);
     }
 
     return {
@@ -48,7 +49,7 @@ function getKeys(layout: ChartLayout): { x: string, y: string, r: string, label:
 }
 
 const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
-    const { x, y, r, label } = getKeys(layout);
+    const { x, y, r, label } = getKeys(layout.transformOptions);
     return (records: any[]): BubbleDataInput => {
         var result: BubbleDataInput = {
             datasets: []
@@ -72,9 +73,30 @@ const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     }
 }
 
+const getPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {    
+    const { x, y, r } = getKeys(transformOptions);
+    var result = {};
+
+    element.map((e) =>{
+        var { index, datasetIndex } = e;
+        var dataSet = data.datasets[datasetIndex];
+        var label = dataSet.label;
+        var d = dataSet.data[index];
+        
+        result[label] = {
+            [x] : d.x,
+            [y] : d.y,
+            [r] : d.r
+        }
+    });
+
+    return result;
+}
+
 const converters: Record<string, DataConverterGen> = {
     "default": ArrayConverter,
     "noop": NoopConverter
 }
 
 export default converters;
+export {getPointData}
