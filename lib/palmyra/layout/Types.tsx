@@ -1,7 +1,8 @@
+type measure = string | number;
 
 interface Positionable {
-    height?: number,
-    width?: number
+    height?: measure,
+    width?: measure
 }
 
 interface Titleable {
