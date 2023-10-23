@@ -12,8 +12,13 @@ interface TopicListener {
 
 class Topic {
 
-	subscribe(topic: string, listener: TopicListener) {
-		return PubSub.subscribe(topic, listener);
+	subscribe(topic: string, listener: TopicListener): string {
+		const result = PubSub.subscribe(topic, listener);
+		if (result)
+			return result;
+		else {
+			throw new Error("Not able to subscribe to topic " + topic);
+		}
 	}
 
 	publish(topic: string, data: any): boolean {

@@ -31,12 +31,17 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'axios',
+        'chart.js',
+        'dayjs',
         'react',
         'react-dom',
         'react-router-dom',
         'react/jsx-runtime',
+        'react-chartjs-2',        
         '@emotion/react',
         '@emotion/styled',
+        '@mui/x-date-pickers',
+        '@mui/x-date-pickers/AdapterDayjs',
         '@mui/material',
         '@mui/icons-material',
         '@mui/styled-engine',
