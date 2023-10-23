@@ -1,8 +1,7 @@
 import { InteractionItem } from "chart.js";
-import { MutableRefObject } from "react";
+import { MouseEventHandler, MutableRefObject } from "react";
 import { getDatasetAtEvent, getElementAtEvent, getElementsAtEvent } from "react-chartjs-2";
 import { getPointConverter } from "./DataConverterFactory";
-import { transformOptions } from "../layout/Types";
 import { ChartInput } from "./Types";
 
 
@@ -10,7 +9,11 @@ function isPointClicked(dataset: InteractionItem[]): boolean {
     return dataset.length > 0;
 }
 
-const useListener = (chartType: string, props: ChartInput, chartRef: MutableRefObject<any>) => {
+interface ListenerResult {
+    onClick?: MouseEventHandler<any>;
+}
+
+const useListener = (chartType: string, props: ChartInput, chartRef: MutableRefObject<any>): ListenerResult => {
     if (!props.onPointClick)
         return {};
 

@@ -36,7 +36,7 @@ export const defaultOptions = {
 const BarChart = (props: ChartInput) => {    
     var options = props.chartOptions || defaultOptions;
     const chartRef = useRef(null);
-    const { onClick } = useListener("Bar", props.transformOptions, props.data, chartRef);
+    const { onClick } = useListener("Bar", props, chartRef);
     return <Bar ref={chartRef} onClick={onClick} options={options} data={props.data} height={props.height} />;
 };
 
