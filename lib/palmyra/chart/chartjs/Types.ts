@@ -42,6 +42,19 @@ interface Bubble extends Point {
     r: number
 }
 
+interface PolarAreaInput {
+    labels: string[],
+    datasets: PolarAreaSet[]
+}
+
+interface PolarAreaSet {
+    label: string,
+    data: number[],
+    backgroundColor?: any
+}
+
 export type { LineDataInput, ChartDataSet };
 export type { ScatterDataSet, ScatterDataInput, Point };
 export type { BubbleDataInput, BubbleDataSet, Bubble };
+export type { PolarAreaInput, PolarAreaSet }
+

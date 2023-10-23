@@ -2,6 +2,11 @@ import { default as LineConverters } from './converters/LineConverter';
 import { default as BarConverters } from './converters/BarConverter';
 import { default as ScatterConverters } from './converters/ScatterConverter';
 import { default as BubbleConverters } from './converters/BubbleConverter';
+import { default as RadarConverters } from './converters/RadarConverter';
+import { default as PolarAreaConverters } from './converters/PolarConverter';
+import { default as PieConverters } from './converters/PieConverter';
+import { default as DoughnutConverters } from './converters/DoughnutConverter';
+
 import { ChartLayout } from '../layout/flexiLayout';
 
 interface ChartDataConverter {
@@ -20,7 +25,11 @@ var dataMap: Record<string, Record<string, DataConverterGen>> = {
     "Line": LineConverters,
     "Bar": BarConverters,
     "Scatter": ScatterConverters,
-    "Bubble": BubbleConverters
+    "Bubble": BubbleConverters,
+    "Radar": RadarConverters,
+    "PolarArea": PolarAreaConverters,
+    "Pie": PieConverters,
+    "Doughnut": DoughnutConverters
 }
 
 const getDataConverter = (chartType: string, layout?: ChartLayout): ChartDataConverter => {

@@ -4,8 +4,15 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+export const defaultOptions = {
+    responsive: true,
+    maintainAspectRatio: false
+};
+
+
 const DoughnutChart = (props: ChartInput) => {
-    return <Doughnut data={props.data} />;
+    var options = props.chartOptions || defaultOptions;
+    return <Doughnut options={options} data={props.data} height={props.height} />;
 };
 
 export default DoughnutChart;

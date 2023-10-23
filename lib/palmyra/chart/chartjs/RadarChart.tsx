@@ -19,8 +19,19 @@ ChartJS.register(
     Legend
 );
 
+export const defaultOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            position: 'top'
+        }
+    },
+};
+
 const RadarChart = (props: ChartInput) => {
-    return <Radar data={props.data} />;
+    var options = props.chartOptions || defaultOptions;
+    return <Radar options={options} data={props.data} height={props.height} />;
 };
 
 export default RadarChart;

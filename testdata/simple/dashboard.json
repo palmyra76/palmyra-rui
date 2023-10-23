@@ -6,7 +6,7 @@
             "sections": [
                 {
                     "name": "Chart",
-                    "title": "My Chart",
+                    "title": "Line Chart",
                     "type": "chart",
                     "width": "50%",
                     "chartLayout": {
@@ -58,36 +58,100 @@
                     "name": "Chart",
                     "title": "Pie Chart",
                     "type": "chart",
-                    "width": "50%",
+                    "width": "25%",
                     "chartLayout": {
-                        "type": "Pie"
+                        "type": "Pie",
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
                     }
                 },
                 {
                     "name": "Chart",
                     "title": "Doughnut Chart",
                     "type": "chart",
-                    "width": "50%",
+                    "width": "25%",
                     "chartLayout": {
-                        "type": "Doughnut"
+                        "type": "Doughnut",
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
                     }
                 },
                 {
                     "name": "Chart",
                     "title": "PolarArea Chart",
                     "type": "chart",
-                    "width": "50%",
+                    "width": "25%",
                     "chartLayout": {
-                        "type": "PolarArea"
+                        "type": "PolarArea",
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
                     }
                 },
                 {
                     "name": "Chart",
                     "title": "Radar Chart",
                     "type": "chart",
-                    "width": "50%",
+                    "width": "25%",
                     "chartLayout": {
-                        "type": "Radar"
+                        "type": "Radar",
+                        "transformOptions": {
+                            "yKey": [
+                                "count",
+                                "average"
+                            ],
+                            "chart": {
+                                "count": {
+                                    "borderColor": "rgb(255, 99, 132)",
+                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                },
+                                "average": {
+                                    "borderColor": "rgb(53, 162, 235)",
+                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                }
+                            }
+                        }
                     }
                 },
                 {
