@@ -97,10 +97,9 @@
                     "width": "50%",
                     "chartLayout": {
                         "type": "Scatter",
-                        "chartOptions": {
-                            "plugins": {
-                                "tooltip": false
-                            }
+                        "transformOptions": {
+                            "xKey": "count",
+                            "yKey": "average"
                         }
                     }
                 },
@@ -110,7 +109,12 @@
                     "type": "chart",
                     "width": "50%",
                     "chartLayout": {
-                        "type": "Bubble"
+                        "type": "Bubble",
+                        "transformOptions": {
+                            "xKey": "count",
+                            "yKey": "average",
+                            "rKey": "top"
+                        }
                     }
                 }
             ]

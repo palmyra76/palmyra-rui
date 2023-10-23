@@ -13,6 +13,7 @@ ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
 export const defaultOptions = {
     responsive: true,
+    maintainAspectRatio:false,
     plugins: {
         legend: {
             position: 'top'
@@ -22,7 +23,7 @@ export const defaultOptions = {
 
 const BubbleChart = (props: ChartInput) => {
     var options = props.chartOptions || defaultOptions;
-    return <Bubble options={options} data={props.data} />;
+    return <Bubble options={options} data={props.data} height={props.height}/>;
 };
 
 export default BubbleChart;

@@ -17,6 +17,7 @@ interface transformOptions {
     sourceType: string,
     xKey?: string,
     yKey?: strings,
+    rKey?: string,
     xLabel?: string,
     yLabel?: strings,
     chart: Record<string, chartOptions>

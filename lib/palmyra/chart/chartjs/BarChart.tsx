@@ -32,7 +32,6 @@ export const defaultOptions = {
 };
 
 const BarChart = (props: ChartInput) => {
-    console.log(props);
     var options = props.chartOptions || defaultOptions;
     return <Bar options={options} data={props.data} height={props.height} />;
 };
