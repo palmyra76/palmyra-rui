@@ -8,6 +8,8 @@ import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined } from '@mui/ico
 import { QueryStore } from '../store';
 import { ColumnDefinition } from './Types';
 
+//TODO - show errors on data fetching
+
 interface GridXOptions {
   columns: ColumnDefinition[],
   children?: any,
@@ -59,15 +61,29 @@ function GridX(props: GridXOptions) {
   const refreshData = () => {
     const params = { page, filter, sortOrder };
     if (store) {
-      store.query(params).then((d) => {
-        setData(d.result);
-        setTotalData(d.total);
-      });
+      try {
+        store.query(params).then((d) => {
+          setData(d.result);
+          setTotalData(d.total);
+        }).catch((e) => {
+          console.log("error while fetching");
+          var r = e.response ? e.response : e;
+          console.log(r);
+          setEmptyData();
+        });
+      } catch (e) {
+        console.log(e);
+        setEmptyData();
+      }
     } else {
       console.error("Store is not provided for the Grid");
-      setData([{}]);
-      setTotalData(1);
+      setEmptyData();
     }
+  }
+
+  const setEmptyData = () => {
+    setData([]);
+    setTotalData(0);
   }
 
   const handleDensityChange = (density) => {
