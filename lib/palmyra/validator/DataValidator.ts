@@ -173,6 +173,10 @@ const isEmpty = (val) => {
     if (val == undefined || val == null) {
         return true;
     }
+
+    if(typeof val == "number")
+        return false;
+
     return validator.isEmpty(val);
 }
 
@@ -180,6 +184,10 @@ const isNotEmpty = (val) => {
     if (val == undefined || val == null) {
         return false;
     }
+    
+    if(typeof val == "number")
+        return true;
+
     return !validator.isEmpty(val);
 }
 
