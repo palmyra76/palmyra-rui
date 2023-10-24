@@ -27,8 +27,8 @@ interface LayoutParams extends Record<string, string> {
 }
 
 interface StoreFactory<T> {
-    getGridStore(request: Record<string, string>): QueryStore<T>;
-    getFormStore(request: Record<string, string>): DataStore<T>;
+    getGridStore(request: Record<string, string>, idProperty?: string | string[]): QueryStore<T>;
+    getFormStore(request: Record<string, string>, idProperty?: string | string[]): DataStore<T>;
     getChartStore(request: Record<string, string>): ChartStore<T>;
 }
 
