@@ -36,6 +36,7 @@ interface AttributeDefinition extends storeBacked {
 }
 
 interface FieldDefinition extends AttributeDefinition {
+    name: string,
     title: string,
     hideTitle?: boolean,
     defaultValue?: InputType,
@@ -48,7 +49,7 @@ interface FieldDefinition extends AttributeDefinition {
     errorMessage: Record<string, string>,
     length?: RangeValidation<number>,
     range?: RangeValidation<any>,
-    lookupOptions: LookupOptions // To be used by server lookup
+    lookupOptions?: LookupOptions // To be used by server lookup
 }
 
 interface FieldValidStatus {
