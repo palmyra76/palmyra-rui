@@ -55,7 +55,7 @@ function useValidator(props: FieldProperties): useValidatorResponse {
 
     const validate = (inputValue: any) => {
         const validStatus = checkConstraints(inputValue);
-        console.log(validStatus);
+        // console.log(validStatus);
         if (!validStatus.status) {
             setValid(validStatus);
         } else if (eventHandler?.asyncValid) {
