@@ -19,7 +19,6 @@ function getKeys(layout: ChartLayout): { xKey: string, yKeys: string[] } {
     }
 }
 
-
 const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     const { xKey, yKeys } = getKeys(layout);
     return (records: any[]): PolarAreaInput => {
@@ -51,8 +50,61 @@ const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     }
 }
 
+const ObjectConverter = (layout: ChartLayout): ChartDataConverter => {
+    const { yKeys } = getKeys(layout);
+    return (record: any): PolarAreaInput => {
+        var result: PolarAreaInput = {
+            labels: [],
+            datasets: []
+        };
+
+        // Initialize the dataset array based on the number of yKeys
+        yKeys.map((key, index) => {
+            var data: PolarAreaSet = { label: key, data: [] };
+            result.datasets[index] = data;
+            assignColors(layout.transformOptions, key, data);
+        })
+
+        // Populate the record for each entry in the object
+        for (var xValue in record) {
+            result.labels.push(xValue);
+
+            // Populate the data for each yKey
+            var data = record[xValue]
+            yKeys.map((key, index) => {
+                result.datasets[index].data.push(data[key]);
+            })
+        }
+
+        return result;
+    }
+}
+
+const KeyValueConverter = (layout: ChartLayout): ChartDataConverter => {
+    return (record: any): PolarAreaInput => {
+        var result: PolarAreaInput = {
+            labels: [],
+            datasets: []
+        };
+
+        var dataset: PolarAreaSet = { label: 'value', data: [] };
+        result.datasets[0] = dataset;
+        assignColors(layout.transformOptions, 'value', dataset);
+
+        for (var xValue in record) {
+            result.labels.push(xValue);
+
+            dataset.data.push(record[xValue]);
+        }
+
+        return result;
+    }
+}
+
 const converters: Record<string, DataConverterGen> = {
     "default": ArrayConverter,
+    "object": ObjectConverter,
+    "keyValue": KeyValueConverter,
     "noop": NoopConverter
 }
 

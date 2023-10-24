@@ -54,6 +54,6 @@ const getPointConverter = (chartType: string) => {
     return converter ? converter : () => { };
 }
 
-export type { DataConverterGen, ChartDataConverter};
-export {getPointConverter};
+export type { DataConverterGen, ChartDataConverter };
+export { getPointConverter };
 export default getDataConverter;

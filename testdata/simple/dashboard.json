@@ -11,6 +11,9 @@
                     "width": "50%",
                     "chartLayout": {
                         "type": "Line",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartData.json"
+                        },
                         "transformOptions": {
                             "yKey": [
                                 "count",
@@ -36,6 +39,9 @@
                     "width": "49%",
                     "chartLayout": {
                         "type": "Bar",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartData.json"
+                        },
                         "transformOptions": {
                             "yKey": [
                                 "count",
@@ -61,19 +67,25 @@
                     "width": "25%",
                     "chartLayout": {
                         "type": "Pie",
+                        "storeOptions": {
+                            "urlFormat": "/simple/pieChart.json"
+                        },
                         "transformOptions": {
                             "yKey": [
-                                "count",
-                                "average"
+                                "count"
                             ],
                             "chart": {
                                 "count": {
-                                    "borderColor": "rgb(255, 99, 132)",
-                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
-                                },
-                                "average": {
-                                    "borderColor": "rgb(53, 162, 235)",
-                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 1)",
+                                        "rgba(54, 162, 235, 1)",
+                                        "rgba(255, 206, 86, 1)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.2)",
+                                        "rgba(54, 162, 235, 0.2)",
+                                        "rgba(255, 206, 86, 0.2)"
+                                    ]
                                 }
                             }
                         }
@@ -86,6 +98,9 @@
                     "width": "25%",
                     "chartLayout": {
                         "type": "Doughnut",
+                        "storeOptions": {
+                            "urlFormat": "/simple/doughnutChart.json"
+                        },
                         "transformOptions": {
                             "yKey": [
                                 "count",
@@ -93,12 +108,28 @@
                             ],
                             "chart": {
                                 "count": {
-                                    "borderColor": "rgb(255, 99, 132)",
-                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 1)",
+                                        "rgba(54, 162, 235, 1)",
+                                        "rgba(255, 206, 86, 1)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.2)",
+                                        "rgba(54, 162, 235, 0.2)",
+                                        "rgba(255, 206, 86, 0.2)"
+                                    ]
                                 },
                                 "average": {
-                                    "borderColor": "rgb(53, 162, 235)",
-                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 0.5)",
+                                        "rgba(54, 162, 235, 0.5)",
+                                        "rgba(255, 206, 86, 0.5)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.1)",
+                                        "rgba(54, 162, 235, 0.1)",
+                                        "rgba(255, 206, 86, 0.1)"
+                                    ]
                                 }
                             }
                         }
@@ -111,19 +142,25 @@
                     "width": "25%",
                     "chartLayout": {
                         "type": "PolarArea",
+                        "storeOptions": {
+                            "urlFormat": "/simple/polarArea.json"
+                        },
                         "transformOptions": {
                             "yKey": [
-                                "count",
-                                "average"
+                                "count"
                             ],
                             "chart": {
                                 "count": {
-                                    "borderColor": "rgb(255, 99, 132)",
-                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
-                                },
-                                "average": {
-                                    "borderColor": "rgb(53, 162, 235)",
-                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                                    "borderColor": [
+                                        "rgba(255, 99, 132, 1)",
+                                        "rgba(54, 162, 235, 1)",
+                                        "rgba(255, 206, 86, 1)"
+                                    ],
+                                    "backgroundColor": [
+                                        "rgba(255, 99, 132, 0.2)",
+                                        "rgba(54, 162, 235, 0.2)",
+                                        "rgba(255, 206, 86, 0.2)"
+                                    ]
                                 }
                             }
                         }
@@ -136,6 +173,9 @@
                     "width": "25%",
                     "chartLayout": {
                         "type": "Radar",
+                        "storeOptions": {
+                            "urlFormat": "/simple/radarChart.json"
+                        },
                         "transformOptions": {
                             "yKey": [
                                 "count",
@@ -161,6 +201,9 @@
                     "width": "50%",
                     "chartLayout": {
                         "type": "Scatter",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartData.json"
+                        },
                         "transformOptions": {
                             "xKey": "count",
                             "yKey": "average"
@@ -174,6 +217,9 @@
                     "width": "50%",
                     "chartLayout": {
                         "type": "Bubble",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartData.json"
+                        },
                         "transformOptions": {
                             "xKey": "count",
                             "yKey": "average",

@@ -19,7 +19,6 @@ function getKeys(transformOptions: transformOptions): { xKey: string, yKeys: str
     }
 }
 
-
 const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     const { xKey, yKeys } = getKeys(layout.transformOptions);
     return (records: any[]): LineDataInput => {
@@ -51,22 +50,82 @@ const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     }
 }
 
+const ObjectConverter = (layout: ChartLayout): ChartDataConverter => {
+    const { yKeys } = getKeys(layout.transformOptions);
+    return (record: any): LineDataInput => {
+        var result: LineDataInput = {
+            labels: [],
+            datasets: []
+        };
+
+        // Initialize the dataset array based on the number of yKeys
+        yKeys.map((key, index) => {
+            var data: ChartDataSet = { label: key, data: [] };
+            result.datasets[index] = data;
+            assignColors(layout.transformOptions, key, data);
+        })
+
+        // Populate the record for each entry in the object
+        for (var xValue in record) {
+            result.labels.push(xValue);
+
+            // Populate the data for each yKey
+            var data = record[xValue]
+            yKeys.map((key, index) => {
+                result.datasets[index].data.push(data[key]);
+            })
+        }
+
+        console.log(result);
+        return result;
+    }
+}
+
+const KeyValueConverter = (layout: ChartLayout): ChartDataConverter => {
+    return (record: any): LineDataInput => {
+        var result: LineDataInput = {
+            labels: [],
+            datasets: []
+        };
+
+        var dataset: ChartDataSet = { label: 'value', data: [] };
+        result.datasets[0] = dataset;
+        assignColors(layout.transformOptions, 'value', dataset);
+
+        for (var xValue in record) {
+            result.labels.push(xValue);
+
+            dataset.data.push(record[xValue]);
+        }
+
+        return result;
+    }
+}
+
 const converters: Record<string, DataConverterGen> = {
     "default": ArrayConverter,
+    "object": ObjectConverter,
+    "keyValue": KeyValueConverter,
     "noop": NoopConverter
 }
 
-
 const getPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
-    
-    var { xKey } = getKeys(transformOptions);    
-    var result = {[xKey]: data.labels[element[0].index]};
 
-    element.map((e) =>{
-        var { index, datasetIndex } = e;
+    var { xKey } = getKeys(transformOptions);
+    const xValue = data.labels[element[0].index]
+
+    if (transformOptions.sourceType == 'keyValue') {
+        var { index, datasetIndex } = element[0];
         var dataSet = data.datasets[datasetIndex];
+        var value = dataSet.data[index];
+        return { [xValue]: value };
+    }
+
+    var result = { [xKey]: xValue };
+    element.map((e) => {
+        var dataSet = data.datasets[e.datasetIndex];
         var label = dataSet.label;
-        result[label] = dataSet.data[index];
+        result[label] = dataSet.data[e.index];
     });
 
     return result;

@@ -1,0 +1,18 @@
+{
+  "January": {
+    "count": 2,
+    "average":10
+  },
+  "Feburary": {
+    "count": 14,
+    "average":6
+  },
+  "March": {
+    "count": 23,
+    "average":54
+  },
+  "April": {
+    "count": 34,
+    "average":32
+  }
+}

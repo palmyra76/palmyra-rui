@@ -7,8 +7,8 @@ const NoopConverter = (layout: ChartLayout): ChartDataConverter => {
     return (data) => { data };
 }
 
-function getKeys(layout: ChartLayout):{xKey:string, yKeys:string[]} {
-    const xKey:any = layout.transformOptions?.xKey || 'name';
+function getKeys(layout: ChartLayout): { xKey: string, yKeys: string[] } {
+    const xKey: any = layout.transformOptions?.xKey || 'name';
     const yKe = layout.transformOptions?.yKey || 'value';
 
     const yKeys = yKe instanceof Array ? yKe : [yKe];
@@ -18,7 +18,6 @@ function getKeys(layout: ChartLayout):{xKey:string, yKeys:string[]} {
         yKeys: yKeys
     }
 }
-
 
 const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     const { xKey, yKeys } = getKeys(layout);
@@ -51,8 +50,58 @@ const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     }
 }
 
+const ObjectConverter = (layout: ChartLayout): ChartDataConverter => {
+    const { yKeys } = getKeys(layout);
+    return (record: any): LineDataInput => {
+        var result: LineDataInput = {
+            labels: [],
+            datasets: []
+        };
+
+        yKeys.map((key, index) => {
+            var data: ChartDataSet = { label: key, data: [] };
+            result.datasets[index] = data;
+            assignColors(layout.transformOptions, key, data);
+        })
+
+        for (var xValue in record) {
+            result.labels.push(xValue);
+
+            var data = record[xValue]
+            yKeys.map((key, index) => {
+                result.datasets[index].data.push(data[key]);
+            })
+        }
+
+        return result;
+    }
+}
+
+const KeyValueConverter = (layout: ChartLayout): ChartDataConverter => {
+    return (record: any): LineDataInput => {
+        var result: LineDataInput = {
+            labels: [],
+            datasets: []
+        };
+
+        var dataset: ChartDataSet = { label: 'value', data: [] };
+        result.datasets[0] = dataset;
+        assignColors(layout.transformOptions, 'value', dataset);
+
+        for (var xValue in record) {
+            result.labels.push(xValue);
+
+            dataset.data.push(record[xValue]);
+        }
+
+        return result;
+    }
+}
+
 const converters: Record<string, DataConverterGen> = {
     "default": ArrayConverter,
+    "object": ObjectConverter,
+    "keyValue": KeyValueConverter,
     "noop": NoopConverter
 }
 

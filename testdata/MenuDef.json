@@ -19,6 +19,11 @@
                     "path": "/demo/simple/dashboard"                    
                 },
                 {
+                    "title": "Chart Layout",
+                    "name": "chart",
+                    "path": "/demo/simple/chart"                    
+                },
+                {
                     "title": "Card Layout",
                     "name": "cardLayout",
                     "path": "/demo/simple/card"                    
