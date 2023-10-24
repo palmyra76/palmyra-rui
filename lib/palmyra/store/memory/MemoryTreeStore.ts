@@ -13,7 +13,7 @@ abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T>{
     get(request: GetRequest): Promise<T> {
         throw new Error("Method not implemented.");
     }
-    abstract getIdentity(o: T):any;
+    abstract getIdentity(o: T): any;
 
     getRoot(): Promise<QueryResponse<T>> {
         const children = this.root.children;
@@ -34,6 +34,10 @@ abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T>{
                 "message": "Empty Children"
             })
         }
+    }
+
+    getIdProperty(): string {
+        return "id";
     }
 }
 

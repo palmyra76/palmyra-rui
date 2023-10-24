@@ -11,6 +11,9 @@ class DummyGridStore implements QueryStore<any>{
     getIdentity(o: any) {
         throw new Error("Method not implemented.");
     }
+    getIdProperty(): string {
+        return "id";
+    }
 }
 
 export {DummyGridStore};
