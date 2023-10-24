@@ -38,6 +38,21 @@ interface Renderable {
     Renderer?: React.FC // Child Renderer
 }
 
+interface ActionOptions {
+    onClick?: PublishAction
+}
+
+interface PublishAction {
+    // Topic variable can have variable names and can be replaced
+    topic: string,
+    // Optional message format, if not provided entire data will be published into the topic
+    messageFormat?: string
+}
+
+interface Actionable {
+    actionOptions?: ActionOptions
+}
+
 interface storeBacked {
     storeOptions?: {
         // alias for Query, if put,post, delete specific urls not provided, 
@@ -51,3 +66,5 @@ interface storeBacked {
 
 
 export type { Positionable, Titleable, Renderable, storeBacked, transformable, transformOptions };
+
+export type { ActionOptions, Actionable, PublishAction }

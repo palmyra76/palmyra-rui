@@ -8,9 +8,8 @@ const hasDot = (val: string): boolean => {
     return hasChar(val, '.');
 }
 
-const StringFormat = function (str, data) {
+const StringFormat = function (str: string, data: any): string {
     if (typeof str === 'string' && (data instanceof Array)) {
-
         return str.replace(/({\d})/g, function (i) {
             return data[i.replace(/{/, '').replace(/}/, '')];
         });
@@ -29,11 +28,9 @@ const StringFormat = function (str, data) {
         });
 
     } else if (typeof str === 'string' && data instanceof Array === false || typeof str === 'string' && data instanceof Object === false) {
-
         return str;
     } else {
-
-        return false;
+        return str;
     }
 };
 

@@ -1,6 +1,6 @@
 import { FieldDefinition } from "../../form/Definitions";
 import { ColumnDefinition } from "../../grid";
-import { Positionable, Renderable, Titleable, storeBacked, transformable } from "../Types";
+import { Actionable, Positionable, Renderable, Titleable, storeBacked, transformable } from "../Types";
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
@@ -15,7 +15,7 @@ interface FormLayout extends Renderable {
     }
 }
 
-interface TableLayout extends Renderable, Positionable, storeBacked {
+interface TableLayout extends Renderable, Positionable, storeBacked, Actionable {
     pagination?: number[],
     fields: ColumnDefinition[]
 }

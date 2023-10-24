@@ -4,6 +4,7 @@ import { TableLayout } from '.';
 import { GridX } from '../../grid';
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
+import { getActionPublishers } from '../../core/Publishers';
 import { mergeDeep } from '../../utils';
 
 interface GridRendererInput {
@@ -19,10 +20,10 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     const storeFactory = useContext(StoreFactoryContext);
     const layoutParams = useContext(LayoutParamsContext);
     var storeOptions = tableLayout.storeOptions || {};
-    if(layoutParams){
+    if (layoutParams) {
         mergeDeep(storeOptions, layoutParams);
     }
-    
+
     const store = storeFactory.getGridStore(storeOptions);
 
     useImperativeHandle(ref, () => {
@@ -33,9 +34,11 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
         };
     }, []);
 
+    const { onClick } = getActionPublishers(tableLayout.actionOptions, layoutParams);
+
     return (
         <div>
-            <GridX columns={fields} store={store} pageSize={pageSize}></GridX>
+            <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}></GridX>
         </div>
     );
 });
