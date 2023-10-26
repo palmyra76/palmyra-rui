@@ -39,6 +39,10 @@ var dataMap: Record<string, Record<string, DataConverterGen>> = {
 var PointConverterMap: Record<string, IgetPointData> = {
     "Line": getScalePointData,
     "Bar": getScalePointData,
+    "Pie": getScalePointData,
+    "Doughnut": getScalePointData,
+    "PolarArea": getScalePointData,
+    "Radar": getScalePointData,
     "Bubble": getBubblePointData
 }
 

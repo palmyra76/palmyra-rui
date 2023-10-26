@@ -8,7 +8,9 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { useRef } from "react";
 import { Radar } from 'react-chartjs-2';
+import { useListener } from "../ChartEventListener";
 
 ChartJS.register(
     RadialLinearScale,
@@ -30,8 +32,14 @@ export const defaultOptions = {
 };
 
 const RadarChart = (props: ChartInput) => {
+    const chartRef = useRef<any>(null);
     var options = props.chartOptions || defaultOptions;
-    return <Radar options={options} data={props.data} height={props.height} />;
+    const { onClick } = useListener("Radar", props, chartRef);
+
+    return <Radar
+        ref={chartRef}
+        onClick={onClick}
+        options={options} data={props.data} height={props.height} />;
 };
 
 export default RadarChart;

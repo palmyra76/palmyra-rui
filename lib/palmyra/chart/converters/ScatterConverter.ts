@@ -4,7 +4,7 @@ import { ScatterDataInput, ScatterDataSet } from "../chartjs/Types";
 import { NoopConverter } from "./ScaleConverter";
 
 
-function getKeys(options:transformOptions): { x: string, y: string, label: string } {
+function getKeys(options: transformOptions): { x: string, y: string, label: string } {
     const xLabel: string = options?.xLabel || 'name';
     const xKey: any = options?.xKey || 'x';
     const yKey: any = options?.yKey || 'y';
@@ -41,7 +41,7 @@ const ArrayConverter = (options: transformOptions): ChartDataConverter => {
         Object.values(dataMap).map((dataSet) => {
             result.datasets.push(dataSet);
         });
-        console.log(result);
+
         return result;
     }
 }

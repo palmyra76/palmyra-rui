@@ -7,7 +7,7 @@ class a extends e.Component {
     return { hasError: !0 };
   }
   componentDidCatch(r, t) {
-    console.log(r, t.componentStack);
+    console.error(r, t.componentStack);
   }
   render() {
     return this.state.hasError ? this.props.fallback : this.props.children;

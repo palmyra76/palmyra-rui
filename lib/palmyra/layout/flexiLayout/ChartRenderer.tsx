@@ -30,9 +30,10 @@ const ChartRenderer = (props: ChartRendererInput) => {
   }
 
   function transform(data: any, layout: ChartLayout): any {
-    if (undefined == layout.transformOptions?.sourceType) {
-      var sourceType = (data instanceof Array) ? "default" : "object";
-    }
+    const sourceType = layout.transformOptions?.sourceType ?
+      layout.transformOptions?.sourceType :
+      (data instanceof Array) ? "default" : "object";
+
     return getDataConverter(layout.type, sourceType, layout.transformOptions)(data);
   }
 

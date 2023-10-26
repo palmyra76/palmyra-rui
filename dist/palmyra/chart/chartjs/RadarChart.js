@@ -1,15 +1,17 @@
-import { jsx as a } from "react/jsx-runtime";
-import { Chart as i, RadialLinearScale as o, PointElement as r, LineElement as n, Filler as l, Tooltip as s, Legend as d } from "chart.js";
-import { Radar as m } from "react-chartjs-2";
-i.register(
-  o,
-  r,
+import { jsx as r } from "react/jsx-runtime";
+import { Chart as o, RadialLinearScale as n, PointElement as s, LineElement as l, Filler as m, Tooltip as f, Legend as d } from "chart.js";
+import { useRef as c } from "react";
+import { Radar as p } from "react-chartjs-2";
+import { useListener as h } from "../ChartEventListener.js";
+o.register(
   n,
-  l,
   s,
+  l,
+  m,
+  f,
   d
 );
-const p = {
+const u = {
   responsive: !0,
   maintainAspectRatio: !1,
   plugins: {
@@ -17,11 +19,22 @@ const p = {
       position: "top"
     }
   }
-}, c = (t) => {
-  var e = t.chartOptions || p;
-  return /* @__PURE__ */ a(m, { options: e, data: t.data, height: t.height });
+}, x = (t) => {
+  const e = c(null);
+  var a = t.chartOptions || u;
+  const { onClick: i } = h("Radar", t, e);
+  return /* @__PURE__ */ r(
+    p,
+    {
+      ref: e,
+      onClick: i,
+      options: a,
+      data: t.data,
+      height: t.height
+    }
+  );
 };
 export {
-  c as default,
-  p as defaultOptions
+  x as default,
+  u as defaultOptions
 };

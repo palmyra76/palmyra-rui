@@ -1,5 +1,5 @@
-import { NoopConverter as n } from "./ScaleConverter.js";
-function x(e) {
+import { NoopConverter as x } from "./ScaleConverter.js";
+function d(e) {
   const r = (e == null ? void 0 : e.xLabel) || "name", l = (e == null ? void 0 : e.xKey) || "x", a = (e == null ? void 0 : e.yKey) || "y";
   return a instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + e.yKey), {
     x: l,
@@ -7,31 +7,31 @@ function x(e) {
     label: r
   };
 }
-const d = (e) => {
-  const { x: r, y: l, label: a } = x(e);
+const n = (e) => {
+  const { x: r, y: l, label: a } = d(e);
   return (t) => {
-    var c = {
+    var y = {
       datasets: []
-    }, y = {};
-    return t.map((u, K) => {
-      var b = g(y, u[a], e);
+    }, c = {};
+    return t.map((u, g) => {
+      var b = K(c, u[a], e);
       b.data.push({
         x: u[r],
         y: u[l]
       });
-    }), Object.values(y).map((u) => {
-      c.datasets.push(u);
-    }), console.log(c), c;
+    }), Object.values(c).map((u) => {
+      y.datasets.push(u);
+    }), y;
   };
 }, f = {
-  default: d,
-  noop: n
+  default: n,
+  noop: x
 };
 function v(e, r, l) {
   var a, t;
   l.backgroundColor = ((t = (a = e == null ? void 0 : e.chart) == null ? void 0 : a[r]) == null ? void 0 : t.backgroundColor) || "blue";
 }
-function g(e, r, l) {
+function K(e, r, l) {
   var a = e[r];
   return a || (a = {
     label: r,
