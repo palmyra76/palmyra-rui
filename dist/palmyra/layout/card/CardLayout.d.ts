@@ -1,2 +1,11 @@
-declare const CardLayout: (props: any) => import("react/jsx-runtime").JSX.Element;
+import { ReactNode } from 'react';
+interface CardLayoutInput {
+    children?: ReactNode;
+    dataList: any[];
+    Child: React.FC;
+    childProps: any;
+    childKeyProvider: (data: any, index: number) => string | number;
+}
+declare const CardLayout: (props: CardLayoutInput) => import("react/jsx-runtime").JSX.Element;
 export default CardLayout;
+export type { CardLayoutInput };
