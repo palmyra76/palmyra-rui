@@ -1,34 +1,41 @@
-import { jsx as i } from "react/jsx-runtime";
-import { LocalizationProvider as m, DatePicker as D } from "@mui/x-date-pickers";
-import { forwardRef as v, useRef as p, useState as P, useImperativeHandle as g, useEffect as k } from "react";
-import { AdapterDayjs as x } from "@mui/x-date-pickers/AdapterDayjs";
-import A from "dayjs";
-import V from "./useValidator.js";
-const R = v(function(t, s) {
-  const { error: e, fieldCallbacks: o } = V(t), u = t.fieldDef.displayPattern || "YYYY-MM-DD", a = p(null), n = (r) => A(r, u), [l, d] = P(n(t.value));
-  g(s, () => ({
+import { jsx as n } from "react/jsx-runtime";
+import { LocalizationProvider as v, DatePicker as D } from "@mui/x-date-pickers";
+import { forwardRef as g, useRef as P, useImperativeHandle as p, useEffect as h } from "react";
+import { AdapterDayjs as y } from "@mui/x-date-pickers/AdapterDayjs";
+import F from "dayjs";
+import { getEventListeners as V } from "./InputEventListeners.js";
+const L = g(function(e, i) {
+  const { data: s, setData: u, error: a, eventListeners: r } = V(e), l = e.fieldDef.displayPattern || e.fieldDef.serverPattern || "YYYY-MM-DD", o = P(null), f = () => F(s);
+  p(i, () => ({
     focus() {
-      a.current.focus();
+      o.current.focus();
     },
     isValid() {
-      return !e.status;
+      return !a.status;
     },
-    assignAttribute(r) {
-      a.current.assignAttribute(r);
+    assignAttribute(t) {
+      o.current.assignAttribute(t);
     }
-  }), []), k(() => {
-    d(t.value);
-  }, [t.value]);
-  var f = e.message, c = { ...t.muiFieldDef, value: l };
-  return /* @__PURE__ */ i(m, { dateAdapter: x, children: /* @__PURE__ */ i(
+  }), []), h(() => {
+    u(e.value);
+  }, [e.value]);
+  var d = a.message, c = { ...e.muiFieldDef, value: f() }, m = {
+    onBlur: r.onBlur,
+    onFocus: r.onFocus,
+    onChange: (t) => {
+      t && t.toDate ? r.onValueChange(t.toDate()) : r.onValueChange(void 0);
+    }
+  };
+  return /* @__PURE__ */ n(v, { dateAdapter: y, children: /* @__PURE__ */ n(
     D,
     {
       ...c,
-      ...o,
-      onError: e.status,
+      format: l,
+      ...m,
+      error: a.status,
       slotProps: {
         textField: {
-          helperText: f,
+          helperText: d,
           variant: "standard",
           fullWidth: !0
         }
@@ -37,5 +44,5 @@ const R = v(function(t, s) {
   ) });
 });
 export {
-  R as default
+  L as default
 };

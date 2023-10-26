@@ -1,28 +1,30 @@
-import { jsxs as m, jsx as l } from "react/jsx-runtime";
-import { forwardRef as d, useRef as v, useImperativeHandle as h, useEffect as x } from "react";
-import { FormControl as b, Select as p, MenuItem as g, FormHelperText as j } from "@mui/material";
-import D from "./useValidator.js";
-const A = d(function(e, u) {
-  const { data: i, setData: o, error: r, fieldCallbacks: n } = D(e), a = v(null), { options: s } = e.fieldDef;
-  h(u, () => ({
+import { jsxs as d, jsx as a } from "react/jsx-runtime";
+import { forwardRef as v, useRef as h, useImperativeHandle as p, useEffect as x } from "react";
+import { FormControl as b, Select as g, MenuItem as F, FormHelperText as j } from "@mui/material";
+import { getEventListeners as D, decorateListenersForInput as I } from "./InputEventListeners.js";
+const A = v(function(e, u) {
+  const { data: l, setData: i, error: r, eventListeners: o } = D(e);
+  var c = I(o);
+  const s = h(null), { options: n } = e.fieldDef;
+  p(u, () => ({
     focus() {
-      a.current.focus();
+      s.current.focus();
     },
     isValid() {
       return !r.status;
     },
     assignAttribute(t) {
-      a.current.assignAttribute(t);
+      s.current.assignAttribute(t);
     }
   }), []), x(() => {
-    o(e.value);
+    i(e.value);
   }, [e.value]);
-  var c = { ...e.muiFieldDef, value: i };
-  return /* @__PURE__ */ m(b, { fullWidth: !0, error: r.status, children: [
-    /* @__PURE__ */ l(p, { ...c, ...n, inputRef: a, children: Object.keys(s).map(
-      (t, f) => /* @__PURE__ */ l(g, { value: t, children: s[t] }, f)
+  var f = { ...e.muiFieldDef, value: l };
+  return /* @__PURE__ */ d(b, { fullWidth: !0, error: r.status, children: [
+    /* @__PURE__ */ a(g, { ...f, ...c, inputRef: s, children: Object.keys(n).map(
+      (t, m) => /* @__PURE__ */ a(F, { value: t, children: n[t] }, m)
     ) }),
-    /* @__PURE__ */ l(j, { className: "form-error-text", children: r.message })
+    /* @__PURE__ */ a(j, { className: "form-error-text", children: r.message })
   ] });
 });
 export {

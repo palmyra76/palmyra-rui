@@ -1,32 +1,28 @@
-import { jsx as e } from "react/jsx-runtime";
-import i from "./FlexiLayoutGridRenderer.js";
+import { jsx as r } from "react/jsx-runtime";
+import a from "./FlexiLayoutGridRenderer.js";
 import { forwardRef as f } from "react";
-import { ErrorBoundary as c } from "../ErrorBoundary.js";
-import { StoreFactoryContext as l, LayoutParamsContext as y } from "./FlexiLayoutContext.js";
-import s from "./FlexiLayoutFormViewRenderer.js";
-import a from "./FlexiLayoutFormEditRenderer.js";
-import F from "./FlexiLayoutFormNewRenderer.js";
-const x = (t) => {
-  switch (t) {
+import { ErrorBoundary as l } from "../ErrorBoundary.js";
+import { StoreFactoryContext as s, LayoutParamsContext as y } from "./FlexiLayoutContext.js";
+import i from "./FlexiLayoutFormRenderer.js";
+const x = (o) => {
+  switch (o) {
     case "grid":
-      return i;
-    case "form":
-      return console.info("type is provided as 'form', defaulting to formEdit mode"), a;
-    case "formEdit":
       return a;
+    case "form":
+      return console.info("type is provided as 'form', defaulting to formEdit mode"), i;
+    case "formEdit":
     case "formNew":
-      return F;
     case "formView":
-      return s;
-    default:
       return i;
+    default:
+      return a;
   }
-}, C = f(function(r, R) {
-  const { layout: n } = r, m = r.mode ? r.mode : n.type ? n.type : "grid", d = r.layoutParams || {}, u = x(m);
-  return /* @__PURE__ */ e(c, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(l.Provider, { value: r.storeFactory, children: /* @__PURE__ */ e(y.Provider, { value: d, children: /* @__PURE__ */ e(u, { ...r, ref: (o) => {
-    o && (o.current = o);
+}, v = f(function(e, t) {
+  const { layout: n } = e, d = e.mode ? e.mode : n.type ? n.type : "grid", m = e.layoutParams || {}, c = x(d);
+  return /* @__PURE__ */ r(l, { fallback: /* @__PURE__ */ r("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ r(s.Provider, { value: e.storeFactory, children: /* @__PURE__ */ r(y.Provider, { value: m, children: /* @__PURE__ */ r(c, { ...e, ref: (u) => {
+    t && (t.current = u);
   } }) }) }) });
 });
 export {
-  C as default
+  v as default
 };

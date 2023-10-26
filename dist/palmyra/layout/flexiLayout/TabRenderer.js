@@ -18,7 +18,7 @@ const w = (e) => {
         layout: t,
         context: i
       }
-    ) }, t.name + s);
+    ) }, (t.name || "tab") + s);
   }
   return /* @__PURE__ */ a("div", { style: { display: "flex", flexWrap: "wrap" }, children: o.map((t, i) => h(t, n, i)) });
 };

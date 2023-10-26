@@ -1,65 +1,66 @@
-import { getValidators as R } from "../../validator/DataValidator.js";
-import { getValueByKey as b, setValueByKey as p } from "../../form/FormUtil.js";
-import { useMemo as h, useRef as m, useEffect as C } from "react";
-import { mergeDeep as N } from "../../utils/index.js";
-const g = (t, r) => {
-  var e = {};
-  for (var a in r) {
-    var n = r[a], s = b(a, t), c = n(s);
-    e[a] = c.status;
-  }
-  return e;
-}, O = (t) => {
+import { getValidators as D } from "../../validator/DataValidator.js";
+import { getValueByKey as R, setValueByKey as y } from "../../form/FormUtil.js";
+import { useMemo as F, useRef as b } from "react";
+import { mergeDeep as v } from "../../utils/index.js";
+const h = (e, a) => {
   var r = {};
-  for (var e in t) {
-    var a = t[e];
-    a.defaultValue != null && a.defaultValue != null && p(a.attribute, r, a.defaultValue);
+  for (var t in a) {
+    var i = a[t], l = R(t, e), s = i(l);
+    r[t] = s.status;
   }
   return r;
-}, S = (t) => {
-  var r = {};
-  if (t.tabs) {
-    for (var e of t.tabs)
-      if (e && e.sections) {
-        for (var a of e.sections)
-          if (a) {
-            var n = a.formLayout;
-            if (n && n.fields)
-              for (var s of n.fields)
-                r[s.attribute] = s;
+}, p = (e) => {
+  var a = {};
+  for (var r in e) {
+    var t = e[r];
+    t.defaultValue != null && t.defaultValue != null && y(t.attribute, a, t.defaultValue);
+  }
+  return a;
+}, w = (e) => {
+  var a = {};
+  if (e.tabs) {
+    for (var r of e.tabs)
+      if (r && r.sections) {
+        for (var t of r.sections)
+          if (t) {
+            var i = t.formLayout;
+            if (i && i.fields)
+              for (var l of i.fields)
+                a[l.attribute] = l;
           }
       }
   }
-  return r;
-}, D = (t) => JSON.parse(JSON.stringify(t));
-function j(t, r) {
-  const { layout: e, callbacks: a } = t, n = t.data, s = a.onFormValidChange, c = () => r && r == "new", { validationRules: v, defaultData: d } = h(
+  return a;
+};
+function k(e, a) {
+  const { layout: r, callbacks: t } = e;
+  var i = v({}, e.data);
+  const l = t.onFormValidChange, s = () => a && a == "new", { validationRules: d, defaultData: c } = a == "view" ? { validationRules: {}, defaultData: {} } : F(
     () => {
-      var o = S(e), i = R(o);
-      if (c()) {
-        var F = O(o);
-        return { validationRules: i, defaultData: F };
+      var o = w(r), n = D(o);
+      if (s()) {
+        var g = p(o);
+        return { validationRules: n, defaultData: g };
       } else
-        return { validationRules: i, defaultData: {} };
+        return { validationRules: n, defaultData: {} };
     },
-    [e, r]
-  ), u = m(D({ ...d, ...n })), f = m(!1);
-  var l = g(u, v);
-  C(() => {
-    u.current = D({ ...d, ...n }), l = g(u.current, v), f.current = V(l);
-  }, [n]);
-  const y = (o) => {
-    l = Object.assign({}, l, o.dataValid), N(u.current, o.data);
-    const i = V(l);
-    i != f.current && (f.current = i, s && s(i));
-  }, V = (o) => {
-    for (var i in o)
-      if (o[i] == !1)
+    [r, a]
+  );
+  s() && v(i, c);
+  const u = b(!1);
+  var f = h(i, d);
+  const V = (o) => {
+    f = Object.assign({}, f, o.dataValid), v(i, o.data);
+    const n = m(f);
+    n != u.current && (u.current = n, l && l(n));
+  }, m = (o) => {
+    for (var n in o)
+      if (o[n] == !1)
         return !1;
     return !0;
   };
-  return { validationRules: v, data: u, onDataChange: y, isValid: f };
+  return { validationRules: d, formData: i, onDataChange: V, isValid: u };
 }
 export {
-  j as useFormValidator
+  k as useFormValidator
 };

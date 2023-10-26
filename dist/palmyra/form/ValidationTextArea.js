@@ -1,9 +1,11 @@
-import { jsx as n } from "react/jsx-runtime";
-import { forwardRef as f, useRef as m, useImperativeHandle as d, useEffect as c } from "react";
+import { jsx as f } from "react/jsx-runtime";
+import { forwardRef as m, useRef as c, useImperativeHandle as d, useEffect as v } from "react";
 import { TextField as x } from "@mui/material";
-import v from "./useValidator.js";
-const b = f(function(e, a) {
-  const { data: u, setData: i, error: t, fieldCallbacks: s } = v(e), r = m(null);
+import { getEventListeners as p, decorateListenersForInput as R } from "./InputEventListeners.js";
+const F = m(function(e, a) {
+  const { data: s, setData: i, error: t, eventListeners: u } = p(e);
+  var n = R(u);
+  const r = c(null);
   d(a, () => ({
     focus() {
       r.current.focus();
@@ -11,27 +13,27 @@ const b = f(function(e, a) {
     isValid() {
       return !t.status;
     },
-    assignAttribute(o) {
-      r.current.assignAttribute(o);
+    assignAttribute(l) {
+      r.current.assignAttribute(l);
     }
-  }), []), c(() => {
+  }), []), v(() => {
     i(e.value);
   }, [e.value]);
-  var l = { fullWidth: !0, ...e.muiFieldDef, value: u };
-  return /* @__PURE__ */ n(
+  var o = { fullWidth: !0, ...e.muiFieldDef, value: s };
+  return /* @__PURE__ */ f(
     x,
     {
       minRows: 2,
       maxRows: 5,
       multiline: !0,
-      ...l,
+      ...o,
       inputRef: r,
-      ...s,
+      ...n,
       error: t.status,
       helperText: t.message
     }
   );
 });
 export {
-  b as default
+  F as default
 };

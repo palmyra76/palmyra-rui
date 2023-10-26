@@ -2,7 +2,7 @@ import { FieldDefinition } from "../../form/Definitions";
 import { ColumnDefinition } from "../../grid";
 import { Actionable, Positionable, Renderable, Titleable, storeBacked, transformable } from "../Types";
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
-type flexiPrimaryType = 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
+type flexiPrimaryType = 'formNew' | 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
 type ChartType = 'Bar' | 'Line';
 interface FormLayout extends Renderable {
     fields: FieldDefinition[];

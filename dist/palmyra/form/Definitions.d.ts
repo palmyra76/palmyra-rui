@@ -24,6 +24,7 @@ interface AttributeDefinition extends storeBacked {
     attribute: string;
     displayAttribute?: string;
     type: FieldType;
+    serverPattern?: string;
     displayPattern?: string;
     options?: Record<string, string>;
 }
@@ -55,5 +56,5 @@ interface MuiFieldDef {
     options?: any;
 }
 declare const getFieldType: (type: string) => FieldType;
-export type { AttributeDefinition, FieldDefinition, FieldValidStatus, FormData, InputType, MuiFieldDef };
+export type { AttributeDefinition, FieldDefinition, FieldValidStatus, FormData, InputType, FieldType, MuiFieldDef };
 export { getFieldType };
