@@ -1,18 +1,32 @@
 import { forwardRef, useImperativeHandle } from "react";
-import { FormContext } from "../../form/Types";
+import { FormContext, FormMode } from "../../form/Types";
 import { useFormValidator } from "./FormValidator";
 import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
+import { flexiPrimaryType } from ".";
 
+const getFormMode = (mode: flexiPrimaryType): FormMode => {
+    switch (mode) {
+        case 'formEdit':
+            return 'edit';
+        case 'formNew':
+            return 'new';
+        case 'formView':
+            return 'view'
+        default:
+            return 'edit';
+    }
+}
 
-const FlexiLayoutFormEditRenderer = forwardRef(function FlexiLayoutFormEditRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
-    const { layout } = props;
-    const { data, onDataChange, validationRules, isValid } = useFormValidator(props, "edit");
+const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
+    
+    const { layout } = props;        
+    const { formData, onDataChange, validationRules, isValid } = useFormValidator(props, getFormMode(props.mode));
 
     useImperativeHandle(ref, () => {
         return {
             getData() {
-                return data.current;
+                return formData;
             },
             isValid() {
                 return isValid;
@@ -21,7 +35,7 @@ const FlexiLayoutFormEditRenderer = forwardRef(function FlexiLayoutFormEditRende
     }, []);
 
     var formCtx: FormContext = {
-        data: data.current,
+        data: formData,
         onDataChange: onDataChange,
         rules: validationRules
     }
@@ -46,4 +60,4 @@ const FlexiLayoutFormEditRenderer = forwardRef(function FlexiLayoutFormEditRende
     );
 });
 
-export default FlexiLayoutFormEditRenderer;
+export default FlexiLayoutFormRenderer;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from "react-router-dom";
 
 import { FlexiLayoutRenderer } from '../../../lib/main';
@@ -10,11 +10,20 @@ const EditFormPage = () => {
     const [data, setData] = useState({})
     const storeFactory: AppStoreFactory = new AppStoreFactory();
     const key = '/' + layout + '/';
+    const formRef = useRef<any>(null);
 
     useEffect(() => {
         fetch(key + '/editForm.json')
             .then((response) => response.json())
             .then((d) => setPageDef(d));
+
+        // setTimeout(() => {
+        //     console.log('setting data');
+        //     setData({
+        //         "userName": "raja",
+        //         "gender": 'M'
+        //     })
+        // }, 3000);
 
         fetch(key + '/userData.json')
             .then((response) => response.json())
@@ -22,12 +31,17 @@ const EditFormPage = () => {
     }, [layout])
 
     const onValidChange = (valid: boolean) => {
+        console.log(data);
         console.log(valid);
+        if (formRef) {
+            console.log(formRef.current.getData());
+        }
     }
 
     return <>
         <div> {layout} Edit Form</div>
         {pageDef ? <FlexiLayoutRenderer layout={pageDef}
+            layoutParams={{}} ref={formRef}
             data={data} storeFactory={storeFactory}
             callbacks={{ onFormValidChange: onValidChange }}
         ></FlexiLayoutRenderer> : <div />}

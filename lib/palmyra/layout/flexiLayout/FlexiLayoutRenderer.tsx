@@ -5,23 +5,20 @@ import { forwardRef } from "react";
 import { ErrorBoundary } from "../ErrorBoundary";
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
-import FlexiLayoutFormViewRenderer from "./FlexiLayoutFormViewRenderer";
-import FlexiLayoutFormEditRenderer from "./FlexiLayoutFormEditRenderer";
-import FlexiLayoutFormNewRenderer from "./FlexiLayoutFormNewRenderer";
+import { flexiPrimaryType } from ".";
+import FlexiLayoutFormRenderer from "./FlexiLayoutFormRenderer";
 
-const getRenderer = (type: string): React.FC => {
+const getRenderer = (type: flexiPrimaryType | 'form'): React.FC => {
     switch (type) {
         case 'grid':
             return FlexiLayoutGridRenderer;
         case 'form':
             console.info("type is provided as 'form', defaulting to formEdit mode");
-            return FlexiLayoutFormEditRenderer;
+            return FlexiLayoutFormRenderer;
         case 'formEdit':
-            return FlexiLayoutFormEditRenderer;
         case 'formNew':
-            return FlexiLayoutFormNewRenderer;
         case 'formView':
-            return FlexiLayoutFormViewRenderer;
+            return FlexiLayoutFormRenderer;
         default:
             return FlexiLayoutGridRenderer;
     }
@@ -39,7 +36,6 @@ const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: Fl
             <StoreFactoryContext.Provider value={props.storeFactory}>
                 <LayoutParamsContext.Provider value={layoutParams}>
                     <Renderer {...props} ref={r => {
-                        console.log('assigning refe ')
                         if (ref)
                             ref.current = r;
                     }} ></Renderer>

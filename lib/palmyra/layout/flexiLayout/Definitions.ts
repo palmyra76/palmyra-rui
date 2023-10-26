@@ -4,7 +4,7 @@ import { Actionable, Positionable, Renderable, Titleable, storeBacked, transform
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
-type flexiPrimaryType = 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
+type flexiPrimaryType = 'formNew' | 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
 
 type ChartType = 'Bar' | 'Line';
 

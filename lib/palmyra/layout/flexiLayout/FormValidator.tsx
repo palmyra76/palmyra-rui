@@ -6,7 +6,7 @@ import { getValidators } from "../../validator/DataValidator";
 import { FlexiLayoutDefinition } from "./Definitions";
 import { getValueByKey, setValueByKey } from "../../form/FormUtil";
 import { FieldDefinition, FieldValidStatus } from "../../form/Definitions";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { mergeDeep } from "../../utils";
 import { FormMode } from "../../form/Types";
 import { FlexiLayoutRendererInput } from "./Types";
@@ -55,55 +55,54 @@ const getValidationFormat = (layout: FlexiLayoutDefinition): Record<string, Fiel
     return result;
 }
 
-const clone = (data) => {
-    return JSON.parse(JSON.stringify(data));
-}
-
-
-function useFormValidator<T>(props : FlexiLayoutRendererInput<T>, mode: FormMode) {
+function useFormValidator<T>(props: FlexiLayoutRendererInput<T>, mode: FormMode) {
     const { layout, callbacks } = props;
-    const formData = props.data;
+    var formData = mergeDeep({}, props.data);
     const onDataValidityChange = callbacks.onFormValidChange;
 
     const isNewForm = () => {
         return mode && mode == 'new';
     }
 
-    const { validationRules, defaultData } = useMemo(
-        () => {
-            var validationFormat: Record<string, FieldDefinition> = getValidationFormat(layout);
-            var validationRules = getValidators(validationFormat);
+    const { validationRules, defaultData } = (mode == 'view')
+        ? { validationRules: {}, defaultData: {} }
+        : useMemo(
+            () => {
+                var validationFormat: Record<string, FieldDefinition> = getValidationFormat(layout);
+                var validationRules = getValidators(validationFormat);
 
-            if (isNewForm()) {
-                var defaultData = getDefaultData(validationFormat);
-                return { validationRules, defaultData };
-            } else {
-                return { validationRules: validationRules, defaultData: {} };
-            }
-        },
-        [layout, mode]
-    );
+                if (isNewForm()) {
+                    var defaultData = getDefaultData(validationFormat);
+                    return { validationRules, defaultData };
+                } else {
+                    return { validationRules: validationRules, defaultData: {} };
+                }
+            },
+            [layout, mode]
+        );
 
-    const data = useRef(clone({ ...defaultData, ...formData }));
+    if (isNewForm()) {
+        mergeDeep(formData, defaultData);
+    }
+
     const isValid = useRef(false)
 
-    var dataValid = calcValidationStatus(data, validationRules);
+    var dataValid = calcValidationStatus(formData, validationRules);
 
-    useEffect(() => {
-        data.current = clone({ ...defaultData, ...formData });
-        dataValid = calcValidationStatus(data.current, validationRules);
-        isValid.current = isValidForm(dataValid);
-    }, [formData]);
+    // useEffect(() => {
+    //     data.current = clone({ ...defaultData, ...formData });
+    //     dataValid = calcValidationStatus(data.current, validationRules);
+    //     isValid.current = isValidForm(dataValid);
+    // }, [formData]);
 
     const onDataChange = (updateData) => {
         dataValid = Object.assign({}, dataValid, updateData.dataValid);
-        mergeDeep(data.current, updateData.data);
+        mergeDeep(formData, updateData.data);
         const _isValid = isValidForm(dataValid);
 
-        if(_isValid != isValid.current)
-        {
+        if (_isValid != isValid.current) {
             isValid.current = _isValid;
-            if(onDataValidityChange){
+            if (onDataValidityChange) {
                 onDataValidityChange(_isValid);
             }
         }
@@ -118,7 +117,7 @@ function useFormValidator<T>(props : FlexiLayoutRendererInput<T>, mode: FormMode
         return true;
     }
 
-    return { validationRules, data, onDataChange, isValid };
+    return { validationRules, formData, onDataChange, isValid };
 }
 
 export { useFormValidator };

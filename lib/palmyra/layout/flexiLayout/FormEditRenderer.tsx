@@ -20,9 +20,8 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
     const eventHandlers = formContext.eventHandlers || {};
     //    const { fieldGenerators } = props; // TODO  generate custom fields using the array of generators provided
     const FieldContainer = formLayout.Container || DefaultFieldContainer;
-    const dataRef = useRef<FormData>({ ...formContext.data });
     const fieldRefs = useRef({});
-    const data = dataRef.current;
+    const data = formContext.data;
 
     const updateData = (kv) => {
         for (var field in kv) {
