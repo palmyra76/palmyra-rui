@@ -1,10 +1,11 @@
 import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { FormControl, FormControlLabel, FormHelperText, Radio, RadioGroup } from '@mui/material';
-import useValidator from './useValidator';
+import {decorateListenersForInput, getEventListeners} from './InputEventListeners';
 import { FieldProperties } from './Types';
 
 const PalmyraRadioGroup = forwardRef(function PalmyraRadioGroup(props: FieldProperties, ref) {
-    const { data, setData, error, fieldCallbacks } = useValidator(props);
+    const { data, setData, error, eventListeners } = getEventListeners(props);
+    const callbacks = decorateListenersForInput(eventListeners);
     const inputRef: any = useRef(null);
     const { options } = props.fieldDef;
 
@@ -30,7 +31,7 @@ const PalmyraRadioGroup = forwardRef(function PalmyraRadioGroup(props: FieldProp
 
     return (
         <FormControl fullWidth error={error.status}>
-            <RadioGroup row {...inputProps} {...fieldCallbacks}>
+            <RadioGroup row {...inputProps} {...callbacks}>
                 {Object.keys(options).map((key, index) => (
                     <FormControlLabel key={index} value={key} control={<Radio inputRef={inputRef} />} label={options[key]} />
                 ))}

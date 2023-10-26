@@ -1,6 +1,6 @@
 import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { TextField } from '@mui/material';
-import useValidator from './useValidator';
+import { getEventListeners} from './InputEventListeners';
 import { FieldProperties } from './Types';
 
 /**
@@ -32,7 +32,8 @@ input of onError function (on callback)
 
 
 const ValidationTextField = forwardRef(function ValidationTextField(props: FieldProperties, ref) {
-    const { data, setData, error, fieldCallbacks } = useValidator(props);
+    const { data, setData, error, eventListeners } = getEventListeners(props);
+    
     const inputRef: any = useRef(null);
 
     useImperativeHandle(ref, () => {
@@ -49,18 +50,22 @@ const ValidationTextField = forwardRef(function ValidationTextField(props: Field
         };
     }, []);
 
-
-
     useEffect(() => {
         setData(props.value);
-    }, [props.value]);
+    }, [props.value]);    
 
     var inputProps: any = { fullWidth: true, ...props.muiFieldDef, value: data };
+
+    var callbacks = {
+        onBlur: eventListeners.onBlur,
+        onFocus: eventListeners.onFocus,
+        onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
+    }
     
     return (
         <TextField {...inputProps}
             inputRef={inputRef}
-            {...fieldCallbacks}
+            {...callbacks}
             error={error.status}
             helperText={error.message}
         />

@@ -1,10 +1,12 @@
 import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { FormControl, FormHelperText, MenuItem, Select } from '@mui/material';
-import useValidator from './useValidator';
+import {decorateListenersForInput, getEventListeners} from './InputEventListeners';
 import { FieldProperties } from './Types';
 
 const PalmyraSelect = forwardRef(function PalmyraSelect(props: FieldProperties, ref) {
-    const { data, setData, error, fieldCallbacks } = useValidator(props);
+    const { data, setData, error, eventListeners } = getEventListeners(props);
+    var callbacks = decorateListenersForInput(eventListeners);
+
     const inputRef: any = useRef(null);
     const { options } = props.fieldDef;
 
@@ -31,7 +33,7 @@ const PalmyraSelect = forwardRef(function PalmyraSelect(props: FieldProperties, 
 
     return (
         <FormControl fullWidth error={error.status}>
-            <Select {...inputProps} {...fieldCallbacks} inputRef={inputRef}>
+            <Select {...inputProps} {...callbacks} inputRef={inputRef}>
                 {Object.keys(options).map((key, index) => (
                     <MenuItem key={index} value={key}>{options[key]}</MenuItem>
                 )

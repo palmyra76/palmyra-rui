@@ -174,21 +174,17 @@ const isEmpty = (val) => {
         return true;
     }
 
-    if(typeof val == "number")
+    if (typeof val == "number")
         return false;
 
-    return validator.isEmpty(val);
+    if (typeof val == 'string')
+        return validator.isEmpty(val);
+
+    return (!val);
 }
 
 const isNotEmpty = (val) => {
-    if (val == undefined || val == null) {
-        return false;
-    }
-    
-    if(typeof val == "number")
-        return true;
-
-    return !validator.isEmpty(val);
+    return !isEmpty(val);
 }
 
 function constructMethod(func, message) {

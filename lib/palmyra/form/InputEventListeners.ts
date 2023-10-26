@@ -3,36 +3,44 @@ import { FieldProperties, FieldContext } from "./Types";
 import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 
 import { delay } from '../utils';
+import { Converter, getFormatConverter } from "../utils/converter";
 
-const getDefaultValue = (runtime: FieldContext, fieldDef: FieldDefinition, value: InputType) => {
+const getDefaultValue = (runtime: FieldContext,
+    fieldDef: FieldDefinition, value: InputType): any => {
     return value || '';
 }
 
-interface Callbacks {
+interface EventListeners {
     onBlur: Function,
     onFocus: Function,
-    onChange: Function
+    onValueChange: Function
 }
 
-interface useValidatorResponse {
+interface DataStatusListener {
     data: any,
     setData: Function,
     error: FieldValidStatus,
-    fieldCallbacks: Callbacks
+    eventListeners: EventListeners
 }
 
-function useValidator(props: FieldProperties): useValidatorResponse {
+function getEventListeners<T>(props: FieldProperties): DataStatusListener {
     const { runtime, fieldDef, value } = props;
     const { eventHandler, onDataChange, constraint } = runtime || {};
-    const [data, setData] = useState(getDefaultValue(runtime, fieldDef, value));
+
+    const formatter: Converter<any, any> = getFormatConverter(props.fieldDef);
+
+    const [data, setData] = useState<T>(formatter.parse(getDefaultValue(runtime, fieldDef, value)));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
+
+
 
     const setValue = (value: any) => {
         setData(value || '');
         delay(() => {
             validate(value);
             if (onDataChange) {
-                onDataChange({ [fieldDef.attribute]: value })
+                const formattedValue = formatter.format(value);
+                onDataChange({ [fieldDef.attribute]: formattedValue })
             }
         });
     }
@@ -97,11 +105,19 @@ function useValidator(props: FieldProperties): useValidatorResponse {
 
     const onBlur = () => { validate(data); };
     const onFocus = () => { hideErrorMessage() };
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) };
+    const onValueChange = (value: T) => { setValue(value) };
 
-    const fieldCallbacks: Callbacks = { onBlur, onFocus, onChange };
+    const eventListeners: EventListeners = { onBlur, onFocus, onValueChange };
 
-    return { data, setData: setValue, error, fieldCallbacks };
+    return { data, setData: setValue, error, eventListeners };
 }
 
-export default useValidator;
+function decorateListenersForInput(eventListeners: EventListeners): any {
+    return {
+        onBlur: eventListeners.onBlur,
+        onFocus: eventListeners.onFocus,
+        onChange: (e: any) => (eventListeners.onValueChange(e.target.value))
+    }
+}
+
+export { getEventListeners, decorateListenersForInput };

@@ -1,11 +1,13 @@
 import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { TextField } from '@mui/material';
-import useValidator from './useValidator';
+import {decorateListenersForInput, getEventListeners} from './InputEventListeners';
 import { FieldProperties } from './Types';
 
 
 const ValidationTextArea = forwardRef(function ValidationTextArea(props: FieldProperties, ref) {
-    const { data, setData, error, fieldCallbacks } = useValidator(props);
+    const { data, setData, error, eventListeners } = getEventListeners(props);
+    var callbacks = decorateListenersForInput(eventListeners);
+
     const inputRef: any = useRef(null);
 
     useImperativeHandle(ref, () => {
@@ -37,7 +39,7 @@ const ValidationTextArea = forwardRef(function ValidationTextArea(props: FieldPr
             multiline
             {...inputProps}
             inputRef={inputRef}
-            {...fieldCallbacks}
+            {...callbacks}
             error={error.status}
             helperText={error.message}
         />

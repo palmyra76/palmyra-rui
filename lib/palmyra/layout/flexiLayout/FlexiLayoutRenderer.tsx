@@ -38,9 +38,10 @@ const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: Fl
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <StoreFactoryContext.Provider value={props.storeFactory}>
                 <LayoutParamsContext.Provider value={layoutParams}>
-                    <Renderer {...props} ref={ref => {
+                    <Renderer {...props} ref={r => {
+                        console.log('assigning refe ')
                         if (ref)
-                            ref.current = ref;
+                            ref.current = r;
                     }} ></Renderer>
                 </LayoutParamsContext.Provider>
             </StoreFactoryContext.Provider>
