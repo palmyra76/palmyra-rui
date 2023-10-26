@@ -1,6 +1,6 @@
 import { InteractionItem } from "chart.js";
 import { transformOptions } from "../../layout/Types";
-import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
+import { DataConverterGen, ChartDataConverter, IgetPointData } from "../DataConverterFactory";
 import { BubbleDataInput, BubbleDataSet } from "../chartjs/Types";
 
 
@@ -72,7 +72,7 @@ const ArrayConverter = (options: transformOptions): ChartDataConverter => {
     }
 }
 
-const getPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
+const getPointData: IgetPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
     const { x, y, r } = getKeys(transformOptions);
     var result = {};
 

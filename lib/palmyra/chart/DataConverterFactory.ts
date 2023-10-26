@@ -9,10 +9,13 @@ import { default as DoughnutConverters } from './converters/DoughnutConverter';
 
 import { transformOptions } from '../layout/Types';
 import { getScalePointData } from './converters/ScaleConverter';
+import { InteractionItem } from 'chart.js';
 
 interface ChartDataConverter {
     (data: any, options?: any): any;
 }
+
+type IgetPointData = (data: any, options: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => Record<string, any>;
 
 interface DataConverterGen {
     (options: transformOptions): ChartDataConverter
@@ -33,22 +36,31 @@ var dataMap: Record<string, Record<string, DataConverterGen>> = {
     "Doughnut": DoughnutConverters
 }
 
-var PointConverterMap: Record<string, Function> = {
+var PointConverterMap: Record<string, IgetPointData> = {
     "Line": getScalePointData,
     "Bar": getScalePointData,
     "Bubble": getBubblePointData
 }
 
-const getDataConverter = (chartType: string, sourceType:string, options: transformOptions): ChartDataConverter => {    
+const getDataConverter = (chartType: string, sourceType: string, options: transformOptions): ChartDataConverter => {
     var converter: DataConverterGen = dataMap[chartType]?.[sourceType];
     return (converter ? converter(options) : NoopConverter);
 }
 
-const getPointConverter = (chartType: string) => {
-    var converter = PointConverterMap[chartType];
-    return converter ? converter : () => { };
+const addDataConverter = (chartType: string, sourceType: string,
+    converter: ChartDataConverter): void => {
+    if (!dataMap[chartType][sourceType])
+        dataMap[chartType][sourceType] = converter;
+    else {
+        throw new Error("Converter already set for " + chartType + "/" + sourceType);
+    }
 }
 
-export type { DataConverterGen, ChartDataConverter };
-export { getPointConverter };
+const getPointConverter = (chartType: string): IgetPointData => {
+    var converter: IgetPointData = PointConverterMap[chartType];
+    return converter ? converter : (d) => { return d };
+}
+
+export type { DataConverterGen, ChartDataConverter, IgetPointData };
+export { getPointConverter, addDataConverter };
 export default getDataConverter;

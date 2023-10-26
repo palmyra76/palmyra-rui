@@ -1,6 +1,6 @@
 import { InteractionItem } from "chart.js";
 import { transformOptions } from "../../layout/Types";
-import { ChartDataConverter } from "../DataConverterFactory";
+import { ChartDataConverter, IgetPointData } from "../DataConverterFactory";
 import { ScaleDataInput, ScaleDataSet } from "../chartjs/Types";
 
 const NoopConverter = (options: transformOptions): ChartDataConverter => {
@@ -108,9 +108,7 @@ function assignColors(transformOptions: transformOptions,
     data.borderColor = transformOptions?.chart?.[key]?.borderColor || 'grey';
 }
 
-
-
-const getScalePointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
+const getScalePointData: IgetPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
 
     var { xKey } = getKeys(transformOptions);
     const xValue = data.labels[element[0].index]
