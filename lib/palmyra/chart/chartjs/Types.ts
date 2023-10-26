@@ -3,17 +3,10 @@ interface Colorable {
     backgroundColor?: any
 }
 
-interface ChartDataSet extends Colorable {
+interface ScaleDataSet extends Colorable {
     label: string,
     data: number[]
 }
-
-
-interface LineDataInput {
-    labels: string[],
-    datasets: ChartDataSet[]
-}
-
 
 interface ScatterDataInput {
     datasets: ScatterDataSet[]
@@ -28,7 +21,6 @@ type Point = {
     x: number | string, y: number
 }
 
-
 interface BubbleDataInput {
     datasets: ScatterDataSet[]
 }
@@ -42,19 +34,13 @@ interface Bubble extends Point {
     r: number
 }
 
-interface PolarAreaInput {
+interface ScaleDataInput {
     labels: string[],
-    datasets: PolarAreaSet[]
+    datasets: ScaleDataSet[]
 }
 
-interface PolarAreaSet {
-    label: string,
-    data: number[],
-    backgroundColor?: any
-}
-
-export type { LineDataInput, ChartDataSet };
+export type { ScaleDataInput, ScaleDataSet };
 export type { ScatterDataSet, ScatterDataInput, Point };
 export type { BubbleDataInput, BubbleDataSet, Bubble };
-export type { PolarAreaInput, PolarAreaSet }
+
 

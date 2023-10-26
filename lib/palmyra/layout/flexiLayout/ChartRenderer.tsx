@@ -29,15 +29,11 @@ const ChartRenderer = (props: ChartRendererInput) => {
     console.log(data);
   }
 
-  function transform(data: any, layout:ChartLayout): any {
+  function transform(data: any, layout: ChartLayout): any {
     if (undefined == layout.transformOptions?.sourceType) {
       var sourceType = (data instanceof Array) ? "default" : "object";
-      if (undefined == layout.transformOptions)
-        layout.transformOptions = { sourceType };
-      else
-        layout.transformOptions.sourceType = sourceType;
     }
-    return getDataConverter(layout.type, layout)(data);
+    return getDataConverter(layout.type, sourceType, layout.transformOptions)(data);
   }
 
   function updateData(data: any) {

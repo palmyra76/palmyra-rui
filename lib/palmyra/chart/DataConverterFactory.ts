@@ -1,24 +1,21 @@
 import { default as LineConverters } from './converters/LineConverter';
 import { default as BarConverters } from './converters/BarConverter';
 import { default as ScatterConverters } from './converters/ScatterConverter';
-import { default as BubbleConverters } from './converters/BubbleConverter';
+import { default as BubbleConverters, getPointData as getBubblePointData } from './converters/BubbleConverter';
 import { default as RadarConverters } from './converters/RadarConverter';
 import { default as PolarAreaConverters } from './converters/PolarConverter';
 import { default as PieConverters } from './converters/PieConverter';
 import { default as DoughnutConverters } from './converters/DoughnutConverter';
 
-
-import { getPointData as getLinePointData } from './converters/LineConverter';
-import { getPointData as getBubblePointData } from './converters/BubbleConverter';
-
-import { ChartLayout } from '../layout/flexiLayout';
+import { transformOptions } from '../layout/Types';
+import { getScalePointData } from './converters/ScaleConverter';
 
 interface ChartDataConverter {
     (data: any, options?: any): any;
 }
 
 interface DataConverterGen {
-    (layout: ChartLayout): ChartDataConverter
+    (options: transformOptions): ChartDataConverter
 }
 
 const NoopConverter = (data: any): any => {
@@ -37,16 +34,14 @@ var dataMap: Record<string, Record<string, DataConverterGen>> = {
 }
 
 var PointConverterMap: Record<string, Function> = {
-    "Line": getLinePointData,
-    "Bar": getLinePointData,
+    "Line": getScalePointData,
+    "Bar": getScalePointData,
     "Bubble": getBubblePointData
 }
 
-const getDataConverter = (chartType: string, layout?: ChartLayout): ChartDataConverter => {
-    var options = layout.transformOptions || { sourceType: "default" };
-    var type = options.sourceType || "default";
-    var converter: DataConverterGen = dataMap[chartType]?.[type];
-    return (converter ? converter(layout) : NoopConverter);
+const getDataConverter = (chartType: string, sourceType:string, options: transformOptions): ChartDataConverter => {    
+    var converter: DataConverterGen = dataMap[chartType]?.[sourceType];
+    return (converter ? converter(options) : NoopConverter);
 }
 
 const getPointConverter = (chartType: string) => {

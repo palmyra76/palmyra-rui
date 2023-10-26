@@ -1,11 +1,10 @@
 import { InteractionItem } from "chart.js";
 import { transformOptions } from "../../layout/Types";
-import { ChartLayout } from "../../layout/flexiLayout";
 import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
 import { BubbleDataInput, BubbleDataSet } from "../chartjs/Types";
 
 
-const NoopConverter = (layout: ChartLayout): ChartDataConverter => {
+const NoopConverter = (options: transformOptions): ChartDataConverter => {
     return (data) => { data };
 }
 
@@ -48,8 +47,8 @@ function getKeys(transformOptions: transformOptions): { x: string, y: string, r:
     }
 }
 
-const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
-    const { x, y, r, label } = getKeys(layout.transformOptions);
+const ArrayConverter = (options: transformOptions): ChartDataConverter => {
+    const { x, y, r, label } = getKeys(options);
     return (records: any[]): BubbleDataInput => {
         var result: BubbleDataInput = {
             datasets: []
@@ -58,7 +57,7 @@ const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
         var dataMap: Record<string, BubbleDataSet> = {};
 
         records.map((record, index) => {
-            var dataSet: BubbleDataSet = getData(dataMap, record[label], layout.transformOptions);
+            var dataSet: BubbleDataSet = getData(dataMap, record[label], options);
             dataSet.data.push({
                 x: record[x],
                 y: record[y],
@@ -73,20 +72,20 @@ const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
     }
 }
 
-const getPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {    
+const getPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
     const { x, y, r } = getKeys(transformOptions);
     var result = {};
 
-    element.map((e) =>{
+    element.map((e) => {
         var { index, datasetIndex } = e;
         var dataSet = data.datasets[datasetIndex];
         var label = dataSet.label;
         var d = dataSet.data[index];
-        
+
         result[label] = {
-            [x] : d.x,
-            [y] : d.y,
-            [r] : d.r
+            [x]: d.x,
+            [y]: d.y,
+            [r]: d.r
         }
     });
 
@@ -99,4 +98,4 @@ const converters: Record<string, DataConverterGen> = {
 }
 
 export default converters;
-export {getPointData}
+export { getPointData }

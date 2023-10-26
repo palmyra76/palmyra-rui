@@ -1,20 +1,16 @@
 import { transformOptions } from "../../layout/Types";
-import { ChartLayout } from "../../layout/flexiLayout";
 import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
 import { ScatterDataInput, ScatterDataSet } from "../chartjs/Types";
+import { NoopConverter } from "./ScaleConverter";
 
 
-const NoopConverter = (layout: ChartLayout): ChartDataConverter => {
-    return (data) => { data };
-}
-
-function getKeys(layout: ChartLayout): { x: string, y: string, label: string } {
-    const xLabel: string = layout.transformOptions?.xLabel || 'name';
-    const xKey: any = layout.transformOptions?.xKey || 'x';
-    const yKey: any = layout.transformOptions?.yKey || 'y';
+function getKeys(options:transformOptions): { x: string, y: string, label: string } {
+    const xLabel: string = options?.xLabel || 'name';
+    const xKey: any = options?.xKey || 'x';
+    const yKey: any = options?.yKey || 'y';
 
     if (yKey instanceof Array) {
-        console.error("ScatterChart: yKey should be string only, not an array " + layout.transformOptions.yKey);
+        console.error("ScatterChart: yKey should be string only, not an array " + options.yKey);
     }
 
     return {
@@ -25,8 +21,8 @@ function getKeys(layout: ChartLayout): { x: string, y: string, label: string } {
 }
 
 
-const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
-    const { x, y, label } = getKeys(layout);
+const ArrayConverter = (options: transformOptions): ChartDataConverter => {
+    const { x, y, label } = getKeys(options);
     return (records: any[]): ScatterDataInput => {
         var result: ScatterDataInput = {
             datasets: []
@@ -35,7 +31,7 @@ const ArrayConverter = (layout: ChartLayout): ChartDataConverter => {
         var dataMap: Record<string, ScatterDataSet> = {};
 
         records.map((record, index) => {
-            var dataSet: ScatterDataSet = getData(dataMap, record[label], layout.transformOptions);
+            var dataSet: ScatterDataSet = getData(dataMap, record[label], options);
             dataSet.data.push({
                 x: record[x],
                 y: record[y]
