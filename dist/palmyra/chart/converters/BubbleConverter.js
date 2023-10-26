@@ -1,15 +1,15 @@
-const t = (e) => (l) => {
+const A = (e) => (l) => {
 };
-function A(e, l, u) {
+function D(e, l, u) {
   var a, y, b, d;
   u.backgroundColor = ((y = (a = e == null ? void 0 : e.chart) == null ? void 0 : a[l]) == null ? void 0 : y.backgroundColor) || "blue", u.borderColor = ((d = (b = e == null ? void 0 : e.chart) == null ? void 0 : b[l]) == null ? void 0 : d.borderColor) || "grey";
 }
-function D(e, l, u) {
+function L(e, l, u) {
   var a = e[l];
   return a || (a = {
     label: l,
     data: []
-  }, A(u, l, a), e[l] = a, a);
+  }, D(u, l, a), e[l] = a, a);
 }
 function h(e) {
   const l = (e == null ? void 0 : e.xLabel) || "name", u = (e == null ? void 0 : e.xKey) || "x", a = (e == null ? void 0 : e.yKey) || "y", y = (e == null ? void 0 : e.rKey) || "r";
@@ -20,14 +20,14 @@ function h(e) {
     label: l
   };
 }
-const L = (e) => {
-  const { x: l, y: u, r: a, label: y } = h(e.transformOptions);
+const S = (e) => {
+  const { x: l, y: u, r: a, label: y } = h(e);
   return (b) => {
     var d = {
       datasets: []
     }, x = {};
     return b.map((c, g) => {
-      var v = D(x, c[y], e.transformOptions);
+      var v = L(x, c[y], e);
       v.data.push({
         x: c[l],
         y: c[u],
@@ -37,7 +37,7 @@ const L = (e) => {
       d.datasets.push(c);
     }), d;
   };
-}, S = (e, l, u, a) => {
+}, j = (e, l, u, a) => {
   const { x: y, y: b, r: d } = h(l);
   var x = {};
   return u.map((c) => {
@@ -48,11 +48,11 @@ const L = (e) => {
       [d]: K.r
     };
   }), x;
-}, j = {
-  default: L,
-  noop: t
+}, B = {
+  default: S,
+  noop: A
 };
 export {
-  j as default,
-  S as getPointData
+  B as default,
+  j as getPointData
 };

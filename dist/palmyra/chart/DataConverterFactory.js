@@ -1,36 +1,42 @@
-import i, { getPointData as n } from "./converters/LineConverter.js";
-import s from "./converters/BarConverter.js";
-import m from "./converters/ScatterConverter.js";
-import p, { getPointData as c } from "./converters/BubbleConverter.js";
-import f from "./converters/RadarConverter.js";
-import u from "./converters/PolarConverter.js";
-import $ from "./converters/PieConverter.js";
-import P from "./converters/DoughnutConverter.js";
-const g = (r) => r;
-var d = {
-  Line: i,
-  Bar: s,
-  Scatter: m,
-  Bubble: p,
-  Radar: f,
-  PolarArea: u,
-  Pie: $,
-  Doughnut: P
-}, l = {
-  Line: n,
-  Bar: n,
-  Bubble: c
+import m from "./converters/LineConverter.js";
+import i from "./converters/BarConverter.js";
+import s from "./converters/ScatterConverter.js";
+import c, { getPointData as f } from "./converters/BubbleConverter.js";
+import p from "./converters/RadarConverter.js";
+import l from "./converters/PolarConverter.js";
+import u from "./converters/PieConverter.js";
+import $ from "./converters/DoughnutConverter.js";
+import { getScalePointData as v } from "./converters/ScaleConverter.js";
+const d = (r) => r;
+var o = {
+  Line: m,
+  Bar: i,
+  Scatter: s,
+  Bubble: c,
+  Radar: p,
+  PolarArea: l,
+  Pie: u,
+  Doughnut: $
+}, C = {
+  Line: v,
+  Bar: v,
+  Bubble: f
 };
-const h = (r, t) => {
-  var o;
-  var a = t.transformOptions || { sourceType: "default" }, v = a.sourceType || "default", e = (o = d[r]) == null ? void 0 : o[v];
-  return e ? e(t) : g;
-}, x = (r) => {
-  var t = l[r];
-  return t || (() => {
-  });
+const x = (r, t, e) => {
+  var a;
+  var n = (a = o[r]) == null ? void 0 : a[t];
+  return n ? n(e) : d;
+}, A = (r, t, e) => {
+  if (!o[r][t])
+    o[r][t] = e;
+  else
+    throw new Error("Converter already set for " + r + "/" + t);
+}, E = (r) => {
+  var t = C[r];
+  return t || ((e) => e);
 };
 export {
-  h as default,
-  x as getPointConverter
+  A as addDataConverter,
+  x as default,
+  E as getPointConverter
 };
