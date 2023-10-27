@@ -18,7 +18,8 @@ type Point = {
     y: number;
 };
 interface BubbleDataInput {
-    datasets: ScatterDataSet[];
+    labels: string[];
+    datasets: BubbleDataSet[];
 }
 interface BubbleDataSet extends Colorable {
     label: string;

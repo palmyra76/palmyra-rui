@@ -2,6 +2,7 @@ import { InteractionItem } from "chart.js";
 import { transformOptions } from "../../layout/Types";
 import { DataConverterGen, ChartDataConverter, IgetPointData } from "../DataConverterFactory";
 import { BubbleDataInput, BubbleDataSet } from "../chartjs/Types";
+import generateColors, { getRandomNumber } from "./colors/GenerateColors";
 
 
 const NoopConverter = (options: transformOptions): ChartDataConverter => {
@@ -10,9 +11,10 @@ const NoopConverter = (options: transformOptions): ChartDataConverter => {
 
 function assignColors(transformOptions: transformOptions,
     key: string, data: BubbleDataSet) {
-
-    data.backgroundColor = transformOptions?.chart?.[key]?.backgroundColor || 'blue';
-    data.borderColor = transformOptions?.chart?.[key]?.borderColor || 'grey';
+    var length = Math.round(getRandomNumber(2, 10));
+    var color = generateColors(length);
+    data.backgroundColor = transformOptions?.chart?.[key]?.backgroundColor || color[0];
+    data.borderColor = transformOptions?.chart?.[key]?.borderColor || color[length - 1];
 }
 
 function getData(dataMap: Record<string, BubbleDataSet>, key: string, transformOptions: transformOptions): BubbleDataSet {
@@ -51,6 +53,7 @@ const ArrayConverter = (options: transformOptions): ChartDataConverter => {
     const { x, y, r, label } = getKeys(options);
     return (records: any[]): BubbleDataInput => {
         var result: BubbleDataInput = {
+            labels: [],
             datasets: []
         };
 
@@ -63,11 +66,41 @@ const ArrayConverter = (options: transformOptions): ChartDataConverter => {
                 y: record[y],
                 r: record[r]
             });
+
         });
 
         Object.values(dataMap).map((dataSet) => {
             result.datasets.push(dataSet);
         });
+        return result;
+    }
+}
+
+const ObjectConverter = (options: transformOptions): ChartDataConverter => {
+
+    const { x, y, r } = getKeys(options);
+    return (record: any): BubbleDataInput => {
+        var result: BubbleDataInput = {
+            labels: [],
+            datasets: []
+        };
+
+        var dataMap: Record<string, BubbleDataSet> = {};
+
+        for (var xValue in record) {
+            var dataSet: BubbleDataSet = getData(dataMap, xValue, options);
+            var v = record[xValue];
+            dataSet.data.push({
+                x: v[x],
+                y: v[y],
+                r: v[r]
+            });
+        }
+
+        Object.values(dataMap).map((dataSet) => {
+            result.datasets.push(dataSet);
+        });
+        console.log(result);
         return result;
     }
 }
@@ -94,6 +127,7 @@ const getPointData: IgetPointData = (data: any, transformOptions: transformOptio
 
 const converters: Record<string, DataConverterGen> = {
     "default": ArrayConverter,
+    "object": ObjectConverter,
     "noop": NoopConverter
 }
 

@@ -234,6 +234,23 @@
                 },
                 {
                     "name": "Chart",
+                    "title": "Bubble Chart",
+                    "type": "chart",
+                    "width": "25%",
+                    "chartLayout": {
+                        "type": "Bubble",
+                        "storeOptions": {
+                            "urlFormat": "/simple/chartDataObject.json"
+                        },
+                        "transformOptions": {
+                            "xKey": "count",
+                            "yKey": "average",
+                            "rKey": "top"
+                        }
+                    }
+                },
+                {
+                    "name": "Chart",
                     "title": "Bar Chart",
                     "type": "chart",
                     "width": "49%",
