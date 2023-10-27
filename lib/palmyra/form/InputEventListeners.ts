@@ -5,11 +5,6 @@ import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 import { delay } from '../utils';
 import { Converter, getFormatConverter } from "../utils/converter";
 
-const getDefaultValue = (runtime: FieldContext,
-    fieldDef: FieldDefinition, value: InputType): any => {
-    return value || '';
-}
-
 interface EventListeners {
     onBlur: Function,
     onFocus: Function,
@@ -18,9 +13,14 @@ interface EventListeners {
 
 interface DataStatusListener {
     data: any,
-    setData: Function,
+    setData: (data: any, onEvent?: boolean) => void,
     error: FieldValidStatus,
     eventListeners: EventListeners
+}
+
+const getDefaultValue = (runtime: FieldContext,
+    fieldDef: FieldDefinition, value: InputType): any => {
+    return value || '';
 }
 
 function getEventListeners<T>(props: FieldProperties): DataStatusListener {
@@ -32,17 +32,24 @@ function getEventListeners<T>(props: FieldProperties): DataStatusListener {
     const [data, setData] = useState<T>(formatter.parse(getDefaultValue(runtime, fieldDef, value)));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
 
-
-
-    const setValue = (value: any) => {
+    /**
+     * The doValidate flag is required, when the data validation is not required to be triggered
+     *      1. while initializing the field values
+     * 
+     * @param value 
+     * @param doValidate 
+     */
+    const setValue = (value: any, doValidate?: boolean) => {
         setData(value || '');
-        delay(() => {
-            validate(value);
-            if (onDataChange) {
-                const formattedValue = formatter.format(value);
-                onDataChange({ [fieldDef.attribute]: formattedValue })
-            }
-        });
+        if (doValidate) {
+            delay(() => {
+                validate(value);
+                if (onDataChange) {
+                    const formattedValue = formatter.format(value);
+                    onDataChange({ [fieldDef.attribute]: formattedValue })
+                }
+            });
+        }
     }
 
     const checkConstraints = (value: String): FieldValidStatus => {
@@ -63,7 +70,6 @@ function getEventListeners<T>(props: FieldProperties): DataStatusListener {
 
     const validate = (inputValue: any) => {
         const validStatus = checkConstraints(inputValue);
-        // console.log(validStatus);
         if (!validStatus.status) {
             setValid(validStatus);
         } else if (eventHandler?.asyncValid) {
@@ -105,7 +111,7 @@ function getEventListeners<T>(props: FieldProperties): DataStatusListener {
 
     const onBlur = () => { validate(data); };
     const onFocus = () => { hideErrorMessage() };
-    const onValueChange = (value: T) => { setValue(value) };
+    const onValueChange = (value: T) => { setValue(value, true) };
 
     const eventListeners: EventListeners = { onBlur, onFocus, onValueChange };
 
