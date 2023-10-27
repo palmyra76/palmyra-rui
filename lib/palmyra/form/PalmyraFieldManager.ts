@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EventHandler } from "./Types";
 import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 
@@ -17,8 +17,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     eventHandler: EventHandler): IFormFieldManager {
 
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
-
-    const [data, setData] = useState<T>(formatter.parse(getDefaultValue(fieldDef, value)));
+    const [data, setData] = useState(formatter.parse(getDefaultValue(fieldDef, value)));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
 
     /**
@@ -106,13 +105,11 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
 
     const eventListeners: IEventListeners = { onBlur, onFocus, onValueChange };
 
-    console.log('field re-rendering');
-
-    if (onDataChange) {
+    useEffect(() => {
         var key = fieldDef.attribute;
-        const validStatus = checkConstraints(value);
+        const validStatus = checkConstraints(data);
         onDataChange({}, { [key]: validStatus.status });
-    }
+    }, []);
 
     return { data, setData: setValue, error, eventListeners };
 }

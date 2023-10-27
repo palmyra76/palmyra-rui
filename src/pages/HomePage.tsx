@@ -7,10 +7,10 @@ import { useState } from "react";
 const HomePage = () => {
 
     const [isValid, setValid] = useState(false);
-    const [data, setData] = useState({serverHost:'server', port:'2022'});
-    
+    const [data, setData] = useState({ serverHost: 'server', port: '2022' });
+
     const onValidityChange = (valid: boolean): void => {
-        if(valid != undefined)
+        if (valid != undefined)
             setValid(valid);
         console.log("validity changed to " + isFormValid());
         console.log(getFormData());
@@ -29,7 +29,7 @@ const HomePage = () => {
             required={true}
             getFieldManager={getFieldManager}
         ></MuiTextField>
-        <Button disabled={!isValid} onClick={() => onValidityChange(false)}>Test Me</Button>
+        <Button disabled={!isValid} onClick={() => {console.log("submitting data", getFormData())}}>Test Me</Button>
     </>
     )
 }
