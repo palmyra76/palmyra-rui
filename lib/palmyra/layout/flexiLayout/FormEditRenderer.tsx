@@ -5,6 +5,7 @@ import getField from '../../form/FieldGenerator';
 import { FieldContext, FormContext } from '../../form/Types';
 import { FieldDefinition, FormData } from '../../form/Definitions';
 import { FormLayout } from './Definitions';
+import { setValueByKey } from '../../form/FormUtil';
 
 interface EditFormRendererInput {
     formLayout: FormLayout,
@@ -30,10 +31,6 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         }
         setSubmitStatus(kv, data);
     };
-
-    // useEffect(() => {
-    //     setData(formContext.data);
-    // }, [formContext.data]);
 
     const _focus = () => {
         var firstField = formLayout.fields[0];
@@ -82,44 +79,10 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         onDataChange({ data: newData, dataValid: dValid });
     }
 
-    const generateField = useMemo(() => (field: FieldDefinition) => {        
+    const generateField = useMemo(() => (field: FieldDefinition) => {
         const fieldRuntime = getFieldRuntime(field, data);
         return getField(field, fieldRuntime, fieldRefs, data);
     }, [data]);
-
-    const getValueByKey = (fieldName, data) => {
-        if (data === undefined || data == null) {
-            return undefined;
-        }
-
-        var index = fieldName.indexOf('.')
-        if (index < 0) {
-            return data[fieldName];
-        }
-
-        var objKey = fieldName.substring(0, index);
-        var fieldKey = fieldName.substring(index + 1);
-
-        return getValueByKey(fieldKey, data[objKey]);
-    }
-
-    const setValueByKey = (fieldName, data, value) => {
-
-        var index = fieldName.indexOf('.')
-        if (index < 0) {
-            data[fieldName] = value;
-            return;
-        }
-
-        var objKey = fieldName.substring(0, index);
-        var fieldKey = fieldName.substring(index + 1);
-
-        if (data[objKey] === undefined || data[objKey] == null) {
-            data[objKey] = {};
-        }
-
-        return setValueByKey(fieldKey, data[objKey], value);
-    }
 
     const getFieldRuntime = (field: FieldDefinition, formData: FormData): FieldContext => {
         var eventHandler = eventHandlers[field.attribute]

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from "react-router-dom";
 
-import { FlexiLayoutRenderer } from '../../../lib/main';
+import { FlexiLayoutDefinition, FlexiLayoutRenderer } from '../../../lib/main';
 import { AppStoreFactory } from '../../components/store/AppStoreFactory';
 
 const NewFormPage = () => {
@@ -14,7 +14,7 @@ const NewFormPage = () => {
     useEffect(() => {
         fetch(key + '/editForm.json')
             .then((response) => response.json())
-            .then((d) => setPageDef(d));
+            .then((d:FlexiLayoutDefinition) => {setPageDef(d);});
     }, [layout])
 
     const onValidChange = (valid: boolean) => {
@@ -26,7 +26,7 @@ const NewFormPage = () => {
     return <>
         <div> {layout} New Form</div>
         {pageDef ? <FlexiLayoutRenderer ref={formRef}
-            layoutParams={{}}
+            layoutParams={{}} mode={'formNew'}
             layout={pageDef} storeFactory={storeFactory}
             callbacks={{ onFormValidChange: onValidChange }}
         ></FlexiLayoutRenderer> : <div />}
