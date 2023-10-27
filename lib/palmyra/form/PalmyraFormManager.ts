@@ -7,7 +7,7 @@ import { getValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
 import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
-import { IFormFieldManager } from "./interface";
+import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
 import { FormMode } from "./Types";
 import { useRef } from "react";
 
@@ -38,9 +38,7 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     const onDataChange = (data: any, validity: any) => {
         dataValid = Object.assign({}, dataValid, validity);
         mergeDeep(formData, data);
-        console.log(dataValid);
         const _isValid = isValidForm(dataValid);
-        console.log(_isValid, isValid.current);
         if (_isValid != isValid.current) {
             isValid.current = _isValid;
             if (onDataValidityChange) {
@@ -58,10 +56,10 @@ function createFormData(data, onValidityChange, mode: FormMode) {
         return true;
     }
 
-    const getFieldManager = (fieldDef: FieldDefinition): IFormFieldManager => {
-        var key = fieldDef.attribute;
-        // if(fieldManagerCache[key])
-        //     return fieldManagerCache[key];
+    const getFieldManager = (field: AttributeDefinition, type: FieldType): IFormFieldManager => {
+        var key = field.attribute;
+        // @ts-ignore
+        var fieldDef: FieldDefinition = {...field, type}        
 
         const validationRule = getValidator(fieldDef);
         validationFormat[fieldDef.attribute] = fieldDef;

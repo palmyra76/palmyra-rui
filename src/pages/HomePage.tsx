@@ -2,12 +2,16 @@ import { Button } from "@mui/material";
 import { createFormData } from "../../lib/palmyra/form/PalmyraFormManager";
 import MuiTextField from "../../lib/palmyra/mui/form/MuiTextField";
 import { useState } from "react";
+import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
+import MuiSelect from "../../lib/palmyra/mui/form/MuiSelect";
+import MuiRadioGroup from "../../lib/palmyra/mui/form/MuiRadioGroup";
+import MuiDatePicker from "../../lib/palmyra/mui/form/MuiDatePicker";
 
 
 const HomePage = () => {
 
     const [isValid, setValid] = useState(false);
-    const [data, setData] = useState({ serverHost: 'server', port: '2022' });
+    const [data, setData] = useState({ port: '2022', dob: '2023-10-19', gender: 'M' });
 
     const onValidityChange = (valid: boolean): void => {
         if (valid != undefined)
@@ -19,17 +23,32 @@ const HomePage = () => {
     var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, "new");
 
     return (<>
-        <MuiTextField attribute="serverHost" type="string" title="ServerHost"
+        <MuiTextField attribute="serverHost"
+            placeHolder="welcome"
             length={{ min: 3, message: "Minimum of 3 letters" }}
             getFieldManager={getFieldManager}
         ></MuiTextField>
 
-        <MuiTextField attribute="port" type="number" title="ServerHost"
+        <MuiSelect attribute="gender"
+            options={{ M: 'Male', F: 'Female' }}
+            getFieldManager={getFieldManager}
+        ></MuiSelect>
+
+        <MuiRadioGroup attribute="gender"
+            options={{ M: 'Male', F: 'Female' }}
+            getFieldManager={getFieldManager}
+        ></MuiRadioGroup>
+
+        <MuiDatePicker attribute="dob"
+            getFieldManager={getFieldManager}
+        ></MuiDatePicker>
+
+        <MuiTextArea attribute="port"
             length={{ min: 3, message: "Minimum of 3 letters" }}
             required={true}
             getFieldManager={getFieldManager}
-        ></MuiTextField>
-        <Button disabled={!isValid} onClick={() => {console.log("submitting data", getFormData())}}>Test Me</Button>
+        ></MuiTextArea>
+        <Button disabled={!isValid} onClick={() => { console.log("submitting data", getFormData()) }}>Test Me</Button>
     </>
     )
 }

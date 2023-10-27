@@ -3,8 +3,10 @@ import { TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, ITextFieldDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 
-const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition & IGetFieldManagerDefinition, ref) {
+const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition & IGetFieldManagerDefinition, ref) {
     const { getFieldManager } = props;
+    
+    // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string');
 
     const error: IFormFieldError = fieldManager.error;
@@ -35,8 +37,12 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     }
 
     return (
-        <TextField {...inputProps}
+        <TextField
+            minRows={2}
+            maxRows={5}
             fullWidth={true}
+            multiline
+            {...inputProps}
             inputRef={inputRef}
             {...callbacks}
             error={error.status}
@@ -45,4 +51,4 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     );
 });
 
-export default MuiTextField;
+export default MuiTextArea;
