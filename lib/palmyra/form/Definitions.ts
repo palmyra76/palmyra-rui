@@ -37,8 +37,8 @@ interface AttributeDefinition extends storeBacked {
 }
 
 interface FieldDefinition extends AttributeDefinition {
-    name: string,
     title: string,
+    name?: string,
     hideTitle?: boolean,
     defaultValue?: InputType,
     value?: InputType,
@@ -47,7 +47,7 @@ interface FieldDefinition extends AttributeDefinition {
     variant?: MuiVariant,
     placeHolder?: string,
     validationRule?: string | string[],
-    errorMessage: Record<string, string>,
+    errorMessage?: Record<string, string>,
     length?: RangeValidation<number>,
     range?: RangeValidation<any>,
     lookupOptions?: LookupOptions // To be used by server lookup
