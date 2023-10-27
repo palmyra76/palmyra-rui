@@ -7,7 +7,7 @@ interface EventListeners {
 }
 interface DataStatusListener {
     data: any;
-    setData: Function;
+    setData: (data: any, onEvent?: boolean) => void;
     error: FieldValidStatus;
     eventListeners: EventListeners;
 }

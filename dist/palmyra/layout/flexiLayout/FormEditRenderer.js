@@ -1,78 +1,71 @@
-import { jsx as p } from "react/jsx-runtime";
-import { forwardRef as E, useRef as K, useImperativeHandle as j, useMemo as S } from "react";
-import _ from "../container/FieldContainer.js";
+import { jsx as v } from "react/jsx-runtime";
+import { forwardRef as V, useRef as E, useImperativeHandle as S, useMemo as _ } from "react";
+import j from "../container/FieldContainer.js";
 import B from "../../form/FieldGenerator.js";
-const z = E(function(l, b) {
-  var v;
-  L(l);
-  const { formLayout: a, formContext: u } = l, { rules: m, onDataChange: h } = u, F = u.eventHandlers || {}, g = a.Container || _, c = K({}), s = u.data, C = (r) => {
-    for (var t in r) {
-      var e = r[t];
-      d(t, s, e);
+import { setValueByKey as K } from "../../form/FormUtil.js";
+const A = V(function(f, p) {
+  var l;
+  L(f);
+  const { formLayout: o, formContext: i } = f, { rules: m, onDataChange: h } = i, b = i.eventHandlers || {}, F = o.Container || j, u = E({}), s = i.data, C = (t) => {
+    for (var r in t) {
+      var e = t[r];
+      K(r, s, e);
     }
-    H(r, s);
+    y(t, s);
+  }, g = () => {
+    var t = o.fields[0], r = u.current[t.attribute];
+    r && r.focus();
   }, x = () => {
-    var r = a.fields[0], t = c.current[r.attribute];
-    t && t.focus();
-  }, y = () => {
-    for (var r of a.fields) {
-      var t = c.current[r.attribute];
-      if (t && t.valid && t.focus && !t.isValid())
-        return t.focus(), !0;
+    for (var t of o.fields) {
+      var r = u.current[t.attribute];
+      if (r && r.valid && r.focus && !r.isValid())
+        return r.focus(), !0;
     }
     return !1;
   };
-  j(b, () => ({
+  S(p, () => ({
     focus() {
-      x();
+      g();
     },
     focusErrorInput() {
-      return y();
+      return x();
     }
   }), []);
-  const H = (r, t) => {
+  const y = (t, r) => {
     var e = {};
-    for (var n in r) {
-      var o = r[n], i = m[n];
-      if (i) {
-        var { status: V } = i(o);
-        e[n] = V;
+    for (var a in t) {
+      var n = t[a], d = m[a];
+      if (d) {
+        var { status: R } = d(n);
+        e[a] = R;
       } else
-        e[n] = !0;
+        e[a] = !0;
     }
-    h({ data: t, dataValid: e });
-  }, w = S(() => (r) => {
-    const t = D(r);
-    return B(r, t, c, s);
-  }, [s]), d = (r, t, e) => {
-    var n = r.indexOf(".");
-    if (n < 0) {
-      t[r] = e;
-      return;
-    }
-    var o = r.substring(0, n), i = r.substring(n + 1);
-    return (t[o] === void 0 || t[o] == null) && (t[o] = {}), d(i, t[o], e);
-  }, D = (r, t) => {
-    var e = F[r.attribute], n = m[r.attribute], o = {};
-    return r.disabled || (o.onDataChange = C), n && (o.constraint = n), e && (o.eventHandler = e), o;
+    h({ data: r, dataValid: e });
+  }, H = _(() => (t) => {
+    const r = w(t);
+    return B(t, r, u, s);
+  }, [s]), w = (t, r) => {
+    var e = b[t.attribute], a = m[t.attribute], n = {};
+    return t.disabled || (n.onDataChange = C), a && (n.constraint = a), e && (n.eventHandler = e), n;
   };
-  var I = ((v = a.options) == null ? void 0 : v.columns) || 1, R = { columns: I };
-  return /* @__PURE__ */ p("div", { className: "palmyra-form-field-container-wrapper", children: a.fields.map((r, t) => /* @__PURE__ */ p(
-    g,
+  var D = ((l = o.options) == null ? void 0 : l.columns) || 1, I = { columns: D };
+  return /* @__PURE__ */ v("div", { className: "palmyra-form-field-container-wrapper", children: o.fields.map((t, r) => /* @__PURE__ */ v(
+    F,
     {
-      index: t,
-      field: r,
-      label: r.title,
-      options: R,
-      children: w(r)
+      index: r,
+      field: t,
+      label: t.title,
+      options: I,
+      children: H(t)
     },
-    r.attribute
+    t.attribute
   )) });
 });
-function L(f) {
-  if (!f.formContext)
+function L(c) {
+  if (!c.formContext)
     throw new Error('Form Context not available, if this the form page, set the type as "form" in the definition');
 }
 export {
-  z as default
+  A as default
 };

@@ -1,13 +1,13 @@
 import { useState as h } from "react";
-import { delay as B } from "../utils/index.js";
-import { getFormatConverter as v } from "../utils/converter/FormatterFactory.js";
-const S = (e, a, o) => o || "";
-function j(e) {
-  const { runtime: a, fieldDef: o, value: C } = e, { eventHandler: n, onDataChange: l, constraint: r } = a || {}, f = v(e.fieldDef), [m, D] = h(f.parse(S(a, o, C))), [u, c] = h({ status: !1, message: "" }), g = (t) => {
-    D(t || ""), B(() => {
-      if (V(t), l) {
-        const s = f.format(t);
-        l({ [o.attribute]: s });
+import { delay as v } from "../utils/index.js";
+import { getFormatConverter as S } from "../utils/converter/FormatterFactory.js";
+const b = (e, a, o) => o || "";
+function q(e) {
+  const { runtime: a, fieldDef: o, value: C } = e, { eventHandler: n, onDataChange: f, constraint: r } = a || {}, l = S(e.fieldDef), [m, D] = h(l.parse(b(a, o, C))), [u, c] = h({ status: !1, message: "" }), g = (t, s) => {
+    D(t || ""), s && v(() => {
+      if (V(t), f) {
+        const B = l.format(t);
+        f({ [o.attribute]: B });
       }
     });
   }, F = (t) => {
@@ -48,10 +48,10 @@ function j(e) {
   }, onFocus: () => {
     E();
   }, onValueChange: (t) => {
-    g(t);
+    g(t, !0);
   } } };
 }
-function q(e) {
+function w(e) {
   return {
     onBlur: e.onBlur,
     onFocus: e.onFocus,
@@ -59,6 +59,6 @@ function q(e) {
   };
 }
 export {
-  q as decorateListenersForInput,
-  j as getEventListeners
+  w as decorateListenersForInput,
+  q as getEventListeners
 };
