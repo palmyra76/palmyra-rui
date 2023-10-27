@@ -1,12 +1,12 @@
-import { jsx as n } from "react/jsx-runtime";
-import { LocalizationProvider as D, DatePicker as g } from "@mui/x-date-pickers";
+import { jsx as i } from "react/jsx-runtime";
+import { LocalizationProvider as D, DateTimePicker as g } from "@mui/x-date-pickers";
 import { forwardRef as P, useRef as p, useImperativeHandle as h, useEffect as y } from "react";
 import { AdapterDayjs as F } from "@mui/x-date-pickers/AdapterDayjs";
 import V from "dayjs";
 import { getEventListeners as j } from "./InputEventListeners.js";
-const M = P(function(e, i) {
-  const { data: s, setData: u, error: a, eventListeners: r } = j(e), l = e.fieldDef.displayPattern || e.fieldDef.serverPattern || "YYYY-MM-DD", o = p(null), f = () => V(s);
-  h(i, () => ({
+const H = P(function(e, s) {
+  const { data: n, setData: u, error: a, eventListeners: r } = j(e), l = e.fieldDef.displayPattern || e.fieldDef.serverPattern || "YYYY-MM-DD HH:mm:ss", o = p(null), f = () => V(n);
+  h(s, () => ({
     focus() {
       o.current.focus();
     },
@@ -19,22 +19,22 @@ const M = P(function(e, i) {
   }), []), y(() => {
     u(e.value);
   }, [e.value]);
-  var d = a.message, c = a.status, m = { ...e.muiFieldDef, value: f() }, v = {
+  var d = a.message, m = a.status, c = { ...e.muiFieldDef, value: f() }, v = {
     onBlur: r.onBlur,
     onFocus: r.onFocus,
     onChange: (t) => {
       t && t.toDate ? r.onValueChange(t.toDate()) : r.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ n(D, { dateAdapter: F, children: /* @__PURE__ */ n(
+  return /* @__PURE__ */ i(D, { dateAdapter: F, children: /* @__PURE__ */ i(
     g,
     {
-      ...m,
+      ...c,
       format: l,
       ...v,
       slotProps: {
         textField: {
-          error: c,
+          error: m,
           helperText: d,
           variant: "standard",
           fullWidth: !0
@@ -44,5 +44,5 @@ const M = P(function(e, i) {
   ) });
 });
 export {
-  M as default
+  H as default
 };

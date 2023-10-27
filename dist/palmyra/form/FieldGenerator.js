@@ -1,30 +1,16 @@
 import { jsx as u, jsxs as F } from "react/jsx-runtime";
-import y from "./ValidationTextField.js";
-import g from "./ValidationTextArea.js";
-import R from "./PalmyraRadioGroup.js";
-import P from "./PalmyraSelect.js";
-import b from "./ValidationDatePicker.js";
+import g from "./ValidationTextField.js";
+import y from "./ValidationTextArea.js";
+import D from "./PalmyraRadioGroup.js";
+import R from "./PalmyraSelect.js";
+import P from "./ValidationDatePicker.js";
+import b from "./ValidationDateTimePicker.js";
 import x from "./ServerLookup.js";
-import { StoreFactoryContext as D, LayoutParamsContext as S } from "../layout/flexiLayout/FlexiLayoutContext.js";
+import { StoreFactoryContext as V, LayoutParamsContext as S } from "../layout/flexiLayout/FlexiLayoutContext.js";
 import { useContext as d } from "react";
-import { mergeDeep as V } from "../utils/index.js";
+import { mergeDeep as T } from "../utils/index.js";
 import { getValueByKey as f } from "./FormUtil.js";
 const k = (t) => {
-  const { fieldDef: e, fieldRuntime: a, fieldRefs: o, value: i } = t;
-  var r = s(e, i);
-  return /* @__PURE__ */ u(
-    y,
-    {
-      ref: (n) => {
-        o.current[e.attribute] = n;
-      },
-      runtime: a,
-      muiFieldDef: r,
-      fieldDef: e,
-      value: i
-    }
-  );
-}, A = (t) => {
   const { fieldDef: e, fieldRuntime: a, fieldRefs: o, value: i } = t;
   var r = s(e, i);
   return /* @__PURE__ */ u(
@@ -39,11 +25,11 @@ const k = (t) => {
       value: i
     }
   );
-}, T = (t) => {
+}, A = (t) => {
   const { fieldDef: e, fieldRuntime: a, fieldRefs: o, value: i } = t;
   var r = s(e, i);
   return /* @__PURE__ */ u(
-    R,
+    y,
     {
       ref: (n) => {
         o.current[e.attribute] = n;
@@ -58,7 +44,7 @@ const k = (t) => {
   const { fieldDef: e, fieldRuntime: a, fieldRefs: o, value: i } = t;
   var r = s(e, i);
   return /* @__PURE__ */ u(
-    P,
+    D,
     {
       ref: (n) => {
         o.current[e.attribute] = n;
@@ -70,12 +56,43 @@ const k = (t) => {
     }
   );
 }, C = (t) => {
+  const { fieldDef: e, fieldRuntime: a, fieldRefs: o, value: i } = t;
+  var r = s(e, i);
+  return /* @__PURE__ */ u(
+    R,
+    {
+      ref: (n) => {
+        o.current[e.attribute] = n;
+      },
+      runtime: a,
+      muiFieldDef: r,
+      fieldDef: e,
+      value: i
+    }
+  );
+}, L = (t) => {
   const { fieldDef: e } = t;
   return /* @__PURE__ */ F("div", { children: [
     "invalid type " + e.type,
     " "
   ] });
-}, L = (t) => {
+}, h = (t) => {
+  const { fieldDef: e, fieldRuntime: a, fieldRefs: o, value: i } = t;
+  var r = s(e, i);
+  return /* @__PURE__ */ u(
+    P,
+    {
+      ref: (n) => {
+        o.current[e.attribute] = n;
+      },
+      ...r,
+      runtime: a,
+      muiFieldDef: r,
+      fieldDef: e,
+      value: i
+    }
+  );
+}, j = (t) => {
   const { fieldDef: e, fieldRuntime: a, fieldRefs: o, value: i } = t;
   var r = s(e, i);
   return /* @__PURE__ */ u(
@@ -91,11 +108,11 @@ const k = (t) => {
       value: i
     }
   );
-}, h = (t) => {
-  const e = d(D), a = d(S), { fieldDef: o, fieldRuntime: i, fieldRefs: r, value: n, displayValue: c } = t;
+}, G = (t) => {
+  const e = d(V), a = d(S), { fieldDef: o, fieldRuntime: i, fieldRefs: r, value: n, displayValue: m } = t;
   var l = o.storeOptions || {};
-  a && V(l, a);
-  const m = e.getGridStore(l);
+  a && T(l, a);
+  const c = e.getGridStore(l);
   var p = s(o, n);
   return /* @__PURE__ */ u(
     x,
@@ -103,12 +120,12 @@ const k = (t) => {
       ref: (v) => {
         r.current[o.attribute] = v;
       },
-      store: m,
+      store: c,
       runtime: i,
       muiFieldDef: p,
       fieldDef: o,
       value: n,
-      displayValue: c
+      displayValue: m
     }
   );
 }, s = (t, e) => ({
@@ -116,32 +133,34 @@ const k = (t) => {
   required: t.required,
   disabled: t.disabled == !0,
   variant: t.variant || "standard"
-}), j = (t, e, a, o) => {
+}), O = (t, e, a, o) => {
   const i = f(t.attribute, o);
   if (t.displayAttribute) {
     const r = f(t.displayAttribute, o);
     return { fieldDef: t, fieldRuntime: e, fieldRefs: a, value: i, displayValue: r };
   } else
     return { fieldDef: t, fieldRuntime: e, fieldRefs: a, value: i };
-}, J = (t, e, a, o) => {
-  const { type: i } = t, r = j(t, e, a, o);
+}, W = (t, e, a, o) => {
+  const { type: i } = t, r = O(t, e, a, o);
   switch (i) {
     case "string":
       return k(r);
     case "radio":
-      return T(r);
-    case "select":
       return q(r);
+    case "select":
+      return C(r);
     case "date":
-      return L(r);
-    case "serverlookup":
       return h(r);
+    case "datetime":
+      return j(r);
+    case "serverlookup":
+      return G(r);
     case "textarea":
       return A(r);
     default:
-      return C(r);
+      return L(r);
   }
 };
 export {
-  J as default
+  W as default
 };

@@ -36,7 +36,7 @@
                             {
                                 "attribute": "service",
                                 "title": "Service",
-                                "displayAttribute":"userName",
+                                "displayAttribute": "userName",
                                 "required": true,
                                 "type": "serverlookup",
                                 "lookupOptions": {
@@ -50,16 +50,17 @@
                                 "required": true,
                                 "type": "date",
                                 "validationRule": "date",
-                                "format": {
-                                    "pattern": "dd-MM-yyyy",
-                                    "message": "pattern should be this"
-                                },
-                                "constraints": {
-                                    "minYear": 18
-                                },
-                                "range": {
-                                    "start": "01-01-1905",
-                                    "end": "01-01-2005"
+                                "displayPattern": "DD-MM-YYYY"
+                            },
+                            {
+                                "attribute": "time",
+                                "title": "Time",
+                                "required": true,
+                                "type": "datetime",
+                                "validationRule": "datetime",
+                                "displayPattern": "DD-MM-YYYY HH:mm:ss",
+                                "errorMessage": {
+                                    "required": "Mandatory"
                                 }
                             },
                             {

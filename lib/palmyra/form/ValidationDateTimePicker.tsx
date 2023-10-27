@@ -1,13 +1,13 @@
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { FieldProperties } from "./Types";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
 import { getEventListeners } from "./InputEventListeners";
 
-const ValidationDatePicker = forwardRef(function ValidationDatePicker(props: FieldProperties, ref) {
+const ValidationDateTimePicker = forwardRef(function ValidationDateTimePicker(props: FieldProperties, ref) {
     const { data, setData, error, eventListeners } = getEventListeners(props);
-    const displayFormat: string = props.fieldDef.displayPattern || props.fieldDef.serverPattern || "YYYY-MM-DD";
+    const displayFormat: string = props.fieldDef.displayPattern || props.fieldDef.serverPattern || "YYYY-MM-DD HH:mm:ss";
     const inputRef: any = useRef(null);
 
     const toDayjs = () => {
@@ -50,7 +50,7 @@ const ValidationDatePicker = forwardRef(function ValidationDatePicker(props: Fie
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker {...inputProps}
+            <DateTimePicker {...inputProps}
                 format={displayFormat}
                 {...callbacks}
                 slotProps={{
@@ -66,4 +66,4 @@ const ValidationDatePicker = forwardRef(function ValidationDatePicker(props: Fie
     );
 })
 
-export default ValidationDatePicker;
+export default ValidationDateTimePicker;

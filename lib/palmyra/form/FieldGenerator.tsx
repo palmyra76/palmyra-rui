@@ -6,10 +6,10 @@ import { FieldDefinition, FormData, InputType, MuiFieldDef } from './Definitions
 import PalmyraRadioGroup from './PalmyraRadioGroup';
 import PalmyraSelect from './PalmyraSelect';
 import ValidationDatePicker from './ValidationDatePicker';
+import ValidationDateTimePicker from './ValidationDateTimePicker';
 
 // Slider input
 // Rating input
-// import ValidationDateTimePicker from './ValidationDateTimePicker';
 // import PalmyraCheckBox from './PalmyraCheckBox';
 import ServerLookup from './ServerLookup';
 import { LayoutParamsContext, StoreFactoryContext } from '../layout/flexiLayout/FlexiLayoutContext';
@@ -96,14 +96,21 @@ const getDateField = (props: FieldRequest) => {
     />;
 }
 
-// const getDateTimeField = ({ fieldProps, rule, fieldRefs }) => {
-//     return <ValidationDateTimePicker
-//         {...fieldProps}
-//         dataFormat="DD-MM-YYYY hh:mm a"
-//         format="DD-MM-YYYY hh:mm a"
-//         slotProps={{ textField: { variant: 'standard', fullWidth: true } }}
-//     />;
-// }
+const getDateTimeField = (props: FieldRequest) => {
+    const { fieldDef, fieldRuntime, fieldRefs, value } = props;
+    var fieldProps = getMuiFieldProps(fieldDef, value);
+
+    return <ValidationDateTimePicker
+        ref={ref => {
+            fieldRefs.current[fieldDef.attribute] = ref;
+        }}
+        {...fieldProps}
+        runtime={fieldRuntime}
+        muiFieldDef={fieldProps}
+        fieldDef={fieldDef}
+        value={value}
+    />;
+}
 
 
 // const getCheckBoxField = ({ fieldProps, rule, field, fieldRefs }) => {
@@ -184,8 +191,8 @@ const getField = (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRe
             return getSelectField(props);
         case 'date':
             return getDateField(props);
-        // case 'datetime':    
-        //     return getDateTimeField(props);
+        case 'datetime':
+            return getDateTimeField(props);
         // case 'checkbox':
         //     return getCheckBoxField(props);
         case 'serverlookup':

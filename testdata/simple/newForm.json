@@ -37,6 +37,7 @@
                                 "title": "Dob",
                                 "required": true,
                                 "type": "date",
+                                "validationRule": "date",
                                 "format": {
                                     "pattern": "dd-MM-yyyy",
                                     "message": "pattern should be this"
@@ -48,6 +49,12 @@
                                     "start": "01-01-1905",
                                     "end": "01-01-2005"
                                 }
+                            },
+                            {
+                                "attribute": "time",
+                                "title": "Time",
+                                "required": true,
+                                "type": "datetime"
                             },
                             {
                                 "attribute": "phoneNumber",
