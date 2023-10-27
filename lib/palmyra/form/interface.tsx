@@ -116,4 +116,4 @@ interface IGetFieldManagerDefinition {
 
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, IGetFieldManagerDefinition, AttributeDefinition, FieldType }
 
-export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager }
+export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager }

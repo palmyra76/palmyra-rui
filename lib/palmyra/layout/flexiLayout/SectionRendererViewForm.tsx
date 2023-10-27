@@ -6,13 +6,12 @@ import { FormLayout } from './Definitions';
 
 const SectionRendererViewForm = (props: SectionRendererInput) => {
     const { layout, context } = props;
-    const { formContext } = context;
-
+    
     var ChildRenderer = layout.Renderer || FormRenderer;
     var Container = layout.Container || DefaultSectionContainer;
 
     const getFormLayout = (formLayout: FormLayout) => {
-        return (<ChildRenderer data={formContext.data}
+        return (<ChildRenderer context={context}
             formLayout={formLayout}
         ></ChildRenderer>);
     };

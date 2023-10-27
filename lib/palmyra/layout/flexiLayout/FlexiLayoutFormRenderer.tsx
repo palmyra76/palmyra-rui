@@ -1,9 +1,10 @@
 import { forwardRef, useImperativeHandle } from "react";
-import { FormContext, FormMode } from "../../form/Types";
-import { useFormValidator } from "./FormValidator";
+import { FormMode } from "../../form/Types";
+
 import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
 import { flexiPrimaryType } from ".";
+import { createFormData } from "../../form/PalmyraFormManager";
 
 const getFormMode = (mode: flexiPrimaryType): FormMode => {
     switch (mode) {
@@ -19,29 +20,22 @@ const getFormMode = (mode: flexiPrimaryType): FormMode => {
 }
 
 const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
-    
-    const { layout } = props;        
-    const { formData, onDataChange, validationRules, isValid } = useFormValidator(props, getFormMode(props.mode));
+    const formData = props.data || {};
+    const { layout } = props;
+    var { getFieldManager, getFormData, isFormValid } = createFormData(formData, props.callbacks?.onFormValidChange, getFormMode(props.mode));
 
     useImperativeHandle(ref, () => {
         return {
             getData() {
-                return formData;
+                return getFormData();
             },
             isValid() {
-                return isValid;
+                return isFormValid();
             }
         };
     }, []);
 
-    var formCtx: FormContext = {
-        data: formData,
-        onDataChange: onDataChange,
-        rules: validationRules
-    }
-
-
-    const pageContext: PageContext = { formContext: formCtx };
+    const pageContext: PageContext = { getFieldManager, formData: formData };
     const tabs = layout.tabs;
 
     return (

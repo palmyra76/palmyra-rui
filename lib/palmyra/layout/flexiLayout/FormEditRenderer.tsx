@@ -1,103 +1,27 @@
-import { useMemo, useRef, useImperativeHandle, forwardRef } from 'react';
+import { useMemo, useRef, forwardRef } from 'react';
 import { default as DefaultFieldContainer } from '../container/FieldContainer';
 import getField from '../../form/FieldGenerator';
 
-import { FieldContext, FormContext } from '../../form/Types';
-import { FieldDefinition, FormData } from '../../form/Definitions';
+import { FieldDefinition } from '../../form/Definitions';
 import { FormLayout } from './Definitions';
-import { setValueByKey } from '../../form/FormUtil';
+import { PageContext } from './Types';
 
 interface EditFormRendererInput {
     formLayout: FormLayout,
-    formContext: FormContext
+    context: PageContext
 }
 
 const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInput, ref) {
     checkInputs(props);
-
-    const { formLayout, formContext } = props;
-    const { rules, onDataChange } = formContext;
-
-    const eventHandlers = formContext.eventHandlers || {};
-    //    const { fieldGenerators } = props; // TODO  generate custom fields using the array of generators provided
+    const { formLayout, context } = props;
+    const { getFieldManager, formData } = context;
     const FieldContainer = formLayout.Container || DefaultFieldContainer;
     const fieldRefs = useRef({});
-    const data = formContext.data;
-
-    const updateData = (kv) => {
-        for (var field in kv) {
-            var value = kv[field];
-            setValueByKey(field, data, value);
-        }
-        setSubmitStatus(kv, data);
-    };
-
-    const _focus = () => {
-        var firstField = formLayout.fields[0];
-        var inputRef = fieldRefs.current[firstField.attribute];
-        if (inputRef) {
-            inputRef.focus();
-        }
-    }
-
-    const _focusErrorInput = () => {
-        for (var field of formLayout.fields) {
-            var inputRef = fieldRefs.current[field.attribute];
-            if (inputRef && inputRef.valid && inputRef.focus) {
-                if (!inputRef.isValid()) {
-                    inputRef.focus();
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    useImperativeHandle(ref, () => {
-        return {
-            focus() {
-                _focus();
-            },
-            focusErrorInput() {
-                return _focusErrorInput();
-            }
-        };
-    }, []);
-
-    const setSubmitStatus = (kv, newData) => {
-        var dValid = {};
-        for (var field in kv) {
-            var value = kv[field];
-            var validator = rules[field];
-            if (validator) {
-                var { status } = validator(value);
-                dValid[field] = status;
-            } else {
-                dValid[field] = true;
-            }
-        }
-        onDataChange({ data: newData, dataValid: dValid });
-    }
 
     const generateField = useMemo(() => (field: FieldDefinition) => {
-        const fieldRuntime = getFieldRuntime(field, data);
-        return getField(field, fieldRuntime, fieldRefs, data);
-    }, [data]);
+        return getField(field, getFieldManager, fieldRefs);
+    }, [formData.data]);
 
-    const getFieldRuntime = (field: FieldDefinition, formData: FormData): FieldContext => {
-        var eventHandler = eventHandlers[field.attribute]
-        var constraint = rules[field.attribute]
-        var runtime: FieldContext = {}
-
-        if (!field.disabled)
-            runtime.onDataChange = updateData;
-        if (constraint)
-            runtime.constraint = constraint;
-        if (eventHandler)
-            runtime.eventHandler = eventHandler;
-
-        return runtime;
-    }
 
     var columns = formLayout.options?.columns || 1;
     var options = { columns };
@@ -119,6 +43,6 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
 export default FormRenderer;
 
 function checkInputs(props: EditFormRendererInput) {
-    if (!props.formContext)
+    if (!props.context?.getFieldManager)
         throw new Error('Form Context not available, if this the form page, set the type as "form" in the definition');
 }

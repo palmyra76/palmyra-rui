@@ -1,12 +1,10 @@
+import { FieldType } from ".";
 import { storeBacked } from "../layout/Types";
 
 /**
  * This definitions will cater to the Form Definition format
  * 
  */
-type FieldType = "string" | "number"
-    | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup";
 
 type InputType = string | number | Date;
 

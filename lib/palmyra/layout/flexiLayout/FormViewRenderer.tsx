@@ -1,28 +1,24 @@
-import { useEffect, useState } from 'react';
 import { default as DefaultFieldContainer } from '../container/FieldContainer';
 
 import { getDisplayValue } from '../../form/FormUtil';
-import { FieldDefinition, FormData } from '../../form/Definitions';
+import { FieldDefinition } from '../../form/Definitions';
 import { FormLayout } from './Definitions';
+import { PageContext } from './Types';
 
 
 interface ViewFormRendererInput {
     formLayout: FormLayout,
-    data: FormData,
+    context: PageContext
     FieldContainer?: React.FC
 }
 
 const FormViewRenderer = (props: ViewFormRendererInput) => {
     const { formLayout } = props;
-    const [data, setData] = useState<FormData>(props.data);
+    const { formData } = props.context;
     const FieldContainer = props.FieldContainer || DefaultFieldContainer;
 
-    useEffect(() => {
-        setData(props.data);
-    }, [props.data]);
-
     const getField = (field: FieldDefinition) => {
-        const displayValue: any = getDisplayValue(field, data);
+        const displayValue: any = getDisplayValue(field, formData);
         return <div>{displayValue}</div>
     }
 

@@ -8,13 +8,12 @@ import { FormLayout } from './Definitions';
 
 const SectionRendererEditForm = (props: SectionRendererInput) => {
     const { layout, context } = props;
-    const { formContext } = context;
 
     var ChildRenderer = layout.Renderer || FormRenderer;
     var Container = layout.Container || DefaultSectionContainer;
 
     const getFormLayout = (formLayout: FormLayout) => {
-        return (<ChildRenderer formContext={formContext}
+        return (<ChildRenderer context={context}
             formLayout={formLayout}
         ></ChildRenderer>);
     };

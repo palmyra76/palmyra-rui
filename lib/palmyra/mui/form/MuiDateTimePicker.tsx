@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
 import { copyMuiOptions } from './MuiUtil';
 
-const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition & IGetFieldManagerDefinition, ref) {
+const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTimeDefinition & IGetFieldManagerDefinition, ref) {
     const { getFieldManager } = props;
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD HH:mm:ss";
     const fieldManager: IFormFieldManager = getFieldManager(props, 'datetime');
@@ -64,4 +64,4 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
     );
 });
 
-export default MuiDatePicker;
+export default MuiDateTimePicker;
