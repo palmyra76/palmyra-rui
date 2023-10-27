@@ -1,8 +1,8 @@
 import { jsx as r } from "react/jsx-runtime";
-import { forwardRef as x, useImperativeHandle as v } from "react";
-import { useFormValidator as w } from "./FormValidator.js";
-import F from "./TabRenderer.js";
-const R = (t) => {
+import { forwardRef as F, useImperativeHandle as g } from "react";
+import w from "./TabRenderer.js";
+import { createFormData as x } from "../../form/PalmyraFormManager.js";
+const v = (t) => {
   switch (t) {
     case "formEdit":
       return "edit";
@@ -13,30 +13,27 @@ const R = (t) => {
     default:
       return "edit";
   }
-}, C = x(function(e, n) {
-  const { layout: i } = e, { formData: o, onDataChange: m, validationRules: d, isValid: u } = w(e, R(e.mode));
-  v(n, () => ({
+}, V = F(function(e, i) {
+  var o;
+  const a = e.data || {}, { layout: m } = e;
+  var { getFieldManager: d, getFormData: c, isFormValid: u } = x(a, (o = e.callbacks) == null ? void 0 : o.onFormValidChange, v(e.mode));
+  g(i, () => ({
     getData() {
-      return o;
+      return c();
     },
     isValid() {
-      return u;
+      return u();
     }
   }), []);
-  var s = {
-    data: o,
-    onDataChange: m,
-    rules: d
-  };
-  const f = { formContext: s }, l = i.tabs;
-  return /* @__PURE__ */ r("div", { children: l.map((a, c) => /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
-    F,
+  const l = { getFieldManager: d, formData: a }, s = m.tabs;
+  return /* @__PURE__ */ r("div", { children: s.map((n, f) => /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
+    w,
     {
-      layout: a,
-      context: f
+      layout: n,
+      context: l
     }
-  ) }, a.name + c)) });
+  ) }, n.name + f)) });
 });
 export {
-  C as default
+  V as default
 };

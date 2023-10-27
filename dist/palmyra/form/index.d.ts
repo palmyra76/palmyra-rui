@@ -1,3 +1,2 @@
-import ValidationTextField from "./ValidationTextField";
-import ValidationTextArea from "./ValidationTextArea";
-export { ValidationTextField, ValidationTextArea };
+import { createFormData } from './PalmyraFormManager';
+export { createFormData };

@@ -1,4 +1,4 @@
-import { FieldContext } from './Types';
-import { FieldDefinition, FormData } from './Definitions';
-declare const getField: (fieldDef: FieldDefinition, fieldRuntime: FieldContext, fieldRefs: any, data: FormData) => import("react/jsx-runtime").JSX.Element;
+import { FieldDefinition } from './Definitions';
+import { IGetFieldManager } from './interface';
+declare const getField: (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, fieldRefs: any) => import("react/jsx-runtime").JSX.Element;
 export default getField;

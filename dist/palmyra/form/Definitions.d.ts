@@ -1,9 +1,9 @@
 import { storeBacked } from "../layout/Types";
+import { FieldType } from "./interface";
 /**
  * This definitions will cater to the Form Definition format
  *
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup";
 type InputType = string | number | Date;
 type FormData = {
     [key: string]: InputType | FormData;
@@ -29,8 +29,8 @@ interface AttributeDefinition extends storeBacked {
     options?: Record<string, string>;
 }
 interface FieldDefinition extends AttributeDefinition {
-    name: string;
     title: string;
+    name?: string;
     hideTitle?: boolean;
     defaultValue?: InputType;
     value?: InputType;
@@ -39,7 +39,7 @@ interface FieldDefinition extends AttributeDefinition {
     variant?: MuiVariant;
     placeHolder?: string;
     validationRule?: string | string[];
-    errorMessage: Record<string, string>;
+    errorMessage?: Record<string, string>;
     length?: RangeValidation<number>;
     range?: RangeValidation<any>;
     lookupOptions?: LookupOptions;

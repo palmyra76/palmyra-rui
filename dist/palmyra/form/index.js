@@ -1,6 +1,4 @@
-import { default as t } from "./ValidationTextField.js";
-import { default as d } from "./ValidationTextArea.js";
+import { createFormData as e } from "./PalmyraFormManager.js";
 export {
-  d as ValidationTextArea,
-  t as ValidationTextField
+  e as createFormData
 };

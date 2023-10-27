@@ -1,9 +1,9 @@
 /// <reference types="react" />
-import { FormContext } from '../../form/Types';
 import { FormLayout } from './Definitions';
+import { PageContext } from './Types';
 interface EditFormRendererInput {
     formLayout: FormLayout;
-    formContext: FormContext;
+    context: PageContext;
 }
 declare const FormRenderer: import("react").ForwardRefExoticComponent<EditFormRendererInput & import("react").RefAttributes<unknown>>;
 export default FormRenderer;

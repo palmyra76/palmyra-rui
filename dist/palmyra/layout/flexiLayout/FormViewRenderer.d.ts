@@ -1,9 +1,9 @@
 /// <reference types="react" />
-import { FormData } from '../../form/Definitions';
 import { FormLayout } from './Definitions';
+import { PageContext } from './Types';
 interface ViewFormRendererInput {
     formLayout: FormLayout;
-    data: FormData;
+    context: PageContext;
     FieldContainer?: React.FC;
 }
 declare const FormViewRenderer: (props: ViewFormRendererInput) => import("react/jsx-runtime").JSX.Element;
