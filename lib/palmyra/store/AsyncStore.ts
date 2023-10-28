@@ -1,5 +1,9 @@
 import { GetRequest, QueryOptions, QueryRequest, QueryResponse } from "./Types";
 
+interface LookupStore<T> {
+    query(request: QueryRequest): Promise<QueryResponse<T>>;
+}
+
 interface QueryStore<T> {
     query(request: QueryRequest): Promise<QueryResponse<T>>;
     get(request: GetRequest): Promise<T>;
@@ -27,4 +31,4 @@ interface AuthDecorator {
 }
 
 
-export type { DataStore, QueryStore, TreeQueryStore, ChartStore, AuthDecorator };
+export type { DataStore, QueryStore, TreeQueryStore, ChartStore, AuthDecorator, LookupStore };

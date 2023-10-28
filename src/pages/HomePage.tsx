@@ -6,6 +6,10 @@ import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
 import MuiSelect from "../../lib/palmyra/mui/form/MuiSelect";
 import MuiRadioGroup from "../../lib/palmyra/mui/form/MuiRadioGroup";
 import MuiDatePicker from "../../lib/palmyra/mui/form/MuiDatePicker";
+import { MuiServerLookup } from "../../lib/main";
+import { StoreFactoryContext } from "../../lib/palmyra/layout/flexiLayout/FlexiLayoutContext";
+import { AppStoreFactory } from "../components/store/AppStoreFactory";
+import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 
 
 const HomePage = () => {
@@ -20,35 +24,46 @@ const HomePage = () => {
         console.log(getFormData());
     }
 
+    const storeFactory = new AppStoreFactory();
+
     var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, "new");
 
     return (<>
-        <MuiTextField attribute="serverHost"
-            placeHolder="welcome"
-            length={{ min: 3, message: "Minimum of 3 letters" }}
-            getFieldManager={getFieldManager}
-        ></MuiTextField>
+        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
+            <StoreFactoryContext.Provider value={storeFactory}>
+                <MuiTextField attribute="serverHost"
+                    placeHolder="welcome"
+                    length={{ min: 3, message: "Minimum of 3 letters" }}
+                    getFieldManager={getFieldManager}
+                ></MuiTextField>
 
-        <MuiSelect attribute="gender"
-            options={{ M: 'Male', F: 'Female' }}
-            getFieldManager={getFieldManager}
-        ></MuiSelect>
+                <MuiSelect attribute="gender"
+                    options={{ M: 'Male', F: 'Female' }}
+                    getFieldManager={getFieldManager}
+                ></MuiSelect>
 
-        <MuiRadioGroup attribute="gender"
-            options={{ M: 'Male', F: 'Female' }}
-            getFieldManager={getFieldManager}
-        ></MuiRadioGroup>
+                <MuiRadioGroup attribute="gender"
+                    options={{ M: 'Male', F: 'Female' }}
+                    getFieldManager={getFieldManager}
+                ></MuiRadioGroup>
 
-        <MuiDatePicker attribute="dob"
-            getFieldManager={getFieldManager}
-        ></MuiDatePicker>
+                <MuiDatePicker attribute="dob"
+                    getFieldManager={getFieldManager}
+                ></MuiDatePicker>
 
-        <MuiTextArea attribute="port"
-            length={{ min: 3, message: "Minimum of 3 letters" }}
-            required={true}
-            getFieldManager={getFieldManager}
-        ></MuiTextArea>
-        <Button disabled={!isValid} onClick={() => { console.log("submitting data", getFormData()) }}>Test Me</Button>
+                <MuiTextArea attribute="port"
+                    length={{ min: 3, message: "Minimum of 3 letters" }}
+                    required={true}
+                    getFieldManager={getFieldManager}
+                ></MuiTextArea>
+
+                <MuiServerLookup attribute="service" getFieldManager={getFieldManager} required={true}
+                    lookupOptions={{ idAttribute: "id", displayAttribute:"userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
+                ></MuiServerLookup>
+
+                <Button disabled={!isValid} onClick={() => { console.log("submitting data", getFormData()) }}>Test Me</Button>
+            </StoreFactoryContext.Provider>
+        </ErrorBoundary>
     </>
     )
 }

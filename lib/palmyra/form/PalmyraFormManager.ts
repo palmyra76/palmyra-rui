@@ -10,6 +10,7 @@ import { mergeDeep } from "../utils";
 import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
 import { FormMode } from "./Types";
 import { useRef } from "react";
+import { getLookupStore } from "./PalmyraStoreManager";
 
 
 function createFormData(data, onValidityChange, mode: FormMode) {
@@ -21,10 +22,6 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     const onDataValidityChange = onValidityChange;
     var dataValidRef = useRef({});
     var dataValid = dataValidRef.current;
-
-    var fieldManagerCache = {};
-
-    var validationRules = {};
     var defaultData = {};
 
     const isNewForm = () => {
@@ -57,9 +54,8 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     }
 
     const getFieldManager = (field: AttributeDefinition, type: FieldType): IFormFieldManager => {
-        var key = field.attribute;
         // @ts-ignore
-        var fieldDef: FieldDefinition = {...field, type}        
+        var fieldDef: FieldDefinition = { ...field, type }
 
         const validationRule = getValidator(fieldDef);
         validationFormat[fieldDef.attribute] = fieldDef;
@@ -67,7 +63,10 @@ function createFormData(data, onValidityChange, mode: FormMode) {
 
         var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, data),
             onDataChange, validationRule, undefined);
-        fieldManagerCache[key] = result;
+
+        if (requireStore(fieldDef)) {
+            result.store = getLookupStore(fieldDef);
+        }
         return result;
     }
 
@@ -76,7 +75,7 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     }
 
     const isFormValid = () => {
-        return isValidForm(dataValid);
+        return isValidForm(dataValid); // TODO
     }
 
     const initForm = () => {
@@ -87,3 +86,7 @@ function createFormData(data, onValidityChange, mode: FormMode) {
 }
 
 export { createFormData };
+
+function requireStore(fieldDef: FieldDefinition) {
+    return (fieldDef.storeOptions?.endPoint) ? true : false;
+}

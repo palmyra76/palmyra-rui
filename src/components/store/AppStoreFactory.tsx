@@ -1,6 +1,7 @@
-import { ChartStore, QueryStore, DataStore, StoreFactory } from "../../../lib/main";
+import { ChartStore, QueryStore, DataStore, StoreFactory, LookupStore } from "../../../lib/main";
 import { DummyChartStore } from "./DummyChartStore";
 import { DummyGridStore } from "./DummyGridStore";
+import { DummyLookupStore } from "./DummyLookupStore";
 
 
 class AppStoreFactory implements StoreFactory<any>{
@@ -12,6 +13,9 @@ class AppStoreFactory implements StoreFactory<any>{
     }
     getChartStore(request: Record<string, string>): ChartStore<any> {
         return new DummyChartStore(request);
+    }
+    getLookupStore(request: Record<string, string>, idProperty: string | string[]): LookupStore<any> {
+        return new DummyLookupStore();
     }
 }
 
