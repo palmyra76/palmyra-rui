@@ -53,21 +53,26 @@
                             {
                                 "attribute": "time",
                                 "title": "Time",
-                                "required": true,
+                                "required": false,
                                 "type": "datetime"
                             },
                             {
                                 "attribute": "phoneNumber",
                                 "title": "Phone Number",
                                 "required": true,
-                                "type": "mobilePhone",
-                                "errorMessageType": "Invalid Phone Number"
+                                "type": "string",
+                                "validationRule": "mobilePhone",
+                                "errorMessage": {
+                                    "required": "Mandatory Field",
+                                    "rule": "Invalid Phone Number"
+                                }
                             },
                             {
                                 "attribute": "email",
                                 "title": "Email",
                                 "required": true,
-                                "type": "email",
+                                "type": "string",
+                                "validationRule": "email",
                                 "errorMessageType": "Invalid Email",
                                 "length": {
                                     "max": 64,
@@ -85,6 +90,16 @@
                                     "min": 3,
                                     "max": 256,
                                     "message": "Minimum 3 chars, and maximum of 256 chars"
+                                }
+                            },
+                            {
+                                "attribute": "file",
+                                "title": "file",
+                                "required": true,
+                                "type": "checkbox",
+                                "options": {
+                                    "upload": "Upload Files",
+                                    "download": "Download Files"
                                 }
                             }
                         ]

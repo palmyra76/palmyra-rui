@@ -31,8 +31,6 @@ const EditFormPage = () => {
     }, [layout])
 
     const onValidChange = (valid: boolean) => {
-        console.log(data);
-        console.log(valid);
         if (formRef) {
             console.log(formRef.current.getData());
         }

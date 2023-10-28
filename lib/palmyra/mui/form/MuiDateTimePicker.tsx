@@ -1,6 +1,6 @@
 import { useRef, useImperativeHandle, forwardRef } from 'react';
 import { IDateTimeDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition } from '../../form/interface';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
 import { copyMuiOptions } from './MuiUtil';
@@ -48,7 +48,7 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker {...inputProps}
+            <DateTimePicker {...inputProps}
                 format={displayFormat}
                 {...callbacks}
                 slotProps={{

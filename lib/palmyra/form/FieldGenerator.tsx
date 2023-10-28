@@ -7,6 +7,7 @@ import MuiRadioGroup from '../mui/form/MuiRadioGroup';
 import MuiSelect from '../mui/form/MuiSelect';
 import MuiDatePicker from '../mui/form/MuiDatePicker';
 import MuiDateTimePicker from '../mui/form/MuiDateTimePicker';
+import { MuiServerLookup } from '../mui';
 
 const getInvalidField = (props: FieldRequest) => {
     const { fieldDef } = props;
@@ -44,7 +45,7 @@ const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, 
         case 'checkbox':
             return getTobeImplemented();
         case 'serverlookup':
-            return getTobeImplemented();
+            return getReactField(props, MuiServerLookup);
         case 'textarea':
             return getReactField(props, MuiTextArea);
         default:

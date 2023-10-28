@@ -12,13 +12,13 @@ const NewFormPage = () => {
     const key = '/' + layout + '/';
 
     useEffect(() => {
-        fetch(key + '/editForm.json')
+        fetch(key + '/newForm.json')
             .then((response) => response.json())
-            .then((d:FlexiLayoutDefinition) => {setPageDef(d);});
+            .then((d: FlexiLayoutDefinition) => { setPageDef(d); });
     }, [layout])
 
     const onValidChange = (valid: boolean) => {
-        if(formRef)
+        if (formRef)
             console.log(formRef.current.getData());
         console.log(valid);
     }

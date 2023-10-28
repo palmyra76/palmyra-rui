@@ -42,6 +42,9 @@
                                 "lookupOptions": {
                                     "idAttribute": "email",
                                     "titleAttribute": "userName"
+                                },
+                                "storeOptions":{
+                                    "endPoint":"/api/data/user"
                                 }
                             },
                             {
@@ -98,6 +101,16 @@
                                     "min": 3,
                                     "max": 256,
                                     "message": "Minimum 3 chars, and maximum of 256 chars"
+                                }
+                            },
+                            {
+                                "attribute": "file",
+                                "title": "file",
+                                "required": true,
+                                "type": "checkbox",
+                                "options": {
+                                    "upload": "Upload Files",
+                                    "download": "Download Files"
                                 }
                             }
                         ]
