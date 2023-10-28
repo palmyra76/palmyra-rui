@@ -20,11 +20,6 @@ const EditFormPage = () => {
     }, [layout])
 
     useEffect(() => {
-        console.log('updating data', data);
-    }, [data])
-
-
-    useEffect(() => {
         setTimeout(() => {
             fetch(key + '/userData.json')
                 .then((response) => response.json())

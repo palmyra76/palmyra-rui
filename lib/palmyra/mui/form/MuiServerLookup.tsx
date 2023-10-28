@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useState, useEffect, useMemo } from 'react';
-import { FormControl, InputAdornment, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, FormHelperText, InputAdornment, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, IServerLookupDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { DeleteOutlined, Search } from '@mui/icons-material';
@@ -60,8 +60,6 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         if (selectedOption.current)
             return selectedOption.current;
 
-
-
         if (data) {
             var option = {};
             setValueByKey(idKey, option, data);
@@ -113,13 +111,13 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
 
-    return (<FormControl fullWidth >
+    return (<FormControl fullWidth error={error.status}>
         <Select
             {...inputProps}
             MenuProps={{ autoFocus: false }}
             value={data}
             onOpen={(e) => { refreshOptions() }}
-            onChange={callbacks.onChange}
+            {...callbacks}
         >
             {hasMoreRecords() ?
                 <ListSubheader>
@@ -155,12 +153,11 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
                     {renderOption(labelAccessor(option), searchText)}
                 </MenuItem>
             ))}
-
         </Select>
+        <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
     </FormControl>
     );
 });
-
 
 const renderOption = (title: string, inputValue: string) => {
     if (!title)
@@ -184,6 +181,5 @@ const renderOption = (title: string, inputValue: string) => {
         </div>
     );
 }
-
 
 export default MuiServerLookup;
