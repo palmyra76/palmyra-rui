@@ -1,7 +1,7 @@
 
 import { FlexiLayoutRendererInput } from "./Types";
 import FlexiLayoutGridRenderer from "./FlexiLayoutGridRenderer";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import { ErrorBoundary } from "../ErrorBoundary";
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
@@ -31,11 +31,24 @@ const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: Fl
     const layoutParams = props.layoutParams || {};
     const Renderer: any = getRenderer(type);
 
+    // DONOT REMOVE - starts
+    // This is required to force rerender the component on change of layout
+    // The index should be assigned to Renderer.key
+    const index = useRef(0);
+    useEffect(() => {
+        console.log(index.current);
+        if (index.current < 999999)
+            index.current++;
+        else
+            index.current = 0;
+    }, [layout]);
+    // DONOT REMOVE - ends
+
     return (
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <StoreFactoryContext.Provider value={props.storeFactory}>
                 <LayoutParamsContext.Provider value={layoutParams}>
-                    <Renderer {...props} ref={r => {
+                    <Renderer key={index.current} {...props} ref={r => {
                         if (ref)
                             ref.current = r;
                     }} ></Renderer>
