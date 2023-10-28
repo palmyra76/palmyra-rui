@@ -10,41 +10,42 @@ import { MuiServerLookup } from "../../lib/main";
 import { StoreFactoryContext } from "../../lib/palmyra/layout/flexiLayout/FlexiLayoutContext";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
+import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
 
 
 const HomePage = () => {
 
-    const [isValid, setValid] = useState(false);    
+    const [isValid, setValid] = useState(false);
     const [data, setData] = useState({});
 
     const onValidityChange = (valid: boolean): void => {
         // if (valid != undefined)
         //     setValid(valid);
 
-        setValid(!isValid);
+        setValid(valid);
 
         console.log("validity changed to " + isFormValid());
         console.log(getFormData());
     }
 
-
     useEffect(() => {
         setTimeout(() => {
             console.log('updating')
-            setData({ serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M' });
+            setData({ serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload' });
         }, 2000);
     }, [])
 
     const storeFactory = new AppStoreFactory();
 
     console.log(data);
-    var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, "new");
+    var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, 'edit');
 
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <StoreFactoryContext.Provider value={storeFactory}>
                 <MuiTextField attribute="serverHost"
                     placeHolder="welcome"
+
                     length={{ min: 3, message: "Minimum of 3 letters" }}
                     getFieldManager={getFieldManager}
                 ></MuiTextField>
@@ -70,8 +71,14 @@ const HomePage = () => {
                 ></MuiTextArea>
 
                 <MuiServerLookup attribute="service" getFieldManager={getFieldManager} required={true}
-                    lookupOptions={{ idAttribute: "id", displayAttribute:"userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
+                    lookupOptions={{ idAttribute: "id", displayAttribute: "userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
                 ></MuiServerLookup>
+
+                <MuiCheckBox attribute="file"
+                    options={{ upload: 'Upload Files', download: 'Download Files' }}
+                    required={true}
+                    getFieldManager={getFieldManager}
+                ></MuiCheckBox>
 
                 <Button disabled={!isValid} onClick={() => { console.log("submitting data", getFormData()) }}>Test Me</Button>
 

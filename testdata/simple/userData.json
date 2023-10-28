@@ -1,10 +1,7 @@
 {
     "userName": "Rolex",
     "gender": "M",
-    "file": [
-        "upload",
-        "download"
-    ],
+    "file": "upload,download",
     "dob": "2001-01-01",
     "time": "2001-10-01 12:20:20",
     "phoneNumber": "9876543210",

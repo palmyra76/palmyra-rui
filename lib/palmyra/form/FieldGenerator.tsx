@@ -8,6 +8,7 @@ import MuiSelect from '../mui/form/MuiSelect';
 import MuiDatePicker from '../mui/form/MuiDatePicker';
 import MuiDateTimePicker from '../mui/form/MuiDateTimePicker';
 import { MuiServerLookup } from '../mui';
+import MuiCheckBox from '../mui/form/MuiCheckBox';
 
 const getInvalidField = (props: FieldRequest) => {
     const { fieldDef } = props;
@@ -26,7 +27,6 @@ const getTobeImplemented = () => {
     return <div>To be Implemented</div>
 }
 
-
 const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, fieldRefs: any) => {
     const { type } = fieldDef;
     const props: FieldRequest = { fieldDef, getFieldManager };
@@ -43,7 +43,7 @@ const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, 
         case 'datetime':
             return getReactField(props, MuiDateTimePicker);
         case 'checkbox':
-            return getTobeImplemented();
+            return getReactField(props, MuiCheckBox);
         case 'serverlookup':
             return getReactField(props, MuiServerLookup);
         case 'textarea':
@@ -54,8 +54,6 @@ const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, 
 };
 
 export default getField;
-
-
 
 interface FieldRequest {
     fieldDef: FieldDefinition,
