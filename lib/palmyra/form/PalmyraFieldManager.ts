@@ -17,8 +17,18 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     eventHandler: EventHandler): IFormFieldManager {
 
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
-    const [data, setData] = useState(formatter.parse(getDefaultValue(fieldDef, value)));
+    const [v, setVal] = useState(value);
+    const [data, setData] = useState(getData(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
+
+    useEffect(() => {
+        setVal(value);
+        setData(getData(value));
+    }, [value])
+
+    function getData(value) {
+        return formatter.parse(getDefaultValue(fieldDef, value))
+    }
 
     /**
      * The doValidate flag is required, when the data validation is not required to be triggered

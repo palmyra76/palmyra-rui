@@ -9,7 +9,7 @@ import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
 import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
 import { FormMode } from "./Types";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
 
 
@@ -17,24 +17,26 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     var validationFormat: Record<string, FieldDefinition> = {};
     var validationRules = {};
     const isValid = useRef(false);
-    var formDataRef = useRef(mergeDeep({}, data));
-    var formData = formDataRef.current;
+    var formDataRef = useRef(mergeDeep({}, data));    
     const onDataValidityChange = onValidityChange;
     var dataValidRef = useRef({});
     var dataValid = dataValidRef.current;
     var defaultData = {};
 
+    useEffect(() => {
+        formDataRef.current = mergeDeep({}, data);
+    }, [data])
     const isNewForm = () => {
         return mode && mode == 'new';
     }
 
     if (isNewForm()) {
-        mergeDeep(formData, defaultData);
+        mergeDeep(formDataRef.current, defaultData);
     }
 
     const onDataChange = (data: any, validity: any) => {
         dataValid = Object.assign({}, dataValid, validity);
-        mergeDeep(formData, data);
+        mergeDeep(formDataRef.current, data);
         const _isValid = isValidForm(dataValid);
         if (_isValid != isValid.current) {
             isValid.current = _isValid;
@@ -60,8 +62,7 @@ function createFormData(data, onValidityChange, mode: FormMode) {
         const validationRule = getValidator(fieldDef);
         validationFormat[fieldDef.attribute] = fieldDef;
         validationRules[fieldDef.attribute] = validationRule;
-
-        var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, data),
+        var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
             onDataChange, validationRule, undefined);
 
         if (requireStore(fieldDef)) {
@@ -71,7 +72,7 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     }
 
     const getFormData = () => {
-        return mergeDeep({}, formData); // Return deep copied object.
+        return mergeDeep({}, formDataRef.current); // Return deep copied object.
     }
 
     const isFormValid = () => {
