@@ -17,7 +17,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     eventHandler: EventHandler): IFormFieldManager {
 
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
-    const [v, setVal] = useState(value);
+    const [setVal] = useState(value);
     const [data, setData] = useState(getData(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
 

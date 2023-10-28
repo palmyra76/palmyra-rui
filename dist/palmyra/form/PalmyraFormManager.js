@@ -1,42 +1,46 @@
 import { getValueByKey as b } from "./FormUtil.js";
 import w from "../validator/DataValidator.js";
 import { getEventListeners as y } from "./PalmyraFieldManager.js";
-import { mergeDeep as i } from "../utils/index.js";
-import { useRef as n } from "react";
-function K(s, d, l) {
-  var F = {}, f = {};
-  const m = n(!1);
-  var g = n(i({}, s)), o = g.current;
-  const u = d;
-  var D = n({}), e = D.current, f = {}, V = {};
-  (() => l && l == "new")() && i(o, V);
-  const p = (r, a) => {
-    e = Object.assign({}, e, a), i(o, r);
-    const t = c(e);
-    t != m.current && (m.current = t, u && u(t));
-  }, c = (r) => {
-    for (var a in r)
-      if (r[a] == !1)
+import { mergeDeep as n } from "../utils/index.js";
+import { useRef as l, useMemo as M } from "react";
+import { getLookupStore as h } from "./PalmyraStoreManager.js";
+function I(t, s, m) {
+  var F = {}, p = {};
+  const c = l(!1);
+  var e = l(n({}, t));
+  const f = s;
+  var D = l({}), u = D.current, V = {};
+  (() => m && m == "new")() && n(e.current, V);
+  const R = (a, o) => {
+    u = Object.assign({}, u, o), n(e.current, a);
+    const i = d(u);
+    i != c.current && (c.current = i, f && f(i));
+  }, d = (a) => {
+    for (var o in a)
+      if (a[o] == !1)
         return !1;
     return !0;
   };
-  return { getFieldManager: (r, a) => {
-    r.attribute;
-    var t = { ...r, type: a };
-    const v = w(t);
-    F[t.attribute] = t, f[t.attribute] = v;
-    var R = y(
-      t,
-      b(t.attribute, s),
-      p,
-      v,
+  return { getFieldManager: M(() => (e.current = n({}, t), (o, i) => {
+    var r = { ...o, type: i };
+    const g = w(r);
+    F[r.attribute] = r, p[r.attribute] = g;
+    var v = y(
+      r,
+      b(r.attribute, e.current),
+      R,
+      g,
       void 0
     );
-    return R;
-  }, getFormData: () => i({}, o), initForm: () => {
+    return C(r) && (v.store = h(r)), v;
+  }), [t]), getFormData: () => n({}, e.current), initForm: () => {
     console.log("Form Initialization");
-  }, isFormValid: () => c(e) };
+  }, isFormValid: () => d(u) };
+}
+function C(t) {
+  var s;
+  return !!((s = t.storeOptions) != null && s.endPoint);
 }
 export {
-  K as createFormData
+  I as createFormData
 };

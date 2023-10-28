@@ -1,28 +1,30 @@
 import { jsx as r } from "react/jsx-runtime";
-import a from "./FlexiLayoutGridRenderer.js";
-import { forwardRef as f } from "react";
-import { ErrorBoundary as l } from "../ErrorBoundary.js";
-import { StoreFactoryContext as s, LayoutParamsContext as y } from "./FlexiLayoutContext.js";
-import i from "./FlexiLayoutFormRenderer.js";
-const x = (o) => {
-  switch (o) {
+import i from "./FlexiLayoutGridRenderer.js";
+import { forwardRef as l, useRef as s, useEffect as y } from "react";
+import { ErrorBoundary as x } from "../ErrorBoundary.js";
+import { StoreFactoryContext as R, LayoutParamsContext as F } from "./FlexiLayoutContext.js";
+import d from "./FlexiLayoutFormRenderer.js";
+const g = (n) => {
+  switch (n) {
     case "grid":
-      return a;
+      return i;
     case "form":
-      return console.info("type is provided as 'form', defaulting to formEdit mode"), i;
+      return console.info("type is provided as 'form', defaulting to formEdit mode"), d;
     case "formEdit":
     case "formNew":
     case "formView":
-      return i;
+      return d;
     default:
-      return a;
+      return i;
   }
-}, v = f(function(e, t) {
-  const { layout: n } = e, d = e.mode ? e.mode : n.type ? n.type : "grid", m = e.layoutParams || {}, c = x(d);
-  return /* @__PURE__ */ r(l, { fallback: /* @__PURE__ */ r("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ r(s.Provider, { value: e.storeFactory, children: /* @__PURE__ */ r(y.Provider, { value: m, children: /* @__PURE__ */ r(c, { ...e, ref: (u) => {
-    t && (t.current = u);
-  } }) }) }) });
+}, p = l(function(e, a) {
+  const { layout: o } = e, c = e.mode ? e.mode : o.type ? o.type : "grid", u = e.layoutParams || {}, m = g(c), t = s(0);
+  return y(() => {
+    t.current < 999999 ? t.current++ : t.current = 0;
+  }, [o]), /* @__PURE__ */ r(x, { fallback: /* @__PURE__ */ r("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ r(R.Provider, { value: e.storeFactory, children: /* @__PURE__ */ r(F.Provider, { value: u, children: /* @__PURE__ */ r(m, { ...e, ref: (f) => {
+    a && (a.current = f);
+  } }, t.current) }) }) });
 });
 export {
-  v as default
+  p as default
 };
