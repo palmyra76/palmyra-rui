@@ -9,7 +9,7 @@ import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
 import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
 import { FormMode } from "./Types";
-import { useEffect, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
 
 
@@ -17,15 +17,13 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     var validationFormat: Record<string, FieldDefinition> = {};
     var validationRules = {};
     const isValid = useRef(false);
-    var formDataRef = useRef(mergeDeep({}, data));    
+
+    var formDataRef = useRef(mergeDeep({}, data));
     const onDataValidityChange = onValidityChange;
     var dataValidRef = useRef({});
     var dataValid = dataValidRef.current;
     var defaultData = {};
 
-    useEffect(() => {
-        formDataRef.current = mergeDeep({}, data);
-    }, [data])
     const isNewForm = () => {
         return mode && mode == 'new';
     }
@@ -55,21 +53,26 @@ function createFormData(data, onValidityChange, mode: FormMode) {
         return true;
     }
 
-    const getFieldManager = (field: AttributeDefinition, type: FieldType): IFormFieldManager => {
-        // @ts-ignore
-        var fieldDef: FieldDefinition = { ...field, type }
+    const getFieldManager = useMemo(() => {
+        formDataRef.current = mergeDeep({}, data);
+        const generate = (field: AttributeDefinition, type: FieldType): IFormFieldManager => {
+            // @ts-ignore
+            var fieldDef: FieldDefinition = { ...field, type }
+            const validationRule = getValidator(fieldDef);
+            validationFormat[fieldDef.attribute] = fieldDef;
+            validationRules[fieldDef.attribute] = validationRule;
+            var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
+                onDataChange, validationRule, undefined);
 
-        const validationRule = getValidator(fieldDef);
-        validationFormat[fieldDef.attribute] = fieldDef;
-        validationRules[fieldDef.attribute] = validationRule;
-        var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
-            onDataChange, validationRule, undefined);
-
-        if (requireStore(fieldDef)) {
-            result.store = getLookupStore(fieldDef);
+            if (requireStore(fieldDef)) {
+                result.store = getLookupStore(fieldDef);
+            }
+            return result;
         }
-        return result;
-    }
+        return generate;
+    }, [data])
+
+
 
     const getFormData = () => {
         return mergeDeep({}, formDataRef.current); // Return deep copied object.

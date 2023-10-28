@@ -36,7 +36,6 @@ const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: Fl
     // The index should be assigned to Renderer.key
     const index = useRef(0);
     useEffect(() => {
-        console.log(index.current);
         if (index.current < 999999)
             index.current++;
         else

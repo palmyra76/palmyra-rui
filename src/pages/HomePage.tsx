@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { createFormData } from "../../lib/palmyra/form/PalmyraFormManager";
 import MuiTextField from "../../lib/palmyra/mui/form/MuiTextField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
 import MuiSelect from "../../lib/palmyra/mui/form/MuiSelect";
 import MuiRadioGroup from "../../lib/palmyra/mui/form/MuiRadioGroup";
@@ -14,18 +14,30 @@ import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 
 const HomePage = () => {
 
-    const [isValid, setValid] = useState(false);
-    const [data, setData] = useState({ port: '2022', dob: '2023-10-19', gender: 'M' });
+    const [isValid, setValid] = useState(false);    
+    const [data, setData] = useState({});
 
     const onValidityChange = (valid: boolean): void => {
-        if (valid != undefined)
-            setValid(valid);
+        // if (valid != undefined)
+        //     setValid(valid);
+
+        setValid(!isValid);
+
         console.log("validity changed to " + isFormValid());
         console.log(getFormData());
     }
 
+
+    useEffect(() => {
+        setTimeout(() => {
+            console.log('updating')
+            setData({ serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M' });
+        }, 2000);
+    }, [])
+
     const storeFactory = new AppStoreFactory();
 
+    console.log(data);
     var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, "new");
 
     return (<>
@@ -62,6 +74,8 @@ const HomePage = () => {
                 ></MuiServerLookup>
 
                 <Button disabled={!isValid} onClick={() => { console.log("submitting data", getFormData()) }}>Test Me</Button>
+
+                <Button onClick={() => { onValidityChange(false) }}>Toggle Me</Button>
             </StoreFactoryContext.Provider>
         </ErrorBoundary>
     </>

@@ -13,26 +13,31 @@ const EditFormPage = () => {
     const formRef = useRef<any>(null);
 
     useEffect(() => {
+        setData({});
         fetch(key + '/editForm.json')
             .then((response) => response.json())
             .then((d) => setPageDef(d));
-
-        // setTimeout(() => {
-        //     console.log('setting data');
-        //     setData({
-        //         "userName": "raja",
-        //         "gender": 'M'
-        //     })
-        // }, 3000);
-
-        fetch(key + '/userData.json')
-            .then((response) => response.json())
-            .then((d) => setData(d));
     }, [layout])
+
+    useEffect(() => {
+        console.log('updating data', data);
+    }, [data])
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            fetch(key + '/userData.json')
+                .then((response) => response.json())
+                .then((d) => {
+                    setData(d);
+                });
+        }, 2000);
+    }, [pageDef])
+
 
     const onValidChange = (valid: boolean) => {
         if (formRef) {
-            console.log(formRef.current.getData());
+            console.log("validity changed to " + valid, formRef.current.getData());
         }
     }
 
