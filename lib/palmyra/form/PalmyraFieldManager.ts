@@ -8,7 +8,9 @@ import { IEventListeners, IFormFieldManager } from "./interface";
 
 
 const getDefaultValue = (fieldDef: FieldDefinition, value: InputType): any => {
-    return value || '';
+    if(value == undefined)
+        return fieldDef.defaultValue;    
+    return value;
 }
 
 function getEventListeners<T>(fieldDef: FieldDefinition,

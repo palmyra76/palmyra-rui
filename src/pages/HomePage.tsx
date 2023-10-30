@@ -11,6 +11,9 @@ import { StoreFactoryContext } from "../../lib/palmyra/layout/flexiLayout/FlexiL
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
+import MuiSwitch from "../../lib/palmyra/mui/form/MuiSwitch";
+import MuiFieldContainer from "../../lib/palmyra/mui/layout/MuiFieldContainer";
+import SectionContainer from "../../lib/palmyra/layout/container/SectionContainer";
 
 
 const HomePage = () => {
@@ -30,8 +33,7 @@ const HomePage = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            console.log('updating')
-            setData({ serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload' });
+            setData({ serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload', service: 1, switch: 1});
         }, 2000);
     }, [])
 
@@ -43,42 +45,52 @@ const HomePage = () => {
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <StoreFactoryContext.Provider value={storeFactory}>
-                <MuiTextField attribute="serverHost"
-                    placeHolder="welcome"
+                <SectionContainer type="form" title='Welcome'>
+                    <MuiTextField attribute="serverHost"
+                        placeHolder="welcome"
 
-                    length={{ min: 3, message: "Minimum of 3 letters" }}
+                        length={{ min: 3, message: "Minimum of 3 letters" }}
+                        getFieldManager={getFieldManager}
+                    ></MuiTextField>
+                    <MuiFieldContainer title="Gender">
+                        <MuiSelect attribute="gender"
+                            options={{ M: 'Male', F: 'Female' }}
+                            getFieldManager={getFieldManager}
+                        ></MuiSelect>
+                    </MuiFieldContainer>
+                    <MuiRadioGroup attribute="gender"
+                        options={{ M: 'Male', F: 'Female' }}
+                        getFieldManager={getFieldManager}
+                    ></MuiRadioGroup>
+                </SectionContainer>
+
+                <SectionContainer type="form" title='Hello World'>
+                    <MuiDatePicker attribute="dob"
+                        getFieldManager={getFieldManager}
+                    ></MuiDatePicker>
+
+                    <MuiTextArea attribute="port"
+                        length={{ min: 3, message: "Minimum of 3 letters" }}
+                        required={true}
+                        getFieldManager={getFieldManager}
+                    ></MuiTextArea>
+
+                    <MuiServerLookup attribute="service" getFieldManager={getFieldManager} required={true}
+                        lookupOptions={{ idAttribute: "id", displayAttribute: "userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
+                    ></MuiServerLookup>
+
+                    <MuiCheckBox attribute="file"
+                        options={{ upload: 'Upload Files', download: 'Download Files' }}
+                        required={true}
+                        getFieldManager={getFieldManager}
+                    ></MuiCheckBox>
+                </SectionContainer>
+
+                <MuiSwitch attribute="switch"
+                    required={true} defaultValue={1}
+                    options={{ 'Enable': 1, 'Disable': 0 }}
                     getFieldManager={getFieldManager}
-                ></MuiTextField>
-
-                <MuiSelect attribute="gender"
-                    options={{ M: 'Male', F: 'Female' }}
-                    getFieldManager={getFieldManager}
-                ></MuiSelect>
-
-                <MuiRadioGroup attribute="gender"
-                    options={{ M: 'Male', F: 'Female' }}
-                    getFieldManager={getFieldManager}
-                ></MuiRadioGroup>
-
-                <MuiDatePicker attribute="dob"
-                    getFieldManager={getFieldManager}
-                ></MuiDatePicker>
-
-                <MuiTextArea attribute="port"
-                    length={{ min: 3, message: "Minimum of 3 letters" }}
-                    required={true}
-                    getFieldManager={getFieldManager}
-                ></MuiTextArea>
-
-                <MuiServerLookup attribute="service" getFieldManager={getFieldManager} required={true}
-                    lookupOptions={{ idAttribute: "id", displayAttribute: "userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
-                ></MuiServerLookup>
-
-                <MuiCheckBox attribute="file"
-                    options={{ upload: 'Upload Files', download: 'Download Files' }}
-                    required={true}
-                    getFieldManager={getFieldManager}
-                ></MuiCheckBox>
+                ></MuiSwitch>
 
                 <Button disabled={!isValid} onClick={() => { console.log("submitting data", getFormData()) }}>Test Me</Button>
 
