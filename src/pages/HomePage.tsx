@@ -95,7 +95,7 @@ const HomePage = () => {
                     options={{ 'Enable': 1, 'Disable': 0 }}
                     getFieldManager={getFieldManager}
                 ></MuiSwitch>
-
+                <br />
                 <Button disabled={!isValid} onClick={() => { console.log("submitting data", getFormData()) }}>Test Me</Button>
 
                 <Button onClick={() => { onValidityChange(false) }}>Toggle Me</Button>

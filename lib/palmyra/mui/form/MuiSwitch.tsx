@@ -65,7 +65,7 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition & IGetF
     }
 
     return (
-        <FormControl fullWidth error={error.status} {...inputProps}>
+        <FormControl error={error.status} {...inputProps}>
             <FormControlLabel value={getValue()}
                 control={<Switch inputRef={inputRef} checked={isOn} onClick={toggleStatus} />}
                 label={getLabel()}

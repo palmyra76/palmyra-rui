@@ -101,6 +101,15 @@
                                     "upload": "Upload Files",
                                     "download": "Download Files"
                                 }
+                            },
+                            {
+                                "attribute": "status",
+                                "title": "Status",
+                                "type": "switch",
+                                "options": {
+                                    "Enable": 1,
+                                    "Disable": 0
+                                }
                             }
                         ]
                     }
