@@ -36,7 +36,7 @@ const HomePage = () => {
             setData({
                 serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload',
                 userName: 'titan',
-                service: 1, switch: 1
+                service: 1, switch: 0
             });
         }, 2000);
     }, [])
@@ -91,7 +91,7 @@ const HomePage = () => {
                 </SectionContainer>
 
                 <MuiSwitch attribute="switch"
-                    required={true} defaultValue={1}
+                    defaultValue={1}
                     options={{ 'Enable': 1, 'Disable': 0 }}
                     getFieldManager={getFieldManager}
                 ></MuiSwitch>

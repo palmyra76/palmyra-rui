@@ -9,6 +9,7 @@ import MuiDatePicker from '../mui/form/MuiDatePicker';
 import MuiDateTimePicker from '../mui/form/MuiDateTimePicker';
 import { MuiServerLookup } from '../mui';
 import MuiCheckBox from '../mui/form/MuiCheckBox';
+import MuiSwitch from '../mui/form/MuiSwitch';
 
 const getInvalidField = (props: FieldRequest) => {
     const { fieldDef } = props;
@@ -48,6 +49,8 @@ const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, 
             return getReactField(props, MuiServerLookup);
         case 'textarea':
             return getReactField(props, MuiTextArea);
+        case 'switch':
+            return getReactField(props, MuiSwitch);
         default:
             return getInvalidField(props);
     }

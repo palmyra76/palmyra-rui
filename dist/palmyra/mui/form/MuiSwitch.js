@@ -1,83 +1,55 @@
-import { jsxs as w, jsx as i } from "react/jsx-runtime";
-import { forwardRef as M, useMemo as x, useState as S, useRef as j, useEffect as h, useImperativeHandle as C } from "react";
-import { FormControl as F, FormControlLabel as L, Switch as R, FormHelperText as p } from "@mui/material";
-import { copyMuiOptions as A } from "./MuiUtil.js";
-const H = (c, e) => {
-  if (c) {
-    var a = Object.keys(c);
-    if (a.length == 2) {
-      const n = Object.values[0];
-      var l = 0, t = 1;
-      return (n == "false" || n == "0" || n == 0 || n == "unchecked") && (l = 1, t = 0), {
-        checked: {
-          title: a[l],
-          value: c[a[l]]
-        },
-        unchecked: {
-          title: a[t],
-          value: c[a[t]]
-        }
-      };
-    } else
-      console.error("invalid options, must contain two keys - sample - "), console.error({ active: 1, inactive: 0 });
-  } else
-    return {
-      checked: {
-        title: e,
-        value: 1
-      },
-      unchecked: {
-        title: e,
-        value: 0
-      }
-    };
-}, P = M(function(e, a) {
-  const { getFieldManager: l } = e, t = l(e, "switch"), n = t.error, g = t.eventListeners, u = x(
-    () => H(e.options, e.name),
+import { jsxs as b, jsx as u } from "react/jsx-runtime";
+import { forwardRef as w, useMemo as x, useState as O, useRef as S, useEffect as f, useImperativeHandle as p } from "react";
+import { FormControl as C, FormControlLabel as F, Switch as L, FormHelperText as y } from "@mui/material";
+import { copyMuiOptions as R } from "./MuiUtil.js";
+import j from "./MuiSwitchOption.js";
+const T = w(function(e, m) {
+  const { getFieldManager: h } = e, r = h(e, "switch"), a = r.error, g = r.eventListeners, o = x(
+    () => j(e.options, e.name),
     [e.options, e.name]
-  ), d = (r, V) => {
-    var m = u.checked.value;
-    return r != null && r != null ? m == r : m == V;
-  }, [s, f] = S(d(t.data, e.defaultValue)), o = j(null);
-  h(() => {
-    f(d(t.data, e.defaultValue));
-  }, [t.data]), C(a, () => ({
+  ), c = (t, M) => {
+    var d = o.checked.value;
+    return t != null && t != null ? d == t : d == M;
+  }, [n, i] = O(c(r.data, e.defaultValue)), s = S(null);
+  f(() => {
+    i(c(r.data, e.defaultValue));
+  }, [r.data]), p(m, () => ({
     focus() {
-      o.current.focus();
+      s.current.focus();
     },
     isValid() {
-      return !n.status;
+      return !a.status;
     },
-    assignAttribute(r) {
-      o.current.assignAttribute(r);
+    assignAttribute(t) {
+      s.current.assignAttribute(t);
     }
   }), []);
-  var k = A(e, t.data);
-  const b = () => {
-    f(!s);
+  var k = R(e, r.data);
+  const v = () => {
+    i(!n);
   };
-  h(() => {
-    g.onValueChange(v());
-  }, [s]);
-  const O = () => {
-    var r = s ? "checked" : "unchecked";
-    return u[r].title;
-  }, v = () => {
-    var r = s ? "checked" : "unchecked";
-    return u[r].value;
+  f(() => {
+    g.onValueChange(l());
+  }, [n]);
+  const V = () => {
+    var t = n ? "checked" : "unchecked";
+    return o[t].title;
+  }, l = () => {
+    var t = n ? "checked" : "unchecked";
+    return o[t].value;
   };
-  return /* @__PURE__ */ w(F, { fullWidth: !0, error: n.status, ...k, children: [
-    /* @__PURE__ */ i(
-      L,
+  return /* @__PURE__ */ b(C, { fullWidth: !0, error: a.status, ...k, children: [
+    /* @__PURE__ */ u(
+      F,
       {
-        value: v(),
-        control: /* @__PURE__ */ i(R, { inputRef: o, checked: s, onClick: b }),
-        label: O()
+        value: l(),
+        control: /* @__PURE__ */ u(L, { inputRef: s, checked: n, onClick: v }),
+        label: V()
       }
     ),
-    /* @__PURE__ */ i(p, { className: "form-error-text", children: n.message })
+    /* @__PURE__ */ u(y, { className: "form-error-text", children: a.message })
   ] });
 });
 export {
-  P as default
+  T as default
 };

@@ -1,13 +1,14 @@
-import { jsxs as c, jsx as n } from "react/jsx-runtime";
-import s from "../mui/form/MuiTextField.js";
-import u from "../mui/form/MuiTextArea.js";
+import { jsxs as c, jsx as s } from "react/jsx-runtime";
+import u from "../mui/form/MuiTextField.js";
+import n from "../mui/form/MuiTextArea.js";
 import m from "../mui/form/MuiRadioGroup.js";
 import d from "../mui/form/MuiSelect.js";
 import f from "../mui/form/MuiDatePicker.js";
 import l from "../mui/form/MuiDateTimePicker.js";
 import p from "../mui/form/MuiServerLookup.js";
 import M from "../mui/form/MuiCheckBox.js";
-const g = (t) => {
+import g from "../mui/form/MuiSwitch.js";
+const x = (t) => {
   const { fieldDef: i } = t;
   return /* @__PURE__ */ c("div", { children: [
     "invalid type " + i.type,
@@ -15,7 +16,7 @@ const g = (t) => {
   ] });
 }, r = (t, i) => {
   const o = t.fieldDef;
-  return /* @__PURE__ */ n(
+  return /* @__PURE__ */ s(
     i,
     {
       getFieldManager: t.getFieldManager,
@@ -26,7 +27,7 @@ const g = (t) => {
   const { type: a } = t, e = { fieldDef: t, getFieldManager: i };
   switch (a) {
     case "string":
-      return r(e, s);
+      return r(e, u);
     case "radio":
       return r(e, m);
     case "select":
@@ -40,9 +41,11 @@ const g = (t) => {
     case "serverlookup":
       return r(e, p);
     case "textarea":
-      return r(e, u);
+      return r(e, n);
+    case "switch":
+      return r(e, g);
     default:
-      return g(e);
+      return x(e);
   }
 };
 export {
