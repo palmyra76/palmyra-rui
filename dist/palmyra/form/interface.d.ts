@@ -35,6 +35,9 @@ interface TextValidation extends abstractValidation {
 }
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation {
 }
+interface ISwitchDefinition extends AttributeDefinition {
+    options: Record<string | number, string | number>;
+}
 interface ISelectDefinition extends AttributeDefinition {
     options: Record<any, any>;
 }
@@ -99,5 +102,5 @@ interface IGetFieldManagerDefinition {
     getFieldManager: IGetFieldManager;
 }
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, IGetFieldManagerDefinition, AttributeDefinition, FieldType };
-export type { IServerLookupDefinition };
+export type { IServerLookupDefinition, ISwitchDefinition };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager };

@@ -1,39 +1,39 @@
 import { useState as g, useEffect as h } from "react";
 import { delay as A } from "../utils/index.js";
 import { getFormatConverter as I } from "../utils/converter/FormatterFactory.js";
-const L = (o, a) => a || "";
-function J(o, a, r, n, e) {
-  const l = I(o), [_, y] = g(a), [u, V] = g(p(a)), [c, i] = g({ status: !1, message: "" });
+const L = (s, o) => o ?? s.defaultValue;
+function K(s, o, r, n, e) {
+  const l = I(s), [_, y] = g(o), [u, V] = g(d(o)), [c, i] = g({ status: !1, message: "" });
   h(() => {
-    y(a), V(p(a));
-  }, [a]);
-  function p(t) {
-    return l.parse(L(o, t));
+    y(o), V(d(o));
+  }, [o]);
+  function d(t) {
+    return l.parse(L(s, t));
   }
-  const F = (t, s) => {
-    V(t || ""), s && A(() => {
+  const p = (t, a) => {
+    V(t || ""), a && A(() => {
       if (E(t), r) {
         const k = l.format(t);
-        var S = o.attribute;
+        var S = s.attribute;
         const x = f(t);
         r({ [S]: k }, { [S]: x.status });
       }
     });
   }, f = (t) => {
     if (n && n instanceof Function) {
-      const s = n(t);
-      if (!s.status)
-        return s;
+      const a = n(t);
+      if (!a.status)
+        return a;
     }
     return { status: !0, message: "" };
-  }, d = (t) => {
+  }, F = (t) => {
     m({
       status: !t.status,
       message: t.message
     });
   }, E = (t) => {
-    const s = f(t);
-    s.status && e != null && e.asyncValid ? (b(), e.asyncValid(t, B, m)) : d(s);
+    const a = f(t);
+    a.status && e != null && e.asyncValid ? (b(), e.asyncValid(t, B, m)) : F(a);
   }, B = (t) => {
     console.log(t);
   }, C = () => {
@@ -56,22 +56,22 @@ function J(o, a, r, n, e) {
   }, onFocus: () => {
     C();
   }, onValueChange: (t) => {
-    F(t, !0);
+    p(t, !0);
   } };
   return h(() => {
-    var t = o.attribute;
-    const s = f(u);
-    r({}, { [t]: s.status });
-  }, []), { data: u, setData: F, error: c, eventListeners: M };
+    var t = s.attribute;
+    const a = f(u);
+    r({}, { [t]: a.status });
+  }, []), { data: u, setData: p, error: c, eventListeners: M };
 }
-function K(o) {
+function N(s) {
   return {
-    onBlur: o.onBlur,
-    onFocus: o.onFocus,
-    onChange: (a) => o.onValueChange(a.target.value)
+    onBlur: s.onBlur,
+    onFocus: s.onFocus,
+    onChange: (o) => s.onValueChange(o.target.value)
   };
 }
 export {
-  K as decorateListenersForInput,
-  J as getEventListeners
+  N as decorateListenersForInput,
+  K as getEventListeners
 };
