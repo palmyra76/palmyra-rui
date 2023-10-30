@@ -33,7 +33,11 @@ const HomePage = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            setData({ serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload', service: 1, switch: 1});
+            setData({
+                serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload',
+                userName: 'titan',
+                service: 1, switch: 1
+            });
         }, 2000);
     }, [])
 
@@ -76,7 +80,7 @@ const HomePage = () => {
                     ></MuiTextArea>
 
                     <MuiServerLookup attribute="service" getFieldManager={getFieldManager} required={true}
-                        lookupOptions={{ idAttribute: "id", displayAttribute: "userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
+                        lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
                     ></MuiServerLookup>
 
                     <MuiCheckBox attribute="file"

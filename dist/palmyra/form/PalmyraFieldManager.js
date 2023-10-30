@@ -1,7 +1,7 @@
 import { useState as g, useEffect as h } from "react";
 import { delay as A } from "../utils/index.js";
 import { getFormatConverter as I } from "../utils/converter/FormatterFactory.js";
-const L = (s, o) => o ?? s.defaultValue;
+const L = (s, o) => o ?? (s.defaultValue || "");
 function K(s, o, r, n, e) {
   const l = I(s), [_, y] = g(o), [u, V] = g(d(o)), [c, i] = g({ status: !1, message: "" });
   h(() => {

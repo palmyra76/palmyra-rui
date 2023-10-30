@@ -1,82 +1,82 @@
-import { jsxs as O, jsx as t, Fragment as j } from "react/jsx-runtime";
-import { forwardRef as w, useRef as k, useState as b, useImperativeHandle as E, useMemo as H, useEffect as z } from "react";
-import { FormControl as N, Select as G, ListSubheader as J, TextField as Q, InputAdornment as U, MenuItem as X, FormHelperText as Y } from "@mui/material";
-import { copyMuiOptions as Z } from "./MuiUtil.js";
-import { Search as _, DeleteOutlined as $ } from "@mui/icons-material";
-import { delay as ee } from "../../utils/index.js";
-import { getValueByKey as V, setValueByKey as K } from "../../form/FormUtil.js";
-import { m as te, p as re } from "../../../index-4ec89611.js";
-import { hasDot as L } from "../../utils/StringUtil.js";
-const pe = w(function(o, p) {
-  const { getFieldManager: h } = o, n = h(o, "serverlookup"), m = o.store || n.store, u = o.lookupOptions || {}, c = u.idAttribute || "id", s = u.titleAttribute || u.displayAttribute || "name", T = u.searchAttribute || s, l = k(null), [g, A] = b([]), [B] = b(n.displayValue), [i, C] = b(""), v = n.error, d = n.data, y = n.eventListeners, M = k(null);
-  E(p, () => ({
+import { jsxs as y, jsx as t, Fragment as E } from "react/jsx-runtime";
+import { forwardRef as H, useRef as S, useState as O, useImperativeHandle as z, useEffect as k, useMemo as N } from "react";
+import { FormControl as G, Select as J, ListSubheader as Q, TextField as U, InputAdornment as X, MenuItem as Y, FormHelperText as Z } from "@mui/material";
+import { copyMuiOptions as _ } from "./MuiUtil.js";
+import { Search as $, DeleteOutlined as ee } from "@mui/icons-material";
+import { delay as te } from "../../utils/index.js";
+import { getValueByKey as K, setValueByKey as L } from "../../form/FormUtil.js";
+import { m as re, p as ne } from "../../../index-4ec89611.js";
+import { hasDot as T } from "../../utils/StringUtil.js";
+const he = H(function(o, d) {
+  const { getFieldManager: f } = o, r = f(o, "serverlookup"), p = o.store || r.store, h = o.lookupOptions || {}, u = h.idAttribute || "id", s = h.titleAttribute || "name", B = h.searchAttribute || s, M = S(null), [m, b] = O([]), [C, D] = O(r.displayValue), [i, I] = O(""), g = r.error, c = r.data, v = r.eventListeners, x = S(null);
+  z(d, () => ({
     focus() {
-      M.current.focus();
+      x.current.focus();
     },
     isValid() {
-      return !v.status;
+      return !g.status;
     },
     assignAttribute(e) {
-      M.current.assignAttribute(e);
+      x.current.assignAttribute(e);
     }
   }), []);
-  const f = L(c) ? (e) => V(c, e) : (e) => e[c], I = L(s) ? (e) => V(s, e) : (e) => e[s];
-  H(() => {
-    var e = P();
-    e && (A([e]), l.current = e);
-  }, [B]);
-  function P() {
-    if (l.current)
-      return l.current;
-    if (d) {
+  const l = T(u) ? (e) => K(u, e) : (e) => e[u], P = T(s) ? (e) => K(s, e) : (e) => e[s];
+  k(() => {
+    D(r.displayValue);
+  }, [r.displayValue]), N(() => {
+    var e = R();
+    e && (b([e]), M.current = e);
+  }, [C]);
+  function R() {
+    if (c) {
       var e = {};
-      K(c, e, d);
-      const r = n.displayValue || d;
-      return K(s, e, r), e;
+      L(u, e, c);
+      const n = r.displayValue || c;
+      return L(s, e, n), e;
     }
   }
-  function x(e) {
-    const r = l.current;
-    e && r && !R(e, f(r)) && e.unshift(r), A(e);
+  function A(e) {
+    const n = M.current;
+    e && n && !W(e, l(n)) && e.unshift(n), b(e);
   }
-  function R(e, r) {
-    return e.find((S) => {
-      if (f(S) === r)
-        return S;
+  function W(e, n) {
+    return e.find((V) => {
+      if (l(V) === n)
+        return V;
     });
   }
-  z(() => {
-    ee(F);
+  k(() => {
+    te(F);
   }, [i]);
-  const W = () => g.length > 10;
+  const q = () => m.length > 10;
   function F() {
     var e = {};
     if (i.length > 0)
-      e.filter = {}, e.filter[T] = i;
-    else if (g.length > 1)
+      e.filter = {}, e.filter[B] = i;
+    else if (m.length > 1)
       return;
-    m.query(e).then((r) => x(r.result)).catch(() => x([]));
+    p.query(e).then((n) => A(n.result)).catch(() => A([]));
   }
-  var q = Z(o, n.data), D = {
-    onBlur: y.onBlur,
-    onFocus: y.onFocus,
-    onChange: (e) => y.onValueChange(e.target.value)
+  var j = _(o, r.data), w = {
+    onBlur: v.onBlur,
+    onFocus: v.onFocus,
+    onChange: (e) => v.onValueChange(e.target.value)
   };
-  return /* @__PURE__ */ O(N, { fullWidth: !0, error: v.status, children: [
-    /* @__PURE__ */ O(
-      G,
+  return /* @__PURE__ */ y(G, { fullWidth: !0, error: g.status, children: [
+    /* @__PURE__ */ y(
+      J,
       {
-        ...q,
+        ...j,
         MenuProps: { autoFocus: !1 },
-        value: d,
+        value: c,
         onOpen: (e) => {
           F();
         },
-        ...D,
+        ...w,
         children: [
-          W() ? /* @__PURE__ */ O(J, { children: [
+          q() ? /* @__PURE__ */ y(Q, { children: [
             /* @__PURE__ */ t("div", { children: /* @__PURE__ */ t(
-              Q,
+              U,
               {
                 size: "small",
                 value: i,
@@ -84,37 +84,37 @@ const pe = w(function(o, p) {
                 placeholder: "Type to search...",
                 fullWidth: !0,
                 InputProps: {
-                  startAdornment: /* @__PURE__ */ t(U, { position: "start", children: /* @__PURE__ */ t(_, {}) })
+                  startAdornment: /* @__PURE__ */ t(X, { position: "start", children: /* @__PURE__ */ t($, {}) })
                 },
-                onChange: (e) => C(e.target.value),
+                onChange: (e) => I(e.target.value),
                 onKeyDown: (e) => {
                   e.key !== "Escape" && e.stopPropagation();
                 }
               }
             ) }),
-            o.required ? /* @__PURE__ */ t(j, {}) : /* @__PURE__ */ t("div", { children: /* @__PURE__ */ t("span", { children: /* @__PURE__ */ t($, {}) }) })
+            o.required ? /* @__PURE__ */ t(E, {}) : /* @__PURE__ */ t("div", { children: /* @__PURE__ */ t("span", { children: /* @__PURE__ */ t(ee, {}) }) })
           ] }) : /* @__PURE__ */ t("div", {}),
-          g.map((e, r) => /* @__PURE__ */ t(X, { value: f(e), children: ne(I(e), i) }, f(e) || r))
+          m.map((e, n) => /* @__PURE__ */ t(Y, { value: l(e), children: oe(P(e), i) }, l(e) || n))
         ]
       }
     ),
-    /* @__PURE__ */ t(Y, { className: "form-error-text", children: v.message })
+    /* @__PURE__ */ t(Z, { className: "form-error-text", children: g.message })
   ] });
-}), ne = (a, o) => {
+}), oe = (a, o) => {
   if (!a)
     return;
-  const p = te(a, o, { insideWords: !0 }), h = re(a, p);
-  return /* @__PURE__ */ t("div", { children: h.map((n, m) => /* @__PURE__ */ t(
+  const d = re(a, o, { insideWords: !0 }), f = ne(a, d);
+  return /* @__PURE__ */ t("div", { children: f.map((r, p) => /* @__PURE__ */ t(
     "span",
     {
       style: {
-        fontWeight: n.highlight ? 700 : 400
+        fontWeight: r.highlight ? 700 : 400
       },
-      children: n.text
+      children: r.text
     },
-    m
+    p
   )) });
 };
 export {
-  pe as default
+  he as default
 };

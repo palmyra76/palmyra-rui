@@ -83,8 +83,7 @@ interface IFormFieldSelect {
 interface IFormFieldServerLookup {
     idAttribute?: string,
     searchAttribute?: string,
-    titleAttribute?: string,
-    displayAttribute?: string
+    titleAttribute?: string
 }
 
 interface IFormFieldError {

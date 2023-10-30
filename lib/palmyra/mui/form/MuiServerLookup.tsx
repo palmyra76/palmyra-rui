@@ -18,11 +18,12 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const store: LookupStore<any> = props.store || fieldManager.store;
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
-    const labelKey = lookupOptions.titleAttribute || lookupOptions.displayAttribute || 'name';
+    const labelKey = lookupOptions.titleAttribute || 'name';
     const searchKey = lookupOptions.searchAttribute || labelKey;
     const selectedOption = useRef(null);
+
     const [options, setOptions] = useState<Array<any>>([]);
-    const [dv] = useState(fieldManager.displayValue)
+    const [dv, setDv] = useState(fieldManager.displayValue)
     const [searchText, setSearchText] = useState('');
 
     const error: IFormFieldError = fieldManager.error;
@@ -48,6 +49,10 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data[idKey]);
     const labelAccessor = hasDot(labelKey) ? (data: any) => (getValueByKey(labelKey, data)) : (data: any) => (data[labelKey]);
 
+    useEffect(() => {
+        setDv(fieldManager.displayValue);
+    }, [fieldManager.displayValue])
+
     useMemo(() => {
         var option: any = getSelectedOption();
         if (option) {
@@ -57,9 +62,9 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     }, [dv]);
 
     function getSelectedOption(): any {
-        if (selectedOption.current)
-            return selectedOption.current;
-
+        // if (selectedOption.current)
+        //     return selectedOption.current;
+        
         if (data) {
             var option = {};
             setValueByKey(idKey, option, data);

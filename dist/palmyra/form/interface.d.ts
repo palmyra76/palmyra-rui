@@ -67,7 +67,6 @@ interface IFormFieldServerLookup {
     idAttribute?: string;
     searchAttribute?: string;
     titleAttribute?: string;
-    displayAttribute?: string;
 }
 interface IFormFieldError {
     status: boolean;
