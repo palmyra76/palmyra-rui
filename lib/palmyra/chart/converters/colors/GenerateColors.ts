@@ -24,7 +24,6 @@ function generateColors(dataLength) {
 
     var colorScale = interpolateRainbow;
     var { colorStart, colorEnd } = colorRangeInfo;
-    console.log(colorStart);
     var colorRange = colorEnd - colorStart;
     var intervalSize = colorRange / dataLength;
     var i, colorPoint;
@@ -37,5 +36,6 @@ function generateColors(dataLength) {
 
     return colorArray;
 }
+
 export { getRandomNumber };
 export default generateColors;

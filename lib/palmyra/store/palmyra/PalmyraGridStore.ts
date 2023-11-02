@@ -1,4 +1,4 @@
-import { QueryStore, GetRequest, QueryRequest, StringFormat, QueryResponse } from "../../../../lib/main";
+import { QueryStore, GetRequest, QueryRequest, StringFormat, QueryResponse, QueryParams } from "../../../../lib/main";
 import axios from 'axios';
 
 class PalmyraGridStore implements QueryStore<any>{
@@ -9,9 +9,11 @@ class PalmyraGridStore implements QueryStore<any>{
         this.target = request.target;
     }
 
-    query(request: QueryRequest): Promise<QueryResponse<any>> {        
+    query(queryParam: QueryRequest): Promise<QueryResponse<any>> {
         var url: any = StringFormat(this.target, {});
-        return axios.get(url)
+        const urlSortParams = (convertQueryParams(queryParam));
+        const params = { params: urlSortParams };
+        return axios.get(url, params)
             .then(response => { return response.data });;
     }
 
@@ -29,3 +31,14 @@ class PalmyraGridStore implements QueryStore<any>{
 }
 
 export { PalmyraGridStore };
+
+function convertQueryParams(queryParams: QueryParams): any {
+    const orderBy = Object.keys(queryParams?.sortOrder || {}).map(field => {
+        const order = queryParams.sortOrder[field] === "asc" ? "+" : "-";
+        return order + field;
+    });
+
+    const _f = queryParams.filter || {};
+
+    return { ..._f, _orderBy: orderBy.length ? orderBy.join(',') : [] };
+}

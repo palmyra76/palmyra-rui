@@ -383,9 +383,7 @@ function ye(e) {
     colorStart: r,
     colorEnd: t,
     useEndAsStart: !1
-  }, a = me, { colorStart: i, colorEnd: s } = n;
-  console.log(i);
-  var l = s - i, x = l / e, m, u, j = [];
+  }, a = me, { colorStart: i, colorEnd: s } = n, l = s - i, x = l / e, m, u, j = [];
   for (m = 0; m < e; m++)
     u = we(m, x, n), j.push(a(u));
   return j;

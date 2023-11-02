@@ -17,6 +17,7 @@ interface FormLayout extends Renderable {
 
 interface TableLayout extends Renderable, Positionable, storeBacked, Actionable {
     pagination?: number[],
+    quickSearch:string,
     fields: ColumnDefinition[]
 }
 

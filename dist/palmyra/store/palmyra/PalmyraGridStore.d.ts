@@ -3,7 +3,7 @@ declare class PalmyraGridStore implements QueryStore<any> {
     request: Record<string, string>;
     target: string;
     constructor(request: Record<string, string>);
-    query(request: QueryRequest): Promise<QueryResponse<any>>;
+    query(queryParam: QueryRequest): Promise<QueryResponse<any>>;
     get(request: GetRequest): Promise<any>;
     getIdentity(o: any): void;
     getIdProperty(): string;

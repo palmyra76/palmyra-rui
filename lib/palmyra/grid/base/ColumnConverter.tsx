@@ -26,6 +26,7 @@ function convert(columnDef: ColumnDefinition) {
     let cell = getFormatFn(columnDef);
     return columnHelper.accessor(getColumnId(columnDef), {
         id: getColumnId(columnDef),
+        enableSorting: columnDef.sortable,        
         ...headerFn, ...cell
     });
 }

@@ -8,20 +8,43 @@
                     "name": "",
                     "type": "grid",
                     "tableLayout": {
-                        "storeOptions":{
-                            "endPoint" : "/userManagement"
+                        "storeOptions": {
+                            "endPoint": "/userManagement"
                         },
                         "pagination": [
-                            10,
+                            5,
                             15,
                             25
                         ],
+                        "quickSearch" : "loginName",
                         "fields": [
                             {
                                 "attribute": "loginName",
+                                "title": "Login Name",
+                                "required": true,
+                                "type": "string",
+                                "sortable": true
+                            },
+                            {
+                                "attribute": "jurGroup",
+                                "title": "Jur Group",
+                                "required": true,
+                                "type": "string",
+                                "sortable": false
+                            },
+                            {
+                                "attribute": "name",
                                 "title": "Name",
                                 "required": true,
-                                "type": "string"
+                                "type": "string",
+                                "sortable": false
+                            },
+                            {
+                                "attribute": "firstName",
+                                "title": "First Name",
+                                "required": true,
+                                "type": "string",
+                                "sortable": false
                             }
                         ]
                     }
@@ -30,14 +53,9 @@
                     "name": "asdfasdfsadf",
                     "type": "grid",
                     "tableLayout": {
-                        "storeOptions":{
-                            "endPoint" : "/userManagement"
+                        "storeOptions": {
+                            "endPoint": "/userManagement"
                         },
-                        "pagination": [
-                            10,
-                            15,
-                            25
-                        ],
                         "fields": [
                             {
                                 "attribute": "loginName",

@@ -17,6 +17,9 @@ import {
 function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn }) {
   const table = useReactTable({
     data: rowData,
+    manualSorting: true,
+    manualFiltering: true,
+    manualPagination: true,
     columns: columnDefs,
     getCoreRowModel: getCoreRowModel(),
   })
@@ -52,7 +55,7 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
                   return (
                     header.isPlaceholder ? null : (
                       <ColumnHeader header={header}
-                        key = {header.id}
+                        key={header.id}
                         onSortChange={onSort}
                         onHeaderStyle={onHeaderStyle}
                       >

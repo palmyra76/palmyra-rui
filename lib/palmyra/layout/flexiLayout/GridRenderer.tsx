@@ -38,7 +38,9 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
 
     return (
         <div>
-            <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}></GridX>
+            <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
+                quickSearch={tableLayout.quickSearch}
+            ></GridX>
         </div>
     );
 });

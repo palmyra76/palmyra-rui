@@ -9,6 +9,9 @@ interface CriteriaOptions {
 interface QueryRequest extends Pagination, CriteriaOptions {
     options?: QueryOptions;
 }
+interface QueryParams extends Pagination, CriteriaOptions {
+    sortOrder?: QueryOptions;
+}
 interface QueryResponse<T> {
     result: T[];
     offset?: number;
@@ -35,5 +38,5 @@ interface ResponseHandler<T> {
 interface Tree<T extends Tree<T>> {
     children?: T[];
 }
-export type { Pagination, CriteriaOptions, QueryRequest, QueryResponse, GetRequest, QueryOptions, Tree };
+export type { Pagination, CriteriaOptions, QueryRequest, QueryResponse, GetRequest, QueryOptions, Tree, QueryParams };
 export type { QueryResponseHandler, ResponseHandler, ErrorResponse };

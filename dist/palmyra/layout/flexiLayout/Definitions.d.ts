@@ -12,6 +12,7 @@ interface FormLayout extends Renderable {
 }
 interface TableLayout extends Renderable, Positionable, storeBacked, Actionable {
     pagination?: number[];
+    quickSearch: string;
     fields: ColumnDefinition[];
 }
 interface ChartLayout extends Titleable, Positionable, Renderable, storeBacked, transformable {

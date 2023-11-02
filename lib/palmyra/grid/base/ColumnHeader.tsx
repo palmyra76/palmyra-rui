@@ -6,9 +6,9 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
 
     const [sortOrder, setSortOrder] = useState('');
     const column= header.id;
-
+    const  sortDisabled = !header.column.columnDef.enableSorting;
     const handleSortColumn = () => {
-        if (onSortChange === undefined)
+        if (onSortChange === undefined || sortDisabled)
             return;
 
         var order = sortOrder;

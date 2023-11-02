@@ -4,7 +4,7 @@ import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
-import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined } from '@mui/icons-material';
+import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt } from '@mui/icons-material';
 import { QueryStore } from '../store';
 import { ColumnDefinition } from './Types';
 
@@ -33,6 +33,7 @@ function GridX(props: GridXOptions) {
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [filterdropdownOpen, setFilterdropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
 
   const pageSize = props.pageSize ? props.pageSize : 15;
@@ -60,6 +61,7 @@ function GridX(props: GridXOptions) {
 
   const refreshData = () => {
     const params = { page, filter, sortOrder };
+
     if (store) {
       try {
         store.query(params).then((d) => {
@@ -94,6 +96,14 @@ function GridX(props: GridXOptions) {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const toggleFilterDropdown = () => {
+    setFilterdropdownOpen(!filterdropdownOpen);
+  };
+
+  const handleDropdownClick = (event: any) => {
+    event.stopPropagation();
+  };
+
   const handleRowDensityChange = () => {
     if (selectedDensity === 'compact') {
       return { padding: '7px' };
@@ -116,8 +126,12 @@ function GridX(props: GridXOptions) {
 
   const handleFilter = (event) => {
     const val = event.target.value;
-    const key = quickSearch
-    setFilter({ [key]: val });
+    const key = quickSearch;
+    if(val)
+      setFilter({ [key]: val });
+    else{
+      setFilter({});
+    }
   };
 
   const handleRowClick = (rowData) => {
@@ -141,87 +155,110 @@ function GridX(props: GridXOptions) {
   const width = 200;
   const visiblePagination = !!pageSize;
   const visibleFilter = !!quickSearch;
+
   return (
     <div>
-      {null != data ? data.length == 0 ? (
-        <EmptyChildContainer />
-      ) : (
-        <div>
-          {children}
-          <div className='grid-header'>
-            <div className='grid-header-filter'>
-              {visibleFilter && (
-                <TextField
-                  sx={{ width: width }}
-                  type="text"
-                  value={filter.quickSearch}
-                  onChange={handleFilter}
-                  style={{ border: "0px" }}
-                  size="small"
-                  placeholder="Name"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <AiOutlineSearch className="card-filter-icon" />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+      <div>
+        {children}
+        <div className='grid-header'>
+          <div className='grid-header-filter'>
+            {visibleFilter && (
+              <TextField
+                sx={{ width: width }}
+                type="text"
+                value={filter.quickSearch}
+                onChange={handleFilter}
+                style={{ border: "0px" }}
+                size="small"
+                placeholder="Name"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <AiOutlineSearch className="card-filter-icon" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            )}
+          </div>
+          <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
+            <div className='grid-header-button' onClick={toggleDropdown}>
+              <Tooltip title='Density' placement='top'>
+                <Button className='grid-btn' disableRipple>
+                  <Menu className='grid-button-icon' />
+                </Button>
+              </Tooltip>
+              {dropdownOpen && (
+                <div className="density-dropdown-content">
+                  <ul>
+                    <li onClick={() => handleDensityChange('standard')}>
+                      <Menu className='density-icon' />
+                      <span className='drodown-content-text'>Standard</span>
+                    </li>
+                    <li onClick={() => handleDensityChange('compact')}>
+                      <DensitySmall className='density-icon' />
+                      <span className='drodown-content-text'>Compact</span>
+                    </li>
+                    <li onClick={() => handleDensityChange('comfortable')}>
+                      <DensityLarge className='density-icon' />
+                      <span className='drodown-content-text'>Comfortable</span>
+                    </li>
+                  </ul>
+                </div>
               )}
             </div>
-            <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
-              <div className='grid-header-button' onClick={toggleDropdown}>
-                <Tooltip title='Density' placement='top'>
+          </ClickAwayListener>
+          <ClickAwayListener onClickAway={() => { setFilterdropdownOpen(false) }}>
+            <div onClick={handleDropdownClick}>
+              <div className='grid-header-button' onClick={toggleFilterDropdown}>
+                <Tooltip title='Filter' placement='top'>
                   <Button className='grid-btn' disableRipple>
-                    <Menu className='grid-button-icon' />
+                    <FilterAlt className='grid-button-icon' />
                   </Button>
                 </Tooltip>
-                {dropdownOpen && (
-                  <div className="density-dropdown-content">
-                    <ul>
-                      <li onClick={() => handleDensityChange('standard')}>
-                        <Menu className='density-icon' />
-                        <span className='drodown-content-text'>Standard</span>
-                      </li>
-                      <li onClick={() => handleDensityChange('compact')}>
-                        <DensitySmall className='density-icon' />
-                        <span className='drodown-content-text'>Compact</span>
-                      </li>
-                      <li onClick={() => handleDensityChange('comfortable')}>
-                        <DensityLarge className='density-icon' />
-                        <span className='drodown-content-text'>Comfortable</span>
-                      </li>
-                    </ul>
+                {filterdropdownOpen && (
+                  <div className="filter-dropdown-content">
+                    {columns.map((column, index) => (
+                      <div key={index}>
+                        <TextField placeholder={column.title} />
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
-            </ClickAwayListener>
-            <div className='grid-header-button' onClick={onExportClick}>
-              <Tooltip title='Export' placement='top'>
-                <Button className='grid-btn' disableRipple>
-                  <FileDownloadOutlined className='grid-button-icon' />
-                </Button>
-              </Tooltip>
             </div>
-            <div className='grid-filter'>
-              {visiblePagination && (
-                <TablePagination
-                  component="div"
-                  count={totalData}
-                  page={page.pageNo}
-                  onPageChange={nextPage}
-                  rowsPerPage={page.pageSize}
-                  rowsPerPageOptions={pageSizeOptions || []}
-                  onRowsPerPageChange={handleRowsPerPageChange}
-                />
-              )}
-            </div>
+          </ClickAwayListener>
+          <div className='grid-header-button' onClick={onExportClick}>
+            <Tooltip title='Export' placement='top'>
+              <Button className='grid-btn' disableRipple>
+                <FileDownloadOutlined className='grid-button-icon' />
+              </Button>
+            </Tooltip>
           </div>
+          <div className='grid-filter'>
+            {visiblePagination && (
+              <TablePagination
+                component="div"
+                count={totalData}
+                page={page.pageNo}
+                onPageChange={nextPage}
+                rowsPerPage={page.pageSize}
+                rowsPerPageOptions={pageSizeOptions || []}
+                onRowsPerPageChange={handleRowsPerPageChange}
+              />
+            )}
+          </div>
+        </div>
+
+        {null != data ? data.length == 0 ? (
+          <EmptyChildContainer />
+        ) : (
           <TableX columnDefs={columnDefs}
             rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
             onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
           />
-        </div>) : (<div></div>)}
+        ) : (<div></div>)}
+      </div>
     </div>
   )
 }
