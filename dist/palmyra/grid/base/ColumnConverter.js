@@ -1,31 +1,37 @@
 import { jsx as i } from "react/jsx-runtime";
 import { createColumnHelper as l } from "@tanstack/react-table";
 import { getFormatFn as d } from "./CellFormatter.js";
-const o = l();
-function g(e) {
-  return e.map((r) => p(r));
+import { getValueByKey as s } from "../../form/FormUtil.js";
+import { hasDot as p } from "../../utils/StringUtil.js";
+const n = l();
+function f(e) {
+  return e.map((r) => u(r));
 }
-function p(e) {
+function u(e) {
   var r = e.cellRenderer;
-  let t = s(e);
+  let t = c(e);
   if (r)
-    return o.display({
-      id: n(e),
+    return n.display({
+      id: a(e),
       ...t,
       cell: r
     });
-  let a = d(e);
-  return o.accessor(n(e), {
-    id: n(e),
+  let o = d(e);
+  return n.accessor(m(e), {
+    id: a(e),
     enableSorting: e.sortable,
     ...t,
-    ...a
+    ...o
   });
 }
-function n(e) {
+function m(e) {
+  var r = e.attribute ? e.attribute : e.name;
+  return p(r) ? (t) => s(r, t) : r;
+}
+function a(e) {
   return e.name ? e.name : e.attribute;
 }
-function s(e) {
+function c(e) {
   let r = e.title;
   return {
     header: () => /* @__PURE__ */ i("span", { children: r }),
@@ -33,5 +39,5 @@ function s(e) {
   };
 }
 export {
-  g as generateColumns
+  f as generateColumns
 };
