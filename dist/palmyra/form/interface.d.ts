@@ -1,9 +1,9 @@
-import { QueryStore } from "../store";
+import { LookupStore } from "../store";
 /**
  * This definitions will cater to the Form Definition format
  *
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup";
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch";
 type InputType = string | number;
 interface RangeValidation<T> {
     is?: T;
@@ -35,6 +35,9 @@ interface TextValidation extends abstractValidation {
 }
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation {
 }
+interface ISwitchDefinition extends AttributeDefinition {
+    options: Record<string | number, string | number>;
+}
 interface ISelectDefinition extends AttributeDefinition {
     options: Record<any, any>;
 }
@@ -43,11 +46,18 @@ interface IDateTimeDefinition extends AttributeDefinition {
     serverPattern?: string;
     displayPattern?: string;
 }
+interface IServerLookupDefinition extends AttributeDefinition {
+    lookupOptions: IFormFieldServerLookup;
+    store?: LookupStore<any>;
+    storeOptions?: {
+        endPoint: string;
+    };
+}
 interface IEventListeners {
     onBlur: () => void;
     onFocus: () => void;
     onValueChange: (data: any) => void;
-    onSearch?: (data: string) => void;
+    onSearch?: (searchKey: string, limt?: number, offset?: number) => void;
 }
 interface IFormFieldSelect {
     options?: Record<any, any>;
@@ -57,7 +67,6 @@ interface IFormFieldServerLookup {
     idAttribute?: string;
     searchAttribute?: string;
     titleAttribute?: string;
-    store?: QueryStore<any>;
 }
 interface IFormFieldError {
     status: boolean;
@@ -78,6 +87,8 @@ interface IFormFieldManager {
     setData: Function;
     error: any;
     eventListeners: IEventListeners;
+    displayValue?: any;
+    store?: LookupStore<any>;
 }
 interface IFieldDefinition extends AttributeDefinition, LookupOptions {
     type: string;
@@ -90,4 +101,5 @@ interface IGetFieldManagerDefinition {
     getFieldManager: IGetFieldManager;
 }
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, IGetFieldManagerDefinition, AttributeDefinition, FieldType };
+export type { IServerLookupDefinition, ISwitchDefinition };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager };

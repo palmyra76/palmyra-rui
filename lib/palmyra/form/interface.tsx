@@ -6,7 +6,7 @@ import { LookupStore } from "../store"
  */
 type FieldType = "string" | "number"
     | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup";
+    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch";
 
 type InputType = string | number;
 
@@ -44,7 +44,10 @@ interface TextValidation extends abstractValidation {
 }
 
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation {
+}
 
+interface ISwitchDefinition extends AttributeDefinition {
+    options: Record<string | number, string | number>
 }
 
 interface ISelectDefinition extends AttributeDefinition {
@@ -80,8 +83,7 @@ interface IFormFieldSelect {
 interface IFormFieldServerLookup {
     idAttribute?: string,
     searchAttribute?: string,
-    titleAttribute?: string,
-    displayAttribute?: string
+    titleAttribute?: string
 }
 
 interface IFormFieldError {
@@ -124,5 +126,5 @@ interface IGetFieldManagerDefinition {
 }
 
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, IGetFieldManagerDefinition, AttributeDefinition, FieldType }
-export type { IServerLookupDefinition }
+export type { IServerLookupDefinition, ISwitchDefinition }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager }

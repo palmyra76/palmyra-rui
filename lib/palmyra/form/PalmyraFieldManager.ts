@@ -8,7 +8,9 @@ import { IEventListeners, IFormFieldManager } from "./interface";
 
 
 const getDefaultValue = (fieldDef: FieldDefinition, value: InputType): any => {
-    return value || '';
+    if(value == undefined)
+        return fieldDef.defaultValue || '';
+    return value;
 }
 
 function getEventListeners<T>(fieldDef: FieldDefinition,
@@ -17,7 +19,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     eventHandler: EventHandler): IFormFieldManager {
 
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
-    const [v, setVal] = useState(value);
+    const [_v, setVal] = useState(value);
     const [data, setData] = useState(getData(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
 

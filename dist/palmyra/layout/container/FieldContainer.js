@@ -1,5 +1,5 @@
-import "../../../assets/FieldContainer.css";
-import { jsx as s, jsxs as o } from "react/jsx-runtime";
+import "../../../assets/MuiFieldContainer.css";
+import { jsxs as o, jsx as s } from "react/jsx-runtime";
 const t = (l, r) => {
   var a = "palmyra-form-field-container";
   if (l && l.columns)
@@ -24,11 +24,11 @@ var i = (l, r) => {
   } : { labelClass: a, fieldClass: e };
 };
 const u = ({ label: l, children: r, options: a, field: e }) => {
-  const n = t(a, e), { labelClass: c, fieldClass: m } = i(a, e);
-  return /* @__PURE__ */ s("form", { noValidate: !0, children: /* @__PURE__ */ o("div", { className: n, children: [
-    /* @__PURE__ */ s("div", { className: c, children: l }),
-    /* @__PURE__ */ s("div", { className: m, children: r })
-  ] }) });
+  const c = t(a, e), { labelClass: m, fieldClass: n } = i(a, e);
+  return /* @__PURE__ */ o("div", { className: c, children: [
+    /* @__PURE__ */ s("div", { className: m, children: l }),
+    /* @__PURE__ */ s("div", { className: n, children: r })
+  ] });
 };
 export {
   u as default

@@ -47,7 +47,6 @@ const FieldContainer = ({ label, children, options, field }: FieldContainerProps
     const { labelClass, fieldClass } = calcFieldLabelClass(options, field);
 
     return (
-        <form noValidate>
             <div className={containerClass}>
                 <div className={labelClass}>
                     {label}
@@ -56,7 +55,6 @@ const FieldContainer = ({ label, children, options, field }: FieldContainerProps
                     {children}
                 </div>
             </div>
-        </form>
     )
 }
 

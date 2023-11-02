@@ -28,7 +28,7 @@ interface LookupOptions {
 
 interface AttributeDefinition extends storeBacked {
     attribute: string,
-    displayAttribute?: string, // To be used for select, links etc
+    displayAttribute?: string, // To be used for links etc
     type: FieldType,
     serverPattern?: string,
     displayPattern?: string, // To be used for Date, DateTime etc.,

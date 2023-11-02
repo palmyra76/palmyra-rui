@@ -42,6 +42,7 @@ interface Actionable {
 }
 interface storeBacked {
     storeOptions?: {
+        endPoint?: string;
         urlFormat?: string;
         urlFormatPut?: string;
         urlFormatPost?: string;

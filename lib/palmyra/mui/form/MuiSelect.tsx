@@ -4,7 +4,6 @@ import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDe
 import { copyMuiOptions } from './MuiUtil';
 
 
-
 const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition & IGetFieldManagerDefinition, ref) {
     const { options, getFieldManager } = props;
 

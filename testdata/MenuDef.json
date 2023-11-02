@@ -6,43 +6,48 @@
             "name": "Home"
         },
         {
+            "title": "Grid Layout",
+            "name": "gridLayout",
+            "path": "/demo/simple/grid"
+        },
+        {
             "name": "Simple Layout Demo",
             "children": [
                 {
                     "title": "Grid Layout",
                     "name": "gridLayout",
-                    "path": "/demo/simple/grid"                    
+                    "path": "/demo/simple/grid"
                 },
                 {
                     "title": "Dashboard Layout",
                     "name": "dashboardLayout",
-                    "path": "/demo/simple/dashboard"                    
+                    "path": "/demo/simple/dashboard"
                 },
                 {
                     "title": "Chart Layout",
                     "name": "chart",
-                    "path": "/demo/simple/chart"                    
+                    "path": "/demo/simple/chart"
                 },
                 {
                     "title": "Card Layout",
                     "name": "cardLayout",
-                    "path": "/demo/simple/card"                    
+                    "path": "/demo/simple/card"
                 },
                 {
                     "title": "Edit Form Layout",
                     "name": "editFormLayout",
-                    "path": "/demo/simple/formEdit"                    
+                    "path": "/demo/simple/formEdit"
                 },
                 {
                     "title": "View Form Layout",
                     "name": "viewFormLayout",
-                    "path": "/demo/simple/formView"                    
+                    "path": "/demo/simple/formView"
                 },
                 {
                     "title": "New Form Layout",
                     "name": "newFormLayout",
-                    "path": "/demo/simple/formNew"                    
-                }                
+                    "path": "/demo/simple/formNew"
+                }
             ]
         },
         {
@@ -51,18 +56,18 @@
                 {
                     "title": "Edit Form Layout",
                     "name": "editFormLayout",
-                    "path": "/demo/section/formEdit"                    
+                    "path": "/demo/section/formEdit"
                 },
                 {
                     "title": "View Form Layout",
                     "name": "viewFormLayout",
-                    "path": "/demo/section/formView"                    
+                    "path": "/demo/section/formView"
                 },
                 {
                     "title": "New Form Layout",
                     "name": "newFormLayout",
-                    "path": "/demo/section/formNew"                    
-                }                
+                    "path": "/demo/section/formNew"
+                }
             ]
         }
     ]

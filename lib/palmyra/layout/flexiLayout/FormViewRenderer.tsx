@@ -26,7 +26,7 @@ const FormViewRenderer = (props: ViewFormRendererInput) => {
     var options = { columns };
 
     return (
-        <div className="palmyra-form-field-container-wrapper">
+        <form className="palmyra-form-field-container-wrapper" noValidate>
             {
                 formLayout.fields.map((field, index) => (
                     <FieldContainer label={field.title} field={field}
@@ -36,7 +36,7 @@ const FormViewRenderer = (props: ViewFormRendererInput) => {
                     </FieldContainer>
                 ))
             }
-        </div>
+        </form>
     );
 };
 

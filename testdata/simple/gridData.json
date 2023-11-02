@@ -4,6 +4,7 @@
             "id":1,
             "userName": "Rolex",
             "gender":"M",
+            "dob" : "21-01-2121",
             "email":"rolex@gmail.com"
         },
         {

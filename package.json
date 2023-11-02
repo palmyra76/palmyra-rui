@@ -31,7 +31,7 @@
     "@mui/material": "^5.13.5",
     "@mui/x-date-pickers": "^6.10.2",
     "@tanstack/react-table": "^8.10.0",
-    "axios": "^1.4.0",
+    "axios": "^1.6.0",
     "chart.js": "^4.4.0",
     "dayjs": "^1.11.9",
     "font-awesome": "^4.7.0",

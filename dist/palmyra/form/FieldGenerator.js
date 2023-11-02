@@ -1,48 +1,53 @@
-import { jsxs as s, jsx as a } from "react/jsx-runtime";
-import d from "../mui/form/MuiTextField.js";
-import u from "../mui/form/MuiTextArea.js";
-import l from "../mui/form/MuiRadioGroup.js";
-import m from "../mui/form/MuiSelect.js";
+import { jsxs as c, jsx as s } from "react/jsx-runtime";
+import u from "../mui/form/MuiTextField.js";
+import n from "../mui/form/MuiTextArea.js";
+import m from "../mui/form/MuiRadioGroup.js";
+import d from "../mui/form/MuiSelect.js";
 import f from "../mui/form/MuiDatePicker.js";
-import p from "../mui/form/MuiDateTimePicker.js";
-const g = (e) => {
-  const { fieldDef: i } = e;
-  return /* @__PURE__ */ s("div", { children: [
+import l from "../mui/form/MuiDateTimePicker.js";
+import p from "../mui/form/MuiServerLookup.js";
+import M from "../mui/form/MuiCheckBox.js";
+import g from "../mui/form/MuiSwitch.js";
+const x = (t) => {
+  const { fieldDef: i } = t;
+  return /* @__PURE__ */ c("div", { children: [
     "invalid type " + i.type,
     " "
   ] });
-}, r = (e, i) => {
-  const o = e.fieldDef;
-  return /* @__PURE__ */ a(
+}, r = (t, i) => {
+  const o = t.fieldDef;
+  return /* @__PURE__ */ s(
     i,
     {
-      getFieldManager: e.getFieldManager,
+      getFieldManager: t.getFieldManager,
       ...o
     }
   );
-}, n = () => /* @__PURE__ */ a("div", { children: "To be Implemented" }), D = (e, i, o) => {
-  const { type: c } = e, t = { fieldDef: e, getFieldManager: i };
-  switch (c) {
+}, j = (t, i, o) => {
+  const { type: a } = t, e = { fieldDef: t, getFieldManager: i };
+  switch (a) {
     case "string":
-      return r(t, d);
+      return r(e, u);
     case "radio":
-      return r(t, l);
+      return r(e, m);
     case "select":
-      return r(t, m);
+      return r(e, d);
     case "date":
-      return r(t, f);
+      return r(e, f);
     case "datetime":
-      return r(t, p);
+      return r(e, l);
     case "checkbox":
-      return n();
+      return r(e, M);
     case "serverlookup":
-      return n();
+      return r(e, p);
     case "textarea":
-      return r(t, u);
+      return r(e, n);
+    case "switch":
+      return r(e, g);
     default:
-      return g(t);
+      return x(e);
   }
 };
 export {
-  D as default
+  j as default
 };

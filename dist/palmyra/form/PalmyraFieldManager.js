@@ -1,70 +1,77 @@
-import { useState as d, useEffect as M } from "react";
-import { delay as k } from "../utils/index.js";
-import { getFormatConverter as x } from "../utils/converter/FormatterFactory.js";
-const A = (o, a) => a || "";
-function z(o, a, r, u, e) {
-  const m = x(o), [n, E] = d(m.parse(A(o, a))), [c, i] = d({ status: !1, message: "" }), g = (t, s) => {
-    E(t || ""), s && k(() => {
-      if (p(t), r) {
-        const C = m.format(t);
-        var F = o.attribute;
-        const b = f(t);
-        r({ [F]: C }, { [F]: b.status });
+import { useState as g, useEffect as h } from "react";
+import { delay as A } from "../utils/index.js";
+import { getFormatConverter as I } from "../utils/converter/FormatterFactory.js";
+const L = (s, o) => o ?? (s.defaultValue || "");
+function K(s, o, r, n, e) {
+  const l = I(s), [_, y] = g(o), [u, V] = g(d(o)), [c, i] = g({ status: !1, message: "" });
+  h(() => {
+    y(o), V(d(o));
+  }, [o]);
+  function d(t) {
+    return l.parse(L(s, t));
+  }
+  const p = (t, a) => {
+    V(t || ""), a && A(() => {
+      if (E(t), r) {
+        const k = l.format(t);
+        var S = s.attribute;
+        const x = f(t);
+        r({ [S]: k }, { [S]: x.status });
       }
     });
   }, f = (t) => {
-    if (u && u instanceof Function) {
-      const s = u(t);
-      if (!s.status)
-        return s;
+    if (n && n instanceof Function) {
+      const a = n(t);
+      if (!a.status)
+        return a;
     }
     return { status: !0, message: "" };
-  }, V = (t) => {
-    l({
+  }, F = (t) => {
+    m({
       status: !t.status,
       message: t.message
     });
-  }, p = (t) => {
-    const s = f(t);
-    s.status && e != null && e.asyncValid ? (y(), e.asyncValid(t, S, l)) : V(s);
-  }, S = (t) => {
+  }, E = (t) => {
+    const a = f(t);
+    a.status && e != null && e.asyncValid ? (b(), e.asyncValid(t, B, m)) : F(a);
+  }, B = (t) => {
     console.log(t);
-  }, h = () => {
+  }, C = () => {
     c.message != "" && i({
       status: c.status,
       message: ""
     });
-  }, y = () => {
-    l({
+  }, b = () => {
+    m({
       status: !1,
       message: ""
     });
-  }, l = (t) => {
+  }, m = (t) => {
     t.status ? i(t) : i({
       status: !1,
       message: ""
     });
-  }, B = { onBlur: () => {
-    p(n);
+  }, M = { onBlur: () => {
+    E(u);
   }, onFocus: () => {
-    h();
+    C();
   }, onValueChange: (t) => {
-    g(t, !0);
+    p(t, !0);
   } };
-  return M(() => {
-    var t = o.attribute;
-    const s = f(n);
-    r({}, { [t]: s.status });
-  }, []), { data: n, setData: g, error: c, eventListeners: B };
+  return h(() => {
+    var t = s.attribute;
+    const a = f(u);
+    r({}, { [t]: a.status });
+  }, []), { data: u, setData: p, error: c, eventListeners: M };
 }
-function G(o) {
+function N(s) {
   return {
-    onBlur: o.onBlur,
-    onFocus: o.onFocus,
-    onChange: (a) => o.onValueChange(a.target.value)
+    onBlur: s.onBlur,
+    onFocus: s.onFocus,
+    onChange: (o) => s.onValueChange(o.target.value)
   };
 }
 export {
-  G as decorateListenersForInput,
-  z as getEventListeners
+  N as decorateListenersForInput,
+  K as getEventListeners
 };

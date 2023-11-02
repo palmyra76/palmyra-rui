@@ -27,7 +27,7 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
     var options = { columns };
 
     return (
-        <div className="palmyra-form-field-container-wrapper">
+        <form className="palmyra-form-field-container-wrapper" noValidate>
             {
                 formLayout.fields.map((field, index) => (
                     <FieldContainer key={field.attribute} index={index}
@@ -36,7 +36,7 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
                     </FieldContainer>
                 ))
             }
-        </div>
+        </form>
     );
 });
 

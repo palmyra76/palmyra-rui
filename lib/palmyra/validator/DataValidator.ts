@@ -17,7 +17,7 @@ const validate = (format: FieldDefinition) => {
     let validators = [];
     let required = format.required;
 
-    if (format.required == true) {
+    if (format.required == true && isRequiredSupported(format)) {
         var message = format.errorMessage?.required || 'This field is mandatory';
         validators.push(constructMethod(isNotEmpty, message));
     }
@@ -200,3 +200,14 @@ function constructMethod(func, message) {
 export default validate;
 
 export { getValidators };
+
+function isRequiredSupported(format: FieldDefinition) {
+    switch (format.type) {
+        case 'switch':
+            return false;
+    
+        default:
+            return true;
+    }
+    return true;
+}

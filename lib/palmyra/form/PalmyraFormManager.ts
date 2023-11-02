@@ -67,6 +67,12 @@ function createFormData(data, onValidityChange, mode: FormMode) {
             if (requireStore(fieldDef)) {
                 result.store = getLookupStore(fieldDef);
             }
+
+            if (fieldDef.type == 'serverlookup') {
+                var titleAttribute = fieldDef.lookupOptions?.titleAttribute || fieldDef.lookupOptions?.idAttribute
+                result.displayValue = getValueByKey(titleAttribute, data);
+            }
+
             return result;
         }
         return generate;

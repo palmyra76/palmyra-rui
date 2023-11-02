@@ -1,6 +1,6 @@
 import { FormData } from "../../form/Definitions";
 import { IGetFieldManager } from "../../form/interface";
-import { ChartStore, QueryStore, DataStore } from "../../store";
+import { ChartStore, QueryStore, DataStore, LookupStore } from "../../store";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 interface Parent {
     children?: any;
@@ -22,6 +22,7 @@ interface StoreFactory<T> {
     getGridStore(request: Record<string, string>, idProperty?: string | string[]): QueryStore<T>;
     getFormStore(request: Record<string, string>, idProperty?: string | string[]): DataStore<T>;
     getChartStore(request: Record<string, string>): ChartStore<T>;
+    getLookupStore(request: Record<string, string>, idProperty: string | string[]): LookupStore<T>;
 }
 interface FlexiLayoutRendererInput<T> {
     layoutParams: LayoutParams;

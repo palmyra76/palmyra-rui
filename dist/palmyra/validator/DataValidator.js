@@ -4502,7 +4502,7 @@ function Oi(t, e) {
   e.default = fn, t.exports = e.default, t.exports.default = e.default;
 })(st, st.exports);
 var Bi = st.exports;
-const re = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), Gi = (t) => {
+const re = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), ki = (t) => {
   let e = {};
   for (var l in t) {
     var s = t[l];
@@ -4513,7 +4513,7 @@ const re = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
 }, Fi = (t) => {
   var n, o;
   let e = [], l = t.required;
-  if (t.required == !0) {
+  if (t.required == !0 && Ui(t)) {
     var s = ((n = t.errorMessage) == null ? void 0 : n.required) || "This field is mandatory";
     e.push(He(Hi, s));
   }
@@ -4614,7 +4614,15 @@ const re = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
 function He(t, e) {
   return (l) => t.call(null, l) ? { status: !0, message: "" } : { status: !1, message: e };
 }
+function Ui(t) {
+  switch (t.type) {
+    case "switch":
+      return !1;
+    default:
+      return !0;
+  }
+}
 export {
   Fi as default,
-  Gi as getValidators
+  ki as getValidators
 };

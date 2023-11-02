@@ -34,13 +34,12 @@ const setValueByKey = (fieldName: string, data: any, value: InputType): void => 
     return setValueByKey(fieldKey, data[objKey], value);
 }
 
-
 const getDisplayValue = (field: AttributeDefinition, data: FormData) => {
     const value: any = getValueByKey(field.attribute, data);
     return formatValue(field, value);
 }
 
-const formatValue = (field: AttributeDefinition, value:any) => {
+const formatValue = (field: AttributeDefinition, value: any) => {
     const type = field.type || 'string';
     switch (type) {
         case 'date':
@@ -48,12 +47,14 @@ const formatValue = (field: AttributeDefinition, value:any) => {
         case 'radio':
         case 'select':
         case 'checkbox':
+        case 'switch':
             return getOptionsValue(value, field);
         case 'datetime':
             return getDateTimeValue(value, field);
         case 'serverlookup':
             return getServerLookUp(value, field);
         case 'textarea':
+            return getTextArea(value, field);
         default:
             return getTextValue(value, field);
     }
@@ -70,6 +71,10 @@ const getDateTimeValue = (value: InputType, field: AttributeDefinition) => {
 }
 
 const getTextValue = (value: InputType, field: AttributeDefinition) => {
+    return value;
+}
+
+const getTextArea = (value: InputType, field: AttributeDefinition) => {
     return value;
 }
 
