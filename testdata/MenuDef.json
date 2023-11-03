@@ -8,14 +8,15 @@
         {
             "title": "Grid Layout",
             "name": "gridLayout",
-            "path": "/demo/simple/grid"
+            "path": "/demo/simple/grid",
+            "icon" : "grid"
         },
         {
             "name": "Simple Layout Demo",
             "children": [
                 {
                     "title": "Grid Layout",
-                    "name": "gridLayout",
+                    "name": "firstGridLayout",
                     "path": "/demo/simple/grid"
                 },
                 {
@@ -55,17 +56,17 @@
             "children": [
                 {
                     "title": "Edit Form Layout",
-                    "name": "editFormLayout",
+                    "name": "secEditFormLayout",
                     "path": "/demo/section/formEdit"
                 },
                 {
                     "title": "View Form Layout",
-                    "name": "viewFormLayout",
+                    "name": "secViewFormLayout",
                     "path": "/demo/section/formView"
                 },
                 {
                     "title": "New Form Layout",
-                    "name": "newFormLayout",
+                    "name": "secNewFormLayout",
                     "path": "/demo/section/formNew"
                 }
             ]

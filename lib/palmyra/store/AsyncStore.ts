@@ -13,7 +13,7 @@ interface QueryStore<T> {
 
 interface TreeQueryStore<T> extends QueryStore<T> {
     getChildren(data: T): Promise<QueryResponse<T>>;
-    getRoot(): Promise<QueryResponse<T>>;
+    getRoot(): Promise<T>;
 }
 
 interface DataStore<T> extends QueryStore<T> {

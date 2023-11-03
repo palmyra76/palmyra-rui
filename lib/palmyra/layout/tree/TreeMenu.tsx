@@ -1,14 +1,14 @@
 
-import styled from "@emotion/styled";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Tree as TreeType } from "../../store/Types";
+import { NodeApi, Tree } from "react-arborist";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
+import { ArrowDropDown, ArrowRight } from "@mui/icons-material";
+import { getIcon } from "../flexiLayout/IconProvider";
 
-import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
-import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
-import { TreeView, TreeItem } from "@mui/x-tree-view";
-import { Tree } from "../../store/Types";
 
-
-interface MenuDef extends Tree<MenuDef> {
+interface MenuDef extends TreeType<MenuDef> {
     name: string,
     title?: string
     path?: string,
@@ -19,52 +19,66 @@ interface MenuDef extends Tree<MenuDef> {
 
 export type { MenuDef };
 
-const getTitle = (d: MenuDef) => {
-    return d.title ? d.title : d.name;
+interface TreeMenuInput {
+    data: MenuDef[]
 }
 
-export default function TreeMenu({ appRoutes }) {
-    const navigate = useNavigate();
 
-    const StyledTreeItem = styled(TreeItem)`
-    .MuiTreeItem-iconContainer {
-        
-      }
-    `;
+const getLabelIcon = (node: NodeApi<MenuDef>): any => {
+    if(node.data.icon)
+        return getIcon(node.data.icon);
+}
 
-    const renderTree = (parent, node: MenuDef, index) => {
-        if (node.name) {
-            let path = parent ? parent + "/" + node.path : node.path;
-            if (node.children) {
-                return (<StyledTreeItem key={index} nodeId={node.name} label={getTitle(node)}>
-                    {Array.isArray(node.children)
-                        ? node.children.filter((node) => node.name)
-                            .map((childNode, index) => renderTree(path, childNode, index))
-                        : null}
-                </StyledTreeItem>);
-            } else {
-                return (<StyledTreeItem key={index} nodeId={node.name} label={getTitle(node)}
-                    onClick={(e) => { navigate(path); }} />);
-            }
-        }
-    };
+const getFolderIcon = (node: NodeApi<MenuDef>): any => {
+    if (node.isLeaf)
+        return;
+    return node.isOpen ? ArrowDropDown : ArrowRight;
+}
 
-    const renderMenu = (appRoutes) => {
-        return appRoutes.filter((node) => node.name)
-            .map((route, index) => (renderTree(null, route, index)));
-    }
+const Node: any = ({ node, style, dragHandle }) => {
+    var ArrowIcon = getFolderIcon(node);
+    var LabelIcon = getLabelIcon(node);
 
-    const menu = renderMenu(appRoutes);
-    return (
+    return (<div style={{ display: "flex", alignItems: "center", width: "100%" }}
+        onClick={() => node.isInternal && node.toggle()}
+    >
+        <div style={{ display: "flex", alignItems: "center", gap: "5px", ...style }}
 
-        <TreeView
-            aria-label="rich object"
-            defaultCollapseIcon={<ExpandMoreIcon />}
-            defaultExpanded={['root']}
-            defaultExpandIcon={<ChevronRightIcon />}
-            sx={{ height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-        >
-            {menu}
-        </TreeView>
+            ref={dragHandle}>
+            {LabelIcon ? <LabelIcon/> : <></>}
+            <div>
+                {node.data.name}
+            </div>
+        </div>
+        {ArrowIcon ?
+            <div style={{ width: '20px', alignSelf: "flex-end" }}>
+                <ArrowIcon />
+            </div> : <div />}
+    </div>
     );
 }
+
+
+export default function TreeMenu(props: TreeMenuInput) {
+    const navigate = useNavigate();
+    const [menu, setMenu] = useState<MenuDef[]>(props.data);
+
+    useEffect(() => {
+        setMenu(props.data);
+    }, [props.data]);
+
+    return (
+        <Tree initialData={menu}
+            padding={25}
+            idAccessor='name'
+            childrenAccessor={(d: MenuDef) => { return d.children }}
+            onSelect={(selected) => {
+                var path = selected[0]?.data?.path;
+                navigate(path);
+            }}
+        >
+            {Node}
+        </Tree>
+    );
+}
+
