@@ -1,9 +1,10 @@
+import "../../../assets/TableX.css";
 import { jsx as l, jsxs as f } from "react/jsx-runtime";
 import { useState as h, useEffect as C } from "react";
 import { Box as x, TableContainer as T, Paper as S, Table as R, TableHead as w, TableRow as i, TableBody as y, TableCell as H } from "@mui/material";
-/* empty css                      */import M from "./ColumnHeader.js";
+import M from "./ColumnHeader.js";
 import { useReactTable as N, getCoreRowModel as P, flexRender as s } from "@tanstack/react-table";
-function V({ columnDefs: m, rowData: c, onRowClick: d, onRowStyle: u, onHeaderStyle: b, onSortColumn: a }) {
+function G({ columnDefs: m, rowData: c, onRowClick: d, onRowStyle: u, onHeaderStyle: b, onSortColumn: a }) {
   const r = N({
     data: c,
     manualSorting: !0,
@@ -43,5 +44,5 @@ function V({ columnDefs: m, rowData: c, onRowClick: d, onRowStyle: u, onHeaderSt
   ] }) }) });
 }
 export {
-  V as default
+  G as default
 };

@@ -1,12 +1,22 @@
-import { Button, Dialog, DialogTitle, Tooltip } from "@mui/material"
+import { Button, Dialog, DialogTitle, Paper, PaperProps, Tooltip } from "@mui/material";
 import { Close } from '@mui/icons-material';
-import '/home/palmyra/Palmyra_library/palmyra-rui/lib/palmyra/grid/base/Grid.css'
 import { convertToField } from "../../base/GridFieldConverter";
 import SectionRendererEditForm from "../../../layout/flexiLayout/SectionRendererEditForm";
 import { createFormData } from "../../../form";
+import Draggable from "react-draggable";
+
+function PaperComponent(props: PaperProps) {
+    return (
+        <Draggable
+            handle="#draggable-dialog-title"
+            cancel={'[class*="MuiDialogContent-root"]'}
+        >
+            <Paper {...props} />
+        </Draggable>
+    );
+}
 
 const Filter = ({ columns, isOpen, onClose, setFilter }) => {
-
     const handleDropdownClick = (event: any) => {
         event.stopPropagation();
     };
@@ -23,9 +33,13 @@ const Filter = ({ columns, isOpen, onClose, setFilter }) => {
     const fields = convertToField(columns);
 
     return <div className='grid-header-button'>
-        <Dialog open={isOpen} onClick={handleDropdownClick}>
+        <Dialog
+            open={isOpen}
+            onClick={handleDropdownClick}
+            PaperComponent={PaperComponent}
+        >
             <div className="filter-dialog-container">
-                <DialogTitle>Filter</DialogTitle>
+                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title"> Filter</DialogTitle>
                 <div className="filter-dialog-close-btn" onClick={onClose}>
                     <Tooltip title="Close">
                         <Close className="close-icon" />

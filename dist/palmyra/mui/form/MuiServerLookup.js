@@ -5,7 +5,7 @@ import { copyMuiOptions as _ } from "./MuiUtil.js";
 import { Search as $, DeleteOutlined as ee } from "@mui/icons-material";
 import { delay as te } from "../../utils/index.js";
 import { getValueByKey as K, setValueByKey as L } from "../../form/FormUtil.js";
-import { m as re, p as ne } from "../../../index-4ec89611.js";
+import { m as re, p as ne } from "../../../index-1171ae7f.js";
 import { hasDot as T } from "../../utils/StringUtil.js";
 const he = H(function(o, d) {
   const { getFieldManager: f } = o, r = f(o, "serverlookup"), p = o.store || r.store, h = o.lookupOptions || {}, u = h.idAttribute || "id", s = h.titleAttribute || "name", B = h.searchAttribute || s, M = S(null), [m, b] = O([]), [C, D] = O(r.displayValue), [i, I] = O(""), g = r.error, c = r.data, v = r.eventListeners, x = S(null);

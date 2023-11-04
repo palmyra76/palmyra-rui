@@ -8,12 +8,14 @@ import "react";
 import "@mui/icons-material";
 /* empty css                          *//* empty css                            */import "@mui/material";
 import "../../grid/base/ColumnConverter.js";
-/* empty css                      */import "@tanstack/react-table";
+import "../../grid/base/TableX.js";
+import "@tanstack/react-table";
 import "../../layout/flexiLayout/FormEditRenderer.js";
 import "../../layout/container/SectionContainer.js";
 import { StringFormat as d } from "../../utils/StringUtil.js";
 import "dayjs";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
+import "../../grid/plugins/filter/Filter.js";
 import "../../core/topic.js";
 import "../../mui/form/MuiDatePicker.js";
 import "../../mui/form/MuiDateTimePicker.js";
@@ -23,7 +25,7 @@ import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiServerLookup.js";
 import a from "axios";
-class H {
+class J {
   constructor(t) {
     i(this, "request");
     i(this, "target");
@@ -49,5 +51,5 @@ function c(r) {
   return { ...r.filter || {}, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  H as PalmyraGridStore
+  J as PalmyraGridStore
 };
