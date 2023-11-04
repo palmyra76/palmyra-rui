@@ -4,7 +4,7 @@ import { FieldDefinition, FieldType } from "../../form/Definitions";
 const convertToField = (columns: ColumnDefinition[]): FieldDefinition[] => {
     var result: FieldDefinition[] = [];
 
-    columns.map((column, index) => {
+    columns.filter((c) => c.searchable).map((column, index) => {
         result.push(_convertField(column))
     })
     return result;
@@ -15,6 +15,7 @@ const _convertField = (column: ColumnDefinition): FieldDefinition => {
         attribute: column.attribute,
         title: column.title,
         required: false,
+        variant: 'standard',
         type: _getType(column.type)
     }
 

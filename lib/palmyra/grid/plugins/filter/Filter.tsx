@@ -1,34 +1,36 @@
-import { Button, Dialog, DialogTitle, Paper, PaperProps, Tooltip } from "@mui/material";
+import { Button, Dialog, DialogTitle, Paper, PaperProps } from "@mui/material";
 import { Close } from '@mui/icons-material';
 import { convertToField } from "../../base/GridFieldConverter";
 import SectionRendererEditForm from "../../../layout/flexiLayout/SectionRendererEditForm";
 import { createFormData } from "../../../form";
 import Draggable from "react-draggable";
+import { useState } from "react";
+
 
 function PaperComponent(props: PaperProps) {
     return (
         <Draggable
             handle="#draggable-dialog-title"
-            cancel={'[class*="MuiDialogContent-root"]'}
+        cancel={'[class*="MuiDialogContent-root"]'}
         >
             <Paper {...props} />
         </Draggable>
     );
 }
 
-const Filter = ({ columns, isOpen, onClose, setFilter }) => {
+const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => {
     const handleDropdownClick = (event: any) => {
         event.stopPropagation();
     };
-
-    var { getFieldManager, getFormData } = createFormData({}, () => { }, 'edit');
+    const [data, setData] = useState(getFormData);
+    var { getFieldManager, getFormData } = createFormData(defaultFilter, () => { }, 'edit');
 
     const assignFilter = () => {
         var data = getFormData();
         if (setFilter) {
             setFilter(data);
         }
-    }
+    };
 
     const fields = convertToField(columns);
 
@@ -41,9 +43,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter }) => {
             <div className="filter-dialog-container">
                 <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title"> Filter</DialogTitle>
                 <div className="filter-dialog-close-btn" onClick={onClose}>
-                    <Tooltip title="Close">
-                        <Close className="close-icon" />
-                    </Tooltip>
+                    <Close className="close-icon" />
                 </div>
             </div>
             <div className="filter-dialog-content">
@@ -53,9 +53,13 @@ const Filter = ({ columns, isOpen, onClose, setFilter }) => {
                         formLayout: {
                             fields
                         }
-                    }} />
+                    }}
+                />
             </div>
-            <Button className='filter-dialog-button' onClick={assignFilter}>Filter</Button>
+            <div className="filter-dialog-button-container">
+                <Button className='filter-dialog-button' disableRipple onClick={() => { console.log(data), setData("") }}>Reset</Button>
+                <Button className='filter-dialog-button' disableRipple onClick={assignFilter}>Filter</Button>
+            </div>
         </Dialog>
     </div>
 }

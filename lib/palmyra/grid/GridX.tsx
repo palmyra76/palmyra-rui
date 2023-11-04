@@ -213,6 +213,7 @@ function GridX(props: GridXOptions) {
               <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
                 <FilterAlt className='grid-button-icon' />
                 <Filter columns={columns} setFilter={setUserFilter}
+                  defaultFilter={filter}
                   isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
               </Button>
             </Tooltip>
@@ -228,7 +229,7 @@ function GridX(props: GridXOptions) {
             {visiblePagination && (
               <TablePagination
                 component="div"
-                count={totalData}
+                count={totalData || 0}
                 page={page.pageNo}
                 onPageChange={nextPage}
                 rowsPerPage={page.pageSize}

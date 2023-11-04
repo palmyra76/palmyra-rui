@@ -129,7 +129,7 @@
 
 .filter-dialog-content {
   padding: 10px;
-  top: 10%;
+  margin-top: 10px;
 }
 
 .filter-dialog-field {
@@ -138,7 +138,7 @@
 }
 
 .filter-dialog-button {
-  background-color: rgb(87, 87, 242) !important;
+  background-color: rgb(85, 86, 147) !important;
   color: white !important;
   margin: 10px !important;
 }
@@ -149,10 +149,18 @@
   border-radius: 50px !important;
   cursor: pointer !important;
   text-align: right !important;
-  color: rgb(178, 177, 177);
   margin-left: 230px !important;
 }
 
 .filter-dialog-container {
   display: flex;
+  background-color: rgb(57, 58, 110) !important;
+  color: white;
+  height: 58px;
+}
+
+.filter-dialog-button-container {
+  display: flex;
+  margin-left: auto;
+  padding: 10px;
 }
