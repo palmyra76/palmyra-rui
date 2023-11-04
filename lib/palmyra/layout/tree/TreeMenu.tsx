@@ -1,11 +1,10 @@
-
 import { useNavigate } from "react-router-dom";
 import { Tree as TreeType } from "../../store/Types";
 import { NodeApi, Tree } from "react-arborist";
 import { useEffect, useState } from "react";
-import clsx from "clsx";
 import { ArrowDropDown, ArrowRight } from "@mui/icons-material";
 import { getIcon } from "../flexiLayout/IconProvider";
+import './TreeMenu.css';
 
 
 interface MenuDef extends TreeType<MenuDef> {
@@ -25,7 +24,7 @@ interface TreeMenuInput {
 
 
 const getLabelIcon = (node: NodeApi<MenuDef>): any => {
-    if(node.data.icon)
+    if (node.data.icon)
         return getIcon(node.data.icon);
 }
 
@@ -36,24 +35,27 @@ const getFolderIcon = (node: NodeApi<MenuDef>): any => {
 }
 
 const Node: any = ({ node, style, dragHandle }) => {
+    console.log("node",node);
     var ArrowIcon = getFolderIcon(node);
     var LabelIcon = getLabelIcon(node);
 
-    return (<div style={{ display: "flex", alignItems: "center", width: "100%" }}
+    return (<div className="tree-menu"
         onClick={() => node.isInternal && node.toggle()}
     >
-        <div style={{ display: "flex", alignItems: "center", gap: "5px", ...style }}
+        <div className="tree-menu-list" style={{ ...style }}
 
             ref={dragHandle}>
-            {LabelIcon ? <LabelIcon/> : <></>}
+            {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
             <div>
                 {node.data.name}
             </div>
+
         </div>
         {ArrowIcon ?
-            <div style={{ width: '20px', alignSelf: "flex-end" }}>
+            <div className="arrow-icon">
                 <ArrowIcon />
             </div> : <div />}
+
     </div>
     );
 }
@@ -69,7 +71,10 @@ export default function TreeMenu(props: TreeMenuInput) {
 
     return (
         <Tree initialData={menu}
-            padding={25}
+            padding={0}
+            width={'100%'}
+            rowHeight={40}
+            height={500}
             idAccessor='name'
             childrenAccessor={(d: MenuDef) => { return d.children }}
             onSelect={(selected) => {

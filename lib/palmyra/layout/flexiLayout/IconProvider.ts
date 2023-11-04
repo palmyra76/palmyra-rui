@@ -1,8 +1,15 @@
-import { TableView } from "@mui/icons-material"
+import { AutoAwesomeMosaic, CreditCard, Dashboard, Feed, Home, InsertChart, TableView } from "@mui/icons-material";
+
 
 // Update new icon references here
 const iconMap = {
-    'grid' : TableView
+    'grid' : TableView,
+    'home':Home,
+    'form':Feed,
+    'chart':InsertChart,
+    'card':CreditCard,
+    'dashboard':Dashboard,
+    'layout':AutoAwesomeMosaic
 }
 
 

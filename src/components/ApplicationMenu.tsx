@@ -24,7 +24,7 @@ const ApplicationMenu = () => {
     }, []);
 
     return (
-        <div style={{ width: "250px" }}>
+        <div style={{ width: "100%" }}>
             <TreeMenu key={routes.children.length} data={routes.children} />
         </div>
     )
