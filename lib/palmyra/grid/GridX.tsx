@@ -7,6 +7,7 @@ import TableX from "./base/TableX";
 import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt } from '@mui/icons-material';
 import { QueryStore } from '../store';
 import { ColumnDefinition } from './Types';
+import Filter from './plugins/filter/Filter';
 
 //TODO - show errors on data fetching
 
@@ -26,15 +27,14 @@ interface GridXFilter {
 
 function GridX(props: GridXOptions) {
   const { columns, children, EmptyChild, store, onRowClick, quickSearch } = props;
-
   const [totalData, setTotalData] = useState(null);
   const [filter, setFilter] = useState<GridXFilter>({});
   const [sortOrder, setSortOrder] = useState({});
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [filterdropdownOpen, setFilterdropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
+  const [filterDialogOpen, setFilterDialogOpen] = useState(false);
 
   const pageSize = props.pageSize ? props.pageSize : 15;
 
@@ -96,14 +96,6 @@ function GridX(props: GridXOptions) {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const toggleFilterDropdown = () => {
-    setFilterdropdownOpen(!filterdropdownOpen);
-  };
-
-  const handleDropdownClick = (event: any) => {
-    event.stopPropagation();
-  };
-
   const handleRowDensityChange = () => {
     if (selectedDensity === 'compact') {
       return { padding: '7px' };
@@ -124,12 +116,20 @@ function GridX(props: GridXOptions) {
     }
   }
 
-  const handleFilter = (event) => {
+  const handleSearch = (event) => {
     const val = event.target.value;
     const key = quickSearch;
-    if(val)
+    if (val)
       setFilter({ [key]: val });
-    else{
+    else {
+      setFilter({});
+    }
+  };
+
+  const setUserFilter = (filter) => {
+    if (filter && Object.keys(filter).length > 0)
+      setFilter(filter);
+    else {
       setFilter({});
     }
   };
@@ -167,7 +167,7 @@ function GridX(props: GridXOptions) {
                 sx={{ width: width }}
                 type="text"
                 value={filter.quickSearch}
-                onChange={handleFilter}
+                onChange={handleSearch}
                 style={{ border: "0px" }}
                 size="small"
                 placeholder="Name"
@@ -208,26 +208,15 @@ function GridX(props: GridXOptions) {
               )}
             </div>
           </ClickAwayListener>
-          <ClickAwayListener onClickAway={() => { setFilterdropdownOpen(false) }}>
-            <div onClick={handleDropdownClick}>
-              <div className='grid-header-button' onClick={toggleFilterDropdown}>
-                <Tooltip title='Filter' placement='top'>
-                  <Button className='grid-btn' disableRipple>
-                    <FilterAlt className='grid-button-icon' />
-                  </Button>
-                </Tooltip>
-                {filterdropdownOpen && (
-                  <div className="filter-dropdown-content">
-                    {columns.map((column, index) => (
-                      <div key={index}>
-                        <TextField placeholder={column.title} />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </ClickAwayListener>
+          <div className='grid-header-button'>
+            <Tooltip title='Filter' placement='top'>
+              <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
+                <FilterAlt className='grid-button-icon' />
+                <Filter columns={columns} setFilter={setUserFilter}
+                  isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
+              </Button>
+            </Tooltip>
+          </div>
           <div className='grid-header-button' onClick={onExportClick}>
             <Tooltip title='Export' placement='top'>
               <Button className='grid-btn' disableRipple>
@@ -250,16 +239,18 @@ function GridX(props: GridXOptions) {
           </div>
         </div>
 
-        {null != data ? data.length == 0 ? (
-          <EmptyChildContainer />
-        ) : (
-          <TableX columnDefs={columnDefs}
-            rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
-            onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
-          />
-        ) : (<div></div>)}
-      </div>
-    </div>
+        {
+          null != data ? data.length == 0 ? (
+            <EmptyChildContainer />
+          ) : (
+            <TableX columnDefs={columnDefs}
+              rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
+              onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
+            />
+          ) : (<div></div>)
+        }
+      </div >
+    </div >
   )
 }
 

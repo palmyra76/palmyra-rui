@@ -13,7 +13,7 @@ const GridPage = () => {
     useEffect(() => {
         fetch(key + '/sampleGridDef.json')
             .then((response) => response.json())
-            .then((d) => { console.log(d); setPageDef(d) });
+            .then((d) => { setPageDef(d) });
     }, [layout])
 
     return <>

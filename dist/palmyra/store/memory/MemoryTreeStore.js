@@ -13,10 +13,7 @@ class l {
     throw new Error("Method not implemented.");
   }
   getRoot() {
-    const r = {
-      result: this.root.children
-    };
-    return Promise.resolve(r);
+    return Promise.resolve(this.root);
   }
   getChildren(e) {
     if (e.children) {

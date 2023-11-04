@@ -35,7 +35,6 @@ const getFolderIcon = (node: NodeApi<MenuDef>): any => {
 }
 
 const Node: any = ({ node, style, dragHandle }) => {
-    console.log("node",node);
     var ArrowIcon = getFolderIcon(node);
     var LabelIcon = getLabelIcon(node);
 
@@ -59,7 +58,6 @@ const Node: any = ({ node, style, dragHandle }) => {
     </div>
     );
 }
-
 
 export default function TreeMenu(props: TreeMenuInput) {
     const navigate = useNavigate();

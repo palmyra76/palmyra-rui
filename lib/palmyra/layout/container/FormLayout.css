@@ -4,7 +4,7 @@
 }
 
 .palmyra-form-field-container {
-    width: 50%;
+    width: 100% !important;
     display: flex;
     text-align: left;
     word-break: break-all;

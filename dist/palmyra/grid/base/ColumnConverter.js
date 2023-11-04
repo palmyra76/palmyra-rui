@@ -1,10 +1,10 @@
-import { jsx as i } from "react/jsx-runtime";
+import { jsx as o } from "react/jsx-runtime";
 import { createColumnHelper as l } from "@tanstack/react-table";
-import { getFormatFn as d } from "./CellFormatter.js";
-import { getValueByKey as s } from "../../form/FormUtil.js";
+import { getFormatFn as s } from "./CellFormatter.js";
+import { getValueByKey as d } from "../../form/FormUtil.js";
 import { hasDot as p } from "../../utils/StringUtil.js";
 const n = l();
-function f(e) {
+function C(e) {
   return e.map((r) => u(r));
 }
 function u(e) {
@@ -16,17 +16,18 @@ function u(e) {
       ...t,
       cell: r
     });
-  let o = d(e);
+  let i = s(e);
   return n.accessor(m(e), {
     id: a(e),
     enableSorting: e.sortable,
+    enableColumnFilter: e.searchable,
     ...t,
-    ...o
+    ...i
   });
 }
 function m(e) {
   var r = e.attribute ? e.attribute : e.name;
-  return p(r) ? (t) => s(r, t) : r;
+  return p(r) ? (t) => d(r, t) : r;
 }
 function a(e) {
   return e.name ? e.name : e.attribute;
@@ -34,10 +35,10 @@ function a(e) {
 function c(e) {
   let r = e.title;
   return {
-    header: () => /* @__PURE__ */ i("span", { children: r }),
+    header: () => /* @__PURE__ */ o("span", { children: r }),
     footer: (t) => t.column.id
   };
 }
 export {
-  f as generateColumns
+  C as generateColumns
 };

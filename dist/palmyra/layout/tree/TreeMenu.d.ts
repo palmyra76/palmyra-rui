@@ -1,5 +1,5 @@
-import { Tree } from "../../store/Types";
-interface MenuDef extends Tree<MenuDef> {
+import { Tree as TreeType } from "../../store/Types";
+interface MenuDef extends TreeType<MenuDef> {
     name: string;
     title?: string;
     path?: string;
@@ -8,6 +8,7 @@ interface MenuDef extends Tree<MenuDef> {
     isExternal?: boolean;
 }
 export type { MenuDef };
-export default function TreeMenu({ appRoutes }: {
-    appRoutes: any;
-}): import("react/jsx-runtime").JSX.Element;
+interface TreeMenuInput {
+    data: MenuDef[];
+}
+export default function TreeMenu(props: TreeMenuInput): import("react/jsx-runtime").JSX.Element;

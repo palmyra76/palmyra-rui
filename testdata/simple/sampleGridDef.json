@@ -16,28 +16,33 @@
                             15,
                             25
                         ],
-                        "quickSearch" : "loginName",
+                        "quickSearch": [
+                            "name"
+                        ],
                         "fields": [
                             {
                                 "attribute": "loginName",
                                 "title": "Login Name",
                                 "required": true,
                                 "type": "string",
-                                "sortable": true
+                                "sortable": true,
+                                "searchable": true
                             },
                             {
                                 "attribute": "jurGroup",
                                 "title": "Jur Group",
                                 "required": true,
                                 "type": "string",
-                                "sortable": false
+                                "sortable": false,
+                                "searchable": false
                             },
                             {
                                 "attribute": "name",
                                 "title": "Name",
                                 "required": true,
                                 "type": "string",
-                                "sortable": false
+                                "sortable": false,
+                                "searchable": true
                             },
                             {
                                 "attribute": "firstName",

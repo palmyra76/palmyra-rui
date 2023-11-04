@@ -36,7 +36,7 @@ interface AttributeDefinition extends storeBacked {
 }
 
 interface DisplayDefinition {
-    width: string
+    width?: string
 }
 
 interface FieldDefinition extends AttributeDefinition, DisplayDefinition {

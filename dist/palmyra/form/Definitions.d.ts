@@ -29,7 +29,7 @@ interface AttributeDefinition extends storeBacked {
     options?: Record<string, string>;
 }
 interface DisplayDefinition {
-    width: string;
+    width?: string;
 }
 interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
     title: string;

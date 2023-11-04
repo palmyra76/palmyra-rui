@@ -28,13 +28,14 @@ function convert(columnDef: ColumnDefinition) {
     let cell = getFormatFn(columnDef);
     return columnHelper.accessor(getAccessor(columnDef), {
         id: getColumnId(columnDef),
-        enableSorting: columnDef.sortable,        
+        enableSorting: columnDef.sortable,
+        enableColumnFilter: columnDef.searchable,
         ...headerFn, ...cell
     });
 }
 
 function getAccessor(columnDef: ColumnDefinition){
-    var key = columnDef.attribute ? columnDef.attribute : columnDef.name;    
+    var key = columnDef.attribute ? columnDef.attribute : columnDef.name;
     if(hasDot(key)){
         return row => getValueByKey(key, row);
     }

@@ -15,12 +15,8 @@ abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T>{
     }
     abstract getIdentity(o: T): any;
 
-    getRoot(): Promise<QueryResponse<T>> {
-        const children = this.root.children;
-        const response: QueryResponse<T> = {
-            result: children
-        }
-        return Promise.resolve(response);
+    getRoot(): Promise<T> {
+        return Promise.resolve(this.root);
     }
 
     getChildren(data: T): Promise<QueryResponse<T>> {

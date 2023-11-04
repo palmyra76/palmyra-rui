@@ -8,7 +8,6 @@ interface ColumnDefinition extends AttributeDefinition {
     hideColumn?: boolean;
     searchable?: boolean;
     sortable?: boolean;
-    filter?: boolean;
     quickSearch?: boolean;
     cellRenderer?: React.FC;
 }
