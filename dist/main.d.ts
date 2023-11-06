@@ -11,4 +11,3 @@ export * from './palmyra/core/topic';
 export * from './palmyra/utils';
 export * from './palmyra/mui';
 export * from './palmyra/form';
-export * from './palmyra/store';
