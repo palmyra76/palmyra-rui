@@ -4,6 +4,7 @@ declare abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQuerySt
     root: T;
     constructor(data: T);
     query(request: QueryRequest): Promise<QueryResponse<T>>;
+    queryLayout(request: QueryRequest): Promise<any>;
     get(request: GetRequest): Promise<T>;
     abstract getIdentity(o: T): any;
     getRoot(): Promise<T>;

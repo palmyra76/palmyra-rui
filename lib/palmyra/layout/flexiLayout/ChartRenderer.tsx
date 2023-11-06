@@ -18,10 +18,11 @@ const ChartRenderer = (props: ChartRendererInput) => {
   const storeFactory = useContext(StoreFactoryContext);
   const layoutParams = useContext(LayoutParamsContext);
   var storeOptions = layout.storeOptions || {};
-  if (layoutParams) {
-    mergeDeep(storeOptions, layoutParams);
-  }
-  const store = storeFactory.getChartStore(storeOptions);
+
+  var storeRequest: any = {};
+    mergeDeep(storeRequest, storeOptions, layoutParams);
+  
+  const store = storeFactory.getChartStore(storeRequest);
 
   const [data, setData] = useState(null);
 

@@ -40,7 +40,7 @@ export default function MuiTreeMenu({ appRoutes }) {
 
     const renderTree = (parent, node: MenuDef, index) => {
         var LabelIcon = getLabelIcon(node);
-        console.log("node", node);
+        // console.log("node", node);
         if (node.name) {
             let path = parent ? parent + "/" + node.path : node.path;
 

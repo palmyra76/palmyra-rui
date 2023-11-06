@@ -10,6 +10,9 @@ abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T>{
     query(request: QueryRequest): Promise<QueryResponse<T>> {
         throw new Error("Method not implemented.");
     }
+    queryLayout(request: QueryRequest): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
     get(request: GetRequest): Promise<T> {
         throw new Error("Method not implemented.");
     }

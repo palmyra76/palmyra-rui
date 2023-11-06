@@ -2,25 +2,25 @@ import { jsx as e, jsxs as i } from "react/jsx-runtime";
 import { useState as o, useEffect as ee } from "react";
 import { TextField as te, InputAdornment as ne, ClickAwayListener as oe, Tooltip as h, Button as u, TablePagination as ie } from "@mui/material";
 import { generateColumns as ae } from "./base/ColumnConverter.js";
-import { A as re } from "../../index.esm-3271ad1f.js";
-import le from "./base/EmptyChildTable.js";
+import { A as le } from "../../index.esm-3271ad1f.js";
+import re from "./base/EmptyChildTable.js";
 import se from "./base/TableX.js";
 import { Menu as z, DensitySmall as ce, DensityLarge as de, FilterAlt as pe, FileDownloadOutlined as me } from "@mui/icons-material";
 import ge from "./plugins/filter/Filter.js";
-function xe(c) {
-  const { columns: f, children: O, EmptyChild: F, store: y, onRowClick: C, quickSearch: N } = c, [R, S] = o(null), [d, l] = o({}), [b, A] = o({}), E = F || le, [v, w] = o(!1), [s, T] = o("standard"), [q, x] = o(!1), a = c.pageSize ? c.pageSize : 15;
+function xe(d) {
+  const { columns: f, children: F, EmptyChild: O, store: y, onRowClick: C, quickSearch: N } = d, [R, S] = o(null), [r, s] = o({}), [b, A] = o({}), E = O || re, [v, w] = o(!1), [c, T] = o("standard"), [q, x] = o(!1), a = d.pageSize ? d.pageSize : 15;
   var j = a instanceof Array ? a : [a], I = a instanceof Array ? a[0] : a;
-  const [r, D] = o({
+  const [l, D] = o({
     pageNo: 0,
     pageSize: I
   }), G = (t, n) => {
-    D({ ...r, pageNo: n }), L({ ...r, pageSize: n });
+    D({ ...l, pageNo: n }), L({ ...l, pageSize: n });
   }, [H, L] = o({}), [p, k] = o(null);
   ee(() => {
     B();
-  }, [H, d, b]);
+  }, [H, r, b]);
   const X = ae(f), B = () => {
-    const t = { page: r, filter: d, sortOrder: b };
+    const t = { page: l, filter: r, sortOrder: b };
     if (y)
       try {
         y.query(t).then((n) => {
@@ -41,36 +41,36 @@ function xe(c) {
     T(t);
   }, M = () => {
     w(!v);
-  }, Q = () => s === "compact" ? { padding: "7px" } : s === "comfortable" ? { padding: "30px", fontSize: "18px" } : { padding: "15px" }, U = () => s === "compact" ? { padding: "7px" } : s === "comfortable" ? { padding: "30px", fontSize: "18px" } : { padding: "15px" }, $ = (t) => {
+  }, Q = () => c === "compact" ? { padding: "7px" } : c === "comfortable" ? { padding: "30px", fontSize: "18px" } : { padding: "15px" }, U = () => c === "compact" ? { padding: "7px" } : c === "comfortable" ? { padding: "30px", fontSize: "18px" } : { padding: "15px" }, $ = (t) => {
     const n = t.target.value;
-    l(n ? { [N]: n } : {});
+    s(n ? { [N]: n } : {});
   }, J = (t) => {
-    t && Object.keys(t).length > 0 ? l(t) : l({});
+    t && Object.keys(t).length > 0 ? s(t) : s({});
   }, K = (t) => {
     C && C(t);
   }, V = (t) => {
     const n = parseInt(t.target.value, 10);
-    D({ ...r, pageSize: n });
+    D({ ...l, pageSize: n });
   }, W = (t) => {
     A(t);
   }, Y = () => {
     console.log("Export Clicked");
   }, Z = 200, _ = !!a;
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ i("div", { children: [
-    O,
+    F,
     /* @__PURE__ */ i("div", { className: "grid-header", children: [
       /* @__PURE__ */ e("div", { className: "grid-header-filter", children: !!N && /* @__PURE__ */ e(
         te,
         {
           sx: { width: Z },
           type: "text",
-          value: d.quickSearch,
+          value: r.quickSearch,
           onChange: $,
           style: { border: "0px" },
           size: "small",
           placeholder: "Name",
           InputProps: {
-            endAdornment: /* @__PURE__ */ e(ne, { position: "end", children: /* @__PURE__ */ e(re, { className: "card-filter-icon" }) })
+            endAdornment: /* @__PURE__ */ e(ne, { position: "end", children: /* @__PURE__ */ e(le, { className: "card-filter-icon" }) })
           }
         }
       ) }),
@@ -100,6 +100,7 @@ function xe(c) {
           {
             columns: f,
             setFilter: J,
+            defaultFilter: r,
             isOpen: q,
             onClose: () => x(!1)
           }
@@ -110,10 +111,10 @@ function xe(c) {
         ie,
         {
           component: "div",
-          count: R,
-          page: r.pageNo,
+          count: R || 0,
+          page: l.pageNo,
           onPageChange: G,
-          rowsPerPage: r.pageSize,
+          rowsPerPage: l.pageSize,
           rowsPerPageOptions: j || [],
           onRowsPerPageChange: V
         }

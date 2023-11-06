@@ -9,7 +9,8 @@
                     "type": "grid",
                     "tableLayout": {
                         "storeOptions": {
-                            "endPoint": "/userManagement"
+                            "endPoint": "/userManagement",
+                            "hasLayout": true
                         },
                         "pagination": [
                             5,
@@ -20,38 +21,6 @@
                             "name"
                         ],
                         "fields": [
-                            {
-                                "attribute": "loginName",
-                                "title": "Login Name",
-                                "required": true,
-                                "type": "string",
-                                "sortable": true,
-                                "searchable": true
-                            },
-                            {
-                                "attribute": "jurGroup",
-                                "title": "Jur Group",
-                                "required": true,
-                                "type": "string",
-                                "sortable": false,
-                                "searchable": false
-                            },
-                            {
-                                "attribute": "name",
-                                "title": "Name",
-                                "required": true,
-                                "type": "string",
-                                "sortable": false,
-                                "searchable": true
-                            },
-                            {
-                                "attribute": "firstName",
-                                "title": "First Name",
-                                "required": true,
-                                "type": "string",
-                                "sortable": false,
-                                "searchable": false
-                            }
                         ]
                     }
                 },

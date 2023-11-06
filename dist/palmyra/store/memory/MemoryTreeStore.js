@@ -9,6 +9,9 @@ class l {
   query(e) {
     throw new Error("Method not implemented.");
   }
+  queryLayout(e) {
+    throw new Error("Method not implemented.");
+  }
   get(e) {
     throw new Error("Method not implemented.");
   }

@@ -4,6 +4,7 @@ import axios from 'axios';
 class PalmyraGridStore implements QueryStore<any>{
     request: Record<string, string>
     target: string
+
     constructor(request: Record<string, string>) {
         this.request = request;
         this.target = request.target;
@@ -15,6 +16,16 @@ class PalmyraGridStore implements QueryStore<any>{
         const params = { params: urlSortParams };
         return axios.get(url, params)
             .then(response => { return response.data });;
+    }
+
+    queryLayout(request: QueryRequest): Promise<any> {
+        var url: any = StringFormat(this.target, {});        
+        return axios.get(url, {
+            headers: {
+                action: 'schema'
+            }
+        })
+            .then((response) => response.data);
     }
 
     get(request: GetRequest): Promise<any> {
