@@ -12,7 +12,7 @@ interface QueryStore<T> {
     getIdProperty(): string | string[];
 }
 
-interface TreeQueryStore<T> extends QueryStore<T> {
+interface TreeQueryStore<T> {
     getChildren(data: T): Promise<QueryResponse<T>>;
     getRoot(): Promise<T>;
 }
