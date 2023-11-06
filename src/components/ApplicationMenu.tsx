@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 
 import TreeMenu from "../../lib/palmyra/layout/tree/TreeMenu"
+import MuiTreeMenu from "../../lib/palmyra/layout/tree/MuiTreeMenu";
 
 
 const orgRoutes = {
@@ -25,7 +26,8 @@ const ApplicationMenu = () => {
 
     return (
         <div style={{ width: "100%" }}>
-            <TreeMenu key={routes.children.length} data={routes.children} />
+            {/* <TreeMenu key={routes.children.length} data={routes.children} /> */}
+            <MuiTreeMenu appRoutes={routes.children}/>
         </div>
     )
 }
