@@ -1,3 +1,2 @@
-export default function MuiTreeMenu({ appRoutes }: {
-    appRoutes: any;
-}): import("react/jsx-runtime").JSX.Element;
+import { TreeMenuInput } from "./types";
+export default function MuiTreeMenu(props: TreeMenuInput): import("react/jsx-runtime").JSX.Element;

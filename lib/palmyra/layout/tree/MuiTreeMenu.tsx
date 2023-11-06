@@ -3,19 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { TreeView, TreeItem } from "@mui/x-tree-view";
 import { MenuDef } from "..";
-import { getIcon } from "../flexiLayout/IconProvider";
+import { IconProvider, SimpleIconProvider } from "../flexiLayout/IconProvider";
 import { useState } from "react";
+import { TreeMenuInput } from "./types";
 
 const getTitle = (d: MenuDef) => {
     return d.title ? d.title : d.name;
 }
-const getLabelIcon = (node: MenuDef): any => {
-    if (node.icon)
-        return getIcon(node.icon);
-}
-export default function MuiTreeMenu({ appRoutes }) {
+
+
+
+export default function MuiTreeMenu(props:TreeMenuInput) {
+    const appRoutes = props.data;
+    const iconProvider:IconProvider = props.iconProvider || SimpleIconProvider;
+
     const navigate = useNavigate();
     const [isParentExpanded, setIsParentExpanded] = useState({});
+
+    const getLabelIcon = (node: MenuDef): any => {
+        if (node.icon)
+            return iconProvider.getIcon(node.icon);
+    }
 
     const StyledTreeItem = styled(TreeItem)`
         .css-1bcfi89-MuiTreeItem-content .MuiTreeItem-iconContainer {
@@ -40,9 +48,8 @@ export default function MuiTreeMenu({ appRoutes }) {
 
     const renderTree = (parent, node: MenuDef, index) => {
         var LabelIcon = getLabelIcon(node);
-        // console.log("node", node);
         if (node.name) {
-            let path = parent ? parent + "/" + node.path : node.path;
+            let path =  node.path;
 
             const iconStyles = {
                 transform: isParentExpanded[node.name] ? 'rotate(90deg)' : 'rotate(0deg)',

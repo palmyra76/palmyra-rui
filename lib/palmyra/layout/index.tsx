@@ -1,5 +1,7 @@
 
-export type { MenuDef } from './tree/TreeMenu';
+export type { MenuDef, TreeMenuInput } from "./tree/types";
+export type { IconProvider } from "./flexiLayout/IconProvider";
+
 
 export { default as StaticTreeMenu } from "./tree/TreeMenu";
 export { default as MuiTreeMenu } from "./tree/MuiTreeMenu";
