@@ -11,7 +11,7 @@ const GridPage = () => {
     const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api/palmyra' });
 
     useEffect(() => {
-        fetch(key + '/sampleGridDef.json')
+        fetch(key + '/gridDef.json')
             .then((response) => response.json())
             .then((d) => { setPageDef(d) });
     }, [layout])

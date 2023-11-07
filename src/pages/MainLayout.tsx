@@ -1,40 +1,56 @@
 import { Outlet } from "react-router-dom";
 import { Box, CssBaseline, Toolbar } from "@mui/material";
 
-import {Sidebar} from "./Sidebar";
+import { Sidebar } from "./Sidebar";
+import Topbar from "./Topbar";
+import { useEffect, useState } from "react";
+import { useWindowSize } from "usehooks-ts";
 
 interface MainLayoutInput {
-    sideBarWidth?: string,    
-    appTitle: string
+  sideBarWidth?: string,
+  appTitle: string
 }
 
 const MainLayout = (props: MainLayoutInput) => {
-    var width = props.sideBarWidth;
-    if (!width) {
-        width = '250px';
-    }
+  var sideWidth = props.sideBarWidth;
+  if (!sideWidth) {
+      sideWidth = '250px';
+  }
+  
 
-    return (
-        <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-            <div > TopBar </div>
-            <Sidebar 
-                appTitle={props.appTitle} width={width} />
-            <Box
-                component="main"
-                sx={{
-                    flexGrow: 1,
-                    p: 3,
-                    width: `calc(100% - ${width})`,
-                    minHeight: "100vh"
-                }}
-            >
-                <Toolbar />
-                <Outlet />
-            </Box>
-        </Box>
-    );
+  const { width } = useWindowSize();
+  const [mobileMode, setMobileMode] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const responsive = width < 900;
+
+  useEffect(() => {
+      setMobileMode(responsive);
+  }, [responsive, setMobileOpen])
+
+  const display = mobileMode ? "block" : "none";
+
+  return (
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <Topbar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} display={display}/>
+      <Sidebar
+        appTitle={props.appTitle} width={sideWidth} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} responsive={responsive} />
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          padding:'10px',
+          width: `calc(100% - ${sideWidth})`,
+          minHeight: "100vh"
+        }}
+      >
+        <Toolbar />
+        <Outlet />
+      </Box>
+    </Box>
+  );
 };
 
-export type { MainLayoutInput};
+export type { MainLayoutInput };
 export { MainLayout };

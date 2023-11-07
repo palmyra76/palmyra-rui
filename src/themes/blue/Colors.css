@@ -1,53 +1,22 @@
 :root {
     /** Themed color configuration */
 
-    --identify-color: rgb(227, 97, 12);
+    --body-bgcolor-rgb: 245, 247, 251;
 
-    --primary-bgcolor-rgb: 12, 69, 227;
-    --primary-bgcolor: rgb(12, 69, 227);
-    --secondary-bgcolor-rgb: 85, 162, 250;
-    --secondary-bgcolor: rgb(85, 162, 250);
-    --default-bgcolor-rgb: 255, 255, 255;
-    --default-bgcolor: rgb(255, 255, 255);
-    --disable-bgcolor-rgb: 128, 128, 128;
-    --disable-bgcolor: rgb(128, 128, 128);
-    --dark-bgcolor-rgb: 0, 0, 0;
-    --dark-bgcolor: rgb(0, 0, 0);
+    --primary-color: rgb(227, 97, 12); /* login btn bgcolor */
+    --primary-color-rgb: 227, 97, 12;
+    --secondary-color: rgb(247, 148, 67); /* dropdown hover bgcolor */
+    --secondary-color-rgb: 247, 148, 67;
+    --default-color: rgb(255, 255, 255); /* left Menu text, selected list, footer text,
+     dropdown bgcolor ,loginbox bgcolor */
+    --default-color-rgb: 255, 255, 255;
+    --dark-color: rgb(0, 0, 0); /* Topbar text color */
+    --dark-color-rgb: 0, 0, 0;
+    --disabled-color: rgb(128, 128, 128);
+    --disabled-color-rgb: 128, 128, 128;
 
-    --primary-text-color-rgb: 12, 69, 227;
-    --primary-text-color: rgb(12, 69, 227);
-    --secondary-text-color-rgb: 255, 255, 255;
-    --secondary-text-color: rgb(255, 255, 255);
-    --default-text-color-rgb: 0, 0, 0;
-    --default-text-color: rgb(0, 0, 0);
-    --disable-text-color-rgb: 128, 128, 128;
-    --disable-text-color: rgb(128, 128, 128);
-
-    --primary-input-text-color-rgb: 12, 69, 227;
-    --primary-input-text-color: rgb(12, 69, 227);
-    --secondary-input-text-color-rgb: 255, 255, 255;
-    --secondary-input-text-color: rgb(255, 255, 255);
-    --default-input-text-color-rgb: 0, 0, 0;
-    --default-input-text-color: rgb(0, 0, 0);
-    --disable-input-text-color-rgb: 128, 128, 128;
-    --disable-input-text-color: rgb(128, 128, 128);
-
-    --primary-border-color-rgb: 12, 69, 227;
-    --primary-border-color: rgb(12, 69, 227);
-    --secondary-border-color-rgb: 80, 80, 80;
-    --secondary-border-color: rgb(80, 80, 80);
-    --default-border-color-rgb: 0, 0, 0;
-    --default-border-color: rgb(0, 0, 0);
-    --disable-border-color-rgb: 128, 128, 128;
-    --disable-border-color: rgb(128, 128, 128);
-
-    --default-link-color-rgb: 0, 0, 0;
-    --default-link-color: rgb(0, 0, 0);
-    --disable-link-color-rgb: 128, 128, 128;
-    --disable-link-color: rgb(128, 128, 128);
-
-    /** Themed color configuration ends*/
-
+    --sidebar-bgcolor-rgb: 34, 44, 60; /* Sidebar background color */
+    --sidebar-text-color-rgb: var(--default-color-rgb);
 
     /** Standard color configuration */
     --info-color: rgb(85, 162, 250);
@@ -56,5 +25,161 @@
     --success-color: rgb(46, 199, 110);
     --stroke-color: rgb(255, 255, 255);
 
-  
+    /** Themed color configuration ends*/
+
+    --identify-color: var(--primary-color);
+
+    --primary-bgcolor-rgb: var(--primary-color-rgb);
+    --primary-bgcolor: var(--primary-color);
+    --secondary-bgcolor-rgb: var(--secondary-color-rgb);
+    --secondary-bgcolor: var(--secondary-color);
+    --default-bgcolor-rgb: var(--default-color-rgb);
+    --default-bgcolor: var(--default-color);
+    --disable-bgcolor-rgb: var(--disabled-color-rgb);
+    --disable-bgcolor: var(--disabled-color);
+    --dark-bgcolor-rgb: var(--dark-color-rgb);
+    --dark-bgcolor: var(--dark-color);
+
+    --primary-text-color-rgb: var(--primary-color-rgb);
+    --primary-text-color: var(--primary-color);
+    --secondary-text-color-rgb: var(--default-color-rgb);
+    --secondary-text-color: var(--default-color);
+    --default-text-color-rgb: var(--dark-color-rgb);
+    --default-text-color: var(--dark-color);
+    --disable-text-color-rgb: var(--disabled-color-rgb);
+    --disable-text-color: var(--disabled-color);
+
+    --primary-input-text-color-rgb: var(--primary-color-rgb);
+    --primary-input-text-color: var(--primary-color);
+    --secondary-input-text-color-rgb: var(--default-color-rgb);
+    --secondary-input-text-color: var(--default-color);
+    --default-input-text-color-rgb: var(--dark-color-rgb);
+    --default-input-text-color: var(--dark-color);
+    --disable-input-text-color-rgb: var(--disabled-color-rgb);
+    --disable-input-text-color: var(--disabled-color);
+
+    --primary-border-color-rgb: var(--primary-color-rgb);
+    --primary-border-color: var(--primary-color);
+    --secondary-border-color-rgb: var(--disabled-color-rgb);
+    --secondary-border-color: var(--disabled-color);
+    --default-border-color-rgb: var(--dark-color-rgb);
+    --default-border-color: var(--dark-color);
+    --disable-border-color-rgb: var(--disabled-color-rgb);
+    --disable-border-color: var(--disabled-color);
+
+    --default-link-color-rgb: var(--dark-color-rgb);
+    --default-link-color: var(--dark-color);
+    --disable-link-color-rgb: var(--disabled-color-rgb);
+    --disable-link-color: var(--disabled-color);
+
+
+
+    /**  App Specific configuration starts - used in few places / exception items */
+
+    --body-bgcolor: rgba(var(--body-bgcolor-rgb), 1);
+
+    --palmyra-grid-table-head-bgcolor: rgba(var(--primary-bgcolor-rgb), 0.15);
+
+    --filled-btn-bgcolor: rgba(var(--primary-bgcolor-rgb), 0.85);
+    --filled-btn-text-color: var(--secondary-text-color);
+    --filled-btn-hover-bgcolor: rgba(114, 22, 150, 0.791);
+    --filled-btn-hover-text-color: var(--secondary-text-color);
+
+    --form-field-label-color: rgba(var(--default-text-color-rgb), 0.6);
+    --form-field-data-color: var(--default-text-color);
+
+    --sidebar-icon-color: rgba(var(--sidebar-text-color-rgb), 1);
+    --sidebar-title-color: rgba(var(--sidebar-text-color-rgb), 1);
+    --sidebar-bgcolor: rgba(var(--sidebar-bgcolor-rgb), 1);
+    --sidebar-color: rgba(var(--sidebar-text-color-rgb), 0.45);
+    --sidebar-footer-color: rgba(var(--sidebar-text-color-rgb), 0.4);
+    --sidebar-hover-list-bgcolor: rgba(var(--sidebar-text-color-rgb), 0.07);
+    --sidebar-hover-list-color: var(--sidebar-text-color-rgb);
+    --sidebar-select-list-bgcolor: rgba(var(--sidebar-text-color-rgb), 1);
+    --sidebar-select-list-color: rgba(var(--sidebar-text-color-rgb), 1);
+    --sidebar-select-bgcolor:var(--secondary-bgcolor);
+
+    --topbar-bgcolor: var(--default-bgcolor);
+    --topbar-color: var(--default-text-color);
+    --avathar-name-color: var(--secondary-text-color);
+    /** One-time configuration,  no need to change per theme */
+
+    --accent-boxshadow-color-first: rgba(var(--primary-bgcolor-rgb), 1);
+    --accent-boxshadow-color-second: rgba(var(--default-bgcolor-rgb), 1);
+
+    --primary-header-bg: linear-gradient(90deg, rgba(var(--secondary-bgcolor-rgb), 0.35) 0%, rgba(var(--default-bgcolor-rgb), 0.045) 50%);
+    --secondary-header-bgcolor: rgba(var(--primary-bgcolor-rgb), 0.045);
+
+    /* consider opaque from primary-input-text-color */
+    --dropdown-boxshadow-color: rgba(var(--default-text-color-rgb), 0.15);
+    --primary-boxshadow-color: rgba(var(--default-border-color-rgb), 0.07);
+    /* consider opaque from primary-border-color */
+
+
+
+
+    --dropdown-bgcolor: var(--secondary-text-color);
+    --dropdown-color: var(--default-text-color);
+    --dropdown-list-hover-color: var(--primary-bgcolor);
+    --dropdown-boxshadow: 5px 9px 18px 1px var(--dropdown-boxshadow-color);
+    --dropdown-list-hover-bgcolor: rgba(var(--secondary-bgcolor-rgb), 0.12);
+    --accent-btn-bgcolor: var(--default-bgcolor);
+    --accent-btn-text-color: var(--default-text-color);
+    --accent-btn-hover-bgcolor: var(--primary-bgcolor);
+    --accent-btn-hover-text-color: var(--secondary-text-color);
+    --accent-btn-border-color: var(--primary-border-color);
+    --accent-btn-boxshadow: var(--accent-boxshadow-color-first) 0px 1px 8px 0px, var(--accent-boxshadow-color-second) 0px 1px 2px 0px;
+
+    --card-border-color: var(--status-unregister-border-color);
+    --card-bgcolor: var(--default-bgcolor);
+    --card-boxshadow: var(--primary-boxshadow-color) 0px 1px 1px, var(--primary-boxshadow-color) 0px 2px 2px, var(--primary-boxshadow-color) 0px 4px 4px, var(--primary-boxshadow-color) 0px 8px 8px, var(--primary-boxshadow-color) 0px 16px 16px;
+    --card-header-color: var(--default-text-color);
+    --card-content-color: var(--default-text-color);
+    --card-download-btn-bgcolor: rgba(var(--primary-bgcolor-rgb), 0.85);
+    --card-download-btn-text-color: var(--secondary-text-color);
+
+    --header-bgcolor: var(--primary-header-bg);
+    --header-color: var(--default-text-color);
+    --border-color: rgba(var(--secondary-border-color-rgb), 0.2);
+
+    --disable-btn-bgcolor: var(--disable-bgcolor);
+    --disable-btn-text-color: var(--secondary-text-color);
+    --btn-bgcolor: var(--default-bgcolor);
+    --btn-hover-bgcolor: var(--primary-bgcolor);
+    --btn-hover-text-color: var(--secondary-text-color);
+    --btn-text-color: var(--primary-text-color);
+    --btn-border-color: var(--primary-border-color);
+
+    --login-page-bg: var(--default-bgcolor);
+    --login-box-bgcolor: rgba(var(--default-bgcolor-rgb), 0.95);
+    --login-box-boxshadow: var(--primary-boxshadow-color) 0px 7px 29px 0px;
+    --copyright-color: rgba(var(--default-text-color-rgb), 0.55);
+    --login-btn-bgcolor: rgba(var(--primary-bgcolor-rgb), 0.75);
+    --login-btn-hover-bgcolor: var(--primary-bgcolor);
+    --login-btn-color: var(--secondary-text-color);
+    --signin-btn-boxshadow: 3px 4px 10px rgba(var(--default-border-color-rgb), 0.25);
+    --login-header-color: var(--default-text-color);
+    --login-sub-header-color: rgba(var(--disable-text-color-rgb), 0.96);
+    --login-copyright-color: rgba(var(--default-text-color), 0.55);
+    --login-textfield-bgcolor: rgba(var(--default-input-text-color-rgb), 0.05);
+    --login-textfield-color: var(--default-input-text-color);
+    --login-textfield-border-color: rgba(var(--default-input-text-color-rgb), 0.01);
+
+    --profile-containers-bgcolor: var(--default-bgcolor);
+    --profile-containers-boxshadow: rgba(var(--default-border-color-rgb), 0.03) 0px 6px 24px 0px, rgba(var(--default-border-color-rgb), 0.03) 0px 0px 0px 1px;
+    --profile-footer-bgcolor: var(--default-bgcolor);
+    --profile-footer-color: var(--default-text-color);
+    --profile-footer-hover-bgcolor: rgba(var(--disable-bgcolor-rgb), 0.12);
+    --profile-footer-hover-color: var(--primary-text-color);
+
+    --landing-page-container-bgcolor: rgba(var(--dark-bgcolor-rgb), 0.87);
+    --landing-header-container-color: var(--secondary-text-color);
+    --landing-sub-header-color: rgba(var(--secondary-text-color-rgb), 0.808);
+    --landing-page-btn-bgcolor: var(--dark-bgcolor);
+    --landing-page-btn-color: var(--secondary-text-color);
+    --landing-page-btn-hover-bgcolor: var(--primary-bgcolor);
+    --landing-page-btn-boxshadow: rgba(var(--primary-bgcolor-rgb), 1) 0px 1px 2px 2px, rgba(var(--primary-bgcolor-rgb), 1) 0px 2px 16px 0px;
+    --landing-page-btn-hover-box-shadow: rgba(var(--primary-bgcolor-rgb), 1) 0px 0px 1px 0px, rgba(var(--primary-bgcolor-rgb), 0.75) 0px 1px 8px 0px;
+    --landing-page-content-header-color: var(--secondary-text-color);
+    --landing-page-content-color: rgba(var(--secondary-text-color-rgb), 0.808);
 }
