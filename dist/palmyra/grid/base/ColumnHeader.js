@@ -1,10 +1,10 @@
-import { jsx as t, jsxs as m } from "react/jsx-runtime";
-import { useState as u } from "react";
-import { ArrowUpward as f, ArrowDownward as b } from "@mui/icons-material";
+import { jsx as l, jsxs as m } from "react/jsx-runtime";
+import { useState as f } from "react";
+import { ArrowUpward as u, ArrowDownward as b } from "@mui/icons-material";
 import { TableCell as S } from "@mui/material";
-const k = ({ header: o, children: s, onSortChange: l, onHeaderStyle: c }) => {
-  const [e, n] = u(""), a = o.id, i = !o.column.columnDef.enableSorting, d = () => {
-    if (!(l === void 0 || i)) {
+const k = ({ header: o, children: n, onSortChange: t, onHeaderStyle: a }) => {
+  const [e, i] = f(""), d = o.id, s = !o.column.columnDef.enableSorting, p = () => {
+    if (!(t === void 0 || s)) {
       var r = e;
       switch (r) {
         case "asc":
@@ -17,12 +17,13 @@ const k = ({ header: o, children: s, onSortChange: l, onHeaderStyle: c }) => {
           r = "asc";
           break;
       }
-      n(r), l(a, r);
+      i(r), t(d, r);
     }
-  }, p = c(o.original);
-  return /* @__PURE__ */ t(S, { colSpan: o.colSpan, style: p, children: /* @__PURE__ */ m("div", { style: { display: "flex", gap: "5px", cursor: "pointer" }, onClick: () => d(), children: [
-    s,
-    e === "asc" ? /* @__PURE__ */ t(f, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : e === "desc" ? /* @__PURE__ */ t(b, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
+  };
+  var c = a(o.original);
+  return s || (c.cursor = "pointer"), /* @__PURE__ */ l(S, { colSpan: o.colSpan, style: c, children: /* @__PURE__ */ m("div", { style: { display: "flex", gap: "5px" }, onClick: () => p(), children: [
+    n,
+    e === "asc" ? /* @__PURE__ */ l(u, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : e === "desc" ? /* @__PURE__ */ l(b, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
   ] }) }, o.id);
 };
 export {
