@@ -44,6 +44,7 @@ interface TextValidation extends abstractValidation {
 }
 
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation {
+    label?:string
 }
 
 interface ISwitchDefinition extends AttributeDefinition {
