@@ -1,3 +1,10 @@
+.sidebar {
+    color: var(--sidebar-color);
+    background-color: var(--sidebar-bgcolor);
+    height: 100vh;
+    position: relative;
+}
+
 .sidebar-footer {
     padding: 5px;
     width: 250px;
@@ -11,7 +18,7 @@
 }
 
 .sidebar-footer-text {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--sidebar-footer-color);
     font-size: 13px;
     font-kerning: normal;
     letter-spacing: 0.05rem;
@@ -21,29 +28,52 @@
 .sidebar-middle {
 
 
-    .css-1g86id8-MuiTreeItem-content .MuiTreeItem-label {
-        width: 100%;
-        min-width: 0;
-        padding-top: 1px;
-        padding-left: 4px;
-        position: relative;
-        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-        font-weight: 400;
-        font-size: 1.1rem;
-        line-height: 2;
-        letter-spacing: 0.00938em;
+    .css-1bcfi89-MuiTreeItem-content .MuiTreeItem-label {
+        // width: 100%;
+        // min-width: 0;
+        // padding-top: 1px;
+        // padding-left: 4px;
+        // position: relative;
+        // font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        // font-weight: 400;
+        // font-size: 1.1rem;
+        // line-height: 2;
+        // letter-spacing: 0.00938em;
     }
 
-    .css-1g86id8-MuiTreeItem-content:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-
-    .MuiTreeItem-iconContainer {
-        color: rgba(255, 255, 255, 0.75);
+    .css-1bcfi89-MuiTreeItem-content:hover {
+        background-color: var(--sidebar-hover-list-bgcolor) !important;
+        color: var(--sidebar-hover-list-color) !important;
+        border-radius: 5px !important;
     }
 
     .css-1g86id8-MuiTreeItem-content .MuiTreeItem-iconContainer svg {
         font-size: 22px;
     }
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    font-size: var(--primary-fontsize) !important;
+    gap: 5px;
+    width: 100% !important;
+    color: var(--sidebar-title-color);
+}
+
+.sidebar-title.minimized {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+    width: 100% !important;
+}
+
+.sidebar-title-menu-icon {
+    cursor: pointer;
+    color: var(--sidebar-icon-color)
+}
+
+.sidebar-header {
+    margin-bottom: 0px;
+    position: relative;
 }

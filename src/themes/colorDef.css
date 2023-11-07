@@ -1,8 +1,45 @@
 .palmyra-form-field-label {
-    /* color: var(--primary-text-color); */
+    color: var(--form-field-label-color);
 }
 
-/* palmyra-form-field-data */
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
-    color: var(--default-input-text-color) !important;
+.palmyra-form-field-data {
+    color: var(--form-field-data-color);
+}
+
+.outlined-button {
+    background-color: var(--btn-bgcolor) !important;
+    border-color:var(--btn-border-color) !important;
+    color: var(--btn-text-color) !important;
+}
+
+.outlined-button:hover {
+    background-color: var(--btn-hover-bgcolor) !important;
+    color: var(--btn-hover-text-color) !important;
+}
+
+.disabled-button {
+    background-color: var(--disable-btn-bgcolor) !important;
+    color: var(--disable-btn-text-color) !important;
+}
+
+.filled-button {
+    background-color: var(--filled-btn-bgcolor) !important;
+    color: var(--filled-btn-text-color) !important;
+}
+
+.filled-button:hover {
+    background-color: var(--filled-btn-hover-bgcolor) !important;
+    color: var(--filled-btn-hover-text-color) !important;
+}
+
+.accent-outlined-button {
+    background: var(--accent-btn-bgcolor) !important;
+    color: var(--accent-btn-text-color) !important;
+    border-color: var(--accent-btn-border-color) !important;
+    box-Shadow: var(--accent-btn-boxshadow) !important;
+}
+
+.accent-outlined-button:hover {
+    background-color: var(--accent-btn-hover-bgcolor) !important;
+    color: var(--accent-btn-hover-text-color) !important;
 }

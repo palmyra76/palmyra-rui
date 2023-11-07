@@ -1,42 +1,42 @@
 import { jsx as e } from "react/jsx-runtime";
-import v from "../../chart/ChartFactory.js";
-import { useContext as u, useState as D, useMemo as T } from "react";
-import F from "../../chart/DataConverterFactory.js";
-import { StoreFactoryContext as P, LayoutParamsContext as S } from "./FlexiLayoutContext.js";
+import D from "../../chart/ChartFactory.js";
+import { useContext as m, useState as T, useMemo as F } from "react";
+import P from "../../chart/DataConverterFactory.js";
+import { StoreFactoryContext as R, LayoutParamsContext as S } from "./FlexiLayoutContext.js";
 import { mergeDeep as j } from "../../utils/index.js";
-const H = (n) => {
-  const o = n.layout, f = v(o.type), l = u(P), s = u(S);
-  var a = o.storeOptions || {};
-  s && j(a, s);
-  const y = l.getChartStore(a), [c, i] = D(null), h = (t) => {
+const L = (n) => {
+  const o = n.layout, u = D(o.type), f = m(R), l = m(S);
+  var y = o.storeOptions || {}, s = {};
+  j(s, y, l);
+  const h = f.getChartStore(s), [a, c] = T(null), d = (t) => {
     console.log(t);
   };
-  function d(t, r) {
-    var p, m;
-    const x = (p = r.transformOptions) != null && p.sourceType ? (m = r.transformOptions) == null ? void 0 : m.sourceType : t instanceof Array ? "default" : "object";
-    return F(r.type, x, r.transformOptions)(t);
+  function O(t, r) {
+    var i, p;
+    const v = (i = r.transformOptions) != null && i.sourceType ? (p = r.transformOptions) == null ? void 0 : p.sourceType : t instanceof Array ? "default" : "object";
+    return P(r.type, v, r.transformOptions)(t);
   }
-  function O(t) {
-    i(d(t, o));
+  function g(t) {
+    c(O(t, o));
   }
-  T(() => {
-    y.query({}).then((t) => O(t)).catch(() => i(null));
+  F(() => {
+    h.query({}).then((t) => g(t)).catch(() => c(null));
   }, []);
-  function g() {
+  function C() {
     return "300px";
   }
-  const C = n.layout.transformOptions || { sourceType: "default" };
-  return /* @__PURE__ */ e("div", { className: "palmyra-chart-container-wrapper", children: c ? /* @__PURE__ */ e(
-    f,
+  const x = n.layout.transformOptions || { sourceType: "default" };
+  return /* @__PURE__ */ e("div", { className: "palmyra-chart-container-wrapper", children: a ? /* @__PURE__ */ e(
+    u,
     {
-      data: c,
-      onPointClick: h,
-      height: g(),
-      transformOptions: C,
+      data: a,
+      onPointClick: d,
+      height: C(),
+      transformOptions: x,
       chartOptions: o.chartOptions
     }
   ) : /* @__PURE__ */ e("div", { children: "loading..." }) });
 };
 export {
-  H as default
+  L as default
 };

@@ -21,6 +21,7 @@ const getReactField = (props: FieldRequest, Input: React.FC) => {
     return <Input
         getFieldManager={props.getFieldManager}
         {...fieldDef}
+        label={props.title}
     />;
 }
 
@@ -28,9 +29,9 @@ const getTobeImplemented = () => {
     return <div>To be Implemented</div>
 }
 
-const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, fieldRefs: any) => {
+const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, fieldRefs: any, title?:any) => {
     const { type } = fieldDef;
-    const props: FieldRequest = { fieldDef, getFieldManager };
+    const props: FieldRequest = { fieldDef, getFieldManager, title };
 
     switch (type) {
         case 'string':
@@ -65,4 +66,5 @@ export default getField;
 interface FieldRequest {
     fieldDef: FieldDefinition,
     getFieldManager: IGetFieldManager
+    title?:string
 }

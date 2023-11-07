@@ -6,12 +6,13 @@ interface LookupStore<T> {
 
 interface QueryStore<T> {
     query(request: QueryRequest): Promise<QueryResponse<T>>;
+    queryLayout(request: QueryRequest): Promise<any>;
     get(request: GetRequest): Promise<T>;
     getIdentity(o: T): any;
     getIdProperty(): string | string[];
 }
 
-interface TreeQueryStore<T> extends QueryStore<T> {
+interface TreeQueryStore<T> {
     getChildren(data: T): Promise<QueryResponse<T>>;
     getRoot(): Promise<T>;
 }

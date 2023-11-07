@@ -7,9 +7,9 @@
             "icon": "home"
         },
         {
-            "title": "Grid Layout",
+            "title": "Back end Grid Layout",
             "name": "gridLayout",
-            "path": "/demo/simple/grid",
+            "path": "/demo/simple/backendgrid",
             "icon": "grid"
         },
         {

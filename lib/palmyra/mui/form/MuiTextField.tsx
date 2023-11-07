@@ -26,7 +26,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
         };
     }, []);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data);    
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);    
 
     var callbacks = {
         onBlur: eventListeners.onBlur,

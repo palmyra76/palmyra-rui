@@ -8,7 +8,14 @@
                     "name": "",
                     "type": "grid",
                     "tableLayout": {
-                        "pagination" : [10, 15, 25],
+                        "storeOptions": {
+                            "endPoint": "/"
+                        },
+                        "pagination": [
+                            10,
+                            15,
+                            25
+                        ],
                         "fields": [
                             {
                                 "attribute": "userName",

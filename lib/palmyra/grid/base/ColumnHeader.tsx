@@ -7,6 +7,7 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
     const [sortOrder, setSortOrder] = useState('');
     const column= header.id;
     const  sortDisabled = !header.column.columnDef.enableSorting;
+
     const handleSortColumn = () => {
         if (onSortChange === undefined || sortDisabled)
             return;
@@ -26,13 +27,14 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
         setSortOrder(order);
         onSortChange(column, order)
     };
-
     
-    const headerStyle = onHeaderStyle(header.original)
+    var headerStyle = onHeaderStyle(header.original)
+    if (!sortDisabled)
+        headerStyle.cursor = 'pointer' ;
 
     return (
         <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
-            <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }} onClick={() => handleSortColumn()}>
+            <div style={{ display: 'flex', gap: '5px'}} onClick={() => handleSortColumn()}>
                 {children}
                 {sortOrder === 'asc' ? (
                     <ArrowUpward style={{ fontSize: '22px', color: 'rgb(0,0,0,0.65)' }} />

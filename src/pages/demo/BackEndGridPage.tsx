@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
-import { FlexiLayoutRenderer } from '../../../lib/main';
-import { AppStoreFactory } from '../../components/store/AppStoreFactory';
+import { FlexiLayoutRenderer, StoreFactory } from '../../../lib/main';
+import { PalmyraStoreFactory } from '../../../lib/palmyra/store/palmyra/PalmyraStoreFactory';
 
-const GridPage = () => {
+const BackEndGridPage = () => {
     const { layout } = useParams();
     const [pageDef, setPageDef] = useState(null);
     const key = '/' + layout + '/';
-    const storeFactory: AppStoreFactory = new AppStoreFactory();
+    const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api/palmyra' });
 
     useEffect(() => {
-        fetch(key + '/gridDef.json')
+        fetch(key + '/sampleGridDef.json')
             .then((response) => response.json())
             .then((d) => { setPageDef(d) });
     }, [layout])
@@ -24,4 +24,4 @@ const GridPage = () => {
     </>
 }
 
-export default GridPage;
+export default BackEndGridPage;

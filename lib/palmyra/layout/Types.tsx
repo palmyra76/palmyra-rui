@@ -55,8 +55,8 @@ interface Actionable {
 
 interface storeBacked {
     storeOptions?: {
-        endPoint?:string // alias for Query, if put,post, delete specific urls not provided, 
-                
+        endPoint?: string // alias for Query, if put,post, delete specific urls not provided,
+        hasLayout?: boolean,
         urlFormat?: string,
         urlFormatPut?: string,
         urlFormatPost?: string,

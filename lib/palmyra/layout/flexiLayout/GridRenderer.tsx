@@ -1,4 +1,4 @@
-import { useImperativeHandle, forwardRef, useContext } from 'react';
+import { useImperativeHandle, forwardRef, useContext, useState, useEffect } from 'react';
 import { PageContext } from './Types';
 import { TableLayout } from '.';
 import { GridX } from '../../grid';
@@ -14,17 +14,24 @@ interface GridRendererInput {
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, ref) {
     const tableLayout = props.layout;
-    const { fields } = tableLayout;
+    const [fields, setFields] = useState(tableLayout.fields);
     const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];
 
     const storeFactory = useContext(StoreFactoryContext);
     const layoutParams = useContext(LayoutParamsContext);
     var storeOptions = tableLayout.storeOptions || {};
-    if (layoutParams) {
-        mergeDeep(storeOptions, layoutParams);
-    }
 
-    const store = storeFactory.getGridStore(storeOptions);
+    var storeRequest: any = {};
+
+    mergeDeep(storeRequest, storeOptions, layoutParams);
+
+    const store = storeFactory.getGridStore(storeRequest);
+
+    useEffect(() => {
+        if (storeOptions.hasLayout) {
+            store.queryLayout({}).then(d => { setFields(d.columns) });
+        }
+    }, [])
 
     useImperativeHandle(ref, () => {
         return {
