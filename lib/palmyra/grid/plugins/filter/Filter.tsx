@@ -4,7 +4,6 @@ import { convertToField } from "../../base/GridFieldConverter";
 import SectionRendererEditForm from "../../../layout/flexiLayout/SectionRendererEditForm";
 import { createFormData } from "../../../form";
 import Draggable from "react-draggable";
-import { useState } from "react";
 
 
 function PaperComponent(props: PaperProps) {
@@ -22,8 +21,12 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
     const handleDropdownClick = (event: any) => {
         event.stopPropagation();
     };
-    const [data, setData] = useState(getFormData);
-    var { getFieldManager, getFormData } = createFormData(defaultFilter, () => { }, 'edit');
+
+    var { getFieldManager, getFormData } = createFormData(defaultFilter, () => { }, 'edit');    
+
+    const reset = () => {
+        setFilter({})
+    }
 
     const assignFilter = () => {
         var data = getFormData();
@@ -57,7 +60,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                 />
             </div>
             <div className="filter-dialog-button-container">
-                <Button className='filter-dialog-button' disableRipple onClick={() => { console.log(data), setData("") }}>Reset</Button>
+                <Button className='filter-dialog-button' disableRipple onClick={reset}>Reset</Button>
                 <Button className='filter-dialog-button' disableRipple onClick={assignFilter}>Filter</Button>
             </div>
         </Dialog>
