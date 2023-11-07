@@ -212,11 +212,11 @@ function GridX(props: GridXOptions) {
             <Tooltip title='Filter' placement='top'>
               <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
                 <FilterAlt className='grid-button-icon' />
-                <Filter columns={columns} setFilter={setUserFilter}
-                  defaultFilter={filter}
-                  isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
               </Button>
             </Tooltip>
+            <Filter columns={columns} setFilter={setUserFilter}
+              defaultFilter={filter}
+              isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
           </div>
           <div className='grid-header-button' onClick={onExportClick}>
             <Tooltip title='Export' placement='top'>

@@ -1704,7 +1704,7 @@ const wr = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: s 
       PaperComponent: pr,
       children: [
         /* @__PURE__ */ Se("div", { className: "filter-dialog-container", children: [
-          /* @__PURE__ */ J(lt, { style: { cursor: "move" }, id: "draggable-dialog-title", children: " Filter" }),
+          /* @__PURE__ */ J(lt, { id: "draggable-dialog-title", children: " Filter" }),
           /* @__PURE__ */ J("div", { className: "filter-dialog-close-btn", onClick: r, children: /* @__PURE__ */ J(dt, { className: "close-icon" }) })
         ] }),
         /* @__PURE__ */ J("div", { className: "filter-dialog-content", children: /* @__PURE__ */ J(

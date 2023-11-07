@@ -93,8 +93,8 @@ function xe(d) {
           ] })
         ] }) })
       ] }) }),
-      /* @__PURE__ */ e("div", { className: "grid-header-button", children: /* @__PURE__ */ e(h, { title: "Filter", placement: "top", children: /* @__PURE__ */ i(u, { className: "grid-btn", disableRipple: !0, onClick: () => x(!0), children: [
-        /* @__PURE__ */ e(pe, { className: "grid-button-icon" }),
+      /* @__PURE__ */ i("div", { className: "grid-header-button", children: [
+        /* @__PURE__ */ e(h, { title: "Filter", placement: "top", children: /* @__PURE__ */ e(u, { className: "grid-btn", disableRipple: !0, onClick: () => x(!0), children: /* @__PURE__ */ e(pe, { className: "grid-button-icon" }) }) }),
         /* @__PURE__ */ e(
           ge,
           {
@@ -105,7 +105,7 @@ function xe(d) {
             onClose: () => x(!1)
           }
         )
-      ] }) }) }),
+      ] }),
       /* @__PURE__ */ e("div", { className: "grid-header-button", onClick: Y, children: /* @__PURE__ */ e(h, { title: "Export", placement: "top", children: /* @__PURE__ */ e(u, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ e(me, { className: "grid-button-icon" }) }) }) }),
       /* @__PURE__ */ e("div", { className: "grid-filter", children: _ && /* @__PURE__ */ e(
         ie,

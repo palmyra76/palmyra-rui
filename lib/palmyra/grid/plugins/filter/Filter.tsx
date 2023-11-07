@@ -41,7 +41,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
             PaperComponent={PaperComponent}
         >
             <div className="filter-dialog-container">
-                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title"> Filter</DialogTitle>
+                <DialogTitle id="draggable-dialog-title"> Filter</DialogTitle>
                 <div className="filter-dialog-close-btn" onClick={onClose}>
                     <Close className="close-icon" />
                 </div>
