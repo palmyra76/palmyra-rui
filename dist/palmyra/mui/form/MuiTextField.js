@@ -2,8 +2,8 @@ import { jsx as c } from "react/jsx-runtime";
 import { forwardRef as f, useRef as d, useImperativeHandle as g } from "react";
 import { TextField as m } from "@mui/material";
 import { copyMuiOptions as p } from "./MuiUtil.js";
-const T = f(function(e, u) {
-  const { getFieldManager: i } = e, t = i(e, "string"), r = t.error, n = t.eventListeners, o = d(null);
+const h = f(function(e, u) {
+  const { getFieldManager: a } = e, t = a(e, "string"), r = t.error, n = t.eventListeners, o = d(null);
   g(u, () => ({
     focus() {
       o.current.focus();
@@ -15,7 +15,7 @@ const T = f(function(e, u) {
       o.current.assignAttribute(s);
     }
   }), []);
-  var a = p(e, t.data), l = {
+  var i = p(e, t.data, e.label), l = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
     onChange: (s) => n.onValueChange(s.target.value)
@@ -23,7 +23,7 @@ const T = f(function(e, u) {
   return /* @__PURE__ */ c(
     m,
     {
-      ...a,
+      ...i,
       fullWidth: !0,
       inputRef: o,
       ...l,
@@ -33,5 +33,5 @@ const T = f(function(e, u) {
   );
 });
 export {
-  T as default
+  h as default
 };

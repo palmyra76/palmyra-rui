@@ -1,9 +1,12 @@
-const r = (e, d) => ({
-  disabled: e.disabled,
-  required: e.required,
-  placeholder: e.placeHolder,
-  value: d
-});
+const a = (e, l, r) => {
+  var d = {
+    disabled: e.disabled,
+    required: e.required,
+    placeholder: e.placeHolder,
+    value: l
+  };
+  return r && (d.label = r), d;
+};
 export {
-  r as copyMuiOptions
+  a as copyMuiOptions
 };

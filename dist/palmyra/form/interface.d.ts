@@ -34,6 +34,7 @@ interface TextValidation extends abstractValidation {
     regex?: string;
 }
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation {
+    label?: string;
 }
 interface ISwitchDefinition extends AttributeDefinition {
     options: Record<string | number, string | number>;
