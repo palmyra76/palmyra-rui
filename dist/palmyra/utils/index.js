@@ -1,30 +1,34 @@
-import { StringFormat as a, concatValues as l, hasChar as y, hasDot as p } from "./StringUtil.js";
-function i(n) {
+import { StringFormat as l, concatValues as p, hasChar as y, hasDot as h } from "./StringUtil.js";
+function t(n) {
   return n && typeof n == "object" && !Array.isArray(n);
 }
-function t(n, ...r) {
-  if (!r.length)
+function c(n, ...e) {
+  if (!e.length)
     return n;
-  const e = r.shift();
-  if (i(n) && i(e))
-    for (const o in e)
-      i(e[o]) ? (n[o] || Object.assign(n, { [o]: {} }), t(n[o], e[o])) : Object.assign(n, { [o]: e[o] });
-  return t(n, ...r);
+  const r = e.shift();
+  if (t(n) && t(r))
+    for (const o in r)
+      t(r[o]) ? (n[o] || Object.assign(n, { [o]: {} }), c(n[o], r[o])) : Object.assign(n, { [o]: r[o] });
+  return c(n, ...e);
 }
-const c = (n) => {
-  var r;
-  return function(e) {
-    clearTimeout(r), r = setTimeout(function() {
-      e.apply(null);
+const s = (n) => {
+  var e = {};
+  return c(e, n), e;
+}, i = (n) => {
+  var e;
+  return function(r) {
+    clearTimeout(e), e = setTimeout(function() {
+      r.apply(null);
     }, n || 0);
   };
-}, s = c(300);
+}, f = i(300);
 export {
-  a as StringFormat,
-  l as concatValues,
-  s as delay,
+  l as StringFormat,
+  s as cloneDeep,
+  p as concatValues,
+  f as delay,
   y as hasChar,
-  p as hasDot,
-  i as isObject,
-  t as mergeDeep
+  h as hasDot,
+  t as isObject,
+  c as mergeDeep
 };

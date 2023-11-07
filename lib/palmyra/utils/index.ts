@@ -21,6 +21,12 @@ export function mergeDeep(target, ...sources) {
 }
 
 
+export const cloneDeep = <T>(source:T):T => {
+    var res:any = {};
+    mergeDeep(res, source);
+    return res;
+}
+
 const delayGenerator = (ms: number) => {
     var timer: ReturnType<typeof setTimeout>;
     return function (callback: Function) {

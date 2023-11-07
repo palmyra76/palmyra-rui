@@ -239,17 +239,10 @@ function GridX(props: GridXOptions) {
             )}
           </div>
         </div>
-
-        {
-          null != data ? data.length == 0 ? (
-            <EmptyChildContainer />
-          ) : (
-            <TableX columnDefs={columnDefs}
-              rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
-              onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
-            />
-          ) : (<div></div>)
-        }
+        <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer}
+          rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
+          onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
+        />
       </div >
     </div >
   )

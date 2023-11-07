@@ -14,7 +14,7 @@ import {
 } from '@tanstack/react-table'
 
 
-function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn }) {
+function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild }) {
   const table = useReactTable({
     data: rowData,
     manualSorting: true,
@@ -43,7 +43,7 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
 
 
   const onSort = onSortColumn ? onSortChange : undefined;
-
+  
   return (
     <Box sx={{ width: '100%' }}>
       <TableContainer component={Paper}>
@@ -70,6 +70,8 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
               </TableRow>
             ))}
           </TableHead>
+          
+          {(null == rowData || 0 == rowData.length)? (<EmptyChild/>) : (
           <TableBody >
             {
               table.getRowModel().rows
@@ -91,7 +93,7 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
                     </TableRow>
                   )
                 })}
-          </TableBody>
+          </TableBody> )}
         </Table>
       </TableContainer>
     </Box>
