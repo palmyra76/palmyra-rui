@@ -161,6 +161,34 @@
   margin-top: 10px;
 }
 
+.palmyra-form-field-only-container-wrapper {
+  width: 100% !important;
+}
+
+.palmyra-form-field-only-container {
+  width: 100% !important;
+  display: flex !important;
+  text-align: left !important;
+  word-break: break-all !important;
+  padding: 10px !important;
+  font-size: 20px !important;
+}
+
+.palmyra-form-field-only-container-2column {
+  width: calc(50% - 0px) !important;
+  display: inline-block !important;
+}
+
+.palmyra-form-field-only-container-3column {
+  width: calc(33% - 0px) !important;
+  display: inline-block !important;
+}
+
+.palmyra-form-field-only-container-4column {
+  width: calc(25% - 0px) !important;
+  display: inline-block !important;
+}
+
 .grid-filter-btn-container {
   display: flex;
   margin-left: auto;
