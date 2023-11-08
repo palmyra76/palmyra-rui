@@ -31,6 +31,7 @@ interface AttributeDefinition {
     required?: boolean,
     disabled?: boolean,
     placeHolder?: string,
+    variant?:string
 }
 
 interface abstractValidation {
