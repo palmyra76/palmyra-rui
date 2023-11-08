@@ -1,7 +1,7 @@
 
 import { FlexiLayoutRendererInput } from "./Types";
 import FlexiLayoutGridRenderer from "./FlexiLayoutGridRenderer";
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "../ErrorBoundary";
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
@@ -26,21 +26,22 @@ const getRenderer = (type: flexiPrimaryType | 'form'): React.FC => {
 
 
 const FlexiLayoutRenderer = forwardRef(function FlexiLayoutRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
-    const { layout } = props;
+    const [layout, setLayout] = useState<any>(props.layout);
     const type = props.mode ? props.mode : layout.type ? layout.type : "grid";
     const layoutParams = props.layoutParams || {};
-    const Renderer: any = getRenderer(type);
+    const Renderer: any = getRenderer(type);    
 
     // DONOT REMOVE - starts
     // This is required to force rerender the component on change of layout
     // The index should be assigned to Renderer.key
     const index = useRef(0);
     useEffect(() => {
+        setLayout(props.layout);
         if (index.current < 999999)
             index.current++;
         else
             index.current = 0;
-    }, [layout]);
+    }, [props.layout]);
     // DONOT REMOVE - ends
 
     return (

@@ -65,6 +65,12 @@
             "icon": "layout",
             "children": [
                 {
+                    "title": "GridSection Layout",
+                    "name": "sectionGridLayout",
+                    "path": "/demo/section/grid",
+                    "icon": "grid"
+                },
+                {
                     "title": "Edit Form Layout",
                     "name": "secEditFormLayout",
                     "path": "/demo/section/formEdit",
