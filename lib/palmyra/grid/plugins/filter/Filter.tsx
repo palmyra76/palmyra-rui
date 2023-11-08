@@ -63,7 +63,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                         formLayout: {
                             fields,
                             options:{
-                                columns:3
+                                columns:2
                             },
                         }, 
                         Renderer:FormFieldOnlyRenderer
