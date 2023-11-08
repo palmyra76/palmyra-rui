@@ -99,23 +99,41 @@ function GridX(props: GridXOptions) {
 
   const handleRowDensityChange = () => {
     if (selectedDensity === 'compact') {
-      return { padding: '7px' };
+      return { padding: '3px' };
     } else if (selectedDensity === 'comfortable') {
-      return { padding: '30px', fontSize: '18px' };
+      return { padding: '15px', fontSize: '18px' };
     } else {
-      return { padding: '15px' };
+      return { padding: '7px' };
     }
   }
 
   const handleHeaderDensityChange = () => {
     if (selectedDensity === 'compact') {
-      return { padding: '7px' };
+      return { padding: '3px' };
     } else if (selectedDensity === 'comfortable') {
-      return { padding: '30px', fontSize: '18px' };
+      return { padding: '15px', fontSize: '18px' };
     } else {
-      return { padding: '15px' };
+      return { padding: '7px' };
     }
   }
+
+  const densityIcon = () => {
+    var iconComponent: any;
+
+    switch (selectedDensity) {
+      case 'compact':
+        iconComponent = <DensitySmall className='density-icon' />;
+        break;
+      case 'comfortable':
+        iconComponent = <DensityLarge className='density-icon' />;
+        break;
+      default:
+        iconComponent = <Menu className="grid-button-icon" />;
+        break;
+    }
+    return iconComponent;
+  }
+
 
   const handleSearch = (event) => {
     const val = event.target.value;
@@ -186,7 +204,7 @@ function GridX(props: GridXOptions) {
             <div className='grid-header-button' onClick={toggleDropdown}>
               <Tooltip title='Density' placement='top'>
                 <Button className='grid-btn' disableRipple>
-                  <Menu className='grid-button-icon' />
+                  {densityIcon()}
                 </Button>
               </Tooltip>
               {dropdownOpen && (
