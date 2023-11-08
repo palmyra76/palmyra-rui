@@ -1,13 +1,13 @@
-import { jsx as V, jsxs as Se } from "react/jsx-runtime";
-import { Dialog as ct, Button as Ie, Paper as lt } from "@mui/material";
-import { Close as ft } from "@mui/icons-material";
-import { convertToField as dt } from "../../base/GridFieldConverter.js";
-import pt from "../../../layout/flexiLayout/SectionRendererEditForm.js";
-import { createFormData as ht } from "../../../form/PalmyraFormManager.js";
-import { a as gt, g as yt } from "../../../../_commonjsHelpers-c5d32002.js";
+import { jsx as k, jsxs as Se } from "react/jsx-runtime";
+import { Dialog as ct, Tooltip as lt, Button as Ie, Paper as ft } from "@mui/material";
+import { Close as dt } from "@mui/icons-material";
+import { convertToField as pt } from "../../base/GridFieldConverter.js";
+import ht from "../../../layout/flexiLayout/SectionRendererEditForm.js";
+import { createFormData as gt } from "../../../form/PalmyraFormManager.js";
+import { a as yt, g as mt } from "../../../../_commonjsHelpers-c5d32002.js";
 import ze from "react";
 import Ge from "react-dom";
-import mt from "../../../layout/flexiLayout/FormFieldOnlyRenderer.js";
+import vt from "../../../layout/flexiLayout/FormFieldOnlyRenderer.js";
 var ye = { exports: {} }, Ke = {}, Re = { exports: {} }, he = { exports: {} }, C = {};
 /** @license React v16.13.1
  * react-is.production.min.js
@@ -18,7 +18,7 @@ var ye = { exports: {} }, Ke = {}, Re = { exports: {} }, he = { exports: {} }, C
  * LICENSE file in the root directory of this source tree.
  */
 var We;
-function vt() {
+function bt() {
   if (We)
     return C;
   We = 1;
@@ -94,7 +94,7 @@ var x = {};
  * LICENSE file in the root directory of this source tree.
  */
 var je;
-function bt() {
+function St() {
   return je || (je = 1, process.env.NODE_ENV !== "production" && function() {
     var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, s = e ? Symbol.for("react.strict_mode") : 60108, i = e ? Symbol.for("react.profiler") : 60114, d = e ? Symbol.for("react.provider") : 60109, c = e ? Symbol.for("react.context") : 60110, h = e ? Symbol.for("react.async_mode") : 60111, y = e ? Symbol.for("react.concurrent_mode") : 60111, m = e ? Symbol.for("react.forward_ref") : 60112, P = e ? Symbol.for("react.suspense") : 60113, Y = e ? Symbol.for("react.suspense_list") : 60120, A = e ? Symbol.for("react.memo") : 60115, I = e ? Symbol.for("react.lazy") : 60116, N = e ? Symbol.for("react.block") : 60121, W = e ? Symbol.for("react.fundamental") : 60117, j = e ? Symbol.for("react.responder") : 60118, g = e ? Symbol.for("react.scope") : 60119;
     function f(u) {
@@ -133,7 +133,7 @@ function bt() {
         }
       }
     }
-    var o = h, M = y, w = c, B = d, ee = t, G = m, te = n, se = I, fe = A, re = r, ue = i, H = s, K = P, ae = !1;
+    var o = h, M = y, w = c, V = d, ee = t, G = m, te = n, se = I, fe = A, re = r, ue = i, H = s, K = P, ae = !1;
     function ce(u) {
       return ae || (ae = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), a(u) || p(u) === h;
     }
@@ -173,12 +173,12 @@ function bt() {
     function q(u) {
       return p(u) === P;
     }
-    x.AsyncMode = o, x.ConcurrentMode = M, x.ContextConsumer = w, x.ContextProvider = B, x.Element = ee, x.ForwardRef = G, x.Fragment = te, x.Lazy = se, x.Memo = fe, x.Portal = re, x.Profiler = ue, x.StrictMode = H, x.Suspense = K, x.isAsyncMode = ce, x.isConcurrentMode = a, x.isContextConsumer = l, x.isContextProvider = E, x.isElement = S, x.isForwardRef = v, x.isFragment = D, x.isLazy = b, x.isMemo = T, x.isPortal = _, x.isProfiler = R, x.isStrictMode = O, x.isSuspense = q, x.isValidElementType = f, x.typeOf = p;
+    x.AsyncMode = o, x.ConcurrentMode = M, x.ContextConsumer = w, x.ContextProvider = V, x.Element = ee, x.ForwardRef = G, x.Fragment = te, x.Lazy = se, x.Memo = fe, x.Portal = re, x.Profiler = ue, x.StrictMode = H, x.Suspense = K, x.isAsyncMode = ce, x.isConcurrentMode = a, x.isContextConsumer = l, x.isContextProvider = E, x.isElement = S, x.isForwardRef = v, x.isFragment = D, x.isLazy = b, x.isMemo = T, x.isPortal = _, x.isProfiler = R, x.isStrictMode = O, x.isSuspense = q, x.isValidElementType = f, x.typeOf = p;
   }()), x;
 }
 var Fe;
 function Je() {
-  return Fe || (Fe = 1, process.env.NODE_ENV === "production" ? he.exports = vt() : he.exports = bt()), he.exports;
+  return Fe || (Fe = 1, process.env.NODE_ENV === "production" ? he.exports = bt() : he.exports = St()), he.exports;
 }
 /*
 object-assign
@@ -186,7 +186,7 @@ object-assign
 @license MIT
 */
 var Te, Xe;
-function St() {
+function Tt() {
   if (Xe)
     return Te;
   Xe = 1;
@@ -245,7 +245,7 @@ function Ze() {
   return Le || (Le = 1, Pe = Function.call.bind(Object.prototype.hasOwnProperty)), Pe;
 }
 var we, Ue;
-function Tt() {
+function Et() {
   if (Ue)
     return we;
   Ue = 1;
@@ -295,11 +295,11 @@ function Tt() {
   }, we = s, we;
 }
 var De, ke;
-function Et() {
+function Pt() {
   if (ke)
     return De;
   ke = 1;
-  var e = Je(), t = St(), r = Me(), n = Ze(), s = Tt(), i = function() {
+  var e = Je(), t = Tt(), r = Me(), n = Ze(), s = Et(), i = function() {
   };
   process.env.NODE_ENV !== "production" && (i = function(c) {
     var h = "Warning: " + c;
@@ -334,7 +334,7 @@ function Et() {
       elementType: o(),
       instanceOf: M,
       node: G(),
-      objectOf: B,
+      objectOf: V,
       oneOf: w,
       oneOfType: ee,
       shape: se,
@@ -454,7 +454,7 @@ function Et() {
       }
       return W(l);
     }
-    function B(a) {
+    function V(a) {
       function l(E, S, v, D, b) {
         if (typeof a != "function")
           return new N("Property `" + b + "` of component `" + v + "` has invalid PropType notation inside objectOf.");
@@ -617,7 +617,7 @@ Valid keys: ` + JSON.stringify(Object.keys(a), null, "  ")
   }, De;
 }
 var _e, Be;
-function Pt() {
+function wt() {
   if (Be)
     return _e;
   Be = 1;
@@ -666,10 +666,10 @@ function Pt() {
   }, _e;
 }
 if (process.env.NODE_ENV !== "production") {
-  var wt = Je(), Dt = !0;
-  Re.exports = Et()(wt.isElement, Dt);
+  var Dt = Je(), _t = !0;
+  Re.exports = Pt()(Dt.isElement, _t);
 } else
-  Re.exports = Pt()();
+  Re.exports = wt()();
 var Qe = Re.exports;
 function et(e) {
   var t, r, n = "";
@@ -689,35 +689,35 @@ function Ve() {
     (e = arguments[r++]) && (t = et(e)) && (n && (n += " "), n += t);
   return n;
 }
-const _t = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Ot = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   clsx: Ve,
   default: Ve
-}, Symbol.toStringTag, { value: "Module" })), Ot = /* @__PURE__ */ gt(_t);
+}, Symbol.toStringTag, { value: "Module" })), Ct = /* @__PURE__ */ yt(Ot);
 var $ = {}, Z = {};
 Object.defineProperty(Z, "__esModule", {
   value: !0
 });
-Z.dontSetMe = Nt;
-Z.findInArray = Ct;
-Z.int = Mt;
-Z.isFunction = xt;
-Z.isNum = Rt;
-function Ct(e, t) {
+Z.dontSetMe = At;
+Z.findInArray = xt;
+Z.int = Nt;
+Z.isFunction = Rt;
+Z.isNum = Mt;
+function xt(e, t) {
   for (let r = 0, n = e.length; r < n; r++)
     if (t.apply(t, [e[r], r, e]))
       return e[r];
 }
-function xt(e) {
+function Rt(e) {
   return typeof e == "function" || Object.prototype.toString.call(e) === "[object Function]";
 }
-function Rt(e) {
+function Mt(e) {
   return typeof e == "number" && !isNaN(e);
 }
-function Mt(e) {
+function Nt(e) {
   return parseInt(e, 10);
 }
-function Nt(e, t, r) {
+function At(e, t, r) {
   if (e[t])
     return new Error("Invalid prop ".concat(t, " passed to ").concat(r, " - do not set this, set it on the child."));
 }
@@ -726,7 +726,7 @@ Object.defineProperty(ie, "__esModule", {
   value: !0
 });
 ie.browserPrefixToKey = rt;
-ie.browserPrefixToStyle = At;
+ie.browserPrefixToStyle = $t;
 ie.default = void 0;
 ie.getPrefix = tt;
 const Oe = ["Moz", "Webkit", "O", "ms"];
@@ -744,12 +744,12 @@ function tt() {
   return "";
 }
 function rt(e, t) {
-  return t ? "".concat(t).concat($t(e)) : e;
+  return t ? "".concat(t).concat(Yt(e)) : e;
 }
-function At(e, t) {
+function $t(e, t) {
   return t ? "-".concat(t.toLowerCase(), "-").concat(e) : e;
 }
-function $t(e) {
+function Yt(e) {
   let t = "", r = !0;
   for (let n = 0; n < e.length; n++)
     r ? (t += e[n].toUpperCase(), r = !1) : e[n] === "-" ? r = !0 : t += e[n];
@@ -760,24 +760,24 @@ Object.defineProperty($, "__esModule", {
   value: !0
 });
 $.addClassName = at;
-$.addEvent = Wt;
-$.addUserSelectStyles = zt;
-$.createCSSTransform = kt;
-$.createSVGTransform = Bt;
-$.getTouch = Vt;
-$.getTouchIdentifier = Ht;
+$.addEvent = jt;
+$.addUserSelectStyles = Gt;
+$.createCSSTransform = Bt;
+$.createSVGTransform = Vt;
+$.getTouch = Ht;
+$.getTouchIdentifier = zt;
 $.getTranslation = Ne;
-$.innerHeight = qt;
-$.innerWidth = Lt;
+$.innerHeight = Lt;
+$.innerWidth = Ut;
 $.matchesSelector = ot;
-$.matchesSelectorAndParentsTo = It;
-$.offsetXYFromParent = Ut;
-$.outerHeight = Ft;
-$.outerWidth = Xt;
+$.matchesSelectorAndParentsTo = Wt;
+$.offsetXYFromParent = kt;
+$.outerHeight = Xt;
+$.outerWidth = qt;
 $.removeClassName = it;
-$.removeEvent = jt;
-$.removeUserSelectStyles = Gt;
-var k = Z, He = Yt(ie);
+$.removeEvent = Ft;
+$.removeUserSelectStyles = Kt;
+var B = Z, He = It(ie);
 function nt(e) {
   if (typeof WeakMap != "function")
     return null;
@@ -786,7 +786,7 @@ function nt(e) {
     return n ? r : t;
   })(e);
 }
-function Yt(e, t) {
+function It(e, t) {
   if (!t && e && e.__esModule)
     return e;
   if (e === null || typeof e != "object" && typeof e != "function")
@@ -804,11 +804,11 @@ function Yt(e, t) {
 }
 let ge = "";
 function ot(e, t) {
-  return ge || (ge = (0, k.findInArray)(["matches", "webkitMatchesSelector", "mozMatchesSelector", "msMatchesSelector", "oMatchesSelector"], function(r) {
-    return (0, k.isFunction)(e[r]);
-  })), (0, k.isFunction)(e[ge]) ? e[ge](t) : !1;
+  return ge || (ge = (0, B.findInArray)(["matches", "webkitMatchesSelector", "mozMatchesSelector", "msMatchesSelector", "oMatchesSelector"], function(r) {
+    return (0, B.isFunction)(e[r]);
+  })), (0, B.isFunction)(e[ge]) ? e[ge](t) : !1;
 }
-function It(e, t, r) {
+function Wt(e, t, r) {
   let n = e;
   do {
     if (ot(n, t))
@@ -819,7 +819,7 @@ function It(e, t, r) {
   } while (n);
   return !1;
 }
-function Wt(e, t, r, n) {
+function jt(e, t, r, n) {
   if (!e)
     return;
   const s = {
@@ -828,7 +828,7 @@ function Wt(e, t, r, n) {
   };
   e.addEventListener ? e.addEventListener(t, r, s) : e.attachEvent ? e.attachEvent("on" + t, r) : e["on" + t] = r;
 }
-function jt(e, t, r, n) {
+function Ft(e, t, r, n) {
   if (!e)
     return;
   const s = {
@@ -837,27 +837,27 @@ function jt(e, t, r, n) {
   };
   e.removeEventListener ? e.removeEventListener(t, r, s) : e.detachEvent ? e.detachEvent("on" + t, r) : e["on" + t] = null;
 }
-function Ft(e) {
+function Xt(e) {
   let t = e.clientHeight;
   const r = e.ownerDocument.defaultView.getComputedStyle(e);
-  return t += (0, k.int)(r.borderTopWidth), t += (0, k.int)(r.borderBottomWidth), t;
-}
-function Xt(e) {
-  let t = e.clientWidth;
-  const r = e.ownerDocument.defaultView.getComputedStyle(e);
-  return t += (0, k.int)(r.borderLeftWidth), t += (0, k.int)(r.borderRightWidth), t;
+  return t += (0, B.int)(r.borderTopWidth), t += (0, B.int)(r.borderBottomWidth), t;
 }
 function qt(e) {
-  let t = e.clientHeight;
-  const r = e.ownerDocument.defaultView.getComputedStyle(e);
-  return t -= (0, k.int)(r.paddingTop), t -= (0, k.int)(r.paddingBottom), t;
-}
-function Lt(e) {
   let t = e.clientWidth;
   const r = e.ownerDocument.defaultView.getComputedStyle(e);
-  return t -= (0, k.int)(r.paddingLeft), t -= (0, k.int)(r.paddingRight), t;
+  return t += (0, B.int)(r.borderLeftWidth), t += (0, B.int)(r.borderRightWidth), t;
 }
-function Ut(e, t, r) {
+function Lt(e) {
+  let t = e.clientHeight;
+  const r = e.ownerDocument.defaultView.getComputedStyle(e);
+  return t -= (0, B.int)(r.paddingTop), t -= (0, B.int)(r.paddingBottom), t;
+}
+function Ut(e) {
+  let t = e.clientWidth;
+  const r = e.ownerDocument.defaultView.getComputedStyle(e);
+  return t -= (0, B.int)(r.paddingLeft), t -= (0, B.int)(r.paddingRight), t;
+}
+function kt(e, t, r) {
   const s = t === t.ownerDocument.body ? {
     left: 0,
     top: 0
@@ -867,13 +867,13 @@ function Ut(e, t, r) {
     y: d
   };
 }
-function kt(e, t) {
+function Bt(e, t) {
   const r = Ne(e, t, "px");
   return {
     [(0, He.browserPrefixToKey)("transform", He.default)]: r
   };
 }
-function Bt(e, t) {
+function Vt(e, t) {
   return Ne(e, t, "");
 }
 function Ne(e, t, r) {
@@ -887,16 +887,16 @@ function Ne(e, t, r) {
   }
   return i;
 }
-function Vt(e, t) {
-  return e.targetTouches && (0, k.findInArray)(e.targetTouches, (r) => t === r.identifier) || e.changedTouches && (0, k.findInArray)(e.changedTouches, (r) => t === r.identifier);
+function Ht(e, t) {
+  return e.targetTouches && (0, B.findInArray)(e.targetTouches, (r) => t === r.identifier) || e.changedTouches && (0, B.findInArray)(e.changedTouches, (r) => t === r.identifier);
 }
-function Ht(e) {
+function zt(e) {
   if (e.targetTouches && e.targetTouches[0])
     return e.targetTouches[0].identifier;
   if (e.changedTouches && e.changedTouches[0])
     return e.changedTouches[0].identifier;
 }
-function zt(e) {
+function Gt(e) {
   if (!e)
     return;
   let t = e.getElementById("react-draggable-style-el");
@@ -904,7 +904,7 @@ function zt(e) {
 `, t.innerHTML += `.react-draggable-transparent-selection *::selection {all: inherit;}
 `, e.getElementsByTagName("head")[0].appendChild(t)), e.body && at(e.body, "react-draggable-transparent-selection");
 }
-function Gt(e) {
+function Kt(e) {
   if (e)
     try {
       if (e.body && it(e.body, "react-draggable-transparent-selection"), e.selection)
@@ -926,21 +926,21 @@ var Q = {};
 Object.defineProperty(Q, "__esModule", {
   value: !0
 });
-Q.canDragX = Zt;
-Q.canDragY = Qt;
-Q.createCoreData = tr;
-Q.createDraggableData = rr;
-Q.getBoundPosition = Kt;
-Q.getControlPosition = er;
-Q.snapToGrid = Jt;
+Q.canDragX = Qt;
+Q.canDragY = er;
+Q.createCoreData = rr;
+Q.createDraggableData = nr;
+Q.getBoundPosition = Jt;
+Q.getControlPosition = tr;
+Q.snapToGrid = Zt;
 var U = Z, le = $;
-function Kt(e, t, r) {
+function Jt(e, t, r) {
   if (!e.props.bounds)
     return [t, r];
   let {
     bounds: n
   } = e.props;
-  n = typeof n == "string" ? n : nr(n);
+  n = typeof n == "string" ? n : or(n);
   const s = Ae(e);
   if (typeof n == "string") {
     const {
@@ -959,24 +959,24 @@ function Kt(e, t, r) {
   }
   return (0, U.isNum)(n.right) && (t = Math.min(t, n.right)), (0, U.isNum)(n.bottom) && (r = Math.min(r, n.bottom)), (0, U.isNum)(n.left) && (t = Math.max(t, n.left)), (0, U.isNum)(n.top) && (r = Math.max(r, n.top)), [t, r];
 }
-function Jt(e, t, r) {
+function Zt(e, t, r) {
   const n = Math.round(t / e[0]) * e[0], s = Math.round(r / e[1]) * e[1];
   return [n, s];
 }
-function Zt(e) {
+function Qt(e) {
   return e.props.axis === "both" || e.props.axis === "x";
 }
-function Qt(e) {
+function er(e) {
   return e.props.axis === "both" || e.props.axis === "y";
 }
-function er(e, t, r) {
+function tr(e, t, r) {
   const n = typeof t == "number" ? (0, le.getTouch)(e, t) : null;
   if (typeof t == "number" && !n)
     return null;
   const s = Ae(r), i = r.props.offsetParent || s.offsetParent || s.ownerDocument.body;
   return (0, le.offsetXYFromParent)(n || e, i, r.props.scale);
 }
-function tr(e, t, r) {
+function rr(e, t, r) {
   const n = !(0, U.isNum)(e.lastX), s = Ae(e);
   return n ? {
     node: s,
@@ -996,7 +996,7 @@ function tr(e, t, r) {
     y: r
   };
 }
-function rr(e, t) {
+function nr(e, t) {
   const r = e.props.scale;
   return {
     node: t.node,
@@ -1008,7 +1008,7 @@ function rr(e, t) {
     lastY: e.state.y
   };
 }
-function nr(e) {
+function or(e) {
   return {
     left: e.left,
     top: e.top,
@@ -1026,14 +1026,14 @@ var me = {}, ve = {};
 Object.defineProperty(ve, "__esModule", {
   value: !0
 });
-ve.default = or;
-function or() {
+ve.default = ar;
+function ar() {
 }
 Object.defineProperty(me, "__esModule", {
   value: !0
 });
 me.default = void 0;
-var Ce = ir(ze), L = $e(Qe), ar = $e(Ge), F = $, ne = Q, xe = Z, de = $e(ve);
+var Ce = sr(ze), L = $e(Qe), ir = $e(Ge), F = $, ne = Q, xe = Z, de = $e(ve);
 function $e(e) {
   return e && e.__esModule ? e : { default: e };
 }
@@ -1045,7 +1045,7 @@ function st(e) {
     return n ? r : t;
   })(e);
 }
-function ir(e, t) {
+function sr(e, t) {
   if (!t && e && e.__esModule)
     return e;
   if (e === null || typeof e != "object" && typeof e != "function")
@@ -1062,13 +1062,13 @@ function ir(e, t) {
   return n.default = e, r && r.set(e, n), n;
 }
 function X(e, t, r) {
-  return t = sr(t), t in e ? Object.defineProperty(e, t, { value: r, enumerable: !0, configurable: !0, writable: !0 }) : e[t] = r, e;
+  return t = ur(t), t in e ? Object.defineProperty(e, t, { value: r, enumerable: !0, configurable: !0, writable: !0 }) : e[t] = r, e;
 }
-function sr(e) {
-  var t = ur(e, "string");
+function ur(e) {
+  var t = cr(e, "string");
   return typeof t == "symbol" ? t : String(t);
 }
-function ur(e, t) {
+function cr(e, t) {
   if (typeof e != "object" || e === null)
     return e;
   var r = e[Symbol.toPrimitive];
@@ -1185,7 +1185,7 @@ let oe = z.mouse, be = class extends Ce.Component {
   // the underlying DOM node ourselves. See the README for more information.
   findDOMNode() {
     var t, r;
-    return (t = this.props) !== null && t !== void 0 && t.nodeRef ? (r = this.props) === null || r === void 0 || (r = r.nodeRef) === null || r === void 0 ? void 0 : r.current : ar.default.findDOMNode(this);
+    return (t = this.props) !== null && t !== void 0 && t.nodeRef ? (r = this.props) === null || r === void 0 || (r = r.nodeRef) === null || r === void 0 ? void 0 : r.current : ir.default.findDOMNode(this);
   }
   render() {
     return /* @__PURE__ */ Ce.cloneElement(Ce.Children.only(this.props.children), {
@@ -1349,7 +1349,7 @@ X(be, "defaultProps", {
       return h.default;
     }
   }), e.default = void 0;
-  var t = Y(ze), r = m(Qe), n = m(Ge), s = m(Ot), i = $, d = Q, c = Z, h = m(me), y = m(ve);
+  var t = Y(ze), r = m(Qe), n = m(Ge), s = m(Ct), i = $, d = Q, c = Z, h = m(me), y = m(ve);
   function m(g) {
     return g && g.__esModule ? g : { default: g };
   }
@@ -1372,8 +1372,8 @@ X(be, "defaultProps", {
     var o = {}, M = Object.defineProperty && Object.getOwnPropertyDescriptor;
     for (var w in g)
       if (w !== "default" && Object.prototype.hasOwnProperty.call(g, w)) {
-        var B = M ? Object.getOwnPropertyDescriptor(g, w) : null;
-        B && (B.get || B.set) ? Object.defineProperty(o, w, B) : o[w] = g[w];
+        var V = M ? Object.getOwnPropertyDescriptor(g, w) : null;
+        V && (V.get || V.set) ? Object.defineProperty(o, w, V) : o[w] = g[w];
       }
     return o.default = g, p && p.set(g, o), o;
   }
@@ -1514,7 +1514,7 @@ X(be, "defaultProps", {
         children: o,
         defaultPosition: M,
         defaultClassName: w,
-        defaultClassNameDragging: B,
+        defaultClassNameDragging: V,
         defaultClassNameDragged: ee,
         position: G,
         positionOffset: te,
@@ -1530,7 +1530,7 @@ X(be, "defaultProps", {
       };
       this.state.isElementSVG ? ue = (0, i.createSVGTransform)(ce, te) : re = (0, i.createCSSTransform)(ce, te);
       const a = (0, s.default)(o.props.className || "", w, {
-        [B]: this.state.dragging,
+        [V]: this.state.dragging,
         [ee]: this.state.dragged
       });
       return /* @__PURE__ */ t.createElement(h.default, A({}, fe, {
@@ -1670,68 +1670,71 @@ X(be, "defaultProps", {
 })(Ke);
 const {
   default: ut,
-  DraggableCore: cr
+  DraggableCore: lr
 } = Ke;
 ye.exports = ut;
 ye.exports.default = ut;
-ye.exports.DraggableCore = cr;
-var lr = ye.exports;
-const fr = /* @__PURE__ */ yt(lr);
-function dr(e) {
-  return /* @__PURE__ */ V(
-    fr,
+ye.exports.DraggableCore = lr;
+var fr = ye.exports;
+const dr = /* @__PURE__ */ mt(fr);
+function pr(e) {
+  return /* @__PURE__ */ k(
+    dr,
     {
       handle: "#draggable-dialog-title",
       cancel: '[class*="MuiDialogContent-root"]',
-      children: /* @__PURE__ */ V(lt, { ...e })
+      children: /* @__PURE__ */ k(ft, { ...e })
     }
   );
 }
-const wr = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: s = {} }) => {
+const Dr = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: s = {} }) => {
   const i = (P) => {
     P.stopPropagation();
   };
-  var { getFieldManager: d, getFormData: c } = ht(s, () => {
+  var { getFieldManager: d, getFormData: c } = gt(s, () => {
   }, "edit");
   const h = () => {
     n({});
   }, y = () => {
     var P = c();
     n && n(P);
-  }, m = dt(e);
-  return /* @__PURE__ */ V("div", { className: "grid-filter-container", children: /* @__PURE__ */ Se(
+  }, m = pt(e);
+  return /* @__PURE__ */ k("div", { className: "grid-filter-container", children: /* @__PURE__ */ Se(
     ct,
     {
       open: t,
       onClick: i,
-      PaperComponent: dr,
+      PaperComponent: pr,
       children: [
         /* @__PURE__ */ Se("div", { className: "grid-filter-header-container", children: [
-          /* @__PURE__ */ V("div", { className: "grid-header-text-container", children: /* @__PURE__ */ V("div", { id: "draggable-dialog-title", children: " Filter" }) }),
-          /* @__PURE__ */ V("div", { className: "grid-header-icon-container", onClick: r, children: /* @__PURE__ */ V(ft, { className: "filter-cancel-icon" }) })
+          /* @__PURE__ */ k("div", { className: "grid-header-text-container", children: /* @__PURE__ */ k("div", { id: "draggable-dialog-title", children: " Filter" }) }),
+          /* @__PURE__ */ k("div", { className: "grid-header-icon-container", onClick: r, children: /* @__PURE__ */ k(lt, { title: "close", arrow: !0, children: /* @__PURE__ */ k(dt, { className: "filter-cancel-icon" }) }) })
         ] }),
-        /* @__PURE__ */ V("span", { className: "filter-header-border" }),
-        /* @__PURE__ */ V("div", { className: "grid-filter-content", children: /* @__PURE__ */ V(
-          pt,
+        /* @__PURE__ */ k("span", { className: "filter-header-border" }),
+        /* @__PURE__ */ k("div", { className: "grid-filter-content", children: /* @__PURE__ */ k(
+          ht,
           {
             context: { getFieldManager: d, formData: {} },
             layout: {
               type: "form",
               formLayout: {
-                fields: m
+                fields: m,
+                options: {
+                  columns: 2
+                }
               },
-              Renderer: mt
+              Renderer: vt
             }
           }
         ) }),
         /* @__PURE__ */ Se("div", { className: "grid-filter-btn-container", children: [
-          /* @__PURE__ */ V(Ie, { className: "filter-reset-btn", disableRipple: !0, onClick: h, children: "Reset" }),
-          /* @__PURE__ */ V(Ie, { className: "filter-button", disableRipple: !0, onClick: y, children: "Filter" })
+          /* @__PURE__ */ k(Ie, { className: "filter-reset-btn", disableRipple: !0, onClick: h, children: "Reset" }),
+          /* @__PURE__ */ k(Ie, { className: "filter-button", disableRipple: !0, onClick: y, children: "Filter" })
         ] })
       ]
     }
   ) });
 };
 export {
-  wr as default
+  Dr as default
 };
