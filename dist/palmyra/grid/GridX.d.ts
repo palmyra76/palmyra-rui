@@ -7,6 +7,7 @@ interface GridXOptions {
     EmptyChild?: React.FC;
     store: QueryStore<any>;
     onRowClick?: Function;
+    onNewClick?: Function;
     pageSize?: number[];
     quickSearch?: string;
 }

@@ -4,7 +4,7 @@ import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
-import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt } from '@mui/icons-material';
+import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add } from '@mui/icons-material';
 import { QueryStore } from '../store';
 import { ColumnDefinition } from './Types';
 import Filter from './plugins/filter/Filter';
@@ -17,6 +17,7 @@ interface GridXOptions {
   EmptyChild?: React.FC,
   store: QueryStore<any>,
   onRowClick?: Function,
+  onNewClick?: Function,
   pageSize?: number[],
   quickSearch?: string
 }
@@ -225,6 +226,20 @@ function GridX(props: GridXOptions) {
               </Button>
             </Tooltip>
           </div>
+          {props.onNewClick ? (
+            <div className='grid-header-button' onClick={() => props.onNewClick}>
+              <Tooltip title='New' placement='top'>
+                <Button className='grid-btn' disableRipple>
+                  <Add className='grid-button-icon' />
+                </Button>
+              </Tooltip>
+            </div>) : <></>}
+        </div>
+        <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer}
+          rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
+          onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
+        />
+        <div className='grid-header'>
           <div className='grid-filter'>
             {visiblePagination && (
               <TablePagination
@@ -239,10 +254,6 @@ function GridX(props: GridXOptions) {
             )}
           </div>
         </div>
-        <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer}
-          rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
-          onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
-        />
       </div >
     </div >
   )
