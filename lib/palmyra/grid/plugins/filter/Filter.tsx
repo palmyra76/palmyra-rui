@@ -1,4 +1,4 @@
-import { Button, Dialog, Paper, PaperProps } from "@mui/material";
+import { Button, Dialog, Paper, PaperProps, Tooltip } from "@mui/material";
 import { Close } from '@mui/icons-material';
 import { convertToField } from "../../base/GridFieldConverter";
 import SectionRendererEditForm from "../../../layout/flexiLayout/SectionRendererEditForm";
@@ -49,7 +49,9 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                 <div id="draggable-dialog-title" > Filter</div>
                 </div>
                 <div className="grid-header-icon-container" onClick={onClose}>
+                    <Tooltip title="close" arrow>
                     <Close className="filter-cancel-icon"/>
+                    </Tooltip>
                 </div>
             </div>
             <span className="filter-header-border"></span>
@@ -59,7 +61,10 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                     layout={{
                         type: 'form',
                         formLayout: {
-                            fields
+                            fields,
+                            options:{
+                                columns:3
+                            },
                         }, 
                         Renderer:FormFieldOnlyRenderer
                     }}

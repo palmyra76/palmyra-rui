@@ -10,22 +10,44 @@ interface EditFormRendererInput {
     context: PageContext
 }
 
+const calcContainerClass = (props: EditFormRendererInput) => {
+    const { formLayout } = props;
+    var containerClass = 'palmyra-form-field-only-container';
+    const options = formLayout.options;
+
+    if (options && options.columns) {
+        switch (options.columns) {
+            case 2:
+                return containerClass + ' palmyra-form-field-only-container-2column';
+            case 3:
+                return containerClass + ' palmyra-form-field-only-container-3column';
+            case 4:
+                return containerClass + ' palmyra-form-field-only-container-4column';
+        }
+    }
+    return containerClass;
+}
+
 const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: EditFormRendererInput, ref) {
     checkInputs(props);
     const { formLayout, context } = props;
     const { getFieldManager, formData } = context;
     const fieldRefs = useRef({});
+    const containerClass = calcContainerClass(props);
+    const fieldClass = 'palmyra-form-field-only-data';
 
     const generateField = useMemo(() => (field: FieldDefinition) => {
         return getField(field, getFieldManager, fieldRefs, field.title);
     }, [formData.data]);
 
     return (
-        <form className="palmyra-form-field-container-wrapper" noValidate>
+        <form className='palmyra-form-field-only-container-wrapper' noValidate>
             {
                 formLayout.fields.map((field, index) => (
-                    <div key={field.attribute} >
-                        {generateField(field)}
+                    <div key={field.attribute} className={containerClass}>
+                        <div className={fieldClass}>
+                            {generateField(field)}
+                        </div>
                     </div>
                 ))
             }

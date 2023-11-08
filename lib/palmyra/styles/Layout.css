@@ -71,39 +71,37 @@ body {
     padding: 40px 10px 10px 2px;
 }
 
-.palmyra-form-field-container-wrapper {
+.palmyra-form-field-only-container-wrapper {
     width: 100% !important;
 }
 
-.palmyra-form-field-container {
+.palmyra-form-field-only-container {
     width: 100% !important;
-    display: flex;
-    text-align: left;
-    word-break: break-all;
-    padding: 10px 10px 10px 20px;
+    display: flex !important;
+    text-align: left !important;
+    word-break: break-all !important;
+    padding: 10px !important;
     font-size: 20px !important;
 }
 
-.palmyra-form-field-container-2column {
-    width: calc(50% - 30px) !important;
+.palmyra-form-field-only-container-2column {
+    width: calc(50% - 0px) !important;
+    display: inline-block !important;
 }
 
-.palmyra-form-field-container-3column {
-    width: calc(33% - 30px) !important;
+.palmyra-form-field-only-container-3column {
+    width: calc(33% - 0px) !important;
+    display: inline-block !important;
 }
 
-.palmyra-form-field-container-4column {
-    width: calc(25% - 30px) !important;
+.palmyra-form-field-only-container-4column {
+    width: calc(25% - 0px) !important;
+    display: inline-block !important;
 }
 
-.palmyra-form-field-label {
+.palmyra-form-field-only-data {
     font-size: var(--secondary-fontsize);
-    width: 40% !important;
-}
-
-.palmyra-form-field-data {
-    font-size: var(--secondary-fontsize);
-    width: 60% !important;
+    width: 100% !important;
 }
 
 
@@ -152,7 +150,7 @@ body {
 }
 
 .grid-btn {
-    background-color: rgba(63, 112, 157, 0.808)!important;
+    background-color: rgba(63, 112, 157, 0.808) !important;
     color: rgba(255, 255, 255, 1) !important;
     gap: 5px !important;
 }

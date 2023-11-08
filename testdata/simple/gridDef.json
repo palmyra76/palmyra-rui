@@ -22,47 +22,29 @@
                                 "title": "Name",
                                 "required": true,
                                 "type": "string",
-                                "errorMessageType": "Only Alphabets are allowed",
-                                "length": {
-                                    "min": 3,
-                                    "max": 20,
-                                    "message": "Minimum 3 chars, and maximum of 20 chars"
-                                }
+                                "searchable": true
                             },
                             {
                                 "attribute": "gender",
                                 "title": "Gender",
                                 "required": true,
-                                "type": "select",
-                                "options": {
-                                    "M": "Male",
-                                    "F": "Female",
-                                    "T": "Transgender"
-                                }
+                                "type": "string",
+                                "searchable": true
                             },
                             {
                                 "attribute": "dob",
                                 "title": "Dob",
                                 "required": true,
-                                "type": "date",
-                                "format": {
-                                    "pattern": "dd-MM-yyyy",
-                                    "message": "pattern should be this"
-                                },
-                                "constraints": {
-                                    "minYear": 18
-                                },
-                                "range": {
-                                    "start": "01-01-1905",
-                                    "end": "01-01-2005"
-                                }
+                                "type": "string",
+                                "searchable": true
                             },
                             {
                                 "attribute": "phoneNumber",
                                 "title": "Phone Number",
                                 "required": true,
-                                "type": "mobilePhone",
-                                "errorMessageType": "Invalid Phone Number"
+                                "type": "string",
+                                "errorMessageType": "Invalid Phone Number",
+                                "searchable": true
                             },
                             {
                                 "attribute": "email",

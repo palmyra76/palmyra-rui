@@ -1,22 +1,7 @@
-import './FormLayout.css';
+import '../../layout/container/FormLayout.css';
 
 const calcContainerClass = () => {
     var containerClass = 'palmyra-form-field-container';
-    // if (options && options.columns) {
-    //     switch (options.columns) {
-    //         case 2:
-    //         case '2':
-    //             if (field.columnWrap && field.columnWrap > 1)
-    //                 return containerClass;
-    //             return containerClass + ' palmyra-form-field-container-2column';
-    //         case 3:
-    //         case '3':
-    //             return containerClass + ' palmyra-form-field-container-3column';
-    //         case 4:
-    //         case '4':
-    //             return containerClass + ' palmyra-form-field-container-4column';
-    //     }
-    // }
     return containerClass;
 }
 
