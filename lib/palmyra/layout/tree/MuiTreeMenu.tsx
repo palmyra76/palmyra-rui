@@ -17,6 +17,7 @@ const getTitle = (d: MenuDef) => {
 
 export default function MuiTreeMenu(props: TreeMenuInput) {
     const appRoutes = props.data;
+    const sidebarWidth = props.sidebarWidth;
     const iconProvider: IconProvider = props.iconProvider || SimpleIconProvider;
 
     const navigate = useNavigate();
@@ -52,18 +53,28 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
             if (node.children) {
                 return (
                     <StyledTreeItem key={index} nodeId={node.name}
-                    label={(
-                        <div style={{ justifyContent: 'space-between', width: '100%', display: 'flex' }}>
-                            <div className="tree-menu-list">
-                                {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
-                                {getTitle(node)}
-                            </div>
-                            <div className="arrow-icon" >
-                                <ChevronRightIcon style={iconStyles} />
-                            </div>
-                        </div>
+                        label={(
+                            <>
+                                {!sidebarWidth && (
+                                    <div style={{ justifyContent: 'space-between', width: '100%', display: 'flex' }}>
+                                        <div className="tree-menu-list">
+                                            {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
+                                            {getTitle(node)}
 
-                    )}
+                                        </div>
+                                        <div className="arrow-icon" >
+                                            <ChevronRightIcon style={iconStyles} />
+                                        </div>
+                                    </div>
+                                )}
+                                {sidebarWidth && (
+                                    <div className="sidebar-minimize-tree-menu-list">
+                                        {LabelIcon ? <LabelIcon className='sidebar-minimize-label-icon' /> : <></>}
+                                    </div>
+                                )}
+                            </>
+
+                        )}
                         onClick={() => toggleNode(node)}
                     >
                         {Array.isArray(node.children)
@@ -74,13 +85,21 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
                 );
             } else {
                 return (
-                    <StyledTreeItem 
-                    key={index} nodeId={node.name} label={(
-                        <div  onClick={(e) => { navigate(path); }} className="tree-menu-list">
-                            {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
-                            {getTitle(node)}
-                        </div>
-                    )} />
+                    <StyledTreeItem
+                        key={index} nodeId={node.name} label={(
+                            <div onClick={(e) => { navigate(path); }} className="tree-menu-list">
+                                {!sidebarWidth && (
+                                    <>
+                                        {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
+                                        {getTitle(node)}
+                                    </>
+                                )}
+                                {sidebarWidth && (
+                                    <div className="sidebar-minimize-tree-menu-list">
+                                        {LabelIcon ? <LabelIcon className='sidebar-minimize-label-icon' /> : <></>}
+                                    </div>)}
+                            </div>
+                        )} />
                 );
             }
         }

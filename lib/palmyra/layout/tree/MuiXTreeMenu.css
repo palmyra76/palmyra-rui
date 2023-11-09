@@ -14,6 +14,14 @@
     font-size: 20px !important;
 }
 
+.sidebar-minimize-tree-menu-list {
+    margin-left: 10px !important;
+}
+
+.sidebar-minimize-label-icon {
+    font-size: 25px !important;
+}
+
 .tree-menu-list {
     display: flex;
     align-items: center;
@@ -22,15 +30,15 @@
 }
 
 .MuiTreeItem-content .MuiTreeItem-iconContainer {
-    display:none !important;
-    width:0px  !important;
-    margin:0  !important;
-    padding:35px 0px 0px 0px  !important;            
+    display: none !important;
+    width: 0px !important;
+    margin: 0 !important;
+    padding: 35px 0px 0px 0px !important;
 }
 
-.MuiTreeItem-content{
-    padding:5px  !important;
-} 
+.MuiTreeItem-content {
+    padding: 5px !important;
+}
 
 .MuiTreeItem-content:hover {
     background-color: var(--sidebar-hover-list-bgcolor) !important;

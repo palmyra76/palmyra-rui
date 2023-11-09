@@ -17,8 +17,9 @@ interface MenuDef extends Tree<MenuDef> {
 }
 
 interface TreeMenuInput {
-    data: MenuDef[], 
-    iconProvider?:IconProvider
+    data: MenuDef[],
+    iconProvider?: IconProvider,
+    sidebarWidth?: boolean
 }
 
 export type { TreeListener, MenuDef, TreeMenuInput }

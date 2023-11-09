@@ -12,7 +12,7 @@ const orgRoutes = {
     ]
 };
 
-const ApplicationMenu = () => {
+const ApplicationMenu = ({ sidebarWidth }) => {
     const [routes, setRoutes] = useState(orgRoutes);
 
     const loadMenu = () => {
@@ -26,7 +26,7 @@ const ApplicationMenu = () => {
     return (
         <div style={{ width: "100%" }}>
             {/* <TreeMenu key={routes.children.length} data={routes.children} /> */}
-            <MuiTreeMenu data={routes.children}/>
+            <MuiTreeMenu data={routes.children} sidebarWidth={sidebarWidth} />
         </div>
     )
 }
