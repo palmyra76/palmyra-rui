@@ -21,7 +21,8 @@
     gap: 5px;
 }
 
- /* Mui Sidebar MenuList Style */
+/* Mui Sidebar MenuList Style */
+
 
 .css-1bcfi89-MuiTreeItem-content:hover {
     background-color: var(--sidebar-hover-list-bgcolor) !important;

@@ -14,9 +14,9 @@ const getTitle = (d: MenuDef) => {
 
 
 
-export default function MuiTreeMenu(props:TreeMenuInput) {
+export default function MuiTreeMenu(props: TreeMenuInput) {
     const appRoutes = props.data;
-    const iconProvider:IconProvider = props.iconProvider || SimpleIconProvider;
+    const iconProvider: IconProvider = props.iconProvider || SimpleIconProvider;
 
     const navigate = useNavigate();
     const [isParentExpanded, setIsParentExpanded] = useState({});
@@ -37,6 +37,7 @@ export default function MuiTreeMenu(props:TreeMenuInput) {
         .css-1bcfi89-MuiTreeItem-content{
             padding:4px;
         }
+        
     `;
 
     const toggleNode = (node: MenuDef) => {
@@ -50,7 +51,7 @@ export default function MuiTreeMenu(props:TreeMenuInput) {
     const renderTree = (parent, node: MenuDef, index) => {
         var LabelIcon = getLabelIcon(node);
         if (node.name) {
-            let path =  node.path;
+            let path = node.path;
 
             const iconStyles = {
                 transform: isParentExpanded[node.name] ? 'rotate(90deg)' : 'rotate(0deg)',
