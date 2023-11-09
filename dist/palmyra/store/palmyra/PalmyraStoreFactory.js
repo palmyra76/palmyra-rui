@@ -1,28 +1,32 @@
 var i = Object.defineProperty;
-var a = (t, r, e) => r in t ? i(t, r, { enumerable: !0, configurable: !0, writable: !0, value: e }) : t[r] = e;
-var o = (t, r, e) => (a(t, typeof r != "symbol" ? r + "" : r, e), e);
-import { PalmyraGridStore as d } from "./PalmyraGridStore.js";
-class p {
+var a = (e, r, t) => r in e ? i(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
+var n = (e, r, t) => (a(e, typeof r != "symbol" ? r + "" : r, t), t);
+import { PalmyraDataStore as d } from "./PalmyraDataStore.js";
+import { PalmyraGridStore as m } from "./PalmyraGridStore.js";
+class y {
   constructor(r) {
-    o(this, "baseUrl", "/palmyra");
+    n(this, "baseUrl", "/palmyra");
     this.baseUrl = r.baseUrl || "/palmyra";
   }
-  getGridStore(r, e) {
-    const n = this.baseUrl + r.endPoint;
+  getGridStore(r, t) {
+    const o = this.baseUrl + r.endPoint;
     if (!r.endPoint)
       throw new Error("Endpoint must be provided under TableLayout definition");
-    return new d({ target: n });
+    return new m({ target: o });
   }
-  getFormStore(r, e) {
-    throw new Error("Method not implemented.");
+  getFormStore(r, t) {
+    const o = this.baseUrl + r.endPoint;
+    if (!r.endPoint)
+      throw new Error("Endpoint must be provided under FormLayout definition");
+    return new d({ target: o });
   }
   getChartStore(r) {
     throw new Error("Method not implemented.");
   }
-  getLookupStore(r, e) {
+  getLookupStore(r, t) {
     throw new Error("Method not implemented.");
   }
 }
 export {
-  p as PalmyraStoreFactory
+  y as PalmyraStoreFactory
 };

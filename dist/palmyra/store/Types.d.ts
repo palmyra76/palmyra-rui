@@ -20,8 +20,9 @@ interface QueryResponse<T> {
 }
 interface GetRequest extends CriteriaOptions {
     key: any;
+    options?: QueryOptions;
 }
-interface QueryOptions {
+interface QueryOptions extends Record<string, any> {
 }
 interface ErrorResponse {
     status: number;

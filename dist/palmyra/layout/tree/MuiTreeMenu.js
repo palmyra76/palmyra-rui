@@ -5,8 +5,8 @@ import { ChevronRight as N } from "@mui/icons-material";
 import { TreeItem as C, TreeView as P } from "@mui/x-tree-view";
 import { SimpleIconProvider as j } from "../flexiLayout/IconProvider.js";
 import { useState as E } from "react";
-const u = (n) => n.title ? n.title : n.name;
-function W(n) {
+/* empty css                          */const u = (n) => n.title ? n.title : n.name;
+function Y(n) {
   const f = n.data, h = n.iconProvider || j, x = M(), [l, g] = E({}), v = (r) => {
     if (r.icon)
       return h.getIcon(r.icon);
@@ -21,6 +21,7 @@ function W(n) {
         .css-1bcfi89-MuiTreeItem-content{
             padding:4px;
         }
+        
     `, I = (r) => {
     const e = { ...l };
     e[r.name] = !e[r.name], setTimeout(() => {
@@ -68,5 +69,5 @@ function W(n) {
   );
 }
 export {
-  W as default
+  Y as default
 };

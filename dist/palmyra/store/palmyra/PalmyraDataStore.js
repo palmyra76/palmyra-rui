@@ -1,8 +1,8 @@
-var a = Object.defineProperty;
-var d = (r, t, o) => t in r ? a(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
-var i = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
+var d = Object.defineProperty;
+var s = (o, t, r) => t in o ? d(o, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : o[t] = r;
+var p = (o, t, r) => (s(o, typeof t != "symbol" ? t + "" : t, r), r);
 import "../../layout/flexiLayout/FlexiLayoutRenderer.js";
-import p from "axios";
+import m from "axios";
 import "react/jsx-runtime";
 import "react-router-dom";
 import "react";
@@ -28,26 +28,36 @@ import "../../mui/form/MuiSelect.js";
 import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiServerLookup.js";
-class N {
+class K {
   constructor(t) {
-    i(this, "request");
-    i(this, "target");
+    p(this, "request");
+    p(this, "target");
     this.request = t, this.target = t.target;
   }
   query(t) {
-    var o = n(this.target, {});
-    const m = { params: c(t) };
-    return p.get(o, m).then((s) => s.data);
+    var r = n(this.target, {});
+    const i = { params: h(t) };
+    return m.get(r, i).then((a) => a.data);
   }
   queryLayout(t) {
-    var o = n(this.target, {});
-    return p.get(o, {
+    var r = n(this.target, t.options || {});
+    return m.get(r, {
       headers: {
         action: "schema"
       }
     }).then((e) => e.data);
   }
-  get(t) {
+  get(t, r) {
+    var e = n(this.target, t.options || {});
+    return m.get(e).then((i) => i.data);
+  }
+  post(t, r) {
+    throw new Error("Method not implemented.");
+  }
+  put(t, r, e) {
+    throw new Error("Method not implemented.");
+  }
+  remove(t, r) {
     throw new Error("Method not implemented.");
   }
   getIdentity(t) {
@@ -57,10 +67,10 @@ class N {
     return "id";
   }
 }
-function c(r) {
-  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((e) => (r.sortOrder[e] === "asc" ? "+" : "-") + e);
-  return { ...r.filter || {}, _orderBy: t.length ? t.join(",") : [] };
+function h(o) {
+  const t = Object.keys((o == null ? void 0 : o.sortOrder) || {}).map((e) => (o.sortOrder[e] === "asc" ? "+" : "-") + e);
+  return { ...o.filter || {}, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  N as PalmyraGridStore
+  K as PalmyraDataStore
 };
