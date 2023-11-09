@@ -1,4 +1,7 @@
 {
+    "storeOptions": {
+        "endPoint": "/userManagement"
+    },
     "type": "form",
     "tabs": [
         {

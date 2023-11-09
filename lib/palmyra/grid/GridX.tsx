@@ -61,7 +61,7 @@ function GridX(props: GridXOptions) {
   const columnDefs = generateColumns(columns);
 
   const refreshData = () => {
-    const params = { page, filter, sortOrder };
+    const params = { page, filter, sortOrder, total:true };
 
     if (store) {
       try {

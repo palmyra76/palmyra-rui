@@ -1,21 +1,20 @@
-var a = Object.defineProperty;
-var d = (r, t, o) => t in r ? a(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
-var i = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
+var s = Object.defineProperty;
+var d = (r, t, o) => t in r ? s(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
+var p = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
 import "../../layout/flexiLayout/FlexiLayoutRenderer.js";
-import p from "axios";
 import "react/jsx-runtime";
 import "react-router-dom";
 import "react";
 import "@mui/icons-material";
 /* empty css                          */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css                            */import "@mui/material";
+/* empty css                              *//* empty css                            */import "@mui/material";
 import "../../grid/base/ColumnConverter.js";
 import "../../grid/base/TableX.js";
 import "@tanstack/react-table";
 import "../../layout/flexiLayout/FormEditRenderer.js";
 import "../../layout/container/SectionContainer.js";
-import { StringFormat as n } from "../../utils/StringUtil.js";
+import { StringFormat as m } from "../../utils/StringUtil.js";
 import "dayjs";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import "../../grid/plugins/filter/Filter.js";
@@ -28,27 +27,29 @@ import "../../mui/form/MuiSelect.js";
 import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiServerLookup.js";
-class N {
+import n from "axios";
+class R {
   constructor(t) {
-    i(this, "request");
-    i(this, "target");
+    p(this, "request");
+    p(this, "target");
     this.request = t, this.target = t.target;
   }
   query(t) {
-    var o = n(this.target, {});
-    const m = { params: c(t) };
-    return p.get(o, m).then((s) => s.data);
+    var o = m(this.target, {});
+    const e = { params: c(t) };
+    return n.get(o, e).then((a) => a.data);
   }
   queryLayout(t) {
-    var o = n(this.target, {});
-    return p.get(o, {
+    var o = m(this.target, {});
+    return n.get(o, {
       headers: {
         action: "schema"
       }
-    }).then((e) => e.data);
+    }).then((i) => i.data);
   }
-  get(t) {
-    throw new Error("Method not implemented.");
+  get(t, o) {
+    var i = m(this.target, t.options || {});
+    return n.get(i).then((e) => e.data);
   }
   getIdentity(t) {
     throw new Error("Method not implemented.");
@@ -58,9 +59,9 @@ class N {
   }
 }
 function c(r) {
-  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((e) => (r.sortOrder[e] === "asc" ? "+" : "-") + e);
-  return { ...r.filter || {}, _orderBy: t.length ? t.join(",") : [] };
+  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((e) => (r.sortOrder[e] === "asc" ? "+" : "-") + e), o = !!r.total;
+  return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  N as PalmyraGridStore
+  R as PalmyraGridStore
 };

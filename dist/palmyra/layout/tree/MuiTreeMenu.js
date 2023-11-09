@@ -3,9 +3,9 @@ import T from "@emotion/styled";
 import { useNavigate as w } from "react-router-dom";
 import { ChevronRight as P } from "@mui/icons-material";
 import { TreeItem as j, TreeView as C } from "@mui/x-tree-view";
-import { SimpleIconProvider as E } from "../flexiLayout/IconProvider.js";
+/* empty css                              */import { SimpleIconProvider as E } from "../flexiLayout/IconProvider.js";
 import { useState as M } from "react";
-/* empty css                          */const p = (n) => n.title ? n.title : n.name;
+const p = (n) => n.title ? n.title : n.name;
 function Y(n) {
   const f = n.data, h = n.iconProvider || E, v = w(), [s, g] = M({}), x = (r) => {
     if (r.icon)

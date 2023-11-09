@@ -1,6 +1,6 @@
-import { jsx as e, jsxs as i, Fragment as oe } from "react/jsx-runtime";
-import { useState as o, useEffect as ie } from "react";
-import { TextField as ae, InputAdornment as le, ClickAwayListener as re, Tooltip as p, Button as m, TablePagination as se } from "@mui/material";
+import { jsx as e, jsxs as a, Fragment as oe } from "react/jsx-runtime";
+import { useState as o, useEffect as ae } from "react";
+import { TextField as ie, InputAdornment as le, ClickAwayListener as re, Tooltip as p, Button as m, TablePagination as se } from "@mui/material";
 import { generateColumns as ce } from "./base/ColumnConverter.js";
 import { A as de } from "../../index.esm-3271ad1f.js";
 import pe from "./base/EmptyChildTable.js";
@@ -8,19 +8,19 @@ import me from "./base/TableX.js";
 import { Menu as P, DensitySmall as F, DensityLarge as z, FilterAlt as he, FileDownloadOutlined as ge, Add as ue } from "@mui/icons-material";
 import fe from "./plugins/filter/Filter.js";
 function Pe(r) {
-  const { columns: u, children: O, EmptyChild: R, store: f, onRowClick: y, quickSearch: C } = r, [A, N] = o(null), [c, d] = o({}), [b, E] = o({}), T = R || pe, [w, v] = o(!1), [s, q] = o("standard"), [I, k] = o(!1), a = r.pageSize ? r.pageSize : 15;
-  var j = a instanceof Array ? a : [a], G = a instanceof Array ? a[0] : a;
+  const { columns: u, children: O, EmptyChild: R, store: f, onRowClick: y, quickSearch: C } = r, [A, N] = o(null), [c, d] = o({}), [b, E] = o({}), T = R || pe, [w, v] = o(!1), [s, q] = o("standard"), [I, k] = o(!1), i = r.pageSize ? r.pageSize : 15;
+  var j = i instanceof Array ? i : [i], G = i instanceof Array ? i[0] : i;
   const [l, S] = o({
     pageNo: 0,
     pageSize: G
   }), H = (t, n) => {
     S({ ...l, pageNo: n }), X({ ...l, pageSize: n });
   }, [L, X] = o({}), [B, x] = o(null);
-  ie(() => {
+  ae(() => {
     Q();
   }, [L, c, b]);
   const M = ce(u), Q = () => {
-    const t = { page: l, filter: c, sortOrder: b };
+    const t = { page: l, filter: c, sortOrder: b, total: !0 };
     if (f)
       try {
         f.query(t).then((n) => {
@@ -69,12 +69,12 @@ function Pe(r) {
     E(t);
   }, ee = () => {
     console.log("Export Clicked");
-  }, te = 200, ne = !!a;
-  return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ i("div", { children: [
+  }, te = 200, ne = !!i;
+  return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ a("div", { children: [
     O,
-    /* @__PURE__ */ i("div", { className: "grid-header", children: [
+    /* @__PURE__ */ a("div", { className: "grid-header", children: [
       /* @__PURE__ */ e("div", { className: "grid-header-filter", children: !!C && /* @__PURE__ */ e(
-        ae,
+        ie,
         {
           sx: { width: te },
           type: "text",
@@ -90,24 +90,24 @@ function Pe(r) {
       ) }),
       /* @__PURE__ */ e(re, { onClickAway: () => {
         v(!1);
-      }, children: /* @__PURE__ */ i("div", { className: "grid-header-button", onClick: U, children: [
+      }, children: /* @__PURE__ */ a("div", { className: "grid-header-button", onClick: U, children: [
         /* @__PURE__ */ e(p, { title: "Density", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: K() }) }),
-        w && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ i("ul", { children: [
-          /* @__PURE__ */ i("li", { onClick: () => g("standard"), children: [
+        w && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ a("ul", { children: [
+          /* @__PURE__ */ a("li", { onClick: () => g("standard"), children: [
             /* @__PURE__ */ e(P, { className: "density-icon" }),
             /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Standard" })
           ] }),
-          /* @__PURE__ */ i("li", { onClick: () => g("compact"), children: [
+          /* @__PURE__ */ a("li", { onClick: () => g("compact"), children: [
             /* @__PURE__ */ e(F, { className: "density-icon" }),
             /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Compact" })
           ] }),
-          /* @__PURE__ */ i("li", { onClick: () => g("comfortable"), children: [
+          /* @__PURE__ */ a("li", { onClick: () => g("comfortable"), children: [
             /* @__PURE__ */ e(z, { className: "density-icon" }),
             /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Comfortable" })
           ] })
         ] }) })
       ] }) }),
-      /* @__PURE__ */ i("div", { className: "grid-header-button", children: [
+      /* @__PURE__ */ a("div", { className: "grid-header-button", children: [
         /* @__PURE__ */ e(p, { title: "Filter", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, onClick: () => k(!0), children: /* @__PURE__ */ e(he, { className: "grid-button-icon" }) }) }),
         /* @__PURE__ */ e(
           fe,

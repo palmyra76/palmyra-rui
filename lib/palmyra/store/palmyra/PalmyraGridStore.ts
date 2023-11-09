@@ -28,8 +28,10 @@ class PalmyraGridStore implements QueryStore<any>{
             .then((response) => response.data);
     }
 
-    get(request: GetRequest): Promise<any> {
-        throw new Error("Method not implemented.");
+    get(request: GetRequest, idProperty?: string): Promise<any> {
+        var url: any = StringFormat(this.target, (request.options || {}));
+        return axios.get(url)
+            .then(response => { return response.data });
     }
 
     getIdentity(o: any) {
@@ -49,7 +51,9 @@ function convertQueryParams(queryParams: QueryParams): any {
         return order + field;
     });
 
+    const _total:boolean = queryParams.total? true: false;
+
     const _f = queryParams.filter || {};
 
-    return { ..._f, _orderBy: orderBy.length ? orderBy.join(',') : [] };
+    return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [] };
 }
