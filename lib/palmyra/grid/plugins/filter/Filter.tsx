@@ -11,7 +11,7 @@ function PaperComponent(props: PaperProps) {
     return (
         <Draggable
             handle="#draggable-dialog-title"
-        cancel={'[class*="MuiDialogContent-root"]'}
+            cancel={'[class*="MuiDialogContent-root"]'}
         >
             <Paper {...props} />
         </Draggable>
@@ -23,7 +23,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
         event.stopPropagation();
     };
 
-    var { getFieldManager, getFormData } = createFormData(defaultFilter, () => { }, 'edit');    
+    var { getFieldManager, getFormData } = createFormData(defaultFilter, () => { }, 'edit');
 
     const reset = () => {
         setFilter({})
@@ -36,6 +36,16 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
         }
     };
 
+    const onFilterClose = () => {
+        onClose();
+    }
+
+    const handleKeyClose = (event: any) => {
+        if (event.keyCode === 27) {
+            onFilterClose();
+        }
+    }
+
     const fields = convertToField(columns);
 
     return <div className='grid-filter-container'>
@@ -43,30 +53,31 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
             open={isOpen}
             onClick={handleDropdownClick}
             PaperComponent={PaperComponent}
+            onKeyDown={handleKeyClose}
         >
             <div className="grid-filter-header-container">
                 <div className="grid-header-text-container">
-                <div id="draggable-dialog-title" > Filter</div>
+                    <div id="draggable-dialog-title" > Filter</div>
                 </div>
-                <div className="grid-header-icon-container" onClick={onClose}>
+                <div className="grid-header-icon-container" onClick={onFilterClose}>
                     <Tooltip title="close" arrow>
-                    <Close className="filter-cancel-icon"/>
+                        <Close className="filter-cancel-icon" />
                     </Tooltip>
                 </div>
             </div>
             <span className="filter-header-border"></span>
             <div className="grid-filter-content">
-                <SectionRendererEditForm  context={{ getFieldManager, formData: {} }}
-               
+                <SectionRendererEditForm context={{ getFieldManager, formData: {} }}
+
                     layout={{
                         type: 'form',
                         formLayout: {
                             fields,
-                            options:{
-                                columns:2
+                            options: {
+                                columns: 2
                             },
-                        }, 
-                        Renderer:FormFieldOnlyRenderer
+                        },
+                        Renderer: FormFieldOnlyRenderer
                     }}
                 />
             </div>
