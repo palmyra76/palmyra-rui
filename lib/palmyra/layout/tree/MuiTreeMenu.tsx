@@ -6,6 +6,7 @@ import { MenuDef } from "..";
 import { IconProvider, SimpleIconProvider } from "../flexiLayout/IconProvider";
 import { useState } from "react";
 import { TreeMenuInput } from "./types";
+import './TreeMenu.css';
 
 const getTitle = (d: MenuDef) => {
     return d.title ? d.title : d.name;

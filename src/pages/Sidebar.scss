@@ -25,32 +25,7 @@
     bottom: 0;
 }
 
-.sidebar-middle {
-
-
-    .css-1bcfi89-MuiTreeItem-content .MuiTreeItem-label {
-        // width: 100%;
-        // min-width: 0;
-        // padding-top: 1px;
-        // padding-left: 4px;
-        // position: relative;
-        // font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-        // font-weight: 400;
-        // font-size: 1.1rem;
-        // line-height: 2;
-        // letter-spacing: 0.00938em;
-    }
-
-    .css-1bcfi89-MuiTreeItem-content:hover {
-        background-color: var(--sidebar-hover-list-bgcolor) !important;
-        color: var(--sidebar-hover-list-color) !important;
-        border-radius: 5px !important;
-    }
-
-    .css-1g86id8-MuiTreeItem-content .MuiTreeItem-iconContainer svg {
-        font-size: 22px;
-    }
-}
+.sidebar-middle {}
 
 .sidebar-title {
     display: flex;

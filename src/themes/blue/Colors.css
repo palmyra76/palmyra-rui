@@ -95,7 +95,7 @@
     --sidebar-footer-color: rgba(var(--sidebar-text-color-rgb), 0.4);
     --sidebar-hover-list-bgcolor: rgba(var(--sidebar-text-color-rgb), 0.07);
     --sidebar-hover-list-color: var(--sidebar-text-color-rgb);
-    --sidebar-select-list-bgcolor: rgba(var(--sidebar-text-color-rgb), 1);
+    --sidebar-select-list-bgcolor: rgba(var(--sidebar-text-color-rgb), 0.08);
     --sidebar-select-list-color: rgba(var(--sidebar-text-color-rgb), 1);
     --sidebar-select-bgcolor:var(--secondary-bgcolor);
 
