@@ -27,17 +27,7 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
     }
 
     const StyledTreeItem = styled(TreeItem)`
-        .css-1bcfi89-MuiTreeItem-content .MuiTreeItem-iconContainer {
-            dispaly:none;
-            width:0px;
-            margin:0;
-            padding:35px 0px 0px 0px;
-            
-        }
-        .css-1bcfi89-MuiTreeItem-content{
-            padding:4px;
-        }
-        
+              
     `;
 
     const toggleNode = (node: MenuDef) => {
@@ -60,7 +50,8 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
 
             if (node.children) {
                 return (
-                    <StyledTreeItem key={index} nodeId={node.name} label={(
+                    <StyledTreeItem key={index} nodeId={node.name}
+                    label={(
                         <div style={{ justifyContent: 'space-between', width: '100%', display: 'flex' }}>
                             <div className="tree-menu-list">
                                 {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
@@ -82,8 +73,9 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
                 );
             } else {
                 return (
-                    <StyledTreeItem key={index} nodeId={node.name} label={(
-                        <div onClick={(e) => { navigate(path); }} className="tree-menu-list">
+                    <StyledTreeItem 
+                    key={index} nodeId={node.name} label={(
+                        <div  onClick={(e) => { navigate(path); }} className="tree-menu-list">
                             {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
                             {getTitle(node)}
                         </div>

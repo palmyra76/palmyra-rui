@@ -1,70 +1,67 @@
-import { jsx as t, jsxs as s, Fragment as p } from "react/jsx-runtime";
-import w from "@emotion/styled";
-import { useNavigate as M } from "react-router-dom";
-import { ChevronRight as N } from "@mui/icons-material";
-import { TreeItem as C, TreeView as P } from "@mui/x-tree-view";
-import { SimpleIconProvider as j } from "../flexiLayout/IconProvider.js";
-import { useState as E } from "react";
-/* empty css                          */const u = (n) => n.title ? n.title : n.name;
+import { jsx as t, jsxs as l, Fragment as u } from "react/jsx-runtime";
+import T from "@emotion/styled";
+import { useNavigate as w } from "react-router-dom";
+import { ChevronRight as P } from "@mui/icons-material";
+import { TreeItem as j, TreeView as C } from "@mui/x-tree-view";
+import { SimpleIconProvider as E } from "../flexiLayout/IconProvider.js";
+import { useState as M } from "react";
+/* empty css                          */const p = (n) => n.title ? n.title : n.name;
 function Y(n) {
-  const f = n.data, h = n.iconProvider || j, x = M(), [l, g] = E({}), v = (r) => {
+  const f = n.data, h = n.iconProvider || E, v = w(), [s, g] = M({}), x = (r) => {
     if (r.icon)
       return h.getIcon(r.icon);
-  }, c = w(C)`
-        .css-1bcfi89-MuiTreeItem-content .MuiTreeItem-iconContainer {
-            dispaly:none;
-            width:0px;
-            margin:0;
-            padding:35px 0px 0px 0px;
-            
-        }
-        .css-1bcfi89-MuiTreeItem-content{
-            padding:4px;
-        }
-        
-    `, I = (r) => {
-    const e = { ...l };
+  }, c = T(j)`
+              
+    `, b = (r) => {
+    const e = { ...s };
     e[r.name] = !e[r.name], setTimeout(() => {
       g(e);
     }, 250);
-  }, m = (r, e, i) => {
-    var a = v(e);
+  }, m = (r, e, a) => {
+    var i = x(e);
     if (e.name) {
       let d = e.path;
-      const y = {
-        transform: l[e.name] ? "rotate(90deg)" : "rotate(0deg)",
+      const I = {
+        transform: s[e.name] ? "rotate(90deg)" : "rotate(0deg)",
         transition: "transform 0.3s ease"
       };
       return e.children ? /* @__PURE__ */ t(
         c,
         {
           nodeId: e.name,
-          label: /* @__PURE__ */ s("div", { style: { justifyContent: "space-between", width: "100%", display: "flex" }, children: [
-            /* @__PURE__ */ s("div", { className: "tree-menu-list", children: [
-              a ? /* @__PURE__ */ t(a, { className: "label-icon" }) : /* @__PURE__ */ t(p, {}),
-              u(e)
+          label: /* @__PURE__ */ l("div", { style: { justifyContent: "space-between", width: "100%", display: "flex" }, children: [
+            /* @__PURE__ */ l("div", { className: "tree-menu-list", children: [
+              i ? /* @__PURE__ */ t(i, { className: "label-icon" }) : /* @__PURE__ */ t(u, {}),
+              p(e)
             ] }),
-            /* @__PURE__ */ t("div", { className: "arrow-icon", children: /* @__PURE__ */ t(N, { style: y }) })
+            /* @__PURE__ */ t("div", { className: "arrow-icon", children: /* @__PURE__ */ t(P, { style: I }) })
           ] }),
-          onClick: () => I(e),
-          children: Array.isArray(e.children) ? e.children.filter((o) => o.name).map((o, T) => m(d, o, T)) : null
+          onClick: () => b(e),
+          children: Array.isArray(e.children) ? e.children.filter((o) => o.name).map((o, N) => m(d, o, N)) : null
         },
-        i
-      ) : /* @__PURE__ */ t(c, { nodeId: e.name, label: /* @__PURE__ */ s("div", { onClick: (o) => {
-        x(d);
-      }, className: "tree-menu-list", children: [
-        a ? /* @__PURE__ */ t(a, { className: "label-icon" }) : /* @__PURE__ */ t(p, {}),
-        u(e)
-      ] }) }, i);
+        a
+      ) : /* @__PURE__ */ t(
+        c,
+        {
+          nodeId: e.name,
+          label: /* @__PURE__ */ l("div", { onClick: (o) => {
+            v(d);
+          }, className: "tree-menu-list", children: [
+            i ? /* @__PURE__ */ t(i, { className: "label-icon" }) : /* @__PURE__ */ t(u, {}),
+            p(e)
+          ] })
+        },
+        a
+      );
     }
-  }, b = ((r) => r.filter((e) => e.name).map((e, i) => m(null, e, i)))(f);
+  }, y = ((r) => r.filter((e) => e.name).map((e, a) => m(null, e, a)))(f);
   return /* @__PURE__ */ t(
-    P,
+    C,
     {
       "aria-label": "rich object",
       defaultExpanded: ["root"],
       sx: { height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: "auto" },
-      children: b
+      children: y
     }
   );
 }
