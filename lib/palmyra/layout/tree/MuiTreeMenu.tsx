@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { TreeView, TreeItem } from "@mui/x-tree-view";
 import { MenuDef } from "..";
+import './MuiXTreeMenu.css';
 import { IconProvider, SimpleIconProvider } from "../flexiLayout/IconProvider";
 import { useState } from "react";
 import { TreeMenuInput } from "./types";
-import './TreeMenu.css';
+
 
 const getTitle = (d: MenuDef) => {
     return d.title ? d.title : d.name;

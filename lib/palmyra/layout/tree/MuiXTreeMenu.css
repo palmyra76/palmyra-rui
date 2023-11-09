@@ -1,0 +1,46 @@
+.tree-menu {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 5px !important;
+    cursor: pointer !important;
+}
+
+.arrow-icon {
+    height: 25px;
+}
+
+.label-icon {
+    font-size: 20px !important;
+}
+
+.tree-menu-list {
+    display: flex;
+    align-items: center;
+    font-size: 0.95em;
+    gap: 5px;
+}
+
+.MuiTreeItem-content .MuiTreeItem-iconContainer {
+    display:none !important;
+    width:0px  !important;
+    margin:0  !important;
+    padding:35px 0px 0px 0px  !important;            
+}
+
+.MuiTreeItem-content{
+    padding:5px  !important;
+} 
+
+.MuiTreeItem-content:hover {
+    background-color: var(--sidebar-hover-list-bgcolor) !important;
+    color: var(--sidebar-hover-list-color) !important;
+    border-radius: 5px !important;
+}
+
+
+.MuiTreeItem-content.Mui-selected {
+    background-color: var(--sidebar-select-list-bgcolor) !important;
+    color: var(--sidebar-select-list-color) !important;
+    border-radius: 5px !important;
+}
