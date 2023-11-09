@@ -28,7 +28,7 @@ const ViewFormPage = () => {
     return <>
         <div> {layout} View Form</div>
         {pageDef ? <FlexiLayoutRenderer layout={pageDef}
-            data={data} storeFactory={storeFactory}
+            data={data} storeFactory={storeFactory} layoutParams={{}}
             callbacks={{ onFormValidChange: onValidChange }}
         ></FlexiLayoutRenderer> : <div />}
     </>

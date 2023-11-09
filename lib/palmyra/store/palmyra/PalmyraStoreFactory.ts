@@ -1,4 +1,5 @@
 import { ChartStore, QueryStore, DataStore, StoreFactory, LookupStore } from "../../../main";
+import { PalmyraDataStore } from "./PalmyraDataStore";
 import { PalmyraGridStore } from "./PalmyraGridStore";
 
 interface PalmyraStoreFactoryArg {
@@ -20,7 +21,11 @@ class PalmyraStoreFactory implements StoreFactory<any>{
         return new PalmyraGridStore({ target });
     }
     getFormStore(request: Record<string, string>, idProperty?: string | string[]): DataStore<any> {
-        throw new Error("Method not implemented.");
+        const target = this.baseUrl + request.endPoint;
+        if (!request.endPoint) {
+            throw new Error("Endpoint must be provided under FormLayout definition");
+        }
+        return new PalmyraDataStore({ target });
     }
     getChartStore(request: Record<string, string>): ChartStore<any> {
         throw new Error("Method not implemented.");

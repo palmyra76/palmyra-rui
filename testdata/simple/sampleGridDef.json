@@ -1,5 +1,6 @@
 {
     "type": "grid",
+    "idProperty":"email",
     "tabs": [
         {
             "name": "tab01",
