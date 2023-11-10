@@ -20,10 +20,12 @@ const TabRenderer = (props: TabRendererInput) => {
     function getChildren(section, context, index) {
         const { w, h } = getDimension(section.width, section.height);
         return <Box key={(section.name || 'tab') + index} sx={{ width: w, height: h }}>
-            <SectionRenderer
-                layout={section}
-                context={context}
-            ></SectionRenderer>
+            <div className="section-container">
+                <SectionRenderer
+                    layout={section}
+                    context={context}
+                ></SectionRenderer>
+            </div>
         </Box>
     }
 

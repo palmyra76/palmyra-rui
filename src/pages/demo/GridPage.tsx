@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { FlexiLayoutRenderer } from '../../../lib/main';
 import { AppStoreFactory } from '../../components/store/AppStoreFactory';
+import './GridPage.css'
 
 const GridPage = () => {
     const { layout } = useParams();
@@ -17,10 +18,11 @@ const GridPage = () => {
     }, [layout])
 
     return <>
-        <div> Grid Layout Demo </div>
-        {pageDef ? <FlexiLayoutRenderer layout={pageDef}
-            layoutParams={{}}
-            storeFactory={storeFactory} /> : <div />}
+        <div className='grid-renderer-container'>
+            {pageDef ? <FlexiLayoutRenderer layout={pageDef}
+                layoutParams={{}}
+                storeFactory={storeFactory} /> : <div />}
+        </div>
     </>
 }
 

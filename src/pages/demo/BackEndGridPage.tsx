@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { FlexiLayoutDefinition, FlexiLayoutRenderer, StoreFactory, StringFormat, topic } from '../../../lib/main';
 import { PalmyraStoreFactory } from '../../../lib/palmyra/store/palmyra/PalmyraStoreFactory';
+import './BackEndGridPage.css';
 
 const BackEndGridPage = () => {
     const { layout } = useParams();
@@ -29,10 +30,11 @@ const BackEndGridPage = () => {
     }, [pageDef])
 
     return <>
-        <div> Grid Layout Demo </div>
-        {pageDef ? <FlexiLayoutRenderer layout={pageDef}
-            layoutParams={{}}
-            storeFactory={storeFactory} /> : <div />}
+        <div className='grid-renderer-container'>
+            {pageDef ? <FlexiLayoutRenderer layout={pageDef}
+                layoutParams={{}}
+                storeFactory={storeFactory} /> : <div />}
+        </div>
     </>
 }
 

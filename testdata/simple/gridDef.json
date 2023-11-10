@@ -5,7 +5,7 @@
             "name": "tab01",
             "sections": [
                 {
-                    "name": "",
+                    "title": "Surya Table",
                     "type": "grid",
                     "tableLayout": {
                         "storeOptions": {

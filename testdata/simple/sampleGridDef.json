@@ -6,7 +6,7 @@
             "name": "tab01",
             "sections": [
                 {
-                    "name": "",
+                    "title": "Admin Table",
                     "type": "grid",
                     "tableLayout": {
                         "storeOptions": {
@@ -26,7 +26,7 @@
                     }
                 },
                 {
-                    "name": "asdfasdfsadf",
+                    "title": "User Table",
                     "type": "grid",
                     "tableLayout": {
                         "storeOptions": {
