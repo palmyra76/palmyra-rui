@@ -11,7 +11,7 @@ class PalmyraGridStore implements QueryStore<any>{
     }
 
     query(queryParam: QueryRequest): Promise<QueryResponse<any>> {
-        var url: any = StringFormat(this.target, {});
+        var url: any = StringFormat(this.target, queryParam.options);
         const urlSortParams = (convertQueryParams(queryParam));
         const params = { params: urlSortParams };
         return axios.get(url, params)

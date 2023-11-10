@@ -17,11 +17,6 @@ const BackendViewFormPage = () => {
         fetch(key + '/viewForm.json')
             .then((response) => response.json())
             .then((d) => setPageDef(d));
-
-        // fetch(key + '/userData.json')
-        //     .then((response) => response.json())
-        //     .then((d) => setData(d));
-
     }, [layout])
 
 
@@ -29,20 +24,30 @@ const BackendViewFormPage = () => {
         if (pageDef) {
             const dataStore: DataStore<any> = storeFactory.getFormStore(getStoreOptions(params));
             console.log(params);
+            const idKey: string = getIdProperty(pageDef);
             dataStore.get({
-                key: params.id
+                options: {
+                    [idKey]: params.id
+                }
             }).then((d) => { console.log(d) });
         }
+    }
+
+    const getIdProperty = (pageDef): string => {
+        console.log(pageDef);
+        return pageDef?.idProperty || "id";
     }
 
     useEffect(() => {
         if (pageDef) {
             const dataStore: DataStore<any> = storeFactory.getFormStore(getStoreOptions(params));
-            console.log(params);
+            const idKey: string = getIdProperty(pageDef);
             dataStore.get({
-                key: params.id
+                options: {
+                    [idKey]: params.id
+                }
             }).then((d) => { console.log(d) });
-        }else{
+        } else {
             console.error('pageDef is null');
         }
 

@@ -24,7 +24,6 @@ interface QueryResponse<T> {
 }
 
 interface GetRequest extends CriteriaOptions {
-    key: any,
     options?: QueryOptions
 }
 

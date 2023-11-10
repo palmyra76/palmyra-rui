@@ -14,7 +14,7 @@ import {
 } from '@tanstack/react-table'
 
 
-function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild }) {
+export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild }) {
   const table = useReactTable({
     data: rowData,
     manualSorting: true,
@@ -40,8 +40,6 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
     }
     setSortColumn(sort);
   }
-
-
   const onSort = onSortColumn ? onSortChange : undefined;
   
   return (
@@ -71,7 +69,7 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
             ))}
           </TableHead>
           
-          {(null == rowData || 0 == rowData.length)? (<EmptyChild/>) : (
+          {(null == rowData || undefined == rowData || 0 == rowData.length)? (<></>) : (
           <TableBody >
             {
               table.getRowModel().rows
@@ -95,9 +93,9 @@ function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, on
                 })}
           </TableBody> )}
         </Table>
+        {(null == rowData)? (<div>Loading Data</div>) : 
+          ( undefined == rowData) ? (<div>Error while loading data</div>) : (0 == rowData.length)? (<EmptyChild/>) : (<></>)}
       </TableContainer>
     </Box>
   )
 }
-
-export default TableX;

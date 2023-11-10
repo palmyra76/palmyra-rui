@@ -72,7 +72,7 @@ function GridX(props: GridXOptions) {
           console.log("error while fetching");
           var r = e.response ? e.response : e;
           console.log(r);
-          setEmptyData();
+          setNoData();
         });
       } catch (e) {
         console.log(e);
@@ -86,6 +86,11 @@ function GridX(props: GridXOptions) {
 
   const setEmptyData = () => {
     setData([]);
+    setTotalData(0);
+  }
+
+  const setNoData = () => {
+    setData(undefined);
     setTotalData(0);
   }
 

@@ -1,5 +1,5 @@
-var s = Object.defineProperty;
-var d = (r, t, o) => t in r ? s(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
+var a = Object.defineProperty;
+var d = (r, t, o) => t in r ? a(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
 var p = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
 import "../../layout/flexiLayout/FlexiLayoutRenderer.js";
 import "react/jsx-runtime";
@@ -35,9 +35,9 @@ class R {
     this.request = t, this.target = t.target;
   }
   query(t) {
-    var o = m(this.target, {});
+    var o = m(this.target, t.options);
     const e = { params: c(t) };
-    return n.get(o, e).then((a) => a.data);
+    return n.get(o, e).then((s) => s.data);
   }
   queryLayout(t) {
     var o = m(this.target, {});

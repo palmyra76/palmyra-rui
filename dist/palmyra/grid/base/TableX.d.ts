@@ -1,4 +1,4 @@
-declare function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild }: {
+export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild }: {
     columnDefs: any;
     rowData: any;
     onRowClick: any;
@@ -7,4 +7,3 @@ declare function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderS
     onSortColumn: any;
     EmptyChild: any;
 }): import("react/jsx-runtime").JSX.Element;
-export default TableX;

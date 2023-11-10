@@ -19,7 +19,6 @@ interface QueryResponse<T> {
     total?: number;
 }
 interface GetRequest extends CriteriaOptions {
-    key: any;
     options?: QueryOptions;
 }
 interface QueryOptions extends Record<string, any> {

@@ -1,6 +1,7 @@
 {
+    "idProperty": "email",
     "storeOptions": {
-        "endPoint": "/userManagement"
+        "endPoint": "/userManagement/{email}"
     },
     "type": "form",
     "tabs": [
