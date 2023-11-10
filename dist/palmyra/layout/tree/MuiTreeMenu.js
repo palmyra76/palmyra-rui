@@ -1,60 +1,66 @@
-import { jsx as t, jsxs as l, Fragment as u } from "react/jsx-runtime";
-import T from "@emotion/styled";
-import { useNavigate as w } from "react-router-dom";
-import { ChevronRight as P } from "@mui/icons-material";
-import { TreeItem as j, TreeView as C } from "@mui/x-tree-view";
+import { jsx as t, jsxs as l, Fragment as a } from "react/jsx-runtime";
+import w from "@emotion/styled";
+import { useNavigate as P } from "react-router-dom";
+import { ChevronRight as j } from "@mui/icons-material";
+import { TreeItem as z, TreeView as C } from "@mui/x-tree-view";
 /* empty css                              */import { SimpleIconProvider as E } from "../flexiLayout/IconProvider.js";
 import { useState as M } from "react";
-const p = (n) => n.title ? n.title : n.name;
+const f = (n) => n.title ? n.title : n.name;
 function Y(n) {
-  const f = n.data, h = n.iconProvider || E, v = w(), [s, g] = M({}), x = (r) => {
-    if (r.icon)
-      return h.getIcon(r.icon);
-  }, c = T(j)`
+  const p = n.data, s = n.sidebarWidth, b = n.iconProvider || E, v = P(), [m, g] = M({}), N = (i) => {
+    if (i.icon)
+      return b.getIcon(i.icon);
+  }, d = w(z)`
               
-    `, b = (r) => {
-    const e = { ...s };
-    e[r.name] = !e[r.name], setTimeout(() => {
+    `, x = (i) => {
+    const e = { ...m };
+    e[i.name] = !e[i.name], setTimeout(() => {
       g(e);
     }, 250);
-  }, m = (r, e, a) => {
-    var i = x(e);
+  }, u = (i, e, o) => {
+    var r = N(e);
     if (e.name) {
-      let d = e.path;
+      let h = e.path;
       const I = {
-        transform: s[e.name] ? "rotate(90deg)" : "rotate(0deg)",
+        transform: m[e.name] ? "rotate(90deg)" : "rotate(0deg)",
         transition: "transform 0.3s ease"
       };
       return e.children ? /* @__PURE__ */ t(
-        c,
+        d,
         {
           nodeId: e.name,
-          label: /* @__PURE__ */ l("div", { style: { justifyContent: "space-between", width: "100%", display: "flex" }, children: [
-            /* @__PURE__ */ l("div", { className: "tree-menu-list", children: [
-              i ? /* @__PURE__ */ t(i, { className: "label-icon" }) : /* @__PURE__ */ t(u, {}),
-              p(e)
+          label: /* @__PURE__ */ l(a, { children: [
+            !s && /* @__PURE__ */ l("div", { style: { justifyContent: "space-between", width: "100%", display: "flex" }, children: [
+              /* @__PURE__ */ l("div", { className: "tree-menu-list", children: [
+                r ? /* @__PURE__ */ t(r, { className: "label-icon" }) : /* @__PURE__ */ t(a, {}),
+                f(e)
+              ] }),
+              /* @__PURE__ */ t("div", { className: "arrow-icon", children: /* @__PURE__ */ t(j, { style: I }) })
             ] }),
-            /* @__PURE__ */ t("div", { className: "arrow-icon", children: /* @__PURE__ */ t(P, { style: I }) })
+            s && /* @__PURE__ */ t("div", { className: "sidebar-minimize-tree-menu-list", children: r ? /* @__PURE__ */ t(r, { className: "sidebar-minimize-label-icon" }) : /* @__PURE__ */ t(a, {}) })
           ] }),
-          onClick: () => b(e),
-          children: Array.isArray(e.children) ? e.children.filter((o) => o.name).map((o, N) => m(d, o, N)) : null
+          onClick: () => x(e),
+          children: Array.isArray(e.children) ? e.children.filter((c) => c.name).map((c, T) => u(h, c, T)) : null
         },
-        a
+        o
       ) : /* @__PURE__ */ t(
-        c,
+        d,
         {
           nodeId: e.name,
-          label: /* @__PURE__ */ l("div", { onClick: (o) => {
-            v(d);
+          label: /* @__PURE__ */ l("div", { onClick: (c) => {
+            v(h);
           }, className: "tree-menu-list", children: [
-            i ? /* @__PURE__ */ t(i, { className: "label-icon" }) : /* @__PURE__ */ t(u, {}),
-            p(e)
+            !s && /* @__PURE__ */ l(a, { children: [
+              r ? /* @__PURE__ */ t(r, { className: "label-icon" }) : /* @__PURE__ */ t(a, {}),
+              f(e)
+            ] }),
+            s && /* @__PURE__ */ t("div", { className: "sidebar-minimize-tree-menu-list", children: r ? /* @__PURE__ */ t(r, { className: "sidebar-minimize-label-icon" }) : /* @__PURE__ */ t(a, {}) })
           ] })
         },
-        a
+        o
       );
     }
-  }, y = ((r) => r.filter((e) => e.name).map((e, a) => m(null, e, a)))(f);
+  }, y = ((i) => i.filter((e) => e.name).map((e, o) => u(null, e, o)))(p);
   return /* @__PURE__ */ t(
     C,
     {
