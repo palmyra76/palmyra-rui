@@ -44,6 +44,7 @@ interface TabDefinition extends Titleable, Renderable {
 interface FlexiLayoutDefinition extends Titleable, Renderable, storeBacked {
     idProperty?: string | string[],
     tabs: TabDefinition[],
+    title?: string, 
     type: flexiPrimaryType
 }
 
