@@ -123,7 +123,9 @@ function Fe(r) {
         )
       ] }),
       /* @__PURE__ */ e("div", { className: "grid-header-button", onClick: te, children: /* @__PURE__ */ e(p, { title: "Export", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ e(ue, { className: "grid-button-icon" }) }) }) }),
-      r.onNewClick ? /* @__PURE__ */ e("div", { className: "grid-header-button", onClick: () => r.onNewClick, children: /* @__PURE__ */ e(p, { title: "New", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ e(fe, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ e(ae, {})
+      r.onNewClick ? /* @__PURE__ */ e("div", { className: "grid-header-button", onClick: () => {
+        r.onNewClick();
+      }, children: /* @__PURE__ */ e(p, { title: "New", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ e(fe, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ e(ae, {})
     ] }),
     /* @__PURE__ */ e(
       he,
