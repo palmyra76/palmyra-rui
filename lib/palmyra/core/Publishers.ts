@@ -12,14 +12,20 @@ import { topic } from "./topic";
  */
 function getActionPublishers(actionOptions: ActionOptions, layoutParams: LayoutParams) {
     var result: {
-        onClick?: Function
+        onClick?: Function,
+        onNewClick? : Function
     } = {};
 
     const params = mergeDeep({}, layoutParams);
     var onClickOption = actionOptions?.onClick;
+    var onNewOption = actionOptions?.newRecord;
 
     if (onClickOption) {
         result.onClick = getOnClickPublisher(onClickOption, params);
+    }
+
+    if(onNewOption){
+        result.onNewClick = getOnClickPublisher(onNewOption, params);
     }
 
     return result;

@@ -41,11 +41,12 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
         };
     }, []);
 
-    const { onClick } = getActionPublishers(tableLayout.actionOptions, layoutParams);
+    const { onClick, onNewClick } = getActionPublishers(tableLayout.actionOptions, layoutParams);
 
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
+                onNewClick={onNewClick}
                 quickSearch={tableLayout.quickSearch}
             ></GridX>
         </div>

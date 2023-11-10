@@ -39,7 +39,8 @@ interface Renderable {
 }
 
 interface ActionOptions {
-    onClick?: PublishAction
+    onClick?: PublishAction,
+    newRecord?: PublishAction,
 }
 
 interface PublishAction {
