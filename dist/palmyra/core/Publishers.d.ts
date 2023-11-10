@@ -9,5 +9,6 @@ import { ActionOptions } from "../layout/Types";
  */
 declare function getActionPublishers(actionOptions: ActionOptions, layoutParams: LayoutParams): {
     onClick?: Function;
+    onNewClick?: Function;
 };
 export { getActionPublishers };

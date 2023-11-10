@@ -1,34 +1,35 @@
-import { jsx as i } from "react/jsx-runtime";
-import { forwardRef as y, useState as g, useContext as n, useEffect as h, useImperativeHandle as S } from "react";
-import x from "../../grid/GridX.js";
-import { StoreFactoryContext as C, LayoutParamsContext as F } from "./FlexiLayoutContext.js";
+import { jsx as n } from "react/jsx-runtime";
+import { forwardRef as g, useState as h, useContext as s, useEffect as C, useImperativeHandle as S } from "react";
+import k from "../../grid/GridX.js";
+import { StoreFactoryContext as x, LayoutParamsContext as F } from "./FlexiLayoutContext.js";
 import { getActionPublishers as R } from "../../core/Publishers.js";
-import { mergeDeep as k } from "../../utils/index.js";
-const w = y(function(a, c) {
-  const t = a.layout, [u, m] = g(t.fields), p = t.pagination ? t.pagination : [15], l = n(C), o = n(F);
+import { mergeDeep as q } from "../../utils/index.js";
+const j = g(function(a, c) {
+  const t = a.layout, [u, m] = h(t.fields), l = t.pagination ? t.pagination : [15], p = s(x), o = s(F);
   var e = t.storeOptions || {}, r = {};
-  k(r, e, o);
-  const s = l.getGridStore(r);
-  h(() => {
-    e.hasLayout && s.queryLayout({}).then((d) => {
-      m(d.columns);
+  q(r, e, o);
+  const i = p.getGridStore(r);
+  C(() => {
+    e.hasLayout && i.queryLayout({}).then((y) => {
+      m(y.columns);
     });
   }, []), S(c, () => ({
     applyFilter() {
     }
   }), []);
-  const { onClick: f } = R(t.actionOptions, o);
-  return /* @__PURE__ */ i("div", { children: /* @__PURE__ */ i(
-    x,
+  const { onClick: f, onNewClick: d } = R(t.actionOptions, o);
+  return /* @__PURE__ */ n("div", { children: /* @__PURE__ */ n(
+    k,
     {
       columns: u,
-      store: s,
-      pageSize: p,
+      store: i,
+      pageSize: l,
       onRowClick: f,
+      onNewClick: d,
       quickSearch: t.quickSearch
     }
   ) });
 });
 export {
-  w as default
+  j as default
 };

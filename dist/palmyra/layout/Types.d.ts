@@ -32,6 +32,7 @@ interface Renderable {
 }
 interface ActionOptions {
     onClick?: PublishAction;
+    newRecord?: PublishAction;
 }
 interface PublishAction {
     topic: string;
