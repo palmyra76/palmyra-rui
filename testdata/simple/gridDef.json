@@ -8,6 +8,11 @@
                     "title": "Surya Table",
                     "type": "grid",
                     "tableLayout": {
+                        "actionOptions":{
+                            "newRecord":{
+                                "topic":"newPage"
+                            }
+                        },
                         "storeOptions": {
                             "endPoint": "/"
                         },
