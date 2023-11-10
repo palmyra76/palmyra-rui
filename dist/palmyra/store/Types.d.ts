@@ -20,6 +20,7 @@ interface QueryResponse<T> {
 }
 interface GetRequest extends CriteriaOptions {
     options?: QueryOptions;
+    key?: string;
 }
 interface QueryOptions extends Record<string, any> {
 }

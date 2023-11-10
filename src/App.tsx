@@ -30,9 +30,9 @@ function App() {
             <Route path="/demo/:layout/dashboard" element={<DashboardPage />} />
             <Route path="/demo/:layout/chart" element={<ChartPage />} />
             <Route path="/demo/:layout/card" element={<HomePage />} />
-            {/* <Route path="/demo/:layout/formEdit" element={<EditFormPage />} />
+            <Route path="/demo/:layout/formEdit" element={<EditFormPage />} />
             <Route path="/demo/:layout/formView" element={<ViewFormPage />} />
-            <Route path="/demo/:layout/formNew" element={<NewFormPage />} /> */}
+            <Route path="/demo/:layout/formNew" element={<NewFormPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

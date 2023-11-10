@@ -24,10 +24,11 @@ interface QueryResponse<T> {
 }
 
 interface GetRequest extends CriteriaOptions {
-    options?: QueryOptions
+    options?: QueryOptions,
+    key?: string
 }
 
-interface QueryOptions extends Record<string, any>{
+interface QueryOptions extends Record<string, any> {
 
 }
 
