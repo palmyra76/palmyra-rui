@@ -8,6 +8,9 @@
                     "name": "",
                     "type": "form",
                     "formLayout": {
+                        "options": {
+                            "columns": 2
+                        },
                         "fields": [
                             {
                                 "attribute": "userName",
@@ -42,8 +45,8 @@
                                     "idAttribute": "email",
                                     "titleAttribute": "userName"
                                 },
-                                "storeOptions":{
-                                    "endPoint":"/api/data/user"
+                                "storeOptions": {
+                                    "endPoint": "/api/data/user"
                                 }
                             },
                             {

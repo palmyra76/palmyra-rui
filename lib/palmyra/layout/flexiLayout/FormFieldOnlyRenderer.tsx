@@ -4,6 +4,7 @@ import getField from '../../form/FieldGenerator';
 import { FieldDefinition } from '../../form/Definitions';
 import { FormLayout } from './Definitions';
 import { PageContext } from './Types';
+import '../container/FormFieldOnlyLayout.css';
 
 interface EditFormRendererInput {
     formLayout: FormLayout,
@@ -12,17 +13,17 @@ interface EditFormRendererInput {
 
 const calcContainerClass = (props: EditFormRendererInput) => {
     const { formLayout } = props;
-    var containerClass = 'palmyra-form-field-only-container';
+    var containerClass = 'palmyra-form-field-container';
     const options = formLayout.options;
 
     if (options && options.columns) {
         switch (options.columns) {
             case 2:
-                return containerClass + ' palmyra-form-field-only-container-2column';
+                return containerClass + ' palmyra-form-field-container-2column';
             case 3:
-                return containerClass + ' palmyra-form-field-only-container-3column';
+                return containerClass + ' palmyra-form-field-container-3column';
             case 4:
-                return containerClass + ' palmyra-form-field-only-container-4column';
+                return containerClass + ' palmyra-form-field-container-4column';
         }
     }
     return containerClass;
@@ -34,7 +35,7 @@ const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: E
     const { getFieldManager, formData } = context;
     const fieldRefs = useRef({});
     const containerClass = calcContainerClass(props);
-    const fieldClass = 'palmyra-form-field-only-data';
+    const fieldClass = 'palmyra-form-field-data';
 
     const generateField = useMemo(() => (field: FieldDefinition) => {
         return getField(field, getFieldManager, fieldRefs, field.title);

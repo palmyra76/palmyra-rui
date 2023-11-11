@@ -1,0 +1,30 @@
+.palmyra-form-field-only-container-wrapper {
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.palmyra-form-field-only-container-wrapper .palmyra-form-field-container {
+    width: 100% !important;
+    display: flex !important;
+    text-align: left !important;
+    word-break: break-all !important;
+    padding: 10px !important;
+    font-size: 20px !important;
+}
+
+.palmyra-form-field-only-container-wrapper .palmyra-form-field-data {
+    width: 100% !important;
+}
+
+.palmyra-form-field-only-container-wrapper .palmyra-form-field-container-2column {
+    width: calc(50% - 0px) !important;
+}
+
+.palmyra-form-field-only-container-wrapper .palmyra-form-field-container-3column {
+    width: calc(33% - 0px) !important;
+}
+
+.palmyra-form-field-only-container-wrapper .palmyra-form-field-container-4column {
+    width: calc(25% - 0px) !important;
+}

@@ -12,6 +12,9 @@
                     "name": "",
                     "type": "view",
                     "formLayout": {
+                        "options": {
+                            "columns": 2
+                        },
                         "fields": [
                             {
                                 "attribute": "userName",
