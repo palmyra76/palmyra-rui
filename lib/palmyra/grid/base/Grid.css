@@ -136,6 +136,15 @@
   width: auto;
 }
 
+.loading-child-container {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  justify-content: center;
+}
+
 .grid-header-text-container {
   width: 50%;
   font-weight: bold;

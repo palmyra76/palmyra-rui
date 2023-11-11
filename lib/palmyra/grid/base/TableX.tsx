@@ -2,7 +2,7 @@
  * Basic structure to draw the table
  */
 import { useEffect, useState } from 'react'
-import { CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { Paper, Box } from '@mui/material';
 import './Grid.css';
 import ColumnHeader from './ColumnHeader'
@@ -12,6 +12,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import LoadingChild from './LoadingChild';
 
 
 export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild }) {
@@ -94,8 +95,7 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
             </TableBody>)}
         </Table>
         {(null == rowData) ? (<div>
-          Loading Data
-          <CircularProgress size={25} thickness={4} />
+          <LoadingChild />
         </div>) :
           (undefined == rowData) ? (<div>Error while loading data</div>) : (0 == rowData.length) ? (<EmptyChild />) : (<></>)}
       </TableContainer>
