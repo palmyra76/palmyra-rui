@@ -56,20 +56,20 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
                         label={(
                             <>
                                 {!sidebarWidth && (
-                                    <div style={{ justifyContent: 'space-between', width: '100%', display: 'flex' }}>
-                                        <div className="tree-menu-list">
-                                            {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
+                                    <div className="mui-tree-menu">
+                                        <div className="mui-tree-menu-list">
+                                            {LabelIcon ? <LabelIcon className="mui-label-icon" /> : <></>}
                                             {getTitle(node)}
 
                                         </div>
-                                        <div className="arrow-icon" >
+                                        <div className="mui-arrow-icon" >
                                             <ChevronRightIcon style={iconStyles} />
                                         </div>
                                     </div>
                                 )}
                                 {sidebarWidth && (
-                                    <div className="sidebar-minimize-tree-menu-list">
-                                        {LabelIcon ? <LabelIcon className='sidebar-minimize-label-icon' /> : <></>}
+                                    <div className="mui-sidebar-minimize-tree-menu-list">
+                                        {LabelIcon ? <LabelIcon className='mui-sidebar-minimize-label-icon' /> : <></>}
                                     </div>
                                 )}
                             </>
@@ -87,16 +87,16 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
                 return (
                     <StyledTreeItem
                         key={index} nodeId={node.name} label={(
-                            <div onClick={(e) => { navigate(path); }} className="tree-menu-list">
+                            <div onClick={(e) => { navigate(path); }} className="mui-tree-menu-list">
                                 {!sidebarWidth && (
                                     <>
-                                        {LabelIcon ? <LabelIcon className="label-icon" /> : <></>}
+                                        {LabelIcon ? <LabelIcon className="mui-label-icon" /> : <></>}
                                         {getTitle(node)}
                                     </>
                                 )}
                                 {sidebarWidth && (
-                                    <div className="sidebar-minimize-tree-menu-list">
-                                        {LabelIcon ? <LabelIcon className='sidebar-minimize-label-icon' /> : <></>}
+                                    <div className="mui-sidebar-minimize-tree-menu-list">
+                                        {LabelIcon ? <LabelIcon className='mui-sidebar-minimize-label-icon' /> : <></>}
                                     </div>)}
                             </div>
                         )} />
