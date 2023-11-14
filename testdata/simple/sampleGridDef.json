@@ -1,6 +1,6 @@
 {
     "type": "grid",
-    "idProperty":"email",
+    "idProperty": "email",
     "tabs": [
         {
             "name": "tab01",
@@ -21,8 +21,7 @@
                         "quickSearch": [
                             "name"
                         ],
-                        "fields": [
-                        ]
+                        "fields": []
                     }
                 },
                 {
