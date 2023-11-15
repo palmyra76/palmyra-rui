@@ -14,7 +14,7 @@
 }
 
 .mui-sidebar-minimize-tree-menu-list {
-    margin-left: 10px !important;
+    margin-left: 0px !important;
 }
 
 .mui-sidebar-minimize-label-icon {
@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     font-size: 0.95em;
-    gap: 5px;
+    gap: 8px;
 }
 
 .MuiTreeItem-content .MuiTreeItem-iconContainer {
@@ -36,7 +36,8 @@
 }
 
 .MuiTreeItem-content {
-    padding: 5px !important;
+    padding: 6px !important;
+    padding-left: 15px !important;
 }
 
 .MuiTreeItem-content:hover {
