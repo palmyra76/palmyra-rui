@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
-import { FlexiLayoutRenderer } from '../../../lib/main';
+import { FlexiLayoutRenderer, PalmyraGrid } from '../../../lib/main';
 import { AppStoreFactory } from '../../components/store/AppStoreFactory';
 import './GridPage.css'
 
@@ -17,9 +17,12 @@ const GridPage = () => {
             .then((d) => { setPageDef(d) });
     }, [layout])
 
+
+    const tableLayout = pageDef? pageDef.tabs[0].sections[0].tableLayout : {};
+
     return <>
         <div className='grid-renderer-container'>
-            {pageDef ? <FlexiLayoutRenderer layout={pageDef}
+            {pageDef ? <PalmyraGrid layout={tableLayout}
                 layoutParams={{}}
                 storeFactory={storeFactory} /> : <div />}
         </div>

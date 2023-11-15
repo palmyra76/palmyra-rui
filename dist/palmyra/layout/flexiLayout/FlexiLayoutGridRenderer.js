@@ -1,21 +1,6 @@
-import { jsx as e } from "react/jsx-runtime";
-import { forwardRef as s, useImperativeHandle as l } from "react";
-import m from "./TabRenderer.js";
-const x = s(function(t, o) {
-  const { layout: n } = t;
-  l(o, () => ({
-    resetFilter() {
-    }
-  }), []);
-  const a = {}, i = n.tabs;
-  return /* @__PURE__ */ e("div", { children: i.map((r, d) => /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-    m,
-    {
-      layout: r,
-      context: a
-    }
-  ) }, r.name + d)) });
-});
+import "react/jsx-runtime";
+import "react";
+import { e as m } from "../../../index-051586a0.js";
 export {
-  x as default
+  m as default
 };

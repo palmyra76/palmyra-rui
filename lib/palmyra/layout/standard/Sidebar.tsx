@@ -1,17 +1,21 @@
 import { Drawer, IconButton, List, Stack, Toolbar, Typography } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from "react";
+import {Menu} from '@mui/icons-material';
+import { FC, useState } from "react";
 
 import './Sidebar.scss';
-import ApplicationMenu from "../components/ApplicationMenu";
+// import ApplicationMenu from "../../../../src/components/ApplicationMenu";
 
+interface ISideMenuInput{
+  sidebarWidth:boolean
+}
 
 interface SidebarInput {
   appTitle: string,
   width: string,
   mobileOpen?: boolean,
   setMobileOpen?: any,
-  responsive?: boolean
+  responsive?: boolean,
+  SideMenu:FC<ISideMenuInput>
 }
 
 const Sidebar = (props: SidebarInput) => {
@@ -20,6 +24,7 @@ const Sidebar = (props: SidebarInput) => {
   const mobileOpen = props.mobileOpen;
   const setMobileOpen = props.setMobileOpen;
   const responsive = props.responsive;
+  const AppMenu = props.SideMenu;
 
   const [isMinimized, setIsMinimized] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
@@ -58,7 +63,7 @@ const Sidebar = (props: SidebarInput) => {
                     onClick={barMenu}
                     sx={{ mr: 0 }}
                   >
-                    <MenuIcon style={iconStyles} className='sidebar-title-menu-icon' />
+                    <Menu style={iconStyles} className='sidebar-title-menu-icon' />
                   </IconButton>
                 )}
               </div>
@@ -74,7 +79,7 @@ const Sidebar = (props: SidebarInput) => {
         </Toolbar>
       </div>
       <div className='sidebar-middle' style={{ display: isMinimized ? 'block' : 'block' }}>
-        <ApplicationMenu sidebarWidth={isMinimized} />
+        <AppMenu sidebarWidth={isMinimized} />
       </div>
       <div className='sidebar-footer' style={{ display: isMinimized ? 'none' : 'block' }}>
         <p className='sidebar-footer-text'>Powered by Palmyra</p>

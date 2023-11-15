@@ -1,4 +1,4 @@
-import { default as d } from "./GridX.js";
+import { a as o } from "../../index-051586a0.js";
 export {
-  d as GridX
+  o as GridX
 };

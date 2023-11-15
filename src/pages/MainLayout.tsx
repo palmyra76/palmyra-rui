@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Box, CssBaseline, Toolbar } from "@mui/material";
 
-import { Sidebar } from "./Sidebar";
+import { Sidebar } from "../../lib/palmyra/layout/standard/Sidebar";
 import Topbar from "./Topbar";
 import { useEffect, useState } from "react";
 import { useWindowSize } from "usehooks-ts";
+import ApplicationMenu from "../components/ApplicationMenu";
 
 interface MainLayoutInput {
   sideBarWidth?: string,
@@ -14,9 +15,9 @@ interface MainLayoutInput {
 const MainLayout = (props: MainLayoutInput) => {
   var sideWidth = props.sideBarWidth;
   if (!sideWidth) {
-      sideWidth = '250px';
+    sideWidth = '250px';
   }
-  
+
 
   const { width } = useWindowSize();
   const [mobileMode, setMobileMode] = useState(false);
@@ -25,7 +26,7 @@ const MainLayout = (props: MainLayoutInput) => {
   const responsive = width < 900;
 
   useEffect(() => {
-      setMobileMode(responsive);
+    setMobileMode(responsive);
   }, [responsive, setMobileOpen])
 
   const display = mobileMode ? "block" : "none";
@@ -33,14 +34,16 @@ const MainLayout = (props: MainLayoutInput) => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <Topbar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} display={display}/>
+      <Topbar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} display={display} />
       <Sidebar
-        appTitle={props.appTitle} width={sideWidth} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} responsive={responsive} />
+        SideMenu={ApplicationMenu}
+        appTitle={props.appTitle} width={sideWidth} mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen} responsive={responsive} />
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          padding:'10px',
+          padding: '10px',
           width: `calc(100% - ${sideWidth})`,
           minHeight: "100vh"
         }}
