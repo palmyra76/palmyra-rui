@@ -1,12 +1,12 @@
-import { PalmyraGridStore as o } from "./PalmyraGridStore.js";
-class p extends o {
-  constructor(r) {
-    super(r);
+import { PalmyraGridStore as e } from "./PalmyraGridStore.js";
+class p extends e {
+  constructor(r, t, o) {
+    super(r, t, o);
   }
   post(r, t) {
     throw new Error("Method not implemented.");
   }
-  put(r, t, n) {
+  put(r, t, o) {
     throw new Error("Method not implemented.");
   }
   remove(r, t) {

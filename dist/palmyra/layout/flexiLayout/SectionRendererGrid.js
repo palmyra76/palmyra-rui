@@ -1,5 +1,5 @@
 import "react/jsx-runtime";
-import { S as i } from "../../../index-051586a0.js";
+import { S as i } from "../../../index-9502e5dc.js";
 import "../container/SectionContainer.js";
 import "../ErrorBoundary.js";
 export {

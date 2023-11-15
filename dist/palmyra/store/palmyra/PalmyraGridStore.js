@@ -1,7 +1,7 @@
-var a = Object.defineProperty;
-var d = (r, t, o) => t in r ? a(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
-var p = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
-import "../../../index-051586a0.js";
+var d = Object.defineProperty;
+var h = (o, t, r) => t in o ? d(o, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : o[t] = r;
+var n = (o, t, r) => (h(o, typeof t != "symbol" ? t + "" : t, r), r);
+import "../../../index-9502e5dc.js";
 import "react/jsx-runtime";
 import "react-router-dom";
 import "react";
@@ -28,29 +28,41 @@ import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 /* empty css                            */import "../../mui/form/MuiServerLookup.js";
-import n from "axios";
-class U {
-  constructor(t) {
-    p(this, "request");
-    p(this, "target");
-    this.request = t, this.target = t.target;
+import s from "axios";
+class R {
+  constructor(t, r, i) {
+    n(this, "request");
+    n(this, "target");
+    n(this, "endPoint");
+    n(this, "idProperty");
+    this.request = t, this.target = t.target, this.endPoint = r, this.idProperty = i;
+  }
+  queryUrl() {
+    if (typeof this.endPoint == "string")
+      return this.endPoint;
+    this.endPoint.query;
+  }
+  getUrl() {
+    if (typeof this.endPoint == "string")
+      return this.endPoint;
+    this.endPoint.get;
   }
   query(t) {
-    var o = m(this.target, t.options);
-    const i = { params: c(t) };
-    return n.get(o, i).then((s) => s.data);
+    var r = this.target + this.queryUrl(), i = m(r, t.options);
+    const p = { params: u(t) };
+    return s.get(i, p).then((a) => a.data);
   }
   queryLayout(t) {
-    var o = m(this.target, {});
-    return n.get(o, {
+    var r = this.target + this.queryUrl(), i = m(r, {});
+    return s.get(i, {
       headers: {
         action: "schema"
       }
     }).then((e) => e.data);
   }
-  get(t, o) {
-    var e = m(this.target, t.options || {});
-    return n.get(e).then((i) => i.data);
+  get(t, r) {
+    var i = this.target + this.queryUrl(), e = m(i, t.options || {});
+    return s.get(e).then((p) => p.data);
   }
   getIdentity(t) {
     throw new Error("Method not implemented.");
@@ -59,10 +71,10 @@ class U {
     return "id";
   }
 }
-function c(r) {
-  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((i) => (r.sortOrder[i] === "asc" ? "+" : "-") + i), o = !!r.total;
-  return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
+function u(o) {
+  const t = Object.keys((o == null ? void 0 : o.sortOrder) || {}).map((e) => (o.sortOrder[e] === "asc" ? "+" : "-") + e), r = !!o.total;
+  return { ...o.filter || {}, _total: r, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  U as PalmyraGridStore
+  R as PalmyraGridStore
 };

@@ -1917,7 +1917,7 @@ const Qr = me(function(t, r) {
   const n = t.layout, [i, a] = re(n.fields), d = n.pagination ? n.pagination : [15], u = ze(We), f = ze(dt);
   var m = n.storeOptions || {}, y = {};
   Jt(y, m, f);
-  const S = u.getGridStore(y);
+  const S = u.getGridStore(y, n.storeOptions.endPoint);
   Ye(() => {
     m.hasLayout && S.queryLayout({}).then(($) => {
       a($.columns);

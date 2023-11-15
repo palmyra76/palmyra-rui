@@ -9,7 +9,7 @@ const getLookupStore = (fieldDef: FieldDefinition): LookupStore<any> => {
     const idAttribute = fieldDef.lookupOptions?.idAttribute || "name";
     var options: any = {};
     mergeDeep(options, fieldDef.storeOptions);
-    return storeFactory.getLookupStore(options, idAttribute);
+    return storeFactory.getLookupStore(options, fieldDef.storeOptions.endPoint, idAttribute);
 }
 
 export { getLookupStore }

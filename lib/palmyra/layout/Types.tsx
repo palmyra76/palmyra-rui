@@ -54,18 +54,24 @@ interface Actionable {
     actionOptions?: ActionOptions
 }
 
+interface MultiEndPoint {
+    query: string,
+    get: string,
+    post?: string,
+    put: string,
+    delete?: string
+}
+
+type IEndPoint = string | MultiEndPoint;
+
 interface storeBacked {
     storeOptions?: {
-        endPoint?: string // alias for Query, if put,post, delete specific urls not provided,
-        hasLayout?: boolean,
-        urlFormat?: string,
-        urlFormatPut?: string,
-        urlFormatPost?: string,
-        urlFormatDelete?: string
+        endPoint?: IEndPoint// alias for Query, if put,post, delete specific urls not provided,
+        hasLayout?: boolean
     }
 }
 
 
 export type { Positionable, Titleable, Renderable, storeBacked, transformable, transformOptions };
 
-export type { ActionOptions, Actionable, PublishAction }
+export type { ActionOptions, Actionable, PublishAction, IEndPoint }

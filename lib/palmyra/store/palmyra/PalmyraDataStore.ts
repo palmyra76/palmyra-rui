@@ -1,9 +1,10 @@
 import { DataStore, QueryOptions } from "../../../main";
+import { IEndPoint } from "../../layout/Types";
 import { PalmyraGridStore } from "./PalmyraGridStore";
 
 class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T>{
-    constructor(request: Record<string, string>) {
-        super(request);
+    constructor(request: Record<string, string>, endPoint:IEndPoint, idProperty?:string) {
+        super(request, endPoint, idProperty);
     }
 
     post(data: any, options?: QueryOptions): Promise<T> {

@@ -1,17 +1,39 @@
 import { QueryStore, GetRequest, QueryRequest, StringFormat, QueryResponse, QueryParams } from "../../../../lib/main";
 import axios from 'axios';
+import { IEndPoint } from "../../layout/Types";
 
 class PalmyraGridStore implements QueryStore<any>{
     request: Record<string, string>
     target: string
+    endPoint:IEndPoint
+    idProperty:string
 
-    constructor(request: Record<string, string>) {
+    constructor(request: Record<string, string>, endPoint:IEndPoint, idProperty?:string) {
         this.request = request;
         this.target = request.target;
+        this.endPoint = endPoint;
+        this.idProperty = idProperty;
+    }
+
+    queryUrl():string{
+        if(typeof this.endPoint == 'string'){
+            return this.endPoint;
+        }else{
+            this.endPoint.query;
+        }
+    }
+
+    getUrl():string{
+        if(typeof this.endPoint == 'string'){
+            return this.endPoint;
+        }else{
+            this.endPoint.get;
+        }
     }
 
     query(queryParam: QueryRequest): Promise<QueryResponse<any>> {
-        var url: any = StringFormat(this.target, queryParam.options);
+        var urlFormat = this.target + this.queryUrl();
+        var url: any = StringFormat(urlFormat, queryParam.options);
         const urlSortParams = (convertQueryParams(queryParam));
         const params = { params: urlSortParams };
         return axios.get(url, params)
@@ -19,7 +41,8 @@ class PalmyraGridStore implements QueryStore<any>{
     }
 
     queryLayout(request: QueryRequest): Promise<any> {
-        var url: any = StringFormat(this.target, {});        
+        var urlFormat = this.target + this.queryUrl();
+        var url: any = StringFormat(urlFormat, {});        
         return axios.get(url, {
             headers: {
                 action: 'schema'
@@ -29,7 +52,8 @@ class PalmyraGridStore implements QueryStore<any>{
     }
 
     get(request: GetRequest, idProperty?: string): Promise<any> {
-        var url: any = StringFormat(this.target, (request.options || {}));
+        var urlFormat = this.target + this.queryUrl();
+        var url: any = StringFormat(urlFormat, (request.options || {}));
         return axios.get(url)
             .then(response => { return response.data });
     }

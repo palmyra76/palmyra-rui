@@ -41,15 +41,19 @@ interface PublishAction {
 interface Actionable {
     actionOptions?: ActionOptions;
 }
+interface MultiEndPoint {
+    query: string;
+    get: string;
+    post?: string;
+    put: string;
+    delete?: string;
+}
+type IEndPoint = string | MultiEndPoint;
 interface storeBacked {
     storeOptions?: {
-        endPoint?: string;
+        endPoint?: IEndPoint;
         hasLayout?: boolean;
-        urlFormat?: string;
-        urlFormatPut?: string;
-        urlFormatPost?: string;
-        urlFormatDelete?: string;
     };
 }
 export type { Positionable, Titleable, Renderable, storeBacked, transformable, transformOptions };
-export type { ActionOptions, Actionable, PublishAction };
+export type { ActionOptions, Actionable, PublishAction, IEndPoint };

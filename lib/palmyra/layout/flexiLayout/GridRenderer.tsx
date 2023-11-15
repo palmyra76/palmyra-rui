@@ -25,7 +25,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
 
     mergeDeep(storeRequest, storeOptions, layoutParams);
 
-    const store = storeFactory.getGridStore(storeRequest);
+    const store = storeFactory.getGridStore(storeRequest, tableLayout.storeOptions.endPoint);
 
     useEffect(() => {
         if (storeOptions.hasLayout) {
