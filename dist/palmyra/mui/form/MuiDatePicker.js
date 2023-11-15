@@ -1,30 +1,31 @@
 import { jsx as s } from "react/jsx-runtime";
-import { forwardRef as p, useRef as g, useImperativeHandle as v } from "react";
-import { LocalizationProvider as D, DatePicker as P } from "@mui/x-date-pickers";
-import { AdapterDayjs as M } from "@mui/x-date-pickers/AdapterDayjs";
-import h from "dayjs";
+import { forwardRef as p, useContext as g, useRef as v, useImperativeHandle as D } from "react";
+import { LocalizationProvider as M, DatePicker as P } from "@mui/x-date-pickers";
+import { AdapterDayjs as h } from "@mui/x-date-pickers/AdapterDayjs";
+import x from "dayjs";
 import { copyMuiOptions as y } from "./MuiUtil.js";
-const C = p(function(t, i) {
-  const { getFieldManager: u } = t, c = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = u(t, "date"), o = a.error, l = a.data, r = a.eventListeners, n = g(null), d = () => h(l);
-  v(i, () => ({
+import { FieldManagerContext as F } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+const V = p(function(e, i) {
+  const u = g(F), c = e.displayPattern || e.serverPattern || "YYYY-MM-DD", a = u(e, "date"), o = a.error, l = a.data, r = a.eventListeners, n = v(null), d = () => x(l);
+  D(i, () => ({
     focus() {
       n.current.focus();
     },
     isValid() {
       return !o.status;
     },
-    assignAttribute(e) {
-      n.current.assignAttribute(e);
+    assignAttribute(t) {
+      n.current.assignAttribute(t);
     }
   }), []);
-  var f = y(t, d()), m = {
+  var f = y(e, d()), m = {
     onBlur: r.onBlur,
     onFocus: r.onFocus,
-    onChange: (e) => {
-      e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
+    onChange: (t) => {
+      t && t.toDate ? r.onValueChange(t.toDate()) : r.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ s(D, { dateAdapter: M, children: /* @__PURE__ */ s(
+  return /* @__PURE__ */ s(M, { dateAdapter: h, children: /* @__PURE__ */ s(
     P,
     {
       ...f,
@@ -42,5 +43,5 @@ const C = p(function(t, i) {
   ) });
 });
 export {
-  C as default
+  V as default
 };

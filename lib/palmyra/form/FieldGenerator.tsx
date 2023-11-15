@@ -1,5 +1,4 @@
 import { FieldDefinition } from './Definitions';
-import { IGetFieldManager } from './interface';
 
 import MuiTextField from '../mui/form/MuiTextField';
 import MuiTextArea from '../mui/form/MuiTextArea';
@@ -19,7 +18,6 @@ const getInvalidField = (props: FieldRequest) => {
 const getReactField = (props: FieldRequest, Input: React.FC) => {
     const fieldDef: any = props.fieldDef;
     return <Input
-        getFieldManager={props.getFieldManager}
         {...fieldDef}
         label={props.title}
     />;
@@ -29,9 +27,9 @@ const getTobeImplemented = () => {
     return <div>To be Implemented</div>
 }
 
-const getField = (fieldDef: FieldDefinition, getFieldManager: IGetFieldManager, fieldRefs: any, title?:any) => {
+const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?:any) => {
     const { type } = fieldDef;
-    const props: FieldRequest = { fieldDef, getFieldManager, title };
+    const props: FieldRequest = { fieldDef, title };
 
     switch (type) {
         case 'string':
@@ -65,6 +63,5 @@ export default getField;
 
 interface FieldRequest {
     fieldDef: FieldDefinition,
-    getFieldManager: IGetFieldManager
     title?:string
 }

@@ -12,14 +12,14 @@ interface EditFormRendererInput {
 }
 
 const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInput, ref) {
-    checkInputs(props);
+    
     const { formLayout, context } = props;
-    const { getFieldManager, formData } = context;
+    const { formData } = context;
     const FieldContainer = formLayout.Container || DefaultFieldContainer;
     const fieldRefs = useRef({});
 
     const generateField = useMemo(() => (field: FieldDefinition) => {
-        return getField(field, getFieldManager, fieldRefs);
+        return getField(field, fieldRefs);
     }, [formData.data]);
 
 
@@ -41,8 +41,3 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
 });
 
 export default FormRenderer;
-
-function checkInputs(props: EditFormRendererInput) {
-    if (!props.context?.getFieldManager)
-        throw new Error('Form Context not available, if this the form page, set the type as "form" in the definition');
-}

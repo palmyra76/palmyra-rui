@@ -1,11 +1,12 @@
-import { useRef, useImperativeHandle, forwardRef, useState, useMemo, useEffect } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useState, useMemo, useEffect, useContext } from 'react';
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material';
 import { copyMuiOptions } from './MuiUtil';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, ISwitchDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISwitchDefinition } from '../../form/interface';
 import parseOptions from './MuiSwitchOption';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition & IGetFieldManagerDefinition, ref) {
-    const { getFieldManager } = props;
+const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition , ref) {
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'switch');
 
     const error: IFormFieldError = fieldManager.error;

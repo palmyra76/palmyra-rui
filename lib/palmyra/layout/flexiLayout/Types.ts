@@ -1,5 +1,4 @@
 import { FormData } from "../../form/Definitions";
-import { IGetFieldManager } from "../../form/interface";
 import { ChartStore, QueryStore, DataStore, LookupStore } from "../../store";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 
@@ -44,8 +43,7 @@ interface FlexiLayoutRendererInput<T> {
     storeFactory: StoreFactory<T>
 }
 
-interface PageContext {
-    getFieldManager?: IGetFieldManager,
+interface PageContext {   
     formData?: any
 }
 

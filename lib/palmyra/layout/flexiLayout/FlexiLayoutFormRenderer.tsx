@@ -5,6 +5,7 @@ import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
 import { flexiPrimaryType } from ".";
 import { createFormData } from "../../form/PalmyraFormManager";
+import { FieldManagerContext } from "./FlexiLayoutContext";
 
 const getFormMode = (mode: flexiPrimaryType): FormMode => {
     switch (mode) {
@@ -24,6 +25,8 @@ const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(p
     const { layout } = props;
     var { getFieldManager, getFormData, isFormValid } = createFormData(formData, props.callbacks?.onFormValidChange, getFormMode(props.mode));
 
+
+
     useImperativeHandle(ref, () => {
         return {
             getData() {
@@ -35,11 +38,12 @@ const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(p
         };
     }, []);
 
-    const pageContext: PageContext = { getFieldManager, formData: formData };
+    const pageContext: PageContext = {  formData: formData };
     const tabs = layout.tabs;
 
     return (
         <div>
+            <FieldManagerContext.Provider value={getFieldManager}>
             {
                 tabs.map((tab, index) => (
                     <div key={tab.name + index}>
@@ -50,6 +54,7 @@ const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(p
                     </div>
                 ))
             }
+            </FieldManagerContext.Provider>
         </div>
     );
 });

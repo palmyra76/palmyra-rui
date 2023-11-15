@@ -1,5 +1,4 @@
 import { FormData } from "../../form/Definitions";
-import { IGetFieldManager } from "../../form/interface";
 import { ChartStore, QueryStore, DataStore, LookupStore } from "../../store";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 interface Parent {
@@ -35,7 +34,6 @@ interface FlexiLayoutRendererInput<T> {
     storeFactory: StoreFactory<T>;
 }
 interface PageContext {
-    getFieldManager?: IGetFieldManager;
     formData?: any;
 }
 interface TabContainerInput extends TabDefinition, Parent {

@@ -1,4 +1,4 @@
 /// <reference types="react" />
-import { IDateTimeDefinition, IGetFieldManagerDefinition } from '../../form/interface';
-declare const MuiDatePicker: import("react").ForwardRefExoticComponent<IDateTimeDefinition & IGetFieldManagerDefinition & import("react").RefAttributes<unknown>>;
+import { IDateTimeDefinition } from '../../form/interface';
+declare const MuiDatePicker: import("react").ForwardRefExoticComponent<IDateTimeDefinition & import("react").RefAttributes<unknown>>;
 export default MuiDatePicker;

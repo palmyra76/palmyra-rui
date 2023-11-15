@@ -30,15 +30,15 @@ const calcContainerClass = (props: EditFormRendererInput) => {
 }
 
 const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: EditFormRendererInput, ref) {
-    checkInputs(props);
+    
     const { formLayout, context } = props;
-    const { getFieldManager, formData } = context;
+    const { formData } = context;
     const fieldRefs = useRef({});
     const containerClass = calcContainerClass(props);
     const fieldClass = 'palmyra-form-field-data';
 
     const generateField = useMemo(() => (field: FieldDefinition) => {
-        return getField(field, getFieldManager, fieldRefs, field.title);
+        return getField(field, fieldRefs, field.title);
     }, [formData.data]);
 
     return (
@@ -58,7 +58,3 @@ const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: E
 
 export default FormFieldOnlyRenderer;
 
-function checkInputs(props: EditFormRendererInput) {
-    if (!props.context?.getFieldManager)
-        throw new Error('Form Context not available, if this the form page, set the type as "form" in the definition');
-}

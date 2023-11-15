@@ -1,11 +1,13 @@
-import { useRef, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
 import { FormControl, FormHelperText, MenuItem, Select } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, ISelectDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
 
-const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition & IGetFieldManagerDefinition, ref) {
-    const { options, getFieldManager } = props;
+const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition , ref) {
+    const { options } = props;
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
 
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'select');

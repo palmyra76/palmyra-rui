@@ -1,10 +1,11 @@
-import { useRef, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
 import { TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, ITextFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition & IGetFieldManagerDefinition, ref) {
-    const { getFieldManager } = props;
+const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref) {
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string');
 
     const error: IFormFieldError = fieldManager.error;
@@ -26,7 +27,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
         };
     }, []);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);    
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
     var callbacks = {
         onBlur: eventListeners.onBlur,

@@ -1,8 +1,9 @@
 import { jsx as r } from "react/jsx-runtime";
 import { forwardRef as F, useImperativeHandle as g } from "react";
-import w from "./TabRenderer.js";
+import v from "./TabRenderer.js";
 import { createFormData as x } from "../../form/PalmyraFormManager.js";
-const v = (t) => {
+import { FieldManagerContext as w } from "./FlexiLayoutContext.js";
+const h = (t) => {
   switch (t) {
     case "formEdit":
       return "edit";
@@ -13,27 +14,27 @@ const v = (t) => {
     default:
       return "edit";
   }
-}, V = F(function(e, i) {
+}, p = F(function(e, i) {
   var o;
   const a = e.data || {}, { layout: m } = e;
-  var { getFieldManager: d, getFormData: c, isFormValid: u } = x(a, (o = e.callbacks) == null ? void 0 : o.onFormValidChange, v(e.mode));
+  var { getFieldManager: d, getFormData: c, isFormValid: l } = x(a, (o = e.callbacks) == null ? void 0 : o.onFormValidChange, h(e.mode));
   g(i, () => ({
     getData() {
       return c();
     },
     isValid() {
-      return u();
+      return l();
     }
   }), []);
-  const l = { getFieldManager: d, formData: a }, s = m.tabs;
-  return /* @__PURE__ */ r("div", { children: s.map((n, f) => /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
-    w,
+  const u = { formData: a }, s = m.tabs;
+  return /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(w.Provider, { value: d, children: s.map((n, f) => /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
+    v,
     {
       layout: n,
-      context: l
+      context: u
     }
-  ) }, n.name + f)) });
+  ) }, n.name + f)) }) });
 });
 export {
-  V as default
+  p as default
 };

@@ -1,10 +1,12 @@
-import { useRef, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
 import { FormControl, FormControlLabel, FormHelperText, Radio, RadioGroup } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, ISelectDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: ISelectDefinition & IGetFieldManagerDefinition, ref) {
-    const { getFieldManager, options } = props;
+const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: ISelectDefinition , ref) {
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
+    const {options} = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'radio');
 
     const error: IFormFieldError = fieldManager.error;

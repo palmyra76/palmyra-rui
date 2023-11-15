@@ -1,6 +1,7 @@
 import { createContext as t } from "react";
-const e = t(null), n = t(null);
+const n = t(null), e = t(null), r = t(null);
 export {
-  n as LayoutParamsContext,
-  e as StoreFactoryContext
+  r as FieldManagerContext,
+  e as LayoutParamsContext,
+  n as StoreFactoryContext
 };

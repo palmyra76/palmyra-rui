@@ -5,6 +5,7 @@ import SectionRendererEditForm from "../../../layout/flexiLayout/SectionRenderer
 import { createFormData } from "../../../form";
 import Draggable from "react-draggable";
 import FormFieldOnlyRenderer from "../../../layout/flexiLayout/FormFieldOnlyRenderer";
+import { FieldManagerContext } from "../../../layout/flexiLayout/FlexiLayoutContext";
 
 
 function PaperComponent(props: PaperProps) {
@@ -67,19 +68,21 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
             </div>
             <span className="filter-header-border"></span>
             <div className="grid-filter-content">
-                <SectionRendererEditForm context={{ getFieldManager, formData: {} }}
+                <FieldManagerContext.Provider value={getFieldManager}>
+                    <SectionRendererEditForm context={{ formData: {} }}
 
-                    layout={{
-                        type: 'form',
-                        formLayout: {
-                            fields,
-                            options: {
-                                columns: 2
+                        layout={{
+                            type: 'form',
+                            formLayout: {
+                                fields,
+                                options: {
+                                    columns: 2
+                                },
                             },
-                        },
-                        Renderer: FormFieldOnlyRenderer
-                    }}
-                />
+                            Renderer: FormFieldOnlyRenderer
+                        }}
+                    />
+                </FieldManagerContext.Provider>
             </div>
             <div className="grid-filter-btn-container">
                 <Button className='filter-reset-btn' disableRipple onClick={reset}>Reset</Button>

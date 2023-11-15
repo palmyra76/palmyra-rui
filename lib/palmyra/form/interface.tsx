@@ -119,14 +119,11 @@ interface IFieldDefinition extends AttributeDefinition, LookupOptions {
 
 type IGetFieldManager = (fieldDef: AttributeDefinition, type: FieldType) => IFormFieldManager;
 
-interface IFormFieldInputDefinition extends IFieldDefinition, IGetFieldManagerDefinition {
+interface IFormFieldInputDefinition extends IFieldDefinition {
     toolkitOptions?: any
 }
 
-interface IGetFieldManagerDefinition {
-    getFieldManager: IGetFieldManager
-}
 
-export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, IGetFieldManagerDefinition, AttributeDefinition, FieldType }
+export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType }
 export type { IServerLookupDefinition, ISwitchDefinition }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager }

@@ -1,12 +1,13 @@
-import { useRef, useImperativeHandle, forwardRef } from 'react';
-import { IDateTimeDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition } from '../../form/interface';
+import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
+import { IDateTimeDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
 import { copyMuiOptions } from './MuiUtil';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition & IGetFieldManagerDefinition, ref) {
-    const { getFieldManager } = props;
+const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition , ref) {
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD";
     const fieldManager: IFormFieldManager = getFieldManager(props, 'date');
     const error: IFormFieldError = fieldManager.error;

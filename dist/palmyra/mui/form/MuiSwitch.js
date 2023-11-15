@@ -1,55 +1,56 @@
-import { jsxs as b, jsx as c } from "react/jsx-runtime";
-import { forwardRef as w, useMemo as x, useState as O, useRef as S, useEffect as f, useImperativeHandle as p } from "react";
-import { FormControl as C, FormControlLabel as F, Switch as L, FormHelperText as y } from "@mui/material";
+import { jsxs as p, jsx as c } from "react/jsx-runtime";
+import { forwardRef as x, useContext as V, useMemo as C, useState as F, useRef as b, useEffect as m, useImperativeHandle as w } from "react";
+import { FormControl as O, FormControlLabel as S, Switch as L, FormHelperText as y } from "@mui/material";
 import { copyMuiOptions as R } from "./MuiUtil.js";
 import j from "./MuiSwitchOption.js";
-const T = w(function(e, m) {
-  const { getFieldManager: h } = e, r = h(e, "switch"), a = r.error, g = r.eventListeners, o = x(
-    () => j(e.options, e.name),
-    [e.options, e.name]
-  ), u = (t, M) => {
+import { FieldManagerContext as A } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+const B = x(function(t, f) {
+  const r = V(A)(t, "switch"), a = r.error, g = r.eventListeners, o = C(
+    () => j(t.options, t.name),
+    [t.options, t.name]
+  ), u = (e, M) => {
     var d = o.checked.value;
-    return t != null && t != null ? d == t : d == M;
-  }, [n, i] = O(u(r.data, e.defaultValue)), s = S(null);
-  f(() => {
-    i(u(r.data, e.defaultValue));
-  }, [r.data]), p(m, () => ({
+    return e != null && e != null ? d == e : d == M;
+  }, [n, i] = F(u(r.data, t.defaultValue)), s = b(null);
+  m(() => {
+    i(u(r.data, t.defaultValue));
+  }, [r.data]), w(f, () => ({
     focus() {
       s.current.focus();
     },
     isValid() {
       return !a.status;
     },
-    assignAttribute(t) {
-      s.current.assignAttribute(t);
+    assignAttribute(e) {
+      s.current.assignAttribute(e);
     }
   }), []);
-  var k = R(e, r.data);
-  const v = () => {
+  var h = R(t, r.data);
+  const k = () => {
     i(!n);
   };
-  f(() => {
+  m(() => {
     g.onValueChange(l());
   }, [n]);
-  const V = () => {
-    var t = n ? "checked" : "unchecked";
-    return o[t].title;
+  const v = () => {
+    var e = n ? "checked" : "unchecked";
+    return o[e].title;
   }, l = () => {
-    var t = n ? "checked" : "unchecked";
-    return o[t].value;
+    var e = n ? "checked" : "unchecked";
+    return o[e].value;
   };
-  return /* @__PURE__ */ b(C, { error: a.status, ...k, children: [
+  return /* @__PURE__ */ p(O, { error: a.status, ...h, children: [
     /* @__PURE__ */ c(
-      F,
+      S,
       {
         value: l(),
-        control: /* @__PURE__ */ c(L, { inputRef: s, checked: n, onClick: v }),
-        label: V()
+        control: /* @__PURE__ */ c(L, { inputRef: s, checked: n, onClick: k }),
+        label: v()
       }
     ),
     /* @__PURE__ */ c(y, { className: "form-error-text", children: a.message })
   ] });
 });
 export {
-  T as default
+  B as default
 };

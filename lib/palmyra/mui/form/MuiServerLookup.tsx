@@ -1,6 +1,6 @@
-import { useRef, useImperativeHandle, forwardRef, useState, useEffect, useMemo } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useState, useEffect, useMemo, useContext } from 'react';
 import { FormControl, FormHelperText, InputAdornment, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, IServerLookupDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { DeleteOutlined, Search } from '@mui/icons-material';
 import { delay, hasDot } from '../../utils';
@@ -10,9 +10,10 @@ import { getValueByKey, setValueByKey } from '../../form/FormUtil';
 
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition & IGetFieldManagerDefinition, ref) {
-    const { getFieldManager } = props;
+const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition , ref) {
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'serverlookup');
     const store: LookupStore<any> = props.store || fieldManager.store;

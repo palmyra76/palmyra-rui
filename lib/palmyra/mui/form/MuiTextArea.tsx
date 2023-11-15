@@ -1,10 +1,11 @@
-import { useRef, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
 import { TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, ITextFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition & IGetFieldManagerDefinition, ref) {
-    const { getFieldManager } = props;
+const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition, ref) {
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string');

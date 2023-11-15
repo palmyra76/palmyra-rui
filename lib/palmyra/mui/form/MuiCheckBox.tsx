@@ -1,10 +1,12 @@
-import { useRef, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManagerDefinition, ISelectDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
+import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition & IGetFieldManagerDefinition, ref) {
-    const { getFieldManager, options } = props;
+const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition , ref) {
+    const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
+    const {options} = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox');
     const values = fieldManager.data ? fieldManager.data.split(',') : [];
 
