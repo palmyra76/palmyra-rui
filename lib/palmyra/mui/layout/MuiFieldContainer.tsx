@@ -1,7 +1,7 @@
 import '../../layout/container/FormLayout.css';
 
 const calcContainerClass = (column: any) => {
-    var containerClass = 'palmyra-form-field-container';
+    var containerClass = 'palmyra-form-field-container' + ' palmyra-form-field-container-2column';
     if (column) {
         switch (column) {
             case 2:
@@ -13,6 +13,8 @@ const calcContainerClass = (column: any) => {
             case 4:
             case '4':
                 return containerClass + ' palmyra-form-field-container-4column';
+            default:
+                return containerClass + ' palmyra-form-field-container-2column';
         }
     }
     return containerClass;

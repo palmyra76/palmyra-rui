@@ -1,6 +1,6 @@
-import { jsxs as n, jsx as r } from "react/jsx-runtime";
-/* empty css                            */const o = (l) => {
-  var a = "palmyra-form-field-container";
+import { jsxs as o, jsx as r } from "react/jsx-runtime";
+/* empty css                            */const t = (l) => {
+  var a = "palmyra-form-field-container palmyra-form-field-container-2column";
   if (l)
     switch (l) {
       case 2:
@@ -12,6 +12,8 @@ import { jsxs as n, jsx as r } from "react/jsx-runtime";
       case 4:
       case "4":
         return a + " palmyra-form-field-container-4column";
+      default:
+        return a + " palmyra-form-field-container-2column";
     }
   return a;
 };
@@ -23,10 +25,10 @@ var f = (l) => {
   } : { labelClass: a, fieldClass: e };
 };
 const d = ({ title: l, children: a, column: e }) => {
-  const s = o(e), { labelClass: i, fieldClass: t } = f(e);
-  return /* @__PURE__ */ n("div", { className: s, children: [
+  const s = t(e), { labelClass: i, fieldClass: n } = f(e);
+  return /* @__PURE__ */ o("div", { className: s, children: [
     /* @__PURE__ */ r("div", { className: i, children: l }),
-    /* @__PURE__ */ r("div", { className: t, children: a })
+    /* @__PURE__ */ r("div", { className: n, children: a })
   ] });
 };
 export {
