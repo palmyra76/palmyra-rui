@@ -4,6 +4,7 @@ import { forwardRef as s, useState as y, useRef as x, useEffect as R } from "rea
 import { ErrorBoundary as F } from "../ErrorBoundary.js";
 import { StoreFactoryContext as L, LayoutParamsContext as g } from "./FlexiLayoutContext.js";
 import u from "./FlexiLayoutFormRenderer.js";
+import "./GridRenderer.js";
 const h = (o) => {
   switch (o) {
     case "grid":
@@ -17,7 +18,7 @@ const h = (o) => {
     default:
       return i;
   }
-}, b = s(function(e, n) {
+}, j = s(function(e, n) {
   const [a, d] = y(e.layout), c = e.mode ? e.mode : a.type ? a.type : "grid", m = e.layoutParams || {}, f = h(c), t = x(0);
   return R(() => {
     d(e.layout), t.current < 999999 ? t.current++ : t.current = 0;
@@ -26,5 +27,5 @@ const h = (o) => {
   } }, t.current) }) }) });
 });
 export {
-  b as default
+  j as default
 };

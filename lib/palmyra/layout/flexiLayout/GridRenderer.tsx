@@ -54,3 +54,4 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
 });
 
 export default GridRenderer;
+export type {GridRendererInput}

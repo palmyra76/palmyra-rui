@@ -2,6 +2,7 @@ var a = Object.defineProperty;
 var d = (r, t, o) => t in r ? a(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
 var p = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
 import "../../layout/flexiLayout/FlexiLayoutRenderer.js";
+import "../../layout/flexiLayout/GridRenderer.js";
 import "react/jsx-runtime";
 import "react-router-dom";
 import "react";
@@ -31,7 +32,7 @@ import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 /* empty css                            */import "../../mui/form/MuiServerLookup.js";
 import n from "axios";
-class W {
+class X {
   constructor(t) {
     p(this, "request");
     p(this, "target");
@@ -66,5 +67,5 @@ function c(r) {
   return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  W as PalmyraGridStore
+  X as PalmyraGridStore
 };

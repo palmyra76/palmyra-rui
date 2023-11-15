@@ -7,3 +7,4 @@ interface GridRendererInput {
 }
 declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<unknown>>;
 export default GridRenderer;
+export type { GridRendererInput };
