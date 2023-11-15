@@ -1,73 +1,73 @@
-import { jsx as t, jsxs as l, Fragment as a } from "react/jsx-runtime";
-import w from "@emotion/styled";
-import { useNavigate as P } from "react-router-dom";
-import { ChevronRight as j } from "@mui/icons-material";
-import { TreeItem as z, TreeView as C } from "@mui/x-tree-view";
-/* empty css                              */import { SimpleIconProvider as E } from "../flexiLayout/IconProvider.js";
-import { useState as M } from "react";
-const f = (n) => n.title ? n.title : n.name;
-function Y(n) {
-  const p = n.data, s = n.sidebarWidth, b = n.iconProvider || E, v = P(), [m, g] = M({}), N = (i) => {
-    if (i.icon)
-      return b.getIcon(i.icon);
-  }, d = w(z)`
+import { jsx as i, jsxs as m, Fragment as n } from "react/jsx-runtime";
+import P from "@emotion/styled";
+import { useNavigate as w } from "react-router-dom";
+import { ChevronRight as z } from "@mui/icons-material";
+import { TreeItem as E, TreeView as M } from "@mui/x-tree-view";
+/* empty css                              */import { SimpleIconProvider as S } from "../flexiLayout/IconProvider.js";
+import { useState as j } from "react";
+const f = (a) => a.title ? a.title : a.name;
+function Y(a) {
+  const p = a.data, l = a.sidebarWidth, b = a.iconProvider || S, v = w(), [o, g] = j({}), N = (r) => {
+    if (r.icon)
+      return b.getIcon(r.icon);
+  }, d = P(E)`
               
-    `, x = (i) => {
-    const e = { ...m };
-    e[i.name] = !e[i.name], setTimeout(() => {
+    `, x = (r) => {
+    const e = { ...o };
+    e[r.name] = !e[r.name], setTimeout(() => {
       g(e);
     }, 250);
-  }, u = (i, e, o) => {
-    var r = N(e);
+  }, u = (r, e, s) => {
+    var t = N(e);
     if (e.name) {
       let h = e.path;
-      const I = {
-        transform: m[e.name] ? "rotate(90deg)" : "rotate(0deg)",
+      const T = {
+        transform: o[e.name] ? "rotate(90deg)" : "rotate(0deg)",
         transition: "transform 0.3s ease"
       };
-      return e.children ? /* @__PURE__ */ t(
+      return e.children ? /* @__PURE__ */ i(
         d,
         {
           nodeId: e.name,
-          label: /* @__PURE__ */ l(a, { children: [
-            !s && /* @__PURE__ */ l("div", { style: { justifyContent: "space-between", width: "100%", display: "flex" }, children: [
-              /* @__PURE__ */ l("div", { className: "tree-menu-list", children: [
-                r ? /* @__PURE__ */ t(r, { className: "label-icon" }) : /* @__PURE__ */ t(a, {}),
+          label: /* @__PURE__ */ m(n, { children: [
+            !l && /* @__PURE__ */ m("div", { className: "mui-tree-menu", children: [
+              /* @__PURE__ */ m("div", { className: "mui-tree-menu-list", children: [
+                t ? /* @__PURE__ */ i(t, { className: "mui-label-icon" }) : /* @__PURE__ */ i(n, {}),
                 f(e)
               ] }),
-              /* @__PURE__ */ t("div", { className: "arrow-icon", children: /* @__PURE__ */ t(j, { style: I }) })
+              /* @__PURE__ */ i("div", { className: "mui-arrow-icon", children: /* @__PURE__ */ i(z, { style: T }) })
             ] }),
-            s && /* @__PURE__ */ t("div", { className: "sidebar-minimize-tree-menu-list", children: r ? /* @__PURE__ */ t(r, { className: "sidebar-minimize-label-icon" }) : /* @__PURE__ */ t(a, {}) })
+            l && /* @__PURE__ */ i("div", { className: "mui-sidebar-minimize-tree-menu-list", children: t ? /* @__PURE__ */ i(t, { className: "mui-sidebar-minimize-label-icon" }) : /* @__PURE__ */ i(n, {}) })
           ] }),
           onClick: () => x(e),
-          children: Array.isArray(e.children) ? e.children.filter((c) => c.name).map((c, T) => u(h, c, T)) : null
+          children: Array.isArray(e.children) ? e.children.filter((c) => c.name).map((c, y) => u(h, c, y)) : null
         },
-        o
-      ) : /* @__PURE__ */ t(
+        s
+      ) : /* @__PURE__ */ i(
         d,
         {
           nodeId: e.name,
-          label: /* @__PURE__ */ l("div", { onClick: (c) => {
+          label: /* @__PURE__ */ m("div", { onClick: (c) => {
             v(h);
-          }, className: "tree-menu-list", children: [
-            !s && /* @__PURE__ */ l(a, { children: [
-              r ? /* @__PURE__ */ t(r, { className: "label-icon" }) : /* @__PURE__ */ t(a, {}),
+          }, className: "mui-tree-menu-list", children: [
+            !l && /* @__PURE__ */ m(n, { children: [
+              t ? /* @__PURE__ */ i(t, { className: "mui-label-icon" }) : /* @__PURE__ */ i(n, {}),
               f(e)
             ] }),
-            s && /* @__PURE__ */ t("div", { className: "sidebar-minimize-tree-menu-list", children: r ? /* @__PURE__ */ t(r, { className: "sidebar-minimize-label-icon" }) : /* @__PURE__ */ t(a, {}) })
+            l && /* @__PURE__ */ i("div", { className: "mui-sidebar-minimize-tree-menu-list", children: t ? /* @__PURE__ */ i(t, { className: "mui-sidebar-minimize-label-icon" }) : /* @__PURE__ */ i(n, {}) })
           ] })
         },
-        o
+        s
       );
     }
-  }, y = ((i) => i.filter((e) => e.name).map((e, o) => u(null, e, o)))(p);
-  return /* @__PURE__ */ t(
-    C,
+  }, I = ((r) => r.filter((e) => e.name).map((e, s) => u(null, e, s)))(p);
+  return /* @__PURE__ */ i(
+    M,
     {
       "aria-label": "rich object",
       defaultExpanded: ["root"],
       sx: { height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: "auto" },
-      children: y
+      children: I
     }
   );
 }
