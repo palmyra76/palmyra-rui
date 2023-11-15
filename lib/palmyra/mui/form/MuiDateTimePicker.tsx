@@ -50,13 +50,14 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateTimePicker {...inputProps}
+                readOnly={props.readonly}
                 format={displayFormat}
                 {...callbacks}
                 slotProps={{
                     textField: {
                         error: error.status,
                         helperText: error.message,
-                        variant: 'standard',
+                        variant: props.variant,
                         fullWidth: true
                     },
                 }}

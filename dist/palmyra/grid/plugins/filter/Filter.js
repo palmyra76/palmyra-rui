@@ -4,6 +4,7 @@ import { Close as dt } from "@mui/icons-material";
 import { convertToField as pt } from "../../base/GridFieldConverter.js";
 import ht from "../../../layout/flexiLayout/SectionRendererEditForm.js";
 import { createFormData as gt } from "../../../form/PalmyraFormManager.js";
+import "../../../form/PalmyraForm.js";
 import { a as yt, g as mt } from "../../../../_commonjsHelpers-c5d32002.js";
 import ze from "react";
 import Ge from "react-dom";
@@ -1688,7 +1689,7 @@ function hr(e) {
     }
   );
 }
-const Cr = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: s = {} }) => {
+const Or = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: s = {} }) => {
   const i = (M) => {
     M.stopPropagation();
   };
@@ -1742,5 +1743,5 @@ const Cr = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: s 
   ) });
 };
 export {
-  Cr as default
+  Or as default
 };

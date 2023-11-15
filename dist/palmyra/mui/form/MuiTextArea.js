@@ -1,38 +1,40 @@
 import { jsx as l } from "react/jsx-runtime";
-import { forwardRef as c, useContext as f, useRef as m, useImperativeHandle as g } from "react";
-import { TextField as d } from "@mui/material";
+import { forwardRef as c, useContext as f, useRef as m, useImperativeHandle as d } from "react";
+import { TextField as g } from "@mui/material";
 import { copyMuiOptions as p } from "./MuiUtil.js";
 import { FieldManagerContext as x } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-const T = c(function(s, a) {
-  const e = f(x)(s, "string"), t = e.error, r = e.eventListeners, n = m(null);
-  g(a, () => ({
+const T = c(function(e, u) {
+  const t = f(x)(e, "string"), r = t.error, n = t.eventListeners, o = m(null);
+  d(u, () => ({
     focus() {
-      n.current.focus();
+      o.current.focus();
     },
     isValid() {
-      return !t.status;
+      return !r.status;
     },
-    assignAttribute(o) {
-      n.current.assignAttribute(o);
+    assignAttribute(a) {
+      o.current.assignAttribute(a);
     }
   }), []);
-  var u = p(s, e.data), i = {
-    onBlur: r.onBlur,
-    onFocus: r.onFocus,
-    onChange: (o) => r.onValueChange(o.target.value)
+  var s = p(e, t.data);
+  e.readonly && (s.inputProps = { readOnly: !0 });
+  var i = {
+    onBlur: n.onBlur,
+    onFocus: n.onFocus,
+    onChange: (a) => n.onValueChange(a.target.value)
   };
   return /* @__PURE__ */ l(
-    d,
+    g,
     {
       minRows: 2,
       maxRows: 5,
       fullWidth: !0,
       multiline: !0,
-      ...u,
-      inputRef: n,
+      ...s,
+      inputRef: o,
       ...i,
-      error: t.status,
-      helperText: t.message
+      error: r.status,
+      helperText: r.message
     }
   );
 });

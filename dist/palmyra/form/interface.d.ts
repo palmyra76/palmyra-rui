@@ -22,6 +22,7 @@ interface AttributeDefinition {
     defaultValue?: InputType;
     value?: InputType;
     required?: boolean;
+    readonly?: boolean;
     disabled?: boolean;
     placeHolder?: string;
     variant?: string;

@@ -3,23 +3,25 @@ import { forwardRef as c, useContext as f, useRef as d, useImperativeHandle as g
 import { TextField as m } from "@mui/material";
 import { copyMuiOptions as p } from "./MuiUtil.js";
 import { FieldManagerContext as x } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-const R = c(function(e, a) {
+const y = c(function(e, s) {
   const t = f(x)(e, "string"), r = t.error, n = t.eventListeners, o = d(null);
-  g(a, () => ({
+  g(s, () => ({
     focus() {
       o.current.focus();
     },
     isValid() {
       return !r.status;
     },
-    assignAttribute(s) {
-      o.current.assignAttribute(s);
+    assignAttribute(a) {
+      o.current.assignAttribute(a);
     }
   }), []);
-  var i = p(e, t.data, e.label), u = {
+  var i = p(e, t.data, e.label);
+  e.readonly && (i.inputProps = { readOnly: !0 });
+  var u = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
-    onChange: (s) => n.onValueChange(s.target.value)
+    onChange: (a) => n.onValueChange(a.target.value)
   };
   return /* @__PURE__ */ l(
     m,
@@ -34,5 +36,5 @@ const R = c(function(e, a) {
   );
 });
 export {
-  R as default
+  y as default
 };

@@ -29,9 +29,10 @@ interface AttributeDefinition {
     defaultValue?: InputType,
     value?: InputType,
     required?: boolean,
+    readonly?: boolean,
     disabled?: boolean,
     placeHolder?: string,
-    variant?:string
+    variant?: string
 }
 
 interface abstractValidation {
@@ -45,7 +46,7 @@ interface TextValidation extends abstractValidation {
 }
 
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation {
-    label?:string
+    label?: string
 }
 
 interface ISwitchDefinition extends AttributeDefinition {

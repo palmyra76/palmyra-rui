@@ -1,41 +1,42 @@
-import { jsx as s } from "react/jsx-runtime";
-import { forwardRef as p, useContext as g, useRef as v, useImperativeHandle as D } from "react";
-import { LocalizationProvider as M, DatePicker as P } from "@mui/x-date-pickers";
-import { AdapterDayjs as h } from "@mui/x-date-pickers/AdapterDayjs";
-import x from "dayjs";
-import { copyMuiOptions as y } from "./MuiUtil.js";
+import { jsx as i } from "react/jsx-runtime";
+import { forwardRef as g, useContext as p, useRef as v, useImperativeHandle as D } from "react";
+import { LocalizationProvider as y, DatePicker as M } from "@mui/x-date-pickers";
+import { AdapterDayjs as P } from "@mui/x-date-pickers/AdapterDayjs";
+import h from "dayjs";
+import { copyMuiOptions as x } from "./MuiUtil.js";
 import { FieldManagerContext as F } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-const V = p(function(e, i) {
-  const u = g(F), c = e.displayPattern || e.serverPattern || "YYYY-MM-DD", a = u(e, "date"), o = a.error, l = a.data, r = a.eventListeners, n = v(null), d = () => x(l);
-  D(i, () => ({
+const V = g(function(t, s) {
+  const u = p(F), l = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = u(t, "date"), o = a.error, c = a.data, r = a.eventListeners, n = v(null), d = () => h(c);
+  D(s, () => ({
     focus() {
       n.current.focus();
     },
     isValid() {
       return !o.status;
     },
-    assignAttribute(t) {
-      n.current.assignAttribute(t);
+    assignAttribute(e) {
+      n.current.assignAttribute(e);
     }
   }), []);
-  var f = y(e, d()), m = {
+  var f = x(t, d()), m = {
     onBlur: r.onBlur,
     onFocus: r.onFocus,
-    onChange: (t) => {
-      t && t.toDate ? r.onValueChange(t.toDate()) : r.onValueChange(void 0);
+    onChange: (e) => {
+      e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ s(M, { dateAdapter: h, children: /* @__PURE__ */ s(
-    P,
+  return /* @__PURE__ */ i(y, { dateAdapter: P, children: /* @__PURE__ */ i(
+    M,
     {
       ...f,
-      format: c,
+      readOnly: t.readonly,
+      format: l,
       ...m,
       slotProps: {
         textField: {
           error: o.status,
           helperText: o.message,
-          variant: "standard",
+          variant: t.variant,
           fullWidth: !0
         }
       }

@@ -1,55 +1,55 @@
 import { jsxs as v, jsx as t, Fragment as E } from "react/jsx-runtime";
-import { forwardRef as H, useContext as z, useRef as S, useState as y, useImperativeHandle as N, useEffect as k, useMemo as G } from "react";
+import { forwardRef as H, useContext as z, useRef as k, useState as y, useImperativeHandle as N, useEffect as C, useMemo as G } from "react";
 import { FormControl as J, Select as Q, ListSubheader as U, TextField as X, InputAdornment as Y, MenuItem as Z, FormHelperText as _ } from "@mui/material";
 import { copyMuiOptions as $ } from "./MuiUtil.js";
 import { Search as ee, DeleteOutlined as te } from "@mui/icons-material";
 import { delay as re } from "../../utils/index.js";
-import { getValueByKey as C, setValueByKey as K } from "../../form/FormUtil.js";
+import { getValueByKey as K, setValueByKey as L } from "../../form/FormUtil.js";
 import { m as ne, p as oe } from "../../../index-1171ae7f.js";
 import { FieldManagerContext as se } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import { hasDot as L } from "../../utils/StringUtil.js";
+import { hasDot as P } from "../../utils/StringUtil.js";
 const ve = H(function(o, d) {
-  const r = z(se)(o, "serverlookup"), p = o.store || r.store, f = o.lookupOptions || {}, u = f.idAttribute || "id", s = f.titleAttribute || "name", T = f.searchAttribute || s, x = S(null), [h, F] = y([]), [B, D] = y(r.displayValue), [a, I] = y(""), m = r.error, c = r.data, g = r.eventListeners, O = S(null);
+  const r = z(se)(o, "serverlookup"), p = o.store || r.store, f = o.lookupOptions || {}, u = f.idAttribute || "id", s = f.titleAttribute || "name", T = f.searchAttribute || s, O = k(null), [h, x] = y([]), [B, D] = y(r.displayValue), [a, I] = y(""), m = r.error, l = r.data, g = r.eventListeners, F = k(null);
   N(d, () => ({
     focus() {
-      O.current.focus();
+      F.current.focus();
     },
     isValid() {
       return !m.status;
     },
     assignAttribute(e) {
-      O.current.assignAttribute(e);
+      F.current.assignAttribute(e);
     }
   }), []);
-  const l = L(u) ? (e) => C(u, e) : (e) => e[u], P = L(s) ? (e) => C(s, e) : (e) => e[s];
-  k(() => {
+  const c = P(u) ? (e) => K(u, e) : (e) => e[u], R = P(s) ? (e) => K(s, e) : (e) => e[s];
+  C(() => {
     D(r.displayValue);
   }, [r.displayValue]), G(() => {
-    var e = R();
-    e && (F([e]), x.current = e);
+    var e = W();
+    e && (x([e]), O.current = e);
   }, [B]);
-  function R() {
-    if (c) {
+  function W() {
+    if (l) {
       var e = {};
-      K(u, e, c);
-      const n = r.displayValue || c;
-      return K(s, e, n), e;
+      L(u, e, l);
+      const n = r.displayValue || l;
+      return L(s, e, n), e;
     }
   }
   function b(e) {
-    const n = x.current;
-    e && n && !W(e, l(n)) && e.unshift(n), F(e);
+    const n = O.current;
+    e && n && !q(e, c(n)) && e.unshift(n), x(e);
   }
-  function W(e, n) {
-    return e.find((V) => {
-      if (l(V) === n)
-        return V;
+  function q(e, n) {
+    return e.find((S) => {
+      if (c(S) === n)
+        return S;
     });
   }
-  k(() => {
+  C(() => {
     re(A);
   }, [a]);
-  const q = () => h.length > 10;
+  const j = () => h.length > 10;
   function A() {
     var e = {};
     if (a.length > 0)
@@ -58,7 +58,9 @@ const ve = H(function(o, d) {
       return;
     p.query(e).then((n) => b(n.result)).catch(() => b([]));
   }
-  var j = $(o, r.data), w = {
+  var V = $(o, r.data);
+  o.readonly && (V.inputProps = { readOnly: !0 });
+  var w = {
     onBlur: g.onBlur,
     onFocus: g.onFocus,
     onChange: (e) => g.onValueChange(e.target.value)
@@ -67,15 +69,15 @@ const ve = H(function(o, d) {
     /* @__PURE__ */ v(
       Q,
       {
-        ...j,
+        ...V,
         MenuProps: { autoFocus: !1 },
-        value: c,
+        value: l,
         onOpen: (e) => {
           A();
         },
         ...w,
         children: [
-          q() ? /* @__PURE__ */ v(U, { children: [
+          j() ? /* @__PURE__ */ v(U, { children: [
             /* @__PURE__ */ t("div", { children: /* @__PURE__ */ t(
               X,
               {
@@ -95,7 +97,7 @@ const ve = H(function(o, d) {
             ) }),
             o.required ? /* @__PURE__ */ t(E, {}) : /* @__PURE__ */ t("div", { children: /* @__PURE__ */ t("span", { children: /* @__PURE__ */ t(te, {}) }) })
           ] }) : /* @__PURE__ */ t("div", {}),
-          h.map((e, n) => /* @__PURE__ */ t(Z, { value: l(e), children: ae(P(e), a) }, l(e) || n))
+          h.map((e, n) => /* @__PURE__ */ t(Z, { value: c(e), children: ae(R(e), a) }, c(e) || n))
         ]
       }
     ),

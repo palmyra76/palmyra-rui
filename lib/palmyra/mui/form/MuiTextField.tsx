@@ -29,6 +29,10 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
+    if(props.readonly){
+        inputProps.inputProps={ readOnly: true };
+    }
+
     var callbacks = {
         onBlur: eventListeners.onBlur,
         onFocus: eventListeners.onFocus,

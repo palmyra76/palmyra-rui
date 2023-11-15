@@ -17,6 +17,7 @@ import "../../layout/container/SectionContainer.js";
 import { StringFormat as m } from "../../utils/StringUtil.js";
 import "dayjs";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
+import "../../form/PalmyraForm.js";
 import "../../grid/plugins/filter/Filter.js";
 import "../../layout/flexiLayout/FormFieldOnlyRenderer.js";
 import "../../core/topic.js";
@@ -30,7 +31,7 @@ import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 /* empty css                            */import "../../mui/form/MuiServerLookup.js";
 import n from "axios";
-class V {
+class W {
   constructor(t) {
     p(this, "request");
     p(this, "target");
@@ -65,5 +66,5 @@ function c(r) {
   return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  V as PalmyraGridStore
+  W as PalmyraGridStore
 };

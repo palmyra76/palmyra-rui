@@ -1,4 +1,6 @@
-import { createFormData as e } from "./PalmyraFormManager.js";
+import { createFormData as a } from "./PalmyraFormManager.js";
+import { PalmyraForm as e } from "./PalmyraForm.js";
 export {
-  e as createFormData
+  e as PalmyraForm,
+  a as createFormData
 };

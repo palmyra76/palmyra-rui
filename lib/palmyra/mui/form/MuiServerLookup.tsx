@@ -111,6 +111,10 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data);
 
+    if(props.readonly){
+        inputProps.inputProps={ readOnly: true };
+    }
+
     var callbacks = {
         onBlur: eventListeners.onBlur,
         onFocus: eventListeners.onFocus,

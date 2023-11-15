@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition , ref) {
+const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD";
     const fieldManager: IFormFieldManager = getFieldManager(props, 'date');
@@ -50,13 +50,14 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker {...inputProps}
+                readOnly={props.readonly}
                 format={displayFormat}
                 {...callbacks}
                 slotProps={{
                     textField: {
                         error: error.status,
                         helperText: error.message,
-                        variant: 'standard',
+                        variant: props.variant,
                         fullWidth: true
                     },
                 }}
