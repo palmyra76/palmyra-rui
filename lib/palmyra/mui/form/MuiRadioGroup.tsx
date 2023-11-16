@@ -4,9 +4,9 @@ import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, 
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: ISelectDefinition , ref) {
+const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: ISelectDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const {options} = props;
+    const { options } = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'radio');
 
     const error: IFormFieldError = fieldManager.error;
@@ -30,6 +30,10 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: ISelectDefinition
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data);
 
+    if (props.readonly) {
+        inputProps.inputProps = { readOnly: true };
+    }
+
     var callbacks = {
         onBlur: eventListeners.onBlur,
         onFocus: eventListeners.onFocus,
@@ -37,11 +41,11 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: ISelectDefinition
     }
 
     return (
-        <FormControl fullWidth error={error.status}>
-            <RadioGroup row {...inputProps} {...callbacks}>
+        <FormControl fullWidth error={error.status} >
+            <RadioGroup row {...callbacks} {...inputProps}>
                 {options ?
                     Object.keys(options).map((key, index) => (
-                        <FormControlLabel key={index} value={key} control={<Radio inputRef={inputRef} />} label={options[key]} />
+                        <FormControlLabel key={index} value={key} control={<Radio inputRef={inputRef} inputProps={inputProps} />} label={options[key]} />
                     ))
                     : <div>No options provided</div>}
             </RadioGroup>
