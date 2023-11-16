@@ -9,7 +9,7 @@ interface IPalmyraEditFormInput {
 }
 interface IPalmyraEditFormOutput {
     data: FormData;
-    saveData: (data: FormData) => any;
+    saveData: () => any;
     formRef: MutableRefObject<any>;
 }
 type IusePalmyraEditForm = (props: IPalmyraEditFormInput) => IPalmyraEditFormOutput;

@@ -13,7 +13,7 @@ interface IPalmyraNewFormInput {
 
 interface IPalmyraNewFormOutput {
     data: FormData,
-    saveData: (data: FormData) => any,
+    saveData: () => any,
     formRef: MutableRefObject<any>
 }
 
