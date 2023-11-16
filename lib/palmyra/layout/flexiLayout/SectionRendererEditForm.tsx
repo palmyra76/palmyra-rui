@@ -4,6 +4,7 @@ import { default as DefaultSectionContainer } from '../container/SectionContaine
 
 import { SectionRendererInput } from './Types';
 import { FormLayout } from './Definitions';
+import FormFieldContainer from '../container/FieldGroupContainer';
 
 
 const SectionRendererEditForm = (props: SectionRendererInput) => {
@@ -19,10 +20,12 @@ const SectionRendererEditForm = (props: SectionRendererInput) => {
     };
 
     return (
-        <Container columns={layout.columns} hideTitle={layout.hideTitle}
+        <Container hideTitle={layout.hideTitle}
             title={layout.title} name={layout.name}
         >
-            {getFormLayout(layout.formLayout)}
+            <FormFieldContainer columns={layout.columns} >
+                {getFormLayout(layout.formLayout)}
+            </FormFieldContainer>
         </Container>
     );
 };

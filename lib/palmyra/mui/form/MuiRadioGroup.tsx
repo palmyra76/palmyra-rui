@@ -35,10 +35,12 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
         inputProps.inputProps = { readOnly: true };
     }
 
+    const readOnly = props.readonly ? true : false;
+
     var callbacks = {
         onBlur: eventListeners.onBlur,
         onFocus: eventListeners.onFocus,
-        onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
+        onChange: (d: any) => { if (!readOnly) (eventListeners.onValueChange(d.target.value)) }
     }
 
     return (
@@ -49,7 +51,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
                     {options ?
                         Object.keys(options).map((key, index) => (
                             <FormControlLabel key={index} value={key}
-                                control={<Radio inputRef={inputRef} inputProps={inputProps} />} label={options[key]} />
+                                control={<Radio inputRef={inputRef} />} label={options[key]} />
                         ))
                         : <div>No options provided</div>}
                 </RadioGroup>

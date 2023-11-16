@@ -5,6 +5,9 @@ class DummyGridStore implements QueryStore<any>{
         return fetch( '/simple/gridData.json')
             .then((response) => response.json());            
     }
+    queryLayout(request: QueryRequest): Promise<QueryResponse<any>> {
+        throw new Error("Method not implemented.");
+    }
     get(request: GetRequest): Promise<any> {
         throw new Error("Method not implemented.");
     }

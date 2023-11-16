@@ -1,20 +1,20 @@
-import { ChartStore, QueryStore, DataStore, StoreFactory, LookupStore } from "../../../lib/main";
+import { ChartStore, QueryStore, DataStore, StoreFactory, LookupStore, IEndPoint } from "../../../lib/main";
 import { DummyChartStore } from "./DummyChartStore";
 import { DummyGridStore } from "./DummyGridStore";
 import { DummyLookupStore } from "./DummyLookupStore";
 
 
 class AppStoreFactory implements StoreFactory<any>{
-    getGridStore(request: Record<string, string>, idProperty?: string | string[]): QueryStore<any> {
+    getGridStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: string | string[]): QueryStore<any> {
         return new DummyGridStore();
     }
-    getFormStore(request: Record<string, string>, idProperty?: string | string[]): DataStore<any> {
+    getFormStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: string | string[]): DataStore<any> {
         throw new Error("Method not implemented.");
     }
     getChartStore(request: Record<string, string>): ChartStore<any> {
         return new DummyChartStore(request);
     }
-    getLookupStore(request: Record<string, string>, idProperty: string | string[]): LookupStore<any> {
+    getLookupStore(request: Record<string, string>,endPoint: IEndPoint,  idProperty: string | string[]): LookupStore<any> {
         return new DummyLookupStore();
     }
 }

@@ -5,8 +5,8 @@ import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
 import MuiSelect from "../../lib/palmyra/mui/form/MuiSelect";
 import MuiRadioGroup from "../../lib/palmyra/mui/form/MuiRadioGroup";
 import MuiDatePicker from "../../lib/palmyra/mui/form/MuiDatePicker";
-import { MuiDateTimePicker, MuiServerLookup } from "../../lib/main";
-import {  StoreFactoryContext } from "../../lib/palmyra/layout/flexiLayout/FlexiLayoutContext";
+import { MuiDateTimePicker, MuiServerLookup, StoreFactory } from "../../lib/main";
+import { StoreFactoryContext } from "../../lib/palmyra/layout/flexiLayout/FlexiLayoutContext";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
@@ -14,6 +14,7 @@ import MuiSwitch from "../../lib/palmyra/mui/form/MuiSwitch";
 import MuiFieldContainer from "../../lib/palmyra/mui/layout/MuiFieldContainer";
 import SectionContainer from "../../lib/palmyra/layout/container/SectionContainer";
 import { IPalmyraForm, PalmyraForm } from "../../lib/palmyra/form/PalmyraForm";
+import FormFieldContainer from "../../lib/palmyra/layout/container/FieldGroupContainer";
 
 
 const HomePage = () => {
@@ -48,87 +49,69 @@ const HomePage = () => {
         }, 2000);
     }, [])
 
-    const storeFactory = new AppStoreFactory();
+    const storeFactory: StoreFactory<any> = new AppStoreFactory();
 
     console.log(data);
-    
+
 
     return (<>
-        <div className="palmyra-form-field-container-wrapper">
-            <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
-                <StoreFactoryContext.Provider value={storeFactory}>
-                    <PalmyraForm
-                        formData={data} onValidChange={onValidityChange}
-                        mode="edit" ref={formRef} >
-                        <SectionContainer type="form" title='Welcome'>
+
+        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
+            <StoreFactoryContext.Provider value={storeFactory}>
+                <PalmyraForm
+                    formData={data} onValidChange={onValidityChange}
+                    mode="edit" ref={formRef} >
+                    <SectionContainer title='Welcome'>
+                        <FormFieldContainer>
                             <MuiTextField attribute="serverHost"
-                                placeHolder="welcome"
-                                readonly={true}
-                                length={{ min: 3, message: "Minimum of 3 letters" }}
+                                title="Server Host"
+                                placeHolder="welcome"                                
+                                length={{ min: 3, message: "Minimum of 3 letters" }} />
+                            <MuiSelect attribute="gender" title="Gender"                                
+                                options={{ M: 'Male', F: 'Female' }} />
+                            <MuiRadioGroup attribute="genders" title="Gender"                                
+                                options={{ M: 'Male', F: 'Female' }} />
+                        </FormFieldContainer>
+                    </SectionContainer>
 
-                            ></MuiTextField>
-                            <MuiFieldContainer title="Gender">
-                                <MuiSelect attribute="gender"
-                                    readonly={true}
-                                    options={{ M: 'Male', F: 'Female' }}
-
-                                ></MuiSelect>
-                            </MuiFieldContainer>
-                            <MuiFieldContainer title="Gender">
-                                <MuiRadioGroup attribute="genders"
-                                    readonly={true}
-                                    options={{ M: 'Male', F: 'Female' }}
-
-                                ></MuiRadioGroup>
-                            </MuiFieldContainer>
-                        </SectionContainer>
-
-                        <SectionContainer type="form" title='Hello World'>
+                    <SectionContainer title='Hello World' >
+                        <FormFieldContainer columns={2}>
                             <MuiDatePicker attribute="dob"
-                                readonly={true}
-
-                            ></MuiDatePicker>
-
+                                title="Date of Birth"
+                                readonly={true} />
                             <MuiDateTimePicker attribute="time"
-                                readonly={true}
-
-                            ></MuiDateTimePicker>
-
-                            <MuiTextArea attribute="port"
+                                title="Time"
+                                readonly={true} />
+                            <MuiTextArea attribute="address" title="Address"
                                 length={{ min: 3, message: "Minimum of 3 letters" }}
                                 required={true}
+                                readonly={true} />
+                            <MuiServerLookup attribute="service" required={true} title="Service"
                                 readonly={true}
-
-                            ></MuiTextArea>
-
-                            <MuiServerLookup attribute="service" required={true}
-                                readonly={true}
-                                lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
-                            ></MuiServerLookup>
-
-                            <MuiCheckBox attribute="file"
+                                lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
+                                storeOptions={{ endPoint: "/api/data/fetchMe" }} />
+                            <MuiCheckBox attribute="file" title="File"
                                 readonly={true}
                                 options={{ upload: 'Upload Files', download: 'Download Files' }}
-                                required={true}
+                                required={true} />
+                        </FormFieldContainer>
+                    </SectionContainer>
 
-                            ></MuiCheckBox>
-                        </SectionContainer>
+                    <MuiSwitch attribute="switch"
+                        readonly={true}
+                        defaultValue={1}
+                        options={{ 'Enable': 1, 'Disable': 0 }}
 
-                        <MuiSwitch attribute="switch"
-                            readonly={true}
-                            defaultValue={1}
-                            options={{ 'Enable': 1, 'Disable': 0 }}
+                    ></MuiSwitch>
+                    <br />
+                    <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 
-                        ></MuiSwitch>
-                        <br />
-                        <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
+                    <Button onClick={() => { onValidityChange(false) }}>Toggle Me</Button>
+                </PalmyraForm>
+            </StoreFactoryContext.Provider>
 
-                        <Button onClick={() => { onValidityChange(false) }}>Toggle Me</Button>
-                    </PalmyraForm>
-                </StoreFactoryContext.Provider>
+        </ErrorBoundary>
 
-            </ErrorBoundary>
-        </div >
     </>
     )
 }

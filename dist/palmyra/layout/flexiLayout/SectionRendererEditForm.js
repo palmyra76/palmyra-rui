@@ -1,7 +1,8 @@
 import { jsx as r } from "react/jsx-runtime";
 import d from "./FormEditRenderer.js";
 import l from "../container/SectionContainer.js";
-const f = (t) => {
+import c from "../container/FieldGroupContainer.js";
+const h = (t) => {
   const { layout: e, context: o } = t;
   var n = e.Renderer || d, i = e.Container || l;
   const m = (a) => /* @__PURE__ */ r(
@@ -14,14 +15,13 @@ const f = (t) => {
   return /* @__PURE__ */ r(
     i,
     {
-      columns: e.columns,
       hideTitle: e.hideTitle,
       title: e.title,
       name: e.name,
-      children: m(e.formLayout)
+      children: /* @__PURE__ */ r(c, { columns: e.columns, children: m(e.formLayout) })
     }
   );
 };
 export {
-  f as default
+  h as default
 };

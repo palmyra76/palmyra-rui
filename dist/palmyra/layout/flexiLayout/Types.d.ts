@@ -40,7 +40,6 @@ interface PageContext {
 interface TabContainerInput extends TabDefinition, Parent {
 }
 interface SectionContainerInput extends Titleable, Parent {
-    columns?: number;
 }
 export type { SectionRendererInput, TabRendererInput, PageContext, StoreFactory, LayoutParams };
 export type { TabContainerInput, SectionContainerInput, FlexiLayoutRendererInput, FlexiEventHandlers };
