@@ -28,6 +28,12 @@
     gap: 8px;
 }
 
+.mui-tree.selected {
+    background-color: var(--sidebar-select-list-bgcolor) !important;
+    color: var(--sidebar-select-list-color) !important;
+    border-radius: 5px !important;
+}
+
 .MuiTreeItem-content .MuiTreeItem-iconContainer {
     display: none !important;
     width: 0px !important;

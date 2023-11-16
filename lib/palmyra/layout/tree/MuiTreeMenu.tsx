@@ -5,7 +5,7 @@ import { TreeView, TreeItem } from "@mui/x-tree-view";
 import { MenuDef } from "..";
 import './MuiXTreeMenu.css';
 import { IconProvider, SimpleIconProvider } from "../flexiLayout/IconProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TreeMenuInput } from "./types";
 
 
@@ -21,7 +21,25 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
     const iconProvider: IconProvider = props.iconProvider || SimpleIconProvider;
 
     const navigate = useNavigate();
-    const [isParentExpanded, setIsParentExpanded] = useState({});
+    const [isParentExpanded, setIsParentExpanded] = useState([]);
+
+    const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+    const handleSelectItem = (node: MenuDef) => {
+        const path = node.path;
+        localStorage.setItem("selectedMenuItem", path);
+        setSelectedItem(path);
+        navigate(path);
+    };
+
+    useEffect(() => {
+        const storedSelectedItem = localStorage.getItem("selectedMenuItem");
+
+        if (storedSelectedItem) {
+            setSelectedItem(storedSelectedItem);
+        }
+
+    }, []);
 
     const getLabelIcon = (node: MenuDef): any => {
         if (node.icon)
@@ -38,9 +56,12 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
         setTimeout(() => {
             setIsParentExpanded(updatedExpansion);
         }, 250);
+
+        localStorage.setItem("expandedNodes", JSON.stringify(updatedExpansion));
     }
 
     const renderTree = (parent, node: MenuDef, index) => {
+        const isSelected = selectedItem === node.path;
         var LabelIcon = getLabelIcon(node);
         if (node.name) {
             let path = node.path;
@@ -53,11 +74,13 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
             if (node.children) {
                 return (
                     <StyledTreeItem key={index} nodeId={node.name}
+                        className={`mui-tree ${isSelected ? 'selected' : ''}`}
                         label={(
                             <>
                                 {!sidebarWidth && (
                                     <div className="mui-tree-menu">
-                                        <div className="mui-tree-menu-list">
+                                        <div
+                                            className="mui-tree-menu-list" >
                                             {LabelIcon ? <LabelIcon className="mui-label-icon" /> : <></>}
                                             {getTitle(node)}
 
@@ -85,9 +108,9 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
                 );
             } else {
                 return (
-                    <StyledTreeItem
+                    <StyledTreeItem className={`mui-tree ${isSelected ? 'selected' : ''}`}
                         key={index} nodeId={node.name} label={(
-                            <div onClick={(e) => { navigate(path); }} className="mui-tree-menu-list">
+                            <div onClick={(e) => { handleSelectItem(node); }} className="mui-tree-menu-list">
                                 {!sidebarWidth && (
                                     <>
                                         {LabelIcon ? <LabelIcon className="mui-label-icon" /> : <></>}
