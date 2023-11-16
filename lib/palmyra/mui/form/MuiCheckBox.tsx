@@ -1,15 +1,15 @@
 import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
+import { ICheckboxDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition, ref) {
+const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const { options } = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox');
     const values = fieldManager.data ? fieldManager.data.split(',') : [];
-
+    const flexDirection = props.flexDirection || 'row';
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
@@ -61,7 +61,9 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition, re
     }
 
     return (
-        <FormControl fullWidth error={error.status} {...inputProps}>
+        <FormControl fullWidth error={error.status} {...inputProps} style={{
+            flexDirection: flexDirection
+        }}>
             {options ?
                 Object.keys(options).map((key) => (
                     <FormControlLabel key={key} value={key}

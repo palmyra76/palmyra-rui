@@ -35,21 +35,32 @@ interface TextValidation extends abstractValidation {
     length?: RangeValidation<number>;
     regex?: string;
 }
-interface ITextFieldDefinition extends AttributeDefinition, TextValidation {
+interface ITitleLabel {
     label?: string;
+    title?: string;
 }
-interface ISwitchDefinition extends AttributeDefinition {
+interface ITextFieldDefinition extends AttributeDefinition, TextValidation, ITitleLabel {
+}
+interface ISwitchDefinition extends AttributeDefinition, ITitleLabel {
     options: Record<string | number, string | number>;
 }
-interface ISelectDefinition extends AttributeDefinition {
-    options: Record<any, any>;
+interface ISelectDefinition extends AttributeDefinition, ITitleLabel {
+    options: Record<any, any> | Record<string, any>;
 }
-interface IDateTimeDefinition extends AttributeDefinition {
+interface ICheckboxDefinition extends AttributeDefinition, ITitleLabel {
+    options: Record<any, any> | Record<string, any>;
+    flexDirection?: 'column' | 'row';
+}
+interface IRadioGroupDefinition extends AttributeDefinition, ITitleLabel {
+    options: Record<any, any> | Record<string, any>;
+    flexDirection?: 'column' | 'row';
+}
+interface IDateTimeDefinition extends AttributeDefinition, ITitleLabel {
     range?: RangeValidation<string>;
     serverPattern?: string;
     displayPattern?: string;
 }
-interface IServerLookupDefinition extends AttributeDefinition {
+interface IServerLookupDefinition extends AttributeDefinition, ITitleLabel {
     lookupOptions: IFormFieldServerLookup;
     store?: LookupStore<any>;
     storeOptions?: {
@@ -107,6 +118,6 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType };
-export type { IServerLookupDefinition, ISwitchDefinition, IFormListener };
+export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager };
 export { NoopFormListener };

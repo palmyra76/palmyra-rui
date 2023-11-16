@@ -1,46 +1,48 @@
-import { jsxs as v, jsx as n } from "react/jsx-runtime";
-import { forwardRef as b, useContext as C, useRef as F, useImperativeHandle as M } from "react";
-import { FormControl as k, FormControlLabel as B, Checkbox as O, FormHelperText as j } from "@mui/material";
-import { copyMuiOptions as L } from "./MuiUtil.js";
-import { FieldManagerContext as R } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-const S = b(function(r, d) {
-  const f = C(R), { options: a } = r, t = f(r, "checkbox"), m = t.data ? t.data.split(",") : [], s = t.error, i = t.eventListeners, u = F(null);
-  M(d, () => ({
+import { jsxs as b, jsx as n } from "react/jsx-runtime";
+import { forwardRef as C, useContext as F, useRef as M, useImperativeHandle as k } from "react";
+import { FormControl as B, FormControlLabel as D, Checkbox as O, FormHelperText as j } from "@mui/material";
+import { copyMuiOptions as y } from "./MuiUtil.js";
+import { FieldManagerContext as L } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+const S = C(function(r, d) {
+  const f = F(L), { options: a } = r, t = f(r, "checkbox"), m = t.data ? t.data.split(",") : [], x = r.flexDirection || "row", i = t.error, s = t.eventListeners, l = M(null);
+  k(d, () => ({
     focus() {
-      u.current.focus();
+      l.current.focus();
     },
     isValid() {
-      return !s.status;
+      return !i.status;
     },
     assignAttribute(e) {
-      u.current.assignAttribute(e);
+      l.current.assignAttribute(e);
     }
   }), []);
-  var l = L(r, t.data);
-  r.readonly && (l.inputProps = { readOnly: !0 });
-  function p(e, g) {
+  var u = y(r, t.data);
+  r.readonly && (u.inputProps = { readOnly: !0 });
+  function p(e, v) {
     const o = t.data ? t.data.split(",") : [];
     var c = o.indexOf(e);
-    g ? c < 0 && o.push(e) : c >= 0 && o.splice(c, 1), i.onValueChange(o.toString());
+    v ? c < 0 && o.push(e) : c >= 0 && o.splice(c, 1), s.onValueChange(o.toString());
   }
   var h = {
-    onBlur: i.onBlur,
-    onFocus: i.onFocus,
+    onBlur: s.onBlur,
+    onFocus: s.onFocus,
     onChange: (e) => {
       p(e.target.value, e.target.checked);
     }
   };
-  const x = (e) => m.includes(e);
-  return /* @__PURE__ */ v(k, { fullWidth: !0, error: s.status, ...l, children: [
+  const g = (e) => m.includes(e);
+  return /* @__PURE__ */ b(B, { fullWidth: !0, error: i.status, ...u, style: {
+    flexDirection: x
+  }, children: [
     a ? Object.keys(a).map((e) => /* @__PURE__ */ n(
-      B,
+      D,
       {
         value: e,
         control: /* @__PURE__ */ n(
           O,
           {
             ...h,
-            checked: x(e),
+            checked: g(e),
             disabled: r.readonly
           }
         ),
@@ -48,7 +50,7 @@ const S = b(function(r, d) {
       },
       e
     )) : /* @__PURE__ */ n("div", { children: "No options provided" }),
-    /* @__PURE__ */ n(j, { className: "form-error-text", children: s.message })
+    /* @__PURE__ */ n(j, { className: "form-error-text", children: i.message })
   ] });
 });
 export {
