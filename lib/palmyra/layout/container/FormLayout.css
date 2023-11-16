@@ -21,11 +21,11 @@
     font-size: var(--form-field-data-font-size);
 }
 
-.palmyra-form-field-container .palmyra-form-field-label{
+.palmyra-form-field-container .palmyra-form-field-label {
     width: 40%;
 }
 
-.palmyra-form-field-container .palmyra-form-field-data{
+.palmyra-form-field-container .palmyra-form-field-data {
     width: 60%;
 }
 
@@ -35,7 +35,7 @@
     flex-wrap: wrap;
 }
 
-.palmyra-field-group-container{
+.palmyra-field-group-container {
     width: 100% !important;
     display: flex;
     flex-wrap: wrap;
@@ -50,11 +50,11 @@
     padding: 10px 10px 10px 20px;
 }
 
-.palmyra-field-group-container-2columns .palmyra-form-field-container-2colspan .palmyra-form-field-label{
+.palmyra-field-group-container-2columns .palmyra-form-field-container-2colspan .palmyra-form-field-label {
     width: 20%;
 }
 
-.palmyra-field-group-container-2columns .palmyra-form-field-container-2colspan .palmyra-form-field-data{
+.palmyra-field-group-container-2columns .palmyra-form-field-container-2colspan .palmyra-form-field-data {
     width: 80%;
 }
 

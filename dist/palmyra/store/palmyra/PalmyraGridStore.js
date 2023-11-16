@@ -29,9 +29,9 @@ import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
-/* empty css                            */import "../../mui/form/MuiServerLookup.js";
+import "../../mui/form/MuiServerLookup.js";
 import m from "axios";
-class V {
+class T {
   constructor(t, r, i) {
     n(this, "request");
     n(this, "target");
@@ -84,5 +84,5 @@ function h(o) {
   return { ...o.filter || {}, _total: r, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  V as PalmyraGridStore
+  T as PalmyraGridStore
 };

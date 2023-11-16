@@ -6,6 +6,5 @@ import MuiTextArea from "./form/MuiTextArea";
 import MuiTextField from "./form/MuiTextField";
 import MuiCheckBox from "./form/MuiCheckBox";
 import MuiSwitch from "./form/MuiSwitch";
-import MuiFieldContainer from "./layout/MuiFieldContainer";
 export { default as MuiServerLookup } from "./form/MuiServerLookup";
-export { MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiFieldContainer };
+export { MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch };

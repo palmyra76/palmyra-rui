@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { MuiDatePicker, MuiDateTimePicker, MuiSelect, MuiServerLookup, MuiTextArea, MuiTextField, createFormData } from "../../lib/main";
+import { FieldGroupContainer, MuiDatePicker, MuiDateTimePicker, MuiSelect, MuiServerLookup, MuiTextArea, MuiTextField, createFormData } from "../../lib/main";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { StoreFactoryContext } from "../../lib/palmyra/layout/flexiLayout/FlexiLayoutContext";
-import MuiFieldContainer from "../../lib/palmyra/mui/layout/MuiFieldContainer";
 import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
 import MuiSwitch from "../../lib/palmyra/mui/form/MuiSwitch";
 
@@ -44,73 +43,44 @@ const EditPage = () => {
         <div>Simple Edit Form</div>
         <div className="palmyra-form-field-container-wrapper">
             <StoreFactoryContext.Provider value={storeFactory}>
-                <MuiFieldContainer column={3} title="Name">
-                    <MuiTextField attribute="userName"
+                <FieldGroupContainer columns={3}>
+                    <MuiTextField attribute="userName" title="Name"
                         validationRule={"string"}
-                        length={{ min: 3, message: "Minimum of 3 letters" }}
-                        getFieldManager={getFieldManager}
+                        length={{ min: 3, message: "Minimum of 3 letters" }}                        
                     ></MuiTextField>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Gender">
-                    <MuiSelect attribute="gender"
-                        options={{ M: 'Male', F: 'Female' }}
-                        getFieldManager={getFieldManager}
+                
+                    <MuiSelect attribute="gender" title="Gender"
+                        options={{ M: 'Male', F: 'Female' }}                        
                     ></MuiSelect>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Service">
-                    <MuiTextField attribute="service"
+                    <MuiTextField attribute="service" title="Service"
                         validationRule={"string"}
-                        length={{ min: 3, message: "Minimum of 3 letters" }}
-                        getFieldManager={getFieldManager}
-                    ></MuiTextField>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Dob">
-                    <MuiDatePicker attribute="dob"
-                        getFieldManager={getFieldManager}
+                        length={{ min: 3, message: "Minimum of 3 letters" }}                        
+                    ></MuiTextField>                
+                    <MuiDatePicker attribute="dob" title="Dob"                        
                     ></MuiDatePicker>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Time">
-                    <MuiDateTimePicker attribute="time"
-                        getFieldManager={getFieldManager}
+                    <MuiDateTimePicker attribute="time" title="Time"                        
                     ></MuiDateTimePicker>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Phone Number">
-                    <MuiTextField attribute="phoneNumber"
+                    <MuiTextField attribute="phoneNumber" title="Phone Number"
                         validationRule={"string"}
-                        length={{ min: 3, message: "Minimum of 3 letters" }}
-                        getFieldManager={getFieldManager}
+                        length={{ min: 3, message: "Minimum of 3 letters" }}                        
                     ></MuiTextField>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Email">
-                    <MuiTextField attribute="email"
-                        length={{ min: 3, message: "Minimum of 3 letters" }}
-                        getFieldManager={getFieldManager}
+                    <MuiTextField attribute="email" title="Email"
+                        length={{ min: 3, message: "Minimum of 3 letters" }}                        
                     ></MuiTextField>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Address">
-                    <MuiTextArea attribute="address"
-                        length={{ min: 3, message: "Minimum of 3 letters" }}
-                        getFieldManager={getFieldManager}
+                    <MuiTextArea attribute="address" title="Address"
+                        length={{ min: 3, message: "Minimum of 3 letters" }}                        
                     ></MuiTextArea>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="File">
-                    <MuiCheckBox attribute="file"
-                        options={{ upload: 'Upload Files', download: 'Download Files' }}
-                        getFieldManager={getFieldManager}
+                    <MuiCheckBox attribute="file" title="File"
+                        options={{ upload: 'Upload Files', download: 'Download Files' }}                        
                     ></MuiCheckBox>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Status">
-                    <MuiSwitch attribute="status"
+                    <MuiSwitch attribute="status" title="Status"
                         defaultValue={1}
                         options={{ 'Enable': 1, 'Disable': 0 }}
-                        getFieldManager={getFieldManager}
                     ></MuiSwitch>
-                </MuiFieldContainer>
-                <MuiFieldContainer column={3} title="Service">
-                    <MuiServerLookup attribute="service" getFieldManager={getFieldManager} required={true}
+                    <MuiServerLookup attribute="service" required={true} title="Service"
                         lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }} storeOptions={{ endPoint: "/api/data/fetchMe" }}
                     ></MuiServerLookup>
-                </MuiFieldContainer>
+                </FieldGroupContainer>
             </StoreFactoryContext.Provider >
         </div>
     </>

@@ -27,8 +27,8 @@ import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
-/* empty css                            */import "../../mui/form/MuiServerLookup.js";
-class O extends n {
+import "../../mui/form/MuiServerLookup.js";
+class N extends n {
   constructor(t, r, e) {
     super(t, r, e);
   }
@@ -58,5 +58,5 @@ class O extends n {
   }
 }
 export {
-  O as PalmyraDataStore
+  N as PalmyraDataStore
 };

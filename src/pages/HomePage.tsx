@@ -11,7 +11,6 @@ import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
 import MuiSwitch from "../../lib/palmyra/mui/form/MuiSwitch";
-import MuiFieldContainer from "../../lib/palmyra/mui/layout/MuiFieldContainer";
 import SectionContainer from "../../lib/palmyra/layout/container/SectionContainer";
 import { IPalmyraForm, PalmyraForm } from "../../lib/palmyra/form/PalmyraForm";
 import FormFieldContainer from "../../lib/palmyra/layout/container/FieldGroupContainer";
