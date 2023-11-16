@@ -4,7 +4,11 @@
   margin-left: auto;
   position: relative;
   align-items: center;
-  padding: 5px;
+  gap: 10px;
+}
+
+.grid-table {
+  margin-top: 10px;
 }
 
 .grid-header-filter {
@@ -29,18 +33,17 @@
 }
 
 .grid-header-button {
-  padding-right: 10px;
   position: relative;
 }
 
 .grid-button-icon {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
 }
 
 .grid-btn {
   background-color: rgba(72, 152, 231, 0.15) !important;
   color: rgba(0, 0, 0, 0.75) !important;
-  /* gap: 5px !important; */
+  width: 55px !important;
 }
 
 .density-dropdown-content {
@@ -118,6 +121,13 @@
     padding: 16px;
     color: rgba(0, 0, 0, 0.87);
   }
+
+}
+
+/* grid button  */
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  min-width: auto !important;
+  width: auto;
 }
 
 .empty-child-table-container {

@@ -61,7 +61,7 @@ function GridX(props: GridXOptions) {
   const columnDefs = generateColumns(columns);
 
   const refreshData = () => {
-    const params = { page, filter, sortOrder, total:true };
+    const params = { page, filter, sortOrder, total: true };
 
     if (store) {
       try {
@@ -250,7 +250,7 @@ function GridX(props: GridXOptions) {
             </Tooltip>
           </div>
           {props.onNewClick ? (
-            <div className='grid-header-button' onClick={() => {props.onNewClick();}}>
+            <div className='grid-header-button' onClick={() => { props.onNewClick(); }}>
               <Tooltip title='New' placement='top'>
                 <Button className='grid-btn' disableRipple>
                   <Add className='grid-button-icon' />
@@ -258,10 +258,12 @@ function GridX(props: GridXOptions) {
               </Tooltip>
             </div>) : <></>}
         </div>
-        <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer}
-          rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
-          onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
-        />
+        <div className='grid-table'>
+          <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer}
+            rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
+            onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
+          />
+        </div>
         <div className='grid-header'>
           <div className='grid-filter'>
             {visiblePagination && (
