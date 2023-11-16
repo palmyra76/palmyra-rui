@@ -100,6 +100,13 @@ type IGetFieldManager = (fieldDef: AttributeDefinition, type: FieldType) => IFor
 interface IFormFieldInputDefinition extends IFieldDefinition {
     toolkitOptions?: any;
 }
+interface IFormListener {
+    onSaveSuccess: (data: any) => void;
+    onSaveFailure: (e: any) => void;
+    onChange: (attribute: string, value: any) => void;
+}
+declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType };
-export type { IServerLookupDefinition, ISwitchDefinition };
+export type { IServerLookupDefinition, ISwitchDefinition, IFormListener };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager };
+export { NoopFormListener };

@@ -3,12 +3,14 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { IEndPoint } from "../layout/Types";
 import { GetRequest } from "../store/Types";
 import { FormData, StoreFactory } from "../../main";
+import { IFormListener, NoopFormListener } from "./interface";
 
 interface IPalmyraEditFormInput {
     storeFactory: StoreFactory<any>,
     id: string,
     endPoint: IEndPoint,
-    idKey?: string
+    idKey?: string,
+    formListener?: IFormListener
 }
 
 interface IPalmyraEditFormOutput {
@@ -24,6 +26,7 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
     const [data, setData] = useState<any>(null);
     const formRef = useRef<any>(null);
     const idKey = props.idKey || 'id';
+    const formListener = props.formListener || NoopFormListener;
 
     const getEndPoint = (endPoint: IEndPoint, idProperty: string): IEndPoint => {
         if (typeof endPoint == 'string') {
@@ -45,7 +48,7 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
         };
         formStore.get(request).then(d => { setData(d) });
     }, [props.id])
-    
+
     const saveData = (): any => {
         if (formRef && formRef.current) {
             const idProperty = props.idKey;
@@ -54,6 +57,9 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
             const data = formRef.current.getData();
             formStore.post(data).then((d) => {
                 setData(d);
+                formListener.onSaveSuccess(d);
+            }).catch(e => {
+                formListener.onSaveFailure(e);
             });
         }
     }

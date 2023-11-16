@@ -1,29 +1,32 @@
-import { useState as y, useRef as g, useEffect as l } from "react";
-const P = (t) => {
-  const c = t.storeFactory, [d, i] = y(null), r = g(null), u = t.idKey || "id", f = (e, o) => typeof e == "string" ? e + "/{" + o + "}" : e;
-  return l(() => {
+import { useState as S, useRef as l, useEffect as v } from "react";
+import { NoopFormListener as F } from "./interface.js";
+const h = (t) => {
+  const c = t.storeFactory, [m, i] = S(null), n = l(null), u = t.idKey || "id", f = t.formListener || F, d = (e, o) => typeof e == "string" ? e + "/{" + o + "}" : e;
+  return v(() => {
     const e = t.id, o = u;
-    var n = f(t.endPoint, o);
-    const a = c.getFormStore({}, n, o);
-    var s = {
+    var a = d(t.endPoint, o);
+    const s = c.getFormStore({}, a, o);
+    var r = {
       options: {
         [o]: e
       }
     };
-    a.get(s).then((m) => {
-      i(m);
+    s.get(r).then((y) => {
+      i(y);
     });
-  }, [t.id]), { data: d, saveData: () => {
-    if (r && r.current) {
+  }, [t.id]), { data: m, saveData: () => {
+    if (n && n.current) {
       const o = t.idKey;
       var e = t.endPoint;
-      const n = c.getFormStore({}, e, o), a = r.current.getData();
-      n.post(a).then((s) => {
-        i(s);
+      const a = c.getFormStore({}, e, o), s = n.current.getData();
+      a.post(s).then((r) => {
+        i(r), f.onSaveSuccess(r);
+      }).catch((r) => {
+        f.onSaveFailure(r);
       });
     }
-  }, formRef: r };
+  }, formRef: n };
 };
 export {
-  P as usePalmyraEditForm
+  h as usePalmyraEditForm
 };

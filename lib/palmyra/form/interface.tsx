@@ -125,6 +125,25 @@ interface IFormFieldInputDefinition extends IFieldDefinition {
 }
 
 
+interface IFormListener {
+    onSaveSuccess: (data: any) => void,
+    onSaveFailure: (e: any) => void,
+    onChange: (attribute: string, value: any) => void
+}
+
+const NoopFormListener: IFormListener = {
+    onSaveSuccess: function (data: any): void {
+    },
+    onSaveFailure: function (e: any): void {
+        console.error('Error while saving', e);
+    },
+    onChange: function (attribute: string, value: any): void {
+    }
+};
+
+
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType }
-export type { IServerLookupDefinition, ISwitchDefinition }
+export type { IServerLookupDefinition, ISwitchDefinition, IFormListener }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager }
+
+export { NoopFormListener }
