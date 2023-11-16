@@ -1,8 +1,8 @@
 import "react/jsx-runtime";
 import "react";
-import { f } from "../../../index-047437e6.js";
+import { c as a } from "../../../index-e23f1423.js";
 import "../../form/PalmyraFormManager.js";
 import "./FlexiLayoutContext.js";
 export {
-  f as default
+  a as default
 };

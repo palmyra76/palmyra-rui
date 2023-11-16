@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "react";
-import { e as m } from "../../../index-047437e6.js";
+import { b as p } from "../../../index-e23f1423.js";
 export {
-  m as default
+  p as default
 };

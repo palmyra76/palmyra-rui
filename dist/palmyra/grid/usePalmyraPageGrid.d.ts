@@ -1,5 +1,5 @@
 import { IEndPoint } from "../layout/Types";
-import { ColumnDefinition } from "../grid";
+import { ColumnDefinition } from ".";
 import { TableLayout } from "../layout/flexiLayout";
 interface IPalmyraGridInput {
     pageName: string;

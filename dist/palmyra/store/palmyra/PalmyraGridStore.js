@@ -1,7 +1,7 @@
 var d = Object.defineProperty;
 var h = (o, t, r) => t in o ? d(o, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : o[t] = r;
 var n = (o, t, r) => (h(o, typeof t != "symbol" ? t + "" : t, r), r);
-import "../../../index-047437e6.js";
+import "../../../index-e23f1423.js";
 import "react/jsx-runtime";
 import "../../layout/container/SectionContainer.js";
 import "react-router-dom";
@@ -17,6 +17,8 @@ import "../../layout/flexiLayout/FormEditRenderer.js";
 import { StringFormat as m } from "../../utils/StringUtil.js";
 import "dayjs";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
+import "../../form/PalmyraForm.js";
+import "../../grid/plugins/filter/Filter.js";
 import "../../layout/flexiLayout/FormFieldOnlyRenderer.js";
 import "../../core/topic.js";
 import "../../mui/form/MuiDatePicker.js";
@@ -29,7 +31,7 @@ import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 /* empty css                            */import "../../mui/form/MuiServerLookup.js";
 import s from "axios";
-class R {
+class V {
   constructor(t, r, i) {
     n(this, "request");
     n(this, "target");
@@ -76,5 +78,5 @@ function u(o) {
   return { ...o.filter || {}, _total: r, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  R as PalmyraGridStore
+  V as PalmyraGridStore
 };

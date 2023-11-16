@@ -2,9 +2,9 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { IEndPoint } from "../layout/Types";
-import { ColumnDefinition } from "../grid";
+import { ColumnDefinition } from ".";
 import { TableLayout } from "../layout/flexiLayout";
-import { topic } from "./topic";
+import { topic } from "../core/topic";
 import { StringFormat } from "../utils";
 
 

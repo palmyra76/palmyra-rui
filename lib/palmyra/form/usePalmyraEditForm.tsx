@@ -1,27 +1,42 @@
 
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { IEndPoint } from "../layout/Types";
 import { GetRequest } from "../store/Types";
-import { StoreFactory } from "../../main";
+import { FormData, StoreFactory } from "../../main";
 
-interface IPalmyraFormInput {
-    storeFactory:StoreFactory<any>,
-    pageName: string,
+interface IPalmyraEditFormInput {
+    storeFactory: StoreFactory<any>,
     id: string,
     endPoint: IEndPoint,
     idKey?: string
 }
 
-const usePalmyraPageForm = (props: IPalmyraFormInput) => {
+interface IPalmyraEditFormOutput {
+    data: FormData,
+    saveData: (data: FormData) => any,
+    formRef: MutableRefObject<any>
+}
+
+type IusePalmyraEditForm = (props: IPalmyraEditFormInput) => IPalmyraEditFormOutput;
+
+const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): IPalmyraEditFormOutput => {
     const storeFactory = props.storeFactory;
     const [data, setData] = useState<any>(null);
     const formRef = useRef<any>(null);
     const idKey = props.idKey || 'id';
 
+    const getEndPoint = (endPoint: IEndPoint, idProperty: string): IEndPoint => {
+        if (typeof endPoint == 'string') {
+            return endPoint + '/{' + idProperty + '}';
+        } else {
+            return endPoint;
+        }
+    }
+
     useEffect(() => {
         const id = props.id;
         const idProperty = idKey;
-        var endPoint = props.endPoint + '/{' + idProperty + '}';
+        var endPoint = getEndPoint(props.endPoint, idProperty);
         const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
         var request: GetRequest = {
             options: {
@@ -36,7 +51,7 @@ const usePalmyraPageForm = (props: IPalmyraFormInput) => {
             const idProperty = props.idKey;
             var endPoint = props.endPoint
             const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
-            const data = formRef.current.getData();            
+            const data = formRef.current.getData();
             formStore.post(data).then((d) => {
                 setData(d);
             });
@@ -47,5 +62,5 @@ const usePalmyraPageForm = (props: IPalmyraFormInput) => {
 }
 
 
-export { usePalmyraPageForm }
-export type { IPalmyraFormInput }
+export { usePalmyraEditForm }
+export type { IPalmyraEditFormInput, IPalmyraEditFormOutput }
