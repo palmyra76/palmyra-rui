@@ -3,6 +3,7 @@ import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/ma
 import { ICheckboxDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
+import FieldDecorator from './FieldDecorator';
 
 const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -61,20 +62,21 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
     }
 
     return (
-        <FormControl fullWidth error={error.status} {...inputProps} style={{
-            flexDirection: flexDirection
-        }}>
-            {options ?
-                Object.keys(options).map((key) => (
-                    <FormControlLabel key={key} value={key}
-                        control={<Checkbox {...callbacks} checked={isSelected(key)}
-                            disabled={props.readonly}
-                        />}
-                        label={options[key]} />
-                ))
-                : <div>No options provided</div>}
-            <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
-        </FormControl>
+        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+            customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
+            <FormControl fullWidth error={error.status} {...inputProps} style={{ flexDirection: flexDirection }}>
+                {options ?
+                    Object.keys(options).map((key) => (
+                        <FormControlLabel key={key} value={key}
+                            control={<Checkbox {...callbacks} checked={isSelected(key)}
+                                disabled={props.readonly}
+                            />}
+                            label={options[key]} />
+                    ))
+                    : <div>No options provided</div>}
+                <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
+            </FormControl>
+        </FieldDecorator>
 
     )
 });

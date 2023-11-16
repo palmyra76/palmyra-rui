@@ -19,7 +19,9 @@ const SectionRendererEditForm = (props: SectionRendererInput) => {
     };
 
     return (
-        <Container  {...layout}>
+        <Container columns={layout.columns} hideTitle={layout.hideTitle}
+            title={layout.title} name={layout.name}
+        >
             {getFormLayout(layout.formLayout)}
         </Container>
     );

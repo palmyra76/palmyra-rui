@@ -1,9 +1,9 @@
 import "../../../assets/SectionContainer.css";
-import { jsxs as n, Fragment as o, jsx as r } from "react/jsx-runtime";
+import { jsxs as c, jsx as o } from "react/jsx-runtime";
 const l = (e) => {
-  const t = e.title, i = e.hideTitle || !1;
-  return /* @__PURE__ */ n(o, { children: [
-    t && !i ? /* @__PURE__ */ r("div", { className: "palmyra-form-section-header", children: t }) : "",
+  const n = e.title, t = e.hideTitle || !1, i = e.columns ? "section-container section-container-" + e.columns + "columns" : "section-container";
+  return /* @__PURE__ */ c("div", { className: i, children: [
+    n && !t ? /* @__PURE__ */ o("div", { className: "palmyra-form-section-header", children: n }) : "",
     e.children
   ] });
 };

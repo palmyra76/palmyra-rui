@@ -1,17 +1,27 @@
-import { jsx as e } from "react/jsx-runtime";
-import m from "./FormEditRenderer.js";
-import d from "../container/SectionContainer.js";
-const l = (o) => {
-  const { layout: r, context: t } = o;
-  var n = r.Renderer || m, a = r.Container || d;
-  return /* @__PURE__ */ e(a, { ...r, children: ((i) => /* @__PURE__ */ e(
+import { jsx as r } from "react/jsx-runtime";
+import d from "./FormEditRenderer.js";
+import l from "../container/SectionContainer.js";
+const f = (t) => {
+  const { layout: e, context: o } = t;
+  var n = e.Renderer || d, i = e.Container || l;
+  const m = (a) => /* @__PURE__ */ r(
     n,
     {
-      context: t,
-      formLayout: i
+      context: o,
+      formLayout: a
     }
-  ))(r.formLayout) });
+  );
+  return /* @__PURE__ */ r(
+    i,
+    {
+      columns: e.columns,
+      hideTitle: e.hideTitle,
+      title: e.title,
+      name: e.name,
+      children: m(e.formLayout)
+    }
+  );
 };
 export {
-  l as default
+  f as default
 };

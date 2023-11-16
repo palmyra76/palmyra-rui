@@ -1,40 +1,51 @@
 import { jsx as l } from "react/jsx-runtime";
-import { forwardRef as c, useContext as f, useRef as d, useImperativeHandle as g } from "react";
-import { TextField as m } from "@mui/material";
-import { copyMuiOptions as p } from "./MuiUtil.js";
-import { FieldManagerContext as x } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-const y = c(function(e, s) {
-  const t = f(x)(e, "string"), r = t.error, n = t.eventListeners, o = d(null);
-  g(s, () => ({
+import { forwardRef as c, useContext as m, useRef as d, useImperativeHandle as f } from "react";
+import { TextField as g } from "@mui/material";
+import { copyMuiOptions as C } from "./MuiUtil.js";
+import { FieldManagerContext as F } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import x from "./FieldDecorator.js";
+const p = c(function(e, i) {
+  const t = m(F)(e, "string"), r = t.error, n = t.eventListeners, a = d(null);
+  f(i, () => ({
     focus() {
-      o.current.focus();
+      a.current.focus();
     },
     isValid() {
       return !r.status;
     },
-    assignAttribute(a) {
-      o.current.assignAttribute(a);
+    assignAttribute(s) {
+      a.current.assignAttribute(s);
     }
   }), []);
-  var i = p(e, t.data, e.label);
-  e.readonly && (i.inputProps = { readOnly: !0 });
+  var o = C(e, t.data, e.label);
+  e.readonly && (o.inputProps = { readOnly: !0 });
   var u = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
-    onChange: (a) => n.onValueChange(a.target.value)
+    onChange: (s) => n.onValueChange(s.target.value)
   };
   return /* @__PURE__ */ l(
-    m,
+    x,
     {
-      ...i,
-      fullWidth: !0,
-      inputRef: o,
-      ...u,
-      error: r.status,
-      helperText: r.message
+      label: e.title,
+      customContainerClass: e.customContainerClass,
+      colspan: e.colspan,
+      customFieldClass: e.customFieldClass,
+      customLabelClass: e.customLabelClass,
+      children: /* @__PURE__ */ l(
+        g,
+        {
+          ...o,
+          fullWidth: !0,
+          inputRef: a,
+          ...u,
+          error: r.status,
+          helperText: r.message
+        }
+      )
     }
   );
 });
 export {
-  y as default
+  p as default
 };

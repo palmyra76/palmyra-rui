@@ -1,25 +1,24 @@
-import { jsx as t } from "react/jsx-runtime";
-import { forwardRef as d, useRef as p, useMemo as u } from "react";
-import F from "../container/FieldContainer.js";
-import R from "../../form/FieldGenerator.js";
-const w = d(function(n, C) {
-  var o;
-  const { formLayout: e, context: a } = n, { formData: m } = a, i = e.Container || F;
-  p({});
-  const s = u(() => (r) => R(r), [m.data]);
-  var l = ((o = e.options) == null ? void 0 : o.columns) || 1, c = { columns: l };
-  return /* @__PURE__ */ t("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: e.fields.map((r, f) => /* @__PURE__ */ t(
-    i,
+import { jsx as o, Fragment as d } from "react/jsx-runtime";
+import { forwardRef as p, useRef as u, useMemo as F } from "react";
+import h from "../../form/FieldGenerator.js";
+const b = p(function(m, R) {
+  var n;
+  const { formLayout: r, context: l } = m, { formData: s } = l, t = r.Container;
+  u({});
+  const a = F(() => (e) => h(e), [s.data]);
+  var c = ((n = r.options) == null ? void 0 : n.columns) || 1, f = { columns: c };
+  return t ? /* @__PURE__ */ o("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: r.fields.map((e, i) => /* @__PURE__ */ o(
+    t,
     {
-      index: f,
-      field: r,
-      label: r.title,
-      options: c,
-      children: s(r)
+      index: i,
+      field: e,
+      label: e.title,
+      options: f,
+      children: a(e)
     },
-    r.attribute
-  )) });
+    e.attribute
+  )) }) : /* @__PURE__ */ o("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: r.fields.map((e, i) => /* @__PURE__ */ o(d, { children: a(e) })) });
 });
 export {
-  w as default
+  b as default
 };

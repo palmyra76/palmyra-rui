@@ -1,6 +1,6 @@
 import { FormData } from "../../form/Definitions";
 import { ChartStore, QueryStore, DataStore, LookupStore } from "../../store";
-import { IEndPoint } from "../Types";
+import { IEndPoint, Titleable } from "../Types";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 
 
@@ -53,8 +53,8 @@ interface TabContainerInput extends TabDefinition, Parent {
 
 }
 
-interface SectionContainerInput extends SectionDefinition, Parent {
-
+interface SectionContainerInput extends Titleable, Parent {
+    columns?:number
 }
 
 

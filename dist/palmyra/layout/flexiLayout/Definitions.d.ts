@@ -21,6 +21,7 @@ interface ChartLayout extends Titleable, Positionable, Renderable, storeBacked, 
 }
 interface SectionDefinition extends Positionable, Titleable, Renderable {
     type: SectionType;
+    columns?: number;
     collapsed?: boolean;
     collapsable?: boolean;
     formLayout?: FormLayout;

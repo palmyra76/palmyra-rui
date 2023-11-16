@@ -1,48 +1,59 @@
-import { jsx as i } from "react/jsx-runtime";
-import { forwardRef as g, useContext as p, useRef as v, useImperativeHandle as D } from "react";
-import { LocalizationProvider as y, DateTimePicker as M } from "@mui/x-date-pickers";
-import { AdapterDayjs as P } from "@mui/x-date-pickers/AdapterDayjs";
-import h from "dayjs";
-import { copyMuiOptions as x } from "./MuiUtil.js";
-import { FieldManagerContext as F } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-const L = g(function(t, s) {
-  const u = p(F), l = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", a = u(t, "datetime"), o = a.error, c = a.data, r = a.eventListeners, n = v(null), m = () => h(c);
-  D(s, () => ({
+import { jsx as n } from "react/jsx-runtime";
+import { forwardRef as C, useContext as g, useRef as v, useImperativeHandle as D } from "react";
+import { LocalizationProvider as F, DateTimePicker as y } from "@mui/x-date-pickers";
+import { AdapterDayjs as M } from "@mui/x-date-pickers/AdapterDayjs";
+import P from "dayjs";
+import { copyMuiOptions as h } from "./MuiUtil.js";
+import { FieldManagerContext as b } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import x from "./FieldDecorator.js";
+const V = C(function(t, i) {
+  const l = g(b), u = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", r = l(t, "datetime"), o = r.error, c = r.data, a = r.eventListeners, s = v(null), m = () => P(c);
+  D(i, () => ({
     focus() {
-      n.current.focus();
+      s.current.focus();
     },
     isValid() {
       return !o.status;
     },
     assignAttribute(e) {
-      n.current.assignAttribute(e);
+      s.current.assignAttribute(e);
     }
   }), []);
-  var d = x(t, m()), f = {
-    onBlur: r.onBlur,
-    onFocus: r.onFocus,
+  var d = h(t, m()), f = {
+    onBlur: a.onBlur,
+    onFocus: a.onFocus,
     onChange: (e) => {
-      e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
+      e && e.toDate ? a.onValueChange(e.toDate()) : a.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ i(y, { dateAdapter: P, children: /* @__PURE__ */ i(
-    M,
+  return /* @__PURE__ */ n(
+    x,
     {
-      ...d,
-      readOnly: t.readonly,
-      format: l,
-      ...f,
-      slotProps: {
-        textField: {
-          error: o.status,
-          helperText: o.message,
-          variant: t.variant,
-          fullWidth: !0
+      label: t.title,
+      customContainerClass: t.customContainerClass,
+      colspan: t.colspan,
+      customFieldClass: t.customFieldClass,
+      customLabelClass: t.customLabelClass,
+      children: /* @__PURE__ */ n(F, { dateAdapter: M, children: /* @__PURE__ */ n(
+        y,
+        {
+          ...d,
+          readOnly: t.readonly,
+          format: u,
+          ...f,
+          slotProps: {
+            textField: {
+              error: o.status,
+              helperText: o.message,
+              variant: t.variant,
+              fullWidth: !0
+            }
+          }
         }
-      }
+      ) })
     }
-  ) });
+  );
 });
 export {
-  L as default
+  V as default
 };

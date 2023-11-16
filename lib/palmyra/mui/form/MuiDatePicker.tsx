@@ -5,6 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
+import FieldDecorator from './FieldDecorator';
 
 const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -48,21 +49,24 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
     }
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker {...inputProps}
-                readOnly={props.readonly}
-                format={displayFormat}
-                {...callbacks}
-                slotProps={{
-                    textField: {
-                        error: error.status,
-                        helperText: error.message,
-                        variant: props.variant,
-                        fullWidth: true
-                    },
-                }}
-            />
-        </LocalizationProvider>
+        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+            customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker {...inputProps}
+                    readOnly={props.readonly}
+                    format={displayFormat}
+                    {...callbacks}
+                    slotProps={{
+                        textField: {
+                            error: error.status,
+                            helperText: error.message,
+                            variant: props.variant,
+                            fullWidth: true
+                        },
+                    }}
+                />
+            </LocalizationProvider>
+        </FieldDecorator>
     );
 });
 

@@ -5,12 +5,10 @@
             "name": "tab01",
             "sections": [
                 {
+                    "columns": 2,
                     "name": "",
                     "type": "form",
                     "formLayout": {
-                        "options": {
-                            "columns": 2
-                        },
                         "fields": [
                             {
                                 "attribute": "userName",
@@ -94,6 +92,7 @@
                             {
                                 "attribute": "address",
                                 "title": "Address",
+                                "colspan":2,
                                 "required": true,
                                 "type": "textarea",
                                 "validationRule": "string",

@@ -3,9 +3,10 @@ import { FormControl, FormHelperText, MenuItem, Select } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
+import FieldDecorator from './FieldDecorator';
 
 
-const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition , ref) {
+const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref) {
     const { options } = props;
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
 
@@ -33,8 +34,8 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition , ref) 
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data);
 
-    if(props.readonly){
-        inputProps.inputProps={ readOnly: true };
+    if (props.readonly) {
+        inputProps.inputProps = { readOnly: true };
     }
 
     var callbacks = {
@@ -44,17 +45,20 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition , ref) 
     }
 
     return (
-        <FormControl fullWidth error={error.status}>
-            <Select {...inputProps} {...callbacks} inputRef={inputRef}>
+        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+            customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
+            <FormControl fullWidth error={error.status}>
+                <Select {...inputProps} {...callbacks} inputRef={inputRef}>
 
-                {options ?
-                    Object.keys(options).map((key, index) => (
-                        <MenuItem key={index} value={key}>{options[key]}</MenuItem>
-                    )
-                    ) : <div>No options provided</div>}
-            </Select>
-            <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
-        </FormControl>
+                    {options ?
+                        Object.keys(options).map((key, index) => (
+                            <MenuItem key={index} value={key}>{options[key]}</MenuItem>
+                        )
+                        ) : <div>No options provided</div>}
+                </Select>
+                <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
+            </FormControl>
+        </FieldDecorator>
     );
 });
 

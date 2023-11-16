@@ -1,5 +1,4 @@
 import { useMemo, useRef, forwardRef } from 'react';
-import { default as DefaultFieldContainer } from '../container/FieldContainer';
 import getField from '../../form/FieldGenerator';
 
 import { FieldDefinition } from '../../form/Definitions';
@@ -12,10 +11,10 @@ interface EditFormRendererInput {
 }
 
 const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInput, ref) {
-    
+
     const { formLayout, context } = props;
     const { formData } = context;
-    const FieldContainer = formLayout.Container || DefaultFieldContainer;
+    const FieldContainer: any = formLayout.Container;
     const fieldRefs = useRef({});
 
     const generateField = useMemo(() => (field: FieldDefinition) => {
@@ -25,19 +24,32 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
 
     var columns = formLayout.options?.columns || 1;
     var options = { columns };
-
-    return (
-        <form className="palmyra-form-field-container-wrapper" noValidate>
-            {
-                formLayout.fields.map((field, index) => (
-                    <FieldContainer key={field.attribute} index={index}
-                        field={field} label={field.title} options={options}>
-                        {generateField(field)}
-                    </FieldContainer>
-                ))
-            }
-        </form>
-    );
+    if (FieldContainer) {
+        return (
+            <form className="palmyra-form-field-container-wrapper" noValidate>
+                {
+                    formLayout.fields.map((field, index) => (
+                        <FieldContainer key={field.attribute} index={index}
+                            field={field} label={field.title} options={options}>
+                            {generateField(field)}
+                        </FieldContainer>
+                    ))
+                }
+            </form>
+        );
+    } else {
+        return (
+            <form className="palmyra-form-field-container-wrapper" noValidate>
+                {
+                    formLayout.fields.map((field, index) => (
+                        <>
+                            {generateField(field)}
+                        </>
+                    ))
+                }
+            </form>
+        );
+    }
 });
 
 export default FormRenderer;

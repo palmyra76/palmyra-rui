@@ -11,8 +11,9 @@ import { getValueByKey, setValueByKey } from '../../form/FormUtil';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
+import FieldDecorator from './FieldDecorator';
 
-const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition , ref) {
+const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'serverlookup');
@@ -65,7 +66,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     function getSelectedOption(): any {
         // if (selectedOption.current)
         //     return selectedOption.current;
-        
+
         if (data) {
             var option = {};
             setValueByKey(idKey, option, data);
@@ -111,8 +112,8 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data);
 
-    if(props.readonly){
-        inputProps.inputProps={ readOnly: true };
+    if (props.readonly) {
+        inputProps.inputProps = { readOnly: true };
     }
 
     var callbacks = {
@@ -121,51 +122,55 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
 
-    return (<FormControl fullWidth error={error.status}>
-        <Select
-            {...inputProps}
-            MenuProps={{ autoFocus: false }}
-            value={data}
-            onOpen={(e) => { refreshOptions() }}
-            {...callbacks}
-        >
-            {hasMoreRecords() ?
-                <ListSubheader>
-                    <div>
-                        <TextField
-                            size="small"
-                            // Autofocus on textfield
-                            value={searchText}
-                            autoFocus
-                            placeholder="Type to search..."
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Search />
-                                    </InputAdornment>
-                                )
-                            }}
-                            onChange={(e) => setSearchText(e.target.value)}
-                            onKeyDown={(e) => {
-                                if (e.key !== "Escape") {
-                                    e.stopPropagation();
-                                }
-                            }}
-                        />
-                    </div>
-                    {props.required ? <></> :
-                        <div><span><DeleteOutlined /></span></div>}
-                </ListSubheader> : <div></div>}
+    return (
+        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+            customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
+            <FormControl fullWidth error={error.status}>
+                <Select
+                    {...inputProps}
+                    MenuProps={{ autoFocus: false }}
+                    value={data}
+                    onOpen={(e) => { refreshOptions() }}
+                    {...callbacks}
+                >
+                    {hasMoreRecords() ?
+                        <ListSubheader>
+                            <div>
+                                <TextField
+                                    size="small"
+                                    // Autofocus on textfield
+                                    value={searchText}
+                                    autoFocus
+                                    placeholder="Type to search..."
+                                    fullWidth
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <Search />
+                                            </InputAdornment>
+                                        )
+                                    }}
+                                    onChange={(e) => setSearchText(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key !== "Escape") {
+                                            e.stopPropagation();
+                                        }
+                                    }}
+                                />
+                            </div>
+                            {props.required ? <></> :
+                                <div><span><DeleteOutlined /></span></div>}
+                        </ListSubheader> : <div></div>}
 
-            {options.map((option, i) => (
-                <MenuItem key={idAccessor(option) || i} value={idAccessor(option)}>
-                    {renderOption(labelAccessor(option), searchText)}
-                </MenuItem>
-            ))}
-        </Select>
-        <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
-    </FormControl>
+                    {options.map((option, i) => (
+                        <MenuItem key={idAccessor(option) || i} value={idAccessor(option)}>
+                            {renderOption(labelAccessor(option), searchText)}
+                        </MenuItem>
+                    ))}
+                </Select>
+                <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
+            </FormControl>
+        </FieldDecorator>
     );
 });
 

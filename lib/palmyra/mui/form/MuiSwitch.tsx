@@ -2,8 +2,9 @@ import { useRef, useImperativeHandle, forwardRef, useState, useMemo, useEffect, 
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material';
 import { copyMuiOptions } from './MuiUtil';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISwitchDefinition } from '../../form/interface';
-import parseOptions from './MuiSwitchOption';
+import parseOptions from './OptionsParser';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
+import FieldDecorator from './FieldDecorator';
 
 const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -70,15 +71,18 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref) {
     }
 
     return (
-        <FormControl error={error.status} {...inputProps}>
-            <FormControlLabel value={getValue()}
-                control={<Switch inputRef={inputRef} checked={isOn} onClick={toggleStatus}
-                    disabled={props.readonly}
-                />}
-                label={getLabel()}
-            />
-            <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
-        </FormControl>
+        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+            customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
+            <FormControl error={error.status} {...inputProps}>
+                <FormControlLabel value={getValue()}
+                    control={<Switch inputRef={inputRef} checked={isOn} onClick={toggleStatus}
+                        disabled={props.readonly}
+                    />}
+                    label={getLabel()}
+                />
+                <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
+            </FormControl>
+        </FieldDecorator>
     );
 });
 

@@ -45,40 +45,44 @@ interface TextValidation extends abstractValidation {
     regex?: string
 }
 
-interface ITitleLabel {
+interface IDecoration {
+    customContainerClass?: string,
+    customFieldClass?: string,
+    customLabelClass?: string,
+    colspan?: number,
     label?: string,
     title?: string
 }
 
-interface ITextFieldDefinition extends AttributeDefinition, TextValidation, ITitleLabel {
+interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
 
 }
 
-interface ISwitchDefinition extends AttributeDefinition, ITitleLabel {
+interface ISwitchDefinition extends AttributeDefinition, IDecoration {
     options: Record<string | number, string | number>
 }
 
-interface ISelectDefinition extends AttributeDefinition, ITitleLabel {
+interface ISelectDefinition extends AttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>
 }
 
-interface ICheckboxDefinition extends AttributeDefinition, ITitleLabel {
+interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>,
     flexDirection?: 'column' | 'row'
 }
 
-interface IRadioGroupDefinition extends AttributeDefinition, ITitleLabel {
+interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>,
     flexDirection?: 'column' | 'row'
 }
 
-interface IDateTimeDefinition extends AttributeDefinition, ITitleLabel {
+interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
     range?: RangeValidation<string>,
     serverPattern?: string,
     displayPattern?: string
 }
 
-interface IServerLookupDefinition extends AttributeDefinition, ITitleLabel {
+interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     lookupOptions: IFormFieldServerLookup,
     store?: LookupStore<any>,
     storeOptions?: {
@@ -158,7 +162,7 @@ const NoopFormListener: IFormListener = {
 
 
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType }
-export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition,IRadioGroupDefinition }
+export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager }
 
 export { NoopFormListener }
