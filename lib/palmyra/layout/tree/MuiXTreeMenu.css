@@ -58,3 +58,7 @@
     color: var(--sidebar-select-list-color) !important;
     border-radius: 5px !important;
 }
+
+.MuiTreeItem-group {
+    margin-left: 35px !important;
+}
