@@ -1887,7 +1887,7 @@ function Jr(e) {
         e.onNewClick();
       }, children: /* @__PURE__ */ l(ve, { title: "New", placement: "top", children: /* @__PURE__ */ l(he, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ l(Vt, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ l($e, {})
     ] }),
-    /* @__PURE__ */ l(
+    /* @__PURE__ */ l("div", { className: "grid-table", children: /* @__PURE__ */ l(
       jt,
       {
         columnDefs: Z,
@@ -1898,7 +1898,7 @@ function Jr(e) {
         onHeaderStyle: p,
         onSortColumn: C
       }
-    ),
+    ) }),
     /* @__PURE__ */ l("div", { className: "grid-header", children: /* @__PURE__ */ l("div", { className: "grid-filter", children: O && /* @__PURE__ */ l(
       kt,
       {
