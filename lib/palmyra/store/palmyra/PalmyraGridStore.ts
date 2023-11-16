@@ -1,5 +1,5 @@
 import { QueryStore, GetRequest, QueryRequest, StringFormat, QueryResponse, QueryParams } from "../../../../lib/main";
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { IEndPoint } from "../../layout/Types";
 
 class PalmyraGridStore implements QueryStore<any>{
@@ -13,6 +13,14 @@ class PalmyraGridStore implements QueryStore<any>{
         this.target = request.target;
         this.endPoint = endPoint;
         this.idProperty = idProperty;
+    }
+
+    getClient():AxiosInstance {
+        return axios;
+    }
+
+    getEndPoint():IEndPoint {
+        return this.endPoint;
     }
 
     queryUrl():string{
@@ -37,7 +45,7 @@ class PalmyraGridStore implements QueryStore<any>{
         const urlSortParams = (convertQueryParams(queryParam));
         const params = { params: urlSortParams };
         return axios.get(url, params)
-            .then(response => { return response.data });;
+            .then(response => { return response.data });
     }
 
     queryLayout(request: QueryRequest): Promise<any> {

@@ -1,76 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from "react-router-dom";
-import { FlexiLayoutRenderer, PalmyraStoreFactory, StoreFactory, DataStore, mergeDeep } from '../../../lib/main';
+import { PalmyraStoreFactory, usePalmyraEditForm, PalmyraForm, MuiTextField } from '../../../lib/main';
+import { Button } from '@mui/material';
 
 
 const BackendViewFormPage = () => {
     const params = useParams();
-    const layout = params.layout;
-    const [pageDef, setPageDef] = useState(null);
-    const [data, setData] = useState({});
-    const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api/palmyra' });
-    const key = '/' + layout + '/';
 
-    console.log(layout);
+    const [isValid, setValid] = useState<boolean>(false);
+    const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api/palmyra" });
 
-    useEffect(() => {
-        fetch(key + '/viewForm.json')
-            .then((response) => response.json())
-            .then((d) => setPageDef(d));
-    }, [layout])
+    const { data, saveData, formRef } = usePalmyraEditForm({
+        storeFactory,
+        endPoint: '/userManagement',
+        id: params.id
+    })
 
-
-    const fetchData = () => {
-        if (pageDef) {
-            const dataStore: DataStore<any> = storeFactory.getFormStore(getStoreOptions(params));
-            console.log(params);
-            const idKey: string = getIdProperty(pageDef);
-            dataStore.get({
-                options: {
-                    [idKey]: params.id
-                }
-            }).then((d) => { console.log(d) });
-        }
-    }
-
-    const getIdProperty = (pageDef): string => {
-        console.log(pageDef);
-        return pageDef?.idProperty || "id";
-    }
-
-    useEffect(() => {
-        if (pageDef) {
-            const dataStore: DataStore<any> = storeFactory.getFormStore(getStoreOptions(params));
-            const idKey: string = getIdProperty(pageDef);
-            dataStore.get({
-                options: {
-                    [idKey]: params.id
-                }
-            }).then((d) => { console.log(d) });
-        } else {
-            console.error('pageDef is null');
-        }
-
-    }, [pageDef])
-
-    const onValidChange = (valid: boolean) => {
-        console.log(valid);
-    }
-
-    const getStoreOptions = (layoutParams: any) => {
-        const storeOptions = pageDef.storeOptions;
-        var storeRequest: any = {};
-        mergeDeep(storeRequest, storeOptions, layoutParams);
-        return storeRequest;
-    }
-
-    return <>
-        <div> {layout} asdf023r Form</div>
-        {pageDef ? <FlexiLayoutRenderer layout={pageDef}
-            data={data} storeFactory={storeFactory} layoutParams={{}}
-            callbacks={{ onFormValidChange: onValidChange }}
-        ></FlexiLayoutRenderer> : <div />}
-    </>
+    return (
+        <div className='form-container'>
+            <div className='form-header-container'>
+                <div>Test Edit Form</div>
+                <Button disabled={!isValid}
+                    className={!isValid ? 'form-disabled-button' : 'form-filled-button'}
+                    disableRipple onClick={saveData}>Save</Button>
+            </div>
+            <PalmyraForm formData={data} mode="edit" onValidChange={setValid} ref={formRef}>
+                <MuiTextField attribute='name' label='Name'/>
+            </PalmyraForm>
+        </div>
+    );
 }
 
 export default BackendViewFormPage;
