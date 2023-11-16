@@ -5,7 +5,7 @@ import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, 
 import parseOptions from './MuiSwitchOption';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition , ref) {
+const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'switch');
 
@@ -47,6 +47,10 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition , ref) 
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data);
 
+    if (props.readonly) {
+        inputProps.inputProps = { readOnly: true };
+    }
+
     const toggleStatus = () => {
         setIsOn(!isOn);
     };
@@ -68,7 +72,9 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition , ref) 
     return (
         <FormControl error={error.status} {...inputProps}>
             <FormControlLabel value={getValue()}
-                control={<Switch inputRef={inputRef} checked={isOn} onClick={toggleStatus} />}
+                control={<Switch inputRef={inputRef} checked={isOn} onClick={toggleStatus}
+                    disabled={props.readonly}
+                />}
                 label={getLabel()}
             />
             <FormHelperText className='form-error-text'>{error.message}</FormHelperText>

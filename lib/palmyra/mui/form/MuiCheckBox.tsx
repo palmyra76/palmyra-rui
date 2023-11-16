@@ -4,9 +4,9 @@ import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, 
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 
-const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition , ref) {
+const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const {options} = props;
+    const { options } = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox');
     const values = fieldManager.data ? fieldManager.data.split(',') : [];
 
@@ -31,6 +31,9 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition , r
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data);
 
+    if (props.readonly) {
+        inputProps.inputProps = { readOnly: true };
+    }
 
     function _updateData(value: any, checked: any) {
         const currentData = fieldManager.data ? fieldManager.data.split(',') : [];
@@ -58,11 +61,13 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ISelectDefinition , r
     }
 
     return (
-        <FormControl fullWidth error={error.status} {...inputProps} >
+        <FormControl fullWidth error={error.status} {...inputProps}>
             {options ?
                 Object.keys(options).map((key) => (
                     <FormControlLabel key={key} value={key}
-                        control={<Checkbox {...callbacks} checked={isSelected(key)} />}
+                        control={<Checkbox {...callbacks} checked={isSelected(key)}
+                            disabled={props.readonly}
+                        />}
                         label={options[key]} />
                 ))
                 : <div>No options provided</div>}
