@@ -1,13 +1,15 @@
 import { forwardRef, useImperativeHandle } from "react";
 import { FormMode } from "./Types";
 import { createFormData } from ".";
-import { FieldManagerContext } from "../layout/flexiLayout/FlexiLayoutContext";
+import { FieldManagerContext, StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
+import { StoreFactory } from "../../main";
 
 interface IPalmyraFormInput {
     children?: any,
     formData: any,
     onValidChange: Function,
-    mode: FormMode
+    mode: FormMode,
+    storeFactory?: StoreFactory<any>
 }
 
 interface IPalmyraForm {
@@ -34,9 +36,11 @@ const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, re
     }, [data, onValidityChange, mode]);
 
     return (<>
-        <FieldManagerContext.Provider value={getFieldManager}>
-            {props.children}
-        </FieldManagerContext.Provider>
+        <StoreFactoryContext.Provider value={props.storeFactory}>
+            <FieldManagerContext.Provider value={getFieldManager}>
+                {props.children}
+            </FieldManagerContext.Provider>
+        </StoreFactoryContext.Provider>
     </>);
 
 });

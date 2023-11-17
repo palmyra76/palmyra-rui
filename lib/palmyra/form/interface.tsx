@@ -1,3 +1,4 @@
+import { IEndPoint } from "../layout";
 import { LookupStore } from "../store"
 
 /**
@@ -85,8 +86,8 @@ interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     lookupOptions: IFormFieldServerLookup,
     store?: LookupStore<any>,
-    storeOptions?: {
-        endPoint: string
+    storeOptions: {
+        endPoint: IEndPoint
     }
 }
 

@@ -1,4 +1,5 @@
 import "../../../index-1e74e5a0.js";
+import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { PalmyraGridStore as n } from "./PalmyraGridStore.js";
 import "react/jsx-runtime";
 import "../../layout/container/SectionContainer.js";
@@ -14,7 +15,6 @@ import "@tanstack/react-table";
 import "../../layout/flexiLayout/FormEditRenderer.js";
 import { StringFormat as p } from "../../utils/StringUtil.js";
 import "dayjs";
-import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import "../../form/PalmyraForm.js";
 import "../../grid/plugins/filter/Filter.js";
 import "../../layout/flexiLayout/FormFieldOnlyRenderer.js";
