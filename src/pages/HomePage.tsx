@@ -40,7 +40,7 @@ const HomePage = () => {
             setData({
                 serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload',
                 genders: 'F',
-                password:'secret',
+                password: 'secret',
                 userName: 'titan',
                 service: 1, switch: 0,
                 time: '2023-10-19 09:21:21'
@@ -74,9 +74,15 @@ const HomePage = () => {
 
                 <SectionContainer title='Hello World' >
                     <FormFieldContainer columns={2}>
-                        <MuiPassword 
-                        attribute="password"
-                        validationRule={"password"}
+                        <MuiPassword
+                            errorMessage={{
+                                'oneLowerCase': 'Invalid lower case',
+                                'oneUpperCase': 'Invalid upper',
+                                'oneSpecialChar': 'One Special Char'
+                            }}
+                            length={{ min: 8, message:'Atleast min 8 chars' }}
+                            attribute="password"
+                            validationRule={["oneUpperCase", 'oneLowerCase', 'oneSpecialChar']}
                         />
 
                         <MuiDatePicker attribute="dob"

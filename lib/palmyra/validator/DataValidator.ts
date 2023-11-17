@@ -162,6 +162,12 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
                 return isPortRange;
             case 'password':
                 return validator.isStrongPassword;
+            case 'oneLowerCase':
+                return oneLowerCase;
+            case 'oneUpperCase':
+                return oneUpperCase;
+            case 'oneSpecialChar':
+                return oneSpecialChar;
         }
     }
     return noopValid;
@@ -169,6 +175,21 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
 
 const noopValid = () => {
     return true;
+}
+
+const oneLowerCase = (val) => {
+    const regex = /^(.*[a-z].*)$/;
+    return regex.test(val);
+}
+
+const oneUpperCase = (val) => {
+    const regex = /^(.*[A-Z].*)$/;
+    return regex.test(val);
+}
+
+const oneSpecialChar = (val) => {
+    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    return specialChars.test(val);
 }
 
 const isEmpty = (val) => {

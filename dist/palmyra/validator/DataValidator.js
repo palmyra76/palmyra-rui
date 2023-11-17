@@ -348,7 +348,7 @@ var va = Et.exports, Dt = { exports: {} };
   }
   t.exports = e.default, t.exports.default = e.default;
 })(Dt, Dt.exports);
-var ra = Dt.exports, xt = { exports: {} };
+var ra = Dt.exports, Ct = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -363,8 +363,8 @@ var ra = Dt.exports, xt = { exports: {} };
     return (0, l.default)(d), v = String(v), v ? v === "4" ? r.test(d) : v === "6" ? n.test(d) : !1 : o(d, 4) || o(d, 6);
   }
   t.exports = e.default, t.exports.default = e.default;
-})(xt, xt.exports);
-var Ge = xt.exports;
+})(Ct, Ct.exports);
+var Ge = Ct.exports;
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -392,8 +392,8 @@ var Ge = xt.exports;
     if (I) {
       if (S === h)
         return !1;
-      var C = S.split('"').length === S.split('\\"').length;
-      if (!C)
+      var x = S.split('"').length === S.split('\\"').length;
+      if (!x)
         return !1;
     }
     return !0;
@@ -402,8 +402,8 @@ var Ge = xt.exports;
     if ((0, l.default)(h), S = (0, r.default)(S, n), S.require_display_name || S.allow_display_name) {
       var I = h.match(o);
       if (I) {
-        var C = I[1];
-        if (h = h.replace(C, "").replace(/(^<|>$)/g, ""), C.endsWith(" ") && (C = C.slice(0, -1)), !_(C))
+        var x = I[1];
+        if (h = h.replace(x, "").replace(/(^<|>$)/g, ""), x.endsWith(" ") && (x = x.slice(0, -1)), !_(x))
           return !1;
       } else if (S.require_display_name)
         return !1;
@@ -456,7 +456,7 @@ var Ge = xt.exports;
   }
   t.exports = e.default, t.exports.default = e.default;
 })(Rt, Rt.exports);
-var pa = Rt.exports, Ct = { exports: {} };
+var pa = Rt.exports, xt = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -485,21 +485,21 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   }
   function d(h, S) {
     (S == null || S > h.length) && (S = h.length);
-    for (var I = 0, C = new Array(S); I < S; I++)
-      C[I] = h[I];
-    return C;
+    for (var I = 0, x = new Array(S); I < S; I++)
+      x[I] = h[I];
+    return x;
   }
   function v(h, S) {
     if (!(typeof Symbol > "u" || !(Symbol.iterator in Object(h)))) {
-      var I = [], C = !0, O = !1, P = void 0;
+      var I = [], x = !0, O = !1, P = void 0;
       try {
-        for (var L = h[Symbol.iterator](), Z; !(C = (Z = L.next()).done) && (I.push(Z.value), !(S && I.length === S)); C = !0)
+        for (var L = h[Symbol.iterator](), Z; !(x = (Z = L.next()).done) && (I.push(Z.value), !(S && I.length === S)); x = !0)
           ;
       } catch (F) {
         O = !0, P = F;
       } finally {
         try {
-          !C && L.return != null && L.return();
+          !x && L.return != null && L.return();
         } finally {
           if (O)
             throw P;
@@ -531,8 +531,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   }
   function _(h, S) {
     for (var I = 0; I < S.length; I++) {
-      var C = S[I];
-      if (h === C || p(C) && C.test(h))
+      var x = S[I];
+      if (h === x || p(x) && x.test(h))
         return !0;
     }
     return !1;
@@ -540,7 +540,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   function $(h, S) {
     if ((0, l.default)(h), !h || /[\s<>]/.test(h) || h.indexOf("mailto:") === 0 || (S = (0, a.default)(S, m), S.validate_length && h.length >= 2083) || !S.allow_fragments && h.includes("#") || !S.allow_query_components && (h.includes("?") || h.includes("&")))
       return !1;
-    var I, C, O, P, L, Z, F, k;
+    var I, x, O, P, L, Z, F, k;
     if (F = h.split("#"), h = F.shift(), F = h.split("?"), h = F.shift(), F = h.split("://"), F.length > 1) {
       if (I = F.shift().toLowerCase(), S.require_valid_protocol && S.protocols.indexOf(I) === -1)
         return !1;
@@ -558,9 +558,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     if (F = h.split("/"), h = F.shift(), h === "" && !S.require_host)
       return !0;
     if (F = h.split("@"), F.length > 1) {
-      if (S.disallow_auth || F[0] === "" || (C = F.shift(), C.indexOf(":") >= 0 && C.split(":").length > 2))
+      if (S.disallow_auth || F[0] === "" || (x = F.shift(), x.indexOf(":") >= 0 && x.split(":").length > 2))
         return !1;
-      var j = C.split(":"), W = u(j, 2), le = W[0], ne = W[1];
+      var j = x.split(":"), W = u(j, 2), le = W[0], ne = W[1];
       if (le === "" && ne === "")
         return !1;
     }
@@ -574,8 +574,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     return S.host_whitelist ? _(O, S.host_whitelist) : O === "" && !S.require_host ? !0 : !(!(0, i.default)(O) && !(0, s.default)(O, S) && (!k || !(0, i.default)(k, 6)) || (O = O || k, S.host_blacklist && _(O, S.host_blacklist)));
   }
   t.exports = e.default, t.exports.default = e.default;
-})(Ct, Ct.exports);
-var mn = Ct.exports, Pt = { exports: {} };
+})(xt, xt.exports);
+var mn = xt.exports, Pt = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -648,13 +648,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     if (!(typeof Symbol > "u" || !(Symbol.iterator in Object(p)))) {
       var $ = [], h = !0, S = !1, I = void 0;
       try {
-        for (var C = p[Symbol.iterator](), O; !(h = (O = C.next()).done) && ($.push(O.value), !(_ && $.length === _)); h = !0)
+        for (var x = p[Symbol.iterator](), O; !(h = (O = x.next()).done) && ($.push(O.value), !(_ && $.length === _)); h = !0)
           ;
       } catch (P) {
         S = !0, I = P;
       } finally {
         try {
-          !h && C.return != null && C.return();
+          !h && x.return != null && x.return();
         } finally {
           if (S)
             throw I;
@@ -683,19 +683,19 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       throw new TypeError(`Invalid attempt to iterate non-iterable instance.
 In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
     }
-    var I = !0, C = !1, O;
+    var I = !0, x = !1, O;
     return { s: function() {
       $ = p[Symbol.iterator]();
     }, n: function() {
       var L = $.next();
       return I = L.done, L;
     }, e: function(L) {
-      C = !0, O = L;
+      x = !0, O = L;
     }, f: function() {
       try {
         !I && $.return != null && $.return();
       } finally {
-        if (C)
+        if (x)
           throw O;
       }
     } };
@@ -738,18 +738,18 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         return _.format.indexOf(W) !== -1;
       }), h = _.strictMode ? $ : _.delimiters.find(function(W) {
         return p.indexOf(W) !== -1;
-      }), S = m(p.split(h), _.format.toLowerCase().split($)), I = {}, C = n(S), O;
+      }), S = m(p.split(h), _.format.toLowerCase().split($)), I = {}, x = n(S), O;
       try {
-        for (C.s(); !(O = C.n()).done; ) {
+        for (x.s(); !(O = x.n()).done; ) {
           var P = i(O.value, 2), L = P[0], Z = P[1];
           if (L.length !== Z.length)
             return !1;
           I[Z.charAt(0)] = L;
         }
       } catch (W) {
-        C.e(W);
+        x.e(W);
       } finally {
-        C.f();
+        x.f();
       }
       var F = I.y;
       if (I.y.length === 2) {
@@ -829,13 +829,13 @@ var En = Zt.exports, $e = {};
 Object.defineProperty($e, "__esModule", {
   value: !0
 });
-$e.default = Cn;
+$e.default = xn;
 $e.locales = void 0;
-var Dn = xn(y), Ft = U;
-function xn(t) {
+var Dn = Cn(y), Ft = U;
+function Cn(t) {
   return t && t.__esModule ? t : { default: t };
 }
-function Cn(t) {
+function xn(t) {
   var e = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "en-US", l = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
   (0, Dn.default)(t);
   var s = t, i = l.ignore;
@@ -1772,7 +1772,7 @@ var Du = gr.exports, Ar = { exports: {} };
   }
   t.exports = e.default, t.exports.default = e.default;
 })(Ar, Ar.exports);
-var xu = Ar.exports, hr = { exports: {} };
+var Cu = Ar.exports, hr = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -1807,7 +1807,7 @@ var xu = Ar.exports, hr = { exports: {} };
   }
   t.exports = e.default, t.exports.default = e.default;
 })(hr, hr.exports);
-var Cu = hr.exports, Sr = { exports: {} };
+var xu = hr.exports, Sr = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -2051,36 +2051,36 @@ var Pu = $r.exports, mr = { exports: {} };
       ], d = ["7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7", "9", "10", "5", "8", "4", "2"], v = ["1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"], g = function(I) {
         return o.includes(I);
       }, m = function(I) {
-        var C = parseInt(I.substring(0, 4), 10), O = parseInt(I.substring(4, 6), 10), P = parseInt(I.substring(6), 10), L = new Date(C, O - 1, P);
-        return L > /* @__PURE__ */ new Date() ? !1 : L.getFullYear() === C && L.getMonth() === O - 1 && L.getDate() === P;
+        var x = parseInt(I.substring(0, 4), 10), O = parseInt(I.substring(4, 6), 10), P = parseInt(I.substring(6), 10), L = new Date(x, O - 1, P);
+        return L > /* @__PURE__ */ new Date() ? !1 : L.getFullYear() === x && L.getMonth() === O - 1 && L.getDate() === P;
       }, E = function(I) {
-        for (var C = I.substring(0, 17), O = 0, P = 0; P < 17; P++)
-          O += parseInt(C.charAt(P), 10) * parseInt(d[P], 10);
+        for (var x = I.substring(0, 17), O = 0, P = 0; P < 17; P++)
+          O += parseInt(x.charAt(P), 10) * parseInt(d[P], 10);
         var L = O % 11;
         return v[L];
       }, p = function(I) {
         return E(I) === I.charAt(17).toUpperCase();
       }, _ = function(I) {
-        var C = /^[1-9]\d{7}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}$/.test(I);
-        if (!C)
+        var x = /^[1-9]\d{7}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}$/.test(I);
+        if (!x)
           return !1;
         var O = I.substring(0, 2);
-        if (C = g(O), !C)
+        if (x = g(O), !x)
           return !1;
         var P = "19".concat(I.substring(6, 12));
-        return C = m(P), !!C;
+        return x = m(P), !!x;
       }, $ = function(I) {
-        var C = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}(\d|x|X)$/.test(I);
-        if (!C)
+        var x = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}(\d|x|X)$/.test(I);
+        if (!x)
           return !1;
         var O = I.substring(0, 2);
-        if (C = g(O), !C)
+        if (x = g(O), !x)
           return !1;
         var P = I.substring(6, 14);
-        return C = m(P), C ? p(I) : !1;
+        return x = m(P), x ? p(I) : !1;
       }, h = function(I) {
-        var C = /^\d{15}|(\d{17}(\d|x|X))$/.test(I);
-        return C ? I.length === 15 ? _(I) : $(I) : !1;
+        var x = /^\d{15}|(\d{17}(\d|x|X))$/.test(I);
+        return x ? I.length === 15 ? _(I) : $(I) : !1;
       };
       return h(n);
     },
@@ -2341,8 +2341,8 @@ function Hu(t) {
     var A = {}, D = Object.defineProperty && Object.getOwnPropertyDescriptor;
     for (var R in f)
       if (Object.prototype.hasOwnProperty.call(f, R)) {
-        var x = D ? Object.getOwnPropertyDescriptor(f, R) : null;
-        x && (x.get || x.set) ? Object.defineProperty(A, R, x) : A[R] = f[R];
+        var C = D ? Object.getOwnPropertyDescriptor(f, R) : null;
+        C && (C.get || C.set) ? Object.defineProperty(A, R, C) : A[R] = f[R];
       }
     return A.default = f, c && c.set(f, A), A;
   }
@@ -2389,21 +2389,21 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       return !1;
     for (var R = f.split("").map(function(T) {
       return parseInt(T, 10);
-    }), x = [2, 4, 8, 5, 10, 9, 7, 3, 6], B = 0, N = 0; N < x.length; N++)
-      B += R[N] * x[N];
+    }), C = [2, 4, 8, 5, 10, 9, 7, 3, 6], B = 0, N = 0; N < C.length; N++)
+      B += R[N] * C[N];
     return B = B % 11 === 10 ? 0 : B % 11, B === R[9];
   }
   function _(f) {
-    var c = f.split(""), A = c.filter(function(R, x) {
-      return x % 2;
+    var c = f.split(""), A = c.filter(function(R, C) {
+      return C % 2;
     }).map(function(R) {
       return Number(R) * 2;
-    }).join("").split(""), D = c.filter(function(R, x) {
-      return !(x % 2);
+    }).join("").split(""), D = c.filter(function(R, C) {
+      return !(C % 2);
     }).concat(A).map(function(R) {
       return Number(R);
-    }).reduce(function(R, x) {
-      return R + x;
+    }).reduce(function(R, C) {
+      return R + C;
     });
     return D % 10 === 0;
   }
@@ -2457,10 +2457,10 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     }), A.length !== 2 && A.length !== 3)
       return !1;
     if (A[0].length === 3) {
-      for (var x = A[0].split("").map(function(T) {
+      for (var C = A[0].split("").map(function(T) {
         return parseInt(T, 10);
-      }), B = 0, N = 0; N < x.length - 1; N++)
-        x[N] + 1 === x[N + 1] && (B += 1);
+      }), B = 0, N = 0; N < C.length - 1; N++)
+        C[N] + 1 === C[N + 1] && (B += 1);
       if (B === 2)
         return !1;
     }
@@ -2495,13 +2495,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       return !1;
     for (var R = f.split("").map(function(T) {
       return parseInt(T, 10);
-    }), x = 0, B = 4, N = 0; N < 9; N++)
-      x += R[N] * B, B -= 1, B === 1 && (B = 7);
-    return x %= 11, x === 1 ? !1 : x === 0 ? R[9] === 0 : R[9] === 11 - x;
+    }), C = 0, B = 4, N = 0; N < 9; N++)
+      C += R[N] * B, B -= 1, B === 1 && (B = 7);
+    return C %= 11, C === 1 ? !1 : C === 0 ? R[9] === 0 : R[9] === 11 - C;
   }
-  function C(f) {
-    for (var c = f.slice(0, 8).split("").map(function(x) {
-      return parseInt(x, 10);
+  function x(f) {
+    for (var c = f.slice(0, 8).split("").map(function(C) {
+      return parseInt(C, 10);
     }), A = 0, D = 1; D < c.length; D += 2)
       A += c[D];
     for (var R = 0; R < c.length; R += 2)
@@ -2585,16 +2585,16 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       return !1;
     for (var R = f.split("").map(function(H) {
       return parseInt(H, 10);
-    }), x = 0, B = 1, N = 0; N < 10; N++)
-      x += R[N] * B, B += 1, B === 10 && (B = 1);
-    if (x % 11 === 10) {
-      x = 0, B = 3;
+    }), C = 0, B = 1, N = 0; N < 10; N++)
+      C += R[N] * B, B += 1, B === 10 && (B = 1);
+    if (C % 11 === 10) {
+      C = 0, B = 3;
       for (var T = 0; T < 10; T++)
-        x += R[T] * B, B += 1, B === 10 && (B = 1);
-      if (x % 11 === 10)
+        C += R[T] * B, B += 1, B === 10 && (B = 1);
+      if (C % 11 === 10)
         return R[10] === 0;
     }
-    return x % 11 === R[10];
+    return C % 11 === R[10];
   }
   function W(f) {
     var c = f.slice(4, 6), A = f.slice(6, 7);
@@ -2616,8 +2616,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     if (R < 10)
       return R === parseInt(f.slice(10), 10);
     R -= 10;
-    var x = ["A", "B", "C", "D", "E", "F", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y"];
-    return x[R] === f.slice(10);
+    var C = ["A", "B", "C", "D", "E", "F", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y"];
+    return C[R] === f.slice(10);
   }
   function le(f) {
     if (f.slice(2, 4) !== "00" || f.slice(4, 6) !== "00") {
@@ -2647,7 +2647,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       A += c[D] * (D + 1);
     return A % 11 === c[9];
   }
-  function xe(f) {
+  function Ce(f) {
     for (var c = !1, A = !1, D = 0; D < 3; D++)
       if (!c && /[AEIOU]/.test(f[D]))
         c = !0;
@@ -2657,9 +2657,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         return !1;
     return !0;
   }
-  function Ce(f) {
+  function xe(f) {
     var c = f.toUpperCase().split("");
-    if (!xe(c.slice(0, 3)) || !xe(c.slice(3, 6)))
+    if (!Ce(c.slice(0, 3)) || !Ce(c.slice(3, 6)))
       return !1;
     for (var A = [6, 7, 9, 10, 12, 13, 14], D = {
       L: "0",
@@ -2672,8 +2672,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       T: "7",
       U: "8",
       V: "9"
-    }, R = 0, x = A; R < x.length; R++) {
-      var B = x[R];
+    }, R = 0, C = A; R < C.length; R++) {
+      var B = C[R];
       c[B] in D && c.splice(B, 1, D[c[B]]);
     }
     var N = {
@@ -2762,9 +2762,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         if (!(0, a.default)(R, "YYYY/MM/DD"))
           return !1;
       }
-      for (var x = 1101, B = [1, 6, 3, 7, 9, 10, 5, 8, 4, 2], N = 0; N < f.length - 1; N++)
-        x -= parseInt(f[N], 10) * B[N];
-      return parseInt(f[10], 10) === x % 11;
+      for (var C = 1101, B = [1, 6, 3, 7, 9, 10, 5, 8, 4, 2], N = 0; N < f.length - 1; N++)
+        C -= parseInt(f[N], 10) * B[N];
+      return parseInt(f[10], 10) === C % 11;
     }
     return !0;
   }
@@ -2801,9 +2801,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         A += parseInt(f[D], 10) * c[D];
       return A %= 11, A === 10 ? !1 : A === parseInt(f[9], 10);
     }
-    var R = f.slice(0, 2), x = parseInt(f.slice(2, 4), 10);
-    x > 80 ? (R = "18".concat(R), x -= 80) : x > 60 ? (R = "22".concat(R), x -= 60) : x > 40 ? (R = "21".concat(R), x -= 40) : x > 20 ? (R = "20".concat(R), x -= 20) : R = "19".concat(R), x < 10 && (x = "0".concat(x));
-    var B = "".concat(R, "/").concat(x, "/").concat(f.slice(4, 6));
+    var R = f.slice(0, 2), C = parseInt(f.slice(2, 4), 10);
+    C > 80 ? (R = "18".concat(R), C -= 80) : C > 60 ? (R = "22".concat(R), C -= 60) : C > 40 ? (R = "21".concat(R), C -= 40) : C > 20 ? (R = "20".concat(R), C -= 20) : R = "19".concat(R), C < 10 && (C = "0".concat(C));
+    var B = "".concat(R, "/").concat(C, "/").concat(f.slice(4, 6));
     if (!(0, a.default)(B, "YYYY/MM/DD"))
       return !1;
     for (var N = 0, T = 1, H = 0; H < f.length - 1; H++)
@@ -2830,14 +2830,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       f === "00000000000000" || f === "11111111111111" || f === "22222222222222" || f === "33333333333333" || f === "44444444444444" || f === "55555555555555" || f === "66666666666666" || f === "77777777777777" || f === "88888888888888" || f === "99999999999999"
     )
       return !1;
-    for (var x = f.length - 2, B = f.substring(0, x), N = f.substring(x), T = 0, H = x - 7, se = x; se >= 1; se--)
-      T += B.charAt(x - se) * H, H -= 1, H < 2 && (H = 9);
+    for (var C = f.length - 2, B = f.substring(0, C), N = f.substring(C), T = 0, H = C - 7, se = C; se >= 1; se--)
+      T += B.charAt(C - se) * H, H -= 1, H < 2 && (H = 9);
     var ae = T % 11 < 2 ? 0 : 11 - T % 11;
     if (ae !== parseInt(N.charAt(0), 10))
       return !1;
-    x += 1, B = f.substring(0, x), T = 0, H = x - 7;
-    for (var re = x; re >= 1; re--)
-      T += B.charAt(x - re) * H, H -= 1, H < 2 && (H = 9);
+    C += 1, B = f.substring(0, C), T = 0, H = C - 7;
+    for (var re = C; re >= 1; re--)
+      T += B.charAt(C - re) * H, H -= 1, H < 2 && (H = 9);
     return ae = T % 11 < 2 ? 0 : 11 - T % 11, ae === parseInt(N.charAt(1), 10);
   }
   function ze(f) {
@@ -2871,9 +2871,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         return !1;
       for (var D = f.split("").map(function(N) {
         return parseInt(N, 10);
-      }), R = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9], x = 0, B = 0; B < R.length; B++)
-        x += D[B] * R[B];
-      return x % 11 === 10 ? D[12] === 1 : D[12] === x % 11;
+      }), R = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9], C = 0, B = 0; B < R.length; B++)
+        C += D[B] * R[B];
+      return C % 11 === 10 ? D[12] === 1 : D[12] === C % 11;
     }
     return !0;
   }
@@ -2906,10 +2906,10 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     if (f.length > 11)
       A = f.slice(0, 4);
     else if (A = f.slice(0, 2), f.length === 11 && R < 60) {
-      var x = (/* @__PURE__ */ new Date()).getFullYear().toString(), B = parseInt(x.slice(0, 2), 10);
-      if (x = parseInt(x, 10), f[6] === "-")
-        parseInt("".concat(B).concat(A), 10) > x ? A = "".concat(B - 1).concat(A) : A = "".concat(B).concat(A);
-      else if (A = "".concat(B - 1).concat(A), x - parseInt(A, 10) < 100)
+      var C = (/* @__PURE__ */ new Date()).getFullYear().toString(), B = parseInt(C.slice(0, 2), 10);
+      if (C = parseInt(C, 10), f[6] === "-")
+        parseInt("".concat(B).concat(A), 10) > C ? A = "".concat(B - 1).concat(A) : A = "".concat(B).concat(A);
+      else if (A = "".concat(B - 1).concat(A), C - parseInt(A, 10) < 100)
         return !1;
     }
     R > 60 && (R -= 60), R < 10 && (R = "0".concat(R));
@@ -2962,7 +2962,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     "de-AT": h,
     "de-DE": S,
     "dk-DK": I,
-    "el-CY": C,
+    "el-CY": x,
     "el-GR": O,
     "en-CA": _,
     "en-IE": P,
@@ -2975,7 +2975,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     "fr-LU": ee,
     "hr-HR": ke,
     "hu-HU": Ke,
-    "it-IT": Ce,
+    "it-IT": xe,
     "lv-LV": We,
     "mt-MT": be,
     "nl-NL": qe,
@@ -3222,7 +3222,7 @@ var Dr = { exports: {} };
   }
   t.exports = e.default, t.exports.default = e.default;
 })(Dr, Dr.exports);
-var bu = Dr.exports, xr = { exports: {} };
+var bu = Dr.exports, Cr = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -3262,8 +3262,8 @@ var bu = Dr.exports, xr = { exports: {} };
     return (0, s.default)(n), o = (0, l.default)(o, r), a(o).test(n);
   }
   t.exports = e.default, t.exports.default = e.default;
-})(xr, xr.exports);
-var qu = xr.exports, Cr = { exports: {} };
+})(Cr, Cr.exports);
+var qu = Cr.exports, xr = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
@@ -3277,8 +3277,8 @@ var qu = xr.exports, Cr = { exports: {} };
     return (0, l.default)(u), i.test(u) || a.test(u);
   }
   t.exports = e.default, t.exports.default = e.default;
-})(Cr, Cr.exports);
-var Yu = Cr.exports, Ie = {};
+})(xr, xr.exports);
+var Yu = xr.exports, Ie = {};
 Object.defineProperty(Ie, "__esModule", {
   value: !0
 });
@@ -3545,13 +3545,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     if (!(typeof Symbol > "u" || !(Symbol.iterator in Object(p)))) {
       var $ = [], h = !0, S = !1, I = void 0;
       try {
-        for (var C = p[Symbol.iterator](), O; !(h = (O = C.next()).done) && ($.push(O.value), !(_ && $.length === _)); h = !0)
+        for (var x = p[Symbol.iterator](), O; !(h = (O = x.next()).done) && ($.push(O.value), !(_ && $.length === _)); h = !0)
           ;
       } catch (P) {
         S = !0, I = P;
       } finally {
         try {
-          !h && C.return != null && C.return();
+          !h && x.return != null && x.return();
         } finally {
           if (S)
             throw I;
@@ -3580,19 +3580,19 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       throw new TypeError(`Invalid attempt to iterate non-iterable instance.
 In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
     }
-    var I = !0, C = !1, O;
+    var I = !0, x = !1, O;
     return { s: function() {
       $ = p[Symbol.iterator]();
     }, n: function() {
       var L = $.next();
       return I = L.done, L;
     }, e: function(L) {
-      C = !0, O = L;
+      x = !0, O = L;
     }, f: function() {
       try {
         !I && $.return != null && $.return();
       } finally {
-        if (C)
+        if (x)
           throw O;
       }
     } };
@@ -3621,10 +3621,10 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     }, h = !1, S = p.split("&");
     if (S.length > 4)
       return !1;
-    var I = d(S), C;
+    var I = d(S), x;
     try {
-      for (I.s(); !(C = I.n()).done; ) {
-        var O = C.value, P = O.split("="), L = r(P, 2), Z = L[0], F = L[1];
+      for (I.s(); !(x = I.n()).done; ) {
+        var O = x.value, P = O.split("="), L = r(P, 2), Z = L[0], F = L[1];
         if (Z && !_.has(Z)) {
           h = !0;
           break;
@@ -3641,7 +3641,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   function E(p, _) {
     if ((0, i.default)(p), p.indexOf("mailto:") !== 0)
       return !1;
-    var $ = p.replace("mailto:", "").split("?"), h = r($, 2), S = h[0], I = S === void 0 ? "" : S, C = h[1], O = C === void 0 ? "" : C;
+    var $ = p.replace("mailto:", "").split("?"), h = r($, 2), S = h[0], I = S === void 0 ? "" : S, x = h[1], O = x === void 0 ? "" : x;
     if (!I && !O)
       return !0;
     var P = m(O);
@@ -4087,21 +4087,21 @@ Object.defineProperty(De, "__esModule", {
 });
 De.default = Oi;
 De.vatMatchers = void 0;
-var sa = Ci(y), Di = xi(fe);
-function xa() {
+var sa = xi(y), Di = Ci(fe);
+function Ca() {
   if (typeof WeakMap != "function")
     return null;
   var t = /* @__PURE__ */ new WeakMap();
-  return xa = function() {
+  return Ca = function() {
     return t;
   }, t;
 }
-function xi(t) {
+function Ci(t) {
   if (t && t.__esModule)
     return t;
   if (t === null || we(t) !== "object" && typeof t != "function")
     return { default: t };
-  var e = xa();
+  var e = Ca();
   if (e && e.has(t))
     return e.get(t);
   var l = {}, s = Object.defineProperty && Object.getOwnPropertyDescriptor;
@@ -4112,7 +4112,7 @@ function xi(t) {
     }
   return l.default = t, e && e.set(t, l), l;
 }
-function Ci(t) {
+function xi(t) {
   return t && t.__esModule ? t : { default: t };
 }
 var Pi = function(e) {
@@ -4362,7 +4362,7 @@ function Oi(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
   }), e.default = void 0;
-  var s = M(ta), i = M(da), a = M(gn), r = M(An), u = M(hn), n = M(Sn), o = M($n), d = M(pa), v = M(mn), g = M(Mn), m = M(Ge), E = M(yn), p = M(ra), _ = M(_a), $ = M(In), h = M(Rn), S = M(En), I = ce($e), C = ce(me), O = M(Zn), P = M(Fn), L = M(Tn), Z = M(wn), F = M(Hn), k = M(Un), j = M(Gn), W = M(_e), le = M(ge), ne = M(Vn), ee = M(zn), ke = M(Xn), Ke = M(Qn), xe = M(aa), Ce = ce(pe), We = M(eu), be = M(ha), qe = M(tu), Ye = M(ru), Ve = M(au), ze = M(nu), Je = M(uu), Xe = M(iu), Pe = ce(Me), Qe = M(hu), J = M(Su), X = M($u), Le = M(mu), oe = M(Mu), je = M(yu), f = M(Iu), c = M(va), A = M(Ru), D = M(Eu), R = M(Du), x = M(xu), B = M(Cu), N = M(ma), T = M(Pu), H = M(Lu), se = M(Ou), ae = M(Bu), re = M(Nu), he = M(Zu), Oe = M(Uu), ue = ce(ye), de = M(bu), Be = M(qu), La = M(Yu), na = Ie, Oa = M(ju), Ba = M(ei), Na = M(ti), Za = M(Ae), Fa = M(ri), Ta = M(Re), wa = M(li), Ha = M(si), Ua = M($a), Ga = M(fi), ka = M(oi), Ka = M(di), Wa = M(ci), ba = M(vi), ua = ce(Ee), qa = M(Ra), Ya = M(Ia), Va = M(Ea), za = M(hi), Ja = M(Si), Xa = M($i), Qa = M(mi), ja = M(Da), en = M(Mi), tn = M(yi), rn = M(Ii), an = M(Ri), nn = M(Ei), un = M(De);
+  var s = M(ta), i = M(da), a = M(gn), r = M(An), u = M(hn), n = M(Sn), o = M($n), d = M(pa), v = M(mn), g = M(Mn), m = M(Ge), E = M(yn), p = M(ra), _ = M(_a), $ = M(In), h = M(Rn), S = M(En), I = ce($e), x = ce(me), O = M(Zn), P = M(Fn), L = M(Tn), Z = M(wn), F = M(Hn), k = M(Un), j = M(Gn), W = M(_e), le = M(ge), ne = M(Vn), ee = M(zn), ke = M(Xn), Ke = M(Qn), Ce = M(aa), xe = ce(pe), We = M(eu), be = M(ha), qe = M(tu), Ye = M(ru), Ve = M(au), ze = M(nu), Je = M(uu), Xe = M(iu), Pe = ce(Me), Qe = M(hu), J = M(Su), X = M($u), Le = M(mu), oe = M(Mu), je = M(yu), f = M(Iu), c = M(va), A = M(Ru), D = M(Eu), R = M(Du), C = M(Cu), B = M(xu), N = M(ma), T = M(Pu), H = M(Lu), se = M(Ou), ae = M(Bu), re = M(Nu), he = M(Zu), Oe = M(Uu), ue = ce(ye), de = M(bu), Be = M(qu), La = M(Yu), na = Ie, Oa = M(ju), Ba = M(ei), Na = M(ti), Za = M(Ae), Fa = M(ri), Ta = M(Re), wa = M(li), Ha = M(si), Ua = M($a), Ga = M(fi), ka = M(oi), Ka = M(di), Wa = M(ci), ba = M(vi), ua = ce(Ee), qa = M(Ra), Ya = M(Ia), Va = M(Ea), za = M(hi), Ja = M(Si), Xa = M($i), Qa = M(mi), ja = M(Da), en = M(Mi), tn = M(yi), rn = M(Ii), an = M(Ri), nn = M(Ei), un = M(De);
   function ia() {
     if (typeof WeakMap != "function")
       return null;
@@ -4410,8 +4410,8 @@ function Oi(t, e) {
     isBIC: Qe.default,
     isAlpha: I.default,
     isAlphaLocales: I.locales,
-    isAlphanumeric: C.default,
-    isAlphanumericLocales: C.locales,
+    isAlphanumeric: x.default,
+    isAlphanumericLocales: x.locales,
     isNumeric: O.default,
     isPassportNumber: P.default,
     isPort: L.default,
@@ -4424,10 +4424,10 @@ function Oi(t, e) {
     isMultibyte: ee.default,
     isSemVer: ke.default,
     isSurrogatePair: Ke.default,
-    isInt: xe.default,
+    isInt: Ce.default,
     isIMEI: k.default,
-    isFloat: Ce.default,
-    isFloatLocales: Ce.locales,
+    isFloat: xe.default,
+    isFloatLocales: xe.locales,
     isDecimal: We.default,
     isHexadecimal: be.default,
     isOctal: qe.default,
@@ -4447,7 +4447,7 @@ function Oi(t, e) {
     isUUID: A.default,
     isMongoId: D.default,
     isAfter: R.default,
-    isBefore: x.default,
+    isBefore: C.default,
     isIn: B.default,
     isLuhnNumber: N.default,
     isCreditCard: T.default,
@@ -4502,7 +4502,7 @@ function Oi(t, e) {
   e.default = fn, t.exports = e.default, t.exports.default = e.default;
 })(st, st.exports);
 var Bi = st.exports;
-const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), ki = (t) => {
+const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), bi = (t) => {
   let e = {};
   for (var l in t) {
     var s = t[l];
@@ -4513,9 +4513,9 @@ const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
 }, Fi = (t) => {
   var n, o;
   let e = [], l = t.required;
-  if (t.required == !0 && Ui(t)) {
+  if (t.required == !0 && Ki(t)) {
     var s = ((n = t.errorMessage) == null ? void 0 : n.required) || "This field is mandatory";
-    e.push(He(Hi, s));
+    e.push(He(ki, s));
   }
   if (t.length) {
     var i = t.length.message || "Invalid size";
@@ -4527,7 +4527,7 @@ const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
       const d = a[0];
       e.push(Ti(t, d == "OR"));
     } else {
-      var r = Ca(t, a), u = ((o = t.errorMessage) == null ? void 0 : o.rule) || "Invalid";
+      var r = xa(t, a), u = ((o = t.errorMessage) == null ? void 0 : o.rule) || "Invalid";
       e.push(He(r, u));
     }
   }
@@ -4546,7 +4546,7 @@ const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
   return s instanceof Array && s.map((i, a) => {
     var n;
     if (!(e && a == 0)) {
-      var r = Ca(t, i), u = ((n = t.errorMessage) == null ? void 0 : n[i]) || "Invalid";
+      var r = xa(t, i), u = ((n = t.errorMessage) == null ? void 0 : n[i]) || "Invalid";
       l.push(He(r, u));
     }
   }), e ? (i) => {
@@ -4581,7 +4581,7 @@ const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
     if (s)
       return (i) => i.length <= s;
   }
-}, Ca = (t, e) => {
+}, xa = (t, e) => {
   if (e)
     switch (e) {
       case "string":
@@ -4610,13 +4610,19 @@ const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
         return Zi;
       case "password":
         return te.isStrongPassword;
+      case "oneLowerCase":
+        return Hi;
+      case "oneUpperCase":
+        return Ui;
+      case "oneSpecialChar":
+        return Gi;
     }
   return fa;
-}, fa = () => !0, Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? te.isEmpty(t) : !t, Hi = (t) => !Pa(t);
+}, fa = () => !0, Hi = (t) => /^(.*[a-z].*)$/.test(t), Ui = (t) => /^(.*[A-Z].*)$/.test(t), Gi = (t) => /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(t), Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? te.isEmpty(t) : !t, ki = (t) => !Pa(t);
 function He(t, e) {
   return (l) => t.call(null, l) ? { status: !0, message: "" } : { status: !1, message: e };
 }
-function Ui(t) {
+function Ki(t) {
   switch (t.type) {
     case "switch":
       return !1;
@@ -4626,5 +4632,5 @@ function Ui(t) {
 }
 export {
   Fi as default,
-  ki as getValidators
+  bi as getValidators
 };
