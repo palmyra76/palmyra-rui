@@ -160,6 +160,8 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
                 return isFolder;
             case 'portrange':
                 return isPortRange;
+            case 'password':
+                return validator.isPassword;
         }
     }
     return noopValid;
@@ -205,7 +207,7 @@ function isRequiredSupported(format: FieldDefinition) {
     switch (format.type) {
         case 'switch':
             return false;
-    
+
         default:
             return true;
     }

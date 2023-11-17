@@ -2694,9 +2694,9 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     var se = "".concat(c[6]).concat(c[7], "/").concat(T, "/").concat(H);
     if (!(0, a.default)(se, "YY/MM/DD"))
       return !1;
-    for (var ae = 0, te = 1; te < c.length - 1; te += 2) {
-      var he = parseInt(c[te], 10);
-      isNaN(he) && (he = c[te].charCodeAt(0) - 65), ae += he;
+    for (var ae = 0, re = 1; re < c.length - 1; re += 2) {
+      var he = parseInt(c[re], 10);
+      isNaN(he) && (he = c[re].charCodeAt(0) - 65), ae += he;
     }
     for (var Oe = {
       // Maps of characters at odd places
@@ -2836,8 +2836,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     if (ae !== parseInt(N.charAt(0), 10))
       return !1;
     x += 1, B = f.substring(0, x), T = 0, H = x - 7;
-    for (var te = x; te >= 1; te--)
-      T += B.charAt(x - te) * H, H -= 1, H < 2 && (H = 9);
+    for (var re = x; re >= 1; re--)
+      T += B.charAt(x - re) * H, H -= 1, H < 2 && (H = 9);
     return ae = T % 11 < 2 ? 0 : 11 - T % 11, ae === parseInt(N.charAt(1), 10);
   }
   function ze(f) {
@@ -4362,7 +4362,7 @@ function Oi(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
   }), e.default = void 0;
-  var s = M(ta), i = M(da), a = M(gn), r = M(An), u = M(hn), n = M(Sn), o = M($n), d = M(pa), v = M(mn), g = M(Mn), m = M(Ge), E = M(yn), p = M(ra), _ = M(_a), $ = M(In), h = M(Rn), S = M(En), I = ce($e), C = ce(me), O = M(Zn), P = M(Fn), L = M(Tn), Z = M(wn), F = M(Hn), k = M(Un), j = M(Gn), W = M(_e), le = M(ge), ne = M(Vn), ee = M(zn), ke = M(Xn), Ke = M(Qn), xe = M(aa), Ce = ce(pe), We = M(eu), be = M(ha), qe = M(tu), Ye = M(ru), Ve = M(au), ze = M(nu), Je = M(uu), Xe = M(iu), Pe = ce(Me), Qe = M(hu), J = M(Su), X = M($u), Le = M(mu), oe = M(Mu), je = M(yu), f = M(Iu), c = M(va), A = M(Ru), D = M(Eu), R = M(Du), x = M(xu), B = M(Cu), N = M(ma), T = M(Pu), H = M(Lu), se = M(Ou), ae = M(Bu), te = M(Nu), he = M(Zu), Oe = M(Uu), ue = ce(ye), de = M(bu), Be = M(qu), La = M(Yu), na = Ie, Oa = M(ju), Ba = M(ei), Na = M(ti), Za = M(Ae), Fa = M(ri), Ta = M(Re), wa = M(li), Ha = M(si), Ua = M($a), Ga = M(fi), ka = M(oi), Ka = M(di), Wa = M(ci), ba = M(vi), ua = ce(Ee), qa = M(Ra), Ya = M(Ia), Va = M(Ea), za = M(hi), Ja = M(Si), Xa = M($i), Qa = M(mi), ja = M(Da), en = M(Mi), tn = M(yi), rn = M(Ii), an = M(Ri), nn = M(Ei), un = M(De);
+  var s = M(ta), i = M(da), a = M(gn), r = M(An), u = M(hn), n = M(Sn), o = M($n), d = M(pa), v = M(mn), g = M(Mn), m = M(Ge), E = M(yn), p = M(ra), _ = M(_a), $ = M(In), h = M(Rn), S = M(En), I = ce($e), C = ce(me), O = M(Zn), P = M(Fn), L = M(Tn), Z = M(wn), F = M(Hn), k = M(Un), j = M(Gn), W = M(_e), le = M(ge), ne = M(Vn), ee = M(zn), ke = M(Xn), Ke = M(Qn), xe = M(aa), Ce = ce(pe), We = M(eu), be = M(ha), qe = M(tu), Ye = M(ru), Ve = M(au), ze = M(nu), Je = M(uu), Xe = M(iu), Pe = ce(Me), Qe = M(hu), J = M(Su), X = M($u), Le = M(mu), oe = M(Mu), je = M(yu), f = M(Iu), c = M(va), A = M(Ru), D = M(Eu), R = M(Du), x = M(xu), B = M(Cu), N = M(ma), T = M(Pu), H = M(Lu), se = M(Ou), ae = M(Bu), re = M(Nu), he = M(Zu), Oe = M(Uu), ue = ce(ye), de = M(bu), Be = M(qu), La = M(Yu), na = Ie, Oa = M(ju), Ba = M(ei), Na = M(ti), Za = M(Ae), Fa = M(ri), Ta = M(Re), wa = M(li), Ha = M(si), Ua = M($a), Ga = M(fi), ka = M(oi), Ka = M(di), Wa = M(ci), ba = M(vi), ua = ce(Ee), qa = M(Ra), Ya = M(Ia), Va = M(Ea), za = M(hi), Ja = M(Si), Xa = M($i), Qa = M(mi), ja = M(Da), en = M(Mi), tn = M(yi), rn = M(Ii), an = M(Ri), nn = M(Ei), un = M(De);
   function ia() {
     if (typeof WeakMap != "function")
       return null;
@@ -4454,7 +4454,7 @@ function Oi(t, e) {
     isIdentityCard: H.default,
     isEAN: se.default,
     isISIN: ae.default,
-    isISBN: te.default,
+    isISBN: re.default,
     isISSN: he.default,
     isMobilePhone: ue.default,
     isMobilePhoneLocales: ue.locales,
@@ -4502,7 +4502,7 @@ function Oi(t, e) {
   e.default = fn, t.exports = e.default, t.exports.default = e.default;
 })(st, st.exports);
 var Bi = st.exports;
-const re = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), ki = (t) => {
+const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), ki = (t) => {
   let e = {};
   for (var l in t) {
     var s = t[l];
@@ -4587,30 +4587,32 @@ const re = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
       case "string":
         return fa;
       case "alphabets":
-        return re.isAlpha;
+        return te.isAlpha;
       case "date":
-        return re.isDate;
+        return te.isDate;
       case "time":
-        return re.isTime;
+        return te.isTime;
       case "number":
-        return re.isNumeric;
+        return te.isNumeric;
       case "email":
-        return re.isEmail;
+        return te.isEmail;
       case "mobilePhone":
-        return re.isMobilePhone;
+        return te.isMobilePhone;
       case "port":
-        return re.isPort;
+        return te.isPort;
       case "ip":
-        return re.isIP;
+        return te.isIP;
       case "fqdn":
-        return re.isFQDN;
+        return te.isFQDN;
       case "folder":
         return Ni;
       case "portrange":
         return Zi;
+      case "password":
+        return te.isPassword;
     }
   return fa;
-}, fa = () => !0, Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? re.isEmpty(t) : !t, Hi = (t) => !Pa(t);
+}, fa = () => !0, Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? te.isEmpty(t) : !t, Hi = (t) => !Pa(t);
 function He(t, e) {
   return (l) => t.call(null, l) ? { status: !0, message: "" } : { status: !1, message: e };
 }
