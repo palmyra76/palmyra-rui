@@ -1,21 +1,22 @@
-import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { FormControl, FormControlLabel, FormHelperText, Radio, RadioGroup } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IRadioGroupDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref) {
+const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref:MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
+    const currentRef = ref ? ref : useRef(null);
     const { options } = props;
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'radio');
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'radio', currentRef);
     const row: boolean = props.flexDirection != 'column';
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
     const inputRef: any = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(currentRef, () => {
         return {
             focus() {
                 inputRef.current.focus();
@@ -25,6 +26,9 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
             },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
+            },
+            setValue(d){
+                fieldManager.setData(d)
             }
         };
     }, []);

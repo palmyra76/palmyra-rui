@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import { P as t } from "../../index-b9481105.js";
+import { P as t } from "../../index-dd123fe7.js";
 export {
   t as PalmyraGrid
 };

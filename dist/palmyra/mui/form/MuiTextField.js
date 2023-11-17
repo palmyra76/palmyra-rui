@@ -1,44 +1,47 @@
-import { jsx as l } from "react/jsx-runtime";
-import { forwardRef as c, useContext as m, useRef as d, useImperativeHandle as f } from "react";
-import { TextField as g } from "@mui/material";
-import { copyMuiOptions as C } from "./MuiUtil.js";
-import { FieldManagerContext as F } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import x from "./FieldDecorator.js";
-const p = c(function(e, i) {
-  const t = m(F)(e, "string"), r = t.error, n = t.eventListeners, a = d(null);
-  f(i, () => ({
+import { jsx as i } from "react/jsx-runtime";
+import { forwardRef as f, useContext as C, useRef as c, useImperativeHandle as g } from "react";
+import { TextField as F } from "@mui/material";
+import { copyMuiOptions as x } from "./MuiUtil.js";
+import { FieldManagerContext as b } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import v from "./FieldDecorator.js";
+const A = f(function(e, o) {
+  const m = C(b), l = o || c(null), t = m(e, "string", l), r = t.error, n = t.eventListeners, s = c(null);
+  g(l, () => ({
     focus() {
-      a.current.focus();
+      s.current.focus();
     },
     isValid() {
       return !r.status;
     },
-    assignAttribute(s) {
-      a.current.assignAttribute(s);
+    assignAttribute(a) {
+      s.current.assignAttribute(a);
+    },
+    clear() {
+      t.setData("");
     }
   }), []);
-  var o = C(e, t.data, e.label);
-  e.readonly && (o.inputProps = { readOnly: !0 });
-  var u = {
+  var u = x(e, t.data, e.label);
+  e.readonly && (u.inputProps = { readOnly: !0 });
+  var d = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
-    onChange: (s) => n.onValueChange(s.target.value)
+    onChange: (a) => n.onValueChange(a.target.value)
   };
-  return /* @__PURE__ */ l(
-    x,
+  return /* @__PURE__ */ i(
+    v,
     {
       label: e.title,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ l(
-        g,
+      children: /* @__PURE__ */ i(
+        F,
         {
-          ...o,
-          fullWidth: !0,
-          inputRef: a,
           ...u,
+          fullWidth: !0,
+          inputRef: s,
+          ...d,
           error: r.status,
           helperText: r.message
         }
@@ -47,5 +50,5 @@ const p = c(function(e, i) {
   );
 });
 export {
-  p as default
+  A as default
 };

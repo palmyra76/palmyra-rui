@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EventHandler } from "./Types";
+import { EventHandler, IFieldEventListener, IFieldValueListener, NoopFieldEventListener, NoopFieldValueListener } from "./Types";
 import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 
 import { delay } from '../utils';
@@ -8,17 +8,25 @@ import { IEventListeners, IFormFieldManager } from "./interface";
 
 
 const getDefaultValue = (fieldDef: FieldDefinition, value: InputType): any => {
-    if(value == undefined)
+    if (value == undefined)
         return fieldDef.defaultValue || '';
     return value;
 }
 
 function getEventListeners<T>(fieldDef: FieldDefinition,
     value: any,
-    onDataChange: Function, constraint: Function,
-    eventHandler: EventHandler): IFormFieldManager {
+    onDataChange: (key: string, d: any, v: { [x: string]: boolean }) => void,
+    constraint: Function,
+    eventHandler: EventHandler, eventListener?: IFieldEventListener, valueListener?: IFieldValueListener
+): IFormFieldManager {
 
+    if(eventListener)
+        console.log(fieldDef.attribute, eventListener)
+
+    const fieldEventListener = eventListener || NoopFieldEventListener;
+    const fieldValueListener = valueListener || NoopFieldValueListener;
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
+
     const [_v, setVal] = useState(value);
     const [data, setData] = useState(getData(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
@@ -40,16 +48,19 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
      * @param doValidate 
      */
     const setValue = (value: any, doValidate?: boolean) => {
-        setData(value || '');
+        setData(value || '');        
         if (doValidate) {
             delay(() => {
                 validate(value);
+                const attrib = fieldDef.attribute;
+                const key = fieldDef.name || attrib;
+                const validStatus = checkConstraints(value);
                 if (onDataChange) {
                     const formattedValue = formatter.format(value);
-                    var key = fieldDef.attribute;
-                    const validStatus = checkConstraints(value);
-                    onDataChange({ [key]: formattedValue }, { [key]: validStatus.status });
+                    onDataChange(attrib, formattedValue, { [attrib]: validStatus.status });
                 }
+                fieldEventListener.onChange(key, value, validStatus.status);
+                fieldValueListener.onValue(key, value, validStatus.status);
             });
         }
     }
@@ -83,7 +94,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     }
 
     const applyAttribute = (_attr: any) => {
-        
+
     }
 
     const hideErrorMessage = () => {
@@ -120,7 +131,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     useEffect(() => {
         var key = fieldDef.attribute;
         const validStatus = checkConstraints(data);
-        onDataChange({}, { [key]: validStatus.status });
+        onDataChange(undefined, undefined, { [key]: validStatus.status });
     }, []);
 
     return { data, setData: setValue, error, eventListeners };

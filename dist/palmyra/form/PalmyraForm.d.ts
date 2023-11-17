@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { FormMode } from "./Types";
+import { IFormCustomizer, FormMode } from "./Types";
 import { StoreFactory } from "../../main";
 interface IPalmyraFormInput {
     children?: any;
@@ -7,6 +7,7 @@ interface IPalmyraFormInput {
     onValidChange: Function;
     mode: FormMode;
     storeFactory?: StoreFactory<any>;
+    customizer?: IFormCustomizer;
 }
 interface IPalmyraForm {
     getData: () => any;

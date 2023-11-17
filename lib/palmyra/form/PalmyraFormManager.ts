@@ -7,17 +7,41 @@ import { getValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
 import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
-import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
-import { FormMode } from "./Types";
-import { useMemo, useRef } from "react";
+import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
+import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode, NoopFormHelper } from "./Types";
+import { MutableRefObject, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
 
 
-function createFormData(data, onValidityChange, mode: FormMode) {
+function createFormHelper(): IFormHelper {
+    const fieldRefs: Record<string, MutableRefObject<any>> = {};
+
+    const getFieldRef = <T>(field: string, type: T): T => {
+        const ref = fieldRefs[field];
+        if (ref)
+            return ref.current;
+    }
+
+    const addFieldRef = (field: string, ref: MutableRefObject<any>): void => {
+        fieldRefs[field] = ref;
+    }
+
+    return { addFieldRef, getFieldRef };
+}
+
+interface IListeners {
+    changeListeners: Record<string, IFieldEventListener>
+    valueListeners: Record<string, IFieldValueListener>
+}
+
+function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
+    listeners?: IListeners) {
+    const formListeners: IListeners = listeners || { changeListeners: {}, valueListeners: {} };
+
+    const _formHelper = formHelper || NoopFormHelper;
     var validationFormat: Record<string, FieldDefinition> = {};
     var validationRules = {};
     const isValid = useRef(false);
-
     var formDataRef = useRef(mergeDeep({}, data));
     const onDataValidityChange = onValidityChange;
     var dataValidRef = useRef({});
@@ -32,7 +56,8 @@ function createFormData(data, onValidityChange, mode: FormMode) {
         mergeDeep(formDataRef.current, defaultData);
     }
 
-    const onDataChange = (data: any, validity: any) => {
+    const onDataChange = (attribute: string, value: any, validity: { [x: string]: boolean }) => {
+        const data = attribute ? { attribute: value } : {};
         dataValid = Object.assign({}, dataValid, validity);
         mergeDeep(formDataRef.current, data);
         const _isValid = isValidForm(dataValid);
@@ -53,16 +78,23 @@ function createFormData(data, onValidityChange, mode: FormMode) {
         return true;
     }
 
-    const getFieldManager = useMemo(() => {
+    const getFieldManager = useMemo((): IGetFieldManager => {
         formDataRef.current = mergeDeep({}, data);
-        const generate = (field: AttributeDefinition, type: FieldType): IFormFieldManager => {
+        const generate = (field: AttributeDefinition, type: FieldType, ref: any): IFormFieldManager => {
+            var fieldAttrib = field.name || field.attribute;
             // @ts-ignore
             var fieldDef: FieldDefinition = { ...field, type }
+            if (ref)
+                _formHelper.addFieldRef(fieldAttrib, ref);
+
             const validationRule = getValidator(fieldDef);
             validationFormat[fieldDef.attribute] = fieldDef;
             validationRules[fieldDef.attribute] = validationRule;
+
+            const changeListener = formListeners.changeListeners[fieldAttrib]
+            const valueListener = formListeners.valueListeners[fieldAttrib];
             var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
-                onDataChange, validationRule, undefined);
+                onDataChange, validationRule, undefined, changeListener, valueListener);
 
             try {
                 if (requireStore(fieldDef)) {
@@ -76,13 +108,11 @@ function createFormData(data, onValidityChange, mode: FormMode) {
                 var titleAttribute = fieldDef.lookupOptions?.titleAttribute || fieldDef.lookupOptions?.idAttribute
                 result.displayValue = getValueByKey(titleAttribute, data);
             }
-            
+
             return result;
         }
         return generate;
     }, [data])
-
-
 
     const getFormData = () => {
         return mergeDeep({}, formDataRef.current); // Return deep copied object.
@@ -93,13 +123,13 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     }
 
     const initForm = () => {
-        
+
     }
 
     return { getFieldManager, getFormData, initForm, isFormValid };
 }
 
-export { createFormData };
+export { createFormData, createFormHelper };
 
 function requireStore(fieldDef: FieldDefinition) {
     return (fieldDef.storeOptions?.endPoint) ? true : false;

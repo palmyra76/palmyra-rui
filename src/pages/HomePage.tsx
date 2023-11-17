@@ -5,7 +5,7 @@ import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
 import MuiSelect from "../../lib/palmyra/mui/form/MuiSelect";
 import MuiRadioGroup from "../../lib/palmyra/mui/form/MuiRadioGroup";
 import MuiDatePicker from "../../lib/palmyra/mui/form/MuiDatePicker";
-import { MuiDateTimePicker, MuiServerLookup, StoreFactory } from "../../lib/main";
+import { IFieldEventListener, IFormCustomizer, FormHelper, MuiDateTimePicker, MuiServerLookup, StoreFactory } from "../../lib/main";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
@@ -14,6 +14,7 @@ import SectionContainer from "../../lib/palmyra/layout/container/SectionContaine
 import { IPalmyraForm, PalmyraForm } from "../../lib/palmyra/form/PalmyraForm";
 import FormFieldContainer from "../../lib/palmyra/layout/container/FieldGroupContainer";
 import MuiPassword from "../../lib/palmyra/mui/form/MuiPassword";
+import { createFormHelper } from "../../lib/palmyra/form/PalmyraFormManager";
 
 
 const HomePage = () => {
@@ -22,17 +23,35 @@ const HomePage = () => {
     const [data, setData] = useState({});
 
     const onValidityChange = (valid: boolean): void => {
-        // if (valid != undefined)
-        //     setValid(valid);
-
         setValid(valid);
-        console.log("validity changed to " + formRef.current.isValid());
-        console.log(formRef.current.getData());
+        console.log("validity changed to " + formRef.current.isValid(), formRef.current.getData());
     }
 
     const submitData = () => {
         console.log(formRef.current.getData());
-        console.log(formRef.current.isValid());
+    }
+
+    const formHelper: FormHelper = createFormHelper();
+
+    const genderEventListener: IFieldEventListener = {
+        onChange: function (key: string, value: any, valid?: boolean): void {
+            const gendersField: any = formHelper.getFieldRef('genders', 'any');
+            gendersField.setValue(value);
+        }
+    }
+
+    const customizer: IFormCustomizer = {
+        getFormHelper: function () {
+            return formHelper
+        },
+        getOnChangeListeners: function (){
+            return {
+                'gender': genderEventListener
+            }
+        },
+        getValueListeners: function (){
+            return {};
+        }
     }
 
     useEffect(() => {
@@ -50,13 +69,10 @@ const HomePage = () => {
 
     const storeFactory: StoreFactory<any> = new AppStoreFactory();
 
-    console.log(data);
-
-
     return (<>
 
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
-            <PalmyraForm storeFactory={storeFactory}
+            <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
                 <SectionContainer title='Welcome'>
@@ -80,7 +96,7 @@ const HomePage = () => {
                                 'oneUpperCase': 'Invalid upper',
                                 'oneSpecialChar': 'One Special Char'
                             }}
-                            length={{ min: 8, message:'Atleast min 8 chars' }}
+                            length={{ min: 8, message: 'Atleast min 8 chars' }}
                             attribute="password"
                             validationRule={["oneUpperCase", 'oneLowerCase', 'oneSpecialChar']}
                         />

@@ -1,14 +1,15 @@
-import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
 import { ICheckboxDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref) {
+const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref:MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
+    const currentRef = ref ? ref : useRef(null);
     const { options } = props;
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox');
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox', currentRef);
     const values = fieldManager.data ? fieldManager.data.split(',') : [];
     const flexDirection = props.flexDirection || 'row';
     const error: IFormFieldError = fieldManager.error;
@@ -16,7 +17,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
 
     const inputRef: any = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(currentRef, () => {
         return {
             focus() {
                 inputRef.current.focus();

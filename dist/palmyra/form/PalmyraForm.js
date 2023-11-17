@@ -1,19 +1,21 @@
-import { jsx as e, Fragment as l } from "react/jsx-runtime";
-import { forwardRef as c, useImperativeHandle as F } from "react";
-import { createFormData as f } from "./PalmyraFormManager.js";
-import { StoreFactoryContext as g, FieldManagerContext as u } from "../layout/flexiLayout/FlexiLayoutContext.js";
-const C = c(function(r, n) {
-  const a = r.formData, t = r.onValidChange, o = r.mode;
-  var { getFieldManager: i, getFormData: m, isFormValid: d } = f(a, t, o);
-  return F(n, () => ({
+import { jsx as a, Fragment as u } from "react/jsx-runtime";
+import { forwardRef as F, useImperativeHandle as f } from "react";
+import { b as h, d as v } from "../../PalmyraFormManager-4361247a.js";
+import { StoreFactoryContext as C, FieldManagerContext as y } from "../layout/flexiLayout/FlexiLayoutContext.js";
+const z = F(function(e, m) {
+  const r = e.customizer || h, o = e.formData, n = e.onValidChange, i = e.mode;
+  var t = r.getFormHelper();
+  const s = r.getOnChangeListeners(t), l = r.getValueListeners(t);
+  var { getFieldManager: d, getFormData: c, isFormValid: g } = v(o, n, i, t, { changeListeners: s, valueListeners: l });
+  return f(m, () => ({
     getData() {
-      return m();
+      return c();
     },
     isValid() {
-      return d();
+      return g();
     }
-  }), [a, t, o]), /* @__PURE__ */ e(l, { children: /* @__PURE__ */ e(g.Provider, { value: r.storeFactory, children: /* @__PURE__ */ e(u.Provider, { value: i, children: r.children }) }) });
+  }), [o, n, i]), /* @__PURE__ */ a(u, { children: /* @__PURE__ */ a(C.Provider, { value: e.storeFactory, children: /* @__PURE__ */ a(y.Provider, { value: d, children: e.children }) }) });
 });
 export {
-  C as PalmyraForm
+  z as PalmyraForm
 };

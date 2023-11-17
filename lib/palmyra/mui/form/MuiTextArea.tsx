@@ -1,22 +1,22 @@
-import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition, ref) {
+const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition, ref:MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-
+    const currentRef = ref ? ref : useRef(null);
     // @ts-ignore
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'string');
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
 
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
     const inputRef: any = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(currentRef, () => {
         return {
             focus() {
                 inputRef.current.focus();

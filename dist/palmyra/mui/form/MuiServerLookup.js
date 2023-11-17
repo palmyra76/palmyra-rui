@@ -1,135 +1,139 @@
-import { jsx as r, jsxs as v, Fragment as k } from "react/jsx-runtime";
-import { forwardRef as E, useContext as H, useRef as L, useState as y, useImperativeHandle as N, useEffect as S, useMemo as G } from "react";
-import { FormControl as J, InputLabel as Q, Select as U, ListSubheader as X, TextField as Y, InputAdornment as Z, MenuItem as _, FormHelperText as $ } from "@mui/material";
-import { copyMuiOptions as ee } from "./MuiUtil.js";
-import { Search as te, DeleteOutlined as re } from "@mui/icons-material";
-import { delay as ne } from "../../utils/index.js";
-import { getValueByKey as K, setValueByKey as D } from "../../form/FormUtil.js";
-import { m as oe, p as se } from "../../../index-1171ae7f.js";
-import { FieldManagerContext as ae } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import ie from "./FieldDecorator.js";
-import { hasDot as I } from "../../utils/StringUtil.js";
-const Ce = E(function(t, f) {
-  const n = H(ae)(t, "serverlookup"), l = t.store || n.store, m = t.lookupOptions || {}, u = m.idAttribute || "id", s = m.titleAttribute || "name", P = m.searchAttribute || s, C = L(null), [h, F] = y([]), [T, B] = y(n.displayValue), [a, R] = y(""), p = n.error, c = n.data, g = n.eventListeners, M = L(null);
-  N(f, () => ({
+import { jsx as r, jsxs as y, Fragment as S } from "react/jsx-runtime";
+import { forwardRef as H, useContext as N, useRef as b, useState as C, useImperativeHandle as G, useEffect as K, useMemo as J } from "react";
+import { FormControl as Q, InputLabel as U, Select as X, ListSubheader as Y, TextField as Z, InputAdornment as _, MenuItem as $, FormHelperText as ee } from "@mui/material";
+import { copyMuiOptions as te } from "./MuiUtil.js";
+import { Search as re, DeleteOutlined as ne } from "@mui/icons-material";
+import { delay as oe } from "../../utils/index.js";
+import { getValueByKey as D, setValueByKey as I } from "../../form/FormUtil.js";
+import { m as se, p as ae } from "../../../index-1171ae7f.js";
+import { FieldManagerContext as ie } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import le from "./FieldDecorator.js";
+import { hasDot as P } from "../../utils/StringUtil.js";
+const Fe = H(function(t, u) {
+  const m = N(ie), s = u || b(null), n = m(t, "serverlookup", s), F = t.store || n.store, h = t.lookupOptions || {}, c = h.idAttribute || "id", a = h.titleAttribute || "name", R = h.searchAttribute || a, O = b(null), [p, x] = C([]), [T, B] = C(n.displayValue), [i, W] = C(""), g = n.error, d = n.data, v = n.eventListeners, M = b(null);
+  G(s, () => ({
     focus() {
       M.current.focus();
     },
     isValid() {
-      return !p.status;
+      return !g.status;
     },
     assignAttribute(e) {
       M.current.assignAttribute(e);
+    },
+    setFilter(e) {
+    },
+    clear() {
     }
   }), []);
-  const d = I(u) ? (e) => K(u, e) : (e) => e[u], W = I(s) ? (e) => K(s, e) : (e) => e[s];
-  S(() => {
+  const f = P(c) ? (e) => D(c, e) : (e) => e[c], q = P(a) ? (e) => D(a, e) : (e) => e[a];
+  K(() => {
     B(n.displayValue);
-  }, [n.displayValue]), G(() => {
-    var e = q();
-    e && (F([e]), C.current = e);
+  }, [n.displayValue]), J(() => {
+    var e = j();
+    e && (x([e]), O.current = e);
   }, [T]);
-  function q() {
-    if (c) {
+  function j() {
+    if (d) {
       var e = {};
-      D(u, e, c);
-      const o = n.displayValue || c;
-      return D(s, e, o), e;
+      I(c, e, d);
+      const o = n.displayValue || d;
+      return I(a, e, o), e;
     }
   }
-  function O(e) {
-    const o = C.current;
-    e && o && !j(e, d(o)) && e.unshift(o), F(e);
+  function A(e) {
+    const o = O.current;
+    e && o && !w(e, f(o)) && e.unshift(o), x(e);
   }
-  function j(e, o) {
-    return e.find((V) => {
-      if (d(V) === o)
-        return V;
+  function w(e, o) {
+    return e.find((L) => {
+      if (f(L) === o)
+        return L;
     });
   }
-  S(() => {
-    ne(x);
-  }, [a]);
-  const w = () => h.length > 10;
-  function x() {
+  K(() => {
+    oe(V);
+  }, [i]);
+  const z = () => p.length > 10;
+  function V() {
     var e = {};
-    if (a.length > 0)
-      e.filter = {}, e.filter[P] = a;
-    else if (h.length > 1)
+    if (i.length > 0)
+      e.filter = {}, e.filter[R] = i;
+    else if (p.length > 1)
       return;
-    l ? l.query(e).then((o) => O(o.result)).catch(() => O([])) : console.error("lookup store is not initialized for attribute" + t.attribute);
+    F ? F.query(e).then((o) => A(o.result)).catch(() => A([])) : console.error("lookup store is not initialized for attribute" + t.attribute);
   }
-  var A = ee(t, n.data, t.label);
-  t.readonly && (A.inputProps = { readOnly: !0 });
-  var z = {
-    onBlur: g.onBlur,
-    onFocus: g.onFocus,
-    onChange: (e) => g.onValueChange(e.target.value)
+  var k = te(t, n.data, t.label);
+  t.readonly && (k.inputProps = { readOnly: !0 });
+  var E = {
+    onBlur: v.onBlur,
+    onFocus: v.onFocus,
+    onChange: (e) => v.onValueChange(e.target.value)
   };
   return /* @__PURE__ */ r(
-    ie,
+    le,
     {
       label: t.title,
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ v(J, { fullWidth: !0, error: p.status, children: [
-        t.label ? /* @__PURE__ */ r(Q, { children: t.label }) : /* @__PURE__ */ r(k, {}),
-        /* @__PURE__ */ v(
-          U,
+      children: /* @__PURE__ */ y(Q, { fullWidth: !0, error: g.status, children: [
+        t.label ? /* @__PURE__ */ r(U, { children: t.label }) : /* @__PURE__ */ r(S, {}),
+        /* @__PURE__ */ y(
+          X,
           {
-            ...A,
+            ...k,
             MenuProps: { autoFocus: !1 },
-            value: c,
+            value: d,
             onOpen: (e) => {
-              x();
+              V();
             },
-            ...z,
+            ...E,
             children: [
-              w() ? /* @__PURE__ */ v(X, { children: [
+              z() ? /* @__PURE__ */ y(Y, { children: [
                 /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
-                  Y,
+                  Z,
                   {
                     size: "small",
-                    value: a,
+                    value: i,
                     autoFocus: !0,
                     placeholder: "Type to search...",
                     fullWidth: !0,
                     InputProps: {
-                      startAdornment: /* @__PURE__ */ r(Z, { position: "start", children: /* @__PURE__ */ r(te, {}) })
+                      startAdornment: /* @__PURE__ */ r(_, { position: "start", children: /* @__PURE__ */ r(re, {}) })
                     },
-                    onChange: (e) => R(e.target.value),
+                    onChange: (e) => W(e.target.value),
                     onKeyDown: (e) => {
                       e.key !== "Escape" && e.stopPropagation();
                     }
                   }
                 ) }),
-                t.required ? /* @__PURE__ */ r(k, {}) : /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r("span", { children: /* @__PURE__ */ r(re, {}) }) })
+                t.required ? /* @__PURE__ */ r(S, {}) : /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r("span", { children: /* @__PURE__ */ r(ne, {}) }) })
               ] }) : /* @__PURE__ */ r("div", {}),
-              h.map((e, o) => /* @__PURE__ */ r(_, { value: d(e), children: le(W(e), a) }, d(e) || o))
+              p.map((e, o) => /* @__PURE__ */ r($, { value: f(e), children: ue(q(e), i) }, f(e) || o))
             ]
           }
         ),
-        /* @__PURE__ */ r($, { className: "form-error-text", children: p.message })
+        /* @__PURE__ */ r(ee, { className: "form-error-text", children: g.message })
       ] })
     }
   );
-}), le = (i, t) => {
-  if (!i)
+}), ue = (l, t) => {
+  if (!l)
     return;
-  const f = oe(i, t, { insideWords: !0 }), b = se(i, f);
-  return /* @__PURE__ */ r("div", { children: b.map((n, l) => /* @__PURE__ */ r(
+  const u = se(l, t, { insideWords: !0 }), m = ae(l, u);
+  return /* @__PURE__ */ r("div", { children: m.map((s, n) => /* @__PURE__ */ r(
     "span",
     {
       style: {
-        fontWeight: n.highlight ? 700 : 400
+        fontWeight: s.highlight ? 700 : 400
       },
-      children: n.text
+      children: s.text
     },
-    l
+    n
   )) });
 };
 export {
-  Ce as default
+  Fe as default
 };

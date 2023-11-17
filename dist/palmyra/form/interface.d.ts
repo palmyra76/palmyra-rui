@@ -1,3 +1,4 @@
+import { MutableRefObject } from "react";
 import { IEndPoint } from "../layout";
 import { LookupStore } from "../store";
 /**
@@ -113,7 +114,7 @@ interface IFormFieldManager {
 interface IFieldDefinition extends AttributeDefinition, LookupOptions {
     type: string;
 }
-type IGetFieldManager = (fieldDef: AttributeDefinition, type: FieldType) => IFormFieldManager;
+type IGetFieldManager = (fieldDef: AttributeDefinition, type: FieldType, ref: MutableRefObject<any>) => IFormFieldManager;
 interface IFormFieldInputDefinition extends IFieldDefinition {
     toolkitOptions?: any;
 }

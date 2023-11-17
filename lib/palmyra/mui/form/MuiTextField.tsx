@@ -1,19 +1,19 @@
-import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref) {
+const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref:MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'string');    
+    const currentRef = ref ? ref : useRef(null);
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
-
     const inputRef: any = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(currentRef, () => {
         return {
             focus() {
                 inputRef.current.focus();
@@ -23,6 +23,9 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
             },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
+            },
+            clear() {
+                fieldManager.setData('');
             }
         };
     }, []);
@@ -38,8 +41,6 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
         onFocus: eventListeners.onFocus,
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
-
-
 
     return (
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}

@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "@mui/material";
-import { T as p } from "../../../index-b9481105.js";
+import { T as p } from "../../../index-dd123fe7.js";
 export {
   p as default
 };

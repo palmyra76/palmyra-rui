@@ -1,4 +1,4 @@
-import { useRef, useImperativeHandle, forwardRef, useState, useEffect, useMemo, useContext } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useState, useEffect, useMemo, useContext, MutableRefObject } from 'react';
 import { FormControl, FormHelperText, InputAdornment, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
@@ -13,10 +13,11 @@ import match from 'autosuggest-highlight/match';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref) {
+const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref:MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
+    const currentRef = ref ? ref : useRef(null);
     // @ts-ignore
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'serverlookup');
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'serverlookup', currentRef);
     const store: LookupStore<any> = props.store || fieldManager.store;
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
@@ -34,7 +35,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
 
     const inputRef: any = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(currentRef, () => {
         return {
             focus() {
                 inputRef.current.focus();
@@ -44,6 +45,12 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
             },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
+            },
+            setFilter(data: any) {
+
+            },
+            clear(){
+                
             }
         };
     }, []);

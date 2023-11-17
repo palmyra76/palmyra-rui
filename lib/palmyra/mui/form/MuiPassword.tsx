@@ -1,4 +1,4 @@
-import { useRef, useImperativeHandle, forwardRef, useContext, useState } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, useState, MutableRefObject } from 'react';
 import { IconButton, TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
@@ -6,16 +6,17 @@ import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext
 import FieldDecorator from './FieldDecorator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref) {
-    const [showPassword, setShowPassword] = useState(false);
+const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref:MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'string');    
+    const currentRef = ref ? ref : useRef(null);
+    const [showPassword, setShowPassword] = useState(false);
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);    
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
     const inputRef: any = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(currentRef, () => {
         return {
             focus() {
                 inputRef.current.focus();

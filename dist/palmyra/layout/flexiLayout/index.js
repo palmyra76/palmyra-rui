@@ -1,4 +1,4 @@
-import { F as o, G as t } from "../../../index-b9481105.js";
+import { F as o, G as t } from "../../../index-dd123fe7.js";
 import { StoreFactoryContext as x } from "./FlexiLayoutContext.js";
 export {
   o as FlexiLayoutRenderer,

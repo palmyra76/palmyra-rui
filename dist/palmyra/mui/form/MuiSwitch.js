@@ -1,21 +1,21 @@
-import { jsx as r, jsxs as v } from "react/jsx-runtime";
-import { forwardRef as F, useContext as M, useMemo as x, useState as V, useRef as y, useEffect as f, useImperativeHandle as L } from "react";
-import { FormControl as O, FormControlLabel as w, Switch as S, FormHelperText as R } from "@mui/material";
-import { copyMuiOptions as j } from "./MuiUtil.js";
-import A from "./OptionsParser.js";
-import { FieldManagerContext as H } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import I from "./FieldDecorator.js";
-const J = F(function(e, h) {
-  const a = M(H)(e, "switch"), s = a.error, g = a.eventListeners, o = x(
-    () => A(e.options, e.name),
+import { jsx as r, jsxs as M } from "react/jsx-runtime";
+import { forwardRef as V, useContext as y, useRef as C, useMemo as L, useState as O, useEffect as g, useImperativeHandle as w } from "react";
+import { FormControl as S, FormControlLabel as R, Switch as j, FormHelperText as A } from "@mui/material";
+import { copyMuiOptions as H } from "./MuiUtil.js";
+import I from "./OptionsParser.js";
+import { FieldManagerContext as P } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import D from "./FieldDecorator.js";
+const K = V(function(e, c) {
+  const b = y(P), u = c || C(null), n = b(e, "switch", u), s = n.error, k = n.eventListeners, o = L(
+    () => I(e.options, e.name),
     [e.options, e.name]
-  ), c = (t, k) => {
-    var m = o.checked.value;
-    return t != null && t != null ? m == t : m == k;
-  }, [n, i] = V(c(a.data, e.defaultValue)), l = y(null);
-  f(() => {
-    i(c(a.data, e.defaultValue));
-  }, [a.data]), L(h, () => ({
+  ), i = (t, x) => {
+    var h = o.checked.value;
+    return t != null && t != null ? h == t : h == x;
+  }, [a, d] = O(i(n.data, e.defaultValue)), l = C(null);
+  g(() => {
+    d(i(n.data, e.defaultValue));
+  }, [n.data]), w(u, () => ({
     focus() {
       l.current.focus();
     },
@@ -26,51 +26,51 @@ const J = F(function(e, h) {
       l.current.assignAttribute(t);
     }
   }), []);
-  var u = j(e, a.data, e.label);
-  e.readonly && (u.inputProps = { readOnly: !0 });
-  const C = () => {
-    i(!n);
+  var m = H(e, n.data, e.label);
+  e.readonly && (m.inputProps = { readOnly: !0 });
+  const v = () => {
+    d(!a);
   };
-  f(() => {
-    g.onValueChange(d());
-  }, [n]);
-  const b = () => {
-    var t = n ? "checked" : "unchecked";
+  g(() => {
+    k.onValueChange(f());
+  }, [a]);
+  const F = () => {
+    var t = a ? "checked" : "unchecked";
     return o[t].title;
-  }, d = () => {
-    var t = n ? "checked" : "unchecked";
+  }, f = () => {
+    var t = a ? "checked" : "unchecked";
     return o[t].value;
   };
   return /* @__PURE__ */ r(
-    I,
+    D,
     {
       label: e.title,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ v(O, { error: s.status, ...u, children: [
+      children: /* @__PURE__ */ M(S, { error: s.status, ...m, children: [
         /* @__PURE__ */ r(
-          w,
+          R,
           {
-            value: d(),
+            value: f(),
             control: /* @__PURE__ */ r(
-              S,
+              j,
               {
                 inputRef: l,
-                checked: n,
-                onClick: C,
+                checked: a,
+                onClick: v,
                 disabled: e.readonly
               }
             ),
-            label: b()
+            label: F()
           }
         ),
-        /* @__PURE__ */ r(R, { className: "form-error-text", children: s.message })
+        /* @__PURE__ */ r(A, { className: "form-error-text", children: s.message })
       ] })
     }
   );
 });
 export {
-  J as default
+  K as default
 };

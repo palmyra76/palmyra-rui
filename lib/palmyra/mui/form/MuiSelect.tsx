@@ -1,4 +1,4 @@
-import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
@@ -6,19 +6,20 @@ import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext
 import FieldDecorator from './FieldDecorator';
 
 
-const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref) {
-    const { options } = props;
+const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref:MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
+    const currentRef = ref ? ref : useRef(null);
+    const { options } = props;
 
     // @ts-ignore
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'select');
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'select', currentRef);
 
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
     const inputRef: any = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(currentRef, () => {
         return {
             focus() {
                 inputRef.current.focus();
