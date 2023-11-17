@@ -14,7 +14,7 @@ const o = (e, t) => {
   }
   var n = e.substring(0, s), u = e.substring(s + 1);
   return (t[n] === void 0 || t[n] == null) && (t[n] = {}), c(u, t[n], r);
-}, b = (e, t) => {
+}, f = (e, t) => {
   const r = o(e.attribute, t);
   return i(e, r);
 }, i = (e, t) => {
@@ -25,23 +25,25 @@ const o = (e, t) => {
     case "select":
     case "checkbox":
     case "switch":
-      return p(t, e);
+      return x(t, e);
     case "datetime":
-      return y(t);
+      return a(t);
     case "serverlookup":
-      return x(t);
+      return b(t);
     case "textarea":
+      return p(t);
+    case "password":
       return l(t);
     default:
-      return a(t);
+      return y(t);
   }
-}, g = (e, t) => e, y = (e, t) => e, a = (e, t) => e, l = (e, t) => e, p = (e, t) => {
+}, g = (e, t) => e, a = (e, t) => e, y = (e, t) => e, p = (e, t) => e, l = (e, t) => e, x = (e, t) => {
   var r = t.options;
   return r[e];
-}, x = (e, t) => e;
+}, b = (e, t) => e;
 export {
   i as formatValue,
-  b as getDisplayValue,
+  f as getDisplayValue,
   o as getValueByKey,
   c as setValueByKey
 };

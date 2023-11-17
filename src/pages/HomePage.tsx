@@ -13,6 +13,7 @@ import MuiSwitch from "../../lib/palmyra/mui/form/MuiSwitch";
 import SectionContainer from "../../lib/palmyra/layout/container/SectionContainer";
 import { IPalmyraForm, PalmyraForm } from "../../lib/palmyra/form/PalmyraForm";
 import FormFieldContainer from "../../lib/palmyra/layout/container/FieldGroupContainer";
+import MuiPassword from "../../lib/palmyra/mui/form/MuiPassword";
 
 
 const HomePage = () => {
@@ -39,6 +40,7 @@ const HomePage = () => {
             setData({
                 serverHost: 'google.com', port: '2022', dob: '2023-10-19', gender: 'M', file: 'upload',
                 genders: 'F',
+                password:'secret',
                 userName: 'titan',
                 service: 1, switch: 0,
                 time: '2023-10-19 09:21:21'
@@ -72,6 +74,9 @@ const HomePage = () => {
 
                 <SectionContainer title='Hello World' >
                     <FormFieldContainer columns={2}>
+                        <MuiPassword 
+                        attribute="password" />
+
                         <MuiDatePicker attribute="dob"
                             title="Date of Birth"
                             readonly={true} />

@@ -30,8 +30,9 @@ import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
+import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiServerLookup.js";
-class V {
+class W {
   constructor(t, o, e) {
     i(this, "request");
     i(this, "target");
@@ -63,5 +64,5 @@ function a(r) {
   return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  V as PalmyraChartStore
+  W as PalmyraChartStore
 };

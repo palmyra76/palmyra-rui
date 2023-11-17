@@ -4,7 +4,7 @@ import { LookupStore } from "../store";
  * This definitions will cater to the Form Definition format
  *
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "multiSelect" | "dateRange";
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange";
 type InputType = string | number;
 type strings = string | string[];
 interface RangeValidation<T> {

@@ -1,57 +1,60 @@
-import { jsxs as a, jsx as n } from "react/jsx-runtime";
-import s from "../mui/form/MuiTextField.js";
+import { jsxs as n, jsx as s } from "react/jsx-runtime";
+import u from "../mui/form/MuiTextField.js";
 import m from "../mui/form/MuiTextArea.js";
-import l from "../mui/form/MuiRadioGroup.js";
-import d from "../mui/form/MuiSelect.js";
+import d from "../mui/form/MuiRadioGroup.js";
+import l from "../mui/form/MuiSelect.js";
 import p from "../mui/form/MuiDatePicker.js";
 import f from "../mui/form/MuiDateTimePicker.js";
 import M from "../mui/form/MuiCheckBox.js";
 import x from "../mui/form/MuiSwitch.js";
-import h from "../mui/form/MuiServerLookup.js";
-const g = (r) => {
-  const { fieldDef: i } = r;
-  return /* @__PURE__ */ a("div", { children: [
+import h from "../mui/form/MuiPassword.js";
+import g from "../mui/form/MuiServerLookup.js";
+const k = (t) => {
+  const { fieldDef: i } = t;
+  return /* @__PURE__ */ n("div", { children: [
     "invalid type " + i.type,
     " "
   ] });
-}, t = (r, i) => {
-  const o = r.fieldDef;
-  return /* @__PURE__ */ n(
+}, r = (t, i) => {
+  const o = t.fieldDef;
+  return /* @__PURE__ */ s(
     i,
     {
       ...o,
-      label: r.title
+      label: t.title
     }
   );
-}, c = () => /* @__PURE__ */ n("div", { children: "To be Implemented" }), I = (r, i, o) => {
-  const { type: u } = r, e = { fieldDef: r, title: o };
-  switch (u) {
+}, c = () => /* @__PURE__ */ s("div", { children: "To be Implemented" }), j = (t, i, o) => {
+  const { type: a } = t, e = { fieldDef: t, title: o };
+  switch (a) {
     case "string":
-      return t(e, s);
+      return r(e, u);
     case "radio":
-      return t(e, l);
+      return r(e, d);
     case "select":
-      return t(e, d);
+      return r(e, l);
     case "date":
-      return t(e, p);
+      return r(e, p);
     case "datetime":
-      return t(e, f);
+      return r(e, f);
     case "checkbox":
-      return t(e, M);
+      return r(e, M);
     case "serverlookup":
-      return t(e, h);
+      return r(e, g);
     case "textarea":
-      return t(e, m);
+      return r(e, m);
     case "switch":
-      return t(e, x);
+      return r(e, x);
+    case "password":
+      return r(e, h);
     case "multiSelect":
       return c();
     case "dateRange":
       return c();
     default:
-      return g(e);
+      return k(e);
   }
 };
 export {
-  I as default
+  j as default
 };

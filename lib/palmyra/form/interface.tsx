@@ -7,7 +7,7 @@ import { LookupStore } from "../store"
  */
 type FieldType = "string" | "number"
     | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "multiSelect" | "dateRange";
+    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange";
 
 type InputType = string | number;
 

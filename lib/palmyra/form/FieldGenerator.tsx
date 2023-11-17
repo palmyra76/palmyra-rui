@@ -6,7 +6,7 @@ import MuiRadioGroup from '../mui/form/MuiRadioGroup';
 import MuiSelect from '../mui/form/MuiSelect';
 import MuiDatePicker from '../mui/form/MuiDatePicker';
 import MuiDateTimePicker from '../mui/form/MuiDateTimePicker';
-import { MuiServerLookup } from '../mui';
+import { MuiPassword, MuiServerLookup } from '../mui';
 import MuiCheckBox from '../mui/form/MuiCheckBox';
 import MuiSwitch from '../mui/form/MuiSwitch';
 
@@ -27,7 +27,7 @@ const getTobeImplemented = () => {
     return <div>To be Implemented</div>
 }
 
-const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?:any) => {
+const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
     const { type } = fieldDef;
     const props: FieldRequest = { fieldDef, title };
 
@@ -50,6 +50,8 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?:any) => {
             return getReactField(props, MuiTextArea);
         case 'switch':
             return getReactField(props, MuiSwitch);
+        case 'password':
+            return getReactField(props, MuiPassword);
         case 'multiSelect':
             return getTobeImplemented();
         case 'dateRange':
@@ -63,5 +65,5 @@ export default getField;
 
 interface FieldRequest {
     fieldDef: FieldDefinition,
-    title?:string
+    title?: string
 }

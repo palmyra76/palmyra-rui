@@ -55,6 +55,8 @@ const formatValue = (field: AttributeDefinition, value: any) => {
             return getServerLookUp(value, field);
         case 'textarea':
             return getTextArea(value, field);
+        case 'password':
+            return getPassword(value, field);
         default:
             return getTextValue(value, field);
     }
@@ -75,6 +77,10 @@ const getTextValue = (value: InputType, field: AttributeDefinition) => {
 }
 
 const getTextArea = (value: InputType, field: AttributeDefinition) => {
+    return value;
+}
+
+const getPassword = (value: InputType, field: AttributeDefinition) => {
     return value;
 }
 
