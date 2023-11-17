@@ -1,9 +1,8 @@
-class o {
+class e {
   decorate(r) {
-    console.log("No op decorator");
   }
 }
-const t = new o();
+const t = new e();
 export {
   t as NOOPDecorator
 };

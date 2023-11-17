@@ -26,8 +26,8 @@ const ChartRenderer = (props: ChartRendererInput) => {
 
   const [data, setData] = useState(null);
 
-  const onPointClick = (data) => {
-    console.log(data);
+  const onPointClick = (_data) => {
+    
   }
 
   function transform(data: any, layout: ChartLayout): any {

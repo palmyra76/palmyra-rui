@@ -9,9 +9,9 @@ const J = F(function(e, h) {
   const a = M(H)(e, "switch"), s = a.error, g = a.eventListeners, o = x(
     () => A(e.options, e.name),
     [e.options, e.name]
-  ), c = (t, b) => {
+  ), c = (t, k) => {
     var m = o.checked.value;
-    return t != null && t != null ? m == t : m == b;
+    return t != null && t != null ? m == t : m == k;
   }, [n, i] = V(c(a.data, e.defaultValue)), l = y(null);
   f(() => {
     i(c(a.data, e.defaultValue));
@@ -26,7 +26,7 @@ const J = F(function(e, h) {
       l.current.assignAttribute(t);
     }
   }), []);
-  var u = j(e, a.data);
+  var u = j(e, a.data, e.label);
   e.readonly && (u.inputProps = { readOnly: !0 });
   const C = () => {
     i(!n);
@@ -34,7 +34,7 @@ const J = F(function(e, h) {
   f(() => {
     g.onValueChange(d());
   }, [n]);
-  const k = () => {
+  const b = () => {
     var t = n ? "checked" : "unchecked";
     return o[t].title;
   }, d = () => {
@@ -63,7 +63,7 @@ const J = F(function(e, h) {
                 disabled: e.readonly
               }
             ),
-            label: k()
+            label: b()
           }
         ),
         /* @__PURE__ */ r(R, { className: "form-error-text", children: s.message })

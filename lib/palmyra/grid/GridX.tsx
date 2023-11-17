@@ -68,14 +68,13 @@ function GridX(props: GridXOptions) {
         store.query(params).then((d) => {
           setData(d.result);
           setTotalData(d.total);
-        }).catch((e) => {
-          console.log("error while fetching");
+        }).catch((e) => {          
           var r = e.response ? e.response : e;
-          console.log(r);
+          console.error("error while fetching", r);
           setNoData();
         });
       } catch (e) {
-        console.log(e);
+        console.error(e);
         setEmptyData();
       }
     } else {
@@ -173,7 +172,7 @@ function GridX(props: GridXOptions) {
   }
 
   const onExportClick = () => {
-    console.log('Export Clicked');
+    console.info('Export Clicked');
   }
 
   const width = 200;

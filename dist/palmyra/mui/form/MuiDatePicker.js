@@ -3,11 +3,11 @@ import { forwardRef as C, useContext as g, useRef as v, useImperativeHandle as D
 import { LocalizationProvider as F, DatePicker as y } from "@mui/x-date-pickers";
 import { AdapterDayjs as M } from "@mui/x-date-pickers/AdapterDayjs";
 import P from "dayjs";
-import { copyMuiOptions as h } from "./MuiUtil.js";
-import { FieldManagerContext as b } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import { copyMuiOptions as b } from "./MuiUtil.js";
+import { FieldManagerContext as h } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import x from "./FieldDecorator.js";
-const O = C(function(t, i) {
-  const l = g(b), u = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = l(t, "date"), o = r.error, c = r.data, a = r.eventListeners, s = v(null), d = () => P(c);
+const p = C(function(t, i) {
+  const l = g(h), u = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = l(t, "date"), o = r.error, c = r.data, a = r.eventListeners, s = v(null), d = () => P(c);
   D(i, () => ({
     focus() {
       s.current.focus();
@@ -19,7 +19,7 @@ const O = C(function(t, i) {
       s.current.assignAttribute(e);
     }
   }), []);
-  var m = h(t, d()), f = {
+  var m = b(t, d(), t.label), f = {
     onBlur: a.onBlur,
     onFocus: a.onFocus,
     onChange: (e) => {
@@ -55,5 +55,5 @@ const O = C(function(t, i) {
   );
 });
 export {
-  O as default
+  p as default
 };

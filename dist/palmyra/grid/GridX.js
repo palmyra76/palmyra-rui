@@ -1,37 +1,36 @@
-import { jsx as e, jsxs as o, Fragment as oe } from "react/jsx-runtime";
-import { useState as a, useEffect as ie } from "react";
-import { TextField as le, InputAdornment as re, ClickAwayListener as se, Tooltip as p, Button as m, TablePagination as ce } from "@mui/material";
+import { jsx as e, jsxs as i, Fragment as ie } from "react/jsx-runtime";
+import { useState as a, useEffect as oe } from "react";
+import { TextField as re, InputAdornment as le, ClickAwayListener as se, Tooltip as p, Button as m, TablePagination as ce } from "@mui/material";
 import { generateColumns as de } from "./base/ColumnConverter.js";
 import { A as pe } from "../../index.esm-3271ad1f.js";
 import me from "./base/EmptyChildTable.js";
 import he from "./base/TableX.js";
 import { Menu as P, DensitySmall as F, DensityLarge as z, FilterAlt as ge, FileDownloadOutlined as ue, Add as fe } from "@mui/icons-material";
 import ye from "./plugins/filter/Filter.js";
-function Fe(r) {
-  const { columns: f, children: O, EmptyChild: R, store: y, onRowClick: C, quickSearch: N } = r, [A, h] = a(null), [c, d] = a({}), [b, E] = a({}), T = R || me, [v, w] = a(!1), [s, q] = a("standard"), [I, k] = a(!1), i = r.pageSize ? r.pageSize : 15;
-  var j = i instanceof Array ? i : [i], G = i instanceof Array ? i[0] : i;
-  const [l, S] = a({
+function Fe(l) {
+  const { columns: f, children: O, EmptyChild: R, store: y, onRowClick: C, quickSearch: N } = l, [A, h] = a(null), [c, d] = a({}), [b, E] = a({}), T = R || me, [v, w] = a(!1), [s, q] = a("standard"), [I, k] = a(!1), o = l.pageSize ? l.pageSize : 15;
+  var j = o instanceof Array ? o : [o], G = o instanceof Array ? o[0] : o;
+  const [r, S] = a({
     pageNo: 0,
     pageSize: G
   }), H = (t, n) => {
-    S({ ...l, pageNo: n }), X({ ...l, pageSize: n });
+    S({ ...r, pageNo: n }), X({ ...r, pageSize: n });
   }, [L, X] = a({}), [B, g] = a(null);
-  ie(() => {
+  oe(() => {
     Q();
   }, [L, c, b]);
   const M = de(f), Q = () => {
-    const t = { page: l, filter: c, sortOrder: b, total: !0 };
+    const t = { page: r, filter: c, sortOrder: b, total: !0 };
     if (y)
       try {
         y.query(t).then((n) => {
           g(n.result), h(n.total);
         }).catch((n) => {
-          console.log("error while fetching");
           var D = n.response ? n.response : n;
-          console.log(D), U();
+          console.error("error while fetching", D), U();
         });
       } catch (n) {
-        console.log(n), x();
+        console.error(n), x();
       }
     else
       console.error("Store is not provided for the Grid"), x();
@@ -66,17 +65,17 @@ function Fe(r) {
     C && C(t);
   }, _ = (t) => {
     const n = parseInt(t.target.value, 10);
-    S({ ...l, pageSize: n });
+    S({ ...r, pageSize: n });
   }, ee = (t) => {
     E(t);
   }, te = () => {
-    console.log("Export Clicked");
-  }, ne = 200, ae = !!i;
-  return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ o("div", { children: [
+    console.info("Export Clicked");
+  }, ne = 200, ae = !!o;
+  return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ i("div", { children: [
     O,
-    /* @__PURE__ */ o("div", { className: "grid-header", children: [
+    /* @__PURE__ */ i("div", { className: "grid-header", children: [
       /* @__PURE__ */ e("div", { className: "grid-header-filter", children: !!N && /* @__PURE__ */ e(
-        le,
+        re,
         {
           sx: { width: ne },
           type: "text",
@@ -86,30 +85,30 @@ function Fe(r) {
           size: "small",
           placeholder: "Name",
           InputProps: {
-            endAdornment: /* @__PURE__ */ e(re, { position: "end", children: /* @__PURE__ */ e(pe, { className: "card-filter-icon" }) })
+            endAdornment: /* @__PURE__ */ e(le, { position: "end", children: /* @__PURE__ */ e(pe, { className: "card-filter-icon" }) })
           }
         }
       ) }),
       /* @__PURE__ */ e(se, { onClickAway: () => {
         w(!1);
-      }, children: /* @__PURE__ */ o("div", { className: "grid-header-button", onClick: $, children: [
+      }, children: /* @__PURE__ */ i("div", { className: "grid-header-button", onClick: $, children: [
         /* @__PURE__ */ e(p, { title: "Density", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: V() }) }),
-        v && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ o("ul", { children: [
-          /* @__PURE__ */ o("li", { onClick: () => u("standard"), children: [
+        v && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ i("ul", { children: [
+          /* @__PURE__ */ i("li", { onClick: () => u("standard"), children: [
             /* @__PURE__ */ e(P, { className: "density-icon" }),
             /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Standard" })
           ] }),
-          /* @__PURE__ */ o("li", { onClick: () => u("compact"), children: [
+          /* @__PURE__ */ i("li", { onClick: () => u("compact"), children: [
             /* @__PURE__ */ e(F, { className: "density-icon" }),
             /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Compact" })
           ] }),
-          /* @__PURE__ */ o("li", { onClick: () => u("comfortable"), children: [
+          /* @__PURE__ */ i("li", { onClick: () => u("comfortable"), children: [
             /* @__PURE__ */ e(z, { className: "density-icon" }),
             /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Comfortable" })
           ] })
         ] }) })
       ] }) }),
-      /* @__PURE__ */ o("div", { className: "grid-header-button", children: [
+      /* @__PURE__ */ i("div", { className: "grid-header-button", children: [
         /* @__PURE__ */ e(p, { title: "Filter", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, onClick: () => k(!0), children: /* @__PURE__ */ e(ge, { className: "grid-button-icon" }) }) }),
         /* @__PURE__ */ e(
           ye,
@@ -123,9 +122,9 @@ function Fe(r) {
         )
       ] }),
       /* @__PURE__ */ e("div", { className: "grid-header-button", onClick: te, children: /* @__PURE__ */ e(p, { title: "Export", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ e(ue, { className: "grid-button-icon" }) }) }) }),
-      r.onNewClick ? /* @__PURE__ */ e("div", { className: "grid-header-button", onClick: () => {
-        r.onNewClick();
-      }, children: /* @__PURE__ */ e(p, { title: "New", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ e(fe, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ e(oe, {})
+      l.onNewClick ? /* @__PURE__ */ e("div", { className: "grid-header-button", onClick: () => {
+        l.onNewClick();
+      }, children: /* @__PURE__ */ e(p, { title: "New", placement: "top", children: /* @__PURE__ */ e(m, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ e(fe, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ e(ie, {})
     ] }),
     /* @__PURE__ */ e("div", { className: "grid-table", children: /* @__PURE__ */ e(
       he,
@@ -144,9 +143,9 @@ function Fe(r) {
       {
         component: "div",
         count: A || 0,
-        page: l.pageNo,
+        page: r.pageNo,
         onPageChange: H,
-        rowsPerPage: l.pageSize,
+        rowsPerPage: r.pageSize,
         rowsPerPageOptions: j || [],
         onRowsPerPageChange: _
       }

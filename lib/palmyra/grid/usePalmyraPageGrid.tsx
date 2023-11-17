@@ -43,8 +43,7 @@ const usePalmyraPageGrid = (props: IPalmyraGridInput) => {
             navigate(StringFormat('view/{id}', data));
         });
 
-        var newPageHandle = topic.subscribe(newTopic, (topicName, data) => {
-            console.log(data);
+        var newPageHandle = topic.subscribe(newTopic, (topicName, data) => {            
             navigate(StringFormat('new', data));
         });
 

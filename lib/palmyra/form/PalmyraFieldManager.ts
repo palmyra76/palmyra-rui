@@ -82,8 +82,8 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         }
     }
 
-    const applyAttribute = (attr: any) => {
-        console.log(attr);
+    const applyAttribute = (_attr: any) => {
+        
     }
 
     const hideErrorMessage = () => {

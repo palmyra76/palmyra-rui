@@ -36,7 +36,8 @@ const FieldDecorator = (props: IFieldDecoratorInput) => {
         )
     }
     else {
-        var fieldClass = props.customFieldClass ? 'palmyra-form-field-data ' + props.customFieldClass : 'palmyra-form-field-data'
+        var fieldClass = ContainerClass;
+        fieldClass += ' ' + ( props.customFieldClass ? 'palmyra-form-field-data ' + props.customFieldClass : 'palmyra-form-field-data');
         if (props.colspan) {
             fieldClass += ' ' + getColSpanClass(props.colspan);
         }

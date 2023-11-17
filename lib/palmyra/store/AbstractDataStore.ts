@@ -43,7 +43,7 @@ class AbstractDataStore {
     }
 
     globalHandleError = (error: any) => {
-        console.log(error);
+        console.error(error);
     }
 }
 

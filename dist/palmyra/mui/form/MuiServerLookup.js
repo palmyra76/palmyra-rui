@@ -59,7 +59,7 @@ const be = E(function(t, f) {
       return;
     l ? l.query(e).then((o) => O(o.result)).catch(() => O([])) : console.error("lookup store is not initialized for attribute" + t.attribute);
   }
-  var A = $(t, n.data);
+  var A = $(t, n.data, t.label);
   t.readonly && (A.inputProps = { readOnly: !0 });
   var w = {
     onBlur: g.onBlur,

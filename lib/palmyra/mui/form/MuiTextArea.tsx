@@ -30,7 +30,7 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
         };
     }, []);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data);
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
     if (props.readonly) {
         inputProps.inputProps = { readOnly: true };
@@ -41,7 +41,6 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
         onFocus: eventListeners.onFocus,
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
-    console.log(props);
 
     return (
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}

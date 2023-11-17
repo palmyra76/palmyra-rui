@@ -30,7 +30,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
         };
     }, []);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data);
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
     if (props.readonly) {
         inputProps.inputProps = { readOnly: true };

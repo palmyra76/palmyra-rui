@@ -46,7 +46,7 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref) {
         };
     }, []);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data);
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
     if (props.readonly) {
         inputProps.inputProps = { readOnly: true };

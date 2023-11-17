@@ -1,9 +1,9 @@
-import { useNavigate as g } from "react-router-dom";
-import { useEffect as d } from "react";
-import { topic as o } from "../core/topic.js";
-import { StringFormat as r } from "../utils/StringUtil.js";
-const v = (e) => {
-  const n = g(), t = e.pageName + "/viewPage", c = e.pageName + "/newPage", a = {
+import { useNavigate as d } from "react-router-dom";
+import { useEffect as g } from "react";
+import { topic as t } from "../core/topic.js";
+import { StringFormat as a } from "../utils/StringUtil.js";
+const P = (e) => {
+  const n = d(), o = e.pageName + "/viewPage", c = e.pageName + "/newPage", r = {
     fields: e.fields,
     quickSearch: "",
     storeOptions: {
@@ -11,24 +11,24 @@ const v = (e) => {
     },
     actionOptions: {
       onClick: {
-        topic: t
+        topic: o
       },
       newRecord: {
         topic: c
       }
     }
   };
-  return d(() => {
-    var s = o.subscribe(t, (u, i) => {
-      i.id = i[e.idKey], n(r("view/{id}", i));
-    }), m = o.subscribe(c, (u, i) => {
-      console.log(i), n(r("new", i));
+  return g(() => {
+    var s = t.subscribe(o, (u, i) => {
+      i.id = i[e.idKey], n(a("view/{id}", i));
+    }), m = t.subscribe(c, (u, i) => {
+      n(a("new", i));
     });
     return () => {
-      o.unsubscribe(s), o.unsubscribe(m);
+      t.unsubscribe(s), t.unsubscribe(m);
     };
-  }, [e.idKey]), { layout: a };
+  }, [e.idKey]), { layout: r };
 };
 export {
-  v as usePalmyraPageGrid
+  P as usePalmyraPageGrid
 };

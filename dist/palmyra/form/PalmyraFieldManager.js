@@ -1,27 +1,27 @@
 import { useState as g, useEffect as h } from "react";
-import { delay as A } from "../utils/index.js";
-import { getFormatConverter as I } from "../utils/converter/FormatterFactory.js";
-const L = (s, o) => o ?? (s.defaultValue || "");
-function K(s, o, r, n, e) {
-  const l = I(s), [_, y] = g(o), [u, V] = g(d(o)), [c, i] = g({ status: !1, message: "" });
+import { delay as x } from "../utils/index.js";
+import { getFormatConverter as A } from "../utils/converter/FormatterFactory.js";
+const I = (s, o) => o ?? (s.defaultValue || "");
+function K(s, o, r, u, e) {
+  const l = A(s), [L, y] = g(o), [n, V] = g(d(o)), [c, i] = g({ status: !1, message: "" });
   h(() => {
     y(o), V(d(o));
   }, [o]);
   function d(t) {
-    return l.parse(L(s, t));
+    return l.parse(I(s, t));
   }
   const p = (t, a) => {
-    V(t || ""), a && A(() => {
+    V(t || ""), a && x(() => {
       if (E(t), r) {
-        const k = l.format(t);
+        const _ = l.format(t);
         var S = s.attribute;
-        const x = f(t);
-        r({ [S]: k }, { [S]: x.status });
+        const k = f(t);
+        r({ [S]: _ }, { [S]: k.status });
       }
     });
   }, f = (t) => {
-    if (n && n instanceof Function) {
-      const a = n(t);
+    if (u && u instanceof Function) {
+      const a = u(t);
       if (!a.status)
         return a;
     }
@@ -35,7 +35,6 @@ function K(s, o, r, n, e) {
     const a = f(t);
     a.status && e != null && e.asyncValid ? (b(), e.asyncValid(t, B, m)) : F(a);
   }, B = (t) => {
-    console.log(t);
   }, C = () => {
     c.message != "" && i({
       status: c.status,
@@ -52,7 +51,7 @@ function K(s, o, r, n, e) {
       message: ""
     });
   }, M = { onBlur: () => {
-    E(u);
+    E(n);
   }, onFocus: () => {
     C();
   }, onValueChange: (t) => {
@@ -60,9 +59,9 @@ function K(s, o, r, n, e) {
   } };
   return h(() => {
     var t = s.attribute;
-    const a = f(u);
+    const a = f(n);
     r({}, { [t]: a.status });
-  }, []), { data: u, setData: p, error: c, eventListeners: M };
+  }, []), { data: n, setData: p, error: c, eventListeners: M };
 }
 function N(s) {
   return {

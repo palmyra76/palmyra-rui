@@ -1,36 +1,36 @@
 var o = Object.defineProperty;
-var l = (s, a, t) => a in s ? o(s, a, { enumerable: !0, configurable: !0, writable: !0, value: t }) : s[a] = t;
-var n = (s, a, t) => (l(s, typeof a != "symbol" ? a + "" : a, t), t);
-import c from "axios";
+var c = (r, a, t) => a in r ? o(r, a, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[a] = t;
+var n = (r, a, t) => (c(r, typeof a != "symbol" ? a + "" : a, t), t);
+import l from "axios";
 class b {
   constructor(a) {
     n(this, "baseUrl");
     n(this, "instance");
     n(this, "globalHandleError", (a) => {
-      console.log(a);
+      console.error(a);
     });
     var t = a || "";
-    this.baseUrl = t, this.instance = c.create({
+    this.baseUrl = t, this.instance = l.create({
       baseURL: t
     });
   }
-  query(a, t, r) {
+  query(a, t, s) {
     this.instance.get(a, t).then((e) => {
-      r(e.data);
+      s(e.data);
     }).catch((e) => {
       this.globalHandleError(e);
     });
   }
-  save(a, t, r) {
+  save(a, t, s) {
     this.instance.post(a, t).then((e) => {
-      r(e.data);
+      s(e.data);
     }).catch((e) => {
       this.globalHandleError(e);
     });
   }
-  update(a, t, r) {
+  update(a, t, s) {
     this.instance.put(a, t).then((e) => {
-      r(e.data);
+      s(e.data);
     }).catch((e) => {
       this.globalHandleError(e);
     });

@@ -35,7 +35,7 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
         };
     }, []);
 
-    var inputProps: any = copyMuiOptions(props, toDayjs());
+    var inputProps: any = copyMuiOptions(props, toDayjs(), props.label);
 
     var callbacks = {
         onBlur: eventListeners.onBlur,

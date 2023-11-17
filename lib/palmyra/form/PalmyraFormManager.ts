@@ -93,7 +93,7 @@ function createFormData(data, onValidityChange, mode: FormMode) {
     }
 
     const initForm = () => {
-        console.log("Form Initialization");
+        
     }
 
     return { getFieldManager, getFormData, initForm, isFormValid };

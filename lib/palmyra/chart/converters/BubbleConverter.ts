@@ -100,7 +100,6 @@ const ObjectConverter = (options: transformOptions): ChartDataConverter => {
         Object.values(dataMap).map((dataSet) => {
             result.datasets.push(dataSet);
         });
-        console.log(result);
         return result;
     }
 }

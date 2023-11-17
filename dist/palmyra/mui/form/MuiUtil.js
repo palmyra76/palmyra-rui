@@ -1,13 +1,13 @@
-const i = (e, d, a) => {
-  var r = {
+const d = (e, i, r) => {
+  var a = {
     disabled: e.disabled,
     required: e.required,
     placeholder: e.placeHolder,
-    value: d,
+    value: i,
     variant: e.variant
   };
-  return a && (r.label = a), r;
+  return r && (a.label = r), a;
 };
 export {
-  i as copyMuiOptions
+  d as copyMuiOptions
 };

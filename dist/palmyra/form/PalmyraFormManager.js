@@ -4,18 +4,18 @@ import { getEventListeners as L } from "./PalmyraFieldManager.js";
 import { mergeDeep as n } from "../utils/index.js";
 import { useRef as c, useMemo as M } from "react";
 import { getLookupStore as S } from "./PalmyraStoreManager.js";
-function _(t, u, f) {
+function G(t, u, f) {
   var D = {}, b = {};
   const m = c(!1);
   var e = c(n({}, t));
-  const g = u;
+  const p = u;
   var y = c({}), s = y.current, k = {};
   (() => f && f == "new")() && n(e.current, k);
   const R = (o, i) => {
     s = Object.assign({}, s, i), n(e.current, o);
-    const a = p(s);
-    a != m.current && (m.current = a, g && g(a));
-  }, p = (o) => {
+    const a = d(s);
+    a != m.current && (m.current = a, p && p(a));
+  }, d = (o) => {
     for (var i in o)
       if (o[i] == !1)
         return !1;
@@ -24,13 +24,13 @@ function _(t, u, f) {
   return { getFieldManager: M(() => (e.current = n({}, t), (i, a) => {
     var v, F;
     var r = { ...i, type: a };
-    const d = O(r);
-    D[r.attribute] = r, b[r.attribute] = d;
+    const g = O(r);
+    D[r.attribute] = r, b[r.attribute] = g;
     var l = L(
       r,
       V(r.attribute, e.current),
       R,
-      d,
+      g,
       void 0
     );
     try {
@@ -44,13 +44,12 @@ function _(t, u, f) {
     }
     return l;
   }), [t]), getFormData: () => n({}, e.current), initForm: () => {
-    console.log("Form Initialization");
-  }, isFormValid: () => p(s) };
+  }, isFormValid: () => d(s) };
 }
 function A(t) {
   var u;
   return !!((u = t.storeOptions) != null && u.endPoint);
 }
 export {
-  _ as createFormData
+  G as createFormData
 };
