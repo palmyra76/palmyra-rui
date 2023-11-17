@@ -2,9 +2,11 @@ import { forwardRef, useImperativeHandle } from "react";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { GridRenderer, TableLayout } from "../layout/flexiLayout";
 import { ColumnDefinition, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
+import { ActionOptions } from "../layout/Types";
 
 interface IPalmyraGridInput {
     columns: ColumnDefinition[],
+    actions?: ActionOptions,
     quickSearch?: string,
     customizer?: GridCustomizer,
     endPoint: IEndPoint,
@@ -31,7 +33,8 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
         quickSearch,
         storeOptions: {
             endPoint
-        }
+        },
+        actionOptions: props.actions
     }
 
     return (

@@ -1,7 +1,9 @@
 /// <reference types="react" />
 import { ColumnDefinition, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
+import { ActionOptions } from "../layout/Types";
 interface IPalmyraGridInput {
     columns: ColumnDefinition[];
+    actions?: ActionOptions;
     quickSearch?: string;
     customizer?: GridCustomizer;
     endPoint: IEndPoint;

@@ -75,7 +75,9 @@ const HomePage = () => {
                 <SectionContainer title='Hello World' >
                     <FormFieldContainer columns={2}>
                         <MuiPassword 
-                        attribute="password" />
+                        attribute="password"
+                        validationRule={"password"}
+                        />
 
                         <MuiDatePicker attribute="dob"
                             title="Date of Birth"
