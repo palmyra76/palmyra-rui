@@ -32,7 +32,8 @@ interface DisplayDefinition {
     width?: string;
 }
 interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
-    title: string;
+    title?: string;
+    label?: string;
     name?: string;
     hideTitle?: boolean;
     defaultValue?: InputType;

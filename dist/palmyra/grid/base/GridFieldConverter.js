@@ -1,12 +1,12 @@
-const n = (e) => {
+const c = (e) => {
   var t = [];
-  return e.filter((r) => r.searchable).map((r, i) => {
+  return e.filter((r) => r.searchable).map((r, n) => {
     t.push(a(r));
   }), t;
 }, a = (e) => {
   var t = {
     attribute: e.attribute,
-    title: e.title,
+    label: e.title,
     required: !1,
     variant: "standard",
     type: s(e.type)
@@ -25,5 +25,5 @@ const n = (e) => {
   }
 };
 export {
-  n as convertToField
+  c as convertToField
 };

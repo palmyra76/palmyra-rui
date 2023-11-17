@@ -13,7 +13,7 @@ const convertToField = (columns: ColumnDefinition[]): FieldDefinition[] => {
 const _convertField = (column: ColumnDefinition): FieldDefinition => {
     var result: FieldDefinition = {
         attribute: column.attribute,
-        title: column.title,
+        label: column.title,
         required: false,
         variant: "standard",
         type: _getType(column.type)

@@ -40,7 +40,8 @@ interface DisplayDefinition {
 }
 
 interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
-    title: string,
+    title?: string,
+    label?: string,
     name?: string,
     hideTitle?: boolean,
     defaultValue?: InputType,
@@ -85,5 +86,5 @@ const getFieldType = (type: string): FieldType => {
 }
 
 export type { AttributeDefinition, FieldDefinition, FieldValidStatus, FormData, InputType, FieldType, MuiFieldDef };
-export type {DisplayDefinition}
+export type { DisplayDefinition }
 export { getFieldType }

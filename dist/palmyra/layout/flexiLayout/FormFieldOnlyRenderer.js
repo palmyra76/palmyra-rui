@@ -17,8 +17,8 @@ const F = (t) => {
     }
   return r;
 }, w = d(function(n, r) {
-  const { formLayout: e, context: l } = n, { formData: i } = l, s = u({}), c = F(n), m = "palmyra-form-field-data", f = p(() => (o) => y(o, s, o.title), [i.data]);
-  return /* @__PURE__ */ a("form", { className: "palmyra-form-field-only-container-wrapper", noValidate: !0, children: e.fields.map((o, C) => /* @__PURE__ */ a("div", { className: c, children: /* @__PURE__ */ a("div", { className: m, children: f(o) }) }, o.attribute)) });
+  const { formLayout: e, context: l } = n, { formData: s } = l, c = u({}), i = F(n), m = "palmyra-form-field-data", f = p(() => (o) => y(o, c, o.label), [s.data]);
+  return /* @__PURE__ */ a("form", { className: "palmyra-form-field-only-container-wrapper", noValidate: !0, children: e.fields.map((o, C) => /* @__PURE__ */ a("div", { className: i, children: /* @__PURE__ */ a("div", { className: m, children: f(o) }) }, o.attribute)) });
 });
 export {
   w as default

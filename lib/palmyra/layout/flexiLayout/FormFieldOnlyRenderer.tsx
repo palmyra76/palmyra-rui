@@ -38,7 +38,7 @@ const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: E
     const fieldClass = 'palmyra-form-field-data';
 
     const generateField = useMemo(() => (field: FieldDefinition) => {
-        return getField(field, fieldRefs, field.title);
+        return getField(field, fieldRefs, field.label);
     }, [formData.data]);
 
     return (
