@@ -82,7 +82,7 @@ const HomePage = () => {
                             length={{ min: 3, message: "Minimum of 3 letters" }}
                             required={true}
                             readonly={true} />
-                        <MuiServerLookup attribute="service" required={true} title="Service"                            
+                        <MuiServerLookup attribute="service" required={true} label="Service"
                             lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                             storeOptions={{ endPoint: "/api/data/fetchMe" }} />
                         <MuiCheckBox attribute="file" title="File"

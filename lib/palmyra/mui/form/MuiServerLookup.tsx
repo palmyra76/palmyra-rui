@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useState, useEffect, useMemo, useContext } from 'react';
-import { FormControl, FormHelperText, InputAdornment, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, FormHelperText, InputAdornment, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { DeleteOutlined, Search } from '@mui/icons-material';
@@ -107,9 +107,9 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         } else if (options.length > 1) {
             return;
         }
-        if(store){
+        if (store) {
             store.query(request).then(d => updateOptions(d.result)).catch(() => updateOptions([]));
-        }else{
+        } else {
             console.error('lookup store is not initialized for attribute' + props.attribute);
         }
     }
@@ -130,6 +130,8 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status}>
+                {props.label ?
+                    <InputLabel>{props.label}</InputLabel> : <></>}
                 <Select
                     {...inputProps}
                     MenuProps={{ autoFocus: false }}

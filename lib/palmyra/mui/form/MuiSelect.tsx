@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
-import { FormControl, FormHelperText, MenuItem, Select } from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
 import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
@@ -48,6 +48,8 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref) {
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status}>
+                {props.label ?
+                    <InputLabel>{props.label}</InputLabel> : <></>}
                 <Select {...inputProps} {...callbacks} inputRef={inputRef}>
 
                     {options ?
