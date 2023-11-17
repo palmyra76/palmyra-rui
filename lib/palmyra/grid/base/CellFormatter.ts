@@ -27,7 +27,7 @@ const formatBIT = (columnDef) => {
 
 
 const formatColumn = (columnDef: ColumnDefinition) => {
-    return (info) => {        
+    return (info:any) => {        
         return formatValue(columnDef, info.getValue());
     }
 }
@@ -38,4 +38,4 @@ const getFormatFn = (columnDef) => {
     return { cell: formatter };
 }
 
-export { getFormatFn, formatBIT }
+export { getFormatFn, formatBIT, formatColumn }

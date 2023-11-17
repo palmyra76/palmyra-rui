@@ -11,5 +11,6 @@ const m = (e) => {
 }, f = (e) => (r) => u(e, r.getValue()), s = (e) => ({ cell: f(e) });
 export {
   m as formatBIT,
+  f as formatColumn,
   s as getFormatFn
 };

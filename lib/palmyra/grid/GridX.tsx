@@ -6,7 +6,7 @@ import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
 import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add } from '@mui/icons-material';
 import { QueryStore } from '../store';
-import { ColumnDefinition } from './Types';
+import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 
 //TODO - show errors on data fetching
@@ -19,7 +19,8 @@ interface GridXOptions {
   onRowClick?: Function,
   onNewClick?: Function,
   pageSize?: number[],
-  quickSearch?: string
+  quickSearch?: string,
+  customizer?: GridCustomizer
 }
 
 interface GridXFilter {
@@ -32,6 +33,7 @@ function GridX(props: GridXOptions) {
   const [filter, setFilter] = useState<GridXFilter>({});
   const [sortOrder, setSortOrder] = useState({});
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
+  const customizer:GridCustomizer = props.customizer || NoopCustomizer;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
@@ -58,7 +60,7 @@ function GridX(props: GridXOptions) {
     refreshData();
   }, [query, filter, sortOrder])
 
-  const columnDefs = generateColumns(columns);
+  const columnDefs = generateColumns(columns, customizer);
 
   const refreshData = () => {
     const params = { page, filter, sortOrder, total: true };
@@ -68,7 +70,7 @@ function GridX(props: GridXOptions) {
         store.query(params).then((d) => {
           setData(d.result);
           setTotalData(d.total);
-        }).catch((e) => {          
+        }).catch((e) => {
           var r = e.response ? e.response : e;
           console.error("error while fetching", r);
           setNoData();

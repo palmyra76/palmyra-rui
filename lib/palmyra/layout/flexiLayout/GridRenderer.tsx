@@ -1,7 +1,7 @@
 import { useImperativeHandle, forwardRef, useContext, useState, useEffect } from 'react';
 import { PageContext } from './Types';
 import { TableLayout } from '.';
-import { GridX } from '../../grid';
+import { GridCustomizer, GridX } from '../../grid';
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
 import { getActionPublishers } from '../../core/Publishers';
@@ -9,7 +9,8 @@ import { mergeDeep } from '../../utils';
 
 interface GridRendererInput {
     layout: TableLayout,
-    context: PageContext
+    context: PageContext,
+    customizer?: GridCustomizer
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, ref) {
@@ -46,7 +47,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
-                onNewClick={onNewClick}
+                onNewClick={onNewClick} customizer={props.customizer}
                 quickSearch={tableLayout.quickSearch}
             ></GridX>
         </div>
@@ -54,4 +55,4 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
 });
 
 export default GridRenderer;
-export type {GridRendererInput}
+export type { GridRendererInput }

@@ -1,44 +1,48 @@
-import { jsx as o } from "react/jsx-runtime";
-import { createColumnHelper as l } from "@tanstack/react-table";
-import { getFormatFn as s } from "./CellFormatter.js";
+import { jsx as c } from "react/jsx-runtime";
+import { createColumnHelper as m } from "@tanstack/react-table";
+import { formatColumn as p } from "./CellFormatter.js";
 import { getValueByKey as d } from "../../form/FormUtil.js";
-import { hasDot as p } from "../../utils/StringUtil.js";
-const n = l();
-function C(e) {
-  return e.map((r) => u(r));
+import { hasDot as b } from "../../utils/StringUtil.js";
+const l = m();
+function j(r, e) {
+  return r.map((t) => g(t, e));
 }
-function u(e) {
-  var r = e.cellRenderer;
-  let t = c(e);
-  if (r)
-    return n.display({
-      id: a(e),
-      ...t,
-      cell: r
+function g(r, e) {
+  const t = r.sortable, n = r.searchable;
+  var o = r.cellRenderer;
+  const a = f(r), i = h();
+  if (o)
+    return l.display({
+      id: s(r),
+      enableSorting: t,
+      enableColumnFilter: n,
+      header: a,
+      footer: i,
+      cell: o
     });
-  let i = s(e);
-  return n.accessor(m(e), {
-    id: a(e),
-    enableSorting: e.sortable,
-    enableColumnFilter: e.searchable,
-    ...t,
-    ...i
+  let u = e.formatCell(r, p(r));
+  return l.accessor(C(r), {
+    id: s(r),
+    enableSorting: t,
+    enableColumnFilter: n,
+    header: a,
+    footer: i,
+    cell: u
   });
 }
-function m(e) {
-  var r = e.attribute ? e.attribute : e.name;
-  return p(r) ? (t) => d(r, t) : r;
+function C(r) {
+  var e = r.attribute ? r.attribute : r.name;
+  return b(e) ? (t) => d(e, t) : (t) => t[e];
 }
-function a(e) {
-  return e.name ? e.name : e.attribute;
+function s(r) {
+  return r.name ? r.name : r.attribute;
 }
-function c(e) {
-  let r = e.title;
-  return {
-    header: () => /* @__PURE__ */ o("span", { children: r }),
-    footer: (t) => t.column.id
-  };
+function f(r) {
+  return () => /* @__PURE__ */ c("span", { children: r.title });
+}
+function h(r) {
+  return (e) => e.column.id;
 }
 export {
-  C as generateColumns
+  j as generateColumns
 };

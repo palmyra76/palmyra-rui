@@ -1,8 +1,10 @@
 /// <reference types="react" />
-import { TableLayout } from "../layout/flexiLayout";
-import { PageContext, StoreFactory } from "../../main";
+import { ColumnDefinition, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
 interface IPalmyraGridInput {
-    layout: TableLayout;
+    columns: ColumnDefinition[];
+    quickSearch?: string;
+    customizer?: GridCustomizer;
+    endPoint: IEndPoint;
     storeFactory: StoreFactory<any>;
     layoutParams: PageContext;
 }

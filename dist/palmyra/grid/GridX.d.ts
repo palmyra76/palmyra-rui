@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { QueryStore } from '../store';
-import { ColumnDefinition } from './Types';
+import { ColumnDefinition, GridCustomizer } from './Types';
 interface GridXOptions {
     columns: ColumnDefinition[];
     children?: any;
@@ -10,6 +10,7 @@ interface GridXOptions {
     onNewClick?: Function;
     pageSize?: number[];
     quickSearch?: string;
+    customizer?: GridCustomizer;
 }
 declare function GridX(props: GridXOptions): import("react/jsx-runtime").JSX.Element;
 export default GridX;

@@ -7,6 +7,11 @@
             "icon": "home"
         },
         {
+            "path": "/grid",
+            "name": "StaticSummaryGrid",
+            "icon": "home"
+        },
+        {
             "title": "Back end Grid Layout",
             "name": "gridLayout",
             "path": "/demo/simple/backendgrid",

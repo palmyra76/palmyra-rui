@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { CellContext, RowData } from "@tanstack/react-table";
 import { AttributeDefinition } from "../form/Definitions";
 interface ColumnDefinition extends AttributeDefinition {
     name: string;
@@ -11,4 +12,12 @@ interface ColumnDefinition extends AttributeDefinition {
     quickSearch?: boolean;
     cellRenderer?: React.FC;
 }
-export type { ColumnDefinition };
+type CellGetter = ((props: CellContext<RowData, any>) => any);
+interface GridCustomizer {
+    formatCell: (column: ColumnDefinition, cellValueGetter: CellGetter) => CellGetter;
+    formatHeader: (column: ColumnDefinition, header: Function) => any;
+}
+declare const NoopCustomizer: GridCustomizer;
+declare const gridColumnCustomizer: (config: Record<string, (d: CellGetter) => CellGetter>) => GridCustomizer;
+export type { ColumnDefinition, GridCustomizer, CellGetter };
+export { NoopCustomizer, gridColumnCustomizer };
