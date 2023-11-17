@@ -41,12 +41,12 @@ interface IFormCustomizer {
 }
 
 interface IFormHelper {
-    getFieldRef: <T>(field: string, type: T) => T;
+    getFieldRef: <T>(field: string) => T;
     addFieldRef: (field: string, ref: MutableRefObject<any>) => void;
 }
 
 const NoopFormHelper: IFormHelper = {
-    getFieldRef: function (field: string, type: any): any {
+    getFieldRef: function (field: string): any {
 
     },
     addFieldRef: function (field: string, ref: MutableRefObject<any>): void {

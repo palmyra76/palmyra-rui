@@ -31,7 +31,7 @@ interface IFormCustomizer {
     getValueListeners: (form: IFormHelper) => Record<string, IFieldValueListener>;
 }
 interface IFormHelper {
-    getFieldRef: <T>(field: string, type: T) => T;
+    getFieldRef: <T>(field: string) => T;
     addFieldRef: (field: string, ref: MutableRefObject<any>) => void;
 }
 declare const NoopFormHelper: IFormHelper;

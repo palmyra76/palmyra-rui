@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
 import "react";
 import "../../grid/GridX.js";
-import { G as l } from "../../../index-dd123fe7.js";
+import { G as l } from "../../../index-3a4b57cc.js";
 import "react-router-dom";
 import "../../core/topic.js";
 import "../../utils/index.js";

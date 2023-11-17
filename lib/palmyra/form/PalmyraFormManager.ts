@@ -16,7 +16,7 @@ import { getLookupStore } from "./PalmyraStoreManager";
 function createFormHelper(): IFormHelper {
     const fieldRefs: Record<string, MutableRefObject<any>> = {};
 
-    const getFieldRef = <T>(field: string, type: T): T => {
+    const getFieldRef = <T>(field: string): T => {
         const ref = fieldRefs[field];
         if (ref)
             return ref.current;

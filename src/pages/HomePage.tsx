@@ -5,7 +5,7 @@ import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
 import MuiSelect from "../../lib/palmyra/mui/form/MuiSelect";
 import MuiRadioGroup from "../../lib/palmyra/mui/form/MuiRadioGroup";
 import MuiDatePicker from "../../lib/palmyra/mui/form/MuiDatePicker";
-import { IFieldEventListener, IFormCustomizer, FormHelper, MuiDateTimePicker, MuiServerLookup, StoreFactory } from "../../lib/main";
+import { IFieldEventListener, IFormCustomizer, IFormHelper, IRadioGroupField, MuiDateTimePicker, MuiServerLookup, StoreFactory } from "../../lib/main";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
@@ -31,11 +31,11 @@ const HomePage = () => {
         console.log(formRef.current.getData());
     }
 
-    const formHelper: FormHelper = createFormHelper();
+    const formHelper: IFormHelper = createFormHelper();
 
     const genderEventListener: IFieldEventListener = {
         onChange: function (key: string, value: any, valid?: boolean): void {
-            const gendersField: any = formHelper.getFieldRef('genders', 'any');
+            const gendersField: IRadioGroupField = formHelper.getFieldRef<IRadioGroupField>('genders');
             gendersField.setValue(value);
         }
     }
