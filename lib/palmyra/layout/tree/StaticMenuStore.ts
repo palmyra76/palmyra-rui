@@ -1,4 +1,5 @@
 import { MenuDef } from "..";
+import { strings } from "../../form/interface";
 import { TreeQueryStore } from "../../store/AsyncStore";
 import { QueryResponse, QueryRequest, GetRequest } from "../../store/Types";
 
@@ -31,7 +32,7 @@ class StaticMenuStore implements TreeQueryStore<MenuDef> {
     getIdentity(o: MenuDef) {
         throw new Error("Method not implemented.");
     }
-    getIdProperty(): string | string[] {
+    getIdProperty(): strings {
         throw new Error("Method not implemented.");
     }
 }

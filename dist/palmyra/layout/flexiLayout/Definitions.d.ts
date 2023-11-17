@@ -1,4 +1,5 @@
 import { FieldDefinition } from "../../form/Definitions";
+import { strings } from "../../form/interface";
 import { ColumnDefinition } from "../../grid";
 import { Actionable, Positionable, Renderable, Titleable, storeBacked, transformable } from "../Types";
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
@@ -33,7 +34,7 @@ interface TabDefinition extends Titleable, Renderable {
     closeable?: boolean;
 }
 interface FlexiLayoutDefinition extends Titleable, Renderable, storeBacked {
-    idProperty?: string | string[];
+    idProperty?: strings;
     tabs: TabDefinition[];
     title?: string;
     type: flexiPrimaryType;

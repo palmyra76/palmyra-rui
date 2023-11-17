@@ -1,6 +1,7 @@
 import "../../../index-1e74e5a0.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { PalmyraGridStore as n } from "./PalmyraGridStore.js";
+import "axios";
 import "react/jsx-runtime";
 import "../../layout/container/SectionContainer.js";
 import "react-router-dom";
@@ -28,7 +29,7 @@ import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiServerLookup.js";
-class N extends n {
+class O extends n {
   constructor(t, r, e) {
     super(t, r, e);
   }
@@ -58,5 +59,5 @@ class N extends n {
   }
 }
 export {
-  N as PalmyraDataStore
+  O as PalmyraDataStore
 };

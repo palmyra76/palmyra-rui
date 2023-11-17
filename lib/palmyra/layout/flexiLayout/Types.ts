@@ -1,4 +1,5 @@
 import { FormData } from "../../form/Definitions";
+import { strings } from "../../form/interface";
 import { ChartStore, QueryStore, DataStore, LookupStore } from "../../store";
 import { IEndPoint, Titleable } from "../Types";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
@@ -27,10 +28,10 @@ interface LayoutParams extends Record<string, string> {
 }
 
 interface StoreFactory<T> {
-    getGridStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: string | string[]): QueryStore<T>;
-    getFormStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: string | string[]): DataStore<T>;
+    getGridStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): QueryStore<T>;
+    getFormStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
     getChartStore(request: Record<string, string>, endPoint?: IEndPoint): ChartStore<T>;
-    getLookupStore(request: Record<string, string>, endPoint: IEndPoint, idProperty: string | string[]): LookupStore<T>;
+    getLookupStore(request: Record<string, string>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
 }
 
 interface FlexiLayoutRendererInput<T> {

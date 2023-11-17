@@ -1,5 +1,5 @@
 import { storeBacked } from "../layout/Types";
-import { FieldType } from "./interface";
+import { FieldType, strings } from "./interface";
 /**
  * This definitions will cater to the Form Definition format
  *
@@ -41,7 +41,7 @@ interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
     disabled?: boolean;
     variant?: MuiVariant;
     placeHolder?: string;
-    validationRule?: string | string[];
+    validationRule?: strings;
     errorMessage?: Record<string, string>;
     length?: RangeValidation<number>;
     range?: RangeValidation<any>;

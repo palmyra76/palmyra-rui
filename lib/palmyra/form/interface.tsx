@@ -11,6 +11,8 @@ type FieldType = "string" | "number"
 
 type InputType = string | number;
 
+type strings = string | string[];
+
 interface RangeValidation<T> {
     is?: T,
     min?: T,
@@ -37,7 +39,7 @@ interface AttributeDefinition {
 }
 
 interface abstractValidation {
-    validationRule?: string | string[],
+    validationRule?: strings,
     errorMessage?: Record<string, string>,
 }
 
@@ -163,7 +165,7 @@ const NoopFormListener: IFormListener = {
 
 
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType }
-export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition }
+export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager }
 
 export { NoopFormListener }

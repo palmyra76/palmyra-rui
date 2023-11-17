@@ -1,14 +1,15 @@
 import { QueryStore, GetRequest, QueryRequest, StringFormat, QueryResponse, QueryParams } from "../../../../lib/main";
 import axios, { AxiosInstance } from 'axios';
 import { IEndPoint } from "../../layout/Types";
+import { strings } from "../../form/interface";
 
 class PalmyraGridStore implements QueryStore<any>{
     request: Record<string, string>
     target: string
     endPoint:IEndPoint
-    idProperty:string
+    idProperty:strings
 
-    constructor(request: Record<string, string>, endPoint:IEndPoint, idProperty?:string) {
+    constructor(request: Record<string, string>, endPoint:IEndPoint, idProperty?:strings) {
         this.request = request;
         this.target = request.target;
         this.endPoint = endPoint;

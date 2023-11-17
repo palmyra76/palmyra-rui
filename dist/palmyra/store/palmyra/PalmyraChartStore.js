@@ -1,9 +1,9 @@
-var d = Object.defineProperty;
-var u = (o, t, r) => t in o ? d(o, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : o[t] = r;
-var n = (o, t, r) => (u(o, typeof t != "symbol" ? t + "" : t, r), r);
+var s = Object.defineProperty;
+var d = (r, t, o) => t in r ? s(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
+var i = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
 import "../../../index-1e74e5a0.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
-import m from "axios";
+import h from "axios";
 import "react/jsx-runtime";
 import "../../layout/container/SectionContainer.js";
 import "react-router-dom";
@@ -16,7 +16,7 @@ import "../../grid/base/ColumnConverter.js";
 import "../../grid/base/TableX.js";
 import "@tanstack/react-table";
 import "../../layout/flexiLayout/FormEditRenderer.js";
-import { StringFormat as s } from "../../utils/StringUtil.js";
+import { StringFormat as l } from "../../utils/StringUtil.js";
 import "dayjs";
 import "../../form/PalmyraForm.js";
 import "../../grid/plugins/filter/Filter.js";
@@ -31,16 +31,13 @@ import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiServerLookup.js";
-class T {
-  constructor(t, r, i) {
-    n(this, "request");
-    n(this, "target");
-    n(this, "endPoint");
-    n(this, "idProperty");
-    this.request = t, this.target = t.target, this.endPoint = r, this.idProperty = i;
-  }
-  getClient() {
-    return m;
+class V {
+  constructor(t, o, e) {
+    i(this, "request");
+    i(this, "target");
+    i(this, "endPoint");
+    i(this, "idProperty");
+    this.request = t, this.target = t.target, this.endPoint = o, this.idProperty = e;
   }
   getEndPoint() {
     return this.endPoint;
@@ -56,33 +53,15 @@ class T {
     this.endPoint.get;
   }
   query(t) {
-    var r = this.target + this.queryUrl(), i = s(r, t.options);
-    const p = { params: h(t) };
-    return m.get(i, p).then((a) => a.data);
-  }
-  queryLayout(t) {
-    var r = this.target + this.queryUrl(), i = s(r, {});
-    return m.get(i, {
-      headers: {
-        action: "schema"
-      }
-    }).then((e) => e.data);
-  }
-  get(t, r) {
-    var i = this.target + this.queryUrl(), e = s(i, t.options || {});
-    return m.get(e).then((p) => p.data);
-  }
-  getIdentity(t) {
-    throw new Error("Method not implemented.");
-  }
-  getIdProperty() {
-    return "id";
+    var o = this.target + this.queryUrl(), e = l(o, t.options);
+    const p = { params: a(t) };
+    return h.get(e, p).then((m) => m.data);
   }
 }
-function h(o) {
-  const t = Object.keys((o == null ? void 0 : o.sortOrder) || {}).map((e) => (o.sortOrder[e] === "asc" ? "+" : "-") + e), r = !!o.total;
-  return { ...o.filter || {}, _total: r, _orderBy: t.length ? t.join(",") : [] };
+function a(r) {
+  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((n) => (r.sortOrder[n] === "asc" ? "+" : "-") + n), o = !!r.total;
+  return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  T as PalmyraGridStore
+  V as PalmyraChartStore
 };

@@ -64,15 +64,19 @@ function createFormData(data, onValidityChange, mode: FormMode) {
             var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
                 onDataChange, validationRule, undefined);
 
-            if (requireStore(fieldDef)) {
-                result.store = getLookupStore(fieldDef);
+            try {
+                if (requireStore(fieldDef)) {
+                    result.store = getLookupStore(fieldDef);
+                }
+            } catch (error) {
+                console.error('Error while getting LookupStore for attribute' + fieldDef.attribute, error);
             }
 
             if (fieldDef.type == 'serverlookup') {
                 var titleAttribute = fieldDef.lookupOptions?.titleAttribute || fieldDef.lookupOptions?.idAttribute
                 result.displayValue = getValueByKey(titleAttribute, data);
             }
-
+            
             return result;
         }
         return generate;

@@ -1,6 +1,6 @@
 /// <reference types="react" />
+import { strings } from "../form/interface";
 type measure = string | number;
-type strings = string | string[];
 interface Positionable {
     height?: measure;
     width?: measure;

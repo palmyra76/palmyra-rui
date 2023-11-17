@@ -6,6 +6,7 @@ import { LookupStore } from "../store";
  */
 type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "multiSelect" | "dateRange";
 type InputType = string | number;
+type strings = string | string[];
 interface RangeValidation<T> {
     is?: T;
     min?: T;
@@ -29,7 +30,7 @@ interface AttributeDefinition {
     variant?: string;
 }
 interface abstractValidation {
-    validationRule?: string | string[];
+    validationRule?: strings;
     errorMessage?: Record<string, string>;
 }
 interface TextValidation extends abstractValidation {
@@ -123,6 +124,6 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType };
-export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition };
+export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager };
 export { NoopFormListener };

@@ -1,3 +1,4 @@
+import { strings } from "../form/interface";
 import { GetRequest, QueryOptions, QueryRequest, QueryResponse } from "./Types";
 interface LookupStore<T> {
     query(request: QueryRequest): Promise<QueryResponse<T>>;
@@ -7,7 +8,7 @@ interface QueryStore<T> {
     queryLayout(request: QueryRequest): Promise<any>;
     get(request: GetRequest): Promise<T>;
     getIdentity(o: T): any;
-    getIdProperty(): string | string[];
+    getIdProperty(): strings;
 }
 interface TreeQueryStore<T> {
     getChildren(data: T): Promise<QueryResponse<T>>;

@@ -1,6 +1,7 @@
+import { strings } from "../form/interface";
+
 type measure = string | number;
 
-type strings = string | string[];
 // type numbers = number | number[];
 
 interface Positionable {

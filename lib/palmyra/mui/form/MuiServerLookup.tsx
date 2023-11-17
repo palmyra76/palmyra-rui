@@ -107,7 +107,11 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         } else if (options.length > 1) {
             return;
         }
-        store.query(request).then(d => updateOptions(d.result)).catch(() => updateOptions([]));
+        if(store){
+            store.query(request).then(d => updateOptions(d.result)).catch(() => updateOptions([]));
+        }else{
+            console.error('lookup store is not initialized for attribute' + props.attribute);
+        }
     }
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data);
