@@ -4609,7 +4609,7 @@ const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
       case "portrange":
         return Zi;
       case "password":
-        return te.isPassword;
+        return te.isStrongPassword;
     }
   return fa;
 }, fa = () => !0, Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? te.isEmpty(t) : !t, Hi = (t) => !Pa(t);

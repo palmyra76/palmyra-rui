@@ -161,7 +161,7 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
             case 'portrange':
                 return isPortRange;
             case 'password':
-                return validator.isPassword;
+                return validator.isStrongPassword;
         }
     }
     return noopValid;
