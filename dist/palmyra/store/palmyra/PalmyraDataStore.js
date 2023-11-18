@@ -1,4 +1,4 @@
-import "../../../index-9119cfc8.js";
+import "../../../index-527c97dd.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { PalmyraGridStore as m } from "./PalmyraGridStore.js";
 import "axios";

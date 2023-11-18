@@ -26,17 +26,17 @@ const Q = {
   onValue: function(t, r, u) {
   }
 }, W = (t, r) => r ?? (t.defaultValue || "");
-function X(t, r, u, n, a, g, D) {
+function X(t, r, u, a, n, g, D) {
   g && console.log(t.attribute, g);
-  const B = g || T, M = D || U, p = J(t), [F, R] = A(r), [V, f] = A(E(r)), [v, C] = A({ status: !1, message: "" });
+  const B = g || T, M = D || U, p = J(t), [F, R] = A(r), [V, l] = A(E(r)), [v, C] = A({ status: !1, message: "" });
   x(() => {
-    R(r), f(E(r));
+    R(r), l(E(r));
   }, [r]);
   function E(e) {
     return p.parse(W(t, e));
   }
   const b = (e, o) => {
-    f(e || ""), o && P(() => {
+    l(e || ""), o && P(() => {
       _(e);
       const m = t.attribute, N = t.name || m, h = k(e);
       if (u) {
@@ -46,8 +46,8 @@ function X(t, r, u, n, a, g, D) {
       B.onChange(N, e, h.status), M.onValue(N, e, h.status);
     });
   }, k = (e) => {
-    if (n && n instanceof Function) {
-      const o = n(e);
+    if (a && a instanceof Function) {
+      const o = a(e);
       if (!o.status)
         return o;
     }
@@ -59,9 +59,9 @@ function X(t, r, u, n, a, g, D) {
     });
   }, _ = (e) => {
     const o = k(e);
-    o.status && a != null && a.asyncValid ? (i(), a.asyncValid(e, j, d)) : w(o);
+    o.status && n != null && n.asyncValid ? (i(), n.asyncValid(e, j, d)) : w(o);
   }, j = (e) => {
-  }, l = () => {
+  }, c = () => {
     v.message != "" && C({
       status: v.status,
       message: ""
@@ -79,7 +79,7 @@ function X(t, r, u, n, a, g, D) {
   }, S = { onBlur: () => {
     _(V);
   }, onFocus: () => {
-    l();
+    c();
   }, onValueChange: (e) => {
     b(e, !0);
   } };
@@ -89,7 +89,7 @@ function X(t, r, u, n, a, g, D) {
     u(void 0, void 0, { [e]: o.status });
   }, []), { data: V, setData: b, error: v, eventListeners: S };
 }
-function at(t) {
+function nt(t) {
   return {
     onBlur: t.onBlur,
     onFocus: t.onFocus,
@@ -98,39 +98,39 @@ function at(t) {
 }
 function Y() {
   const t = {};
-  return { addFieldRef: (n, a) => {
-    t[n] = a;
-  }, getFieldRef: (n) => {
-    const a = t[n];
-    if (a)
-      return a.current;
+  return { addFieldRef: (a, n) => {
+    t[a] = n;
+  }, getFieldRef: (a) => {
+    const n = t[a];
+    if (n)
+      return n.current;
   } };
 }
-function nt(t, r, u, n, a) {
-  const g = a || { changeListeners: {}, valueListeners: {} }, D = n || Q;
+function at(t, r, u, a, n) {
+  const g = n || { changeListeners: {}, valueListeners: {} }, D = a || Q;
   var B = {}, M = {};
   const p = O(!1);
   var F = O(L({}, t));
   const R = r;
-  var V = O({}), f = V.current, v = {};
+  var V = O({}), l = V.current, v = {};
   (() => u && u == "new")() && L(F.current, v);
-  const E = (l, i, d) => {
-    const y = l ? { attribute: i } : {};
-    f = Object.assign({}, f, d), L(F.current, y);
-    const c = b(f);
-    c != p.current && (p.current = c, R && R(c));
-  }, b = (l) => {
-    for (var i in l)
-      if (l[i] == !1)
+  const E = (c, i, d) => {
+    const y = c ? { [c]: i } : {};
+    l = Object.assign({}, l, d), L(F.current, y);
+    const f = b(l);
+    f != p.current && (p.current = f, R && R(f));
+  }, b = (c) => {
+    for (var i in c)
+      if (c[i] == !1)
         return !1;
     return !0;
   };
   return { getFieldManager: K(() => (F.current = L({}, t), (i, d, y) => {
-    var c = i.name || i.attribute, s = { ...i, type: d };
-    y && D.addFieldRef(c, y);
+    var f = i.name || i.attribute, s = { ...i, type: d };
+    y && D.addFieldRef(f, y);
     const S = I(s);
     B[s.attribute] = s, M[s.attribute] = S;
-    const e = g.changeListeners[c], o = g.valueListeners[c];
+    const e = g.changeListeners[f], o = g.valueListeners[f];
     var m = X(
       s,
       q(s.attribute, F.current),
@@ -151,7 +151,7 @@ function nt(t, r, u, n, a) {
     }
     return m;
   }), [t]), getFormData: () => L({}, F.current), initForm: () => {
-  }, isFormValid: () => b(f) };
+  }, isFormValid: () => b(l) };
 }
 function Z(t) {
   var r;
@@ -162,8 +162,8 @@ export {
   Q as a,
   ot as b,
   U as c,
-  nt as d,
+  at as d,
   Y as e,
-  at as f,
+  nt as f,
   X as g
 };

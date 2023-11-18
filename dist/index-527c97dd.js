@@ -13,7 +13,7 @@ import M from "./palmyra/layout/container/SectionContainer.js";
 import { ErrorBoundary as C } from "./palmyra/layout/ErrorBoundary.js";
 import N from "./palmyra/layout/flexiLayout/SectionRendererInvalid.js";
 import B from "./palmyra/layout/flexiLayout/SectionRendererViewForm.js";
-import { d as I } from "./PalmyraFormManager-95f90db1.js";
+import { d as I } from "./PalmyraFormManager-d9ca09a1.js";
 const ue = f(function(e, a) {
   const { columns: r, endPoint: c, storeFactory: o, layoutParams: i } = e, u = e.quickSearch || "";
   y(a, () => ({}), [r, c]);

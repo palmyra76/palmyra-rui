@@ -57,7 +57,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     }
 
     const onDataChange = (attribute: string, value: any, validity: { [x: string]: boolean }) => {
-        const data = attribute ? { attribute: value } : {};
+        const data = attribute ? { [attribute]: value } : {};
         dataValid = Object.assign({}, dataValid, validity);
         mergeDeep(formDataRef.current, data);
         const _isValid = isValidForm(dataValid);
