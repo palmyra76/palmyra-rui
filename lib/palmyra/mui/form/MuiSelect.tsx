@@ -29,6 +29,9 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref:Mu
             },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
+            },
+            setValue(d:any){
+                fieldManager.setData(d);
             }
         };
     }, []);

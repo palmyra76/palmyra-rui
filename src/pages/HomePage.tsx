@@ -35,7 +35,7 @@ const HomePage = () => {
 
     const genderEventListener: IFieldEventListener = {
         onChange: function (key: string, value: any, valid?: boolean): void {
-            const gendersField: IRadioGroupField = formHelper.getFieldRef<IRadioGroupField>('genders');
+            const gendersField: IRadioGroupField = formHelper.getFieldRef<IRadioGroupField>('gender');
             gendersField.setValue(value);
         }
     }
@@ -46,7 +46,7 @@ const HomePage = () => {
         },
         getOnChangeListeners: function (){
             return {
-                'gender': genderEventListener
+                'genders': genderEventListener
             }
         },
         getValueListeners: function (){
