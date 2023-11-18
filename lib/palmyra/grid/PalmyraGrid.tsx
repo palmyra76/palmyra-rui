@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle } from "react";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { GridRenderer, TableLayout } from "../layout/flexiLayout";
-import { ColumnDefinition, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
+import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
 import { ActionOptions } from "../layout/Types";
 
 interface IPalmyraGridInput {
@@ -11,7 +11,8 @@ interface IPalmyraGridInput {
     customizer?: GridCustomizer,
     endPoint: IEndPoint,
     storeFactory: StoreFactory<any>,
-    layoutParams: PageContext
+    layoutParams: PageContext,
+    defaultParams?: DefaultQueryParams
 }
 
 interface IPalmyraGrid {

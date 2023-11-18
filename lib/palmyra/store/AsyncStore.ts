@@ -1,5 +1,5 @@
 import { strings } from "../form/interface";
-import { GetRequest, QueryOptions, QueryRequest, QueryResponse } from "./Types";
+import { GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest } from "./Types";
 
 interface LookupStore<T> {
     query(request: QueryRequest): Promise<QueryResponse<T>>;
@@ -19,9 +19,9 @@ interface TreeQueryStore<T> {
 }
 
 interface DataStore<T> extends QueryStore<T> {
-    post(data: T, options?: QueryOptions): Promise<T>;
-    put(data: T, options?: QueryOptions): Promise<T>;
-    remove(key: T | any): Promise<T>;
+    post(data: T, request?: PostRequest): Promise<T>;
+    put(data: T, request?: PutRequest): Promise<T>;
+    remove(key: T | any, request?: RemoveRequest): Promise<T>;
 }
 
 interface ChartStore<T> {
@@ -32,5 +32,9 @@ interface AuthDecorator {
     decorate(request: any): void;
 }
 
+interface DefaultQueryParams {
+    filter?: Record<any, any>,
+    sort?: strings
+}
 
-export type { DataStore, QueryStore, TreeQueryStore, ChartStore, AuthDecorator, LookupStore };
+export type { DataStore, QueryStore, TreeQueryStore, ChartStore, AuthDecorator, LookupStore, DefaultQueryParams };

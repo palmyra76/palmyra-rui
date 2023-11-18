@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { ColumnDefinition, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
+import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
 import { ActionOptions } from "../layout/Types";
 interface IPalmyraGridInput {
     columns: ColumnDefinition[];
@@ -9,6 +9,7 @@ interface IPalmyraGridInput {
     endPoint: IEndPoint;
     storeFactory: StoreFactory<any>;
     layoutParams: PageContext;
+    defaultParams?: DefaultQueryParams;
 }
 interface IPalmyraGrid {
 }

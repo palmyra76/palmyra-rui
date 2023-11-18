@@ -1,4 +1,4 @@
-import { DataStore, QueryOptions, StringFormat } from "../../../main";
+import { DataStore, PostRequest, PutRequest, RemoveRequest, StringFormat } from "../../../main";
 import { strings } from "../../form/interface";
 import { IEndPoint } from "../../layout/Types";
 import { PalmyraGridStore } from "./PalmyraGridStore";
@@ -8,21 +8,21 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T>{
         super(request, endPoint, idProperty);
     }
 
-    post(data: any, options?: QueryOptions): Promise<T> {
+    post(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
-        var url: any = StringFormat(urlFormat, options);
+        var url: any = StringFormat(urlFormat, request?.endPointVars);
         return this.getClient().post(url, data)
             .then(response => { return response.data });
     }
 
-    put(data: any, options?: QueryOptions, idProperty?: string): Promise<T> {
+    put(data: any, request?: PutRequest): Promise<T> {
         var urlFormat = this.target + this.putUrl();
-        var url: any = StringFormat(urlFormat, options);
+        var url: any = StringFormat(urlFormat, request?.endPointVars);
         return this.getClient().put(url, data)
             .then(response => { return response.data });
     }
 
-    remove(key: any, idProperty?: string): Promise<T> {
+    remove(key: any, request?: RemoveRequest): Promise<T> {
         var urlFormat = this.target + this.deleteUrl();
         var url: any = StringFormat(urlFormat, key);
         return this.getClient().delete(url)

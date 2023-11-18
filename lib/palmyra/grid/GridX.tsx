@@ -5,9 +5,10 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
 import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add } from '@mui/icons-material';
-import { QueryStore } from '../store';
+import { DefaultQueryParams, QueryStore } from '../store';
 import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
+
 
 //TODO - show errors on data fetching
 
@@ -20,7 +21,8 @@ interface GridXOptions {
   onNewClick?: Function,
   pageSize?: number[],
   quickSearch?: string,
-  customizer?: GridCustomizer
+  customizer?: GridCustomizer,
+  defaultParams?: DefaultQueryParams
 }
 
 interface GridXFilter {
@@ -33,7 +35,7 @@ function GridX(props: GridXOptions) {
   const [filter, setFilter] = useState<GridXFilter>({});
   const [sortOrder, setSortOrder] = useState({});
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
-  const customizer:GridCustomizer = props.customizer || NoopCustomizer;
+  const customizer: GridCustomizer = props.customizer || NoopCustomizer;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');

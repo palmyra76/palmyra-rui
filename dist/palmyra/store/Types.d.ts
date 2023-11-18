@@ -1,13 +1,17 @@
+import { IEndPointVars } from "../layout/Types";
 interface Pagination {
     offset?: number;
     limit?: number;
     total?: boolean;
 }
+interface AbstractRequest {
+    options?: QueryOptions;
+    endPointVars?: IEndPointVars;
+}
 interface CriteriaOptions {
     filter?: Record<string, any>;
 }
-interface QueryRequest extends Pagination, CriteriaOptions {
-    options?: QueryOptions;
+interface QueryRequest extends Pagination, CriteriaOptions, AbstractRequest {
 }
 interface QueryParams extends Pagination, CriteriaOptions {
     sortOrder?: QueryOptions;
@@ -18,9 +22,14 @@ interface QueryResponse<T> {
     limit?: number;
     total?: number;
 }
-interface GetRequest extends CriteriaOptions {
-    options?: QueryOptions;
+interface GetRequest extends CriteriaOptions, AbstractRequest {
     key?: string;
+}
+interface PostRequest extends AbstractRequest {
+}
+interface PutRequest extends AbstractRequest {
+}
+interface RemoveRequest extends AbstractRequest {
 }
 interface QueryOptions extends Record<string, any> {
 }
@@ -39,5 +48,6 @@ interface ResponseHandler<T> {
 interface Tree<T extends Tree<T>> {
     children?: T[];
 }
-export type { Pagination, CriteriaOptions, QueryRequest, QueryResponse, GetRequest, QueryOptions, Tree, QueryParams };
+export type { Pagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams };
+export type { GetRequest, PostRequest, PutRequest, RemoveRequest };
 export type { QueryResponseHandler, ResponseHandler, ErrorResponse };
