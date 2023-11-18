@@ -105,8 +105,8 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
             }
 
             if (fieldDef.type == 'serverlookup') {
-                var titleAttribute = fieldDef.lookupOptions?.titleAttribute || fieldDef.lookupOptions?.idAttribute
-                result.displayValue = getValueByKey(titleAttribute, data);
+                var displayAttribute = fieldDef.displayAttribute || fieldDef.attribute;
+                result.displayValue = getValueByKey(displayAttribute, data);
             }
 
             return result;

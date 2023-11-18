@@ -68,6 +68,7 @@ interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
     displayPattern?: string;
 }
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
+    displayAttribute: string;
     lookupOptions: IFormFieldServerLookup;
     store?: LookupStore<any>;
     storeOptions: {
