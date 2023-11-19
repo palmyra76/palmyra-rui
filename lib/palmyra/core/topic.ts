@@ -6,13 +6,13 @@
 
 import PubSub from 'pubsub-js'
 
-interface TopicListener {
-	(topic: string, data: any): void;
+interface TopicListener<T> {
+	(topic: string, data: T, action: string): void;
 }
 
 class Topic {
 
-	subscribe(topic: string, listener: TopicListener): string {
+	subscribe<T>(topic: string, listener: TopicListener<T>): string {
 		const result = PubSub.subscribe(topic, listener);
 		if (result)
 			return result;
@@ -21,7 +21,7 @@ class Topic {
 		}
 	}
 
-	publish(topic: string, data: any): boolean {
+	publish<T>(topic: string, data: T): boolean {
 		return PubSub.publish(topic, data);
 	}
 

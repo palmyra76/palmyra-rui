@@ -1,4 +1,4 @@
-import { useImperativeHandle, forwardRef, useContext, useState, useEffect } from 'react';
+import { forwardRef, useContext, useState, useEffect } from 'react';
 import { PageContext } from './Types';
 import { TableLayout } from '.';
 import { GridCustomizer, GridX } from '../../grid';
@@ -13,7 +13,7 @@ interface GridRendererInput {
     customizer?: GridCustomizer
 }
 
-const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, ref) {
+const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef) {
     const tableLayout = props.layout;
     const [fields, setFields] = useState(tableLayout.fields);
     const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];
@@ -34,21 +34,13 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
         }
     }, [])
 
-    useImperativeHandle(ref, () => {
-        return {
-            applyFilter() {
-
-            }
-        };
-    }, []);
-
     const { onClick, onNewClick } = getActionPublishers(tableLayout.actionOptions, layoutParams);
 
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
                 onNewClick={onNewClick} customizer={props.customizer}
-                quickSearch={tableLayout.quickSearch}
+                quickSearch={tableLayout.quickSearch} ref={gridRef}
             ></GridX>
         </div>
     );

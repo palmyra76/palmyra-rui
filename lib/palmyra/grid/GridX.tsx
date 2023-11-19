@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { TablePagination, TextField, InputAdornment, Button, Tooltip, ClickAwayListener } from '@mui/material';
 import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -29,7 +29,7 @@ interface GridXFilter {
   quickSearch?: string
 }
 
-function GridX(props: GridXOptions) {
+const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<any>) {
   const { columns, children, EmptyChild, store, onRowClick, quickSearch } = props;
   const [totalData, setTotalData] = useState(null);
   const [filter, setFilter] = useState<GridXFilter>({});
@@ -42,13 +42,22 @@ function GridX(props: GridXOptions) {
   const [filterDialogOpen, setFilterDialogOpen] = useState(false);
 
   const pageSize = props.pageSize ? props.pageSize : 15;
-
   var pageSizeOptions = pageSize instanceof Array ? pageSize : [pageSize];
   var defaultPageSize = pageSize instanceof Array ? pageSize[0] : pageSize;
 
   const [page, setPage] = useState({
     pageNo: 0, pageSize: defaultPageSize
   });
+
+  const currentRef = ref ? ref : useRef(null);
+  useImperativeHandle(currentRef, () => {
+    return {
+      setFilter: (d: any) => {
+
+      }
+    };
+  }, []);
+
 
   const nextPage = (event, newPage) => {
     setPage({ ...page, pageNo: newPage });
@@ -285,6 +294,6 @@ function GridX(props: GridXOptions) {
       </div >
     </div >
   )
-}
+});
 
 export default GridX;

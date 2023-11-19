@@ -1,12 +1,13 @@
-import { forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { GridRenderer, TableLayout } from "../layout/flexiLayout";
-import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, PageContext, StoreFactory } from "../../main";
+import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, PageContext, StoreFactory, TopicListener, topic } from "../../main";
 import { ActionOptions } from "../layout/Types";
 
 interface IPalmyraGridInput {
     columns: ColumnDefinition[],
     actions?: ActionOptions,
+    topic?: string,
     quickSearch?: string,
     customizer?: GridCustomizer,
     endPoint: IEndPoint,
@@ -16,18 +17,35 @@ interface IPalmyraGridInput {
 }
 
 interface IPalmyraGrid {
-
+    setFilter: (d: any) => void
 }
 
 const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, ref) {
     const { columns, endPoint, storeFactory, layoutParams } = props;
     const quickSearch = props.quickSearch || '';
+    const gridRef = useRef(null);
 
-    useImperativeHandle(ref, (): IPalmyraGrid => {
-        return {
+    const topicListener: TopicListener<any> = (topic: string, data: any): void => {
+        console.log(data);
+    }
 
-        };
-    }, [columns, endPoint]);
+    useEffect(() => {
+        var handle = topic.subscribe(props.topic, topicListener);
+
+        return () => {
+            topic.unsubscribe(handle);
+        }
+    }, [props.topic]);
+
+    if (ref) {
+        useImperativeHandle(ref, (): IPalmyraGrid => {
+            return {
+                setFilter: (d: any) => {
+                    gridRef.current.setFilter(d);
+                }
+            };
+        }, [columns, endPoint]);
+    }
 
     const layout: TableLayout = {
         fields: columns,
@@ -41,7 +59,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
     return (
         <>
             <StoreFactoryContext.Provider value={storeFactory}>
-                <GridRenderer layout={layout} context={layoutParams} customizer={props.customizer}></GridRenderer>
+                <GridRenderer layout={layout} context={layoutParams} customizer={props.customizer} ref={gridRef}></GridRenderer>
             </StoreFactoryContext.Provider>
         </>);
 

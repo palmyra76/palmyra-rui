@@ -10,9 +10,9 @@ import { StringFormat } from "../utils";
 
 interface IPalmyraGridInput {
     pageName: string,
-    fields:ColumnDefinition[],
+    fields: ColumnDefinition[],
     endPoint: IEndPoint
-    idKey:string
+    idKey: string
 }
 
 
@@ -24,26 +24,26 @@ const usePalmyraPageGrid = (props: IPalmyraGridInput) => {
     const layout: TableLayout = {
         fields: props.fields,
         quickSearch: '',
-        storeOptions:{
+        storeOptions: {
             endPoint: props.endPoint
         },
-        actionOptions:{
-            onClick:{
-                topic:viewTopic
+        actionOptions: {
+            onClick: {
+                topic: viewTopic
             },
-            newRecord:{
-                topic:newTopic
+            newRecord: {
+                topic: newTopic
             }
-        }        
+        }
     }
 
     useEffect(() => {
-        var viewPageHandle = topic.subscribe(viewTopic, (topicName, data) => {
+        var viewPageHandle = topic.subscribe<any>(viewTopic, (topicName, data) => {
             data.id = data[props.idKey];
             navigate(StringFormat('view/{id}', data));
         });
 
-        var newPageHandle = topic.subscribe(newTopic, (topicName, data) => {            
+        var newPageHandle = topic.subscribe(newTopic, (topicName, data) => {
             navigate(StringFormat('new', data));
         });
 
@@ -53,7 +53,7 @@ const usePalmyraPageGrid = (props: IPalmyraGridInput) => {
         }
     }, [props.idKey]);
 
-    return {layout}
+    return { layout }
 }
 
-export {usePalmyraPageGrid}
+export { usePalmyraPageGrid }
