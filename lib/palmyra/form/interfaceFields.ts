@@ -12,6 +12,17 @@ interface IOptionsField {
     getOptions: () => any
 }
 
+interface IDynamicOptions {
+    readonly?: boolean
+    visible?: boolean
+}
+
+interface IDynamicField {
+    setAttribute: (d: IDynamicOptions) => void
+    setReadOnly: (readonly: boolean) => void
+    setVisible: (visible: boolean) => void
+}
+
 interface ITextField extends IInputField {
 
 }
@@ -46,3 +57,18 @@ interface IServerLookupField extends IInputField {
 }
 
 export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField }
+
+interface IDFTextField extends ITextField, IDynamicField {
+
+}
+
+interface IDFServerLookupField extends IServerLookupField, IDynamicField {
+
+}
+
+interface IDFSelectField extends ISelectField, IDynamicField {
+
+}
+
+
+export type { IDynamicOptions, IDFTextField, IDFSelectField, IDFServerLookupField }

@@ -34,6 +34,7 @@ interface AttributeDefinition {
     value?: InputType,
     required?: boolean,
     readonly?: boolean,
+    visible?: boolean,
     disabled?: boolean,
     placeHolder?: string,
     variant?: string
@@ -87,7 +88,7 @@ interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
 }
 
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
-    displayAttribute:string,
+    displayAttribute: string,
     lookupOptions: IFormFieldServerLookup,
     store?: LookupStore<any>,
     storeOptions: {

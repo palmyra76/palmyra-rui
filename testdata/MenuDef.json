@@ -7,6 +7,11 @@
             "icon": "home"
         },
         {
+            "path": "/dynamic",
+            "name": "Dynamic Fields",
+            "icon": "home"
+        },
+        {
             "path": "/grid",
             "name": "StaticSummaryGrid",
             "icon": "home"

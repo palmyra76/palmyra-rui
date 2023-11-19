@@ -44,12 +44,12 @@ const HomePage = () => {
         getFormHelper: function () {
             return formHelper
         },
-        getOnChangeListeners: function (){
+        getOnChangeListeners: function () {
             return {
                 'genders': genderEventListener
             }
         },
-        getValueListeners: function (){
+        getValueListeners: function () {
             return {};
         }
     }
@@ -61,7 +61,8 @@ const HomePage = () => {
                 genders: 'F',
                 password: 'secret',
                 userName: 'titan',
-                service: 1, switch: 0,
+                service: 1, serviceName: 'Rolex',
+                switch: 0,
                 time: '2023-10-19 09:21:21'
             });
         }, 2000);
@@ -111,7 +112,8 @@ const HomePage = () => {
                             length={{ min: 3, message: "Minimum of 3 letters" }}
                             required={true}
                             readonly={true} />
-                        <MuiServerLookup attribute="service" required={true} label="Service"
+                        <MuiServerLookup attribute="service" displayAttribute="serviceName"
+                            required={true} label="Service"
                             lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                             storeOptions={{ endPoint: "/api/data/fetchMe" }} />
                         <MuiCheckBox attribute="file" title="File"
