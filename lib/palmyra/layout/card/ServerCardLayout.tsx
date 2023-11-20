@@ -1,10 +1,11 @@
-import { ReactNode } from 'react';
+import { MutableRefObject, ReactNode, forwardRef, useImperativeHandle, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { TablePagination, TextField, InputAdornment } from '@mui/material';
 import './CardLayout.css';
 import { DefaultQueryParams, QueryStore } from '../../store';
 import useServerQuery from '../../form/ServerQueryManager';
 import { CardLayout } from '..';
+import { IGrid } from '../../form/interfaceFields';
 
 interface ServerCardLayoutInput {
     quickSearch?: string,
@@ -18,14 +19,32 @@ interface ServerCardLayoutInput {
     children?: ReactNode,
 }
 
-const ServerCardLayout = (props: ServerCardLayoutInput) => {
+const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
     const { children, Child, childProps, pageSize } = props;
-
-    const {
+    const currentRef:MutableRefObject<IGrid> = ref ? ref : useRef(null);
+    const { setQueryFilter,
         setQuickSearch, gotoPage, setPageSize, getPageNo,
         data, pageSizeOptions, queryLimit } = useServerQuery(props);
 
     const listKeyProvider = props.listKeyProvider || ((data, index) => index);
+
+    useImperativeHandle(currentRef, () => {
+        return {
+            setFilter(d) {
+                setQueryFilter(d);
+            },
+            gotoPage(p: number) {
+                gotoPage(p)
+            },
+            nextPage() {
+
+            },
+            prevPage() {
+
+            }
+        };
+    }, []);
+
 
     const nextPage = (event, newPage) => {
         gotoPage(newPage);
@@ -87,13 +106,14 @@ const ServerCardLayout = (props: ServerCardLayoutInput) => {
 
                     <div className="card-wrapper" >
                         <CardLayout Child={Child} childKeyProvider={listKeyProvider}
-                            dataList={data} childProps={childProps} 
+                            dataList={data} childProps={childProps}
                         ></CardLayout>
                     </div>
                 </div>
             </div>
         </div>
     )
-}
+});
+
 export default ServerCardLayout;
 export type { ServerCardLayoutInput }

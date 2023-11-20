@@ -10,7 +10,9 @@ import "axios";
 import "@mui/icons-material";
 /* empty css                   */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css                       *//* empty css                     */import { topic as v } from "./palmyra/core/topic.js";
+/* empty css                       */import "./palmyra/layout/card/CardLayout.js";
+import "./palmyra/layout/card/ServerCardLayout.js";
+import { topic as v } from "./palmyra/core/topic.js";
 import "dayjs";
 import "./palmyra/mui/form/MuiDatePicker.js";
 import "./palmyra/mui/form/MuiDateTimePicker.js";
@@ -30,7 +32,7 @@ import { ErrorBoundary as L } from "./palmyra/layout/ErrorBoundary.js";
 import B from "./palmyra/layout/flexiLayout/SectionRendererInvalid.js";
 import I from "./palmyra/layout/flexiLayout/SectionRendererViewForm.js";
 import { d as j } from "./PalmyraFormManager-9cbba3fa.js";
-const qe = y(function(e, i) {
+const De = y(function(e, i) {
   const { columns: r, endPoint: s, storeFactory: n, layoutParams: a } = e, u = e.quickSearch || "", c = w(null), m = (d, f) => {
     console.log(f);
   };
@@ -180,7 +182,7 @@ const P = (o) => {
     default:
       return x;
   }
-}, De = y(function(e, i) {
+}, Ee = y(function(e, i) {
   const [r, s] = S(e.layout), n = e.mode ? e.mode : r.type ? r.type : "grid", a = e.layoutParams || {}, u = J(n), c = w(0);
   return h(() => {
     s(e.layout), c.current < 999999 ? c.current++ : c.current = 0;
@@ -189,9 +191,9 @@ const P = (o) => {
   } }, c.current) }) }) });
 });
 export {
-  De as F,
+  Ee as F,
   C as G,
-  qe as P,
+  De as P,
   H as S,
   P as T,
   W as a,

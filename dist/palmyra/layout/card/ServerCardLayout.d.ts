@@ -11,6 +11,6 @@ interface ServerCardLayoutInput {
     EmptyChild?: React.FC;
     children?: ReactNode;
 }
-declare const ServerCardLayout: (props: ServerCardLayoutInput) => import("react/jsx-runtime").JSX.Element;
+declare const ServerCardLayout: import("react").ForwardRefExoticComponent<ServerCardLayoutInput & import("react").RefAttributes<any>>;
 export default ServerCardLayout;
 export type { ServerCardLayoutInput };

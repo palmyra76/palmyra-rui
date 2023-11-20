@@ -21,6 +21,13 @@ interface IMutateOptions {
     visible?: boolean
 }
 
+interface IGrid {
+    setFilter: (d: any) => void
+    gotoPage: (p: number) => void
+    nextPage: () => void
+    prevPage: () => void
+}
+
 interface ITextField extends IInputField {
 
 }
@@ -54,6 +61,6 @@ interface IServerLookupField extends IInputField {
     setDefaultFilter: (d: any) => void
 }
 
-export type {IMutateOptions}
+export type { IMutateOptions, IGrid }
 
 export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField }

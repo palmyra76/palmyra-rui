@@ -1,4 +1,4 @@
-import { F as o, G as t, P as a } from "./index-22a27bec.js";
+import { F as o, G as t, P as a } from "./index-c52f0c62.js";
 import { StoreFactoryContext as f } from "./palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { default as p } from "./palmyra/store/memory/MemoryMenuStore.js";
 import { default as s } from "./palmyra/store/memory/MemoryTreeStore.js";

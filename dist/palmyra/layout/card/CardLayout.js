@@ -1,16 +1,17 @@
+import "../../../assets/CardLayout.css";
 import { jsx as r, jsxs as s } from "react/jsx-runtime";
-/* empty css                            */import n from "./EmptyChildCard.js";
-const v = (e) => {
-  const { children: c, dataList: d, Child: t, childProps: l } = e, o = e.childKeyProvider || ((i, a) => a);
+import n from "./EmptyChildCard.js";
+const v = (t) => {
+  const { children: c, dataList: d, Child: e, childProps: o } = t, l = t.childKeyProvider || ((i, a) => a);
   return /* @__PURE__ */ r("div", { children: !d || d.length == 0 ? /* @__PURE__ */ r(n, {}) : /* @__PURE__ */ s("div", { className: "card-container", children: [
     c,
     /* @__PURE__ */ r("div", { className: "card-wrapper", children: d.map((i, a) => /* @__PURE__ */ r(
-      t,
+      e,
       {
-        ...l,
+        ...o,
         data: i
       },
-      o(i, a)
+      l(i, a)
     )) })
   ] }) });
 };
