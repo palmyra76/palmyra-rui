@@ -28,7 +28,7 @@ function execute<T>(func: string, props: T) {
 type Func<T> = (d: T) => void
 
 function useExecute<T>(key: string, func: Func<T>): Func<T> {
-    const [f] = useState<Func<T>>(func);
+    const f = func;
 
     const l: TopicListener<T> = (_topic: string, data: T) => {
         f(data);
