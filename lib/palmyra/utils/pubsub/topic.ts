@@ -41,5 +41,4 @@ class Topic {
 const topic = new Topic();
 
 export { topic }
-
 export type { TopicListener }

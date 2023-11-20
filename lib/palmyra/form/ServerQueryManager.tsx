@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
-import { QueryRequest } from '../../main';
+import { QueryRequest, useKeyValue } from '../../main';
 import { IEndPointVars } from '../layout/Types';
-import { useKeyValue } from '../core/PubSubHelper';
 
 interface IServerQueryInput {
   store: AbstractQueryStore<any>,

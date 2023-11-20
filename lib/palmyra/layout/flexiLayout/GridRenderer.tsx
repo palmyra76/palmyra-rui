@@ -4,7 +4,7 @@ import { TableLayout } from '.';
 import { GridCustomizer, GridX } from '../../grid';
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
-import { getActionPublishers } from '../../core/Publishers';
+import { getActionPublishers } from '../../utils/pubsub/Publishers';
 import { mergeDeep } from '../../utils';
 
 interface GridRendererInput {

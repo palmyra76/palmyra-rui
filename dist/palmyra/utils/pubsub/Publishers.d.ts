@@ -1,5 +1,5 @@
-import { LayoutParams } from "../../main";
-import { ActionOptions } from "../layout/Types";
+import { LayoutParams } from "../../../main";
+import { ActionOptions } from "../../layout/Types";
 /**
  * Returns a function to publish a message, this shall be called on onClick event.
  *

@@ -1,6 +1,6 @@
 import { useNavigate as d } from "react-router-dom";
 import { useEffect as g } from "react";
-import { topic as t } from "../core/topic.js";
+import { topic as t } from "../utils/pubsub/topic.js";
 import { StringFormat as a } from "../utils/StringUtil.js";
 const P = (e) => {
   const n = d(), o = e.pageName + "/viewPage", c = e.pageName + "/newPage", r = {

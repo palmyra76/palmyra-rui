@@ -1,5 +1,5 @@
 import { default as e } from "./GridX.js";
-import { P as a } from "../../index-c52f0c62.js";
+import { P as a } from "../../index-6f059e89.js";
 import { NoopCustomizer as i, gridColumnCustomizer as d } from "./Types.js";
 import { usePalmyraPageGrid as p } from "./usePalmyraPageGrid.js";
 export {

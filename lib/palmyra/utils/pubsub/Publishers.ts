@@ -1,6 +1,6 @@
-import { LayoutParams } from "../../main";
-import { ActionOptions, PublishAction } from "../layout/Types";
-import { StringFormat, mergeDeep } from "../utils";
+import { LayoutParams } from "../../../main";
+import { ActionOptions, PublishAction } from "../../layout/Types";
+import { StringFormat, mergeDeep } from "..";
 import { topic } from "./topic";
 
 /**

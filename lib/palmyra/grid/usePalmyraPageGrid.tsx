@@ -4,8 +4,9 @@ import { useEffect } from "react";
 import { IEndPoint } from "../layout/Types";
 import { ColumnDefinition } from ".";
 import { TableLayout } from "../layout/flexiLayout";
-import { topic } from "../core/topic";
+
 import { StringFormat } from "../utils";
+import { topic } from "../utils/pubsub";
 
 
 interface IPalmyraGridInput {

@@ -1,6 +1,6 @@
-import { mergeDeep as g } from "../utils/index.js";
+import { mergeDeep as g } from "../index.js";
 import { topic as t } from "./topic.js";
-import { StringFormat as u } from "../utils/StringUtil.js";
+import { StringFormat as u } from "../StringUtil.js";
 function b(e, l) {
   var r = {};
   const o = g({}, l);
