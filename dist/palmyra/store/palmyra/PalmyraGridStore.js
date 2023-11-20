@@ -1,27 +1,20 @@
 var d = Object.defineProperty;
 var u = (o, t, r) => t in o ? d(o, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : o[t] = r;
 var n = (o, t, r) => (u(o, typeof t != "symbol" ? t + "" : t, r), r);
-import "../../../index-527c97dd.js";
+import "../../../index-22a27bec.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
-import m from "axios";
+import s from "axios";
 import "react/jsx-runtime";
-import "../../layout/container/SectionContainer.js";
-import "react-router-dom";
+/* empty css                               */import "react-router-dom";
 import "react";
 import "@mui/icons-material";
 /* empty css                          */import "@emotion/styled";
 import "@mui/x-tree-view";
 /* empty css                              *//* empty css                            */import "@mui/material";
-import "../../grid/base/ColumnConverter.js";
-import "../../grid/base/TableX.js";
-import "@tanstack/react-table";
-import "../../layout/flexiLayout/FormEditRenderer.js";
-import { StringFormat as s } from "../../utils/StringUtil.js";
-import "dayjs";
-import "../../form/PalmyraForm.js";
-import "../../grid/plugins/filter/Filter.js";
-import "../../layout/flexiLayout/FormFieldOnlyRenderer.js";
+import "../../grid/GridX.js";
 import "../../core/topic.js";
+import { StringFormat as m } from "../../utils/StringUtil.js";
+import "dayjs";
 import "../../mui/form/MuiDatePicker.js";
 import "../../mui/form/MuiDateTimePicker.js";
 import "../../mui/form/MuiRadioGroup.js";
@@ -32,16 +25,17 @@ import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiServerLookup.js";
-class V {
-  constructor(t, r, i) {
+import "../../form/PalmyraForm.js";
+class J {
+  constructor(t, r, e) {
     n(this, "request");
     n(this, "target");
     n(this, "endPoint");
     n(this, "idProperty");
-    this.request = t, this.target = t.target, this.endPoint = r, this.idProperty = i;
+    this.request = t, this.target = t.target, this.endPoint = r, this.idProperty = e;
   }
   getClient() {
-    return m;
+    return s;
   }
   getEndPoint() {
     return this.endPoint;
@@ -57,21 +51,21 @@ class V {
     this.endPoint.get;
   }
   query(t) {
-    var r = this.target + this.queryUrl(), i = s(r, t.options);
+    var r = this.target + this.queryUrl(), e = m(r, t.options);
     const p = { params: h(t) };
-    return m.get(i, p).then((a) => a.data);
+    return s.get(e, p).then((a) => a.data);
   }
   queryLayout(t) {
-    var r = this.target + this.queryUrl(), i = s(r, {});
-    return m.get(i, {
+    var r = this.target + this.queryUrl(), e = m(r, {});
+    return s.get(e, {
       headers: {
         action: "schema"
       }
-    }).then((e) => e.data);
+    }).then((i) => i.data);
   }
   get(t, r) {
-    var i = this.target + this.queryUrl(), e = s(i, t.options || {});
-    return m.get(e).then((p) => p.data);
+    var e = this.target + this.queryUrl(), i = m(e, t.options || {});
+    return s.get(i).then((p) => p.data);
   }
   getIdentity(t) {
     throw new Error("Method not implemented.");
@@ -81,9 +75,9 @@ class V {
   }
 }
 function h(o) {
-  const t = Object.keys((o == null ? void 0 : o.sortOrder) || {}).map((e) => (o.sortOrder[e] === "asc" ? "+" : "-") + e), r = !!o.total;
+  const t = Object.keys((o == null ? void 0 : o.sortOrder) || {}).map((i) => (o.sortOrder[i] === "asc" ? "+" : "-") + i), r = !!o.total;
   return { ...o.filter || {}, _total: r, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  V as PalmyraGridStore
+  J as PalmyraGridStore
 };

@@ -1,6 +1,7 @@
 import { MutableRefObject } from "react";
 import { IEndPoint } from "../layout";
 import { LookupStore } from "../store";
+import { IMutateOptions } from "./interfaceFields";
 /**
  * This definitions will cater to the Form Definition format
  *
@@ -8,6 +9,7 @@ import { LookupStore } from "../store";
 type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange";
 type InputType = string | number;
 type strings = string | string[];
+type numbers = number | number[];
 interface RangeValidation<T> {
     is?: T;
     min?: T;
@@ -26,6 +28,8 @@ interface AttributeDefinition {
     value?: InputType;
     required?: boolean;
     readonly?: boolean;
+    mutant?: boolean;
+    visible?: boolean;
     disabled?: boolean;
     placeHolder?: string;
     variant?: string;
@@ -111,6 +115,8 @@ interface IFormFieldManager {
     eventListeners: IEventListeners;
     displayValue?: any;
     store?: LookupStore<any>;
+    mutateOptions?: IMutateOptions;
+    setMutateOptions?: (d: IMutateOptions) => void;
 }
 interface IFieldDefinition extends AttributeDefinition, LookupOptions {
     type: string;
@@ -126,6 +132,6 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType };
-export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings };
+export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager };
 export { NoopFormListener };

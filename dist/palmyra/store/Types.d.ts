@@ -12,6 +12,7 @@ interface CriteriaOptions {
     filter?: Record<string, any>;
 }
 interface QueryRequest extends Pagination, CriteriaOptions, AbstractRequest {
+    sortOrder?: QueryOptions;
 }
 interface QueryParams extends Pagination, CriteriaOptions {
     sortOrder?: QueryOptions;

@@ -15,7 +15,7 @@ const CardLayout = (props: CardLayoutInput) => {
     const childKeyProvider = props.childKeyProvider || ((data: any, index: number) => index);
 
     return (
-        <div>{dataList.length == 0 ? (
+        <div>{!dataList || dataList.length == 0 ? (
             <EmptyChildCard />
         ) : (
             <div className="card-container" >

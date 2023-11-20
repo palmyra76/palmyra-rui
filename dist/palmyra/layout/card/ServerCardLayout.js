@@ -1,64 +1,74 @@
-import { jsx as a, jsxs as s } from "react/jsx-runtime";
-import { useState as i, useEffect as I } from "react";
-import K from "./EmptyChildCard.js";
-import { A as L } from "../../../index.esm-3271ad1f.js";
-import { TextField as O, InputAdornment as j, TablePagination as q } from "@mui/material";
-/* empty css                            */const M = (l) => {
-  const { children: p, Child: g, EmptyChild: h, childProps: m, store: v, pageSize: n, quickSearchKey: c } = l, P = l.listKeyProvider || ((e, t) => t), u = h || K, [o, f] = i(null), [y, C] = i(null), [N, S] = i({});
-  var x = n instanceof Array ? n : [n], w = n instanceof Array ? n[0] : n;
-  const [r, d] = i({
-    pageNo: 0,
-    pageSize: w
-  }), z = (e, t) => {
-    d({ ...r, pageNo: t });
-  };
-  I(() => {
-    v.query({}).then((e) => {
-      f(e.result), C(e.total);
-    });
-  }, [r, N]);
-  const A = (e) => {
-    const t = e.target.value;
-    S({ [c]: t });
-  }, b = (e) => {
-    const t = parseInt(e.target.value, 10);
-    d({ ...r, pageSize: t });
-  }, E = 200, F = !!n, k = !!c;
-  return /* @__PURE__ */ a("div", { children: o != null ? o.length == 0 ? /* @__PURE__ */ a(u, {}) : /* @__PURE__ */ s("div", { className: "card-page-container", children: [
-    p,
-    /* @__PURE__ */ s("div", { className: "card-container", children: [
-      /* @__PURE__ */ s("div", { className: "card-header", children: [
-        /* @__PURE__ */ a("div", { className: "card-filter", children: k && /* @__PURE__ */ a(
-          O,
+import { jsx as e, jsxs as t } from "react/jsx-runtime";
+import { A as C } from "../../../index.esm-3271ad1f.js";
+import { TextField as w, InputAdornment as b, TablePagination as z } from "@mui/material";
+/* empty css                            */import A from "../../form/ServerQueryManager.js";
+/* empty css                               */import "react-router-dom";
+import "react";
+import "@mui/icons-material";
+/* empty css                          */import "@emotion/styled";
+import "@mui/x-tree-view";
+/* empty css                              */import L from "./CardLayout.js";
+const H = (a) => {
+  const { children: n, Child: s, childProps: c, pageSize: d } = a, {
+    setQuickSearch: l,
+    gotoPage: m,
+    setPageSize: p,
+    getPageNo: g,
+    data: o,
+    pageSizeOptions: h,
+    queryLimit: P
+  } = A(a), v = a.listKeyProvider || ((r, i) => i), u = (r, i) => {
+    m(i);
+  }, y = (r) => {
+    const i = r.target.value;
+    l(i);
+  }, N = (r) => {
+    const i = parseInt(r.target.value, 10);
+    p(i);
+  }, f = 200, x = !!d, S = !!a.quickSearch;
+  return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ t("div", { className: "card-page-container", children: [
+    n,
+    /* @__PURE__ */ t("div", { className: "card-container", children: [
+      /* @__PURE__ */ t("div", { className: "card-header", children: [
+        /* @__PURE__ */ e("div", { className: "card-filter", children: S && /* @__PURE__ */ e(
+          w,
           {
-            sx: { width: E },
+            sx: { width: f },
             type: "text",
-            onChange: A,
+            onChange: y,
             style: { border: "0px" },
             size: "small",
             placeholder: "Name",
             InputProps: {
-              endAdornment: /* @__PURE__ */ a(j, { position: "end", children: /* @__PURE__ */ a(L, { className: "card-filter-icon" }) })
+              endAdornment: /* @__PURE__ */ e(b, { position: "end", children: /* @__PURE__ */ e(C, { className: "card-filter-icon" }) })
             }
           }
         ) }),
-        /* @__PURE__ */ a("div", { className: "card-pagination", children: F && /* @__PURE__ */ a(
-          q,
+        /* @__PURE__ */ e("div", { className: "card-pagination", children: x && /* @__PURE__ */ e(
+          z,
           {
             component: "div",
-            count: y,
-            page: r.pageNo,
-            onPageChange: z,
-            rowsPerPage: r.pageSize,
-            rowsPerPageOptions: x || [],
-            onRowsPerPageChange: b
+            count: o,
+            page: g(),
+            onPageChange: u,
+            rowsPerPage: P.limit,
+            rowsPerPageOptions: h || [],
+            onRowsPerPageChange: N
           }
         ) })
       ] }),
-      /* @__PURE__ */ a("div", { className: "card-wrapper", children: o.map((e, t) => /* @__PURE__ */ a(g, { ...m, data: e }, P(e, t))) })
+      /* @__PURE__ */ e("div", { className: "card-wrapper", children: /* @__PURE__ */ e(
+        L,
+        {
+          Child: s,
+          childKeyProvider: v,
+          dataList: o,
+          childProps: c
+        }
+      ) })
     ] })
-  ] }) : /* @__PURE__ */ a("div", {}) });
+  ] }) });
 };
 export {
-  M as default
+  H as default
 };

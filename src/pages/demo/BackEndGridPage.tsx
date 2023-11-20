@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
-import { FlexiLayoutDefinition, FlexiLayoutRenderer, StoreFactory, StringFormat, topic } from '../../../lib/main';
+import { FlexiLayoutDefinition, FlexiLayoutRenderer, ServerCardLayout, StoreFactory, StringFormat, topic } from '../../../lib/main';
 import { PalmyraStoreFactory } from '../../../lib/palmyra/store/palmyra/PalmyraStoreFactory';
 import './BackEndGridPage.css';
+import { UserCard } from '../../components/usermgmt/UserCard';
 
 const BackEndGridPage = () => {
     const { layout } = useParams();
@@ -29,12 +30,17 @@ const BackEndGridPage = () => {
         }
     }, [pageDef])
 
+    const store = storeFactory.getGridStore({},'/userManagement');
+
     return <>
         <div className='grid-renderer-container'>
             {pageDef ? <FlexiLayoutRenderer layout={pageDef}
                 layoutParams={{}}
-                storeFactory={storeFactory} /> : <div />}
+                storeFactory={storeFactory} /> : <div />}           
         </div>
+        <ServerCardLayout Child={UserCard} store={store} quickSearch='email'>
+
+        </ServerCardLayout>
     </>
 }
 

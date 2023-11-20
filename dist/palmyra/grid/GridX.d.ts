@@ -13,5 +13,5 @@ interface GridXOptions {
     customizer?: GridCustomizer;
     defaultParams?: DefaultQueryParams;
 }
-declare function GridX(props: GridXOptions): import("react/jsx-runtime").JSX.Element;
+declare const GridX: import("react").ForwardRefExoticComponent<GridXOptions & import("react").RefAttributes<any>>;
 export default GridX;

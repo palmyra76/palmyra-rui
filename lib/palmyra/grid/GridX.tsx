@@ -1,4 +1,4 @@
-import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { TablePagination, TextField, InputAdornment, Button, Tooltip, ClickAwayListener } from '@mui/material';
 import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -8,6 +8,7 @@ import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add 
 import { DefaultQueryParams, QueryStore } from '../store';
 import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
+import useServerQuery from '../form/ServerQueryManager';
 
 
 //TODO - show errors on data fetching
@@ -25,29 +26,21 @@ interface GridXOptions {
   defaultParams?: DefaultQueryParams
 }
 
-interface GridXFilter {
-  quickSearch?: string
-}
-
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<any>) {
-  const { columns, children, EmptyChild, store, onRowClick, quickSearch } = props;
-  const [totalData, setTotalData] = useState(null);
-  const [filter, setFilter] = useState<GridXFilter>({});
-  const [sortOrder, setSortOrder] = useState({});
+  const { columns, children, EmptyChild, onRowClick, quickSearch } = props;
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
   const [filterDialogOpen, setFilterDialogOpen] = useState(false);
+  const [querySearchText, setQuickSearchText] = useState("");
 
-  const pageSize = props.pageSize ? props.pageSize : 15;
-  var pageSizeOptions = pageSize instanceof Array ? pageSize : [pageSize];
-  var defaultPageSize = pageSize instanceof Array ? pageSize[0] : pageSize;
+  const {
+    setQueryFilter, setQuickSearch, setSortColumns,
+    gotoPage, setPageSize, getPageNo,
+    data, totalRecords, pageSizeOptions, filter, queryLimit } = useServerQuery(props);
 
-  const [page, setPage] = useState({
-    pageNo: 0, pageSize: defaultPageSize
-  });
 
   const currentRef = ref ? ref : useRef(null);
   useImperativeHandle(currentRef, () => {
@@ -60,51 +53,10 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
 
   const nextPage = (event, newPage) => {
-    setPage({ ...page, pageNo: newPage });
-    setQuery({ ...page, pageSize: newPage });
+    gotoPage(newPage);
   };
 
-  const [query, setQuery] = useState({});
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    refreshData();
-  }, [query, filter, sortOrder])
-
   const columnDefs = generateColumns(columns, customizer);
-
-  const refreshData = () => {
-    const params = { page, filter, sortOrder, total: true };
-
-    if (store) {
-      try {
-        store.query(params).then((d) => {
-          setData(d.result);
-          setTotalData(d.total);
-        }).catch((e) => {
-          var r = e.response ? e.response : e;
-          console.error("error while fetching", r);
-          setNoData();
-        });
-      } catch (e) {
-        console.error(e);
-        setEmptyData();
-      }
-    } else {
-      console.error("Store is not provided for the Grid");
-      setEmptyData();
-    }
-  }
-
-  const setEmptyData = () => {
-    setData([]);
-    setTotalData(0);
-  }
-
-  const setNoData = () => {
-    setData(undefined);
-    setTotalData(0);
-  }
 
   const handleDensityChange = (density) => {
     setSelectedDensity(density);
@@ -154,19 +106,12 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
   const handleSearch = (event) => {
     const val = event.target.value;
-    const key = quickSearch;
-    if (val)
-      setFilter({ [key]: val });
-    else {
-      setFilter({});
-    }
-  };
+    setQuickSearchText(val);
 
-  const setUserFilter = (filter) => {
-    if (filter && Object.keys(filter).length > 0)
-      setFilter(filter);
+    if (val)
+      setQuickSearch(val)
     else {
-      setFilter({});
+      setQueryFilter({});
     }
   };
 
@@ -176,12 +121,8 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     }
   }
   const handleRowsPerPageChange = (event) => {
-    const newPage = parseInt(event.target.value, 10);
-    setPage({ ...page, pageSize: newPage });
-  }
-
-  const onSortColumn = (sortOrder) => {
-    setSortOrder(sortOrder);
+    const limit = parseInt(event.target.value, 10);
+    setPageSize(limit);
   }
 
   const onExportClick = () => {
@@ -189,7 +130,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   }
 
   const width = 200;
-  const visiblePagination = !!pageSize;
+  const visiblePagination = !!props.pageSize;
   const visibleFilter = !!quickSearch;
 
   return (
@@ -202,7 +143,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               <TextField
                 sx={{ width: width }}
                 type="text"
-                value={filter.quickSearch}
+                value={querySearchText}
                 onChange={handleSearch}
                 style={{ border: "0px" }}
                 size="small"
@@ -250,7 +191,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                 <FilterAlt className='grid-button-icon' />
               </Button>
             </Tooltip>
-            <Filter columns={columns} setFilter={setUserFilter}
+            <Filter columns={columns} setFilter={setQueryFilter}
               defaultFilter={filter}
               isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
           </div>
@@ -273,7 +214,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         <div className='grid-table'>
           <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer}
             rowData={data} onRowClick={handleRowClick} onRowStyle={handleRowDensityChange}
-            onHeaderStyle={handleHeaderDensityChange} onSortColumn={onSortColumn}
+            onHeaderStyle={handleHeaderDensityChange} onSortColumn={setSortColumns}
           />
         </div>
         <div className='grid-header'>
@@ -281,10 +222,10 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
             {visiblePagination && (
               <TablePagination
                 component="div"
-                count={totalData || 0}
-                page={page.pageNo}
+                count={totalRecords || 0}
+                page={getPageNo()}
                 onPageChange={nextPage}
-                rowsPerPage={page.pageSize}
+                rowsPerPage={queryLimit.limit}
                 rowsPerPageOptions={pageSizeOptions || []}
                 onRowsPerPageChange={handleRowsPerPageChange}
               />

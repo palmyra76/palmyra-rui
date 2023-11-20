@@ -1,27 +1,20 @@
 var s = Object.defineProperty;
 var d = (r, t, o) => t in r ? s(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
 var i = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
-import "../../../index-527c97dd.js";
+import "../../../index-22a27bec.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import h from "axios";
 import "react/jsx-runtime";
-import "../../layout/container/SectionContainer.js";
-import "react-router-dom";
+/* empty css                               */import "react-router-dom";
 import "react";
 import "@mui/icons-material";
 /* empty css                          */import "@emotion/styled";
 import "@mui/x-tree-view";
 /* empty css                              *//* empty css                            */import "@mui/material";
-import "../../grid/base/ColumnConverter.js";
-import "../../grid/base/TableX.js";
-import "@tanstack/react-table";
-import "../../layout/flexiLayout/FormEditRenderer.js";
+import "../../grid/GridX.js";
+import "../../core/topic.js";
 import { StringFormat as l } from "../../utils/StringUtil.js";
 import "dayjs";
-import "../../form/PalmyraForm.js";
-import "../../grid/plugins/filter/Filter.js";
-import "../../layout/flexiLayout/FormFieldOnlyRenderer.js";
-import "../../core/topic.js";
 import "../../mui/form/MuiDatePicker.js";
 import "../../mui/form/MuiDateTimePicker.js";
 import "../../mui/form/MuiRadioGroup.js";
@@ -32,7 +25,8 @@ import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiServerLookup.js";
-class W {
+import "../../form/PalmyraForm.js";
+class M {
   constructor(t, o, e) {
     i(this, "request");
     i(this, "target");
@@ -64,5 +58,5 @@ function a(r) {
   return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  W as PalmyraLookupStore
+  M as PalmyraLookupStore
 };

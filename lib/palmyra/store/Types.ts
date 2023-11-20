@@ -16,7 +16,7 @@ interface CriteriaOptions {
 }
 
 interface QueryRequest extends Pagination, CriteriaOptions, AbstractRequest {
-
+    sortOrder?: QueryOptions
 }
 
 interface QueryParams extends Pagination, CriteriaOptions {
