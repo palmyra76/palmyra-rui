@@ -2,10 +2,10 @@ import { jsx as r, jsxs as b, Fragment as g } from "react/jsx-runtime";
 import { forwardRef as h, useContext as F, useRef as m, useImperativeHandle as v } from "react";
 import { FormControl as x, InputLabel as M, Select as L, MenuItem as R, FormHelperText as j } from "@mui/material";
 import { copyMuiOptions as y } from "./MuiUtil.js";
-import { FieldManagerContext as I } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import O from "./FieldDecorator.js";
+import { FieldManagerContext as D } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import I from "./FieldDecorator.js";
 const P = h(function(e, i) {
-  const d = F(I), u = i || m(null), { options: l } = e, n = d(e, "select", u), a = n.error, o = n.eventListeners, s = m(null);
+  const d = F(D), u = i || m(null), { options: l } = e, n = d(e, "select", u), a = n.error, o = n.eventListeners, s = m(null);
   v(u, () => ({
     focus() {
       s.current.focus();
@@ -15,6 +15,9 @@ const P = h(function(e, i) {
     },
     assignAttribute(t) {
       s.current.assignAttribute(t);
+    },
+    clear() {
+      n.setData("");
     },
     setValue(t) {
       n.setData(t);
@@ -28,7 +31,7 @@ const P = h(function(e, i) {
     onChange: (t) => o.onValueChange(t.target.value)
   };
   return /* @__PURE__ */ r(
-    O,
+    I,
     {
       label: e.title,
       customContainerClass: e.customContainerClass,

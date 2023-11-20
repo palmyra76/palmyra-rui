@@ -1,13 +1,13 @@
 import { jsx as o } from "react/jsx-runtime";
-import { forwardRef as v, useContext as D, useRef as u, useImperativeHandle as F } from "react";
+import { forwardRef as g, useContext as v, useRef as u, useImperativeHandle as F } from "react";
 import { LocalizationProvider as y, DateTimePicker as M } from "@mui/x-date-pickers";
 import { AdapterDayjs as P } from "@mui/x-date-pickers/AdapterDayjs";
 import b from "dayjs";
 import { copyMuiOptions as h } from "./MuiUtil.js";
 import { FieldManagerContext as x } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import L from "./FieldDecorator.js";
-const O = v(function(t, s) {
-  const c = D(x), i = s || u(null), m = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", r = c(t, "datetime", i), n = r.error, d = r.data, a = r.eventListeners, l = u(null), f = () => b(d);
+const O = g(function(t, s) {
+  const c = v(x), i = s || u(null), m = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", a = c(t, "datetime", i), n = a.error, d = a.data, r = a.eventListeners, l = u(null), f = () => b(d);
   F(i, () => ({
     focus() {
       l.current.focus();
@@ -17,13 +17,19 @@ const O = v(function(t, s) {
     },
     assignAttribute(e) {
       l.current.assignAttribute(e);
+    },
+    clear() {
+      a.setData("");
+    },
+    setValue(e) {
+      a.setData(e);
     }
   }), []);
-  var C = h(t, f(), t.label), g = {
-    onBlur: a.onBlur,
-    onFocus: a.onFocus,
+  var C = h(t, f(), t.label), D = {
+    onBlur: r.onBlur,
+    onFocus: r.onFocus,
     onChange: (e) => {
-      e && e.toDate ? a.onValueChange(e.toDate()) : a.onValueChange(void 0);
+      e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
     }
   };
   return /* @__PURE__ */ o(
@@ -40,7 +46,7 @@ const O = v(function(t, s) {
           ...C,
           readOnly: t.readonly,
           format: m,
-          ...g,
+          ...D,
           slotProps: {
             textField: {
               error: n.status,

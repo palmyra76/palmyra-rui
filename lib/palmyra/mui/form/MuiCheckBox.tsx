@@ -27,6 +27,12 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
             },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
+            },
+            clear() {
+                fieldManager.setData('');
+            },
+            setValue(d: any) {
+                fieldManager.setData(d)
             }
         };
     }, []);

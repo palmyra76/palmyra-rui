@@ -26,6 +26,12 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
             },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
+            },
+            clear() {
+                fieldManager.setData('');
+            },
+            setValue(d: any) {
+                fieldManager.setData(d)
             }
         };
     }, []);

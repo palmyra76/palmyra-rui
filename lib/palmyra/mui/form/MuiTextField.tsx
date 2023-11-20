@@ -5,7 +5,7 @@ import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref:MutableRefObject<any>) {
+const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
@@ -26,6 +26,9 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
             },
             clear() {
                 fieldManager.setData('');
+            },
+            setValue(d: any) {
+                fieldManager.setData(d)
             }
         };
     }, []);

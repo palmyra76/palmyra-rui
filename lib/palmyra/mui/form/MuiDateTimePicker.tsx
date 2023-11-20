@@ -32,6 +32,12 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
             },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
+            },
+            clear() {
+                fieldManager.setData('');
+            },
+            setValue(d: any) {
+                fieldManager.setData(d)
             }
         };
     }, []);

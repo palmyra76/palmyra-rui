@@ -30,11 +30,14 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
             setFilter(data: any) {
 
             },
-            clear() {
-
-            },
             setVisible(d: boolean) {
                 setMutateOptions({ visible: d })
+            },
+            clear() {
+                fieldManager.setData('');
+            },
+            setValue(d: any) {
+                fieldManager.setData(d)
             }
         };
     }, []);

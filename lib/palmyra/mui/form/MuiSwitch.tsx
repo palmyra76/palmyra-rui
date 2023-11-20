@@ -43,6 +43,9 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref:Mu
             },
             assignAttribute(data) {
                 inputRef.current.assignAttribute(data);
+            },
+            setValue(d: any) {
+                fieldManager.setData(d)
             }
         };
     }, []);

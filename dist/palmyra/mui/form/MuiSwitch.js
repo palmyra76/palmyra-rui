@@ -1,21 +1,21 @@
-import { jsx as r, jsxs as M } from "react/jsx-runtime";
-import { forwardRef as V, useContext as y, useRef as C, useMemo as L, useState as O, useEffect as g, useImperativeHandle as w } from "react";
+import { jsx as r, jsxs as x } from "react/jsx-runtime";
+import { forwardRef as M, useContext as y, useRef as C, useMemo as L, useState as O, useEffect as g, useImperativeHandle as w } from "react";
 import { FormControl as S, FormControlLabel as R, Switch as j, FormHelperText as A } from "@mui/material";
-import { copyMuiOptions as H } from "./MuiUtil.js";
-import I from "./OptionsParser.js";
-import { FieldManagerContext as P } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import D from "./FieldDecorator.js";
-const K = V(function(e, c) {
-  const b = y(P), u = c || C(null), n = b(e, "switch", u), s = n.error, k = n.eventListeners, o = L(
-    () => I(e.options, e.name),
+import { copyMuiOptions as D } from "./MuiUtil.js";
+import H from "./OptionsParser.js";
+import { FieldManagerContext as I } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import P from "./FieldDecorator.js";
+const K = M(function(e, c) {
+  const b = y(I), u = c || C(null), a = b(e, "switch", u), s = a.error, k = a.eventListeners, o = L(
+    () => H(e.options, e.name),
     [e.options, e.name]
-  ), i = (t, x) => {
+  ), i = (t, V) => {
     var h = o.checked.value;
-    return t != null && t != null ? h == t : h == x;
-  }, [a, d] = O(i(n.data, e.defaultValue)), l = C(null);
+    return t != null && t != null ? h == t : h == V;
+  }, [n, d] = O(i(a.data, e.defaultValue)), l = C(null);
   g(() => {
-    d(i(n.data, e.defaultValue));
-  }, [n.data]), w(u, () => ({
+    d(i(a.data, e.defaultValue));
+  }, [a.data]), w(u, () => ({
     focus() {
       l.current.focus();
     },
@@ -24,32 +24,35 @@ const K = V(function(e, c) {
     },
     assignAttribute(t) {
       l.current.assignAttribute(t);
+    },
+    setValue(t) {
+      a.setData(t);
     }
   }), []);
-  var m = H(e, n.data, e.label);
+  var m = D(e, a.data, e.label);
   e.readonly && (m.inputProps = { readOnly: !0 });
   const v = () => {
-    d(!a);
+    d(!n);
   };
   g(() => {
     k.onValueChange(f());
-  }, [a]);
+  }, [n]);
   const F = () => {
-    var t = a ? "checked" : "unchecked";
+    var t = n ? "checked" : "unchecked";
     return o[t].title;
   }, f = () => {
-    var t = a ? "checked" : "unchecked";
+    var t = n ? "checked" : "unchecked";
     return o[t].value;
   };
   return /* @__PURE__ */ r(
-    D,
+    P,
     {
       label: e.title,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ M(S, { error: s.status, ...m, children: [
+      children: /* @__PURE__ */ x(S, { error: s.status, ...m, children: [
         /* @__PURE__ */ r(
           R,
           {
@@ -58,7 +61,7 @@ const K = V(function(e, c) {
               j,
               {
                 inputRef: l,
-                checked: a,
+                checked: n,
                 onClick: v,
                 disabled: e.readonly
               }

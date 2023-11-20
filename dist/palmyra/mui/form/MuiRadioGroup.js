@@ -1,7 +1,7 @@
 import { jsx as o, jsxs as v } from "react/jsx-runtime";
 import { forwardRef as h, useContext as x, useRef as d, useImperativeHandle as R } from "react";
-import { FormControl as M, RadioGroup as y, FormControlLabel as L, Radio as O, FormHelperText as j } from "@mui/material";
-import { copyMuiOptions as D } from "./MuiUtil.js";
+import { FormControl as M, RadioGroup as y, FormControlLabel as L, Radio as D, FormHelperText as O } from "@mui/material";
+import { copyMuiOptions as j } from "./MuiUtil.js";
 import { FieldManagerContext as G } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import V from "./FieldDecorator.js";
 const q = h(function(e, i) {
@@ -16,11 +16,14 @@ const q = h(function(e, i) {
     assignAttribute(t) {
       s.current.assignAttribute(t);
     },
+    clear() {
+      r.setData("");
+    },
     setValue(t) {
       r.setData(t);
     }
   }), []);
-  var c = D(e, r.data, e.label);
+  var c = j(e, r.data, e.label);
   e.readonly && (c.inputProps = { readOnly: !0 });
   const C = !!e.readonly;
   var b = {
@@ -44,12 +47,12 @@ const q = h(function(e, i) {
           L,
           {
             value: t,
-            control: /* @__PURE__ */ o(O, { inputRef: s }),
+            control: /* @__PURE__ */ o(D, { inputRef: s }),
             label: n[t]
           },
           F
         )) : /* @__PURE__ */ o("div", { children: "No options provided" }) }),
-        /* @__PURE__ */ o(j, { className: "form-error-text", children: a.message })
+        /* @__PURE__ */ o(O, { className: "form-error-text", children: a.message })
       ] })
     }
   );

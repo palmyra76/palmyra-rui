@@ -5,16 +5,22 @@ import { copyMuiOptions as F } from "./MuiUtil.js";
 import { FieldManagerContext as b } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import v from "./FieldDecorator.js";
 const y = d(function(e, o) {
-  const m = C(b), l = o || c(null), t = m(e, "string", l), r = t.error, n = t.eventListeners, s = c(null);
+  const m = C(b), l = o || c(null), t = m(e, "string", l), a = t.error, n = t.eventListeners, s = c(null);
   g(l, () => ({
     focus() {
       s.current.focus();
     },
     isValid() {
-      return !r.status;
+      return !a.status;
     },
-    assignAttribute(a) {
-      s.current.assignAttribute(a);
+    assignAttribute(r) {
+      s.current.assignAttribute(r);
+    },
+    clear() {
+      t.setData("");
+    },
+    setValue(r) {
+      t.setData(r);
     }
   }), []);
   var u = F(e, t.data, e.label);
@@ -22,7 +28,7 @@ const y = d(function(e, o) {
   var f = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
-    onChange: (a) => n.onValueChange(a.target.value)
+    onChange: (r) => n.onValueChange(r.target.value)
   };
   return /* @__PURE__ */ i(
     v,
@@ -42,8 +48,8 @@ const y = d(function(e, o) {
           ...u,
           inputRef: s,
           ...f,
-          error: r.status,
-          helperText: r.message
+          error: a.status,
+          helperText: a.message
         }
       )
     }
