@@ -89,9 +89,9 @@
   width: auto;
 }
 
-.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+/* .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   border: 1.3px solid var(--primary-border-color) !important;
-}
+} */
 
 .table {
   .css-1ex1afd-MuiTableCell-root {

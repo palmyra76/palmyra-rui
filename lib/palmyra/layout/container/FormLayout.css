@@ -9,6 +9,7 @@
     display: flex;
     text-align: left;
     word-break: break-all;
+    align-items: center;
     padding: 10px 10px 10px 20px;
 }
 
