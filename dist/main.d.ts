@@ -12,4 +12,3 @@ export * from './palmyra/utils';
 export * from './palmyra/mui';
 export * from './palmyra/form';
 export * from './palmyra/form/interfaceFields';
-export { NoopEmptyChildCard } from "./palmyra/layout/card/EmptyChildCard";

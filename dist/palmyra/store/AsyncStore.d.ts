@@ -1,10 +1,11 @@
 import { strings } from "../form/interface";
 import { GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest } from "./Types";
-interface LookupStore<T> {
+interface LookupStore<T> extends AbstractQueryStore<T> {
+}
+interface AbstractQueryStore<T> {
     query(request: QueryRequest): Promise<QueryResponse<T>>;
 }
-interface QueryStore<T> {
-    query(request: QueryRequest): Promise<QueryResponse<T>>;
+interface QueryStore<T> extends AbstractQueryStore<T> {
     queryLayout(request: QueryRequest): Promise<any>;
     get(request: GetRequest): Promise<T>;
     getIdentity(o: T): any;
@@ -29,4 +30,4 @@ interface DefaultQueryParams {
     filter?: Record<any, any>;
     sort?: strings;
 }
-export type { DataStore, QueryStore, TreeQueryStore, ChartStore, AuthDecorator, LookupStore, DefaultQueryParams };
+export type { DataStore, QueryStore, TreeQueryStore, AbstractQueryStore, ChartStore, AuthDecorator, LookupStore, DefaultQueryParams };

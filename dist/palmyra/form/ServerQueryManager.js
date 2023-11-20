@@ -1,58 +1,59 @@
-import { useState as n, useEffect as L } from "react";
-const R = (c) => {
-  const { store: u, quickSearch: g, endPointVars: d } = c, k = c.fetchAll != !1, [p, i] = n(null), [o, a] = n({}), [f, Q] = n({}), r = c.pageSize ? c.pageSize : 15;
-  var v = r instanceof Array ? r : [r], h = r instanceof Array ? r[0] : r;
-  const [s, y] = n({ limit: h, offset: 0 }), [z, l] = n(null), O = () => Math.round(s.offset / s.limit), P = () => s.limit, A = (t) => {
-    y({ ...s, offset: t * h });
-  }, D = (t) => {
-    const e = t > 10 ? t : 15;
-    y({ ...s, limit: e });
-  }, F = () => o ? Object.keys(o).length == 0 : !1;
+import { useState as c, useEffect as L } from "react";
+import { useKeyValue as T } from "../core/PubSubHelper.js";
+const V = (s) => {
+  const { store: u, quickSearch: g, endPointVars: d } = s, k = s.fetchAll != !1, [Q, a] = c(null), [n, i] = s.filterTopic ? T(s.filterTopic, {}) : c({}), [f, p] = c({}), o = s.pageSize ? s.pageSize : 15;
+  var v = o instanceof Array ? o : [o], m = o instanceof Array ? o[0] : o;
+  const [r, y] = c({ limit: m, offset: 0 }), [z, l] = c(null), O = () => Math.round(r.offset / r.limit), P = () => r.limit, A = (e) => {
+    y({ ...r, offset: e * m });
+  }, D = (e) => {
+    const t = e > 10 ? e : 15;
+    y({ ...r, limit: t });
+  }, F = () => n ? Object.keys(n).length == 0 : !1;
   L(() => {
-    (k || !F()) && m();
-  }, [s, o, f]);
-  const m = () => {
-    const t = { filter: o, sortOrder: f, total: !0, endPointVars: d, ...s };
+    (k || !F()) && h();
+  }, [r, n, f]);
+  const h = () => {
+    const e = { filter: n, sortOrder: f, total: !0, endPointVars: d, ...r };
     if (u)
       try {
-        u.query(t).then((e) => {
-          l(e.result), i(e.total);
-        }).catch((e) => {
-          var E = e.response ? e.response : e;
+        u.query(e).then((t) => {
+          l(t.result), a(t.total);
+        }).catch((t) => {
+          var E = t.response ? t.response : t;
           console.error("error while fetching", E), q();
         });
-      } catch (e) {
-        console.error(e), S();
+      } catch (t) {
+        console.error(t), S();
       }
     else
       console.error("Store is not provided for the Grid"), S();
   }, S = () => {
-    l([]), i(0);
+    l([]), a(0);
   }, q = () => {
-    l(void 0), i(null);
+    l(void 0), a(null);
   };
   return {
-    setQueryFilter: (t) => {
-      t && Object.keys(t).length > 0 ? a(t) : a({});
+    setQueryFilter: (e) => {
+      e && Object.keys(e).length > 0 ? i(e) : i({});
     },
-    setQuickSearch: (t) => {
-      a(t ? { [g]: t } : {});
+    setQuickSearch: (e) => {
+      i(e ? { [g]: e } : {});
     },
-    setSortColumns: (t) => {
-      Q(t);
+    setSortColumns: (e) => {
+      p(e);
     },
-    refreshData: m,
+    refreshData: h,
     gotoPage: A,
     setPageSize: D,
     getPageNo: O,
     getLimit: P,
-    filter: o,
-    queryLimit: s,
+    filter: n,
+    queryLimit: r,
     data: z,
-    totalRecords: p,
+    totalRecords: Q,
     pageSizeOptions: v
   };
 };
 export {
-  R as default
+  V as default
 };

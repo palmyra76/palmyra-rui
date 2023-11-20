@@ -2,6 +2,7 @@ import { MutableRefObject } from "react";
 import { IEndPoint } from "../layout";
 import { LookupStore } from "../store"
 import { IMutateOptions } from "./interfaceFields";
+import { IEndPointVars } from "../layout/Types";
 
 /**
  * This definitions will cater to the Form Definition format
@@ -95,7 +96,8 @@ interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     lookupOptions: IFormFieldServerLookup,
     store?: LookupStore<any>,
     storeOptions: {
-        endPoint: IEndPoint
+        endPoint: IEndPoint,
+        endPointVars?: IEndPointVars
     }
 }
 

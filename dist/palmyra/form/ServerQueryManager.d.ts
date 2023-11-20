@@ -1,14 +1,15 @@
-import { DefaultQueryParams, QueryStore } from '../store';
+import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
 import { QueryRequest } from '../../main';
 import { IEndPointVars } from '../layout/Types';
 interface IServerQueryInput {
-    store: QueryStore<any>;
+    store: AbstractQueryStore<any>;
     pageSize?: numbers;
     quickSearch?: string;
     endPointVars?: IEndPointVars;
     defaultParams?: DefaultQueryParams;
     fetchAll?: boolean;
+    filterTopic?: string;
 }
 declare const useServerQuery: (props: IServerQueryInput) => {
     setQueryFilter: (filter: any) => void;

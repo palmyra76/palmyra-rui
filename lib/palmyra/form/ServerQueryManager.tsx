@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react';
-import { DefaultQueryParams, QueryStore } from '../store';
+import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
 import { QueryRequest } from '../../main';
 import { IEndPointVars } from '../layout/Types';
+import { useKeyValue } from '../core/PubSubHelper';
 
 interface IServerQueryInput {
-  store: QueryStore<any>,
+  store: AbstractQueryStore<any>,
   pageSize?: numbers,
   quickSearch?: string,
   endPointVars?: IEndPointVars,
   defaultParams?: DefaultQueryParams,
-  fetchAll?: boolean
+  fetchAll?: boolean,
+  filterTopic?: string
 }
 
 const useServerQuery = (props: IServerQueryInput) => {
   const { store, quickSearch, endPointVars } = props;
   const fetchAll = props.fetchAll != false;
   const [totalRecords, setTotalRecords] = useState(null);
-  const [filter, setFilter] = useState<any>({});
+  const [filter, setFilter] = props.filterTopic ? useKeyValue(props.filterTopic, {}) : useState<any>({});
   const [sortOrder, setSortOrder] = useState({});
 
   const pageSize = props.pageSize ? props.pageSize : 15;

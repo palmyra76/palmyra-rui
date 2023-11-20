@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
-import { FlexiLayoutDefinition, FlexiLayoutRenderer, NoopEmptyChildCard, ServerCardLayout, StoreFactory, StringFormat, topic } from '../../../lib/main';
+import { FlexiLayoutDefinition, FlexiLayoutRenderer, ServerCardLayout, StoreFactory, StringFormat, topic } from '../../../lib/main';
 import { PalmyraStoreFactory } from '../../../lib/palmyra/store/palmyra/PalmyraStoreFactory';
 import './BackEndGridPage.css';
 import { UserCard } from '../../components/usermgmt/UserCard';
+import { NoopEmptyChildCard } from '../../../lib/palmyra/layout/card/EmptyChildCard';
 
 const BackEndGridPage = () => {
     const { layout } = useParams();
@@ -21,7 +22,7 @@ const BackEndGridPage = () => {
 
     useEffect(() => {
         const idKey: any = pageDef?.idProperty || "id";
-        var handle = topic.subscribe("viewPage", (topic, data) => {
+        var handle = topic.subscribe<any>("viewPage", (topic, data) => {
             data.id = data[idKey];
             navigate(StringFormat('view/{id}', data));
         });
