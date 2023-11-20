@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { IDFSelectField, IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, SectionContainer, StoreFactory, createFormHelper } from "../../../lib/main";
+import { IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, SectionContainer, StoreFactory, createFormHelper } from "../../../lib/main";
 import { AppStoreFactory } from "../../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import { FieldGroupContainer } from "../../components/form";
-import MuiDFSelect from "../../../lib/palmyra/mui/form/Dynamic/MuiDFSelect";
 import MuiDFServerLookup from "../../../lib/palmyra/mui/form/Dynamic/MuiDFServerLookup";
 
 
@@ -27,7 +26,7 @@ const DynamicFields = () => {
     const ncbEventListener: IFieldEventListener = {
         onChange: function (key: string, value: any, valid?: boolean): void {
             console.log(value);
-            const ncbOptions: IDFSelectField = formHelper.getFieldRef<IDFSelectField>('ncbOptions');
+            const ncbOptions: ISelectField = formHelper.getFieldRef<ISelectField>('ncbOptions');
             if (ncbOptions) {
                 console.log(ncbOptions);
                 ncbOptions.setVisible(value == "true");
@@ -71,13 +70,14 @@ const DynamicFields = () => {
                         <MuiRadioGroup attribute="ncb" title="No Claim Bonus"
                             required={true}
                             options={{ true: 'Yes', false: 'No' }} />
-                        
+
                         <MuiDFServerLookup attribute="ncbOptions" title="Declaration"
                             required={true} visible={false}
-                            displayAttribute="serviceName"                            
+                            mutant={true}
+                            displayAttribute="serviceName"
                             lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                             storeOptions={{ endPoint: "/api/data/fetchMe" }}
-                         />
+                        />
 
                         <MuiTextField attribute="sfs" title="Server " placeHolder="welcome"
                             length={{ min: 3, message: "Minimum of 3 letters" }} />

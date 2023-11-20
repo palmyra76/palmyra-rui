@@ -5,6 +5,9 @@ import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 import { delay } from '../utils';
 import { Converter, getFormatConverter } from "../utils/converter";
 import { IEventListeners, IFormFieldManager } from "./interface";
+import { IMutateOptions } from "./interfaceFields";
+
+
 
 
 const getDefaultValue = (fieldDef: FieldDefinition, value: InputType): any => {
@@ -20,7 +23,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     eventHandler: EventHandler, eventListener?: IFieldEventListener, valueListener?: IFieldValueListener
 ): IFormFieldManager {
 
-    if(eventListener)
+    if (eventListener)
         console.log(fieldDef.attribute, eventListener)
 
     const fieldEventListener = eventListener || NoopFieldEventListener;
@@ -30,6 +33,25 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     const [_v, setVal] = useState(value);
     const [data, setData] = useState(getData(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
+
+    var mutateOptions: IMutateOptions, setMutateOptions: (d: IMutateOptions) => void;
+
+    if (fieldDef.mutant) {
+        const [opt, setOpt] = useState<IMutateOptions>({
+            required: fieldDef.required == true,
+            readonly: fieldDef.readonly == true,
+            visible: fieldDef.visible == false ? false : true
+        });
+        mutateOptions = opt;
+        setMutateOptions = setOpt;
+    } else {
+        mutateOptions = {
+            required: fieldDef.required == true,
+            readonly: fieldDef.readonly == true,
+            visible: fieldDef.visible == false ? false : true
+        };
+        setMutateOptions = (d: IMutateOptions) => { };
+    }
 
     useEffect(() => {
         setVal(value);
@@ -48,7 +70,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
      * @param doValidate 
      */
     const setValue = (value: any, doValidate?: boolean) => {
-        setData(value || '');        
+        setData(value || '');
         if (doValidate) {
             delay(() => {
                 validate(value);
@@ -134,7 +156,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         onDataChange(undefined, undefined, { [key]: validStatus.status });
     }, []);
 
-    return { data, setData: setValue, error, eventListeners };
+    return { data, setData: setValue, error, eventListeners, mutateOptions, setMutateOptions };
 }
 
 function decorateListenersForInput(eventListeners: IEventListeners): any {

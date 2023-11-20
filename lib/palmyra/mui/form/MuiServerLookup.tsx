@@ -11,10 +11,10 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'serverlookup', currentRef);
     const error: IFormFieldError = fieldManager.error;
-
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const inputRef: any = useRef(null);
 
-    const { getServerLookup } = useServerLookup(props, fieldManager);
+    const { getServerLookup } = useServerLookup(props, mutateOptions, fieldManager);
 
     useImperativeHandle(currentRef, () => {
         return {
@@ -32,6 +32,9 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
             },
             clear() {
 
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);

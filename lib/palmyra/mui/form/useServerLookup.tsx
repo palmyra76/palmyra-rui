@@ -12,6 +12,8 @@ import { copyMuiOptions } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
 import { FormControl, FormHelperText, InputAdornment, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import { DeleteOutlined, Search } from '@mui/icons-material';
+import { IMutateOptions } from '../../form/interfaceFields';
+
 
 const renderOption = (title: string, inputValue: string) => {
     if (!title)
@@ -37,7 +39,7 @@ const renderOption = (title: string, inputValue: string) => {
 }
 
 
-const useServerLookup = (props: IServerLookupDefinition, fieldManager: IFormFieldManager) => {
+const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateOptions, fieldManager: IFormFieldManager) => {
     const store: LookupStore<any> = props.store || fieldManager.store;
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
@@ -118,7 +120,7 @@ const useServerLookup = (props: IServerLookupDefinition, fieldManager: IFormFiel
         const eventListeners: IEventListeners = fieldManager.eventListeners;
         const error: IFormFieldError = fieldManager.error;
 
-        if (props.readonly) {
+        if (mutateOptions.readonly) {
             inputProps.inputProps = { readOnly: true };
         }
 

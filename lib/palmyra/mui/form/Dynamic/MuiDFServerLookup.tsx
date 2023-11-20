@@ -1,26 +1,20 @@
-import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, useState } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefinition } from '../../../form/interface';
 
 import { FieldManagerContext } from '../../../layout/flexiLayout/FlexiLayoutContext';
 import { useServerLookup } from '../useServerLookup';
-import { IDynamicOptions } from '../../../form/interfaceFields';
 
 const MuiDFServerLookup = forwardRef(function MuiDFServerLookup(props: IServerLookupDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
 
-    const [dynamicOptions, setDynamicOptions] = useState<IDynamicOptions>({
-        readonly: props.readonly == true,
-        visible: props.visible == false ? false : true
-    });
-
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'serverlookup', currentRef);
     const error: IFormFieldError = fieldManager.error;
-
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const inputRef: any = useRef(null);
 
-    const { getServerLookup } = useServerLookup(props, fieldManager);
+    const { getServerLookup } = useServerLookup(props, mutateOptions, fieldManager);
 
     useImperativeHandle(currentRef, () => {
         return {
@@ -40,12 +34,12 @@ const MuiDFServerLookup = forwardRef(function MuiDFServerLookup(props: IServerLo
 
             },
             setVisible(d: boolean) {
-                setDynamicOptions({ visible: d })
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
 
-    if (dynamicOptions.visible)
+    if (mutateOptions.visible)
         return getServerLookup(inputRef);
     else
         return <></>
