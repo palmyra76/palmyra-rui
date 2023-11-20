@@ -1,6 +1,7 @@
 import { MutableRefObject } from "react";
 import { IEndPoint } from "../layout";
 import { LookupStore } from "../store";
+import { IMutateOptions } from "./interfaceFields";
 /**
  * This definitions will cater to the Form Definition format
  *
@@ -26,6 +27,8 @@ interface AttributeDefinition {
     value?: InputType;
     required?: boolean;
     readonly?: boolean;
+    mutant?: boolean;
+    visible?: boolean;
     disabled?: boolean;
     placeHolder?: string;
     variant?: string;
@@ -111,6 +114,8 @@ interface IFormFieldManager {
     eventListeners: IEventListeners;
     displayValue?: any;
     store?: LookupStore<any>;
+    mutateOptions?: IMutateOptions;
+    setMutateOptions?: (d: IMutateOptions) => void;
 }
 interface IFieldDefinition extends AttributeDefinition, LookupOptions {
     type: string;

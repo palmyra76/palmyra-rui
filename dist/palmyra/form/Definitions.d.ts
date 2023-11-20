@@ -40,6 +40,9 @@ interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
     value?: InputType;
     required?: boolean;
     disabled?: boolean;
+    readonly?: boolean;
+    visible?: boolean;
+    mutant?: boolean;
     variant?: MuiVariant;
     placeHolder?: string;
     validationRule?: strings;

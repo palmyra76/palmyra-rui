@@ -3,12 +3,12 @@
  * /may rewrite the implementation later
  *
  */
-interface TopicListener {
-    (topic: string, data: any): void;
+interface TopicListener<T> {
+    (topic: string, data: T, action: string): void;
 }
 declare class Topic {
-    subscribe(topic: string, listener: TopicListener): string;
-    publish(topic: string, data: any): boolean;
+    subscribe<T>(topic: string, listener: TopicListener<T>): string;
+    publish<T>(topic: string, data: T): boolean;
     unsubscribe(handle: any): void;
     unsubsribeTopic(topic: string): void;
     reset(): void;

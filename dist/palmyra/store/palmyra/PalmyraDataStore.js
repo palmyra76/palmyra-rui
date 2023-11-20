@@ -1,4 +1,4 @@
-import "../../../index-527c97dd.js";
+import "../../../index-62c7e03f.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { PalmyraGridStore as m } from "./PalmyraGridStore.js";
 import "axios";
@@ -10,16 +10,10 @@ import "@mui/icons-material";
 /* empty css                          */import "@emotion/styled";
 import "@mui/x-tree-view";
 /* empty css                              *//* empty css                            */import "@mui/material";
-import "../../grid/base/ColumnConverter.js";
-import "../../grid/base/TableX.js";
-import "@tanstack/react-table";
-import "../../layout/flexiLayout/FormEditRenderer.js";
-import { StringFormat as e } from "../../utils/StringUtil.js";
-import "dayjs";
-import "../../form/PalmyraForm.js";
-import "../../grid/plugins/filter/Filter.js";
-import "../../layout/flexiLayout/FormFieldOnlyRenderer.js";
+import "../../grid/GridX.js";
 import "../../core/topic.js";
+import { StringFormat as p } from "../../utils/StringUtil.js";
+import "dayjs";
 import "../../mui/form/MuiDatePicker.js";
 import "../../mui/form/MuiDateTimePicker.js";
 import "../../mui/form/MuiRadioGroup.js";
@@ -30,21 +24,22 @@ import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiServerLookup.js";
-class O extends m {
+import "../../form/PalmyraForm.js";
+class J extends m {
   constructor(t, r, o) {
     super(t, r, o);
   }
   post(t, r) {
-    var o = this.target + this.postUrl(), i = e(o, r == null ? void 0 : r.endPointVars);
-    return this.getClient().post(i, t).then((p) => p.data);
+    var o = this.target + this.postUrl(), i = p(o, r == null ? void 0 : r.endPointVars);
+    return this.getClient().post(i, t).then((e) => e.data);
   }
   put(t, r) {
-    var o = this.target + this.putUrl(), i = e(o, r == null ? void 0 : r.endPointVars);
-    return this.getClient().put(i, t).then((p) => p.data);
+    var o = this.target + this.putUrl(), i = p(o, r == null ? void 0 : r.endPointVars);
+    return this.getClient().put(i, t).then((e) => e.data);
   }
   remove(t, r) {
-    var o = this.target + this.deleteUrl(), i = e(o, t);
-    return this.getClient().delete(i).then((p) => p.data);
+    var o = this.target + this.deleteUrl(), i = p(o, t);
+    return this.getClient().delete(i).then((e) => e.data);
   }
   postUrl() {
     const t = this.getEndPoint();
@@ -60,5 +55,5 @@ class O extends m {
   }
 }
 export {
-  O as PalmyraDataStore
+  J as PalmyraDataStore
 };
