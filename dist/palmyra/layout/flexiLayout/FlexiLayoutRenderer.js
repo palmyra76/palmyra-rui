@@ -1,5 +1,5 @@
 import "react/jsx-runtime";
-import { F as a } from "../../../index-6f059e89.js";
+import { F as a } from "../../../ServerCardLayout-15eec788.js";
 import "react";
 import "../ErrorBoundary.js";
 import "./FlexiLayoutContext.js";

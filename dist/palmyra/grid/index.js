@@ -1,11 +1,10 @@
-import { default as e } from "./GridX.js";
-import { P as a } from "../../index-6f059e89.js";
-import { NoopCustomizer as i, gridColumnCustomizer as d } from "./Types.js";
-import { usePalmyraPageGrid as p } from "./usePalmyraPageGrid.js";
+import { a, P as m } from "../../ServerCardLayout-15eec788.js";
+import { NoopCustomizer as i, gridColumnCustomizer as s } from "./Types.js";
+import { usePalmyraPageGrid as d } from "./usePalmyraPageGrid.js";
 export {
-  e as GridX,
+  a as GridX,
   i as NoopCustomizer,
-  a as PalmyraGrid,
-  d as gridColumnCustomizer,
-  p as usePalmyraPageGrid
+  m as PalmyraGrid,
+  s as gridColumnCustomizer,
+  d as usePalmyraPageGrid
 };

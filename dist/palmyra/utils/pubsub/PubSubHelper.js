@@ -1,20 +1,38 @@
-import { topic as t } from "./topic.js";
-import { useState as c, useEffect as i } from "react";
-function p(e, u) {
-  t.publish("_keyValue-" + e, u);
+import { topic as c } from "./topic.js";
+import { useState as i, useEffect as l } from "react";
+function f(e, u) {
+  c.publish("_keyValue-" + e, u);
 }
-function b(e, u) {
-  const [o, r] = c(u), n = (s, a) => {
-    r(a);
+function p(e, u) {
+  const [n, s] = i(u), r = (t, o) => {
+    s(o);
   };
-  return i(() => {
-    var s = t.subscribe("_keyValue-" + e, n);
+  return l(() => {
+    var t = c.subscribe("_keyValue-" + e, r);
     return () => {
-      t.unsubscribe(s);
+      c.unsubscribe(t);
     };
-  }, []), [o, r];
+  }, []), [n, s];
+}
+function x(e, u) {
+  c.publish("_execute-" + e, u);
+}
+function _(e, u) {
+  const [n] = i(u), s = (t, o) => {
+    n(o);
+  }, r = (t) => {
+    n(t);
+  };
+  return l(() => {
+    var t = c.subscribe("_execute-" + e, s);
+    return () => {
+      c.unsubscribe(t);
+    };
+  }, []), r;
 }
 export {
-  p as setKeyValue,
-  b as useKeyValue
+  x as execute,
+  f as setKeyValue,
+  _ as useExecute,
+  p as useKeyValue
 };
