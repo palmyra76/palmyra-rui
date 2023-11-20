@@ -8,6 +8,7 @@ interface IServerQueryInput {
     quickSearch?: string;
     endPointVars?: IEndPointVars;
     defaultParams?: DefaultQueryParams;
+    fetchAll?: boolean;
 }
 declare const useServerQuery: (props: IServerQueryInput) => {
     setQueryFilter: (filter: any) => void;

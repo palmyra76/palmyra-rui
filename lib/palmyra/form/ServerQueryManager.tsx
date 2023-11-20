@@ -9,12 +9,13 @@ interface IServerQueryInput {
   pageSize?: numbers,
   quickSearch?: string,
   endPointVars?: IEndPointVars,
-  defaultParams?: DefaultQueryParams
+  defaultParams?: DefaultQueryParams,
+  fetchAll?: boolean
 }
 
 const useServerQuery = (props: IServerQueryInput) => {
   const { store, quickSearch, endPointVars } = props;
-
+  const fetchAll = props.fetchAll != false;
   const [totalRecords, setTotalRecords] = useState(null);
   const [filter, setFilter] = useState<any>({});
   const [sortOrder, setSortOrder] = useState({});
@@ -44,8 +45,16 @@ const useServerQuery = (props: IServerQueryInput) => {
     setQueryLimit({ ...queryLimit, limit });
   }
 
+  const isEmptyFilter = () => {
+    if (filter) {
+      return 0 == Object.keys(filter).length;
+    }
+    return false;
+  }
+
   useEffect(() => {
-    refreshData();
+    if (fetchAll || !isEmptyFilter())
+      refreshData();
   }, [queryLimit, filter, sortOrder])
 
   const refreshData = () => {

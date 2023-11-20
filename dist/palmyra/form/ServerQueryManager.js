@@ -1,56 +1,56 @@
-import { useState as o, useEffect as L } from "react";
+import { useState as n, useEffect as L } from "react";
 const R = (c) => {
-  const { store: u, quickSearch: g, endPointVars: h } = c, [p, a] = o(null), [i, n] = o({}), [f, k] = o({}), s = c.pageSize ? c.pageSize : 15;
-  var Q = s instanceof Array ? s : [s], S = s instanceof Array ? s[0] : s;
-  const [r, m] = o({ limit: S, offset: 0 }), [v, l] = o(null), z = () => Math.round(r.offset / r.limit), P = () => r.limit, D = (t) => {
-    m({ ...r, offset: t * S });
-  }, O = (t) => {
+  const { store: u, quickSearch: g, endPointVars: d } = c, k = c.fetchAll != !1, [p, i] = n(null), [o, a] = n({}), [f, Q] = n({}), r = c.pageSize ? c.pageSize : 15;
+  var v = r instanceof Array ? r : [r], h = r instanceof Array ? r[0] : r;
+  const [s, y] = n({ limit: h, offset: 0 }), [z, l] = n(null), O = () => Math.round(s.offset / s.limit), P = () => s.limit, A = (t) => {
+    y({ ...s, offset: t * h });
+  }, D = (t) => {
     const e = t > 10 ? t : 15;
-    m({ ...r, limit: e });
-  };
+    y({ ...s, limit: e });
+  }, F = () => o ? Object.keys(o).length == 0 : !1;
   L(() => {
-    y();
-  }, [r, i, f]);
-  const y = () => {
-    const t = { filter: i, sortOrder: f, total: !0, endPointVars: h, ...r };
+    (k || !F()) && m();
+  }, [s, o, f]);
+  const m = () => {
+    const t = { filter: o, sortOrder: f, total: !0, endPointVars: d, ...s };
     if (u)
       try {
         u.query(t).then((e) => {
-          l(e.result), a(e.total);
+          l(e.result), i(e.total);
         }).catch((e) => {
-          var F = e.response ? e.response : e;
-          console.error("error while fetching", F), q();
+          var E = e.response ? e.response : e;
+          console.error("error while fetching", E), q();
         });
       } catch (e) {
-        console.error(e), d();
+        console.error(e), S();
       }
     else
-      console.error("Store is not provided for the Grid"), d();
-  }, d = () => {
-    l([]), a(0);
+      console.error("Store is not provided for the Grid"), S();
+  }, S = () => {
+    l([]), i(0);
   }, q = () => {
-    l(void 0), a(null);
+    l(void 0), i(null);
   };
   return {
     setQueryFilter: (t) => {
-      t && Object.keys(t).length > 0 ? n(t) : n({});
+      t && Object.keys(t).length > 0 ? a(t) : a({});
     },
     setQuickSearch: (t) => {
-      n(t ? { [g]: t } : {});
+      a(t ? { [g]: t } : {});
     },
     setSortColumns: (t) => {
-      k(t);
+      Q(t);
     },
-    refreshData: y,
-    gotoPage: D,
-    setPageSize: O,
-    getPageNo: z,
+    refreshData: m,
+    gotoPage: A,
+    setPageSize: D,
+    getPageNo: O,
     getLimit: P,
-    filter: i,
-    queryLimit: r,
-    data: v,
+    filter: o,
+    queryLimit: s,
+    data: z,
     totalRecords: p,
-    pageSizeOptions: Q
+    pageSizeOptions: v
   };
 };
 export {

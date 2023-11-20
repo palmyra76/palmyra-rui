@@ -1,4 +1,4 @@
-import { jsx as r, jsxs as i } from "react/jsx-runtime";
+import { jsx as t, jsxs as a } from "react/jsx-runtime";
 import { forwardRef as R, useRef as b, useImperativeHandle as z } from "react";
 import { A } from "../../../index.esm-3271ad1f.js";
 import { TextField as I, InputAdornment as L, TablePagination as K } from "@mui/material";
@@ -8,8 +8,8 @@ import Q from "../../form/ServerQueryManager.js";
 import "@mui/icons-material";
 /* empty css                          */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css                              */const X = R(function(a, n) {
-  const { children: c, Child: d, childProps: l, pageSize: m } = a, p = n || b(null), {
+/* empty css                              */const X = R(function(i, n) {
+  const { children: c, Child: d, childProps: l, pageSize: m } = i, p = n || b(null), {
     setQueryFilter: g,
     setQuickSearch: h,
     gotoPage: o,
@@ -18,7 +18,7 @@ import "@mui/x-tree-view";
     data: s,
     pageSizeOptions: v,
     queryLimit: f
-  } = Q(a), y = a.listKeyProvider || ((e, t) => t);
+  } = Q(i), y = i.listKeyProvider || ((e, r) => r);
   z(p, () => ({
     setFilter(e) {
       g(e);
@@ -31,34 +31,34 @@ import "@mui/x-tree-view";
     prevPage() {
     }
   }), []);
-  const x = (e, t) => {
-    o(t);
+  const x = (e, r) => {
+    o(r);
+  }, C = (e) => {
+    const r = e.target.value;
+    h(r);
   }, N = (e) => {
-    const t = e.target.value;
-    h(t);
-  }, S = (e) => {
-    const t = parseInt(e.target.value, 10);
-    u(t);
-  }, w = 200, C = !!m, F = !!a.quickSearch;
-  return /* @__PURE__ */ r("div", { children: /* @__PURE__ */ i("div", { className: "card-page-container", children: [
+    const r = parseInt(e.target.value, 10);
+    u(r);
+  }, S = 200, w = !!m, F = !!i.quickSearch;
+  return /* @__PURE__ */ t("div", { children: /* @__PURE__ */ a("div", { className: "card-page-container", children: [
     c,
-    /* @__PURE__ */ i("div", { className: "card-container", children: [
-      /* @__PURE__ */ i("div", { className: "card-header", children: [
-        /* @__PURE__ */ r("div", { className: "card-filter", children: F && /* @__PURE__ */ r(
+    /* @__PURE__ */ a("div", { className: "card-container", children: [
+      /* @__PURE__ */ a("div", { className: "card-header", children: [
+        /* @__PURE__ */ t("div", { className: "card-filter", children: F && /* @__PURE__ */ t(
           I,
           {
-            sx: { width: w },
+            sx: { width: S },
             type: "text",
-            onChange: N,
+            onChange: C,
             style: { border: "0px" },
             size: "small",
             placeholder: "Name",
             InputProps: {
-              endAdornment: /* @__PURE__ */ r(L, { position: "end", children: /* @__PURE__ */ r(A, { className: "card-filter-icon" }) })
+              endAdornment: /* @__PURE__ */ t(L, { position: "end", children: /* @__PURE__ */ t(A, { className: "card-filter-icon" }) })
             }
           }
         ) }),
-        /* @__PURE__ */ r("div", { className: "card-pagination", children: C && /* @__PURE__ */ r(
+        /* @__PURE__ */ t("div", { className: "card-pagination", children: w && /* @__PURE__ */ t(
           K,
           {
             component: "div",
@@ -67,17 +67,18 @@ import "@mui/x-tree-view";
             onPageChange: x,
             rowsPerPage: f.limit,
             rowsPerPageOptions: v || [],
-            onRowsPerPageChange: S
+            onRowsPerPageChange: N
           }
         ) })
       ] }),
-      /* @__PURE__ */ r("div", { className: "card-wrapper", children: /* @__PURE__ */ r(
+      /* @__PURE__ */ t("div", { className: "card-wrapper", children: /* @__PURE__ */ t(
         O,
         {
           Child: d,
           childKeyProvider: y,
           dataList: s,
-          childProps: l
+          childProps: l,
+          EmptyChild: i.EmptyChild
         }
       ) })
     ] })

@@ -1,20 +1,20 @@
 import "../../../assets/CardLayout.css";
-import { jsx as r, jsxs as s } from "react/jsx-runtime";
-import n from "./EmptyChildCard.js";
-const v = (t) => {
-  const { children: c, dataList: d, Child: e, childProps: o } = t, l = t.childKeyProvider || ((i, a) => a);
-  return /* @__PURE__ */ r("div", { children: !d || d.length == 0 ? /* @__PURE__ */ r(n, {}) : /* @__PURE__ */ s("div", { className: "card-container", children: [
+import { jsx as i, jsxs as n } from "react/jsx-runtime";
+import { EmptyChildCard as m } from "./EmptyChildCard.js";
+const p = (d) => {
+  const { children: c, dataList: r, Child: e, childProps: l } = d, o = d.childKeyProvider || ((t, a) => a), h = d.EmptyChild ? d.EmptyChild : m;
+  return /* @__PURE__ */ i("div", { children: !r || r.length == 0 ? /* @__PURE__ */ i(h, {}) : /* @__PURE__ */ n("div", { className: "card-container", children: [
     c,
-    /* @__PURE__ */ r("div", { className: "card-wrapper", children: d.map((i, a) => /* @__PURE__ */ r(
+    /* @__PURE__ */ i("div", { className: "card-wrapper", children: r.map((t, a) => /* @__PURE__ */ i(
       e,
       {
-        ...o,
-        data: i
+        ...l,
+        data: t
       },
-      l(i, a)
+      o(t, a)
     )) })
   ] }) });
 };
 export {
-  v as default
+  p as default
 };

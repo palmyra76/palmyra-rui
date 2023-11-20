@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { DefaultQueryParams, QueryStore } from '../../store';
 interface ServerCardLayoutInput {
     quickSearch?: string;
+    fetchAll?: boolean;
     defaultParams?: DefaultQueryParams;
     store: QueryStore<any>;
     Child: React.FC;

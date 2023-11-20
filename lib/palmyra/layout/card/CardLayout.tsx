@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 import '../card/CardLayout.css';
-import EmptyChildCard from './EmptyChildCard';
+import {EmptyChildCard} from './EmptyChildCard';
 
 interface CardLayoutInput {
     children?: ReactNode,
     dataList: any[],
     Child: React.FC,
+    EmptyChild?:React.FC
     childProps: any,
     childKeyProvider: (data: any, index: number) => string | number;
 }
@@ -14,9 +15,11 @@ const CardLayout = (props: CardLayoutInput) => {
     const { children, dataList, Child, childProps } = props;
     const childKeyProvider = props.childKeyProvider || ((data: any, index: number) => index);
 
+    const EmptyChild = props.EmptyChild ? props.EmptyChild : EmptyChildCard;
+
     return (
         <div>{!dataList || dataList.length == 0 ? (
-            <EmptyChildCard />
+            <EmptyChild />
         ) : (
             <div className="card-container" >
                 {children}

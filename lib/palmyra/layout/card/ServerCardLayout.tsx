@@ -9,6 +9,7 @@ import { IGrid } from '../../form/interfaceFields';
 
 interface ServerCardLayoutInput {
     quickSearch?: string,
+    fetchAll?: boolean,
     defaultParams?: DefaultQueryParams,
     store: QueryStore<any>,
     Child: React.FC,
@@ -21,7 +22,7 @@ interface ServerCardLayoutInput {
 
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
     const { children, Child, childProps, pageSize } = props;
-    const currentRef:MutableRefObject<IGrid> = ref ? ref : useRef(null);
+    const currentRef: MutableRefObject<IGrid> = ref ? ref : useRef(null);
     const { setQueryFilter,
         setQuickSearch, gotoPage, setPageSize, getPageNo,
         data, pageSizeOptions, queryLimit } = useServerQuery(props);
@@ -106,7 +107,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
 
                     <div className="card-wrapper" >
                         <CardLayout Child={Child} childKeyProvider={listKeyProvider}
-                            dataList={data} childProps={childProps}
+                            dataList={data} childProps={childProps} EmptyChild={props.EmptyChild}
                         ></CardLayout>
                     </div>
                 </div>

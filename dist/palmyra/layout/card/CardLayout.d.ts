@@ -3,6 +3,7 @@ interface CardLayoutInput {
     children?: ReactNode;
     dataList: any[];
     Child: React.FC;
+    EmptyChild?: React.FC;
     childProps: any;
     childKeyProvider: (data: any, index: number) => string | number;
 }

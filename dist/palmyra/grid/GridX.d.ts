@@ -4,6 +4,7 @@ import { ColumnDefinition, GridCustomizer } from './Types';
 interface GridXOptions {
     columns: ColumnDefinition[];
     children?: any;
+    fetchAll?: boolean;
     EmptyChild?: React.FC;
     store: QueryStore<any>;
     onRowClick?: Function;

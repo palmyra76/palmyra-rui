@@ -6,4 +6,8 @@ const EmptyChildCard = () => {
   )
 }
 
-export default EmptyChildCard;
+const NoopEmptyChildCard = () => {
+  return <></>
+}
+
+export { EmptyChildCard, NoopEmptyChildCard };

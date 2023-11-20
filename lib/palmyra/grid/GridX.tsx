@@ -16,6 +16,7 @@ import useServerQuery from '../form/ServerQueryManager';
 interface GridXOptions {
   columns: ColumnDefinition[],
   children?: any,
+  fetchAll?: boolean,
   EmptyChild?: React.FC,
   store: QueryStore<any>,
   onRowClick?: Function,
