@@ -8,7 +8,7 @@ const S = (n) => {
   return /* @__PURE__ */ e(c, { children: /* @__PURE__ */ e("div", { className: "section-container", children: /* @__PURE__ */ a(d, { expanded: o, onChange: () => {
     r(!o);
   }, children: [
-    /* @__PURE__ */ e(l, { className: "palmyra-form-section-header-container", expandIcon: /* @__PURE__ */ e(m, {}), children: t && !i ? /* @__PURE__ */ e("div", { children: t }) : "" }),
+    t && /* @__PURE__ */ e(l, { className: "palmyra-form-section-header-container", expandIcon: /* @__PURE__ */ e(m, {}), children: t && !i ? /* @__PURE__ */ e("div", { children: t }) : "" }),
     /* @__PURE__ */ e(s, { children: n.children })
   ] }) }) });
 };
