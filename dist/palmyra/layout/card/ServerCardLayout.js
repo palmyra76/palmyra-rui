@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "react";
-import { S as x } from "../../../ServerCardLayout-4d87ddba.js";
+import { S as x } from "../../../ServerCardLayout-0091333e.js";
 import "@mui/material";
 import "./CardLayout.js";
 import "../container/SectionContainer.js";

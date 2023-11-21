@@ -3,7 +3,7 @@
  */
 
 import { FieldDefinition } from "./Definitions";
-import { getValueByKey } from "./FormUtil";
+import { getValueByKey, setValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
 import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
@@ -46,6 +46,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     const onDataValidityChange = onValidityChange;
     var dataValidRef = useRef({});
     var dataValid = dataValidRef.current;
+    console.log(dataValid)
     var defaultData = {};
 
     const isNewForm = () => {
@@ -57,10 +58,15 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     }
 
     const onDataChange = (attribute: string, value: any, validity: { [x: string]: boolean }) => {
-        const data = attribute ? { [attribute]: value } : {};
+        if (attribute)
+            setValueByKey(attribute, formDataRef.current, value)
+
+        // console.log(validity);
+        // console.log(dataValid);
+
         dataValid = Object.assign({}, dataValid, validity);
-        mergeDeep(formDataRef.current, data);
         const _isValid = isValidForm(dataValid);
+
         if (_isValid != isValid.current) {
             isValid.current = _isValid;
             if (onDataValidityChange) {
@@ -69,7 +75,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
         }
     }
 
-    const isValidForm = (dv) => {
+    const isValidForm = (dv: any) => {        
         for (var key in dv) {
             if (dv[key] == false) {
                 return false;
