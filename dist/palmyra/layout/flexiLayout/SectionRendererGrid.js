@@ -1,5 +1,5 @@
 import "react/jsx-runtime";
-import { f } from "../../../ServerCardLayout-324c4c63.js";
+import { f } from "../../../ServerCardLayout-4d87ddba.js";
 import "../container/SectionContainer.js";
 import "../ErrorBoundary.js";
 export {

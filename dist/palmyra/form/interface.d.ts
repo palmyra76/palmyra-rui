@@ -47,6 +47,7 @@ interface IDecoration {
     customContainerClass?: string;
     customFieldClass?: string;
     customLabelClass?: string;
+    className?: string;
     colspan?: number;
     label?: string;
     title?: string;

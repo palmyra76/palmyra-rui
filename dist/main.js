@@ -1,4 +1,4 @@
-import { F as o, G as t, a, M as m, P as u, S as f } from "./ServerCardLayout-324c4c63.js";
+import { F as o, G as t, a, M as m, P as u, S as f } from "./ServerCardLayout-4d87ddba.js";
 import { StoreFactoryContext as s } from "./palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { default as x } from "./palmyra/store/memory/MemoryMenuStore.js";
 import { default as d } from "./palmyra/store/memory/MemoryTreeStore.js";

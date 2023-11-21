@@ -1,4 +1,4 @@
-import { a, P as m } from "../../ServerCardLayout-324c4c63.js";
+import { a, P as m } from "../../ServerCardLayout-4d87ddba.js";
 import { NoopCustomizer as i, gridColumnCustomizer as s } from "./Types.js";
 import { usePalmyraPageGrid as d } from "./usePalmyraPageGrid.js";
 export {
