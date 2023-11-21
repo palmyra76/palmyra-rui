@@ -1,4 +1,4 @@
-import { F as o, G as t } from "../../../ServerCardLayout-f58591de.js";
+import { F as o, G as t } from "../../../ServerCardLayout-324c4c63.js";
 import { StoreFactoryContext as x } from "./FlexiLayoutContext.js";
 export {
   o as FlexiLayoutRenderer,

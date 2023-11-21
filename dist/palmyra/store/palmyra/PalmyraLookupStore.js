@@ -1,7 +1,7 @@
 var m = Object.defineProperty;
 var d = (r, t, o) => t in r ? m(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
 var i = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
-import "../../../ServerCardLayout-f58591de.js";
+import "../../../ServerCardLayout-324c4c63.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import h from "axios";
 import "react/jsx-runtime";

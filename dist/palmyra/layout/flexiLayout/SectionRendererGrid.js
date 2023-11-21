@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
-import { b as i } from "../../../ServerCardLayout-f58591de.js";
+import { f } from "../../../ServerCardLayout-324c4c63.js";
 import "../container/SectionContainer.js";
 import "../ErrorBoundary.js";
 export {
-  i as default
+  f as default
 };
