@@ -16,7 +16,6 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
     const values = fieldManager.data ? fieldManager.data.split(',') : [];
-    const flexDirection = props.flexDirection || 'row';
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const store: LookupStore<any> = fieldManager.store;
@@ -90,10 +89,11 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
         return values.includes(skey);
     }
 
-    return (<>{mutateOptions.visible &&
+    return (<div className={props.className}>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-            <FormControl fullWidth error={error.status} {...inputProps} style={{ flexDirection: flexDirection }}>
+            <FormControl className='MuiServerCheckBoxFormControl'
+                fullWidth error={error.status} {...inputProps}>
                 {options ?
                     options.map((option) => (
                         <FormControlLabel key={idAccessor(option)} value={idAccessor(option)}
@@ -106,7 +106,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
                 <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
             </FormControl>
         </FieldDecorator>}
-    </>
+    </div>
     )
 });
 
