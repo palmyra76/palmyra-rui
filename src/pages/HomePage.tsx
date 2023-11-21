@@ -131,11 +131,10 @@ const HomePage = () => {
 
                 ></MuiSwitch>
 
-                <MuiServerCheckBox attribute="asd" displayAttribute="serviceName"
-                    required={true} label="Server Checkbox"
+                <MuiServerCheckBox attribute="asd" displayAttribute="serviceName" flexDirection="column"
+                    required={true} label="Server Checkbox" className="branchBox"
                     lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                     storeOptions={{ endPoint: "/api/palmyra/masterdata/" }} />
-
                 <br />
                 <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 
