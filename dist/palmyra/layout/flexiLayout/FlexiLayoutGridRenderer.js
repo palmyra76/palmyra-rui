@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "react";
-import { d as p } from "../../../ServerCardLayout-0d439d11.js";
+import { d as p } from "../../../ServerCardLayout-f58591de.js";
 export {
   p as default
 };

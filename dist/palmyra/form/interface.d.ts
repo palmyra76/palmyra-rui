@@ -81,6 +81,15 @@ interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
         endPointVars?: IEndPointVars;
     };
 }
+interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
+    displayAttribute: string;
+    lookupOptions: IFormFieldServerLookup;
+    storeOptions: {
+        endPoint: IEndPoint;
+        endPointVars?: IEndPointVars;
+    };
+    flexDirection?: 'column' | 'row';
+}
 interface IEventListeners {
     onBlur: () => void;
     onFocus: () => void;
@@ -134,6 +143,6 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType };
-export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
+export type { IServerCheckboxDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager };
 export { NoopFormListener };

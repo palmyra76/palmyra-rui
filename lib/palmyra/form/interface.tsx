@@ -80,6 +80,7 @@ interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
     flexDirection?: 'column' | 'row'
 }
 
+
 interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>,
     flexDirection?: 'column' | 'row'
@@ -99,6 +100,16 @@ interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
         endPoint: IEndPoint,
         endPointVars?: IEndPointVars
     }
+}
+
+interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
+    displayAttribute: string,
+    lookupOptions: IFormFieldServerLookup,
+    storeOptions: {
+        endPoint: IEndPoint,
+        endPointVars?: IEndPointVars
+    }
+    flexDirection?: 'column' | 'row'
 }
 
 interface IEventListeners {
@@ -175,7 +186,7 @@ const NoopFormListener: IFormListener = {
 
 
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType }
-export type { IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers }
+export type { IServerCheckboxDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager }
 
 export { NoopFormListener }

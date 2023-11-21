@@ -42,7 +42,7 @@ const useServerQuery = (props: IServerQueryInput) => {
   };
 
   const setPageSize = (pageSize: number) => {
-    const limit = pageSize > 10 ? pageSize : 15;
+    const limit = (pageSize > 10 || pageSize == -1) ? pageSize : 15;
     setQueryLimit({ ...queryLimit, limit });
   }
 
@@ -120,3 +120,4 @@ const useServerQuery = (props: IServerQueryInput) => {
 };
 
 export default useServerQuery;
+export type { IServerQueryInput };

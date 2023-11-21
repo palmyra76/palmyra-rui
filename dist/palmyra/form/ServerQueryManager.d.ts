@@ -27,3 +27,4 @@ declare const useServerQuery: (props: IServerQueryInput) => {
     pageSizeOptions: number[];
 };
 export default useServerQuery;
+export type { IServerQueryInput };

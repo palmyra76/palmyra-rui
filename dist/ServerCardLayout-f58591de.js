@@ -99,22 +99,22 @@ function se(r) {
   return Ke({ tag: "svg", attr: { viewBox: "0 0 1024 1024" }, child: [{ tag: "path", attr: { d: "M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z" } }] })(r);
 }
 const de = (r) => {
-  const { store: t, quickSearch: o, endPointVars: n } = r, i = r.fetchAll != !1, [c, l] = w(null), [s, a] = r.filterTopic ? _e(r.filterTopic, {}) : w({}), [u, h] = w({}), d = r.pageSize ? r.pageSize : 15;
+  const { store: t, quickSearch: o, endPointVars: n } = r, i = r.fetchAll != !1, [c, l] = w(null), [s, a] = r.filterTopic ? _e(r.filterTopic, {}) : w({}), [m, h] = w({}), d = r.pageSize ? r.pageSize : 15;
   var g = d instanceof Array ? d : [d], P = d instanceof Array ? d[0] : d;
-  const [f, S] = w({ limit: P, offset: 0 }), [z, N] = w(null), O = () => Math.round(f.offset / f.limit), L = () => f.limit, D = (m) => {
-    S({ ...f, offset: m * P });
-  }, E = (m) => {
-    const v = m > 10 ? m : 15;
+  const [f, S] = w({ limit: P, offset: 0 }), [z, N] = w(null), O = () => Math.round(f.offset / f.limit), L = () => f.limit, D = (u) => {
+    S({ ...f, offset: u * P });
+  }, E = (u) => {
+    const v = u > 10 || u == -1 ? u : 15;
     S({ ...f, limit: v });
   }, T = () => s ? Object.keys(s).length == 0 : !1;
   I(() => {
     (i || !T()) && y();
-  }, [f, s, u]);
+  }, [f, s, m]);
   const y = () => {
-    const m = { filter: s, sortOrder: u, total: !0, endPointVars: n, ...f };
+    const u = { filter: s, sortOrder: m, total: !0, endPointVars: n, ...f };
     if (t)
       try {
-        t.query(m).then((v) => {
+        t.query(u).then((v) => {
           N(v.result), l(v.total);
         }).catch((v) => {
           var M = v.response ? v.response : v;
@@ -131,14 +131,14 @@ const de = (r) => {
     N(void 0), l(null);
   };
   return {
-    setQueryFilter: (m) => {
-      m && Object.keys(m).length > 0 ? a(m) : a({});
+    setQueryFilter: (u) => {
+      u && Object.keys(u).length > 0 ? a(u) : a({});
     },
-    setQuickSearch: (m) => {
-      a(m ? { [o]: m } : {});
+    setQuickSearch: (u) => {
+      a(u ? { [o]: u } : {});
     },
-    setSortColumns: (m) => {
-      h(m);
+    setSortColumns: (u) => {
+      h(u);
     },
     refreshData: y,
     gotoPage: D,
@@ -152,7 +152,7 @@ const de = (r) => {
     pageSizeOptions: g
   };
 }, Xe = R(function(t, o) {
-  const { columns: n, children: i, EmptyChild: c, onRowClick: l, quickSearch: s } = t, a = c || ze, u = t.customizer || qe, [h, d] = w(!1), [g, P] = w("standard"), [f, S] = w(!1), [z, N] = w(""), {
+  const { columns: n, children: i, EmptyChild: c, onRowClick: l, quickSearch: s } = t, a = c || ze, m = t.customizer || qe, [h, d] = w(!1), [g, P] = w("standard"), [f, S] = w(!1), [z, N] = w(""), {
     setQueryFilter: O,
     setQuickSearch: L,
     setSortColumns: D,
@@ -164,14 +164,14 @@ const de = (r) => {
     pageSizeOptions: B,
     filter: K,
     queryLimit: H
-  } = de(t), m = o || Q(null);
-  q(m, () => ({
+  } = de(t), u = o || Q(null);
+  q(u, () => ({
     setFilter: (p) => {
     }
   }), []);
   const v = (p, F) => {
     E(F);
-  }, M = Oe(n, u), V = (p) => {
+  }, M = Oe(n, m), V = (p) => {
     P(p);
   }, he = () => {
     d(!h);
@@ -281,11 +281,11 @@ const de = (r) => {
     ) }) })
   ] }) });
 }), Mt = R(function(t, o) {
-  const { columns: n, endPoint: i, storeFactory: c, layoutParams: l } = t, s = t.quickSearch || "", a = Q(null), u = (d, g) => {
+  const { columns: n, endPoint: i, storeFactory: c, layoutParams: l } = t, s = t.quickSearch || "", a = Q(null), m = (d, g) => {
     console.log(g);
   };
   I(() => {
-    var d = U.subscribe(t.topic, u);
+    var d = U.subscribe(t.topic, m);
     return () => {
       U.unsubscribe(d);
     };
@@ -305,11 +305,11 @@ const de = (r) => {
   return /* @__PURE__ */ e(re, { children: /* @__PURE__ */ e(_.Provider, { value: c, children: /* @__PURE__ */ e(ue, { layout: h, context: l, customizer: t.customizer, ref: a }) }) });
 }), We = R(function(t, o) {
   const n = t.layout, [i, c] = w(n.fields), l = n.pagination ? n.pagination : [15], s = X(_), a = X(te);
-  var u = n.storeOptions || {}, h = {};
-  Ie(h, u, a);
+  var m = n.storeOptions || {}, h = {};
+  Ie(h, m, a);
   const d = s.getGridStore(h, n.storeOptions.endPoint);
   I(() => {
-    u.hasLayout && d.queryLayout({}).then((f) => {
+    m.hasLayout && d.queryLayout({}).then((f) => {
       c(f.columns);
     });
   }, []);
@@ -362,8 +362,8 @@ function Ue(r, t) {
 const me = (r) => {
   const { layout: t, context: o } = r, n = t.sections;
   function i(c, l, s) {
-    const { w: a, h: u } = Ue(c.width, c.height);
-    return /* @__PURE__ */ e(Ne, { sx: { width: a, height: u }, children: /* @__PURE__ */ e(
+    const { w: a, h: m } = Ue(c.width, c.height);
+    return /* @__PURE__ */ e(Ne, { sx: { width: a, height: m }, children: /* @__PURE__ */ e(
       Je,
       {
         layout: c,
@@ -409,8 +409,8 @@ const me = (r) => {
       return s();
     }
   }), []);
-  const a = { formData: n }, u = i.tabs;
-  return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(xe.Provider, { value: c, children: u.map((d, g) => /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
+  const a = { formData: n }, m = i.tabs;
+  return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(xe.Provider, { value: c, children: m.map((d, g) => /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
     me,
     {
       layout: d,
@@ -434,13 +434,13 @@ const me = (r) => {
   const [n, i] = w(t.layout), c = t.mode ? t.mode : n.type ? n.type : "grid", l = t.layoutParams || {}, s = Ze(c), a = Q(0);
   return I(() => {
     i(t.layout), a.current < 999999 ? a.current++ : a.current = 0;
-  }, [t.layout]), /* @__PURE__ */ e(ae, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(_.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(te.Provider, { value: l, children: /* @__PURE__ */ e(s, { ...t, ref: (u) => {
-    o && (o.current = u);
+  }, [t.layout]), /* @__PURE__ */ e(ae, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(_.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(te.Provider, { value: l, children: /* @__PURE__ */ e(s, { ...t, ref: (m) => {
+    o && (o.current = m);
   } }, a.current) }) }) });
 }), _t = R(function(t, o) {
   const { children: n, Child: i, childProps: c, pageSize: l } = t, s = o || Q(null), {
     setQueryFilter: a,
-    setQuickSearch: u,
+    setQuickSearch: m,
     gotoPage: h,
     setPageSize: d,
     getPageNo: g,
@@ -464,7 +464,7 @@ const me = (r) => {
     h(C);
   }, O = (y) => {
     const C = y.target.value;
-    u(C);
+    m(C);
   }, L = (y) => {
     const C = parseInt(y.target.value, 10);
     d(C);

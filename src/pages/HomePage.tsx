@@ -15,6 +15,7 @@ import { IPalmyraForm, PalmyraForm } from "../../lib/palmyra/form/PalmyraForm";
 import FormFieldContainer from "../../lib/palmyra/layout/container/FieldGroupContainer";
 import MuiPassword from "../../lib/palmyra/mui/form/MuiPassword";
 import { createFormHelper } from "../../lib/palmyra/form/PalmyraFormManager";
+import MuiServerCheckBox from "../../lib/palmyra/mui/form/MuiServerCheckBox";
 
 
 const HomePage = () => {
@@ -129,6 +130,12 @@ const HomePage = () => {
                     options={{ 'Enable': 1, 'Disable': 0 }}
 
                 ></MuiSwitch>
+
+                <MuiServerCheckBox attribute="asd" displayAttribute="serviceName"
+                    required={true} label="Server Checkbox"
+                    lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
+                    storeOptions={{ endPoint: "/api/palmyra/masterdata/" }} />
+
                 <br />
                 <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 
