@@ -1,11 +1,12 @@
 import "react";
-import { u as C } from "../../ServerCardLayout-15eec788.js";
+import { u as D } from "../../ServerCardLayout-15eec788.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
+import "@mui/material";
 import "../layout/container/SectionContainer.js";
-import "react-router-dom";
 import "@mui/icons-material";
+import "react-router-dom";
 /* empty css                       */import "@emotion/styled";
 import "@mui/x-tree-view";
 /* empty css                           */import "../layout/card/CardLayout.js";
@@ -24,5 +25,5 @@ import "../mui/form/MuiPassword.js";
 import "../mui/form/MuiServerLookup.js";
 import "./PalmyraForm.js";
 export {
-  C as default
+  D as default
 };

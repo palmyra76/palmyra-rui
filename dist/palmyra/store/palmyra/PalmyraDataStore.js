@@ -3,10 +3,11 @@ import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { PalmyraGridStore as m } from "./PalmyraGridStore.js";
 import "axios";
 import "react/jsx-runtime";
+import "@mui/material";
 import "../../layout/container/SectionContainer.js";
-import "react-router-dom";
-import "react";
 import "@mui/icons-material";
+import "react";
+import "react-router-dom";
 /* empty css                          */import "@emotion/styled";
 import "@mui/x-tree-view";
 /* empty css                              */import "../../layout/card/CardLayout.js";
@@ -24,7 +25,7 @@ import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiServerLookup.js";
 import "../../form/PalmyraForm.js";
-class H extends m {
+class I extends m {
   constructor(t, r, o) {
     super(t, r, o);
   }
@@ -54,5 +55,5 @@ class H extends m {
   }
 }
 export {
-  H as PalmyraDataStore
+  I as PalmyraDataStore
 };
