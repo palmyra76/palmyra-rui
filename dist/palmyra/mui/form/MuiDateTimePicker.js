@@ -1,14 +1,14 @@
-import { jsx as o } from "react/jsx-runtime";
-import { forwardRef as g, useContext as v, useRef as u, useImperativeHandle as F } from "react";
-import { LocalizationProvider as y, DateTimePicker as M } from "@mui/x-date-pickers";
-import { AdapterDayjs as P } from "@mui/x-date-pickers/AdapterDayjs";
-import b from "dayjs";
-import { copyMuiOptions as h } from "./MuiUtil.js";
-import { FieldManagerContext as x } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import L from "./FieldDecorator.js";
-const O = g(function(t, s) {
-  const c = v(x), i = s || u(null), m = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", a = c(t, "datetime", i), n = a.error, d = a.data, r = a.eventListeners, l = u(null), f = () => b(d);
-  F(i, () => ({
+import { jsx as s, Fragment as b } from "react/jsx-runtime";
+import { forwardRef as F, useContext as M, useRef as u, useImperativeHandle as h } from "react";
+import { LocalizationProvider as y, DateTimePicker as P } from "@mui/x-date-pickers";
+import { AdapterDayjs as x } from "@mui/x-date-pickers/AdapterDayjs";
+import L from "dayjs";
+import { copyMuiOptions as V } from "./MuiUtil.js";
+import { FieldManagerContext as j } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import k from "./FieldDecorator.js";
+const z = F(function(t, o) {
+  const c = M(j), i = o || u(null), m = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", a = c(t, "datetime", i), { mutateOptions: d, setMutateOptions: f } = a, n = a.error, C = a.data, r = a.eventListeners, l = u(null), v = () => L(C);
+  h(i, () => ({
     focus() {
       l.current.focus();
     },
@@ -23,30 +23,33 @@ const O = g(function(t, s) {
     },
     setValue(e) {
       a.setData(e);
+    },
+    setVisible(e) {
+      f({ visible: e });
     }
   }), []);
-  var C = h(t, f(), t.label), D = {
+  var D = V(t, v(), t.label), g = {
     onBlur: r.onBlur,
     onFocus: r.onFocus,
     onChange: (e) => {
       e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ o(
-    L,
+  return /* @__PURE__ */ s(b, { children: d.visible && /* @__PURE__ */ s(
+    k,
     {
       label: t.title,
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ o(y, { dateAdapter: P, children: /* @__PURE__ */ o(
-        M,
+      children: /* @__PURE__ */ s(y, { dateAdapter: x, children: /* @__PURE__ */ s(
+        P,
         {
-          ...C,
+          ...D,
           readOnly: t.readonly,
           format: m,
-          ...D,
+          ...g,
           slotProps: {
             textField: {
               error: n.status,
@@ -58,8 +61,8 @@ const O = g(function(t, s) {
         }
       ) })
     }
-  );
+  ) });
 });
 export {
-  O as default
+  z as default
 };

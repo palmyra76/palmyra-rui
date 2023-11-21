@@ -1,4 +1,4 @@
-import "../../../ServerCardLayout-15eec788.js";
+import "../../../ServerCardLayout-0d439d11.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { PalmyraGridStore as m } from "./PalmyraGridStore.js";
 import "axios";

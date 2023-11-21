@@ -34,7 +34,7 @@ import { getActionPublishers as Qe } from "./palmyra/utils/pubsub/Publishers.js"
 import { ErrorBoundary as ae } from "./palmyra/layout/ErrorBoundary.js";
 import je from "./palmyra/layout/flexiLayout/SectionRendererInvalid.js";
 import Me from "./palmyra/layout/flexiLayout/SectionRendererViewForm.js";
-import { d as Ve } from "./PalmyraFormManager-9cbba3fa.js";
+import { d as Ve } from "./PalmyraFormManager-1b60a971.js";
 import { useKeyValue as _e } from "./palmyra/utils/pubsub/PubSubHelper.js";
 var ce = {
   color: void 0,

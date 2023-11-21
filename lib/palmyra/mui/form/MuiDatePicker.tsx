@@ -7,11 +7,12 @@ import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition, ref:MutableRefObject<any>) {
+const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD";
     const fieldManager: IFormFieldManager = getFieldManager(props, 'date', currentRef);
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const data: any = fieldManager.data;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
@@ -38,6 +39,9 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
             },
             setValue(d: any) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -55,7 +59,7 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
         }
     }
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -73,7 +77,8 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
                     }}
                 />
             </LocalizationProvider>
-        </FieldDecorator>
+        </FieldDecorator>}
+    </>
     );
 });
 

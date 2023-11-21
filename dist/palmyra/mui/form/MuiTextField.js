@@ -1,57 +1,60 @@
-import { jsx as i } from "react/jsx-runtime";
-import { forwardRef as f, useContext as C, useRef as c, useImperativeHandle as g } from "react";
-import { TextField as F } from "@mui/material";
-import { copyMuiOptions as x } from "./MuiUtil.js";
-import { FieldManagerContext as b } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import v from "./FieldDecorator.js";
-const V = f(function(e, o) {
-  const m = C(b), l = o || c(null), t = m(e, "string", l), a = t.error, n = t.eventListeners, s = c(null);
-  g(l, () => ({
+import { jsx as l, Fragment as C } from "react/jsx-runtime";
+import { forwardRef as F, useContext as b, useRef as c, useImperativeHandle as v } from "react";
+import { TextField as x } from "@mui/material";
+import { copyMuiOptions as M } from "./MuiUtil.js";
+import { FieldManagerContext as h } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import p from "./FieldDecorator.js";
+const A = F(function(e, o) {
+  const m = b(h), i = o || c(null), s = m(e, "string", i), { mutateOptions: d, setMutateOptions: f } = s, n = s.error, r = s.eventListeners, a = c(null);
+  v(i, () => ({
     focus() {
-      s.current.focus();
+      a.current.focus();
     },
     isValid() {
-      return !a.status;
+      return !n.status;
     },
-    assignAttribute(r) {
-      s.current.assignAttribute(r);
+    assignAttribute(t) {
+      a.current.assignAttribute(t);
     },
     clear() {
-      t.setData("");
+      s.setData("");
     },
-    setValue(r) {
-      t.setData(r);
+    setValue(t) {
+      s.setData(t);
+    },
+    setVisible(t) {
+      f({ visible: t });
     }
   }), []);
-  var u = x(e, t.data, e.label);
+  var u = M(e, s.data, e.label);
   e.readonly && (u.inputProps = { readOnly: !0 });
-  var d = {
-    onBlur: n.onBlur,
-    onFocus: n.onFocus,
-    onChange: (r) => n.onValueChange(r.target.value)
+  var g = {
+    onBlur: r.onBlur,
+    onFocus: r.onFocus,
+    onChange: (t) => r.onValueChange(t.target.value)
   };
-  return /* @__PURE__ */ i(
-    v,
+  return /* @__PURE__ */ l(C, { children: d.visible && /* @__PURE__ */ l(
+    p,
     {
       label: e.title,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ i(
-        F,
+      children: /* @__PURE__ */ l(
+        x,
         {
           ...u,
           fullWidth: !0,
-          inputRef: s,
-          ...d,
-          error: a.status,
-          helperText: a.message
+          inputRef: a,
+          ...g,
+          error: n.status,
+          helperText: n.message
         }
       )
     }
-  );
+  ) });
 });
 export {
-  V as default
+  A as default
 };

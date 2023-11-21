@@ -1,79 +1,82 @@
-import { jsx as r, jsxs as x } from "react/jsx-runtime";
-import { forwardRef as M, useContext as y, useRef as C, useMemo as L, useState as O, useEffect as g, useImperativeHandle as w } from "react";
-import { FormControl as S, FormControlLabel as R, Switch as j, FormHelperText as A } from "@mui/material";
-import { copyMuiOptions as D } from "./MuiUtil.js";
-import H from "./OptionsParser.js";
-import { FieldManagerContext as I } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import P from "./FieldDecorator.js";
-const K = M(function(e, c) {
-  const b = y(I), u = c || C(null), a = b(e, "switch", u), s = a.error, k = a.eventListeners, o = L(
-    () => H(e.options, e.name),
+import { jsx as s, Fragment as x, jsxs as y } from "react/jsx-runtime";
+import { forwardRef as L, useContext as w, useRef as C, useMemo as S, useState as R, useEffect as b, useImperativeHandle as j } from "react";
+import { FormControl as A, FormControlLabel as D, Switch as H, FormHelperText as I } from "@mui/material";
+import { copyMuiOptions as P } from "./MuiUtil.js";
+import E from "./OptionsParser.js";
+import { FieldManagerContext as N } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import T from "./FieldDecorator.js";
+const W = L(function(e, i) {
+  const g = w(N), c = i || C(null), n = g(e, "switch", c), { mutateOptions: v, setMutateOptions: k } = n, r = n.error, F = n.eventListeners, o = S(
+    () => E(e.options, e.name),
     [e.options, e.name]
-  ), i = (t, V) => {
+  ), u = (t, O) => {
     var h = o.checked.value;
-    return t != null && t != null ? h == t : h == V;
-  }, [n, d] = O(i(a.data, e.defaultValue)), l = C(null);
-  g(() => {
-    d(i(a.data, e.defaultValue));
-  }, [a.data]), w(u, () => ({
+    return t != null && t != null ? h == t : h == O;
+  }, [a, d] = R(u(n.data, e.defaultValue)), l = C(null);
+  b(() => {
+    d(u(n.data, e.defaultValue));
+  }, [n.data]), j(c, () => ({
     focus() {
       l.current.focus();
     },
     isValid() {
-      return !s.status;
+      return !r.status;
     },
     assignAttribute(t) {
       l.current.assignAttribute(t);
     },
     setValue(t) {
-      a.setData(t);
+      n.setData(t);
+    },
+    setVisible(t) {
+      k({ visible: t });
     }
   }), []);
-  var m = D(e, a.data, e.label);
+  var m = P(e, n.data, e.label);
   e.readonly && (m.inputProps = { readOnly: !0 });
-  const v = () => {
-    d(!n);
+  const V = () => {
+    d(!a);
   };
-  g(() => {
-    k.onValueChange(f());
-  }, [n]);
-  const F = () => {
-    var t = n ? "checked" : "unchecked";
+  b(() => {
+    F.onValueChange(f());
+  }, [a]);
+  const M = () => {
+    var t = a ? "checked" : "unchecked";
     return o[t].title;
   }, f = () => {
-    var t = n ? "checked" : "unchecked";
+    var t = a ? "checked" : "unchecked";
     return o[t].value;
   };
-  return /* @__PURE__ */ r(
-    P,
+  return /* @__PURE__ */ s(x, { children: v.visible && /* @__PURE__ */ s(
+    T,
     {
       label: e.title,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ x(S, { error: s.status, ...m, children: [
-        /* @__PURE__ */ r(
-          R,
+      children: /* @__PURE__ */ y(A, { error: r.status, ...m, children: [
+        /* @__PURE__ */ s(
+          D,
           {
             value: f(),
-            control: /* @__PURE__ */ r(
-              j,
+            control: /* @__PURE__ */ s(
+              H,
               {
                 inputRef: l,
-                checked: n,
-                onClick: v,
+                checked: a,
+                onClick: V,
                 disabled: e.readonly
               }
             ),
-            label: F()
+            label: M()
           }
         ),
-        /* @__PURE__ */ r(A, { className: "form-error-text", children: s.message })
+        /* @__PURE__ */ s(I, { className: "form-error-text", children: r.message })
       ] })
     }
-  );
+  ) });
 });
 export {
-  K as default
+  W as default
 };

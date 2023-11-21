@@ -23,9 +23,6 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     eventHandler: EventHandler, eventListener?: IFieldEventListener, valueListener?: IFieldValueListener
 ): IFormFieldManager {
 
-    if (eventListener)
-        console.log(fieldDef.attribute, eventListener)
-
     const fieldEventListener = eventListener || NoopFieldEventListener;
     const fieldValueListener = valueListener || NoopFieldValueListener;
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
@@ -50,7 +47,10 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
             readonly: fieldDef.readonly == true,
             visible: fieldDef.visible == false ? false : true
         };
-        setMutateOptions = (d: IMutateOptions) => { };
+        setMutateOptions = (d: IMutateOptions) => {
+            console.warn("Operation ignored, set mutant={true} in '"
+                + fieldDef.attribute + "' field definition");
+        };
     }
 
     useEffect(() => {

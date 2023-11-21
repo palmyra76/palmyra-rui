@@ -6,14 +6,14 @@ import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext
 import FieldDecorator from './FieldDecorator';
 
 
-const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref:MutableRefObject<any>) {
+const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const { options } = props;
 
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'select', currentRef);
-
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
@@ -35,6 +35,9 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref:Mu
             },
             setValue(d: any) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -51,7 +54,7 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref:Mu
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status}>
@@ -67,7 +70,8 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref:Mu
                 </Select>
                 <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
             </FormControl>
-        </FieldDecorator>
+        </FieldDecorator>}
+    </>
     );
 });
 

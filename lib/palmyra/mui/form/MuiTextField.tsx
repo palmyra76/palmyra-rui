@@ -9,6 +9,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const inputRef: any = useRef(null);
@@ -29,6 +30,9 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
             },
             setValue(d: any) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -45,7 +49,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField {...inputProps}
@@ -55,7 +59,8 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
                 error={error.status}
                 helperText={error.message}
             />
-        </FieldDecorator>
+        </FieldDecorator>}
+    </>
     );
 });
 

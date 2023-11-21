@@ -1,18 +1,18 @@
-import { jsx as r } from "react/jsx-runtime";
-import { forwardRef as g, useContext as b, useRef as d, useState as F, useImperativeHandle as h } from "react";
-import { IconButton as x, TextField as p } from "@mui/material";
-import { copyMuiOptions as w } from "./MuiUtil.js";
-import { FieldManagerContext as v } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import y from "./FieldDecorator.js";
-import { Visibility as M, VisibilityOff as P } from "@mui/icons-material";
-const T = g(function(t, i) {
-  const m = b(v), u = i || d(null), [c, f] = F(!1), s = m(t, "string", u), n = s.error, o = s.eventListeners, a = d(null);
-  h(u, () => ({
+import { jsx as n, Fragment as F } from "react/jsx-runtime";
+import { forwardRef as h, useContext as p, useRef as d, useState as v, useImperativeHandle as x } from "react";
+import { IconButton as w, TextField as M } from "@mui/material";
+import { copyMuiOptions as y } from "./MuiUtil.js";
+import { FieldManagerContext as P } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import V from "./FieldDecorator.js";
+import { Visibility as O, VisibilityOff as L } from "@mui/icons-material";
+const j = h(function(t, l) {
+  const m = p(P), u = l || d(null), [c, f] = v(!1), s = m(t, "string", u), { mutateOptions: C, setMutateOptions: b } = s, r = s.error, o = s.eventListeners, a = d(null);
+  x(u, () => ({
     focus() {
       a.current.focus();
     },
     isValid() {
-      return !n.status;
+      return !r.status;
     },
     assignAttribute(e) {
       a.current.assignAttribute(e);
@@ -22,40 +22,43 @@ const T = g(function(t, i) {
     },
     setValue(e) {
       s.setData(e);
+    },
+    setVisible(e) {
+      b({ visible: e });
     }
   }), []);
-  var l = w(t, s.data, t.label);
-  t.readonly ? l.inputProps = { readOnly: !0 } : l.InputProps = {
-    endAdornment: /* @__PURE__ */ r(x, { onClick: () => f((e) => !e), children: c ? /* @__PURE__ */ r(M, {}) : /* @__PURE__ */ r(P, {}) })
+  var i = y(t, s.data, t.label);
+  t.readonly ? i.inputProps = { readOnly: !0 } : i.InputProps = {
+    endAdornment: /* @__PURE__ */ n(w, { onClick: () => f((e) => !e), children: c ? /* @__PURE__ */ n(O, {}) : /* @__PURE__ */ n(L, {}) })
   };
-  var C = {
+  var g = {
     onBlur: o.onBlur,
     onFocus: o.onFocus,
     onChange: (e) => o.onValueChange(e.target.value)
   };
-  return /* @__PURE__ */ r(
-    y,
+  return /* @__PURE__ */ n(F, { children: C.visible && /* @__PURE__ */ n(
+    V,
     {
       label: t.title,
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ r(
-        p,
+      children: /* @__PURE__ */ n(
+        M,
         {
-          ...l,
+          ...i,
           type: c ? "text" : "password",
           fullWidth: !0,
           inputRef: a,
-          ...C,
-          error: n.status,
-          helperText: n.message
+          ...g,
+          error: r.status,
+          helperText: r.message
         }
       )
     }
-  );
+  ) });
 });
 export {
-  T as default
+  j as default
 };

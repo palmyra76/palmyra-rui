@@ -6,11 +6,12 @@ import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext
 import FieldDecorator from './FieldDecorator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref:MutableRefObject<any>) {
+const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const [showPassword, setShowPassword] = useState(false);
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);    
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
@@ -32,6 +33,9 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
             },
             setValue(d: any) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -40,10 +44,10 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
 
     if (props.readonly) {
         inputProps.inputProps = { readOnly: true };
-    }else{
-        inputProps.InputProps={
+    } else {
+        inputProps.InputProps = {
             endAdornment: (
-                <IconButton onClick={()=>setShowPassword((f) => !f)}>
+                <IconButton onClick={() => setShowPassword((f) => !f)}>
                     {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
             ),
@@ -56,7 +60,7 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField {...inputProps}
@@ -67,7 +71,8 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
                 error={error.status}
                 helperText={error.message}
             />
-        </FieldDecorator>
+        </FieldDecorator>}
+    </>
     );
 });
 

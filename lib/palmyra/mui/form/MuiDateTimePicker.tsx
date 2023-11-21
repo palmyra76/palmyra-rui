@@ -7,11 +7,12 @@ import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTimeDefinition, ref:MutableRefObject<any>) {
+const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTimeDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD HH:mm:ss";
     const fieldManager: IFormFieldManager = getFieldManager(props, 'datetime', currentRef);
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const data: any = fieldManager.data;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
@@ -38,6 +39,9 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
             },
             setValue(d: any) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -55,7 +59,7 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
         }
     }
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -73,7 +77,8 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
                     }}
                 />
             </LocalizationProvider>
-        </FieldDecorator>
+        </FieldDecorator>}
+    </>
     );
 });
 

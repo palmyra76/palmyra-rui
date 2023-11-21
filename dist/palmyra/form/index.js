@@ -1,4 +1,4 @@
-import { d as o, e as m } from "../../PalmyraFormManager-9cbba3fa.js";
+import { d as o, e as m } from "../../PalmyraFormManager-1b60a971.js";
 import { PalmyraForm as t } from "./PalmyraForm.js";
 import { usePalmyraEditForm as F } from "./usePalmyraEditForm.js";
 import { usePalmyraViewForm as l } from "./usePalmyraViewForm.js";

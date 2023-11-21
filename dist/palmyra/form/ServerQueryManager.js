@@ -1,5 +1,5 @@
 import "react";
-import { u as D } from "../../ServerCardLayout-15eec788.js";
+import { u as D } from "../../ServerCardLayout-0d439d11.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";

@@ -1,19 +1,19 @@
-import { jsx as o } from "react/jsx-runtime";
-import { forwardRef as g, useContext as v, useRef as u, useImperativeHandle as F } from "react";
-import { LocalizationProvider as y, DatePicker as M } from "@mui/x-date-pickers";
-import { AdapterDayjs as P } from "@mui/x-date-pickers/AdapterDayjs";
-import b from "dayjs";
-import { copyMuiOptions as h } from "./MuiUtil.js";
-import { FieldManagerContext as x } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import L from "./FieldDecorator.js";
-const w = g(function(t, s) {
-  const c = v(x), i = s || u(null), d = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = c(t, "date", i), n = a.error, m = a.data, r = a.eventListeners, l = u(null), f = () => b(m);
-  F(i, () => ({
+import { jsx as n, Fragment as b } from "react/jsx-runtime";
+import { forwardRef as F, useContext as M, useRef as u, useImperativeHandle as h } from "react";
+import { LocalizationProvider as y, DatePicker as P } from "@mui/x-date-pickers";
+import { AdapterDayjs as x } from "@mui/x-date-pickers/AdapterDayjs";
+import L from "dayjs";
+import { copyMuiOptions as V } from "./MuiUtil.js";
+import { FieldManagerContext as j } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import k from "./FieldDecorator.js";
+const I = F(function(t, o) {
+  const c = M(j), i = o || u(null), d = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = c(t, "date", i), { mutateOptions: m, setMutateOptions: f } = a, s = a.error, C = a.data, r = a.eventListeners, l = u(null), v = () => L(C);
+  h(i, () => ({
     focus() {
       l.current.focus();
     },
     isValid() {
-      return !n.status;
+      return !s.status;
     },
     assignAttribute(e) {
       l.current.assignAttribute(e);
@@ -23,34 +23,37 @@ const w = g(function(t, s) {
     },
     setValue(e) {
       a.setData(e);
+    },
+    setVisible(e) {
+      f({ visible: e });
     }
   }), []);
-  var C = h(t, f(), t.label), D = {
+  var D = V(t, v(), t.label), g = {
     onBlur: r.onBlur,
     onFocus: r.onFocus,
     onChange: (e) => {
       e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ o(
-    L,
+  return /* @__PURE__ */ n(b, { children: m.visible && /* @__PURE__ */ n(
+    k,
     {
       label: t.title,
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ o(y, { dateAdapter: P, children: /* @__PURE__ */ o(
-        M,
+      children: /* @__PURE__ */ n(y, { dateAdapter: x, children: /* @__PURE__ */ n(
+        P,
         {
-          ...C,
+          ...D,
           readOnly: t.readonly,
           format: d,
-          ...D,
+          ...g,
           slotProps: {
             textField: {
-              error: n.status,
-              helperText: n.message,
+              error: s.status,
+              helperText: s.message,
               variant: t.variant,
               fullWidth: !0
             }
@@ -58,8 +61,8 @@ const w = g(function(t, s) {
         }
       ) })
     }
-  );
+  ) });
 });
 export {
-  w as default
+  I as default
 };

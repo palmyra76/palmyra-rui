@@ -5,11 +5,12 @@ import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref:MutableRefObject<any>) {
+const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const { options } = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'radio', currentRef);
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const row: boolean = props.flexDirection != 'column';
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
@@ -30,8 +31,11 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
             clear() {
                 fieldManager.setData('');
             },
-            setValue(d){
+            setValue(d) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -52,7 +56,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
 
     const label = props.required ? props.title + '*' : props.title;
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={label} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} >
@@ -66,7 +70,8 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
                 </RadioGroup>
                 <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
             </FormControl>
-        </FieldDecorator>
+        </FieldDecorator>}
+    </>
     );
 });
 

@@ -1,59 +1,62 @@
-import { jsx as i } from "react/jsx-runtime";
-import { forwardRef as d, useContext as C, useRef as c, useImperativeHandle as g } from "react";
-import { TextField as x } from "@mui/material";
-import { copyMuiOptions as F } from "./MuiUtil.js";
-import { FieldManagerContext as b } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import v from "./FieldDecorator.js";
-const y = d(function(e, o) {
-  const m = C(b), l = o || c(null), t = m(e, "string", l), a = t.error, n = t.eventListeners, s = c(null);
-  g(l, () => ({
+import { jsx as o, Fragment as C } from "react/jsx-runtime";
+import { forwardRef as b, useContext as x, useRef as c, useImperativeHandle as F } from "react";
+import { TextField as v } from "@mui/material";
+import { copyMuiOptions as M } from "./MuiUtil.js";
+import { FieldManagerContext as h } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import R from "./FieldDecorator.js";
+const y = b(function(e, i) {
+  const m = x(h), l = i || c(null), s = m(e, "string", l), { mutateOptions: d, setMutateOptions: f } = s, r = s.error, n = s.eventListeners, a = c(null);
+  F(l, () => ({
     focus() {
-      s.current.focus();
+      a.current.focus();
     },
     isValid() {
-      return !a.status;
+      return !r.status;
     },
-    assignAttribute(r) {
-      s.current.assignAttribute(r);
+    assignAttribute(t) {
+      a.current.assignAttribute(t);
     },
     clear() {
-      t.setData("");
+      s.setData("");
     },
-    setValue(r) {
-      t.setData(r);
+    setValue(t) {
+      s.setData(t);
+    },
+    setVisible(t) {
+      f({ visible: t });
     }
   }), []);
-  var u = F(e, t.data, e.label);
+  var u = M(e, s.data, e.label);
   e.readonly && (u.inputProps = { readOnly: !0 });
-  var f = {
+  var g = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
-    onChange: (r) => n.onValueChange(r.target.value)
+    onChange: (t) => n.onValueChange(t.target.value)
   };
-  return /* @__PURE__ */ i(
-    v,
+  return /* @__PURE__ */ o(C, { children: d.visible && /* @__PURE__ */ o(
+    R,
     {
       label: e.title,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ i(
-        x,
+      children: /* @__PURE__ */ o(
+        v,
         {
           minRows: 2,
           maxRows: 5,
           fullWidth: !0,
           multiline: !0,
           ...u,
-          inputRef: s,
-          ...f,
-          error: a.status,
-          helperText: a.message
+          inputRef: a,
+          ...g,
+          error: r.status,
+          helperText: r.message
         }
       )
     }
-  );
+  ) });
 });
 export {
   y as default

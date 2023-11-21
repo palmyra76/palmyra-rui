@@ -5,11 +5,12 @@ import { copyMuiOptions } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref:MutableRefObject<any>) {
+const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const { options } = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox', currentRef);
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const values = fieldManager.data ? fieldManager.data.split(',') : [];
     const flexDirection = props.flexDirection || 'row';
     const error: IFormFieldError = fieldManager.error;
@@ -33,6 +34,9 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
             },
             setValue(d: any) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -68,7 +72,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
         return values.includes(key);
     }
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} {...inputProps} style={{ flexDirection: flexDirection }}>
@@ -83,8 +87,8 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
                     : <div>No options provided</div>}
                 <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
             </FormControl>
-        </FieldDecorator>
-
+        </FieldDecorator>}
+    </>
     )
 });
 

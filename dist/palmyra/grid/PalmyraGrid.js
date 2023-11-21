@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import { P as A } from "../../ServerCardLayout-15eec788.js";
+import { P as A } from "../../ServerCardLayout-0d439d11.js";
 import "axios";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";

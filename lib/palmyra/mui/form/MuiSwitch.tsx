@@ -6,11 +6,11 @@ import parseOptions from './OptionsParser';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
-const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref:MutableRefObject<any>) {
+const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'switch', currentRef);
-
+    const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
@@ -46,6 +46,9 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref:Mu
             },
             setValue(d: any) {
                 fieldManager.setData(d)
+            },
+            setVisible(d: boolean) {
+                setMutateOptions({ visible: d })
             }
         };
     }, []);
@@ -74,7 +77,7 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref:Mu
         return parsedOptions[key].value;
     }
 
-    return (
+    return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl error={error.status} {...inputProps}>
@@ -86,7 +89,8 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref:Mu
                 />
                 <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
             </FormControl>
-        </FieldDecorator>
+        </FieldDecorator>}
+    </>
     );
 });
 

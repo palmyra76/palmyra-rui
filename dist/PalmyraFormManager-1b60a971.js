@@ -9,7 +9,7 @@ const W = {
   },
   addFieldRef: function(t, r) {
   }
-}, nt = {
+}, at = {
   getFormHelper: function() {
     return D();
   },
@@ -26,39 +26,39 @@ const W = {
   onValue: function(t, r, l) {
   }
 }, Z = (t, r) => r ?? (t.defaultValue || "");
-function $(t, r, l, i, a, d, S) {
-  d && console.log(t.attribute, d);
-  const N = d || X, M = S || Y, p = U(t), [m, R] = k(r), [V, f] = k(O(r)), [v, C] = k({ status: !1, message: "" });
-  var b, g;
+function $(t, r, l, i, o, h, S) {
+  const N = h || X, O = S || Y, F = U(t), [d, R] = k(r), [p, f] = k(M(r)), [v, C] = k({ status: !1, message: "" });
+  var V, m;
   if (t.mutant) {
     const [e, s] = k({
       required: t.required == !0,
       readonly: t.readonly == !0,
       visible: t.visible != !1
     });
-    b = e, g = s;
+    V = e, m = s;
   } else
-    b = {
+    V = {
       required: t.required == !0,
       readonly: t.readonly == !0,
       visible: t.visible != !1
-    }, g = (e) => {
+    }, m = (e) => {
+      console.warn("Operation ignored, set mutant={true} in '" + t.attribute + "' field definition");
     };
   K(() => {
-    R(r), f(O(r));
+    R(r), f(M(r));
   }, [r]);
-  function O(e) {
-    return p.parse(Z(t, e));
+  function M(e) {
+    return F.parse(Z(t, e));
   }
   const q = (e, s) => {
     f(e || ""), s && Q(() => {
       u(e);
-      const h = t.attribute, z = t.name || h, A = E(e);
+      const y = t.attribute, z = t.name || y, A = E(e);
       if (l) {
-        const P = p.format(e);
-        l(h, P, { [h]: A.status });
+        const P = F.format(e);
+        l(y, P, { [y]: A.status });
       }
-      N.onChange(z, e, A.status), M.onValue(z, e, A.status);
+      N.onChange(z, e, A.status), O.onValue(z, e, A.status);
     });
   }, E = (e) => {
     if (i && i instanceof Function) {
@@ -67,42 +67,42 @@ function $(t, r, l, i, a, d, S) {
         return s;
     }
     return { status: !0, message: "" };
-  }, B = (e) => {
-    n({
+  }, w = (e) => {
+    a({
       status: !e.status,
       message: e.message
     });
   }, u = (e) => {
     const s = E(e);
-    s.status && a != null && a.asyncValid ? (F(), a.asyncValid(e, c, n)) : B(s);
+    s.status && o != null && o.asyncValid ? (g(), o.asyncValid(e, c, a)) : w(s);
   }, c = (e) => {
-  }, y = () => {
+  }, b = () => {
     v.message != "" && C({
       status: v.status,
       message: ""
     });
-  }, F = () => {
-    n({
+  }, g = () => {
+    a({
       status: !1,
       message: ""
     });
-  }, n = (e) => {
+  }, a = (e) => {
     e.status ? C(e) : C({
       status: !1,
       message: ""
     });
   }, _ = { onBlur: () => {
-    u(V);
+    u(p);
   }, onFocus: () => {
-    y();
+    b();
   }, onValueChange: (e) => {
     q(e, !0);
   } };
   return K(() => {
     var e = t.attribute;
-    const s = E(V);
+    const s = E(p);
     l(void 0, void 0, { [e]: s.status });
-  }, []), { data: V, setData: q, error: v, eventListeners: _, mutateOptions: b, setMutateOptions: g };
+  }, []), { data: p, setData: q, error: v, eventListeners: _, mutateOptions: V, setMutateOptions: m };
 }
 function it(t) {
   return {
@@ -113,60 +113,60 @@ function it(t) {
 }
 function D() {
   const t = {};
-  return { addFieldRef: (i, a) => {
-    t[i] = a;
+  return { addFieldRef: (i, o) => {
+    t[i] = o;
   }, getFieldRef: (i) => {
-    const a = t[i];
-    if (a)
-      return a.current;
+    const o = t[i];
+    if (o)
+      return o.current;
   } };
 }
-function ut(t, r, l, i, a) {
-  const d = a || { changeListeners: {}, valueListeners: {} }, S = i || W;
-  var N = {}, M = {};
-  const p = j(!1);
-  var m = j(L({}, t));
+function ut(t, r, l, i, o) {
+  const h = o || { changeListeners: {}, valueListeners: {} }, S = i || W;
+  var N = {}, O = {};
+  const F = j(!1);
+  var d = j(L({}, t));
   const R = r;
-  var V = j({}), f = V.current, v = {};
-  (() => l && l == "new")() && L(m.current, v);
-  const b = (u, c, y) => {
-    const F = u ? { [u]: c } : {};
-    f = Object.assign({}, f, y), L(m.current, F);
-    const n = g(f);
-    n != p.current && (p.current = n, R && R(n));
-  }, g = (u) => {
+  var p = j({}), f = p.current, v = {};
+  (() => l && l == "new")() && L(d.current, v);
+  const V = (u, c, b) => {
+    const g = u ? { [u]: c } : {};
+    f = Object.assign({}, f, b), L(d.current, g);
+    const a = m(f);
+    a != F.current && (F.current = a, R && R(a));
+  }, m = (u) => {
     for (var c in u)
       if (u[c] == !1)
         return !1;
     return !0;
   };
-  return { getFieldManager: J(() => (m.current = L({}, t), (c, y, F) => {
-    var n = c.name || c.attribute, o = { ...c, type: y };
-    F && S.addFieldRef(n, F);
-    const w = G(o);
-    N[o.attribute] = o, M[o.attribute] = w;
-    const x = d.changeListeners[n], _ = d.valueListeners[n];
+  return { getFieldManager: J(() => (d.current = L({}, t), (c, b, g) => {
+    var a = c.name || c.attribute, n = { ...c, type: b };
+    g && S.addFieldRef(a, g);
+    const B = G(n);
+    N[n.attribute] = n, O[n.attribute] = B;
+    const x = h.changeListeners[a], _ = h.valueListeners[a];
     var e = $(
-      o,
-      I(o.attribute, m.current),
-      b,
-      w,
+      n,
+      I(n.attribute, d.current),
+      V,
+      B,
       void 0,
       x,
       _
     );
     try {
-      H(o) && (e.store = T(o));
-    } catch (h) {
-      console.error("Error while getting LookupStore for attribute" + o.attribute, h);
+      H(n) && (e.store = T(n));
+    } catch (y) {
+      console.error("Error while getting LookupStore for attribute" + n.attribute, y);
     }
-    if (o.type == "serverlookup") {
-      var s = o.displayAttribute || o.attribute;
+    if (n.type == "serverlookup") {
+      var s = n.displayAttribute || n.attribute;
       e.displayValue = I(s, t);
     }
     return e;
-  }), [t]), getFormData: () => L({}, m.current), initForm: () => {
-  }, isFormValid: () => g(f) };
+  }), [t]), getFormData: () => L({}, d.current), initForm: () => {
+  }, isFormValid: () => m(f) };
 }
 function H(t) {
   var r;
@@ -175,7 +175,7 @@ function H(t) {
 export {
   X as N,
   W as a,
-  nt as b,
+  at as b,
   Y as c,
   ut as d,
   D as e,

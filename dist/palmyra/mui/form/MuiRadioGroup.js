@@ -1,62 +1,65 @@
-import { jsx as o, jsxs as v } from "react/jsx-runtime";
-import { forwardRef as h, useContext as x, useRef as d, useImperativeHandle as R } from "react";
-import { FormControl as M, RadioGroup as y, FormControlLabel as L, Radio as D, FormHelperText as O } from "@mui/material";
-import { copyMuiOptions as j } from "./MuiUtil.js";
-import { FieldManagerContext as G } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import V from "./FieldDecorator.js";
-const q = h(function(e, i) {
-  const m = x(G), u = i || d(null), { options: n } = e, r = m(e, "radio", u), f = e.flexDirection != "column", a = r.error, l = r.eventListeners, s = d(null);
-  R(u, () => ({
+import { jsx as o, Fragment as x, jsxs as R } from "react/jsx-runtime";
+import { forwardRef as M, useContext as O, useRef as d, useImperativeHandle as y } from "react";
+import { FormControl as L, RadioGroup as D, FormControlLabel as V, Radio as j, FormHelperText as G } from "@mui/material";
+import { copyMuiOptions as w } from "./MuiUtil.js";
+import { FieldManagerContext as A } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import B from "./FieldDecorator.js";
+const T = M(function(e, i) {
+  const m = O(A), u = i || d(null), { options: n } = e, r = m(e, "radio", u), { mutateOptions: f, setMutateOptions: C } = r, b = e.flexDirection != "column", a = r.error, s = r.eventListeners, l = d(null);
+  y(u, () => ({
     focus() {
-      s.current.focus();
+      l.current.focus();
     },
     isValid() {
       return !a.status;
     },
     assignAttribute(t) {
-      s.current.assignAttribute(t);
+      l.current.assignAttribute(t);
     },
     clear() {
       r.setData("");
     },
     setValue(t) {
       r.setData(t);
+    },
+    setVisible(t) {
+      C({ visible: t });
     }
   }), []);
-  var c = j(e, r.data, e.label);
+  var c = w(e, r.data, e.label);
   e.readonly && (c.inputProps = { readOnly: !0 });
-  const C = !!e.readonly;
-  var b = {
-    onBlur: l.onBlur,
-    onFocus: l.onFocus,
+  const g = !!e.readonly;
+  var v = {
+    onBlur: s.onBlur,
+    onFocus: s.onFocus,
     onChange: (t) => {
-      C || l.onValueChange(t.target.value);
+      g || s.onValueChange(t.target.value);
     }
   };
-  const g = e.required ? e.title + "*" : e.title;
-  return /* @__PURE__ */ o(
-    V,
+  const F = e.required ? e.title + "*" : e.title;
+  return /* @__PURE__ */ o(x, { children: f.visible && /* @__PURE__ */ o(
+    B,
     {
-      label: g,
+      label: F,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ v(M, { fullWidth: !0, error: a.status, children: [
-        /* @__PURE__ */ o(y, { row: f, ...b, ...c, children: n ? Object.keys(n).map((t, F) => /* @__PURE__ */ o(
-          L,
+      children: /* @__PURE__ */ R(L, { fullWidth: !0, error: a.status, children: [
+        /* @__PURE__ */ o(D, { row: b, ...v, ...c, children: n ? Object.keys(n).map((t, h) => /* @__PURE__ */ o(
+          V,
           {
             value: t,
-            control: /* @__PURE__ */ o(D, { inputRef: s }),
+            control: /* @__PURE__ */ o(j, { inputRef: l }),
             label: n[t]
           },
-          F
+          h
         )) : /* @__PURE__ */ o("div", { children: "No options provided" }) }),
-        /* @__PURE__ */ o(O, { className: "form-error-text", children: a.message })
+        /* @__PURE__ */ o(G, { className: "form-error-text", children: a.message })
       ] })
     }
-  );
+  ) });
 });
 export {
-  q as default
+  T as default
 };

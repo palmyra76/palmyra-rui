@@ -1,12 +1,12 @@
-import { jsx as r, jsxs as D } from "react/jsx-runtime";
-import { forwardRef as M, useContext as k, useRef as f, useImperativeHandle as p } from "react";
-import { FormControl as L, FormControlLabel as B, Checkbox as O, FormHelperText as R } from "@mui/material";
-import { copyMuiOptions as j } from "./MuiUtil.js";
-import { FieldManagerContext as y } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import V from "./FieldDecorator.js";
-const T = M(function(t, c) {
-  const C = k(y), u = c || f(null), { options: n } = t, o = C(t, "checkbox", u), x = o.data ? o.data.split(",") : [], h = t.flexDirection || "row", s = o.error, l = o.eventListeners, d = f(null);
-  p(u, () => ({
+import { jsx as o, Fragment as M, jsxs as O } from "react/jsx-runtime";
+import { forwardRef as k, useContext as L, useRef as f, useImperativeHandle as B } from "react";
+import { FormControl as R, FormControlLabel as V, Checkbox as j, FormHelperText as y } from "@mui/material";
+import { copyMuiOptions as w } from "./MuiUtil.js";
+import { FieldManagerContext as A } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import H from "./FieldDecorator.js";
+const q = k(function(t, c) {
+  const C = L(A), u = c || f(null), { options: r } = t, n = C(t, "checkbox", u), { mutateOptions: b, setMutateOptions: h } = n, x = n.data ? n.data.split(",") : [], g = t.flexDirection || "row", s = n.error, i = n.eventListeners, d = f(null);
+  B(u, () => ({
     focus() {
       d.current.focus();
     },
@@ -17,57 +17,60 @@ const T = M(function(t, c) {
       d.current.assignAttribute(e);
     },
     clear() {
-      o.setData("");
+      n.setData("");
     },
     setValue(e) {
-      o.setData(e);
+      n.setData(e);
+    },
+    setVisible(e) {
+      h({ visible: e });
     }
   }), []);
-  var m = j(t, o.data, t.label);
+  var m = w(t, n.data, t.label);
   t.readonly && (m.inputProps = { readOnly: !0 });
-  function b(e, F) {
-    const a = o.data ? o.data.split(",") : [];
-    var i = a.indexOf(e);
-    F ? i < 0 && a.push(e) : i >= 0 && a.splice(i, 1), l.onValueChange(a.toString());
+  function v(e, D) {
+    const a = n.data ? n.data.split(",") : [];
+    var l = a.indexOf(e);
+    D ? l < 0 && a.push(e) : l >= 0 && a.splice(l, 1), i.onValueChange(a.toString());
   }
-  var g = {
-    onBlur: l.onBlur,
-    onFocus: l.onFocus,
+  var F = {
+    onBlur: i.onBlur,
+    onFocus: i.onFocus,
     onChange: (e) => {
-      b(e.target.value, e.target.checked);
+      v(e.target.value, e.target.checked);
     }
   };
-  const v = (e) => x.includes(e);
-  return /* @__PURE__ */ r(
-    V,
+  const p = (e) => x.includes(e);
+  return /* @__PURE__ */ o(M, { children: b.visible && /* @__PURE__ */ o(
+    H,
     {
       label: t.title,
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ D(L, { fullWidth: !0, error: s.status, ...m, style: { flexDirection: h }, children: [
-        n ? Object.keys(n).map((e) => /* @__PURE__ */ r(
-          B,
+      children: /* @__PURE__ */ O(R, { fullWidth: !0, error: s.status, ...m, style: { flexDirection: g }, children: [
+        r ? Object.keys(r).map((e) => /* @__PURE__ */ o(
+          V,
           {
             value: e,
-            control: /* @__PURE__ */ r(
-              O,
+            control: /* @__PURE__ */ o(
+              j,
               {
-                ...g,
-                checked: v(e),
+                ...F,
+                checked: p(e),
                 disabled: t.readonly
               }
             ),
-            label: n[e]
+            label: r[e]
           },
           e
-        )) : /* @__PURE__ */ r("div", { children: "No options provided" }),
-        /* @__PURE__ */ r(R, { className: "form-error-text", children: s.message })
+        )) : /* @__PURE__ */ o("div", { children: "No options provided" }),
+        /* @__PURE__ */ o(y, { className: "form-error-text", children: s.message })
       ] })
     }
-  );
+  ) });
 });
 export {
-  T as default
+  q as default
 };
