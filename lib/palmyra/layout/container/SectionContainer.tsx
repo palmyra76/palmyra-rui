@@ -15,15 +15,24 @@ const SectionContainer = (props: SectionContainerInput) => {
 
     return <>
         <div className='section-container'>
-            <Accordion expanded={expanded} onChange={toggleExpand}>
-                {title &&
+            {title ? (
+                <Accordion expanded={expanded} onChange={toggleExpand}>
                     <AccordionSummary className="palmyra-form-section-header-container" expandIcon={<ExpandMore />}>{(title && !hideTitle) ? (
                         <div className="section-header-text">{title}</div>) : ''
-                    }</AccordionSummary>}
-                <AccordionDetails>
-                    {props.children}
-                </AccordionDetails>
-            </Accordion>
+                    }</AccordionSummary>
+                    <AccordionDetails className='section-container-child'>
+                        {props.children}
+                    </AccordionDetails>
+                </Accordion>) : (
+                <div>
+                    {(title && !hideTitle) ? (
+                        <div className="palmyra-form-section-header">{title}</div>) : ''
+                    }
+                    <div className='section-container-child'>
+                        {props.children}
+                    </div>
+                </div>
+            )}
         </div>
     </>
 }
