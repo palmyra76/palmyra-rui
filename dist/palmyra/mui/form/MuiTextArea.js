@@ -1,17 +1,17 @@
-import { jsx as o, Fragment as C } from "react/jsx-runtime";
-import { forwardRef as b, useContext as x, useRef as c, useImperativeHandle as F } from "react";
-import { TextField as v } from "@mui/material";
-import { copyMuiOptions as M } from "./MuiUtil.js";
-import { FieldManagerContext as h } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import R from "./FieldDecorator.js";
-const y = b(function(e, i) {
-  const m = x(h), l = i || c(null), s = m(e, "string", l), { mutateOptions: d, setMutateOptions: f } = s, r = s.error, n = s.eventListeners, a = c(null);
-  F(l, () => ({
+import { jsx as i, Fragment as b } from "react/jsx-runtime";
+import { forwardRef as x, useContext as F, useRef as c, useImperativeHandle as v } from "react";
+import { TextField as M } from "@mui/material";
+import { copyMuiOptions as h } from "./MuiUtil.js";
+import { FieldManagerContext as R } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import A from "./FieldDecorator.js";
+const B = x(function(e, l) {
+  const m = F(R), o = l || c(null), s = m(e, "string", o), { mutateOptions: d, setMutateOptions: f } = s, n = s.error, r = s.eventListeners, a = c(null);
+  v(o, () => ({
     focus() {
       a.current.focus();
     },
     isValid() {
-      return !r.status;
+      return !n.status;
     },
     assignAttribute(t) {
       a.current.assignAttribute(t);
@@ -26,23 +26,24 @@ const y = b(function(e, i) {
       f({ visible: t });
     }
   }), []);
-  var u = M(e, s.data, e.label);
+  var u = h(e, s.data, e.label);
   e.readonly && (u.inputProps = { readOnly: !0 });
   var g = {
-    onBlur: n.onBlur,
-    onFocus: n.onFocus,
-    onChange: (t) => n.onValueChange(t.target.value)
+    onBlur: r.onBlur,
+    onFocus: r.onFocus,
+    onChange: (t) => r.onValueChange(t.target.value)
   };
-  return /* @__PURE__ */ o(C, { children: d.visible && /* @__PURE__ */ o(
-    R,
+  const C = e.required ? e.title + "*" : e.title;
+  return /* @__PURE__ */ i(b, { children: d.visible && /* @__PURE__ */ i(
+    A,
     {
-      label: e.title,
+      label: C,
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ o(
-        v,
+      children: /* @__PURE__ */ i(
+        M,
         {
           minRows: 2,
           maxRows: 5,
@@ -51,13 +52,13 @@ const y = b(function(e, i) {
           ...u,
           inputRef: a,
           ...g,
-          error: r.status,
-          helperText: r.message
+          error: n.status,
+          helperText: n.message
         }
       )
     }
   ) });
 });
 export {
-  y as default
+  B as default
 };

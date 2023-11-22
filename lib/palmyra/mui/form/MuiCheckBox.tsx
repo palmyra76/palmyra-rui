@@ -21,6 +21,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
     useImperativeHandle(currentRef, () => {
         return {
             focus() {
+                inputRef.current.checked = true;
                 inputRef.current.focus();
             },
             isValid() {
@@ -72,15 +73,18 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
         return values.includes(key);
     }
 
+    console.log(inputRef);
+
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} {...inputProps} style={{ flexDirection: flexDirection }}>
                 {options ?
-                    Object.keys(options).map((key) => (
+                    Object.keys(options).map((key, i) => (
                         <FormControlLabel key={key} value={key}
                             control={<Checkbox {...callbacks} checked={isSelected(key)}
                                 disabled={props.readonly}
+                                inputRef={(r) => { if (0 == i) inputRef.current = r }}
                             />}
                             label={options[key]} />
                     ))

@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle } from "react";
 import { IFormCustomizer, IFormHelper, FormMode, NoopFormCustomizer } from "./Types";
 import { createFormData } from ".";
-import { FieldManagerContext, StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
+import { FieldManagerContext, FormHelperContext, StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { StoreFactory } from "../../main";
 
 interface IPalmyraFormInput {
@@ -28,8 +28,8 @@ const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, re
     const eventListeners = formCustomizer.getEventListeners(formHelper);
     const valueListeners = formCustomizer.getValueListeners(formHelper);
 
-    var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, mode, formHelper, 
-        {eventListeners, valueListeners});
+    var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, mode, formHelper,
+        { eventListeners, valueListeners });
 
     useImperativeHandle(ref, (): IPalmyraForm => {
         return {
@@ -44,9 +44,11 @@ const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, re
 
     return (<>
         <StoreFactoryContext.Provider value={props.storeFactory}>
-            <FieldManagerContext.Provider value={getFieldManager}>
-                {props.children}
-            </FieldManagerContext.Provider>
+            <FormHelperContext.Provider value={formHelper}>
+                <FieldManagerContext.Provider value={getFieldManager}>
+                    {props.children}
+                </FieldManagerContext.Provider>
+            </FormHelperContext.Provider>
         </StoreFactoryContext.Provider>
     </>);
 

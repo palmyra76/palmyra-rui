@@ -20,6 +20,7 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
     useImperativeHandle(currentRef, () => {
         return {
             focus() {
+                console.log('focusing');
                 inputRef.current.focus();
             },
             isValid() {

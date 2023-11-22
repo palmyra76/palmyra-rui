@@ -1,20 +1,20 @@
-import { jsx as o, Fragment as M, jsxs as O } from "react/jsx-runtime";
-import { forwardRef as k, useContext as L, useRef as f, useImperativeHandle as B } from "react";
-import { FormControl as R, FormControlLabel as V, Checkbox as j, FormHelperText as y } from "@mui/material";
+import { jsx as o, Fragment as M, jsxs as k } from "react/jsx-runtime";
+import { forwardRef as O, useContext as L, useRef as C, useImperativeHandle as R } from "react";
+import { FormControl as B, FormControlLabel as V, Checkbox as j, FormHelperText as y } from "@mui/material";
 import { copyMuiOptions as w } from "./MuiUtil.js";
 import { FieldManagerContext as A } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import H from "./FieldDecorator.js";
-const q = k(function(t, c) {
-  const C = L(A), u = c || f(null), { options: r } = t, n = C(t, "checkbox", u), { mutateOptions: b, setMutateOptions: h } = n, x = n.data ? n.data.split(",") : [], g = t.flexDirection || "row", s = n.error, i = n.eventListeners, d = f(null);
-  B(u, () => ({
+const q = O(function(t, d) {
+  const b = L(A), m = d || C(null), { options: a } = t, n = b(t, "checkbox", m), { mutateOptions: h, setMutateOptions: x } = n, g = n.data ? n.data.split(",") : [], v = t.flexDirection || "row", i = n.error, l = n.eventListeners, s = C(null);
+  R(m, () => ({
     focus() {
-      d.current.focus();
+      s.current.checked = !0, s.current.focus();
     },
     isValid() {
-      return !s.status;
+      return !i.status;
     },
     assignAttribute(e) {
-      d.current.assignAttribute(e);
+      s.current.assignAttribute(e);
     },
     clear() {
       n.setData("");
@@ -23,25 +23,25 @@ const q = k(function(t, c) {
       n.setData(e);
     },
     setVisible(e) {
-      h({ visible: e });
+      x({ visible: e });
     }
   }), []);
-  var m = w(t, n.data, t.label);
-  t.readonly && (m.inputProps = { readOnly: !0 });
-  function v(e, D) {
-    const a = n.data ? n.data.split(",") : [];
-    var l = a.indexOf(e);
-    D ? l < 0 && a.push(e) : l >= 0 && a.splice(l, 1), i.onValueChange(a.toString());
+  var f = w(t, n.data, t.label);
+  t.readonly && (f.inputProps = { readOnly: !0 });
+  function F(e, c) {
+    const r = n.data ? n.data.split(",") : [];
+    var u = r.indexOf(e);
+    c ? u < 0 && r.push(e) : u >= 0 && r.splice(u, 1), l.onValueChange(r.toString());
   }
-  var F = {
-    onBlur: i.onBlur,
-    onFocus: i.onFocus,
+  var p = {
+    onBlur: l.onBlur,
+    onFocus: l.onFocus,
     onChange: (e) => {
-      v(e.target.value, e.target.checked);
+      F(e.target.value, e.target.checked);
     }
   };
-  const p = (e) => x.includes(e);
-  return /* @__PURE__ */ o(M, { children: b.visible && /* @__PURE__ */ o(
+  const D = (e) => g.includes(e);
+  return console.log(s), /* @__PURE__ */ o(M, { children: h.visible && /* @__PURE__ */ o(
     H,
     {
       label: t.title,
@@ -49,24 +49,27 @@ const q = k(function(t, c) {
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ O(R, { fullWidth: !0, error: s.status, ...m, style: { flexDirection: g }, children: [
-        r ? Object.keys(r).map((e) => /* @__PURE__ */ o(
+      children: /* @__PURE__ */ k(B, { fullWidth: !0, error: i.status, ...f, style: { flexDirection: v }, children: [
+        a ? Object.keys(a).map((e, c) => /* @__PURE__ */ o(
           V,
           {
             value: e,
             control: /* @__PURE__ */ o(
               j,
               {
-                ...F,
-                checked: p(e),
-                disabled: t.readonly
+                ...p,
+                checked: D(e),
+                disabled: t.readonly,
+                inputRef: (r) => {
+                  c == 0 && (s.current = r);
+                }
               }
             ),
-            label: r[e]
+            label: a[e]
           },
           e
         )) : /* @__PURE__ */ o("div", { children: "No options provided" }),
-        /* @__PURE__ */ o(y, { className: "form-error-text", children: s.message })
+        /* @__PURE__ */ o(y, { className: "form-error-text", children: i.message })
       ] })
     }
   ) });

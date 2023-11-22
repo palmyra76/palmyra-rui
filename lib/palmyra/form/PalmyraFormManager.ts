@@ -14,7 +14,7 @@ import { getLookupStore } from "./PalmyraStoreManager";
 
 
 function createFormHelper(): IFormHelper {
-    const fieldRefs: Record<string, MutableRefObject<any>> = {};
+    const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, []);
 
     const getFieldRef = <T>(field: string): T => {
         const ref = fieldRefs[field];
@@ -75,7 +75,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
         }
     }
 
-    const isValidForm = (dv: any) => {        
+    const isValidForm = (dv: any) => {
         for (var key in dv) {
             if (dv[key] == false) {
                 return false;
@@ -135,7 +135,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     return { getFieldManager, getFormData, initForm, isFormValid };
 }
 
-const PalmyraFormManager = ()=>{
+const PalmyraFormManager = () => {
     console.log('test');
 }
 

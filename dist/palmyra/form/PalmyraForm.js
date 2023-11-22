@@ -1,26 +1,26 @@
-import { jsx as o, Fragment as F } from "react/jsx-runtime";
-import { forwardRef as g, useImperativeHandle as f } from "react";
-import { b as v, d as h } from "../../chunks/PalmyraFormManager.js";
-import { StoreFactoryContext as C, FieldManagerContext as y } from "../layout/flexiLayout/FlexiLayoutContext.js";
-const z = g(function(e, m) {
-  const r = e.customizer || v, a = e.formData, n = e.onValidChange, i = e.mode;
-  var t = r.getFormHelper();
-  const s = r.getEventListeners(t), l = r.getValueListeners(t);
-  var { getFieldManager: d, getFormData: c, isFormValid: u } = h(
+import { jsx as t, Fragment as F } from "react/jsx-runtime";
+import { forwardRef as v, useImperativeHandle as g } from "react";
+import { b as f, d as h } from "../../chunks/PalmyraFormManager.js";
+import { StoreFactoryContext as C, FormHelperContext as x, FieldManagerContext as y } from "../layout/flexiLayout/FlexiLayoutContext.js";
+const z = v(function(e, m) {
+  const o = e.customizer || f, a = e.formData, n = e.onValidChange, i = e.mode;
+  var r = o.getFormHelper();
+  const l = o.getEventListeners(r), d = o.getValueListeners(r);
+  var { getFieldManager: s, getFormData: c, isFormValid: u } = h(
     a,
     n,
     i,
-    t,
-    { eventListeners: s, valueListeners: l }
+    r,
+    { eventListeners: l, valueListeners: d }
   );
-  return f(m, () => ({
+  return g(m, () => ({
     getData() {
       return c();
     },
     isValid() {
       return u();
     }
-  }), [a, n, i]), /* @__PURE__ */ o(F, { children: /* @__PURE__ */ o(C.Provider, { value: e.storeFactory, children: /* @__PURE__ */ o(y.Provider, { value: d, children: e.children }) }) });
+  }), [a, n, i]), /* @__PURE__ */ t(F, { children: /* @__PURE__ */ t(C.Provider, { value: e.storeFactory, children: /* @__PURE__ */ t(x.Provider, { value: r, children: /* @__PURE__ */ t(y.Provider, { value: s, children: e.children }) }) }) });
 });
 export {
   z as PalmyraForm

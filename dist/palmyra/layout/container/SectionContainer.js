@@ -1,17 +1,20 @@
 import "../../../assets/SectionContainer.css";
-import { jsx as e, Fragment as c, jsxs as a } from "react/jsx-runtime";
-import { Accordion as d, AccordionSummary as s, AccordionDetails as l } from "@mui/material";
+import { jsx as e, Fragment as r, jsxs as o } from "react/jsx-runtime";
+import { Accordion as d, AccordionSummary as l, AccordionDetails as s } from "@mui/material";
 import { ExpandMore as m } from "@mui/icons-material";
 import { useState as h } from "react";
-const S = (t) => {
-  const n = t.title, i = t.hideTitle || !1, [o, r] = h(!0);
-  return /* @__PURE__ */ e(c, { children: /* @__PURE__ */ e("div", { className: "section-container", children: /* @__PURE__ */ a(d, { expanded: o, onChange: () => {
-    r(!o);
+const v = (i) => {
+  const n = i.title, c = i.hideTitle || !1, [t, a] = h(!0);
+  return /* @__PURE__ */ e(r, { children: /* @__PURE__ */ e("div", { className: "section-container", children: n ? /* @__PURE__ */ o(d, { expanded: t, onChange: () => {
+    a(!t);
   }, children: [
-    n && /* @__PURE__ */ e(s, { className: "palmyra-form-section-header-container", expandIcon: /* @__PURE__ */ e(m, {}), children: n && !i ? /* @__PURE__ */ e("div", { className: "section-header-text", children: n }) : "" }),
-    /* @__PURE__ */ e(l, { children: t.children })
+    /* @__PURE__ */ e(l, { className: "palmyra-form-section-header-container", expandIcon: /* @__PURE__ */ e(m, {}), children: n && !c ? /* @__PURE__ */ e("div", { className: "section-header-text", children: n }) : "" }),
+    /* @__PURE__ */ e(s, { className: "section-container-child", children: i.children })
+  ] }) : /* @__PURE__ */ o("div", { children: [
+    n && !c ? /* @__PURE__ */ e("div", { className: "palmyra-form-section-header", children: n }) : "",
+    /* @__PURE__ */ e("div", { className: "section-container-child", children: i.children })
   ] }) }) });
 };
 export {
-  S as default
+  v as default
 };

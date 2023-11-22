@@ -6,13 +6,13 @@ import { FieldManagerContext as P } from "../../layout/flexiLayout/FlexiLayoutCo
 import V from "./FieldDecorator.js";
 import { Visibility as O, VisibilityOff as L } from "@mui/icons-material";
 const j = h(function(t, l) {
-  const m = p(P), u = l || d(null), [c, f] = v(!1), s = m(t, "string", u), { mutateOptions: C, setMutateOptions: b } = s, r = s.error, o = s.eventListeners, a = d(null);
+  const m = p(P), u = l || d(null), [c, f] = v(!1), s = m(t, "string", u), { mutateOptions: g, setMutateOptions: C } = s, o = s.error, r = s.eventListeners, a = d(null);
   x(u, () => ({
     focus() {
-      a.current.focus();
+      console.log("focusing"), a.current.focus();
     },
     isValid() {
-      return !r.status;
+      return !o.status;
     },
     assignAttribute(e) {
       a.current.assignAttribute(e);
@@ -24,19 +24,19 @@ const j = h(function(t, l) {
       s.setData(e);
     },
     setVisible(e) {
-      b({ visible: e });
+      C({ visible: e });
     }
   }), []);
   var i = y(t, s.data, t.label);
   t.readonly ? i.inputProps = { readOnly: !0 } : i.InputProps = {
     endAdornment: /* @__PURE__ */ n(w, { onClick: () => f((e) => !e), children: c ? /* @__PURE__ */ n(O, {}) : /* @__PURE__ */ n(L, {}) })
   };
-  var g = {
-    onBlur: o.onBlur,
-    onFocus: o.onFocus,
-    onChange: (e) => o.onValueChange(e.target.value)
+  var b = {
+    onBlur: r.onBlur,
+    onFocus: r.onFocus,
+    onChange: (e) => r.onValueChange(e.target.value)
   };
-  return /* @__PURE__ */ n(F, { children: C.visible && /* @__PURE__ */ n(
+  return /* @__PURE__ */ n(F, { children: g.visible && /* @__PURE__ */ n(
     V,
     {
       label: t.title,
@@ -51,9 +51,9 @@ const j = h(function(t, l) {
           type: c ? "text" : "password",
           fullWidth: !0,
           inputRef: a,
-          ...g,
-          error: r.status,
-          helperText: r.message
+          ...b,
+          error: o.status,
+          helperText: o.message
         }
       )
     }

@@ -9,8 +9,7 @@ import { LookupStore } from '../../store';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 
-function getArrayData(d) {
-    console.log(d);
+function getArrayData(d) {    
     if (d) {
         if (Array.isArray(d))
             return d;

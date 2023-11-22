@@ -1,5 +1,5 @@
 import { jsx as r, jsxs as y, Fragment as V } from "react/jsx-runtime";
-import { useRef as z, useState as b, useEffect as A, useMemo as E } from "react";
+import { useRef as E, useState as b, useEffect as A, useMemo as R } from "react";
 import { delay as w } from "../../utils/index.js";
 import { getValueByKey as K, setValueByKey as D } from "../../form/FormUtil.js";
 import { m as H, p as N } from "../../../chunks/index.js";
@@ -11,7 +11,7 @@ import { hasDot as P } from "../../utils/StringUtil.js";
 const T = (t, f) => {
   if (!t)
     return;
-  const n = H(t, f, { insideWords: !0 }), m = N(t, n);
+  const s = H(t, f, { insideWords: !0 }), m = N(t, s);
   return /* @__PURE__ */ r("div", { children: m.map((i, l) => /* @__PURE__ */ r(
     "span",
     {
@@ -22,19 +22,19 @@ const T = (t, f) => {
     },
     l
   )) });
-}, he = (t, f, n) => {
-  const m = t.store || n.store, i = t.lookupOptions || {}, l = i.idAttribute || "id", u = i.titleAttribute || "name", B = i.searchAttribute || u, h = n.data, C = z(null), [I, W] = b(n.displayValue), [p, O] = b([]), [a, g] = b(""), d = P(l) ? (e) => K(l, e) : (e) => e[l], F = P(u) ? (e) => K(u, e) : (e) => e[u];
+}, he = (t, f, s) => {
+  const m = t.store || s.store, i = t.lookupOptions || {}, l = i.idAttribute || "id", u = i.titleAttribute || "name", B = i.searchAttribute || u, h = s.data, C = E(null), [I, W] = b(s.displayValue), [p, O] = b([]), [a, g] = b(""), d = P(l) ? (e) => K(l, e) : (e) => e[l], F = P(u) ? (e) => K(u, e) : (e) => e[u];
   function x() {
     if (h) {
       var e = {};
       D(l, e, h);
-      const o = n.displayValue || h;
+      const o = s.displayValue || h;
       return D(u, e, o), e;
     }
   }
   A(() => {
-    W(n.displayValue);
-  }, [n.displayValue]), E(() => {
+    W(s.displayValue);
+  }, [s.displayValue]), R(() => {
     var e = x();
     e && (O([e]), C.current = e);
   }, [I]);
@@ -68,13 +68,13 @@ const T = (t, f) => {
     idAccessor: d,
     renderOption: T,
     getServerLookup: (e) => {
-      var o = G(t, n.data, t.label);
-      const c = n.eventListeners, k = n.error;
+      var o = G(t, s.data, t.label);
+      const c = s.eventListeners, k = s.error;
       f.readonly && (o.inputProps = { readOnly: !0 });
-      var R = {
+      var j = {
         onBlur: c.onBlur,
         onFocus: c.onFocus,
-        onChange: (s) => c.onValueChange(s.target.value)
+        onChange: (n) => c.onValueChange(n.target.value)
       };
       return /* @__PURE__ */ r(
         J,
@@ -89,13 +89,14 @@ const T = (t, f) => {
             /* @__PURE__ */ y(
               X,
               {
+                ref: e,
                 ...o,
                 MenuProps: { autoFocus: !1 },
                 value: h,
-                onOpen: (s) => {
+                onOpen: (n) => {
                   v();
                 },
-                ...R,
+                ...j,
                 children: [
                   S() ? /* @__PURE__ */ y(Y, { children: [
                     /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
@@ -109,15 +110,15 @@ const T = (t, f) => {
                         InputProps: {
                           startAdornment: /* @__PURE__ */ r(_, { position: "start", children: /* @__PURE__ */ r(ee, {}) })
                         },
-                        onChange: (s) => g(s.target.value),
-                        onKeyDown: (s) => {
-                          s.key !== "Escape" && s.stopPropagation();
+                        onChange: (n) => g(n.target.value),
+                        onKeyDown: (n) => {
+                          n.key !== "Escape" && n.stopPropagation();
                         }
                       }
                     ) }),
                     t.required ? /* @__PURE__ */ r(V, {}) : /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r("span", { children: /* @__PURE__ */ r(te, {}) }) })
                   ] }) : /* @__PURE__ */ r("div", {}),
-                  p.map((s, j) => /* @__PURE__ */ r($, { value: d(s), children: T(F(s), a) }, d(s) || j))
+                  p.map((n, z) => /* @__PURE__ */ r($, { value: d(n), children: T(F(n), a) }, d(n) || z))
                 ]
               }
             ),

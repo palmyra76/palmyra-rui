@@ -1,6 +1,6 @@
-import { getValueByKey as x, setValueByKey as G } from "../palmyra/form/FormUtil.js";
-import J from "../palmyra/validator/DataValidator.js";
-import { useState as C, useEffect as z, useRef as P, useMemo as Q } from "react";
+import { getValueByKey as x, setValueByKey as J } from "../palmyra/form/FormUtil.js";
+import Q from "../palmyra/validator/DataValidator.js";
+import { useState as C, useEffect as z, useMemo as I, useRef as P } from "react";
 import { delay as T, mergeDeep as k } from "../palmyra/utils/index.js";
 import { getLookupStore as U } from "../palmyra/form/PalmyraStoreManager.js";
 import { getFormatConverter as W } from "../palmyra/utils/converter/FormatterFactory.js";
@@ -55,8 +55,8 @@ function D(t, r, c, i, n, L, S) {
       u(e);
       const b = t.attribute, j = t.name || b, A = E(e);
       if (c) {
-        const I = F.format(e);
-        c(b, I, { [b]: A.status });
+        const G = F.format(e);
+        c(b, G, { [b]: A.status });
       }
       M.onChange(j, e, A.status), N.onValue(j, e, A.status);
     });
@@ -112,7 +112,7 @@ function ut(t) {
   };
 }
 function H() {
-  const t = {};
+  const t = I(() => ({}), []);
   return { addFieldRef: (i, n) => {
     t[i] = n;
   }, getFieldRef: (i) => {
@@ -132,7 +132,7 @@ function ct(t, r, c, i, n) {
   var v = {};
   (() => c && c == "new")() && k(d.current, v);
   const V = (u, a, y) => {
-    u && G(u, d.current, a), l = Object.assign({}, l, y);
+    u && J(u, d.current, a), l = Object.assign({}, l, y);
     const f = g(l);
     f != F.current && (F.current = f, R && R(f));
   }, g = (u) => {
@@ -141,10 +141,10 @@ function ct(t, r, c, i, n) {
         return !1;
     return !0;
   };
-  return { getFieldManager: Q(() => (d.current = k({}, t), (a, y, f) => {
+  return { getFieldManager: I(() => (d.current = k({}, t), (a, y, f) => {
     var m = a.name || a.attribute, o = { ...a, type: y };
     f && S.addFieldRef(m, f);
-    const w = J(o);
+    const w = Q(o);
     M[o.attribute] = o, N[o.attribute] = w;
     const K = a.eventListener || L.eventListeners[m], _ = L.valueListeners[m];
     var e = D(

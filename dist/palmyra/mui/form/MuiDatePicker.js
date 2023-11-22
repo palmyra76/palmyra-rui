@@ -6,17 +6,17 @@ import L from "dayjs";
 import { copyMuiOptions as V } from "./MuiUtil.js";
 import { FieldManagerContext as j } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import k from "./FieldDecorator.js";
-const I = F(function(t, o) {
-  const c = M(j), i = o || u(null), d = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = c(t, "date", i), { mutateOptions: m, setMutateOptions: f } = a, s = a.error, C = a.data, r = a.eventListeners, l = u(null), v = () => L(C);
-  h(i, () => ({
+const I = F(function(t, i) {
+  const c = M(j), l = i || u(null), d = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = c(t, "date", l), { mutateOptions: m, setMutateOptions: f } = a, s = a.error, C = a.data, r = a.eventListeners, o = u(null), v = () => L(C);
+  h(l, () => ({
     focus() {
-      l.current.focus();
+      o.current.focus();
     },
     isValid() {
       return !s.status;
     },
     assignAttribute(e) {
-      l.current.assignAttribute(e);
+      o.current.assignAttribute(e);
     },
     clear() {
       a.setData("");
@@ -55,7 +55,8 @@ const I = F(function(t, o) {
               error: s.status,
               helperText: s.message,
               variant: t.variant,
-              fullWidth: !0
+              fullWidth: !0,
+              inputRef: o
             }
           }
         }

@@ -17,12 +17,13 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
 
-    const inputRef: any = useRef(null);
+    const inputRef: MutableRefObject<any> = useRef(null);
 
     useImperativeHandle(currentRef, () => {
         return {
             focus() {
-                inputRef.current.focus();
+                if (inputRef)
+                    inputRef.current.focus();
             },
             isValid() {
                 return !error.status;
@@ -60,8 +61,7 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
             <FormControl fullWidth error={error.status}>
                 {props.label ?
                     <InputLabel>{props.label}</InputLabel> : <></>}
-                <Select {...inputProps} {...callbacks} inputRef={inputRef}>
-
+                <Select {...inputProps} {...callbacks} inputRef={(i) => { inputRef.current = i; }}>
                     {options ?
                         Object.keys(options).map((key, index) => (
                             <MenuItem key={index} value={key}>{options[key]}</MenuItem>
