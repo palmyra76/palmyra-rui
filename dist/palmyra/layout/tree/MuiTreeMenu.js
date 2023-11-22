@@ -3,7 +3,7 @@ import z from "@emotion/styled";
 import { useNavigate as j } from "react-router-dom";
 import { ChevronRight as C } from "@mui/icons-material";
 import { TreeItem as W, TreeView as k } from "@mui/x-tree-view";
-/* empty css                              */import { SimpleIconProvider as A } from "../flexiLayout/IconProvider.js";
+/* empty css                            */import { SimpleIconProvider as A } from "../flexiLayout/IconProvider.js";
 import { useState as p, useEffect as L } from "react";
 const I = (a) => a.title ? a.title : a.name;
 function B(a) {

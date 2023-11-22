@@ -1,6 +1,6 @@
 import "./FormUtil.js";
 import "../validator/DataValidator.js";
-import { d as i, e as c } from "../../PalmyraFormManager-41b9ddd1.js";
+import { d as i, e as c } from "../../assets/PalmyraFormManager.js";
 import "../utils/index.js";
 import "react";
 import "./PalmyraStoreManager.js";

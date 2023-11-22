@@ -1,9 +1,9 @@
-import { getValueByKey as z, setValueByKey as G } from "./palmyra/form/FormUtil.js";
-import J from "./palmyra/validator/DataValidator.js";
+import { getValueByKey as z, setValueByKey as G } from "../palmyra/form/FormUtil.js";
+import J from "../palmyra/validator/DataValidator.js";
 import { useState as E, useEffect as I, useRef as K, useMemo as Q } from "react";
-import { delay as T, mergeDeep as k } from "./palmyra/utils/index.js";
-import { getLookupStore as U } from "./palmyra/form/PalmyraStoreManager.js";
-import { getFormatConverter as W } from "./palmyra/utils/converter/FormatterFactory.js";
+import { delay as T, mergeDeep as k } from "../palmyra/utils/index.js";
+import { getLookupStore as U } from "../palmyra/form/PalmyraStoreManager.js";
+import { getFormatConverter as W } from "../palmyra/utils/converter/FormatterFactory.js";
 const X = {
   getFieldRef: function(t) {
   },
@@ -26,7 +26,7 @@ const X = {
   onValue: function(t, r, c) {
   }
 }, $ = (t, r) => r ?? (t.defaultValue || "");
-function D(t, r, c, a, n, L, S) {
+function D(t, r, c, i, o, L, S) {
   const N = L || Y, O = S || Z, F = W(t), [m, h] = E(r), [p, l] = E(B(r)), [V, R] = E({ status: !1, message: "" });
   var v, g;
   if (t.mutant) {
@@ -52,7 +52,7 @@ function D(t, r, c, a, n, L, S) {
   }
   const M = (e, s) => {
     l(e || ""), s && T(() => {
-      i(e);
+      u(e);
       const b = t.attribute, x = t.name || b, A = C(e);
       if (c) {
         const P = F.format(e);
@@ -61,8 +61,8 @@ function D(t, r, c, a, n, L, S) {
       N.onChange(x, e, A.status), O.onValue(x, e, A.status);
     });
   }, C = (e) => {
-    if (a && a instanceof Function) {
-      const s = a(e);
+    if (i && i instanceof Function) {
+      const s = i(e);
       if (!s.status)
         return s;
     }
@@ -72,10 +72,10 @@ function D(t, r, c, a, n, L, S) {
       status: !e.status,
       message: e.message
     });
-  }, i = (e) => {
-    const s = C(e);
-    s.status && n != null && n.asyncValid ? (f(), n.asyncValid(e, u, d)) : q(s);
   }, u = (e) => {
+    const s = C(e);
+    s.status && o != null && o.asyncValid ? (f(), o.asyncValid(e, a, d)) : q(s);
+  }, a = (e) => {
   }, y = () => {
     V.message != "" && R({
       status: V.status,
@@ -92,7 +92,7 @@ function D(t, r, c, a, n, L, S) {
       message: ""
     });
   }, _ = { onBlur: () => {
-    i(p);
+    u(p);
   }, onFocus: () => {
     y();
   }, onValueChange: (e) => {
@@ -113,16 +113,16 @@ function ut(t) {
 }
 function H() {
   const t = {};
-  return { addFieldRef: (a, n) => {
-    t[a] = n;
-  }, getFieldRef: (a) => {
-    const n = t[a];
-    if (n)
-      return n.current;
+  return { addFieldRef: (i, o) => {
+    t[i] = o;
+  }, getFieldRef: (i) => {
+    const o = t[i];
+    if (o)
+      return o.current;
   } };
 }
-function ct(t, r, c, a, n) {
-  const L = n || { changeListeners: {}, valueListeners: {} }, S = a || X;
+function ct(t, r, c, i, o) {
+  const L = o || { changeListeners: {}, valueListeners: {} }, S = i || X;
   var N = {}, O = {};
   const F = K(!1);
   var m = K(k({}, t));
@@ -131,25 +131,25 @@ function ct(t, r, c, a, n) {
   console.log(l);
   var V = {};
   (() => c && c == "new")() && k(m.current, V);
-  const v = (i, u, y) => {
-    i && G(i, m.current, u), l = Object.assign({}, l, y);
+  const v = (u, a, y) => {
+    u && G(u, m.current, a), l = Object.assign({}, l, y);
     const f = g(l);
     f != F.current && (F.current = f, h && h(f));
-  }, g = (i) => {
-    for (var u in i)
-      if (i[u] == !1)
+  }, g = (u) => {
+    for (var a in u)
+      if (u[a] == !1)
         return !1;
     return !0;
   };
-  return { getFieldManager: Q(() => (m.current = k({}, t), (u, y, f) => {
-    var d = u.name || u.attribute, o = { ...u, type: y };
+  return { getFieldManager: Q(() => (m.current = k({}, t), (a, y, f) => {
+    var d = a.name || a.attribute, n = { ...a, type: y };
     f && S.addFieldRef(d, f);
-    const w = J(o);
-    N[o.attribute] = o, O[o.attribute] = w;
-    const j = L.changeListeners[d], _ = L.valueListeners[d];
+    const w = J(n);
+    N[n.attribute] = n, O[n.attribute] = w;
+    const j = a.changeListener || L.changeListeners[d], _ = L.valueListeners[d];
     var e = D(
-      o,
-      z(o.attribute, m.current),
+      n,
+      z(n.attribute, m.current),
       v,
       w,
       void 0,
@@ -157,12 +157,12 @@ function ct(t, r, c, a, n) {
       _
     );
     try {
-      tt(o) && (e.store = U(o));
+      tt(n) && (e.store = U(n));
     } catch (b) {
-      console.error("Error while getting LookupStore for attribute" + o.attribute, b);
+      console.error("Error while getting LookupStore for attribute" + n.attribute, b);
     }
-    if (o.type == "serverlookup") {
-      var s = o.displayAttribute || o.attribute;
+    if (n.type == "serverlookup") {
+      var s = n.displayAttribute || n.attribute;
       e.displayValue = z(s, t);
     }
     return e;

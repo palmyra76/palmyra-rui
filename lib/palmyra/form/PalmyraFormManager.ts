@@ -97,7 +97,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
             validationFormat[fieldDef.attribute] = fieldDef;
             validationRules[fieldDef.attribute] = validationRule;
 
-            const changeListener = formListeners.changeListeners[fieldAttrib]
+            const changeListener = field.changeListener || formListeners.changeListeners[fieldAttrib]
             const valueListener = formListeners.valueListeners[fieldAttrib];
             var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
                 onDataChange, validationRule, undefined, changeListener, valueListener);

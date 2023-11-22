@@ -1,15 +1,15 @@
 import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import { P as A } from "../../ServerCardLayout-0091333e.js";
+import { P as A } from "../../assets/ServerCardLayout.js";
 import "axios";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
 import "@mui/icons-material";
 import "react-router-dom";
-/* empty css                       */import "@emotion/styled";
+/* empty css                     */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css                           */import "../layout/card/CardLayout.js";
+/* empty css                         */import "../layout/card/CardLayout.js";
 import "../utils/pubsub/topic.js";
 import "dayjs";
 import "../mui/form/MuiDatePicker.js";

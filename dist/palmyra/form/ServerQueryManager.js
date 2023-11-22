@@ -1,5 +1,5 @@
 import "react";
-import { u as D } from "../../ServerCardLayout-0091333e.js";
+import { u as D } from "../../assets/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
@@ -7,9 +7,9 @@ import "@mui/material";
 import "../layout/container/SectionContainer.js";
 import "@mui/icons-material";
 import "react-router-dom";
-/* empty css                       */import "@emotion/styled";
+/* empty css                     */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css                           */import "../layout/card/CardLayout.js";
+/* empty css                         */import "../layout/card/CardLayout.js";
 import "../utils/pubsub/topic.js";
 import "../utils/pubsub/PubSubHelper.js";
 import "dayjs";

@@ -12,7 +12,7 @@ export default defineConfig({
   libInjectCss(),
   dts({ include: ['lib'] })],
   server: {
-    proxy: { "/api": "http://localhost:8080/" },
+    proxy: { "/api": "http://localhost:6060/" },
     open: true,
     port: 4000
   },
@@ -61,7 +61,8 @@ export default defineConfig({
       output: {
         // format: 'iife',
         assetFileNames: 'assets/[name][extname]',
-        entryFileNames: '[name].js'
+        entryFileNames: '[name].js',
+        chunkFileNames: 'assets/[name].js'
       }
     }
   }

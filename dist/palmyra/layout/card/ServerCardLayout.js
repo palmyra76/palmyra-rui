@@ -1,13 +1,13 @@
 import "react/jsx-runtime";
 import "react";
-import { S as x } from "../../../ServerCardLayout-0091333e.js";
+import { S as x } from "../../../assets/ServerCardLayout.js";
 import "@mui/material";
 import "./CardLayout.js";
 import "../container/SectionContainer.js";
 import "@mui/icons-material";
 import "react-router-dom";
-/* empty css                          */import "@emotion/styled";
+/* empty css                        */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css                              */export {
+/* empty css                            */export {
   x as default
 };

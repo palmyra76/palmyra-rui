@@ -1,4 +1,4 @@
-import { N as r, c as s, b as a, a as p } from "../../PalmyraFormManager-41b9ddd1.js";
+import { N as r, c as s, b as a, a as p } from "../../assets/PalmyraFormManager.js";
 export {
   r as NoopFieldEventListener,
   s as NoopFieldValueListener,

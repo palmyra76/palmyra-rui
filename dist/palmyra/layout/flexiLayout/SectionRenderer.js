@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "./SectionRendererChart.js";
-import { h as a } from "../../../ServerCardLayout-0091333e.js";
+import { h as a } from "../../../assets/ServerCardLayout.js";
 import "./SectionRendererInvalid.js";
 import "./SectionRendererViewForm.js";
 export {

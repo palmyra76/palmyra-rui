@@ -1,4 +1,4 @@
-import "../../../ServerCardLayout-0091333e.js";
+import "../../../assets/ServerCardLayout.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { PalmyraGridStore as m } from "./PalmyraGridStore.js";
 import "axios";
@@ -8,9 +8,9 @@ import "../../layout/container/SectionContainer.js";
 import "@mui/icons-material";
 import "react";
 import "react-router-dom";
-/* empty css                          */import "@emotion/styled";
+/* empty css                        */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css                              */import "../../layout/card/CardLayout.js";
+/* empty css                            */import "../../layout/card/CardLayout.js";
 import { StringFormat as p } from "../../utils/StringUtil.js";
 import "../../utils/pubsub/topic.js";
 import "dayjs";

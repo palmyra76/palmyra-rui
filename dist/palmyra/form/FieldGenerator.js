@@ -8,7 +8,7 @@ import "../mui/form/MuiDateTimePicker.js";
 import "../mui/form/MuiCheckBox.js";
 import "../mui/form/MuiSwitch.js";
 import "../mui/form/MuiPassword.js";
-import { g as u } from "../../ServerCardLayout-0091333e.js";
+import { g as u } from "../../assets/ServerCardLayout.js";
 import "../mui/form/MuiServerLookup.js";
 export {
   u as default

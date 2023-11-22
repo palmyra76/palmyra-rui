@@ -1,5 +1,5 @@
 import "react/jsx-runtime";
-import { c as i } from "../../../ServerCardLayout-0091333e.js";
+import { c as i } from "../../../assets/ServerCardLayout.js";
 import "../container/SectionContainer.js";
 import "../container/FieldGroupContainer.js";
 export {

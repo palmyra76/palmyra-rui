@@ -3,6 +3,7 @@ import { IEndPoint } from "../layout";
 import { LookupStore } from "../store"
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointVars } from "../layout/Types";
+import { IFieldEventListener } from ".";
 
 /**
  * This definitions will cater to the Form Definition format
@@ -41,7 +42,8 @@ interface AttributeDefinition {
     visible?: boolean,
     disabled?: boolean,
     placeHolder?: string,
-    variant?: string
+    variant?: string,
+    changeListener?: IFieldEventListener
 }
 
 interface abstractValidation {
@@ -58,7 +60,7 @@ interface IDecoration {
     customContainerClass?: string,
     customFieldClass?: string,
     customLabelClass?: string,
-    className?:string,
+    className?: string,
     colspan?: number,
     label?: string,
     title?: string
