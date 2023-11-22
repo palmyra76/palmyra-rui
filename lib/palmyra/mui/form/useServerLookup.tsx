@@ -136,7 +136,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                 <FormControl fullWidth error={error.status}>
                     {props.label ?
                         <InputLabel>{props.label}</InputLabel> : <></>}
-                    <Select
+                    <Select ref={inputRef}
                         {...inputProps}
                         MenuProps={{ autoFocus: false }}
                         value={data}

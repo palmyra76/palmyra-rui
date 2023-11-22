@@ -51,8 +51,10 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
 
+    const label = props.required ? props.title + '*' : props.title;
+
     return (<>{mutateOptions.visible &&
-        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+        <FieldDecorator label={label} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField
                 minRows={2}

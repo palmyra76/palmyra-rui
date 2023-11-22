@@ -77,8 +77,10 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: M
         return parsedOptions[key].value;
     }
 
+    const label = props.required ? props.title + '*' : props.title;
+
     return (<>{mutateOptions.visible &&
-        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+        <FieldDecorator label={label} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl error={error.status} {...inputProps}>
                 <FormControlLabel value={getValue()}
