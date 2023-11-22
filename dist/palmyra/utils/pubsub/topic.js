@@ -1,4 +1,4 @@
-import { c as D, g as F } from "../../../assets/_commonjsHelpers.js";
+import { c as D, g as F } from "../../../chunks/_commonjsHelpers.js";
 var O = { exports: {} };
 O.exports;
 (function(a, c) {

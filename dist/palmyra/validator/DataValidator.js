@@ -1,4 +1,4 @@
-import { g as dn } from "../../assets/_commonjsHelpers.js";
+import { g as dn } from "../../chunks/_commonjsHelpers.js";
 var st = { exports: {} }, ft = { exports: {} }, ot = { exports: {} };
 (function(t, e) {
   Object.defineProperty(e, "__esModule", {

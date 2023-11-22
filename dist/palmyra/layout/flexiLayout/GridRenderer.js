@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "react";
-import { G as d } from "../../../assets/ServerCardLayout.js";
+import { G as d } from "../../../chunks/ServerCardLayout.js";
 import "react-router-dom";
 import "../../utils/index.js";
 import "../../utils/pubsub/topic.js";

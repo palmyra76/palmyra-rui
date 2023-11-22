@@ -9,13 +9,27 @@ import { LookupStore } from '../../store';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 
+function getArrayData(d) {
+    if (d) {
+        if (Array.isArray)
+            return d;
+        if (typeof d == 'string') {
+            return d.split(',')
+        } else {
+            console.log(d);
+            return [d]
+        }
+    }
+    return [];
+}
+
 const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckboxDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
 
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
-    const values = fieldManager.data ? fieldManager.data.split(',') : [];
+    const values = getArrayData(fieldManager.data);
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const store: LookupStore<any> = fieldManager.store;
@@ -64,7 +78,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
     }
 
     function _updateData(value: any, checked: any) {
-        const currentData = fieldManager.data ? fieldManager.data.split(',') : [];
+        const currentData = getArrayData(fieldManager.data);
         var index = currentData.indexOf(value);
 
         if (checked) {

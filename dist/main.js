@@ -1,4 +1,4 @@
-import { F as o, G as t, a, M as m, P as u, S as f } from "./assets/ServerCardLayout.js";
+import { F as o, G as t, a, M as m, P as u, S as f } from "./chunks/ServerCardLayout.js";
 import { StoreFactoryContext as s } from "./palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { default as x } from "./palmyra/store/memory/MemoryMenuStore.js";
 import { default as d } from "./palmyra/store/memory/MemoryTreeStore.js";
@@ -13,7 +13,7 @@ import { default as k } from "./palmyra/layout/card/CardLayout.js";
 import { NoopEmptyChildCard as w } from "./palmyra/layout/card/EmptyChildCard.js";
 import { NoopCustomizer as O, gridColumnCustomizer as z } from "./palmyra/grid/Types.js";
 import { usePalmyraPageGrid as R } from "./palmyra/grid/usePalmyraPageGrid.js";
-import { N as A, c as H, b as K, a as j, d as X, e as q } from "./assets/PalmyraFormManager.js";
+import { N as A, c as H, b as K, a as j, d as X, e as q } from "./chunks/PalmyraFormManager.js";
 import { getFieldType as J } from "./palmyra/form/Definitions.js";
 import { StringFormat as U, concatValues as W, hasChar as Y, hasDot as Z } from "./palmyra/utils/StringUtil.js";
 import { topic as $ } from "./palmyra/utils/pubsub/topic.js";

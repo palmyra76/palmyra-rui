@@ -7,7 +7,7 @@ import { default as l } from "./form/MuiTextField.js";
 import { default as M } from "./form/MuiCheckBox.js";
 import { default as k } from "./form/MuiSwitch.js";
 import { default as h } from "./form/MuiPassword.js";
-import { M as T } from "../../assets/ServerCardLayout.js";
+import { M as T } from "../../chunks/ServerCardLayout.js";
 import { default as w } from "./form/MuiServerLookup.js";
 export {
   M as MuiCheckBox,
