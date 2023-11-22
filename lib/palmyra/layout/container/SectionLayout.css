@@ -1,9 +1,12 @@
 .palmyra-form-section-header-container {
     font-weight: bold;
     text-align: left;
-    color: rgb(92, 92, 92) !important;
     background:
-    radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%) !important;
+        radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
     cursor: pointer;
     font-size: 20px;
+}
+
+.section-header-text {
+    color: rgb(92, 92, 92);
 }
