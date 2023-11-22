@@ -36,7 +36,7 @@ interface FieldProperties {
 
 interface IFormCustomizer {
     getFormHelper: () => IFormHelper,
-    getOnChangeListeners: (form: IFormHelper) => Record<string, IFieldEventListener>
+    getEventListeners: (form: IFormHelper) => Record<string, IFieldEventListener>
     getValueListeners: (form: IFormHelper) => Record<string, IFieldValueListener>
 }
 
@@ -58,7 +58,7 @@ const NoopFormCustomizer: IFormCustomizer = {
     getFormHelper: function () {
         return createFormHelper()
     },
-    getOnChangeListeners: function (form: IFormHelper): Record<string, IFieldEventListener> {
+    getEventListeners: function (form: IFormHelper): Record<string, IFieldEventListener> {
         return {};
     },
     getValueListeners: function (form: IFormHelper): Record<string, IFieldValueListener> {

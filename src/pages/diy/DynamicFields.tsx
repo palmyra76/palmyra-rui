@@ -38,7 +38,7 @@ const DynamicFields = () => {
         getFormHelper: function () {
             return formHelper
         },
-        getOnChangeListeners: function () {
+        getEventListeners: function () {
             return {
                 'ncb': ncbEventListener
             }

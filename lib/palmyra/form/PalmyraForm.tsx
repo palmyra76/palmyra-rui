@@ -25,10 +25,11 @@ const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, re
     const mode = props.mode;
 
     var formHelper: IFormHelper = formCustomizer.getFormHelper();
-    const changeListeners = formCustomizer.getOnChangeListeners(formHelper);
+    const eventListeners = formCustomizer.getEventListeners(formHelper);
     const valueListeners = formCustomizer.getValueListeners(formHelper);
 
-    var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, mode, formHelper, {changeListeners, valueListeners});
+    var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, mode, formHelper, 
+        {eventListeners, valueListeners});
 
     useImperativeHandle(ref, (): IPalmyraForm => {
         return {

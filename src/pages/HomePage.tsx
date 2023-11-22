@@ -45,7 +45,7 @@ const HomePage = () => {
         getFormHelper: function () {
             return formHelper
         },
-        getOnChangeListeners: function () {
+        getEventListeners: function () {
             return {
                 'genders': genderEventListener
             }

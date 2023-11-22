@@ -27,7 +27,7 @@ interface FieldProperties {
 }
 interface IFormCustomizer {
     getFormHelper: () => IFormHelper;
-    getOnChangeListeners: (form: IFormHelper) => Record<string, IFieldEventListener>;
+    getEventListeners: (form: IFormHelper) => Record<string, IFieldEventListener>;
     getValueListeners: (form: IFormHelper) => Record<string, IFieldValueListener>;
 }
 interface IFormHelper {

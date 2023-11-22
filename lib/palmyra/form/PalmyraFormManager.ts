@@ -30,13 +30,13 @@ function createFormHelper(): IFormHelper {
 }
 
 interface IListeners {
-    changeListeners: Record<string, IFieldEventListener>
+    eventListeners: Record<string, IFieldEventListener>
     valueListeners: Record<string, IFieldValueListener>
 }
 
 function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
     listeners?: IListeners) {
-    const formListeners: IListeners = listeners || { changeListeners: {}, valueListeners: {} };
+    const formListeners: IListeners = listeners || { eventListeners: {}, valueListeners: {} };
 
     const _formHelper = formHelper || NoopFormHelper;
     var validationFormat: Record<string, FieldDefinition> = {};
@@ -97,10 +97,10 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
             validationFormat[fieldDef.attribute] = fieldDef;
             validationRules[fieldDef.attribute] = validationRule;
 
-            const changeListener = field.changeListener || formListeners.changeListeners[fieldAttrib]
+            const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
             const valueListener = formListeners.valueListeners[fieldAttrib];
             var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
-                onDataChange, validationRule, undefined, changeListener, valueListener);
+                onDataChange, validationRule, undefined, eventListener, valueListener);
 
             try {
                 if (requireStore(fieldDef)) {
@@ -135,7 +135,11 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     return { getFieldManager, getFormData, initForm, isFormValid };
 }
 
-export { createFormData, createFormHelper };
+const PalmyraFormManager = ()=>{
+    console.log('test');
+}
+
+export { createFormData, createFormHelper, PalmyraFormManager };
 
 function requireStore(fieldDef: FieldDefinition) {
     return (fieldDef.storeOptions?.endPoint) ? true : false;

@@ -5,7 +5,7 @@ import { IGetFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
 declare function createFormHelper(): IFormHelper;
 interface IListeners {
-    changeListeners: Record<string, IFieldEventListener>;
+    eventListeners: Record<string, IFieldEventListener>;
     valueListeners: Record<string, IFieldValueListener>;
 }
 declare function createFormData(data: any, onValidityChange: any, mode: FormMode, formHelper?: IFormHelper, listeners?: IListeners): {
@@ -14,4 +14,5 @@ declare function createFormData(data: any, onValidityChange: any, mode: FormMode
     initForm: () => void;
     isFormValid: () => boolean;
 };
-export { createFormData, createFormHelper };
+declare const PalmyraFormManager: () => void;
+export { createFormData, createFormHelper, PalmyraFormManager };

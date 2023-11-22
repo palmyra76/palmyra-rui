@@ -43,7 +43,7 @@ interface AttributeDefinition {
     disabled?: boolean,
     placeHolder?: string,
     variant?: string,
-    changeListener?: IFieldEventListener
+    eventListener?: IFieldEventListener
 }
 
 interface abstractValidation {
