@@ -25,9 +25,8 @@ import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
-import "../../mui/form/MuiServerLookup.js";
 import "../../form/PalmyraForm.js";
-class H {
+class D {
   constructor(t, r, e) {
     n(this, "request");
     n(this, "target");
@@ -80,5 +79,5 @@ function h(o) {
   return { ...o.filter || {}, _total: r, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  H as PalmyraGridStore
+  D as PalmyraGridStore
 };

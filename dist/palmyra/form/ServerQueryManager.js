@@ -1,5 +1,5 @@
 import "react";
-import { u as D } from "../../chunks/ServerCardLayout.js";
+import { c as C } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
@@ -22,8 +22,7 @@ import "../mui/form/MuiTextField.js";
 import "../mui/form/MuiCheckBox.js";
 import "../mui/form/MuiSwitch.js";
 import "../mui/form/MuiPassword.js";
-import "../mui/form/MuiServerLookup.js";
 import "./PalmyraForm.js";
 export {
-  D as default
+  C as default
 };

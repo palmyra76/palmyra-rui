@@ -18,6 +18,7 @@ import BackendViewFormPage from './pages/demo/BackendViewFormPage';
 import EditPage from './pages/EditPage';
 import StaticSummaryGrid from './pages/StaticSummaryGrid';
 import DynamicFields from './pages/diy/DynamicFields';
+import DepsFields from './pages/diy/DepsFields';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout appTitle='RUI Demo' />} >
             <Route path="/home" element={<HomePage />} />
+            <Route path="/deps" element={<DepsFields />} />
             <Route path="/dynamic" element={<DynamicFields />} />
             <Route path="/grid" element={<StaticSummaryGrid />} />
             <Route path="/edit" element={<EditPage />} />

@@ -58,6 +58,8 @@ interface ICheckBoxField extends IInputField, IOptionsField {
 
 interface IServerLookupField extends IInputField {
     setFilter: (d: any) => void
+    resetFilter: () => void
+    addFilter: (key: string, v: any) => void
     setDefaultFilter: (d: any) => void
 }
 

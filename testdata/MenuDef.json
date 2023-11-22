@@ -12,6 +12,11 @@
             "icon": "home"
         },
         {
+            "path": "/deps",
+            "name": "Dependant Fields",
+            "icon": "home"
+        },
+        {
             "path": "/grid",
             "name": "StaticSummaryGrid",
             "icon": "home"

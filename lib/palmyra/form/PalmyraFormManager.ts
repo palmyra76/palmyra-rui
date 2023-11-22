@@ -46,7 +46,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     const onDataValidityChange = onValidityChange;
     var dataValidRef = useRef({});
     var dataValid = dataValidRef.current;
-    console.log(dataValid)
+    
     var defaultData = {};
 
     const isNewForm = () => {

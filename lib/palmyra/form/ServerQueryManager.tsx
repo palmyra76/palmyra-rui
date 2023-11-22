@@ -93,14 +93,20 @@ const useServerQuery = (props: IServerQueryInput) => {
   const setQuickSearch = (val: any) => {
     const key = quickSearch;
     if (val)
-      setFilter({ [key]: val });
+      setFilter((f: any) => {
+        f[key] = val;
+        return { ...f }
+      });
     else {
-      setFilter({});
+      setFilter((f: any) => {
+        delete f[key];
+        return { ...f };
+      });
     }
   };
 
   const setQueryFilter = (filter) => {
-    if (filter && Object.keys(filter).length > 0)
+    if (typeof filter == 'function' || filter && Object.keys(filter).length > 0)
       setFilter(filter);
     else {
       setFilter({});

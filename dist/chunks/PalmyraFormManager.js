@@ -26,8 +26,8 @@ const X = {
   onValue: function(t, r, c) {
   }
 }, $ = (t, r) => r ?? (t.defaultValue || "");
-function D(t, r, c, i, n, L, S) {
-  const M = L || Y, N = S || Z, F = W(t), [d, R] = C(r), [p, l] = C(B(r)), [v, h] = C({ status: !1, message: "" });
+function D(t, r, c, i, o, L, S) {
+  const M = L || Y, N = S || Z, F = W(t), [d, R] = C(r), [p, f] = C(B(r)), [v, h] = C({ status: !1, message: "" });
   var V, g;
   if (t.mutant) {
     const [e, s] = C({
@@ -45,13 +45,13 @@ function D(t, r, c, i, n, L, S) {
       console.warn("Operation ignored, set mutant={true} in '" + t.attribute + "' field definition");
     };
   z(() => {
-    R(r), l(B(r));
+    R(r), f(B(r));
   }, [r]);
   function B(e) {
     return F.parse($(t, e));
   }
   const O = (e, s) => {
-    l(e || ""), s && T(() => {
+    f(e || ""), s && T(() => {
       u(e);
       const b = t.attribute, j = t.name || b, A = E(e);
       if (c) {
@@ -74,14 +74,14 @@ function D(t, r, c, i, n, L, S) {
     });
   }, u = (e) => {
     const s = E(e);
-    s.status && n != null && n.asyncValid ? (f(), n.asyncValid(e, a, m)) : q(s);
+    s.status && o != null && o.asyncValid ? (l(), o.asyncValid(e, a, m)) : q(s);
   }, a = (e) => {
   }, y = () => {
     v.message != "" && h({
       status: v.status,
       message: ""
     });
-  }, f = () => {
+  }, l = () => {
     m({
       status: !1,
       message: ""
@@ -113,43 +113,41 @@ function ut(t) {
 }
 function H() {
   const t = I(() => ({}), []);
-  return { addFieldRef: (i, n) => {
-    t[i] = n;
+  return { addFieldRef: (i, o) => {
+    t[i] = o;
   }, getFieldRef: (i) => {
-    const n = t[i];
-    if (n)
-      return n.current;
+    const o = t[i];
+    if (o)
+      return o.current;
   } };
 }
-function ct(t, r, c, i, n) {
-  const L = n || { eventListeners: {}, valueListeners: {} }, S = i || X;
+function ct(t, r, c, i, o) {
+  const L = o || { eventListeners: {}, valueListeners: {} }, S = i || X;
   var M = {}, N = {};
   const F = P(!1);
   var d = P(k({}, t));
   const R = r;
-  var p = P({}), l = p.current;
-  console.log(l);
-  var v = {};
+  var p = P({}), f = p.current, v = {};
   (() => c && c == "new")() && k(d.current, v);
   const V = (u, a, y) => {
-    u && J(u, d.current, a), l = Object.assign({}, l, y);
-    const f = g(l);
-    f != F.current && (F.current = f, R && R(f));
+    u && J(u, d.current, a), f = Object.assign({}, f, y);
+    const l = g(f);
+    l != F.current && (F.current = l, R && R(l));
   }, g = (u) => {
     for (var a in u)
       if (u[a] == !1)
         return !1;
     return !0;
   };
-  return { getFieldManager: I(() => (d.current = k({}, t), (a, y, f) => {
-    var m = a.name || a.attribute, o = { ...a, type: y };
-    f && S.addFieldRef(m, f);
-    const w = Q(o);
-    M[o.attribute] = o, N[o.attribute] = w;
+  return { getFieldManager: I(() => (d.current = k({}, t), (a, y, l) => {
+    var m = a.name || a.attribute, n = { ...a, type: y };
+    l && S.addFieldRef(m, l);
+    const w = Q(n);
+    M[n.attribute] = n, N[n.attribute] = w;
     const K = a.eventListener || L.eventListeners[m], _ = L.valueListeners[m];
     var e = D(
-      o,
-      x(o.attribute, d.current),
+      n,
+      x(n.attribute, d.current),
       V,
       w,
       void 0,
@@ -157,17 +155,17 @@ function ct(t, r, c, i, n) {
       _
     );
     try {
-      tt(o) && (e.store = U(o));
+      tt(n) && (e.store = U(n));
     } catch (b) {
-      console.error("Error while getting LookupStore for attribute" + o.attribute, b);
+      console.error("Error while getting LookupStore for attribute" + n.attribute, b);
     }
-    if (o.type == "serverlookup") {
-      var s = o.displayAttribute || o.attribute;
+    if (n.type == "serverlookup") {
+      var s = n.displayAttribute || n.attribute;
       e.displayValue = x(s, t);
     }
     return e;
   }), [t]), getFormData: () => k({}, d.current), initForm: () => {
-  }, isFormValid: () => g(l) };
+  }, isFormValid: () => g(f) };
 }
 const lt = () => {
   console.log("test");

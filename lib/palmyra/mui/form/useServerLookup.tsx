@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect, useMemo, MutableRefObject } from 'react';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IServerLookupDefinition } from '../../form/interface';
 import { delay, hasDot } from '../../utils';
-import { QueryRequest } from '../../store/Types';
 import { LookupStore } from '../../store';
 import { getValueByKey, setValueByKey } from '../../form/FormUtil';
 
@@ -13,6 +12,7 @@ import FieldDecorator from './FieldDecorator';
 import { FormControl, FormHelperText, InputAdornment, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import { DeleteOutlined, Search } from '@mui/icons-material';
 import { IMutateOptions } from '../../form/interfaceFields';
+import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 
 
 const renderOption = (title: string, inputValue: string) => {
@@ -46,11 +46,24 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     const labelKey = lookupOptions.titleAttribute || 'name';
     const searchKey = lookupOptions.searchAttribute || labelKey;
     const data = fieldManager.data;
+    const total = useRef<number>(0);
     const selectedOption = useRef(null);
     const [dv, setDv] = useState(fieldManager.displayValue)
     const [options, setOptions] = useState<Array<any>>([]);
     // const [dv, setDv] = useState(fieldManager.displayValue)
     const [searchText, setSearchText] = useState('');
+
+    const serverQueryOptions: IServerQueryInput = {
+        store, endPointVars: props.storeOptions.endPointVars, fetchAll: true,
+        pageSize: 15, quickSearch: searchKey
+    };
+
+    const serverQuery = useServerQuery(serverQueryOptions);
+
+    const { setQueryFilter, setQuickSearch, 
+        filter, totalRecords } = serverQuery;
+
+    const serverResult = serverQuery.data;
 
     const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data[idKey]);
     const labelAccessor = hasDot(labelKey) ? (data: any) => (getValueByKey(labelKey, data)) : (data: any) => (data[labelKey]);
@@ -77,13 +90,19 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         }
     }, [dv]);
 
-    function updateOptions(result: any[]): any {
+    useEffect(() => {
+        const result = serverResult ? [...serverResult] : [];
         const option = selectedOption.current;
-        if (result && option && !getMatch(result, idAccessor(option))) {
+        if (result && option && !getMatch(serverResult, idAccessor(option))) {
             result.unshift(option);
         }
         setOptions(result);
-    }
+
+        if (total.current < totalRecords)
+            total.current = totalRecords;
+
+    }, [serverResult, totalRecords])
+
     function getMatch(result: any, key: any): any {
         return result.find((r: any) => {
             if (idAccessor(r) === key) {
@@ -97,21 +116,14 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }, [searchText]);
 
     const hasMoreRecords = (): boolean => {
-        return options.length > 10;
+        return total.current > 2;
     }
 
     function refreshOptions() {
-        var request: QueryRequest = {};
         if (searchText.length > 0) {
-            request.filter = {};
-            request.filter[searchKey] = searchText;
-        } else if (options.length > 1) {
-            return;
-        }
-        if (store) {
-            store.query(request).then(d => updateOptions(d.result)).catch(() => updateOptions([]));
+            setQuickSearch('*' + searchText + '*');
         } else {
-            console.error('lookup store is not initialized for attribute' + props.attribute);
+            setQuickSearch('');
         }
     }
 
@@ -184,9 +196,8 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }
 
     return {
-        options, hasMoreRecords, getSelectedOption,
-        labelAccessor, idAccessor, renderOption, getServerLookup,
-        searchText, setSearchText, refreshOptions
+        getSelectedOption, filter, labelAccessor, idAccessor, renderOption, getServerLookup,
+        setQueryFilter, searchText, setSearchText, refreshOptions
     }
 };
 
