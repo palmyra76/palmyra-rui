@@ -10,8 +10,9 @@ import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 
 function getArrayData(d) {
+    console.log(d);
     if (d) {
-        if (Array.isArray)
+        if (Array.isArray(d))
             return d;
         if (typeof d == 'string') {
             return d.split(',')
@@ -79,8 +80,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
 
     function _updateData(value: any, checked: any) {
         const currentData = getArrayData(fieldManager.data);
-        var index = currentData.indexOf(value);
-
+        var index = currentData.indexOf(value);        
         if (checked) {
             if (index < 0)
                 currentData.push(value);

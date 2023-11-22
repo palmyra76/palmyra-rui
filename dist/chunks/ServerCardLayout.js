@@ -98,7 +98,7 @@ const Ue = (e) => {
   };
 };
 function nt(e) {
-  return e ? Array.isArray ? e : typeof e == "string" ? e.split(",") : (console.log(e), [e]) : [];
+  return console.log(e), e ? Array.isArray(e) ? e : typeof e == "string" ? e.split(",") : (console.log(e), [e]) : [];
 }
 const $o = se(function(t, r) {
   const n = je(qe), o = r || ge(null), a = n(t, "checkbox", o), { mutateOptions: l, setMutateOptions: c } = a, d = nt(a.data), p = a.error, f = a.eventListeners, w = { store: a.store, pageSize: -1 }, { data: T } = Ue(w), D = T, M = ge(null), Y = t.lookupOptions || {}, $ = Y.idAttribute || "id", b = Y.titleAttribute || "name", m = Qe($) ? (x) => Je($, x) : (x) => x[$], v = Qe(b) ? (x) => Je(b, x) : (x) => x[b];
