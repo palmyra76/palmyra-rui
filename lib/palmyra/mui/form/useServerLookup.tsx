@@ -60,7 +60,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
 
     const serverQuery = useServerQuery(serverQueryOptions);
 
-    const { setQueryFilter, setQuickSearch, 
+    const { setQueryFilter, setQuickSearch,
         filter, totalRecords } = serverQuery;
 
     const serverResult = serverQuery.data;
@@ -148,7 +148,8 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                 <FormControl fullWidth error={error.status}>
                     {props.label ?
                         <InputLabel>{props.label}</InputLabel> : <></>}
-                    <Select ref={inputRef}
+                    <Select
+                        inputRef={(i) => { inputRef.current = i; }}
                         {...inputProps}
                         MenuProps={{ autoFocus: false }}
                         value={data}

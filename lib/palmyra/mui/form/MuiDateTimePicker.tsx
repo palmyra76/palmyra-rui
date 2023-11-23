@@ -72,7 +72,8 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
                             error: error.status,
                             helperText: error.message,
                             variant: props.variant,
-                            fullWidth: true
+                            fullWidth: true,
+                            inputRef
                         },
                     }}
                 />
