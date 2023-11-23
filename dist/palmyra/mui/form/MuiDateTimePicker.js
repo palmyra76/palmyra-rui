@@ -3,11 +3,11 @@ import { forwardRef as F, useContext as M, useRef as u, useImperativeHandle as h
 import { LocalizationProvider as y, DateTimePicker as P } from "@mui/x-date-pickers";
 import { AdapterDayjs as x } from "@mui/x-date-pickers/AdapterDayjs";
 import L from "dayjs";
-import { copyMuiOptions as V } from "./MuiUtil.js";
-import { FieldManagerContext as j } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import k from "./FieldDecorator.js";
-const z = F(function(t, i) {
-  const c = M(j), l = i || u(null), m = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", a = c(t, "datetime", l), { mutateOptions: d, setMutateOptions: f } = a, n = a.error, C = a.data, r = a.eventListeners, o = u(null), v = () => L(C);
+import { copyMuiOptions as V, getFieldLabel as j } from "./MuiUtil.js";
+import { FieldManagerContext as k } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import A from "./FieldDecorator.js";
+const I = F(function(t, i) {
+  const c = M(k), l = i || u(null), m = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", a = c(t, "datetime", l), { mutateOptions: d, setMutateOptions: f } = a, n = a.error, C = a.data, r = a.eventListeners, o = u(null), g = () => L(C);
   h(l, () => ({
     focus() {
       o.current.focus();
@@ -28,7 +28,7 @@ const z = F(function(t, i) {
       f({ visible: e });
     }
   }), []);
-  var D = V(t, v(), t.label), g = {
+  var v = V(t, g(), t.label), D = {
     onBlur: r.onBlur,
     onFocus: r.onFocus,
     onChange: (e) => {
@@ -36,9 +36,9 @@ const z = F(function(t, i) {
     }
   };
   return /* @__PURE__ */ s(b, { children: d.visible && /* @__PURE__ */ s(
-    k,
+    A,
     {
-      label: t.title,
+      label: j(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
@@ -46,10 +46,10 @@ const z = F(function(t, i) {
       children: /* @__PURE__ */ s(y, { dateAdapter: x, children: /* @__PURE__ */ s(
         P,
         {
-          ...D,
+          ...v,
           readOnly: t.readonly,
           format: m,
-          ...g,
+          ...D,
           slotProps: {
             textField: {
               error: n.status,
@@ -65,5 +65,5 @@ const z = F(function(t, i) {
   ) });
 });
 export {
-  z as default
+  I as default
 };

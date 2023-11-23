@@ -3,7 +3,7 @@ import { IDateTimeDefinition, IEventListeners, IFormFieldError, IFormFieldManage
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
-import { copyMuiOptions } from './MuiUtil';
+import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
@@ -60,7 +60,7 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
     }
 
     return (<>{mutateOptions.visible &&
-        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+        <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker {...inputProps}

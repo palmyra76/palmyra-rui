@@ -1,11 +1,11 @@
 import { jsx as n, Fragment as m, jsxs as v } from "react/jsx-runtime";
 import { forwardRef as F, useContext as M, useRef as d, useImperativeHandle as x } from "react";
 import { FormControl as L, InputLabel as O, Select as R, MenuItem as p, FormHelperText as V } from "@mui/material";
-import { copyMuiOptions as j } from "./MuiUtil.js";
-import { FieldManagerContext as y } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import D from "./FieldDecorator.js";
-const k = F(function(e, i) {
-  const f = M(y), u = i || d(null), { options: s } = e, r = f(e, "select", u), { mutateOptions: b, setMutateOptions: C } = r, a = r.error, o = r.eventListeners, l = d(null);
+import { copyMuiOptions as j, getFieldLabel as y } from "./MuiUtil.js";
+import { FieldManagerContext as D } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import I from "./FieldDecorator.js";
+const w = F(function(e, i) {
+  const f = M(D), u = i || d(null), { options: s } = e, r = f(e, "select", u), { mutateOptions: b, setMutateOptions: C } = r, a = r.error, o = r.eventListeners, l = d(null);
   x(u, () => ({
     focus() {
       l && l.current.focus();
@@ -34,9 +34,9 @@ const k = F(function(e, i) {
     onChange: (t) => o.onValueChange(t.target.value)
   };
   return /* @__PURE__ */ n(m, { children: b.visible && /* @__PURE__ */ n(
-    D,
+    I,
     {
-      label: e.title,
+      label: y(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
@@ -54,5 +54,5 @@ const k = F(function(e, i) {
   ) });
 });
 export {
-  k as default
+  w as default
 };

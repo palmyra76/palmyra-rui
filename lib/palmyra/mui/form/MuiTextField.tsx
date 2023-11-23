@@ -1,7 +1,7 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
-import { copyMuiOptions } from './MuiUtil';
+import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
@@ -49,10 +49,8 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
 
-    const label = props.required ? props.title + '*' : props.title;
-
     return (<>{mutateOptions.visible &&
-        <FieldDecorator label={label} customContainerClass={props.customContainerClass} colspan={props.colspan}
+        <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField {...inputProps}
                 fullWidth={true}

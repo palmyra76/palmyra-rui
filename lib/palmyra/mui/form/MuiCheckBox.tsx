@@ -1,7 +1,7 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
 import { ICheckboxDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
-import { copyMuiOptions } from './MuiUtil';
+import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 
@@ -76,7 +76,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
     console.log(inputRef);
 
     return (<>{mutateOptions.visible &&
-        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+        <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} {...inputProps} style={{ flexDirection: flexDirection }}>
                 {options ?

@@ -1,12 +1,12 @@
-import { jsx as o, Fragment as x, jsxs as R } from "react/jsx-runtime";
-import { forwardRef as M, useContext as O, useRef as d, useImperativeHandle as y } from "react";
-import { FormControl as L, RadioGroup as D, FormControlLabel as V, Radio as j, FormHelperText as G } from "@mui/material";
-import { copyMuiOptions as w } from "./MuiUtil.js";
-import { FieldManagerContext as A } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import B from "./FieldDecorator.js";
-const T = M(function(e, i) {
-  const m = O(A), u = i || d(null), { options: n } = e, r = m(e, "radio", u), { mutateOptions: f, setMutateOptions: C } = r, b = e.flexDirection != "column", a = r.error, s = r.eventListeners, l = d(null);
-  y(u, () => ({
+import { jsx as o, Fragment as h, jsxs as x } from "react/jsx-runtime";
+import { forwardRef as R, useContext as M, useRef as d, useImperativeHandle as L } from "react";
+import { FormControl as O, RadioGroup as p, FormControlLabel as y, Radio as D, FormHelperText as V } from "@mui/material";
+import { copyMuiOptions as j, getFieldLabel as G } from "./MuiUtil.js";
+import { FieldManagerContext as w } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import A from "./FieldDecorator.js";
+const W = R(function(e, i) {
+  const m = M(w), u = i || d(null), { options: n } = e, r = m(e, "radio", u), { mutateOptions: f, setMutateOptions: b } = r, C = e.flexDirection != "column", a = r.error, s = r.eventListeners, l = d(null);
+  L(u, () => ({
     focus() {
       l.current.focus();
     },
@@ -23,43 +23,42 @@ const T = M(function(e, i) {
       r.setData(t);
     },
     setVisible(t) {
-      C({ visible: t });
+      b({ visible: t });
     }
   }), []);
-  var c = w(e, r.data, e.label);
+  var c = j(e, r.data, e.label);
   e.readonly && (c.inputProps = { readOnly: !0 });
   const g = !!e.readonly;
-  var v = {
+  var F = {
     onBlur: s.onBlur,
     onFocus: s.onFocus,
     onChange: (t) => {
       g || s.onValueChange(t.target.value);
     }
   };
-  const F = e.required ? e.title + "*" : e.title;
-  return /* @__PURE__ */ o(x, { children: f.visible && /* @__PURE__ */ o(
-    B,
+  return /* @__PURE__ */ o(h, { children: f.visible && /* @__PURE__ */ o(
+    A,
     {
-      label: F,
+      label: G(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ R(L, { fullWidth: !0, error: a.status, children: [
-        /* @__PURE__ */ o(D, { row: b, ...v, ...c, children: n ? Object.keys(n).map((t, h) => /* @__PURE__ */ o(
-          V,
+      children: /* @__PURE__ */ x(O, { fullWidth: !0, error: a.status, children: [
+        /* @__PURE__ */ o(p, { row: C, ...F, ...c, children: n ? Object.keys(n).map((t, v) => /* @__PURE__ */ o(
+          y,
           {
             value: t,
-            control: /* @__PURE__ */ o(j, { inputRef: l }),
+            control: /* @__PURE__ */ o(D, { inputRef: l }),
             label: n[t]
           },
-          h
+          v
         )) : /* @__PURE__ */ o("div", { children: "No options provided" }) }),
-        /* @__PURE__ */ o(G, { className: "form-error-text", children: a.message })
+        /* @__PURE__ */ o(V, { className: "form-error-text", children: a.message })
       ] })
     }
   ) });
 });
 export {
-  T as default
+  W as default
 };

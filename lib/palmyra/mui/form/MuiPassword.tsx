@@ -1,7 +1,7 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, useState, MutableRefObject } from 'react';
 import { IconButton, TextField } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
-import { copyMuiOptions } from './MuiUtil';
+import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -62,7 +62,7 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
     }
 
     return (<>{mutateOptions.visible &&
-        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+        <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField {...inputProps}
                 type={showPassword ? 'text' : 'password'}

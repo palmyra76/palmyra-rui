@@ -1,7 +1,7 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerCheckboxDefinition } from '../../form/interface';
-import { copyMuiOptions } from './MuiUtil';
+import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
@@ -103,7 +103,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
     }
 
     return (<div className={props.className}>{mutateOptions.visible &&
-        <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+        <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl className='MuiServerCheckBoxFormControl'
                 fullWidth error={error.status} {...inputProps}>

@@ -7,7 +7,7 @@ import { getValueByKey, setValueByKey } from '../../form/FormUtil';
 
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
-import { copyMuiOptions } from './MuiUtil';
+import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
 import { FormControl, FormHelperText, InputAdornment, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import { DeleteOutlined, Search } from '@mui/icons-material';
@@ -143,7 +143,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         }
 
         return (
-            <FieldDecorator label={props.title} customContainerClass={props.customContainerClass} colspan={props.colspan}
+            <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
                 customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
                 <FormControl fullWidth error={error.status}>
                     {props.label ?
