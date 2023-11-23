@@ -23,6 +23,7 @@
 
 .palmyra-form-field-container .palmyra-form-field-label {
     width: 40%;
+    word-break: break-word;
 }
 
 .palmyra-form-field-container .palmyra-form-field-data {
