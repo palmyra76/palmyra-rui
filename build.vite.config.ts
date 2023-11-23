@@ -62,7 +62,7 @@ export default defineConfig({
         // format: 'iife',
         assetFileNames: 'assets/[name][extname]',
         entryFileNames: '[name].js',
-        chunkFileNames: 'assets/[name].js'
+        chunkFileNames: 'chunks/[name].js'
       }
     }
   }
