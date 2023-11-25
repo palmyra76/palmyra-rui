@@ -1,53 +1,54 @@
-import { jsx as l, Fragment as C } from "react/jsx-runtime";
-import { forwardRef as F, useContext as b, useRef as c, useImperativeHandle as v } from "react";
-import { TextField as x } from "@mui/material";
-import { copyMuiOptions as M, getFieldLabel as h } from "./MuiUtil.js";
-import { FieldManagerContext as L } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import p from "./FieldDecorator.js";
-const B = F(function(e, o) {
-  const m = b(L), i = o || c(null), s = m(e, "string", i), { mutateOptions: d, setMutateOptions: f } = s, n = s.error, r = s.eventListeners, a = c(null);
-  v(i, () => ({
+import { jsx as i, Fragment as F } from "react/jsx-runtime";
+import { forwardRef as b, useContext as v, useRef as c, useImperativeHandle as x } from "react";
+import { TextField as M } from "@mui/material";
+import { copyMuiOptions as h, getFieldLabel as L } from "./MuiUtil.js";
+import { FieldManagerContext as O } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import R from "./FieldDecorator.js";
+const P = b(function(e, l) {
+  const d = v(O), o = l || c(null), a = d(e, "string", o), { mutateOptions: m, setMutateOptions: f } = a, n = a.error, s = a.eventListeners, r = c(null), g = e.variant || "standard";
+  x(o, () => ({
     focus() {
-      a.current.focus();
+      r.current.focus();
     },
     isValid() {
       return !n.status;
     },
     assignAttribute(t) {
-      a.current.assignAttribute(t);
+      r.current.assignAttribute(t);
     },
     clear() {
-      s.setData("");
+      a.setData("");
     },
     setValue(t) {
-      s.setData(t);
+      a.setData(t);
     },
     setVisible(t) {
       f({ visible: t });
     }
   }), []);
-  var u = M(e, s.data, e.label);
+  var u = h(e, a.data, e.label);
   e.readonly && (u.inputProps = { readOnly: !0 });
-  var g = {
-    onBlur: r.onBlur,
-    onFocus: r.onFocus,
-    onChange: (t) => r.onValueChange(t.target.value)
+  var C = {
+    onBlur: s.onBlur,
+    onFocus: s.onFocus,
+    onChange: (t) => s.onValueChange(t.target.value)
   };
-  return /* @__PURE__ */ l(C, { children: d.visible && /* @__PURE__ */ l(
-    p,
+  return /* @__PURE__ */ i(F, { children: m.visible && /* @__PURE__ */ i(
+    R,
     {
-      label: h(e),
+      label: L(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ l(
-        x,
+      children: /* @__PURE__ */ i(
+        M,
         {
           ...u,
+          variant: g,
           fullWidth: !0,
-          inputRef: a,
-          ...g,
+          inputRef: r,
+          ...C,
           error: n.status,
           helperText: n.message
         }
@@ -56,5 +57,5 @@ const B = F(function(e, o) {
   ) });
 });
 export {
-  B as default
+  P as default
 };
