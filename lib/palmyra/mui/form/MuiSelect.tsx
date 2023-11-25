@@ -10,6 +10,7 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef(null);
     const { options } = props;
+    const variant = props.variant || 'standard';
 
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'select', currentRef);
@@ -58,7 +59,7 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-            <FormControl fullWidth error={error.status}>
+            <FormControl variant={variant} fullWidth error={error.status}>
                 {props.label ?
                     <InputLabel>{props.label}</InputLabel> : <></>}
                 <Select {...inputProps} {...callbacks} inputRef={(i) => { inputRef.current = i; }}>

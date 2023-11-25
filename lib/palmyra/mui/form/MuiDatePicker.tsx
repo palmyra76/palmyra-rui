@@ -16,7 +16,7 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
     const error: IFormFieldError = fieldManager.error;
     const data: any = fieldManager.data;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
-
+    const variant = props.variant || 'standard';
     const inputRef: any = useRef(null);
 
     const toDayjs = () => {
@@ -71,7 +71,7 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
                         textField: {
                             error: error.status,
                             helperText: error.message,
-                            variant: props.variant,
+                            variant: variant,
                             fullWidth: true, 
                             inputRef
                         },

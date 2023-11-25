@@ -42,7 +42,7 @@ interface AttributeDefinition {
     visible?: boolean,
     disabled?: boolean,
     placeHolder?: string,
-    variant?: string,
+    variant?: 'standard' | 'outlined' | 'filled';
     eventListener?: IFieldEventListener
 }
 

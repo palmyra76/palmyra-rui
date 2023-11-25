@@ -14,7 +14,7 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
     const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
-
+    const variant = props.variant || 'standard';
     const inputRef: any = useRef(null);
 
     useImperativeHandle(currentRef, () => {
@@ -65,6 +65,7 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField {...inputProps}
+                variant={variant}
                 type={showPassword ? 'text' : 'password'}
                 fullWidth={true}
                 inputRef={inputRef}

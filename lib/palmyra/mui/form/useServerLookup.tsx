@@ -131,6 +131,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
         const eventListeners: IEventListeners = fieldManager.eventListeners;
         const error: IFormFieldError = fieldManager.error;
+        const variant = props.variant || "standard";
 
         if (mutateOptions.readonly) {
             inputProps.inputProps = { readOnly: true };
@@ -145,7 +146,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         return (
             <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
                 customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-                <FormControl fullWidth error={error.status}>
+                <FormControl variant={variant} fullWidth error={error.status}>
                     {props.label ?
                         <InputLabel>{props.label}</InputLabel> : <></>}
                     <Select

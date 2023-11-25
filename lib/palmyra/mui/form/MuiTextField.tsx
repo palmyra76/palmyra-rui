@@ -13,6 +13,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const inputRef: any = useRef(null);
+    const variant = props.variant || 'standard';
 
     useImperativeHandle(currentRef, () => {
         return {
@@ -53,6 +54,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField {...inputProps}
+                variant={variant}
                 fullWidth={true}
                 inputRef={inputRef}
                 {...callbacks}
