@@ -14,6 +14,7 @@ interface IPalmyraGridInput {
 }
 interface IPalmyraGrid {
     setFilter: (d: any) => void;
+    refresh: () => void;
 }
 declare const PalmyraGrid: import("react").ForwardRefExoticComponent<IPalmyraGridInput & import("react").RefAttributes<unknown>>;
 export { PalmyraGrid };

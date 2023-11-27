@@ -18,6 +18,7 @@ interface IPalmyraGridInput {
 
 interface IPalmyraGrid {
     setFilter: (d: any) => void
+    refresh: () => void
 }
 
 const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, ref) {
@@ -42,6 +43,9 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
             return {
                 setFilter: (d: any) => {
                     gridRef.current.setFilter(d);
+                },
+                refresh: () => {
+                    gridRef.current.refresh();
                 }
             };
         }, [columns, endPoint]);

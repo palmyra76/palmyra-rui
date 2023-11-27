@@ -39,7 +39,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
   const {
     setQueryFilter, setQuickSearch, setSortColumns,
-    gotoPage, setPageSize, getPageNo,
+    gotoPage, setPageSize, getPageNo, refreshData,
     data, totalRecords, pageSizeOptions, filter, queryLimit } = useServerQuery(props);
 
 
@@ -47,7 +47,10 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   useImperativeHandle(currentRef, () => {
     return {
       setFilter: (d: any) => {
-
+        setQueryFilter(d);
+      },
+      refresh: () => {
+        refreshData();
       }
     };
   }, []);
