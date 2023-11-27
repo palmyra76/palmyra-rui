@@ -36,6 +36,7 @@
     flex-wrap: wrap;
 }
 
+/* -- Palmyra Form Field Group Columns & Colspan Alignment -- */
 .palmyra-field-group-container {
     width: 100% !important;
     display: flex;
@@ -60,12 +61,79 @@
 }
 
 .palmyra-field-group-container-3columns .palmyra-form-field-container {
-    width: calc(33% - 30px);
+    width: calc(33% - 0px);
+}
+
+.palmyra-field-group-container-3columns .palmyra-form-field-container-2colspan {
+    width: 67%;
+    padding: 10px 20px 10px 20px;
+}
+
+.palmyra-field-group-container-3columns .palmyra-form-field-container-2colspan .palmyra-form-field-label {
+    width: 19%;
+}
+
+.palmyra-field-group-container-3columns .palmyra-form-field-container-2colspan .palmyra-form-field-data {
+    width: 81%;
+}
+
+.palmyra-field-group-container-3columns .palmyra-form-field-container-3colspan {
+    width: 100%;
+    padding: 10px 25px 10px 20px;
+}
+
+.palmyra-field-group-container-3columns .palmyra-form-field-container-3colspan .palmyra-form-field-label {
+    width: 13%;
+}
+
+.palmyra-field-group-container-3columns .palmyra-form-field-container-3colspan .palmyra-form-field-data {
+    width: 90%;
 }
 
 .palmyra-field-group-container-4columns .palmyra-form-field-container {
-    width: calc(25% - 30px);
+    width: calc(25% - 5px);
 }
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-2colspan {
+    width: 50%;
+    padding: 10px 20px 10px 20px;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-2colspan .palmyra-form-field-label {
+    width: 19%;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-2colspan .palmyra-form-field-data {
+    width: 81%;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-3colspan {
+    width: 80%;
+    padding: 10px 95px 10px 20px;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-3colspan .palmyra-form-field-label {
+    width: 13%;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-3colspan .palmyra-form-field-data {
+    width: 90%;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-4colspan {
+    width: 100%;
+    padding: 10px 30px 10px 20px;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-4colspan .palmyra-form-field-label {
+    width: 10%;
+}
+
+.palmyra-field-group-container-4columns .palmyra-form-field-container-4colspan .palmyra-form-field-data {
+    width: 95%;
+}
+
+/* -- Palmyra Form Field Group Columns & Colspan Alignment -- */
 
 .palmyra-form-field-container-2column {
     width: calc(50% - 30px) !important;
