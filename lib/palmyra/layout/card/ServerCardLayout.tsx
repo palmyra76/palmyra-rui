@@ -69,7 +69,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
         <div>
             <div className="card-page-container" >
                 {children}
-                <div className='card-container'>
+                <div>
                     <div className='card-header'>
                         <div className='card-filter'>
                             {visibleFilter && (
@@ -105,7 +105,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                         </div>
                     </div>
 
-                    <div className="card-wrapper" >
+                    <div>
                         <CardLayout Child={Child} childKeyProvider={listKeyProvider}
                             dataList={data} childProps={childProps} EmptyChild={props.EmptyChild}
                         ></CardLayout>
