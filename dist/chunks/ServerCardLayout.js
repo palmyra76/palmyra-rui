@@ -2568,7 +2568,7 @@ const er = (e) => {
   }, v = 200, s = !!c, M = !!t.quickSearch;
   return /* @__PURE__ */ i("div", { children: /* @__PURE__ */ H("div", { className: "card-page-container", children: [
     n,
-    /* @__PURE__ */ H("div", { className: "card-container", children: [
+    /* @__PURE__ */ H("div", { children: [
       /* @__PURE__ */ H("div", { className: "card-header", children: [
         /* @__PURE__ */ i("div", { className: "card-filter", children: M && /* @__PURE__ */ i(
           He,
@@ -2597,7 +2597,7 @@ const er = (e) => {
           }
         ) })
       ] }),
-      /* @__PURE__ */ i("div", { className: "card-wrapper", children: /* @__PURE__ */ i(
+      /* @__PURE__ */ i("div", { children: /* @__PURE__ */ i(
         Sr,
         {
           Child: o,
