@@ -125,7 +125,7 @@
 }
 
 /* grid button  */
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+.grid-header-button .MuiButton-root {
   min-width: auto !important;
   width: auto;
 }
