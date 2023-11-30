@@ -1,4 +1,4 @@
-import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, useState } from 'react';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerCheckboxDefinition } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
@@ -9,7 +9,7 @@ import { LookupStore } from '../../store';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 
-function getArrayData(d) {    
+function getArrayData(d) {
     if (d) {
         if (Array.isArray(d))
             return d;
@@ -29,6 +29,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
 
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
+    const [_selectAll, setSelectAll] = useState(false);
     const values = getArrayData(fieldManager.data);
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
@@ -79,7 +80,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
 
     function _updateData(value: any, checked: any) {
         const currentData = getArrayData(fieldManager.data);
-        var index = currentData.indexOf(value);        
+        var index = currentData.indexOf(value);
         if (checked) {
             if (index < 0)
                 currentData.push(value);
@@ -88,6 +89,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
                 currentData.splice(index, 1);
             }
         }
+
         eventListeners.onValueChange(currentData.toString())
     }
 
@@ -102,9 +104,27 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
         return values.includes(skey);
     }
 
+    const handleSelectAll = (event: any) => {
+        const checked = event.target.checked;
+        setSelectAll(checked);
+        var allData = [];
+        if (checked) {
+            options.map((option: any) => {
+                allData.push(idAccessor(option));
+            })
+        }
+        eventListeners.onValueChange(allData.toString())
+    }
+
     return (<div className={props.className}>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
+            <div>
+                {props.hideSelectAll ? (
+                    <></>
+                ) : (<FormControlLabel
+                    control={<Checkbox onChange={handleSelectAll} />} label="Select All" />)}
+            </div>
             <FormControl className='MuiServerCheckBoxFormControl'
                 fullWidth error={error.status} {...inputProps}>
                 {options ?

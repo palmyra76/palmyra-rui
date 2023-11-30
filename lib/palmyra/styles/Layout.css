@@ -70,20 +70,22 @@ body {
 }
 
 
-.branchBox div.MuiServerCheckBoxFormControl{
+.branchBox div.MuiServerCheckBoxFormControl {
     width: 100%;
     display: unset !important;
 }
 
-.branchBox div.MuiServerCheckBoxFormControl>:nth-child(2n-1)
-{
+.branchBox div.MuiServerCheckBoxFormControl>:nth-child(2n-1) {
     width: 49%;
     float: left;
 }
 
 
-.branchBox div.MuiServerCheckBoxFormControl>:nth-child(2n)
-{
+.branchBox div.MuiServerCheckBoxFormControl>:nth-child(2n) {
     width: 49%;
     float: left;
+}
+
+.branchBox .palmyra-form-field-data {
+    display: inline-block;
 }
