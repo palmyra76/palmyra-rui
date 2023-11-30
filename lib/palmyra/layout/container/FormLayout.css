@@ -154,3 +154,7 @@
 .MuiFormHelperText-root {
     margin-left: 0 !important;
 }
+
+.branchBox .palmyra-form-field-data {
+    display: inline-block;
+}
