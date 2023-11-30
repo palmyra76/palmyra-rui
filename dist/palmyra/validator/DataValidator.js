@@ -4502,7 +4502,7 @@ function Oi(t, e) {
   e.default = fn, t.exports = e.default, t.exports.default = e.default;
 })(st, st.exports);
 var Bi = st.exports;
-const j = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), bi = (t) => {
+const j = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), Yi = (t) => {
   let e = {};
   for (var l in t) {
     var s = t[l];
@@ -4513,7 +4513,7 @@ const j = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.tes
 }, Fi = (t) => {
   var n, o;
   let e = [], l = t.required;
-  if (t.required == !0 && Ki(t)) {
+  if (t.required == !0 && bi(t)) {
     var s = ((n = t.errorMessage) == null ? void 0 : n.required) || "This field is mandatory";
     e.push(He(ki, s));
   }
@@ -4593,7 +4593,7 @@ const j = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.tes
       case "time":
         return j.isTime;
       case "number":
-        return j.isNumeric;
+        return Ki;
       case "email":
         return j.isEmail;
       case "mobilePhone":
@@ -4617,14 +4617,21 @@ const j = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.tes
       case "oneSpecialChar":
         return Gi;
       case "float":
-        return j.isFloat;
+        return Wi;
     }
   return fa;
 }, fa = () => !0, Hi = (t) => /^(.*[a-z].*)$/.test(t), Ui = (t) => /^(.*[A-Z].*)$/.test(t), Gi = (t) => /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(t), Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? j.isEmpty(t) : !t, ki = (t) => !Pa(t);
 function He(t, e) {
   return (l) => t.call(null, l) ? { status: !0, message: "" } : { status: !1, message: e };
 }
-function Ki(t) {
+const Ki = (t) => {
+  const e = typeof t == "number" ? t.toString() : t;
+  return j.isNumeric(e);
+}, Wi = (t) => {
+  const e = typeof t == "number" ? t.toString() : t;
+  return j.isFloat(e);
+};
+function bi(t) {
   switch (t.type) {
     case "switch":
       return !1;
@@ -4634,5 +4641,5 @@ function Ki(t) {
 }
 export {
   Fi as default,
-  bi as getValidators
+  Yi as getValidators
 };

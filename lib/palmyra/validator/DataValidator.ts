@@ -145,7 +145,7 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
             case 'time':
                 return validator.isTime;
             case 'number':
-                return validator.isNumeric;
+                return isNumeric;
             case 'email':
                 return validator.isEmail;
             case 'mobilePhone':
@@ -169,7 +169,7 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
             case 'oneSpecialChar':
                 return oneSpecialChar;
             case 'float':
-                return validator.isFloat;
+                return isFloat;
         }
     }
     return noopValid;
@@ -222,6 +222,16 @@ function constructMethod(func, message) {
     };
 }
 
+const isNumeric = (val: any) => {
+    const v = (typeof val == "number" ? val.toString() : val)
+    return validator.isNumeric(v);
+}
+
+const isFloat = (val: any) => {
+    const v = (typeof val == "number" ? val.toString() : val)
+    return validator.isFloat(v);
+}
+
 export default validate;
 
 export { getValidators };
@@ -236,3 +246,4 @@ function isRequiredSupported(format: FieldDefinition) {
     }
     return true;
 }
+
