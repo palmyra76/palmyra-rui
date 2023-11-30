@@ -168,6 +168,8 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
                 return oneUpperCase;
             case 'oneSpecialChar':
                 return oneSpecialChar;
+            case 'float':
+                return validator.isFloat;
         }
     }
     return noopValid;

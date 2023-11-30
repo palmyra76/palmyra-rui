@@ -422,8 +422,8 @@ var Ge = Ct.exports;
         max: 30
       }))
         return !1;
-      for (var k = F.split("."), j = 0; j < k.length; j++)
-        if (!v.test(k[j]))
+      for (var k = F.split("."), ee = 0; ee < k.length; ee++)
+        if (!v.test(k[ee]))
           return !1;
     }
     if (S.ignore_max_length === !1 && (!(0, s.default)(Z, {
@@ -449,8 +449,8 @@ var Ge = Ct.exports;
     }
     if (Z[0] === '"')
       return Z = Z.slice(1, Z.length - 1), S.allow_utf8_local_part ? E.test(Z) : g.test(Z);
-    for (var le = S.allow_utf8_local_part ? m : d, ne = Z.split("."), ee = 0; ee < ne.length; ee++)
-      if (!le.test(ne[ee]))
+    for (var le = S.allow_utf8_local_part ? m : d, ne = Z.split("."), te = 0; te < ne.length; te++)
+      if (!le.test(ne[te]))
         return !1;
     return !(S.blacklisted_chars && Z.search(new RegExp("[".concat(S.blacklisted_chars, "]+"), "g")) !== -1);
   }
@@ -560,13 +560,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     if (F = h.split("@"), F.length > 1) {
       if (S.disallow_auth || F[0] === "" || (x = F.shift(), x.indexOf(":") >= 0 && x.split(":").length > 2))
         return !1;
-      var j = x.split(":"), W = u(j, 2), le = W[0], ne = W[1];
+      var ee = x.split(":"), W = u(ee, 2), le = W[0], ne = W[1];
       if (le === "" && ne === "")
         return !1;
     }
     P = F.join("@"), Z = null, k = null;
-    var ee = P.match(E);
-    if (ee ? (O = "", k = ee[1], Z = ee[2] || null) : (F = P.split(":"), O = F.shift(), F.length && (Z = F.join(":"))), Z !== null && Z.length > 0) {
+    var te = P.match(E);
+    if (te ? (O = "", k = te[1], Z = te[2] || null) : (F = P.split(":"), O = F.shift(), F.length && (Z = F.join(":"))), Z !== null && Z.length > 0) {
       if (L = parseInt(Z, 10), !/^[0-9]+$/.test(Z) || L <= 0 || L > 65535)
         return !1;
     } else if (S.require_port)
@@ -756,8 +756,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         var k = parseInt(I.y, 10);
         if (isNaN(k))
           return !1;
-        var j = (/* @__PURE__ */ new Date()).getFullYear() % 100;
-        k < j ? F = "20".concat(I.y) : F = "19".concat(I.y);
+        var ee = (/* @__PURE__ */ new Date()).getFullYear() % 100;
+        k < ee ? F = "20".concat(I.y) : F = "19".concat(I.y);
       }
       return new Date("".concat(F, "-").concat(I.m, "-").concat(I.d)).getDate() === +I.d;
     }
@@ -2565,7 +2565,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     var R = parseInt(c.slice(0, 8), 10) % 23;
     return c[8] === D[R];
   }
-  function j(f) {
+  function ee(f) {
     var c = f.slice(1, 3), A = f.slice(0, 1);
     switch (A) {
       case "1":
@@ -2633,7 +2633,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     var c = parseInt(f.slice(0, 10), 10) % 511, A = parseInt(f.slice(10, 13), 10);
     return c === A;
   }
-  function ee(f) {
+  function te(f) {
     var c = "".concat(f.slice(0, 4), "/").concat(f.slice(4, 6), "/").concat(f.slice(6, 8));
     return !(0, a.default)(c, "YYYY/MM/DD") || !i.luhnCheck(f.slice(0, 12)) ? !1 : i.verhoeffCheck("".concat(f.slice(0, 11)).concat(f[12]));
   }
@@ -2968,11 +2968,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     "en-IE": P,
     "en-US": F,
     "es-ES": k,
-    "et-EE": j,
+    "et-EE": ee,
     "fi-FI": W,
     "fr-BE": le,
     "fr-FR": ne,
-    "fr-LU": ee,
+    "fr-LU": te,
     "hr-HR": ke,
     "hu-HU": Ke,
     "it-IT": xe,
@@ -4362,7 +4362,7 @@ function Oi(t, e) {
   Object.defineProperty(e, "__esModule", {
     value: !0
   }), e.default = void 0;
-  var s = M(ta), i = M(da), a = M(gn), r = M(An), u = M(hn), n = M(Sn), o = M($n), d = M(pa), v = M(mn), g = M(Mn), m = M(Ge), E = M(yn), p = M(ra), _ = M(_a), $ = M(In), h = M(Rn), S = M(En), I = ce($e), x = ce(me), O = M(Zn), P = M(Fn), L = M(Tn), Z = M(wn), F = M(Hn), k = M(Un), j = M(Gn), W = M(_e), le = M(ge), ne = M(Vn), ee = M(zn), ke = M(Xn), Ke = M(Qn), Ce = M(aa), xe = ce(pe), We = M(eu), be = M(ha), qe = M(tu), Ye = M(ru), Ve = M(au), ze = M(nu), Je = M(uu), Xe = M(iu), Pe = ce(Me), Qe = M(hu), J = M(Su), X = M($u), Le = M(mu), oe = M(Mu), je = M(yu), f = M(Iu), c = M(va), A = M(Ru), D = M(Eu), R = M(Du), C = M(Cu), B = M(xu), N = M(ma), T = M(Pu), H = M(Lu), se = M(Ou), ae = M(Bu), re = M(Nu), he = M(Zu), Oe = M(Uu), ue = ce(ye), de = M(bu), Be = M(qu), La = M(Yu), na = Ie, Oa = M(ju), Ba = M(ei), Na = M(ti), Za = M(Ae), Fa = M(ri), Ta = M(Re), wa = M(li), Ha = M(si), Ua = M($a), Ga = M(fi), ka = M(oi), Ka = M(di), Wa = M(ci), ba = M(vi), ua = ce(Ee), qa = M(Ra), Ya = M(Ia), Va = M(Ea), za = M(hi), Ja = M(Si), Xa = M($i), Qa = M(mi), ja = M(Da), en = M(Mi), tn = M(yi), rn = M(Ii), an = M(Ri), nn = M(Ei), un = M(De);
+  var s = M(ta), i = M(da), a = M(gn), r = M(An), u = M(hn), n = M(Sn), o = M($n), d = M(pa), v = M(mn), g = M(Mn), m = M(Ge), E = M(yn), p = M(ra), _ = M(_a), $ = M(In), h = M(Rn), S = M(En), I = ce($e), x = ce(me), O = M(Zn), P = M(Fn), L = M(Tn), Z = M(wn), F = M(Hn), k = M(Un), ee = M(Gn), W = M(_e), le = M(ge), ne = M(Vn), te = M(zn), ke = M(Xn), Ke = M(Qn), Ce = M(aa), xe = ce(pe), We = M(eu), be = M(ha), qe = M(tu), Ye = M(ru), Ve = M(au), ze = M(nu), Je = M(uu), Xe = M(iu), Pe = ce(Me), Qe = M(hu), J = M(Su), X = M($u), Le = M(mu), oe = M(Mu), je = M(yu), f = M(Iu), c = M(va), A = M(Ru), D = M(Eu), R = M(Du), C = M(Cu), B = M(xu), N = M(ma), T = M(Pu), H = M(Lu), se = M(Ou), ae = M(Bu), re = M(Nu), he = M(Zu), Oe = M(Uu), ue = ce(ye), de = M(bu), Be = M(qu), La = M(Yu), na = Ie, Oa = M(ju), Ba = M(ei), Na = M(ti), Za = M(Ae), Fa = M(ri), Ta = M(Re), wa = M(li), Ha = M(si), Ua = M($a), Ga = M(fi), ka = M(oi), Ka = M(di), Wa = M(ci), ba = M(vi), ua = ce(Ee), qa = M(Ra), Ya = M(Ia), Va = M(Ea), za = M(hi), Ja = M(Si), Xa = M($i), Qa = M(mi), ja = M(Da), en = M(Mi), tn = M(yi), rn = M(Ii), an = M(Ri), nn = M(Ei), un = M(De);
   function ia() {
     if (typeof WeakMap != "function")
       return null;
@@ -4417,11 +4417,11 @@ function Oi(t, e) {
     isPort: L.default,
     isLowercase: Z.default,
     isUppercase: F.default,
-    isAscii: j.default,
+    isAscii: ee.default,
     isFullWidth: W.default,
     isHalfWidth: le.default,
     isVariableWidth: ne.default,
-    isMultibyte: ee.default,
+    isMultibyte: te.default,
     isSemVer: ke.default,
     isSurrogatePair: Ke.default,
     isInt: Ce.default,
@@ -4502,7 +4502,7 @@ function Oi(t, e) {
   e.default = fn, t.exports = e.default, t.exports.default = e.default;
 })(st, st.exports);
 var Bi = st.exports;
-const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), bi = (t) => {
+const j = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(t), Zi = (t) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(t), bi = (t) => {
   let e = {};
   for (var l in t) {
     var s = t[l];
@@ -4587,38 +4587,40 @@ const te = /* @__PURE__ */ dn(Bi), Ni = (t) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.te
       case "string":
         return fa;
       case "alphabets":
-        return te.isAlpha;
+        return j.isAlpha;
       case "date":
-        return te.isDate;
+        return j.isDate;
       case "time":
-        return te.isTime;
+        return j.isTime;
       case "number":
-        return te.isNumeric;
+        return j.isNumeric;
       case "email":
-        return te.isEmail;
+        return j.isEmail;
       case "mobilePhone":
-        return te.isMobilePhone;
+        return j.isMobilePhone;
       case "port":
-        return te.isPort;
+        return j.isPort;
       case "ip":
-        return te.isIP;
+        return j.isIP;
       case "fqdn":
-        return te.isFQDN;
+        return j.isFQDN;
       case "folder":
         return Ni;
       case "portrange":
         return Zi;
       case "password":
-        return te.isStrongPassword;
+        return j.isStrongPassword;
       case "oneLowerCase":
         return Hi;
       case "oneUpperCase":
         return Ui;
       case "oneSpecialChar":
         return Gi;
+      case "float":
+        return j.isFloat;
     }
   return fa;
-}, fa = () => !0, Hi = (t) => /^(.*[a-z].*)$/.test(t), Ui = (t) => /^(.*[A-Z].*)$/.test(t), Gi = (t) => /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(t), Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? te.isEmpty(t) : !t, ki = (t) => !Pa(t);
+}, fa = () => !0, Hi = (t) => /^(.*[a-z].*)$/.test(t), Ui = (t) => /^(.*[A-Z].*)$/.test(t), Gi = (t) => /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(t), Pa = (t) => t == null || t == null ? !0 : typeof t == "number" ? !1 : typeof t == "string" ? j.isEmpty(t) : !t, ki = (t) => !Pa(t);
 function He(t, e) {
   return (l) => t.call(null, l) ? { status: !0, message: "" } : { status: !1, message: e };
 }
