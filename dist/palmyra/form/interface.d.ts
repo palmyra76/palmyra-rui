@@ -8,7 +8,7 @@ import { IFieldEventListener } from ".";
  * This definitions will cater to the Form Definition format
  *
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange";
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float";
 type InputType = string | number;
 type strings = string | string[];
 type numbers = number | number[];
@@ -30,6 +30,7 @@ interface AttributeDefinition {
     value?: InputType;
     required?: boolean;
     readonly?: boolean;
+    hideSelectAll?: boolean;
     mutant?: boolean;
     visible?: boolean;
     disabled?: boolean;

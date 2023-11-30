@@ -11,7 +11,7 @@ import { IFieldEventListener } from ".";
  */
 type FieldType = "string" | "number"
     | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange";
+    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float";
 
 type InputType = string | number;
 
