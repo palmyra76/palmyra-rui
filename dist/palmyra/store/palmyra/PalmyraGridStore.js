@@ -1,9 +1,9 @@
-var d = Object.defineProperty;
-var u = (o, t, r) => t in o ? d(o, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : o[t] = r;
-var n = (o, t, r) => (u(o, typeof t != "symbol" ? t + "" : t, r), r);
+var a = Object.defineProperty;
+var h = (r, t, o) => t in r ? a(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
+var s = (r, t, o) => (h(r, typeof t != "symbol" ? t + "" : t, o), o);
 import "../../../chunks/ServerCardLayout.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
-import s from "axios";
+import m from "axios";
 import "react/jsx-runtime";
 import "@mui/material";
 import "../../layout/container/SectionContainer.js";
@@ -13,7 +13,7 @@ import "react-router-dom";
 /* empty css                        */import "@emotion/styled";
 import "@mui/x-tree-view";
 /* empty css                            */import "../../layout/card/CardLayout.js";
-import { StringFormat as m } from "../../utils/StringUtil.js";
+import { StringFormat as d } from "../../utils/StringUtil.js";
 import "../../utils/pubsub/topic.js";
 import "dayjs";
 import "../../mui/form/MuiDatePicker.js";
@@ -26,16 +26,16 @@ import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../form/PalmyraForm.js";
-class D {
-  constructor(t, r, e) {
-    n(this, "request");
-    n(this, "target");
-    n(this, "endPoint");
-    n(this, "idProperty");
-    this.request = t, this.target = t.target, this.endPoint = r, this.idProperty = e;
+class J {
+  constructor(t, o, e) {
+    s(this, "request");
+    s(this, "target");
+    s(this, "endPoint");
+    s(this, "idProperty");
+    this.request = t, this.target = t.target, this.endPoint = o, this.idProperty = e;
   }
   getClient() {
-    return s;
+    return m;
   }
   getEndPoint() {
     return this.endPoint;
@@ -51,21 +51,21 @@ class D {
     this.endPoint.get;
   }
   query(t) {
-    var r = this.target + this.queryUrl(), e = m(r, t.options);
-    const p = { params: h(t) };
-    return s.get(e, p).then((a) => a.data);
+    var o = this.target + this.queryUrl(), e = d(o, t.options);
+    const n = { params: l(t) };
+    return m.get(e, n).then((p) => p.data);
   }
   queryLayout(t) {
-    var r = this.target + this.queryUrl(), e = m(r, {});
-    return s.get(e, {
+    var o = this.target + this.queryUrl(), e = d(o, {});
+    return m.get(e, {
       headers: {
         action: "schema"
       }
     }).then((i) => i.data);
   }
-  get(t, r) {
-    var e = this.target + this.queryUrl(), i = m(e, t.options || {});
-    return s.get(i).then((p) => p.data);
+  get(t, o) {
+    var e = this.target + this.queryUrl(), i = d(e, t.options || {});
+    return m.get(i).then((n) => n.data);
   }
   getIdentity(t) {
     throw new Error("Method not implemented.");
@@ -74,10 +74,10 @@ class D {
     return "id";
   }
 }
-function h(o) {
-  const t = Object.keys((o == null ? void 0 : o.sortOrder) || {}).map((i) => (o.sortOrder[i] === "asc" ? "+" : "-") + i), r = !!o.total;
-  return { ...o.filter || {}, _total: r, _orderBy: t.length ? t.join(",") : [] };
+function l(r) {
+  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((p) => (r.sortOrder[p] === "asc" ? "+" : "-") + p), o = !!r.total, e = r.filter || {}, i = r.offset || 0, n = r.limit || 15;
+  return { ...e, _total: o, _orderBy: t.length ? t.join(",") : [], _offset: i, _limit: n };
 }
 export {
-  D as PalmyraGridStore
+  J as PalmyraGridStore
 };
