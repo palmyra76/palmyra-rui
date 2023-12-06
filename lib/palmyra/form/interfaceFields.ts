@@ -24,6 +24,7 @@ interface IMutateOptions {
 interface IGrid {
     setFilter: (d: any) => void
     gotoPage: (p: number) => void
+    refresh: () => void
     nextPage: () => void
     prevPage: () => void
 }
