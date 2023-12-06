@@ -16,6 +16,7 @@ import FormFieldContainer from "../../lib/palmyra/layout/container/FieldGroupCon
 import MuiPassword from "../../lib/palmyra/mui/form/MuiPassword";
 import { createFormHelper } from "../../lib/palmyra/form/PalmyraFormManager";
 import MuiServerCheckBox from "../../lib/palmyra/mui/form/MuiServerCheckBox";
+import MuiDateRangePicker from "../../lib/palmyra/mui/form/MuiDateRangePicker";
 
 
 const HomePage = () => {
@@ -109,6 +110,7 @@ const HomePage = () => {
                         <MuiDateTimePicker attribute="time"
                             title="Time"
                             readonly={true} />
+
                         <MuiTextArea attribute="address" title="Address"
                             length={{ min: 3, message: "Minimum of 3 letters" }}
                             required={true}
@@ -135,6 +137,11 @@ const HomePage = () => {
                     required={true} label="Server Checkbox" className="branchBox"
                     lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                     storeOptions={{ endPoint: "/api/palmyra/masterdata/" }} />
+
+                <MuiDateRangePicker attribute="dobs" variant="outlined"
+                    title="Date of Birth" />
+
+
                 <br />
                 <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 

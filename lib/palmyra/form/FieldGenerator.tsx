@@ -9,6 +9,7 @@ import MuiDateTimePicker from '../mui/form/MuiDateTimePicker';
 import { MuiPassword, MuiServerLookup } from '../mui';
 import MuiCheckBox from '../mui/form/MuiCheckBox';
 import MuiSwitch from '../mui/form/MuiSwitch';
+import MuiDateRangePicker from '../mui/form/MuiDateRangePicker';
 
 const getInvalidField = (props: FieldRequest) => {
     const { fieldDef } = props;
@@ -55,7 +56,7 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
         case 'multiSelect':
             return getTobeImplemented();
         case 'dateRange':
-            return getTobeImplemented();
+            return getReactField(props, MuiDateRangePicker);
         default:
             return getInvalidField(props);
     }

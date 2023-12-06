@@ -1,5 +1,5 @@
 import "react";
-import { c as C } from "../../chunks/ServerCardLayout.js";
+import { c as L } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
@@ -12,6 +12,15 @@ import "@mui/x-tree-view";
 /* empty css                         */import "../layout/card/CardLayout.js";
 import "../utils/pubsub/topic.js";
 import "../utils/pubsub/PubSubHelper.js";
+import "react-chartjs-2";
+import "../chart/chartjs/LineChart.js";
+import "../chart/chartjs/BarChart.js";
+import "../chart/chartjs/PieChart.js";
+import "../chart/chartjs/DoughnutChart.js";
+import "../chart/chartjs/PolarAreaChart.js";
+import "../chart/chartjs/RadarChart.js";
+import "../chart/chartjs/ScatterChart.js";
+import "../chart/chartjs/BubbleChart.js";
 import "dayjs";
 import "../mui/form/MuiDatePicker.js";
 import "../mui/form/MuiDateTimePicker.js";
@@ -24,5 +33,5 @@ import "../mui/form/MuiSwitch.js";
 import "../mui/form/MuiPassword.js";
 import "./PalmyraForm.js";
 export {
-  C as default
+  L as default
 };
