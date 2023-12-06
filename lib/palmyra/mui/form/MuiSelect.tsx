@@ -11,6 +11,7 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
     const currentRef = ref ? ref : useRef(null);
     const { options } = props;
     const variant = props.variant || 'standard';
+    const autoFocus = props.autoFocus || false;
 
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'select', currentRef);
@@ -62,7 +63,7 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
             <FormControl variant={variant} fullWidth error={error.status}>
                 {props.label ?
                     <InputLabel>{props.label}</InputLabel> : <></>}
-                <Select {...inputProps} {...callbacks} inputRef={(i) => { inputRef.current = i; }}>
+                <Select {...inputProps} {...callbacks} inputRef={(i) => { inputRef.current = i; }} autoFocus={autoFocus}>
                     {options ?
                         Object.keys(options).map((key, index) => (
                             <MenuItem key={index} value={key}>{options[key]}</MenuItem>

@@ -14,6 +14,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
     const row: boolean = props.flexDirection != 'column';
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
+    const autoFocus = props.autoFocus || false;
 
     const inputRef: any = useRef(null);
 
@@ -63,7 +64,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
                     {options ?
                         Object.keys(options).map((key, index) => (
                             <FormControlLabel key={index} value={key}
-                                control={<Radio inputRef={inputRef} />} label={options[key]} />
+                                control={<Radio inputRef={inputRef} autoFocus={autoFocus} />} label={options[key]} />
                         ))
                         : <div>No options provided</div>}
                 </RadioGroup>

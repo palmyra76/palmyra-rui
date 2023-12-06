@@ -1,79 +1,80 @@
-import { jsx as o, Fragment as M, jsxs as k } from "react/jsx-runtime";
-import { forwardRef as L, useContext as O, useRef as b, useImperativeHandle as R } from "react";
-import { FormControl as B, FormControlLabel as V, Checkbox as j, FormHelperText as y } from "@mui/material";
-import { copyMuiOptions as w, getFieldLabel as A } from "./MuiUtil.js";
-import { FieldManagerContext as H } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import N from "./FieldDecorator.js";
-const z = L(function(t, d) {
-  const C = O(H), m = d || b(null), { options: s } = t, n = C(t, "checkbox", m), { mutateOptions: h, setMutateOptions: g } = n, x = n.data ? n.data.split(",") : [], v = t.flexDirection || "row", l = n.error, i = n.eventListeners, a = b(null);
-  R(m, () => ({
+import { jsx as a, Fragment as p, jsxs as L } from "react/jsx-runtime";
+import { forwardRef as O, useContext as R, useRef as b, useImperativeHandle as B } from "react";
+import { FormControl as V, FormControlLabel as j, Checkbox as y, FormHelperText as w } from "@mui/material";
+import { copyMuiOptions as A, getFieldLabel as H } from "./MuiUtil.js";
+import { FieldManagerContext as N } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import P from "./FieldDecorator.js";
+const E = O(function(t, d) {
+  const C = R(N), f = d || b(null), { options: s } = t, o = C(t, "checkbox", f), { mutateOptions: h, setMutateOptions: g } = o, x = o.data ? o.data.split(",") : [], F = t.flexDirection || "row", l = o.error, i = o.eventListeners, v = t.autoFocus || !1, r = b(null);
+  B(f, () => ({
     focus() {
-      a.current.checked = !0, a.current.focus();
+      r.current.checked = !0, r.current.focus();
     },
     isValid() {
       return !l.status;
     },
     assignAttribute(e) {
-      a.current.assignAttribute(e);
+      r.current.assignAttribute(e);
     },
     clear() {
-      n.setData("");
+      o.setData("");
     },
     setValue(e) {
-      n.setData(e);
+      o.setData(e);
     },
     setVisible(e) {
       g({ visible: e });
     }
   }), []);
-  var f = w(t, n.data, t.label);
-  t.readonly && (f.inputProps = { readOnly: !0 });
-  function F(e, c) {
-    const r = n.data ? n.data.split(",") : [];
-    var u = r.indexOf(e);
-    c ? u < 0 && r.push(e) : u >= 0 && r.splice(u, 1), i.onValueChange(r.toString());
+  var m = A(t, o.data, t.label);
+  t.readonly && (m.inputProps = { readOnly: !0 });
+  function D(e, c) {
+    const n = o.data ? o.data.split(",") : [];
+    var u = n.indexOf(e);
+    c ? u < 0 && n.push(e) : u >= 0 && n.splice(u, 1), i.onValueChange(n.toString());
   }
-  var p = {
+  var M = {
     onBlur: i.onBlur,
     onFocus: i.onFocus,
     onChange: (e) => {
-      F(e.target.value, e.target.checked);
+      D(e.target.value, e.target.checked);
     }
   };
-  const D = (e) => x.includes(e);
-  return console.log(a), /* @__PURE__ */ o(M, { children: h.visible && /* @__PURE__ */ o(
-    N,
+  const k = (e) => x.includes(e);
+  return console.log(r), /* @__PURE__ */ a(p, { children: h.visible && /* @__PURE__ */ a(
+    P,
     {
-      label: A(t),
+      label: H(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ k(B, { fullWidth: !0, error: l.status, ...f, style: { flexDirection: v }, children: [
-        s ? Object.keys(s).map((e, c) => /* @__PURE__ */ o(
-          V,
+      children: /* @__PURE__ */ L(V, { fullWidth: !0, error: l.status, ...m, style: { flexDirection: F }, children: [
+        s ? Object.keys(s).map((e, c) => /* @__PURE__ */ a(
+          j,
           {
             value: e,
-            control: /* @__PURE__ */ o(
-              j,
+            control: /* @__PURE__ */ a(
+              y,
               {
-                ...p,
-                checked: D(e),
+                ...M,
+                checked: k(e),
+                autoFocus: v,
                 disabled: t.readonly,
-                inputRef: (r) => {
-                  c == 0 && (a.current = r);
+                inputRef: (n) => {
+                  c == 0 && (r.current = n);
                 }
               }
             ),
             label: s[e]
           },
           e
-        )) : /* @__PURE__ */ o("div", { children: "No options provided" }),
-        /* @__PURE__ */ o(y, { className: "form-error-text", children: l.message })
+        )) : /* @__PURE__ */ a("div", { children: "No options provided" }),
+        /* @__PURE__ */ a(w, { className: "form-error-text", children: l.message })
       ] })
     }
   ) });
 });
 export {
-  z as default
+  E as default
 };

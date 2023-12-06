@@ -132,6 +132,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         const eventListeners: IEventListeners = fieldManager.eventListeners;
         const error: IFormFieldError = fieldManager.error;
         const variant = props.variant || "standard";
+        const autoFocus = props.autoFocus || false;
 
         if (mutateOptions.readonly) {
             inputProps.inputProps = { readOnly: true };
@@ -154,6 +155,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                         {...inputProps}
                         MenuProps={{ autoFocus: false }}
                         value={data}
+                        autoFocus={autoFocus}
                         onOpen={(e) => { refreshOptions() }}
                         {...callbacks}>
                         {hasMoreRecords() ?

@@ -17,6 +17,7 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
     const data: any = fieldManager.data;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const variant = props.variant || 'standard';
+    const autoFocus = props.autoFocus || false;
     const inputRef: any = useRef(null);
 
     const toDayjs = () => {
@@ -67,12 +68,13 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
                     readOnly={props.readonly}
                     format={displayFormat}
                     {...callbacks}
+                    autoFocus={autoFocus}
                     slotProps={{
                         textField: {
                             error: error.status,
                             helperText: error.message,
                             variant: variant,
-                            fullWidth: true, 
+                            fullWidth: true,
                             inputRef
                         },
                     }}

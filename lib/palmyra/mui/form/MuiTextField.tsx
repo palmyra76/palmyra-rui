@@ -14,6 +14,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const inputRef: any = useRef(null);
     const variant = props.variant || 'standard';
+    const autoFocus = props.autoFocus || false;
 
     useImperativeHandle(currentRef, () => {
         return {
@@ -60,6 +61,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
                 {...callbacks}
                 error={error.status}
                 helperText={error.message}
+                autoFocus={autoFocus}
             />
         </FieldDecorator>}
     </>

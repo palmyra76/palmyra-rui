@@ -17,6 +17,7 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
     const data: any = fieldManager.data;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const variant = props.variant || 'standard';
+    const autoFocus = props.autoFocus || false;
     const inputRef: any = useRef(null);
 
     const toDayjs = () => {
@@ -66,6 +67,7 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
                 <DateTimePicker {...inputProps}
                     readOnly={props.readonly}
                     format={displayFormat}
+                    autoFocus={autoFocus}
                     {...callbacks}
                     slotProps={{
                         textField: {

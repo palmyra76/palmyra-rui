@@ -15,6 +15,8 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const variant = props.variant || 'standard';
+    const autoFocus = props.autoFocus || false;
+
     const inputRef: any = useRef(null);
 
     useImperativeHandle(currentRef, () => {
@@ -71,6 +73,7 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
                 inputRef={inputRef}
                 {...callbacks}
                 error={error.status}
+                autoFocus={autoFocus}
                 helperText={error.message}
             />
         </FieldDecorator>}

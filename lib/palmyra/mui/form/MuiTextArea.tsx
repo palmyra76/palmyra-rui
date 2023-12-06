@@ -13,7 +13,8 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
     const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
-
+    const autoFocus = props.autoFocus || false;
+    
     const inputRef: any = useRef(null);
 
     useImperativeHandle(currentRef, () => {
@@ -59,6 +60,7 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
                 maxRows={5}
                 fullWidth={true}
                 multiline
+                autoFocus={autoFocus}
                 {...inputProps}
                 inputRef={inputRef}
                 {...callbacks}

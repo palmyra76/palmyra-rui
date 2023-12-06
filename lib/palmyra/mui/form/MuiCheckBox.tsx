@@ -15,6 +15,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
     const flexDirection = props.flexDirection || 'row';
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
+    const autoFocus = props.autoFocus || false;
 
     const inputRef: any = useRef(null);
 
@@ -82,7 +83,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
                 {options ?
                     Object.keys(options).map((key, i) => (
                         <FormControlLabel key={key} value={key}
-                            control={<Checkbox {...callbacks} checked={isSelected(key)}
+                            control={<Checkbox {...callbacks} checked={isSelected(key)} autoFocus={autoFocus}
                                 disabled={props.readonly}
                                 inputRef={(r) => { if (0 == i) inputRef.current = r }}
                             />}

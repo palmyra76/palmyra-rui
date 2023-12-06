@@ -1,84 +1,85 @@
-import { jsx as r, Fragment as x, jsxs as L } from "react/jsx-runtime";
-import { forwardRef as y, useContext as w, useRef as b, useMemo as R, useState as S, useEffect as g, useImperativeHandle as j } from "react";
-import { FormControl as A, FormControlLabel as D, Switch as H, FormHelperText as I } from "@mui/material";
-import { copyMuiOptions as P, getFieldLabel as E } from "./MuiUtil.js";
-import N from "./OptionsParser.js";
-import { FieldManagerContext as T } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import q from "./FieldDecorator.js";
-const X = y(function(e, i) {
-  const C = w(T), c = i || b(null), n = C(e, "switch", c), { mutateOptions: k, setMutateOptions: v } = n, l = n.error, F = n.eventListeners, o = R(
-    () => N(e.options, e.name),
+import { jsx as s, Fragment as L, jsxs as y } from "react/jsx-runtime";
+import { forwardRef as w, useContext as R, useRef as b, useMemo as S, useState as j, useEffect as g, useImperativeHandle as A } from "react";
+import { FormControl as D, FormControlLabel as H, Switch as I, FormHelperText as P } from "@mui/material";
+import { copyMuiOptions as E, getFieldLabel as N } from "./MuiUtil.js";
+import T from "./OptionsParser.js";
+import { FieldManagerContext as q } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import z from "./FieldDecorator.js";
+const Y = w(function(e, c) {
+  const C = R(q), u = c || b(null), n = C(e, "switch", u), { mutateOptions: F, setMutateOptions: k } = n, o = n.error, v = n.eventListeners, V = e.autoFocus || !1, l = S(
+    () => T(e.options, e.name),
     [e.options, e.name]
-  ), u = (t, O) => {
-    var h = o.checked.value;
-    return t != null && t != null ? h == t : h == O;
-  }, [a, d] = S(u(n.data, e.defaultValue)), s = b(null);
+  ), i = (t, x) => {
+    var h = l.checked.value;
+    return t != null && t != null ? h == t : h == x;
+  }, [a, d] = j(i(n.data, e.defaultValue)), r = b(null);
   g(() => {
-    d(u(n.data, e.defaultValue));
-  }, [n.data]), j(c, () => ({
+    d(i(n.data, e.defaultValue));
+  }, [n.data]), A(u, () => ({
     focus() {
-      s.current.checked = !0, s.current.focus();
+      r.current.checked = !0, r.current.focus();
     },
     isValid() {
-      return !l.status;
+      return !o.status;
     },
     assignAttribute(t) {
-      s.current.assignAttribute(t);
+      r.current.assignAttribute(t);
     },
     setValue(t) {
       n.setData(t);
     },
     setVisible(t) {
-      v({ visible: t });
+      k({ visible: t });
     }
   }), []);
-  var m = P(e, n.data, e.label);
+  var m = E(e, n.data, e.label);
   e.readonly && (m.inputProps = { readOnly: !0 });
-  const V = () => {
+  const M = () => {
     d(!a);
   };
   g(() => {
-    F.onValueChange(f());
+    v.onValueChange(f());
   }, [a]);
-  const M = () => {
+  const O = () => {
     var t = a ? "checked" : "unchecked";
-    return o[t].title;
+    return l[t].title;
   }, f = () => {
     var t = a ? "checked" : "unchecked";
-    return o[t].value;
+    return l[t].value;
   };
-  return /* @__PURE__ */ r(x, { children: k.visible && /* @__PURE__ */ r(
-    q,
+  return /* @__PURE__ */ s(L, { children: F.visible && /* @__PURE__ */ s(
+    z,
     {
-      label: E(e),
+      label: N(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ L(A, { error: l.status, ...m, children: [
-        /* @__PURE__ */ r(
-          D,
+      children: /* @__PURE__ */ y(D, { error: o.status, ...m, children: [
+        /* @__PURE__ */ s(
+          H,
           {
             value: f(),
             inputRef: (t) => {
-              s.current = t;
+              r.current = t;
             },
-            control: /* @__PURE__ */ r(
-              H,
+            control: /* @__PURE__ */ s(
+              I,
               {
                 checked: a,
-                onClick: V,
-                disabled: e.readonly
+                onClick: M,
+                disabled: e.readonly,
+                autoFocus: V
               }
             ),
-            label: M()
+            label: O()
           }
         ),
-        /* @__PURE__ */ r(I, { className: "form-error-text", children: l.message })
+        /* @__PURE__ */ s(P, { className: "form-error-text", children: o.message })
       ] })
     }
   ) });
 });
 export {
-  X as default
+  Y as default
 };

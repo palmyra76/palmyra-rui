@@ -13,6 +13,7 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: M
     const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
+    const autoFocus = props.autoFocus || false;
 
     const parsedOptions = useMemo(() => parseOptions(props.options, props.name),
         [props.options, props.name]);
@@ -84,7 +85,7 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: M
             <FormControl error={error.status} {...inputProps}>
                 <FormControlLabel value={getValue()} inputRef={(i) => { inputRef.current = i; }}
                     control={<Switch checked={isOn} onClick={toggleStatus}
-                        disabled={props.readonly}
+                        disabled={props.readonly} autoFocus={autoFocus}
                     />}
                     label={getLabel()}
                 />
