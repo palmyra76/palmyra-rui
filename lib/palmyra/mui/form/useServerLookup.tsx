@@ -1,42 +1,14 @@
-import { useRef, useState, useEffect, useMemo, MutableRefObject } from 'react';
+import { useRef, useState, useEffect, MutableRefObject } from 'react';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IServerLookupDefinition } from '../../form/interface';
 import { delay, hasDot } from '../../utils';
 import { LookupStore } from '../../store';
 import { getValueByKey, setValueByKey } from '../../form/FormUtil';
 
-
-import parse from 'autosuggest-highlight/parse';
-import match from 'autosuggest-highlight/match';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
-import { FormControl, FormHelperText, InputAdornment, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
-import { DeleteOutlined, Search } from '@mui/icons-material';
+import { Autocomplete, FormControl, FormHelperText, InputLabel, TextField } from '@mui/material';
 import { IMutateOptions } from '../../form/interfaceFields';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
-
-
-const renderOption = (title: string, inputValue: string) => {
-    if (!title)
-        return;
-
-    const matches = match(title, inputValue, { insideWords: true });
-    const parts = parse(title, matches);
-
-    return (
-        <div>
-            {parts.map((part: any, index: number) => (
-                <span
-                    key={index}
-                    style={{
-                        fontWeight: part.highlight ? 700 : 400,
-                    }}
-                >
-                    {part.text}
-                </span>
-            ))}
-        </div>
-    );
-}
 
 
 const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateOptions, fieldManager: IFormFieldManager) => {
@@ -47,11 +19,13 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     const searchKey = lookupOptions.searchAttribute || labelKey;
     const data = fieldManager.data;
     const total = useRef<number>(0);
-    const selectedOption = useRef(null);
-    const [dv, setDv] = useState(fieldManager.displayValue)
+
+    const [value, setValue] = useState(null);
     const [options, setOptions] = useState<Array<any>>([]);
-    // const [dv, setDv] = useState(fieldManager.displayValue)
     const [searchText, setSearchText] = useState('');
+
+    // const [open, setOpen] = useState(false);
+    // const loading = open && options.length === 0;
 
     const serverQueryOptions: IServerQueryInput = {
         store, endPointVars: props.storeOptions.endPointVars, fetchAll: true,
@@ -65,7 +39,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
 
     const serverResult = serverQuery.data;
 
-    const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data[idKey]);
+    const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data?.[idKey]);
     const labelAccessor = hasDot(labelKey) ? (data: any) => (getValueByKey(labelKey, data)) : (data: any) => (data[labelKey]);
 
     function getSelectedOption(): any {
@@ -75,24 +49,23 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             const displayValue = fieldManager.displayValue || data;
             setValueByKey(labelKey, option, displayValue);
             return option;
+        } else {
+            return null;
         }
     }
 
     useEffect(() => {
-        setDv(fieldManager.displayValue);
-    }, [fieldManager.displayValue])
-
-    useMemo(() => {
         var option: any = getSelectedOption();
         if (option) {
             setOptions([option]);
-            selectedOption.current = option;
         }
-    }, [dv]);
+        setValue(getSelectedOption())
+    }, [fieldManager.displayValue])
+
 
     useEffect(() => {
         const result = serverResult ? [...serverResult] : [];
-        const option = selectedOption.current;
+        const option = value;
         if (result && option && !getMatch(serverResult, idAccessor(option))) {
             result.unshift(option);
         }
@@ -115,9 +88,6 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         delay(refreshOptions);
     }, [searchText]);
 
-    const hasMoreRecords = (): boolean => {
-        return total.current > 2;
-    }
 
     function refreshOptions() {
         if (searchText.length > 0) {
@@ -128,7 +98,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }
 
     const getServerLookup = (inputRef: MutableRefObject<any>) => {
-        var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
+        var inputProps: any = copyMuiOptions(props, value, props.label);
         const eventListeners: IEventListeners = fieldManager.eventListeners;
         const error: IFormFieldError = fieldManager.error;
         const variant = props.variant || "standard";
@@ -141,7 +111,28 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         var callbacks = {
             onBlur: eventListeners.onBlur,
             onFocus: eventListeners.onFocus,
-            onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
+            onChange: (d: any, value: any) => {
+                setValue(value);
+            },
+            onInputChange: (d: any, inputValue: any) => {
+                setSearchText(inputValue);
+                return true;
+            }
+        }
+
+        useEffect(() => {
+            if (value) {
+                const id = idAccessor(value);
+                eventListeners.onValueChange(id);
+            } else {
+                eventListeners.onValueChange(undefined);
+            }
+        }, [value])
+
+        const getLabel = (option) => {
+            if (typeof option == 'object')
+                return labelAccessor(option) + '';
+            return option;
         }
 
         return (
@@ -150,49 +141,19 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                 <FormControl variant={variant} fullWidth error={error.status}>
                     {props.label ?
                         <InputLabel>{props.label}</InputLabel> : <></>}
-                    <Select
-                        inputRef={(i) => { inputRef.current = i; }}
+                    <Autocomplete
+                        includeInputInList
+                        autoHighlight
+                        isOptionEqualToValue={(option, value) => idAccessor(option) == idAccessor(value)}
+                        filterOptions={(x) => x}
+                        renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }} />}
+                        getOptionLabel={getLabel}
                         {...inputProps}
-                        MenuProps={{ autoFocus: false }}
-                        value={data}
+                        options={options}
                         autoFocus={autoFocus}
                         onOpen={(e) => { refreshOptions() }}
                         {...callbacks}>
-                        {hasMoreRecords() ?
-                            <ListSubheader>
-                                <div>
-                                    <TextField
-                                        size="small"
-                                        // Autofocus on textfield
-                                        value={searchText}
-                                        autoFocus
-                                        placeholder="Type to search..."
-                                        fullWidth
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <Search />
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                        onChange={(e) => setSearchText(e.target.value)}
-                                        onKeyDown={(e) => {
-                                            if (e.key !== "Escape") {
-                                                e.stopPropagation();
-                                            }
-                                        }}
-                                    />
-                                </div>
-                                {props.required ? <></> :
-                                    <div><span><DeleteOutlined /></span></div>}
-                            </ListSubheader> : <div></div>}
-
-                        {options.map((option, i) => (
-                            <MenuItem key={idAccessor(option) || i} value={idAccessor(option)}>
-                                {renderOption(labelAccessor(option), searchText)}
-                            </MenuItem>
-                        ))}
-                    </Select>
+                    </Autocomplete>
                     <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
                 </FormControl>
             </FieldDecorator>
@@ -200,7 +161,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }
 
     return {
-        getSelectedOption, filter, labelAccessor, idAccessor, renderOption, getServerLookup,
+        getSelectedOption, filter, labelAccessor, idAccessor, getServerLookup,
         setQueryFilter, searchText, setSearchText, refreshOptions
     }
 };

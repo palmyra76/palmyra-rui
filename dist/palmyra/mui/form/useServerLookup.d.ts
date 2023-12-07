@@ -6,7 +6,6 @@ declare const useServerLookup: (props: IServerLookupDefinition, mutateOptions: I
     filter: any;
     labelAccessor: (data: any) => any;
     idAccessor: (data: any) => any;
-    renderOption: (title: string, inputValue: string) => import("react/jsx-runtime").JSX.Element;
     getServerLookup: (inputRef: MutableRefObject<any>) => import("react/jsx-runtime").JSX.Element;
     setQueryFilter: (filter: any) => void;
     searchText: string;
