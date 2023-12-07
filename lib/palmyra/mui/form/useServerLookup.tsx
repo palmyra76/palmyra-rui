@@ -55,12 +55,15 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }
 
     useEffect(() => {
+        if (value)
+            return;
+
         var option: any = getSelectedOption();
         if (option) {
             setOptions([option]);
+            setValue(option)
         }
-        setValue(getSelectedOption())
-    }, [fieldManager.displayValue])
+    }, [fieldManager.displayValue, fieldManager.data])
 
 
     useEffect(() => {
