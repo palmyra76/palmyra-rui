@@ -66,10 +66,10 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }, [fieldManager.displayValue, fieldManager.data])
 
 
-    useEffect(() => {
+    useEffect(() => {        
         const result = serverResult ? [...serverResult] : [];
         const option = value;
-        if (result && option && !getMatch(serverResult, idAccessor(option))) {
+        if (result && option && !getMatch(result, idAccessor(option))) {
             result.unshift(option);
         }
         setOptions(result);
@@ -79,9 +79,9 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
 
     }, [serverResult, totalRecords])
 
-    function getMatch(result: any, key: any): any {
+    function getMatch(result: any, key: any): any {        
         return result.find((r: any) => {
-            if (idAccessor(r) === key) {
+            if (idAccessor(r) == key) {
                 return r;
             }
         })
