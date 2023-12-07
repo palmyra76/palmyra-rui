@@ -46,7 +46,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     const onDataValidityChange = onValidityChange;
     var dataValidRef = useRef({});
     var dataValid = dataValidRef.current;
-    
+
     var defaultData = {};
 
     const isNewForm = () => {
@@ -113,6 +113,11 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
             if (fieldDef.type == 'serverlookup') {
                 var displayAttribute = fieldDef.displayAttribute || fieldDef.attribute;
                 result.displayValue = getValueByKey(displayAttribute, data);
+                result.setDisplayValue = (v) => {
+                    if (fieldDef.displayAttribute != fieldDef.attribute) {
+                        setValueByKey(fieldDef.displayAttribute, formDataRef.current, v);
+                    }
+                }
             }
 
             return result;

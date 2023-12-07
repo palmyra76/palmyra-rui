@@ -157,6 +157,7 @@ interface IFormFieldManager {
     error: any,
     eventListeners: IEventListeners,
     displayValue?: any,
+    setDisplayValue?: (d:any) => void,
     store?: LookupStore<any>,
     mutateOptions?: IMutateOptions,
     setMutateOptions?: (d: IMutateOptions) => void

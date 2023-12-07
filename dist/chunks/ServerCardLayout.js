@@ -75,11 +75,11 @@ const Me = (e) => {
           console.error("error while fetching", q), z();
         });
       } catch (D) {
-        console.error(D), $();
+        console.error(D), I();
       }
     else
-      console.error("Store is not provided for the Grid"), $();
-  }, $ = () => {
+      console.error("Store is not provided for the Grid"), I();
+  }, I = () => {
     Y([]), c(0);
   }, z = () => {
     Y(void 0), c(null);
@@ -134,7 +134,7 @@ const ea = ce(function(t, r) {
   }), []);
   var P = Ot(t, a.data, t.label);
   t.readonly && (P.inputProps = { readOnly: !0 });
-  function $(N, C) {
+  function I(N, C) {
     const D = st(a.data);
     var q = D.indexOf(N);
     C ? q < 0 && D.push(N) : q >= 0 && D.splice(q, 1), b.onValueChange(D.toString());
@@ -143,7 +143,7 @@ const ea = ce(function(t, r) {
     onBlur: b.onBlur,
     onFocus: b.onFocus,
     onChange: (N) => {
-      $(N.target.value, N.target.checked);
+      I(N.target.value, N.target.checked);
     }
   };
   const G = (N) => {
@@ -216,7 +216,7 @@ const ea = ce(function(t, r) {
     setQuickSearch: g,
     filter: v,
     totalRecords: i
-  } = Y, _ = Y.data, P = Re(a) ? (C) => _e(a, C) : (C) => C == null ? void 0 : C[a], $ = Re(c) ? (C) => _e(c, C) : (C) => C[c];
+  } = Y, _ = Y.data, P = Re(a) ? (C) => _e(a, C) : (C) => C == null ? void 0 : C[a], I = Re(c) ? (C) => _e(c, C) : (C) => C[c];
   function z() {
     if (d) {
       var C = {};
@@ -250,7 +250,7 @@ const ea = ce(function(t, r) {
   return {
     getSelectedOption: z,
     filter: v,
-    labelAccessor: $,
+    labelAccessor: I,
     idAccessor: P,
     getServerLookup: (C) => {
       var D = Ot(e, f, e.label);
@@ -267,11 +267,11 @@ const ea = ce(function(t, r) {
       ge(() => {
         if (f) {
           const p = P(f);
-          q.onValueChange(p);
+          q.onValueChange(p), r.setDisplayValue(I(f));
         } else
-          q.onValueChange(void 0);
+          q.onValueChange(void 0), r.setDisplayValue(void 0);
       }, [f]);
-      const u = (p) => typeof p == "object" ? $(p) + "" : p;
+      const u = (p) => typeof p == "object" ? I(p) + "" : p;
       return /* @__PURE__ */ s(
         _t,
         {
@@ -619,7 +619,7 @@ function Br() {
         }
       }
     }
-    var i = d, _ = h, P = l, $ = c, z = t, G = f, B = n, N = w, C = E, D = r, q = a, H = o, K = m, oe = !1;
+    var i = d, _ = h, P = l, I = c, z = t, G = f, B = n, N = w, C = E, D = r, q = a, H = o, K = m, oe = !1;
     function le(y) {
       return oe || (oe = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), u(y) || v(y) === d;
     }
@@ -647,7 +647,7 @@ function Br() {
     function A(y) {
       return v(y) === E;
     }
-    function I(y) {
+    function $(y) {
       return v(y) === r;
     }
     function x(y) {
@@ -659,7 +659,7 @@ function Br() {
     function ee(y) {
       return v(y) === m;
     }
-    V.AsyncMode = i, V.ConcurrentMode = _, V.ContextConsumer = P, V.ContextProvider = $, V.Element = z, V.ForwardRef = G, V.Fragment = B, V.Lazy = N, V.Memo = C, V.Portal = D, V.Profiler = q, V.StrictMode = H, V.Suspense = K, V.isAsyncMode = le, V.isConcurrentMode = u, V.isContextConsumer = p, V.isContextProvider = T, V.isElement = F, V.isForwardRef = O, V.isFragment = L, V.isLazy = M, V.isMemo = A, V.isPortal = I, V.isProfiler = x, V.isStrictMode = R, V.isSuspense = ee, V.isValidElementType = g, V.typeOf = v;
+    V.AsyncMode = i, V.ConcurrentMode = _, V.ContextConsumer = P, V.ContextProvider = I, V.Element = z, V.ForwardRef = G, V.Fragment = B, V.Lazy = N, V.Memo = C, V.Portal = D, V.Profiler = q, V.StrictMode = H, V.Suspense = K, V.isAsyncMode = le, V.isConcurrentMode = u, V.isContextConsumer = p, V.isContextProvider = T, V.isElement = F, V.isForwardRef = O, V.isFragment = L, V.isLazy = M, V.isMemo = A, V.isPortal = $, V.isProfiler = x, V.isStrictMode = R, V.isSuspense = ee, V.isValidElementType = g, V.typeOf = v;
   }()), V;
 }
 var dt;
@@ -820,7 +820,7 @@ function Hr() {
       elementType: i(),
       instanceOf: _,
       node: G(),
-      objectOf: $,
+      objectOf: I,
       oneOf: P,
       oneOfType: z,
       shape: N,
@@ -836,31 +836,31 @@ function Hr() {
     function j(u) {
       if (process.env.NODE_ENV !== "production")
         var p = {}, T = 0;
-      function F(L, M, A, I, x, R, ee) {
-        if (I = I || b, R = R || A, ee !== r) {
+      function F(L, M, A, $, x, R, ee) {
+        if ($ = $ || b, R = R || A, ee !== r) {
           if (d) {
             var y = new Error(
               "Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types"
             );
             throw y.name = "Invariant Violation", y;
           } else if (process.env.NODE_ENV !== "production" && typeof console < "u") {
-            var ue = I + ":" + A;
+            var ue = $ + ":" + A;
             !p[ue] && // Avoid spamming the console because they are often not actionable except for lib authors
             T < 3 && (a(
-              "You are manually calling a React.PropTypes validation function for the `" + R + "` prop on `" + I + "`. This is deprecated and will throw in the standalone `prop-types` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details."
+              "You are manually calling a React.PropTypes validation function for the `" + R + "` prop on `" + $ + "`. This is deprecated and will throw in the standalone `prop-types` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details."
             ), p[ue] = !0, T++);
           }
         }
-        return M[A] == null ? L ? M[A] === null ? new k("The " + x + " `" + R + "` is marked as required " + ("in `" + I + "`, but its value is `null`.")) : new k("The " + x + " `" + R + "` is marked as required in " + ("`" + I + "`, but its value is `undefined`.")) : null : u(M, A, I, x, R);
+        return M[A] == null ? L ? M[A] === null ? new k("The " + x + " `" + R + "` is marked as required " + ("in `" + $ + "`, but its value is `null`.")) : new k("The " + x + " `" + R + "` is marked as required in " + ("`" + $ + "`, but its value is `undefined`.")) : null : u(M, A, $, x, R);
       }
       var O = F.bind(null, !1);
       return O.isRequired = F.bind(null, !0), O;
     }
     function Y(u) {
       function p(T, F, O, L, M, A) {
-        var I = T[F], x = H(I);
+        var $ = T[F], x = H($);
         if (x !== u) {
-          var R = K(I);
+          var R = K($);
           return new k(
             "Invalid " + L + " `" + M + "` of type " + ("`" + R + "` supplied to `" + O + "`, expected ") + ("`" + u + "`."),
             { expectedType: u }
@@ -879,8 +879,8 @@ function Hr() {
           return new k("Property `" + M + "` of component `" + O + "` has invalid PropType notation inside arrayOf.");
         var A = T[F];
         if (!Array.isArray(A)) {
-          var I = H(A);
-          return new k("Invalid " + L + " `" + M + "` of type " + ("`" + I + "` supplied to `" + O + "`, expected an array."));
+          var $ = H(A);
+          return new k("Invalid " + L + " `" + M + "` of type " + ("`" + $ + "` supplied to `" + O + "`, expected an array."));
         }
         for (var x = 0; x < A.length; x++) {
           var R = u(A, x, O, L, M + "[" + x + "]", r);
@@ -916,8 +916,8 @@ function Hr() {
     function _(u) {
       function p(T, F, O, L, M) {
         if (!(T[F] instanceof u)) {
-          var A = u.name || b, I = le(T[F]);
-          return new k("Invalid " + L + " `" + M + "` of type " + ("`" + I + "` supplied to `" + O + "`, expected ") + ("instance of `" + A + "`."));
+          var A = u.name || b, $ = le(T[F]);
+          return new k("Invalid " + L + " `" + M + "` of type " + ("`" + $ + "` supplied to `" + O + "`, expected ") + ("instance of `" + A + "`."));
         }
         return null;
       }
@@ -929,8 +929,8 @@ function Hr() {
           "Invalid arguments supplied to oneOf, expected an array, got " + arguments.length + " arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z])."
         ) : a("Invalid argument supplied to oneOf, expected an array.")), c;
       function p(T, F, O, L, M) {
-        for (var A = T[F], I = 0; I < u.length; I++)
-          if (w(A, u[I]))
+        for (var A = T[F], $ = 0; $ < u.length; $++)
+          if (w(A, u[$]))
             return null;
         var x = JSON.stringify(u, function(ee, y) {
           var ue = K(y);
@@ -940,13 +940,13 @@ function Hr() {
       }
       return j(p);
     }
-    function $(u) {
+    function I(u) {
       function p(T, F, O, L, M) {
         if (typeof u != "function")
           return new k("Property `" + M + "` of component `" + O + "` has invalid PropType notation inside objectOf.");
-        var A = T[F], I = H(A);
-        if (I !== "object")
-          return new k("Invalid " + L + " `" + M + "` of type " + ("`" + I + "` supplied to `" + O + "`, expected an object."));
+        var A = T[F], $ = H(A);
+        if ($ !== "object")
+          return new k("Invalid " + L + " `" + M + "` of type " + ("`" + $ + "` supplied to `" + O + "`, expected an object."));
         for (var x in A)
           if (n(A, x)) {
             var R = u(A, x, O, L, M + "." + x, r);
@@ -967,15 +967,15 @@ function Hr() {
             "Invalid argument supplied to oneOfType. Expected an array of check functions, but received " + oe(T) + " at index " + p + "."
           ), c;
       }
-      function F(O, L, M, A, I) {
+      function F(O, L, M, A, $) {
         for (var x = [], R = 0; R < u.length; R++) {
-          var ee = u[R], y = ee(O, L, M, A, I, r);
+          var ee = u[R], y = ee(O, L, M, A, $, r);
           if (y == null)
             return null;
           y.data && n(y.data, "expectedType") && x.push(y.data.expectedType);
         }
         var ue = x.length > 0 ? ", expected one of type [" + x.join(", ") + "]" : "";
-        return new k("Invalid " + A + " `" + I + "` supplied to " + ("`" + M + "`" + ue + "."));
+        return new k("Invalid " + A + " `" + $ + "` supplied to " + ("`" + M + "`" + ue + "."));
       }
       return j(F);
     }
@@ -992,9 +992,9 @@ function Hr() {
     }
     function N(u) {
       function p(T, F, O, L, M) {
-        var A = T[F], I = H(A);
-        if (I !== "object")
-          return new k("Invalid " + L + " `" + M + "` of type `" + I + "` " + ("supplied to `" + O + "`, expected `object`."));
+        var A = T[F], $ = H(A);
+        if ($ !== "object")
+          return new k("Invalid " + L + " `" + M + "` of type `" + $ + "` " + ("supplied to `" + O + "`, expected `object`."));
         for (var x in u) {
           var R = u[x];
           if (typeof R != "function")
@@ -1009,9 +1009,9 @@ function Hr() {
     }
     function C(u) {
       function p(T, F, O, L, M) {
-        var A = T[F], I = H(A);
-        if (I !== "object")
-          return new k("Invalid " + L + " `" + M + "` of type `" + I + "` " + ("supplied to `" + O + "`, expected `object`."));
+        var A = T[F], $ = H(A);
+        if ($ !== "object")
+          return new k("Invalid " + L + " `" + M + "` of type `" + $ + "` " + ("supplied to `" + O + "`, expected `object`."));
         var x = t({}, T[F], u);
         for (var R in x) {
           var ee = u[R];
@@ -1858,8 +1858,8 @@ J(Le, "defaultProps", {
     var i = {}, _ = Object.defineProperty && Object.getOwnPropertyDescriptor;
     for (var P in S)
       if (P !== "default" && Object.prototype.hasOwnProperty.call(S, P)) {
-        var $ = _ ? Object.getOwnPropertyDescriptor(S, P) : null;
-        $ && ($.get || $.set) ? Object.defineProperty(i, P, $) : i[P] = S[P];
+        var I = _ ? Object.getOwnPropertyDescriptor(S, P) : null;
+        I && (I.get || I.set) ? Object.defineProperty(i, P, I) : i[P] = S[P];
       }
     return i.default = S, v && v.set(S, i), i;
   }
@@ -2000,7 +2000,7 @@ J(Le, "defaultProps", {
         children: i,
         defaultPosition: _,
         defaultClassName: P,
-        defaultClassNameDragging: $,
+        defaultClassNameDragging: I,
         defaultClassNameDragged: z,
         position: G,
         positionOffset: B,
@@ -2016,7 +2016,7 @@ J(Le, "defaultProps", {
       };
       this.state.isElementSVG ? q = (0, a.createSVGTransform)(le, B) : D = (0, a.createCSSTransform)(le, B);
       const u = (0, o.default)(i.props.className || "", P, {
-        [$]: this.state.dragging,
+        [I]: this.state.dragging,
         [z]: this.state.dragged
       });
       return /* @__PURE__ */ t.createElement(d.default, E({}, C, {
@@ -2251,7 +2251,7 @@ const Vn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
     gotoPage: i,
     setPageSize: _,
     getPageNo: P,
-    refreshData: $,
+    refreshData: I,
     data: z,
     totalRecords: G,
     pageSizeOptions: B,
@@ -2263,7 +2263,7 @@ const Vn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
       S(x);
     },
     refresh: () => {
-      $();
+      I();
     }
   }), []);
   const q = (x, R) => {
@@ -2548,29 +2548,29 @@ const er = (e) => {
     data: w,
     pageSizeOptions: k,
     queryLimit: j
-  } = Me(t), Y = t.listKeyProvider || (($, z) => z);
+  } = Me(t), Y = t.listKeyProvider || ((I, z) => z);
   ve(l, () => ({
-    setFilter($) {
-      d($);
+    setFilter(I) {
+      d(I);
     },
     refresh: () => {
       h();
     },
-    gotoPage($) {
-      m($);
+    gotoPage(I) {
+      m(I);
     },
     nextPage() {
     },
     prevPage() {
     }
   }), []);
-  const S = ($, z) => {
+  const S = (I, z) => {
     m(z);
-  }, g = ($) => {
-    const z = $.target.value;
+  }, g = (I) => {
+    const z = I.target.value;
     f(z);
-  }, v = ($) => {
-    const z = parseInt($.target.value, 10);
+  }, v = (I) => {
+    const z = parseInt(I.target.value, 10);
     b(z);
   }, i = 200, _ = !!c, P = !!t.quickSearch;
   return /* @__PURE__ */ s("div", { children: /* @__PURE__ */ U("div", { className: "card-page-container", children: [

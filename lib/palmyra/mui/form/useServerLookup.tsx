@@ -127,8 +127,10 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             if (value) {
                 const id = idAccessor(value);
                 eventListeners.onValueChange(id);
+                fieldManager.setDisplayValue(labelAccessor(value));
             } else {
-                eventListeners.onValueChange(undefined);
+                eventListeners.onValueChange(undefined);                
+                fieldManager.setDisplayValue(undefined);
             }
         }, [value])
 
