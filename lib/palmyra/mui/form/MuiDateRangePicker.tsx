@@ -23,7 +23,7 @@ const MuiDateRangePicker = forwardRef(function MuiDatePicker(props: IDateTimeDef
     const [toDate, setToDate] = useState();
 
     const toDayjs = (d) => {
-        if(d)
+        if (d)
             return dayjs(d);
     }
 
@@ -63,41 +63,43 @@ const MuiDateRangePicker = forwardRef(function MuiDatePicker(props: IDateTimeDef
     }
 
     useEffect(() => {
-        eventListeners.onValueChange({ from:fromDate, to:toDate });
+        eventListeners.onValueChange({ from: fromDate, to: toDate });
     }, [fromDate, toDate])
 
-    return (<>{mutateOptions.visible &&
-        <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
-            customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker {...fromInputProps}
-                    readOnly={props.readonly}
-                    format={displayFormat}
-                    onChange={fromOnChange}
-                    slotProps={{
-                        textField: {
-                            error: error.status,
-                            helperText: error.message,
-                            variant: variant,
-                            inputRef
-                        },
-                    }}
-                /> to
-                <DatePicker {...toInputProps}
-                    readOnly={props.readonly}
-                    format={displayFormat}
-                    onChange={toOnChange}
-                    slotProps={{
-                        textField: {
-                            error: error.status,
-                            helperText: error.message,
-                            variant: variant,
-                            inputRef
-                        },
-                    }}
-                />
-            </LocalizationProvider>
-        </FieldDecorator>}
+    return (<>
+        {mutateOptions.visible &&
+            <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
+                customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker {...fromInputProps}
+                        readOnly={props.readonly}
+                        format={displayFormat}
+                        onChange={fromOnChange}
+                        slotProps={{
+                            textField: {
+                                error: error.status,
+                                helperText: error.message,
+                                variant: variant,
+                                inputRef
+                            },
+                        }}
+                    />
+                    <span style={{ width: '40%', textAlign: 'center' }}>to</span>
+                    <DatePicker {...toInputProps}
+                        readOnly={props.readonly}
+                        format={displayFormat}
+                        onChange={toOnChange}
+                        slotProps={{
+                            textField: {
+                                error: error.status,
+                                helperText: error.message,
+                                variant: variant,
+                                inputRef
+                            },
+                        }}
+                    />
+                </LocalizationProvider>
+            </FieldDecorator>}
     </>
     );
 });

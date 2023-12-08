@@ -3,11 +3,11 @@ import { forwardRef as V, useContext as Y, useRef as g, useState as C, useImpera
 import { LocalizationProvider as T, DatePicker as D } from "@mui/x-date-pickers";
 import { AdapterDayjs as p } from "@mui/x-date-pickers/AdapterDayjs";
 import w from "dayjs";
-import { copyMuiOptions as b, getFieldLabel as z } from "./MuiUtil.js";
+import { copyMuiOptions as h, getFieldLabel as z } from "./MuiUtil.js";
 import { FieldManagerContext as E } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import H from "./FieldDecorator.js";
 const W = V(function(t, o) {
-  const v = Y(E), i = o || g(null), l = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = v(t, "dateRange", i), { mutateOptions: F, setMutateOptions: h } = a, r = a.error, c = a.data, y = a.eventListeners, u = t.variant || "standard", s = g(null), [m, P] = C(), [d, x] = C(), f = (e) => {
+  const b = Y(E), i = o || g(null), l = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = b(t, "dateRange", i), { mutateOptions: v, setMutateOptions: y } = a, r = a.error, c = a.data, F = a.eventListeners, u = t.variant || "standard", s = g(null), [m, x] = C(), [d, P] = C(), f = (e) => {
     if (e)
       return w(e);
   };
@@ -28,18 +28,18 @@ const W = V(function(t, o) {
       a.setData(e);
     },
     setVisible(e) {
-      h({ visible: e });
+      y({ visible: e });
     }
   }), []);
-  var M = b(t, f(c.from), t.label), O = b(t, f(c.to), t.label);
+  var M = h(t, f(c.from), t.label), O = h(t, f(c.to), t.label);
   const L = (e) => {
-    P(e);
-  }, R = (e) => {
     x(e);
+  }, R = (e) => {
+    P(e);
   };
   return I(() => {
-    y.onValueChange({ from: m, to: d });
-  }, [m, d]), /* @__PURE__ */ n(j, { children: F.visible && /* @__PURE__ */ n(
+    F.onValueChange({ from: m, to: d });
+  }, [m, d]), /* @__PURE__ */ n(j, { children: v.visible && /* @__PURE__ */ n(
     H,
     {
       label: z(t),
@@ -65,7 +65,7 @@ const W = V(function(t, o) {
             }
           }
         ),
-        " to",
+        /* @__PURE__ */ n("span", { style: { width: "40%", textAlign: "center" }, children: "to" }),
         /* @__PURE__ */ n(
           D,
           {
