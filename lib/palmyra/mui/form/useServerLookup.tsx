@@ -6,7 +6,7 @@ import { getValueByKey, setValueByKey } from '../../form/FormUtil';
 
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
-import { Autocomplete, FormControl, FormHelperText, InputLabel, TextField } from '@mui/material';
+import { Autocomplete, FormControl, FormHelperText, TextField } from '@mui/material';
 import { IMutateOptions } from '../../form/interfaceFields';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 
@@ -66,7 +66,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }, [fieldManager.displayValue, fieldManager.data])
 
 
-    useEffect(() => {        
+    useEffect(() => {
         const result = serverResult ? [...serverResult] : [];
         const option = value;
         if (result && option && !getMatch(result, idAccessor(option))) {
@@ -79,7 +79,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
 
     }, [serverResult, totalRecords])
 
-    function getMatch(result: any, key: any): any {        
+    function getMatch(result: any, key: any): any {
         return result.find((r: any) => {
             if (idAccessor(r) == key) {
                 return r;
@@ -106,6 +106,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         const error: IFormFieldError = fieldManager.error;
         const variant = props.variant || "standard";
         const autoFocus = props.autoFocus || false;
+        const label = props.label;
 
         if (mutateOptions.readonly) {
             inputProps.inputProps = { readOnly: true };
@@ -129,7 +130,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                 eventListeners.onValueChange(id);
                 fieldManager.setDisplayValue(labelAccessor(value));
             } else {
-                eventListeners.onValueChange(undefined);                
+                eventListeners.onValueChange(undefined);
                 fieldManager.setDisplayValue(undefined);
             }
         }, [value])
@@ -143,19 +144,17 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         return (
             <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
                 customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-                <FormControl variant={variant} fullWidth error={error.status}>
-                    {props.label ?
-                        <InputLabel>{props.label}</InputLabel> : <></>}
+                <FormControl fullWidth error={error.status}>
                     <Autocomplete
                         includeInputInList
                         autoHighlight
                         isOptionEqualToValue={(option, value) => idAccessor(option) == idAccessor(value)}
                         filterOptions={(x) => x}
-                        renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }} />}
+                        renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }}
+                            variant={variant} label={label} autoFocus={autoFocus} />}
                         getOptionLabel={getLabel}
                         {...inputProps}
                         options={options}
-                        autoFocus={autoFocus}
                         onOpen={(e) => { refreshOptions() }}
                         {...callbacks}>
                     </Autocomplete>
