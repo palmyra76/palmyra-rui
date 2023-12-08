@@ -126,7 +126,8 @@ interface IFormFieldInput {
 }
 interface IFormFieldManager {
     data: any;
-    setData: Function;
+    setData: (d: any) => void;
+    getData: () => any;
     error: any;
     eventListeners: IEventListeners;
     displayValue?: any;

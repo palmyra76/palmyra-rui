@@ -1,29 +1,32 @@
-import { jsx as s, Fragment as L, jsxs as y } from "react/jsx-runtime";
-import { forwardRef as w, useContext as R, useRef as b, useMemo as S, useState as j, useEffect as g, useImperativeHandle as A } from "react";
+import { jsx as r, Fragment as L, jsxs as y } from "react/jsx-runtime";
+import { forwardRef as w, useContext as R, useRef as g, useMemo as S, useState as j, useEffect as b, useImperativeHandle as A } from "react";
 import { FormControl as D, FormControlLabel as H, Switch as I, FormHelperText as P } from "@mui/material";
 import { copyMuiOptions as E, getFieldLabel as N } from "./MuiUtil.js";
 import T from "./OptionsParser.js";
 import { FieldManagerContext as q } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import z from "./FieldDecorator.js";
 const Y = w(function(e, c) {
-  const C = R(q), u = c || b(null), n = C(e, "switch", u), { mutateOptions: F, setMutateOptions: k } = n, o = n.error, v = n.eventListeners, V = e.autoFocus || !1, l = S(
+  const C = R(q), i = c || g(null), n = C(e, "switch", i), { mutateOptions: F, setMutateOptions: k } = n, o = n.error, v = n.eventListeners, V = e.autoFocus || !1, l = S(
     () => T(e.options, e.name),
     [e.options, e.name]
-  ), i = (t, x) => {
+  ), d = (t, x) => {
     var h = l.checked.value;
     return t != null && t != null ? h == t : h == x;
-  }, [a, d] = j(i(n.data, e.defaultValue)), r = b(null);
-  g(() => {
-    d(i(n.data, e.defaultValue));
-  }, [n.data]), A(u, () => ({
+  }, [a, m] = j(d(n.data, e.defaultValue)), s = g(null);
+  b(() => {
+    m(d(n.data, e.defaultValue));
+  }, [n.data]), A(i, () => ({
     focus() {
-      r.current.checked = !0, r.current.focus();
+      s.current.checked = !0, s.current.focus();
     },
     isValid() {
       return !o.status;
     },
+    getValue() {
+      return u();
+    },
     assignAttribute(t) {
-      r.current.assignAttribute(t);
+      s.current.assignAttribute(t);
     },
     setValue(t) {
       n.setData(t);
@@ -31,23 +34,23 @@ const Y = w(function(e, c) {
     setVisible(t) {
       k({ visible: t });
     }
-  }), []);
-  var m = E(e, n.data, e.label);
-  e.readonly && (m.inputProps = { readOnly: !0 });
+  }), [n]);
+  var f = E(e, n.data, e.label);
+  e.readonly && (f.inputProps = { readOnly: !0 });
   const M = () => {
-    d(!a);
+    m(!a);
   };
-  g(() => {
-    v.onValueChange(f());
+  b(() => {
+    v.onValueChange(u());
   }, [a]);
   const O = () => {
     var t = a ? "checked" : "unchecked";
     return l[t].title;
-  }, f = () => {
+  }, u = () => {
     var t = a ? "checked" : "unchecked";
     return l[t].value;
   };
-  return /* @__PURE__ */ s(L, { children: F.visible && /* @__PURE__ */ s(
+  return /* @__PURE__ */ r(L, { children: F.visible && /* @__PURE__ */ r(
     z,
     {
       label: N(e),
@@ -55,15 +58,15 @@ const Y = w(function(e, c) {
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ y(D, { error: o.status, ...m, children: [
-        /* @__PURE__ */ s(
+      children: /* @__PURE__ */ y(D, { error: o.status, ...f, children: [
+        /* @__PURE__ */ r(
           H,
           {
-            value: f(),
+            value: u(),
             inputRef: (t) => {
-              r.current = t;
+              s.current = t;
             },
-            control: /* @__PURE__ */ s(
+            control: /* @__PURE__ */ r(
               I,
               {
                 checked: a,
@@ -75,7 +78,7 @@ const Y = w(function(e, c) {
             label: O()
           }
         ),
-        /* @__PURE__ */ s(P, { className: "form-error-text", children: o.message })
+        /* @__PURE__ */ r(P, { className: "form-error-text", children: o.message })
       ] })
     }
   ) });

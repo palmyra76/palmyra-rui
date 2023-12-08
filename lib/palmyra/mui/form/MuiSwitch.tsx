@@ -43,6 +43,9 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: M
             isValid() {
                 return !error.status;
             },
+            getValue() {
+                return getValue();
+            },
             assignAttribute(data) {
                 inputRef.current.assignAttribute(data);
             },
@@ -53,7 +56,7 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: M
                 setMutateOptions({ visible: d })
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 

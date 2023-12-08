@@ -29,7 +29,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
                 fieldManager.setData('');
             },
             getValue() {
-                return null;
+                return fieldManager.getData();
             },
             setValue(d: any) {
                 fieldManager.setData(d)
@@ -62,7 +62,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
 
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     return getServerLookup(inputRef);
 });

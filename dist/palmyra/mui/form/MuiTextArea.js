@@ -3,38 +3,41 @@ import { forwardRef as b, useContext as x, useRef as c, useImperativeHandle as v
 import { TextField as M } from "@mui/material";
 import { copyMuiOptions as h, getFieldLabel as R } from "./MuiUtil.js";
 import { FieldManagerContext as L } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import A from "./FieldDecorator.js";
+import V from "./FieldDecorator.js";
 const B = b(function(e, l) {
-  const m = x(L), i = l || c(null), s = m(e, "string", i), { mutateOptions: d, setMutateOptions: f } = s, a = s.error, n = s.eventListeners, g = e.autoFocus || !1, r = c(null);
-  v(i, () => ({
+  const m = x(L), u = l || c(null), t = m(e, "string", u), { mutateOptions: d, setMutateOptions: f } = t, s = t.error, n = t.eventListeners, g = e.autoFocus || !1, r = c(null);
+  v(u, () => ({
     focus() {
       r.current.focus();
     },
     isValid() {
-      return !a.status;
+      return !s.status;
     },
-    assignAttribute(t) {
-      r.current.assignAttribute(t);
+    assignAttribute(a) {
+      r.current.assignAttribute(a);
+    },
+    getValue() {
+      return t.getData();
     },
     clear() {
-      s.setData("");
+      t.setData("");
     },
-    setValue(t) {
-      s.setData(t);
+    setValue(a) {
+      t.setData(a);
     },
-    setVisible(t) {
-      f({ visible: t });
+    setVisible(a) {
+      f({ visible: a });
     }
-  }), []);
-  var u = h(e, s.data, e.label);
-  e.readonly && (u.inputProps = { readOnly: !0 });
+  }), [t]);
+  var i = h(e, t.data, e.label);
+  e.readonly && (i.inputProps = { readOnly: !0 });
   var C = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
-    onChange: (t) => n.onValueChange(t.target.value)
+    onChange: (a) => n.onValueChange(a.target.value)
   };
   return /* @__PURE__ */ o(F, { children: d.visible && /* @__PURE__ */ o(
-    A,
+    V,
     {
       label: R(e),
       customContainerClass: e.customContainerClass,
@@ -49,11 +52,11 @@ const B = b(function(e, l) {
           fullWidth: !0,
           multiline: !0,
           autoFocus: g,
-          ...u,
+          ...i,
           inputRef: r,
           ...C,
-          error: a.status,
-          helperText: a.message
+          error: s.status,
+          helperText: s.message
         }
       )
     }

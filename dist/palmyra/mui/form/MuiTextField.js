@@ -1,11 +1,11 @@
 import { jsx as o, Fragment as b } from "react/jsx-runtime";
 import { forwardRef as v, useContext as x, useRef as c, useImperativeHandle as M } from "react";
 import { TextField as h } from "@mui/material";
-import { copyMuiOptions as L, getFieldLabel as O } from "./MuiUtil.js";
-import { FieldManagerContext as R } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import T from "./FieldDecorator.js";
+import { copyMuiOptions as L, getFieldLabel as V } from "./MuiUtil.js";
+import { FieldManagerContext as D } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import O from "./FieldDecorator.js";
 const k = v(function(t, l) {
-  const d = x(R), i = l || c(null), a = d(t, "string", i), { mutateOptions: m, setMutateOptions: f } = a, s = a.error, n = a.eventListeners, r = c(null), F = t.variant || "standard", g = t.autoFocus || !1;
+  const d = x(D), i = l || c(null), e = d(t, "string", i), { mutateOptions: m, setMutateOptions: f } = e, s = e.error, n = e.eventListeners, r = c(null), g = t.variant || "standard", F = t.autoFocus || !1;
   M(i, () => ({
     focus() {
       r.current.focus();
@@ -13,30 +13,33 @@ const k = v(function(t, l) {
     isValid() {
       return !s.status;
     },
-    assignAttribute(e) {
-      r.current.assignAttribute(e);
+    getValue() {
+      return e.getData();
+    },
+    assignAttribute(a) {
+      r.current.assignAttribute(a);
     },
     clear() {
-      a.setData("");
+      e.setData("");
     },
-    setValue(e) {
-      a.setData(e);
+    setValue(a) {
+      e.setData(a);
     },
-    setVisible(e) {
-      f({ visible: e });
+    setVisible(a) {
+      f({ visible: a });
     }
-  }), []);
-  var u = L(t, a.data, t.label);
+  }), [e]);
+  var u = L(t, e.data, t.label);
   t.readonly && (u.inputProps = { readOnly: !0 });
   var C = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
-    onChange: (e) => n.onValueChange(e.target.value)
+    onChange: (a) => n.onValueChange(a.target.value)
   };
   return /* @__PURE__ */ o(b, { children: m.visible && /* @__PURE__ */ o(
-    T,
+    O,
     {
-      label: O(t),
+      label: V(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
@@ -45,13 +48,13 @@ const k = v(function(t, l) {
         h,
         {
           ...u,
-          variant: F,
+          variant: g,
           fullWidth: !0,
           inputRef: r,
           ...C,
           error: s.status,
           helperText: s.message,
-          autoFocus: g
+          autoFocus: F
         }
       )
     }

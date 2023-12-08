@@ -33,6 +33,9 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
             },
+            getValue() {
+                return fieldManager.getData();
+            },
             clear() {
                 fieldManager.setData('');
             },
@@ -43,7 +46,7 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
                 setMutateOptions({ visible: d })
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 

@@ -28,6 +28,9 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
             },
+            getValue() {
+                return fieldManager.getData();
+            },
             clear() {
                 fieldManager.setData('');
             },
@@ -38,7 +41,7 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition,
                 setMutateOptions({ visible: d })
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 

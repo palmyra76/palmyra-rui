@@ -18,6 +18,9 @@ const W = V(function(t, o) {
     isValid() {
       return !r.status;
     },
+    getValue() {
+      return a.getData();
+    },
     assignAttribute(e) {
       s.current.assignAttribute(e);
     },
@@ -30,7 +33,7 @@ const W = V(function(t, o) {
     setVisible(e) {
       y({ visible: e });
     }
-  }), []);
+  }), [a]);
   var M = h(t, f(c.from), t.label), O = h(t, f(c.to), t.label);
   const L = (e) => {
     x(e);

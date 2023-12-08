@@ -1,37 +1,40 @@
 import { jsx as a, Fragment as p, jsxs as L } from "react/jsx-runtime";
-import { forwardRef as O, useContext as R, useRef as b, useImperativeHandle as B } from "react";
-import { FormControl as V, FormControlLabel as j, Checkbox as y, FormHelperText as w } from "@mui/material";
+import { forwardRef as O, useContext as R, useRef as b, useImperativeHandle as V } from "react";
+import { FormControl as B, FormControlLabel as j, Checkbox as y, FormHelperText as w } from "@mui/material";
 import { copyMuiOptions as A, getFieldLabel as H } from "./MuiUtil.js";
 import { FieldManagerContext as N } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import P from "./FieldDecorator.js";
 const E = O(function(t, d) {
-  const C = R(N), f = d || b(null), { options: s } = t, o = C(t, "checkbox", f), { mutateOptions: h, setMutateOptions: g } = o, x = o.data ? o.data.split(",") : [], F = t.flexDirection || "row", l = o.error, i = o.eventListeners, v = t.autoFocus || !1, r = b(null);
-  B(f, () => ({
+  const g = R(N), f = d || b(null), { options: s } = t, n = g(t, "checkbox", f), { mutateOptions: C, setMutateOptions: h } = n, x = n.data ? n.data.split(",") : [], F = t.flexDirection || "row", l = n.error, i = n.eventListeners, v = t.autoFocus || !1, r = b(null);
+  V(f, () => ({
     focus() {
       r.current.checked = !0, r.current.focus();
     },
     isValid() {
       return !l.status;
     },
+    getValue() {
+      return n.getData();
+    },
     assignAttribute(e) {
       r.current.assignAttribute(e);
     },
     clear() {
-      o.setData("");
+      n.setData("");
     },
     setValue(e) {
-      o.setData(e);
+      n.setData(e);
     },
     setVisible(e) {
-      g({ visible: e });
+      h({ visible: e });
     }
-  }), []);
-  var m = A(t, o.data, t.label);
+  }), [n]);
+  var m = A(t, n.data, t.label);
   t.readonly && (m.inputProps = { readOnly: !0 });
   function D(e, c) {
-    const n = o.data ? o.data.split(",") : [];
-    var u = n.indexOf(e);
-    c ? u < 0 && n.push(e) : u >= 0 && n.splice(u, 1), i.onValueChange(n.toString());
+    const o = n.data ? n.data.split(",") : [];
+    var u = o.indexOf(e);
+    c ? u < 0 && o.push(e) : u >= 0 && o.splice(u, 1), i.onValueChange(o.toString());
   }
   var M = {
     onBlur: i.onBlur,
@@ -41,7 +44,7 @@ const E = O(function(t, d) {
     }
   };
   const k = (e) => x.includes(e);
-  return console.log(r), /* @__PURE__ */ a(p, { children: h.visible && /* @__PURE__ */ a(
+  return console.log(r), /* @__PURE__ */ a(p, { children: C.visible && /* @__PURE__ */ a(
     P,
     {
       label: H(t),
@@ -49,7 +52,7 @@ const E = O(function(t, d) {
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ L(V, { fullWidth: !0, error: l.status, ...m, style: { flexDirection: F }, children: [
+      children: /* @__PURE__ */ L(B, { fullWidth: !0, error: l.status, ...m, style: { flexDirection: F }, children: [
         s ? Object.keys(s).map((e, c) => /* @__PURE__ */ a(
           j,
           {
@@ -61,8 +64,8 @@ const E = O(function(t, d) {
                 checked: k(e),
                 autoFocus: v,
                 disabled: t.readonly,
-                inputRef: (n) => {
-                  c == 0 && (r.current = n);
+                inputRef: (o) => {
+                  c == 0 && (r.current = o);
                 }
               }
             ),

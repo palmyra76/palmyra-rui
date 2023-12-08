@@ -29,6 +29,9 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
             },
+            getValue() {
+                return fieldManager.getData();
+            },
             clear() {
                 fieldManager.setData('');
             },
@@ -39,7 +42,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
                 setMutateOptions({ visible: d })
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 

@@ -10,7 +10,7 @@ interface IListeners {
 }
 declare function createFormData(data: any, onValidityChange: any, mode: FormMode, formHelper?: IFormHelper, listeners?: IListeners): {
     getFieldManager: IGetFieldManager;
-    getFormData: () => any;
+    getFormData: () => {};
     initForm: () => void;
     isFormValid: () => boolean;
 };

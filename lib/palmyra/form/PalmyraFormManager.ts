@@ -8,7 +8,7 @@ import { default as getValidator } from "../validator/DataValidator";
 import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
 import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
-import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode, NoopFormHelper } from "./Types";
+import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
 import { MutableRefObject, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
 
@@ -37,8 +37,8 @@ interface IListeners {
 function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
     listeners?: IListeners) {
     const formListeners: IListeners = listeners || { eventListeners: {}, valueListeners: {} };
-
-    const _formHelper = formHelper || NoopFormHelper;
+    const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => {return {}; }, []);
+    const _formHelper = formHelper || createFormHelper();
     var validationFormat: Record<string, FieldDefinition> = {};
     var validationRules = {};
     const isValid = useRef(false);
@@ -90,8 +90,10 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
             var fieldAttrib = field.name || field.attribute;
             // @ts-ignore
             var fieldDef: FieldDefinition = { ...field, type }
-            if (ref)
+            if (ref) {
                 _formHelper.addFieldRef(fieldAttrib, ref);
+                fieldRefs[fieldAttrib] = ref;
+            }
 
             const validationRule = getValidator(fieldDef);
             validationFormat[fieldDef.attribute] = fieldDef;
@@ -126,7 +128,18 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     }, [data])
 
     const getFormData = () => {
-        return mergeDeep({}, formDataRef.current); // Return deep copied object.
+
+        var result = {};
+
+        for (const fieldKey in fieldRefs) {
+            const f: any = fieldRefs[fieldKey].current;
+            if (f.getValue){
+                console.log(fieldKey, f.getValue());
+                setValueByKey(fieldKey, result, f.getValue());
+            }
+        }
+        return result;
+        //return mergeDeep({}, formDataRef.current); // Return deep copied object.
     }
 
     const isFormValid = () => {

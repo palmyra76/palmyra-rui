@@ -60,6 +60,9 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
             },
+            getValue() {
+                return fieldManager.getData();
+            },
             clear() {
                 fieldManager.setData('');
             },
@@ -70,7 +73,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
                 setMutateOptions({ visible: d })
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 

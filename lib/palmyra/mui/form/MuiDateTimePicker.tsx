@@ -35,6 +35,9 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
             },
+            getValue() {
+                return fieldManager.getData();
+            },
             clear() {
                 fieldManager.setData('');
             },
@@ -45,7 +48,7 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
                 setMutateOptions({ visible: d })
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     var inputProps: any = copyMuiOptions(props, toDayjs(), props.label);
 

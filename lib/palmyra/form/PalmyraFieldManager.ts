@@ -28,7 +28,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
 
     const [_v, setVal] = useState(value);
-    const [data, setData] = useState(getData(value));
+    const [data, setData] = useState(getDataDefault(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
 
     var mutateOptions: IMutateOptions, setMutateOptions: (d: IMutateOptions) => void;
@@ -55,10 +55,10 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
 
     useEffect(() => {
         setVal(value);
-        setData(getData(value));
+        setData(getDataDefault(value));
     }, [value])
 
-    function getData(value) {
+    function getDataDefault(value) {
         return formatter.parse(getDefaultValue(fieldDef, value))
     }
 
@@ -85,6 +85,10 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
                 fieldValueListener.onValue(key, value, validStatus.status);
             });
         }
+    }
+
+    const getData = () => {
+        return formatter.format(data);
     }
 
     const checkConstraints = (value: String): FieldValidStatus => {
@@ -156,7 +160,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         onDataChange(undefined, undefined, { [key]: validStatus.status });
     }, []);
 
-    return { data, setData: setValue, error, eventListeners, mutateOptions, setMutateOptions };
+    return { data, setData: setValue, getData, error, eventListeners, mutateOptions, setMutateOptions };
 }
 
 function decorateListenersForInput(eventListeners: IEventListeners): any {

@@ -28,6 +28,9 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
             isValid() {
                 return !error.status;
             },
+            getValue() {
+                return fieldManager.getData();
+            },
             assignAttribute(data: String) {
                 inputRef.current.assignAttribute(data);
             },
@@ -41,7 +44,7 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
                 setMutateOptions({ visible: d })
             }
         };
-    }, []);
+    }, [fieldManager]);
 
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
