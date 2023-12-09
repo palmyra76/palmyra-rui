@@ -25,7 +25,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     const [searchText, setSearchText] = useState('');
 
     const [open, setOpen] = useState(false);
-    const loading = open && options.length < 2;
+    const loading = open && options.length < 1;
 
     const serverQueryOptions: IServerQueryInput = {
         store, endPointVars: props.storeOptions.endPointVars, fetchAll: true,
@@ -123,6 +123,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             onBlur: eventListeners.onBlur,
             onFocus: eventListeners.onFocus,
             onChange: (d: any, value: any) => {
+                updateFieldValue(value);
                 setValue(value);
             },
             onInputChange: (d: any, inputValue: any) => {
@@ -132,6 +133,10 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         }
 
         useEffect(() => {
+            updateFieldValue(value);
+        }, [value])
+
+        const updateFieldValue = (value:any) => {
             if (value) {
                 const id = idAccessor(value);
                 eventListeners.onValueChange(id);
@@ -140,7 +145,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                 eventListeners.onValueChange(undefined);
                 fieldManager.setDisplayValue(undefined);
             }
-        }, [value])
+        }
 
         const getLabel = (option) => {
             if (typeof option == 'object')

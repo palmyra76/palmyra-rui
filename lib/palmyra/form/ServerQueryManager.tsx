@@ -12,12 +12,12 @@ interface IServerQueryInput {
   defaultParams?: DefaultQueryParams,
   fetchAll?: boolean,
   filterTopic?: string,
-  initialFetch?:boolean
+  initialFetch?: boolean
 }
 
 const useServerQuery = (props: IServerQueryInput) => {
   const { store, quickSearch, endPointVars } = props;
-  const fetchAll = props.fetchAll != false;  
+  const fetchAll = props.fetchAll != false;
   const [totalRecords, setTotalRecords] = useState(null);
   const [filter, setFilter] = props.filterTopic ? useKeyValue(props.filterTopic, {}) : useState<any>({});
   const [sortOrder, setSortOrder] = useState({});
@@ -58,14 +58,12 @@ const useServerQuery = (props: IServerQueryInput) => {
 
   useEffect(() => {
     if (firstRun.current) {
-      firstRun.current = false;      
+      firstRun.current = false;
       return;
     }
-    
+
     if (fetchAll || !isEmptyFilter())
       refreshData();
-
-    return () => { firstRun.current = true };
 
   }, [queryLimit, filter, sortOrder])
 
