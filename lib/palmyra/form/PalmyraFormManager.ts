@@ -37,7 +37,7 @@ interface IListeners {
 function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
     listeners?: IListeners) {
     const formListeners: IListeners = listeners || { eventListeners: {}, valueListeners: {} };
-    const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => {return {}; }, []);
+    const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, []);
     const _formHelper = formHelper || createFormHelper();
     var validationFormat: Record<string, FieldDefinition> = {};
     var validationRules = {};
@@ -127,14 +127,15 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
         return generate;
     }, [data])
 
-    const getFormData = () => {
-        const id = formDataRef.current?.id;
+    const getFormData = (idProperty?: string) => {
+        const idp = idProperty || 'id';
+        const id = formDataRef.current?.[idp];
 
-        var result = id ? {id:id} : {};
+        var result = id ? { [idp]: id } : {};
 
         for (const fieldKey in fieldRefs) {
             const f: any = fieldRefs[fieldKey].current;
-            if (f.getValue){
+            if (f.getValue) {
                 setValueByKey(fieldKey, result, f.getValue());
             }
         }

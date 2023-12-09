@@ -1,28 +1,28 @@
 import { useState as S, useRef as l, useEffect as v } from "react";
 import { NoopFormListener as F } from "./interface.js";
 const h = (t) => {
-  const c = t.storeFactory, [m, i] = S(null), n = l(null), u = t.idKey || "id", f = t.formListener || F, d = (e, o) => typeof e == "string" ? e + "/{" + o + "}" : e;
+  const c = t.storeFactory, [f, i] = S(null), n = l(null), m = t.idKey || "id", d = t.formListener || F, u = (o, e) => typeof o == "string" ? o + "/{" + e + "}" : o;
   return v(() => {
-    const e = t.id, o = u;
-    var a = d(t.endPoint, o);
-    const s = c.getFormStore({}, a, o);
+    const o = t.id, e = m;
+    var a = u(t.endPoint, e);
+    const s = c.getFormStore({}, a, e);
     var r = {
       options: {
-        [o]: e
+        [e]: o
       }
     };
     s.get(r).then((y) => {
       i(y);
     });
-  }, [t.id]), { data: m, saveData: () => {
+  }, [t.id]), { data: f, saveData: () => {
     if (n && n.current) {
-      const o = t.idKey;
-      var e = t.endPoint;
-      const a = c.getFormStore({}, e, o), s = n.current.getData();
+      const e = t.idKey || "id";
+      var o = t.endPoint;
+      const a = c.getFormStore({}, o, e), s = n.current.getData(e);
       a.post(s).then((r) => {
-        i(r), f.onSaveSuccess(r);
+        i(r), d.onSaveSuccess(r);
       }).catch((r) => {
-        f.onSaveFailure(r);
+        d.onSaveFailure(r);
       });
     }
   }, formRef: n };
