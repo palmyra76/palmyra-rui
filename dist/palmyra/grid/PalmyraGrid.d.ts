@@ -11,6 +11,7 @@ interface IPalmyraGridInput {
     storeFactory: StoreFactory<any>;
     layoutParams: PageContext;
     defaultParams?: DefaultQueryParams;
+    pagination?: number[];
 }
 interface IPalmyraGrid {
     setFilter: (d: any) => void;

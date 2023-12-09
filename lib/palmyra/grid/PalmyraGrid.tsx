@@ -13,7 +13,8 @@ interface IPalmyraGridInput {
     endPoint: IEndPoint,
     storeFactory: StoreFactory<any>,
     layoutParams: PageContext,
-    defaultParams?: DefaultQueryParams
+    defaultParams?: DefaultQueryParams,
+    pagination?: number[]
 }
 
 interface IPalmyraGrid {
@@ -22,7 +23,7 @@ interface IPalmyraGrid {
 }
 
 const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, ref) {
-    const { columns, endPoint, storeFactory, layoutParams } = props;
+    const { columns, endPoint, storeFactory, layoutParams, pagination } = props;
     const quickSearch = props.quickSearch || '';
     const gridRef = useRef(null);
 
@@ -53,6 +54,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
 
     const layout: TableLayout = {
         fields: columns,
+        pagination: pagination,
         quickSearch,
         storeOptions: {
             endPoint
