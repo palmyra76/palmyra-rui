@@ -9,7 +9,7 @@ import { IFieldEventListener } from ".";
  *
  */
 type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float";
-type InputType = string | number;
+type InputType = string | number | Date;
 type strings = string | string[];
 type numbers = number | number[];
 interface RangeValidation<T> {

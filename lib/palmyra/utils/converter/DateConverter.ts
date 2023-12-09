@@ -18,6 +18,9 @@ class DateTimeConverter implements Converter<any, Date>{
     };
 
     parse(text: any): Date {
+        if(text instanceof Date)
+            return text;
+        
         if (text) {
             return dayjs(text, this.pattern)
                 .toDate()
