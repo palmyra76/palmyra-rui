@@ -25,7 +25,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     const [searchText, setSearchText] = useState('');
 
     const [open, setOpen] = useState(false);
-    const loading = open && options.length < 1;
+    const loading = open && options.length < (value ? 2 : 1);
 
     const serverQueryOptions: IServerQueryInput = {
         store, endPointVars: props.storeOptions.endPointVars, fetchAll: true,
@@ -54,7 +54,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }
 
     useEffect(() => {
-        if (value)
+        if (idAccessor(value) == fieldManager.data)
             return;
 
         var option: any = getSelectedOption();
@@ -62,7 +62,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             setOptions([option]);
             setValue(option)
         }
-    }, [fieldManager.displayValue, fieldManager.data])
+    }, [fieldManager.data])
 
 
     useEffect(() => {
@@ -136,7 +136,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             updateFieldValue(value);
         }, [value])
 
-        const updateFieldValue = (value:any) => {
+        const updateFieldValue = (value: any) => {
             if (value) {
                 const id = idAccessor(value);
                 eventListeners.onValueChange(id);
@@ -169,7 +169,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                                 ...params.InputProps,
                                 endAdornment: (
                                     <>
-                                        {loading ? <CircularProgress color="inherit" size={18}/> : null}
+                                        {loading ? <CircularProgress color="inherit" size={18} /> : null}
                                         {params.InputProps.endAdornment}
                                     </>
                                 ),
