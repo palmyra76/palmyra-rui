@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EventHandler, IFieldEventListener, IFieldValueListener, NoopFieldEventListener, NoopFieldValueListener } from "./Types";
 import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 
-import { delay } from '../utils';
 import { Converter, getFormatConverter } from "../utils/converter";
 import { IEventListeners, IFormFieldManager } from "./interface";
 import { IMutateOptions } from "./interfaceFields";
@@ -30,6 +29,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     const [_v, setVal] = useState(value);
     const [data, setData] = useState(getDataDefault(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
+    const timer: any = useRef<ReturnType<typeof setTimeout>>(null);
 
     var mutateOptions: IMutateOptions, setMutateOptions: (d: IMutateOptions) => void;
 
@@ -65,9 +65,9 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
 
     const doProcessDataChange = (value) => {
         console.log('validating ', value)
-        const validStatus = validate(value);        
+        const validStatus = validate(value);
         const attrib = fieldDef.attribute;
-        const key = fieldDef.name || attrib;                 
+        const key = fieldDef.name || attrib;
         if (onDataChange) {
             const formattedValue = formatter.format(value);
             onDataChange(attrib, formattedValue, { [attrib]: validStatus.status });
@@ -75,7 +75,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         fieldEventListener.onChange(key, value, validStatus.status);
         fieldValueListener.onValue(key, value, validStatus.status);
     }
-
+    
     /**
      * The doValidate flag is required, when the data validation is not required to be triggered
      *      1. while initializing the field values
@@ -84,9 +84,12 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
      * @param doValidate 
      */
     const setValue = (value: any, doValidate?: boolean) => {
-        setData(value || '');        
+        setData(value || '');
         if (doValidate) {
-            delay(() => doProcessDataChange(value));
+            clearTimeout(timer.current);
+            timer.current = setTimeout(function () {
+                doProcessDataChange(value);
+            }, 300);
         }
     }
 
