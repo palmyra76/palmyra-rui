@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
 import { QueryRequest, useKeyValue } from '../../main';
@@ -11,15 +11,18 @@ interface IServerQueryInput {
   endPointVars?: IEndPointVars,
   defaultParams?: DefaultQueryParams,
   fetchAll?: boolean,
-  filterTopic?: string
+  filterTopic?: string,
+  initialFetch?:boolean
 }
 
 const useServerQuery = (props: IServerQueryInput) => {
   const { store, quickSearch, endPointVars } = props;
-  const fetchAll = props.fetchAll != false;
+  const fetchAll = props.fetchAll != false;  
   const [totalRecords, setTotalRecords] = useState(null);
   const [filter, setFilter] = props.filterTopic ? useKeyValue(props.filterTopic, {}) : useState<any>({});
   const [sortOrder, setSortOrder] = useState({});
+
+  const firstRun = useRef<Boolean>(props.initialFetch == false);
 
   const pageSize = props.pageSize ? props.pageSize : 15;
 
@@ -54,8 +57,16 @@ const useServerQuery = (props: IServerQueryInput) => {
   }
 
   useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;      
+      return;
+    }
+    
     if (fetchAll || !isEmptyFilter())
       refreshData();
+
+    return () => { firstRun.current = true };
+
   }, [queryLimit, filter, sortOrder])
 
   const refreshData = () => {

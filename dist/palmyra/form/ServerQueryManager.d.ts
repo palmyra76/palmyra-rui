@@ -10,6 +10,7 @@ interface IServerQueryInput {
     defaultParams?: DefaultQueryParams;
     fetchAll?: boolean;
     filterTopic?: string;
+    initialFetch?: boolean;
 }
 declare const useServerQuery: (props: IServerQueryInput) => {
     setQueryFilter: (filter: any) => void;

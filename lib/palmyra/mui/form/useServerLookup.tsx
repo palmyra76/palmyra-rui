@@ -6,7 +6,7 @@ import { getValueByKey, setValueByKey } from '../../form/FormUtil';
 
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
-import { Autocomplete, FormControl, FormHelperText, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, FormControl, FormHelperText, TextField } from '@mui/material';
 import { IMutateOptions } from '../../form/interfaceFields';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 
@@ -24,23 +24,22 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     const [options, setOptions] = useState<Array<any>>([]);
     const [searchText, setSearchText] = useState('');
 
-    // const [open, setOpen] = useState(false);
-    // const loading = open && options.length === 0;
+    const [open, setOpen] = useState(false);
+    const loading = open && options.length < 2;
 
     const serverQueryOptions: IServerQueryInput = {
         store, endPointVars: props.storeOptions.endPointVars, fetchAll: true,
-        pageSize: 15, quickSearch: searchKey
+        pageSize: 15, quickSearch: searchKey, initialFetch: false
     };
 
     const serverQuery = useServerQuery(serverQueryOptions);
 
-    const { setQueryFilter, setQuickSearch,
-        filter, totalRecords } = serverQuery;
+    const { setQueryFilter, setQuickSearch, filter, totalRecords, refreshData } = serverQuery;
 
     const serverResult = serverQuery.data;
 
     const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data?.[idKey]);
-    const labelAccessor = hasDot(labelKey) ? (data: any) => (getValueByKey(labelKey, data)) : (data: any) => (data[labelKey]);
+    const labelAccessor = hasDot(labelKey) ? (data: any) => (getValueByKey(labelKey, data)) : (data: any) => (data?.[labelKey]);
 
     function getSelectedOption(): any {
         if (data) {
@@ -89,14 +88,21 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
 
     useEffect(() => {
         delay(refreshOptions);
-    }, [searchText]);
+    }, [searchText, open]);
 
 
     function refreshOptions() {
-        if (searchText.length > 0) {
-            setQuickSearch('*' + searchText + '*');
-        } else {
-            setQuickSearch('');
+        if (open) {
+            if (searchText.length > 0 && searchText != labelAccessor(value)) {
+                setQuickSearch('*' + searchText + '*');
+            } else {
+                if (serverResult) {
+                    setQuickSearch(null);
+                }
+                else {
+                    refreshData();
+                }
+            }
         }
     }
 
@@ -142,7 +148,6 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             return option;
         }
 
-
         return (
             <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
                 customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
@@ -154,11 +159,23 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                         isOptionEqualToValue={(option, value) => idAccessor(option) == idAccessor(value)}
                         filterOptions={(x) => x}
                         renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }}
-                            variant={variant} label={label} autoFocus={autoFocus} />}
+                            variant={variant} label={label} autoFocus={autoFocus}
+                            InputProps={{
+                                ...params.InputProps,
+                                endAdornment: (
+                                    <>
+                                        {loading ? <CircularProgress color="inherit" size={18}/> : null}
+                                        {params.InputProps.endAdornment}
+                                    </>
+                                ),
+                            }}
+                        />}
                         getOptionLabel={getLabel}
                         {...inputProps}
                         options={options}
-                        onOpen={(e) => { refreshOptions() }}
+                        open={open}
+                        onClose={() => { setOpen(false) }}
+                        onOpen={(e) => { setOpen(true); }}
                         {...callbacks}>
                     </Autocomplete>
                     <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
