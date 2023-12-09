@@ -53,17 +53,17 @@ import Ar from "../palmyra/layout/flexiLayout/SectionRendererInvalid.js";
 import kr from "../palmyra/layout/flexiLayout/SectionRendererViewForm.js";
 import { useKeyValue as Lr } from "../palmyra/utils/pubsub/PubSubHelper.js";
 const Me = (e) => {
-  const { store: t, quickSearch: r, endPointVars: n } = e, a = e.fetchAll != !1, [o, c] = ee(null), [l, d] = e.filterTopic ? Lr(e.filterTopic, {}) : ee({}), [p, f] = ee({}), h = ie(e.initialFetch == !1), g = e.pageSize ? e.pageSize : 15;
-  var L = g instanceof Array ? g : [g], R = g instanceof Array ? g[0] : g;
+  const { store: t, quickSearch: r, endPointVars: n } = e, a = e.fetchAll != !1, [o, c] = ee(null), [l, d] = e.filterTopic ? Lr(e.filterTopic, {}) : ee({}), [p, f] = ee({}), g = ie(e.initialFetch == !1), h = e.pageSize ? e.pageSize : 15;
+  var k = h instanceof Array ? h : [h], R = h instanceof Array ? h[0] : h;
   const [x, $] = ee({ limit: R, offset: 0 }), [W, S] = ee(null), m = () => Math.round(x.offset / x.limit), b = () => x.limit, s = (F) => {
     $({ ...x, offset: F * R });
-  }, k = (F) => {
+  }, L = (F) => {
     const j = F > 10 || F == -1 ? F : 15;
     $({ ...x, limit: j });
   }, w = () => l ? Object.keys(l).length == 0 : !1;
   ge(() => {
-    if (h.current) {
-      h.current = !1;
+    if (g.current) {
+      g.current = !1;
       return;
     }
     (a || !w()) && Y();
@@ -101,27 +101,27 @@ const Me = (e) => {
     },
     refreshData: Y,
     gotoPage: s,
-    setPageSize: k,
+    setPageSize: L,
     getPageNo: m,
     getLimit: b,
     filter: l,
     queryLimit: x,
     data: W,
     totalRecords: o,
-    pageSizeOptions: L
+    pageSizeOptions: k
   };
 };
 function st(e) {
   return e ? Array.isArray(e) ? e : typeof e == "string" ? e.split(",") : (console.log(e), [e]) : [];
 }
 const ea = le(function(t, r) {
-  const n = Ee(Ne), a = r || ie(null), o = n(t, "checkbox", a), { mutateOptions: c, setMutateOptions: l } = o, [d, p] = ee(!1), f = st(o.data), h = o.error, g = o.eventListeners, R = { store: o.store, pageSize: -1 }, { data: x } = Me(R), $ = x, W = ie(null), S = t.lookupOptions || {}, m = S.idAttribute || "id", b = S.titleAttribute || "name", s = Re(m) ? (D) => _e(m, D) : (D) => D[m], k = Re(b) ? (D) => _e(b, D) : (D) => D[b];
+  const n = Ee(Ne), a = r || ie(null), o = n(t, "checkbox", a), { mutateOptions: c, setMutateOptions: l } = o, [d, p] = ee(!1), f = st(o.data), g = o.error, h = o.eventListeners, R = { store: o.store, pageSize: -1 }, { data: x } = Me(R), $ = x, W = ie(null), S = t.lookupOptions || {}, m = S.idAttribute || "id", b = S.titleAttribute || "name", s = Re(m) ? (D) => _e(m, D) : (D) => D[m], L = Re(b) ? (D) => _e(b, D) : (D) => D[b];
   ve(a, () => ({
     focus() {
       W.current.focus();
     },
     isValid() {
-      return !h.status;
+      return !g.status;
     },
     assignAttribute(D) {
       W.current.assignAttribute(D);
@@ -144,11 +144,11 @@ const ea = le(function(t, r) {
   function Y(D, Q) {
     const F = st(o.data);
     var j = F.indexOf(D);
-    Q ? j < 0 && F.push(D) : j >= 0 && F.splice(j, 1), g.onValueChange(F.toString());
+    Q ? j < 0 && F.push(D) : j >= 0 && F.splice(j, 1), h.onValueChange(F.toString());
   }
   var z = {
-    onBlur: g.onBlur,
-    onFocus: g.onFocus,
+    onBlur: h.onBlur,
+    onFocus: h.onFocus,
     onChange: (D) => {
       Y(D.target.value, D.target.checked);
     }
@@ -162,7 +162,7 @@ const ea = le(function(t, r) {
     var F = [];
     Q && $.map((j) => {
       F.push(s(j));
-    }), g.onValueChange(F.toString());
+    }), h.onValueChange(F.toString());
   };
   return /* @__PURE__ */ i("div", { className: t.className, children: c.visible && /* @__PURE__ */ K(
     Nt,
@@ -185,7 +185,7 @@ const ea = le(function(t, r) {
           {
             className: "MuiServerCheckBoxFormControl",
             fullWidth: !0,
-            error: h.status,
+            error: g.status,
             ...w,
             children: [
               $ ? $.map((D) => /* @__PURE__ */ i(
@@ -200,11 +200,11 @@ const ea = le(function(t, r) {
                       disabled: t.readonly
                     }
                   ),
-                  label: k(D)
+                  label: L(D)
                 },
                 s(D)
               )) : /* @__PURE__ */ i("div", { children: "No options provided" }),
-              /* @__PURE__ */ i(xt, { className: "form-error-text", children: h.message })
+              /* @__PURE__ */ i(xt, { className: "form-error-text", children: g.message })
             ]
           }
         )
@@ -212,14 +212,14 @@ const ea = le(function(t, r) {
     }
   ) });
 }), Ir = (e, t, r) => {
-  const n = e.store || r.store, a = e.lookupOptions || {}, o = a.idAttribute || "id", c = a.titleAttribute || "name", l = a.searchAttribute || c, d = r.data, p = ie(0), [f, h] = ee(null), [g, L] = ee([]), [R, x] = ee(""), [$, W] = ee(!1), S = $ && g.length < (f ? 2 : 1), m = {
+  const n = e.store || r.store, a = e.lookupOptions || {}, o = a.idAttribute || "id", c = a.titleAttribute || "name", l = a.searchAttribute || c, d = r.data, p = ie(0), [f, g] = ee(null), [h, k] = ee([]), [R, x] = ee(""), [$, W] = ee(!1), S = $ && h.length < (f ? 2 : 1), m = {
     store: n,
     endPointVars: e.storeOptions.endPointVars,
     fetchAll: !0,
     pageSize: 15,
     quickSearch: l,
     initialFetch: !1
-  }, b = Me(m), { setQueryFilter: s, setQuickSearch: k, filter: w, totalRecords: Y, refreshData: z } = b, G = b.data, X = Re(o) ? (O) => _e(o, O) : (O) => O == null ? void 0 : O[o], D = Re(c) ? (O) => _e(c, O) : (O) => O == null ? void 0 : O[c];
+  }, b = Me(m), { setQueryFilter: s, setQuickSearch: L, filter: w, totalRecords: Y, refreshData: z } = b, G = b.data, X = Re(o) ? (O) => _e(o, O) : (O) => O == null ? void 0 : O[o], D = Re(c) ? (O) => _e(c, O) : (O) => O == null ? void 0 : O[c];
   function Q() {
     if (d) {
       var O = {};
@@ -232,11 +232,11 @@ const ea = le(function(t, r) {
   ge(() => {
     if (X(f) != r.data) {
       var O = Q();
-      O && (L([O]), h(O));
+      O && (k([O]), g(O));
     }
   }, [r.data]), ge(() => {
     const O = G ? [...G] : [], H = f;
-    O && H && !F(O, X(H)) && O.unshift(H), L(O), p.current < Y && (p.current = Y);
+    O && H && !F(O, X(H)) && O.unshift(H), k(O), p.current < Y && (p.current = Y);
   }, [G, Y]);
   function F(O, H) {
     return O.find((J) => {
@@ -248,7 +248,7 @@ const ea = le(function(t, r) {
     vr(j);
   }, [R, $]);
   function j() {
-    $ && (R.length > 0 && R != D(f) ? k("*" + R + "*") : G ? k(null) : z());
+    $ && (R.length > 0 && R != D(f) ? L("*" + R + "*") : G ? L(null) : z());
   }
   return {
     getSelectedOption: Q,
@@ -263,7 +263,7 @@ const ea = le(function(t, r) {
         onBlur: J.onBlur,
         onFocus: J.onFocus,
         onChange: (P, C) => {
-          E(C), h(C);
+          E(C), g(C);
         },
         onInputChange: (P, C) => (x(C), !0)
       };
@@ -315,7 +315,7 @@ const ea = le(function(t, r) {
                 ),
                 getOptionLabel: N,
                 ...H,
-                options: g,
+                options: h,
                 open: $,
                 onClose: () => {
                   W(!1);
@@ -337,7 +337,7 @@ const ea = le(function(t, r) {
     refreshOptions: j
   };
 }, $r = le(function(t, r) {
-  const n = Ee(Ne), a = r || ie(null), o = n(t, "serverlookup", a), c = o.error, { mutateOptions: l, setMutateOptions: d } = o, p = ie(null), { getServerLookup: f, setQueryFilter: h } = Ir(t, l, o);
+  const n = Ee(Ne), a = r || ie(null), o = n(t, "serverlookup", a), c = o.error, { mutateOptions: l, setMutateOptions: d } = o, p = ie(null), { getServerLookup: f, setQueryFilter: g } = Ir(t, l, o);
   return ve(a, () => ({
     focus() {
       p.current.focus();
@@ -351,27 +351,27 @@ const ea = le(function(t, r) {
     getValue() {
       return o.getData();
     },
-    setValue(g) {
-      o.setData(g);
+    setValue(h) {
+      o.setData(h);
     },
-    setRequired(g) {
+    setRequired(h) {
     },
-    setReadOnly(g) {
+    setReadOnly(h) {
     },
-    setVisible(g) {
-      d({ visible: g });
+    setVisible(h) {
+      d({ visible: h });
     },
-    setAttribute(g) {
+    setAttribute(h) {
     },
-    setFilter(g) {
-      h(g);
+    setFilter(h) {
+      g(h);
     },
     resetFilter() {
     },
-    addFilter(g, L) {
-      h((R) => (R[g] = L, { ...R }));
+    addFilter(h, k) {
+      g((R) => (R[h] = k, { ...R }));
     },
-    setDefaultFilter(g) {
+    setDefaultFilter(h) {
     }
   }), [o]), f(p);
 }), Yr = (e) => {
@@ -423,19 +423,19 @@ const ea = le(function(t, r) {
   var f;
   const { formLayout: n, context: a } = t, { formData: o } = a, c = n.Container;
   ie({});
-  const l = wt(() => (h) => Lt(h), [o.data]);
+  const l = wt(() => (g) => Lt(g), [o.data]);
   var d = ((f = n.options) == null ? void 0 : f.columns) || 1, p = { columns: d };
-  return c ? /* @__PURE__ */ i("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: n.fields.map((h, g) => /* @__PURE__ */ i(
+  return c ? /* @__PURE__ */ i("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: n.fields.map((g, h) => /* @__PURE__ */ i(
     c,
     {
-      index: g,
-      field: h,
-      label: h.title,
+      index: h,
+      field: g,
+      label: g.title,
       options: p,
-      children: l(h)
+      children: l(g)
     },
-    h.attribute
-  )) }) : /* @__PURE__ */ i("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: n.fields.map((h, g) => /* @__PURE__ */ i(we, { children: l(h) })) });
+    g.attribute
+  )) }) : /* @__PURE__ */ i("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: n.fields.map((g, h) => /* @__PURE__ */ i(we, { children: l(g) })) });
 }), It = (e) => {
   const { layout: t, context: r } = e;
   var n = t.Renderer || qr, a = t.Container || Mt;
@@ -532,11 +532,11 @@ function Xr() {
   if (lt)
     return q;
   lt = 1;
-  var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, a = e ? Symbol.for("react.strict_mode") : 60108, o = e ? Symbol.for("react.profiler") : 60114, c = e ? Symbol.for("react.provider") : 60109, l = e ? Symbol.for("react.context") : 60110, d = e ? Symbol.for("react.async_mode") : 60111, p = e ? Symbol.for("react.concurrent_mode") : 60111, f = e ? Symbol.for("react.forward_ref") : 60112, h = e ? Symbol.for("react.suspense") : 60113, g = e ? Symbol.for("react.suspense_list") : 60120, L = e ? Symbol.for("react.memo") : 60115, R = e ? Symbol.for("react.lazy") : 60116, x = e ? Symbol.for("react.block") : 60121, $ = e ? Symbol.for("react.fundamental") : 60117, W = e ? Symbol.for("react.responder") : 60118, S = e ? Symbol.for("react.scope") : 60119;
+  var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, a = e ? Symbol.for("react.strict_mode") : 60108, o = e ? Symbol.for("react.profiler") : 60114, c = e ? Symbol.for("react.provider") : 60109, l = e ? Symbol.for("react.context") : 60110, d = e ? Symbol.for("react.async_mode") : 60111, p = e ? Symbol.for("react.concurrent_mode") : 60111, f = e ? Symbol.for("react.forward_ref") : 60112, g = e ? Symbol.for("react.suspense") : 60113, h = e ? Symbol.for("react.suspense_list") : 60120, k = e ? Symbol.for("react.memo") : 60115, R = e ? Symbol.for("react.lazy") : 60116, x = e ? Symbol.for("react.block") : 60121, $ = e ? Symbol.for("react.fundamental") : 60117, W = e ? Symbol.for("react.responder") : 60118, S = e ? Symbol.for("react.scope") : 60119;
   function m(s) {
     if (typeof s == "object" && s !== null) {
-      var k = s.$$typeof;
-      switch (k) {
+      var L = s.$$typeof;
+      switch (L) {
         case t:
           switch (s = s.type, s) {
             case d:
@@ -544,29 +544,29 @@ function Xr() {
             case n:
             case o:
             case a:
-            case h:
+            case g:
               return s;
             default:
               switch (s = s && s.$$typeof, s) {
                 case l:
                 case f:
                 case R:
-                case L:
+                case k:
                 case c:
                   return s;
                 default:
-                  return k;
+                  return L;
               }
           }
         case r:
-          return k;
+          return L;
       }
     }
   }
   function b(s) {
     return m(s) === p;
   }
-  return q.AsyncMode = d, q.ConcurrentMode = p, q.ContextConsumer = l, q.ContextProvider = c, q.Element = t, q.ForwardRef = f, q.Fragment = n, q.Lazy = R, q.Memo = L, q.Portal = r, q.Profiler = o, q.StrictMode = a, q.Suspense = h, q.isAsyncMode = function(s) {
+  return q.AsyncMode = d, q.ConcurrentMode = p, q.ContextConsumer = l, q.ContextProvider = c, q.Element = t, q.ForwardRef = f, q.Fragment = n, q.Lazy = R, q.Memo = k, q.Portal = r, q.Profiler = o, q.StrictMode = a, q.Suspense = g, q.isAsyncMode = function(s) {
     return b(s) || m(s) === d;
   }, q.isConcurrentMode = b, q.isContextConsumer = function(s) {
     return m(s) === l;
@@ -581,7 +581,7 @@ function Xr() {
   }, q.isLazy = function(s) {
     return m(s) === R;
   }, q.isMemo = function(s) {
-    return m(s) === L;
+    return m(s) === k;
   }, q.isPortal = function(s) {
     return m(s) === r;
   }, q.isProfiler = function(s) {
@@ -589,9 +589,9 @@ function Xr() {
   }, q.isStrictMode = function(s) {
     return m(s) === a;
   }, q.isSuspense = function(s) {
-    return m(s) === h;
+    return m(s) === g;
   }, q.isValidElementType = function(s) {
-    return typeof s == "string" || typeof s == "function" || s === n || s === p || s === o || s === a || s === h || s === g || typeof s == "object" && s !== null && (s.$$typeof === R || s.$$typeof === L || s.$$typeof === c || s.$$typeof === l || s.$$typeof === f || s.$$typeof === $ || s.$$typeof === W || s.$$typeof === S || s.$$typeof === x);
+    return typeof s == "string" || typeof s == "function" || s === n || s === p || s === o || s === a || s === g || s === h || typeof s == "object" && s !== null && (s.$$typeof === R || s.$$typeof === k || s.$$typeof === c || s.$$typeof === l || s.$$typeof === f || s.$$typeof === $ || s.$$typeof === W || s.$$typeof === S || s.$$typeof === x);
   }, q.typeOf = m, q;
 }
 var V = {};
@@ -606,10 +606,10 @@ var V = {};
 var ut;
 function Br() {
   return ut || (ut = 1, process.env.NODE_ENV !== "production" && function() {
-    var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, a = e ? Symbol.for("react.strict_mode") : 60108, o = e ? Symbol.for("react.profiler") : 60114, c = e ? Symbol.for("react.provider") : 60109, l = e ? Symbol.for("react.context") : 60110, d = e ? Symbol.for("react.async_mode") : 60111, p = e ? Symbol.for("react.concurrent_mode") : 60111, f = e ? Symbol.for("react.forward_ref") : 60112, h = e ? Symbol.for("react.suspense") : 60113, g = e ? Symbol.for("react.suspense_list") : 60120, L = e ? Symbol.for("react.memo") : 60115, R = e ? Symbol.for("react.lazy") : 60116, x = e ? Symbol.for("react.block") : 60121, $ = e ? Symbol.for("react.fundamental") : 60117, W = e ? Symbol.for("react.responder") : 60118, S = e ? Symbol.for("react.scope") : 60119;
+    var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, a = e ? Symbol.for("react.strict_mode") : 60108, o = e ? Symbol.for("react.profiler") : 60114, c = e ? Symbol.for("react.provider") : 60109, l = e ? Symbol.for("react.context") : 60110, d = e ? Symbol.for("react.async_mode") : 60111, p = e ? Symbol.for("react.concurrent_mode") : 60111, f = e ? Symbol.for("react.forward_ref") : 60112, g = e ? Symbol.for("react.suspense") : 60113, h = e ? Symbol.for("react.suspense_list") : 60120, k = e ? Symbol.for("react.memo") : 60115, R = e ? Symbol.for("react.lazy") : 60116, x = e ? Symbol.for("react.block") : 60121, $ = e ? Symbol.for("react.fundamental") : 60117, W = e ? Symbol.for("react.responder") : 60118, S = e ? Symbol.for("react.scope") : 60119;
     function m(y) {
       return typeof y == "string" || typeof y == "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-      y === n || y === p || y === o || y === a || y === h || y === g || typeof y == "object" && y !== null && (y.$$typeof === R || y.$$typeof === L || y.$$typeof === c || y.$$typeof === l || y.$$typeof === f || y.$$typeof === $ || y.$$typeof === W || y.$$typeof === S || y.$$typeof === x);
+      y === n || y === p || y === o || y === a || y === g || y === h || typeof y == "object" && y !== null && (y.$$typeof === R || y.$$typeof === k || y.$$typeof === c || y.$$typeof === l || y.$$typeof === f || y.$$typeof === $ || y.$$typeof === W || y.$$typeof === S || y.$$typeof === x);
     }
     function b(y) {
       if (typeof y == "object" && y !== null) {
@@ -623,7 +623,7 @@ function Br() {
               case n:
               case o:
               case a:
-              case h:
+              case g:
                 return Te;
               default:
                 var Ze = Te && Te.$$typeof;
@@ -631,7 +631,7 @@ function Br() {
                   case l:
                   case f:
                   case R:
-                  case L:
+                  case k:
                   case c:
                     return Ze;
                   default:
@@ -643,7 +643,7 @@ function Br() {
         }
       }
     }
-    var s = d, k = p, w = l, Y = c, z = t, G = f, X = n, D = R, Q = L, F = r, j = o, B = a, O = h, H = !1;
+    var s = d, L = p, w = l, Y = c, z = t, G = f, X = n, D = R, Q = k, F = r, j = o, B = a, O = g, H = !1;
     function J(y) {
       return H || (H = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), u(y) || b(y) === d;
     }
@@ -669,7 +669,7 @@ function Br() {
       return b(y) === R;
     }
     function N(y) {
-      return b(y) === L;
+      return b(y) === k;
     }
     function P(y) {
       return b(y) === r;
@@ -681,9 +681,9 @@ function Br() {
       return b(y) === a;
     }
     function re(y) {
-      return b(y) === h;
+      return b(y) === g;
     }
-    V.AsyncMode = s, V.ConcurrentMode = k, V.ContextConsumer = w, V.ContextProvider = Y, V.Element = z, V.ForwardRef = G, V.Fragment = X, V.Lazy = D, V.Memo = Q, V.Portal = F, V.Profiler = j, V.StrictMode = B, V.Suspense = O, V.isAsyncMode = J, V.isConcurrentMode = u, V.isContextConsumer = v, V.isContextProvider = A, V.isElement = _, V.isForwardRef = T, V.isFragment = I, V.isLazy = E, V.isMemo = N, V.isPortal = P, V.isProfiler = C, V.isStrictMode = M, V.isSuspense = re, V.isValidElementType = m, V.typeOf = b;
+    V.AsyncMode = s, V.ConcurrentMode = L, V.ContextConsumer = w, V.ContextProvider = Y, V.Element = z, V.ForwardRef = G, V.Fragment = X, V.Lazy = D, V.Memo = Q, V.Portal = F, V.Profiler = j, V.StrictMode = B, V.Suspense = O, V.isAsyncMode = J, V.isConcurrentMode = u, V.isContextConsumer = v, V.isContextProvider = A, V.isElement = _, V.isForwardRef = T, V.isFragment = I, V.isLazy = E, V.isMemo = N, V.isPortal = P, V.isProfiler = C, V.isStrictMode = M, V.isSuspense = re, V.isValidElementType = m, V.typeOf = b;
   }()), V;
 }
 var dt;
@@ -731,12 +731,12 @@ function Ur() {
   return Ie = a() ? Object.assign : function(o, c) {
     for (var l, d = n(o), p, f = 1; f < arguments.length; f++) {
       l = Object(arguments[f]);
-      for (var h in l)
-        t.call(l, h) && (d[h] = l[h]);
+      for (var g in l)
+        t.call(l, g) && (d[g] = l[g]);
       if (e) {
         p = e(l);
-        for (var g = 0; g < p.length; g++)
-          r.call(l, p[g]) && (d[p[g]] = l[p[g]]);
+        for (var h = 0; h < p.length; h++)
+          r.call(l, p[h]) && (d[p[h]] = l[p[h]]);
       }
     }
     return d;
@@ -776,25 +776,25 @@ function Gr() {
     if (process.env.NODE_ENV !== "production") {
       for (var f in o)
         if (n(o, f)) {
-          var h;
+          var g;
           try {
             if (typeof o[f] != "function") {
-              var g = Error(
+              var h = Error(
                 (d || "React class") + ": " + l + " type `" + f + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof o[f] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`."
               );
-              throw g.name = "Invariant Violation", g;
+              throw h.name = "Invariant Violation", h;
             }
-            h = o[f](c, f, d, l, null, t);
+            g = o[f](c, f, d, l, null, t);
           } catch (R) {
-            h = R;
+            g = R;
           }
-          if (h && !(h instanceof Error) && e(
-            (d || "React class") + ": type specification of " + l + " `" + f + "` is invalid; the type checker function must return `null` or an `Error` but returned a " + typeof h + ". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument)."
-          ), h instanceof Error && !(h.message in r)) {
-            r[h.message] = !0;
-            var L = p ? p() : "";
+          if (g && !(g instanceof Error) && e(
+            (d || "React class") + ": type specification of " + l + " `" + f + "` is invalid; the type checker function must return `null` or an `Error` but returned a " + typeof g + ". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument)."
+          ), g instanceof Error && !(g.message in r)) {
+            r[g.message] = !0;
+            var k = p ? p() : "";
             e(
-              "Failed " + l + " type: " + h.message + (L ?? "")
+              "Failed " + l + " type: " + g.message + (k ?? "")
             );
           }
         }
@@ -824,12 +824,12 @@ function Hr() {
   }
   return qe = function(l, d) {
     var p = typeof Symbol == "function" && Symbol.iterator, f = "@@iterator";
-    function h(u) {
+    function g(u) {
       var v = u && (p && u[p] || u[f]);
       if (typeof v == "function")
         return v;
     }
-    var g = "<<anonymous>>", L = {
+    var h = "<<anonymous>>", k = {
       array: W("array"),
       bigint: W("bigint"),
       bool: W("boolean"),
@@ -842,7 +842,7 @@ function Hr() {
       arrayOf: m,
       element: b(),
       elementType: s(),
-      instanceOf: k,
+      instanceOf: L,
       node: G(),
       objectOf: Y,
       oneOf: w,
@@ -861,7 +861,7 @@ function Hr() {
       if (process.env.NODE_ENV !== "production")
         var v = {}, A = 0;
       function _(I, E, N, P, C, M, re) {
-        if (P = P || g, M = M || N, re !== r) {
+        if (P = P || h, M = M || N, re !== r) {
           if (d) {
             var y = new Error(
               "Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types"
@@ -937,10 +937,10 @@ function Hr() {
       }
       return $(u);
     }
-    function k(u) {
+    function L(u) {
       function v(A, _, T, I, E) {
         if (!(A[_] instanceof u)) {
-          var N = u.name || g, P = J(A[_]);
+          var N = u.name || h, P = J(A[_]);
           return new x("Invalid " + I + " `" + E + "` of type " + ("`" + P + "` supplied to `" + T + "`, expected ") + ("instance of `" + N + "`."));
         }
         return null;
@@ -1067,7 +1067,7 @@ Valid keys: ` + JSON.stringify(Object.keys(u), null, "  ")
             return u.every(F);
           if (u === null || l(u))
             return !0;
-          var v = h(u);
+          var v = g(u);
           if (v) {
             var A = v.call(u), _;
             if (v !== u.entries) {
@@ -1121,9 +1121,9 @@ Valid keys: ` + JSON.stringify(Object.keys(u), null, "  ")
       }
     }
     function J(u) {
-      return !u.constructor || !u.constructor.name ? g : u.constructor.name;
+      return !u.constructor || !u.constructor.name ? h : u.constructor.name;
     }
-    return L.checkPropTypes = a, L.resetWarningCache = a.resetWarningCache, L.PropTypes = L, L;
+    return k.checkPropTypes = a, k.resetWarningCache = a.resetWarningCache, k.PropTypes = k, k;
   }, qe;
 }
 var Ve, yt;
@@ -1137,12 +1137,12 @@ function Kr() {
   function r() {
   }
   return r.resetWarningCache = t, Ve = function() {
-    function n(c, l, d, p, f, h) {
-      if (h !== e) {
-        var g = new Error(
+    function n(c, l, d, p, f, g) {
+      if (g !== e) {
+        var h = new Error(
           "Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types"
         );
-        throw g.name = "Invariant Violation", g;
+        throw h.name = "Invariant Violation", h;
       }
     }
     n.isRequired = n;
@@ -1859,43 +1859,43 @@ te(Le, "defaultProps", {
       return d.default;
     }
   }), e.default = void 0;
-  var t = g(pe), r = f(zt), n = f(At), a = f(en), o = U, c = fe, l = de, d = f(Ae), p = f(ke);
+  var t = h(pe), r = f(zt), n = f(At), a = f(en), o = U, c = fe, l = de, d = f(Ae), p = f(ke);
   function f(S) {
     return S && S.__esModule ? S : { default: S };
   }
-  function h(S) {
+  function g(S) {
     if (typeof WeakMap != "function")
       return null;
     var m = /* @__PURE__ */ new WeakMap(), b = /* @__PURE__ */ new WeakMap();
-    return (h = function(s) {
+    return (g = function(s) {
       return s ? b : m;
     })(S);
   }
-  function g(S, m) {
+  function h(S, m) {
     if (!m && S && S.__esModule)
       return S;
     if (S === null || typeof S != "object" && typeof S != "function")
       return { default: S };
-    var b = h(m);
+    var b = g(m);
     if (b && b.has(S))
       return b.get(S);
-    var s = {}, k = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    var s = {}, L = Object.defineProperty && Object.getOwnPropertyDescriptor;
     for (var w in S)
       if (w !== "default" && Object.prototype.hasOwnProperty.call(S, w)) {
-        var Y = k ? Object.getOwnPropertyDescriptor(S, w) : null;
+        var Y = L ? Object.getOwnPropertyDescriptor(S, w) : null;
         Y && (Y.get || Y.set) ? Object.defineProperty(s, w, Y) : s[w] = S[w];
       }
     return s.default = S, b && b.set(S, s), s;
   }
-  function L() {
-    return L = Object.assign ? Object.assign.bind() : function(S) {
+  function k() {
+    return k = Object.assign ? Object.assign.bind() : function(S) {
       for (var m = 1; m < arguments.length; m++) {
         var b = arguments[m];
         for (var s in b)
           Object.prototype.hasOwnProperty.call(b, s) && (S[s] = b[s]);
       }
       return S;
-    }, L.apply(this, arguments);
+    }, k.apply(this, arguments);
   }
   function R(S, m, b) {
     return m = x(m), m in S ? Object.defineProperty(S, m, { value: b, enumerable: !0, configurable: !0, writable: !0 }) : S[m] = b, S;
@@ -1923,11 +1923,11 @@ te(Le, "defaultProps", {
       let {
         position: s
       } = m, {
-        prevPropsPosition: k
+        prevPropsPosition: L
       } = b;
-      return s && (!k || s.x !== k.x || s.y !== k.y) ? ((0, p.default)("Draggable: getDerivedStateFromProps %j", {
+      return s && (!L || s.x !== L.x || s.y !== L.y) ? ((0, p.default)("Draggable: getDerivedStateFromProps %j", {
         position: s,
-        prevPropsPosition: k
+        prevPropsPosition: L
       }), {
         x: s.x,
         y: s.y,
@@ -1948,9 +1948,9 @@ te(Le, "defaultProps", {
         if (!this.state.dragging)
           return !1;
         (0, p.default)("Draggable: onDrag: %j", s);
-        const k = (0, c.createDraggableData)(this, s), w = {
-          x: k.x,
-          y: k.y,
+        const L = (0, c.createDraggableData)(this, s), w = {
+          x: L.x,
+          y: L.y,
           slackX: 0,
           slackY: 0
         };
@@ -1961,9 +1961,9 @@ te(Le, "defaultProps", {
           } = w;
           w.x += this.state.slackX, w.y += this.state.slackY;
           const [X, D] = (0, c.getBoundPosition)(this, w.x, w.y);
-          w.x = X, w.y = D, w.slackX = this.state.slackX + (z - w.x), w.slackY = this.state.slackY + (G - w.y), k.x = w.x, k.y = w.y, k.deltaX = w.x - this.state.x, k.deltaY = w.y - this.state.y;
+          w.x = X, w.y = D, w.slackX = this.state.slackX + (z - w.x), w.slackY = this.state.slackY + (G - w.y), L.x = w.x, L.y = w.y, L.deltaX = w.x - this.state.x, L.deltaY = w.y - this.state.y;
         }
-        if (this.props.onDrag(b, k) === !1)
+        if (this.props.onDrag(b, L) === !1)
           return !1;
         this.setState(w);
       }), R(this, "onDragStop", (b, s) => {
@@ -2022,7 +2022,7 @@ te(Le, "defaultProps", {
         axis: m,
         bounds: b,
         children: s,
-        defaultPosition: k,
+        defaultPosition: L,
         defaultClassName: w,
         defaultClassNameDragging: Y,
         defaultClassNameDragged: z,
@@ -2032,7 +2032,7 @@ te(Le, "defaultProps", {
         ...Q
       } = this.props;
       let F = {}, j = null;
-      const O = !!!G || this.state.dragging, H = G || k, J = {
+      const O = !!!G || this.state.dragging, H = G || L, J = {
         // Set left if horizontal drag is enabled
         x: (0, c.canDragX)(this) && O ? this.state.x : H.x,
         // Set top if vertical drag is enabled
@@ -2043,7 +2043,7 @@ te(Le, "defaultProps", {
         [Y]: this.state.dragging,
         [z]: this.state.dragged
       });
-      return /* @__PURE__ */ t.createElement(d.default, L({}, Q, {
+      return /* @__PURE__ */ t.createElement(d.default, k({}, Q, {
         onStart: this.onDragStart,
         onDrag: this.onDrag,
         onStop: this.onDragStop
@@ -2203,7 +2203,7 @@ const jn = (e) => {
   return r;
 }, qn = le(function(t, r) {
   const { formLayout: n, context: a } = t, { formData: o } = a, c = ie({}), l = jn(t), d = "palmyra-form-field-data", p = wt(() => (f) => Lt(f, c, f.label), [o.data]);
-  return /* @__PURE__ */ i("form", { className: "palmyra-form-field-only-container-wrapper", noValidate: !0, children: n.fields.map((f, h) => /* @__PURE__ */ i("div", { className: l, children: /* @__PURE__ */ i("div", { className: d, children: p(f) }) }, f.attribute)) });
+  return /* @__PURE__ */ i("form", { className: "palmyra-form-field-only-container-wrapper", noValidate: !0, children: n.fields.map((f, g) => /* @__PURE__ */ i("div", { className: l, children: /* @__PURE__ */ i("div", { className: d, children: p(f) }) }, f.attribute)) });
 });
 function Vn(e) {
   return /* @__PURE__ */ i(
@@ -2221,13 +2221,13 @@ const Wn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: a 
   const l = () => {
     n({});
   }, d = () => {
-    var g = c();
-    n && n(g);
+    var h = c();
+    n && n(h);
   }, p = () => {
     r();
-  }, f = (g) => {
-    g.keyCode === 27 && p();
-  }, h = _r(e);
+  }, f = (h) => {
+    h.keyCode === 27 && p();
+  }, g = _r(e);
   return /* @__PURE__ */ i("div", { className: "grid-filter-container", children: /* @__PURE__ */ i(
     pr,
     {
@@ -2248,7 +2248,7 @@ const Wn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: a 
             layout: {
               type: "form",
               formLayout: {
-                fields: h,
+                fields: g,
                 options: {
                   columns: 2
                 }
@@ -2265,12 +2265,12 @@ const Wn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: a 
     }
   ) });
 }, zn = le(function(t, r) {
-  const { columns: n, children: a, EmptyChild: o, onRowClick: c, quickSearch: l } = t, d = o || wr, p = t.customizer || Rr, [f, h] = ee(!1), [g, L] = ee("standard"), [R, x] = ee(!1), [$, W] = ee(""), {
+  const { columns: n, children: a, EmptyChild: o, onRowClick: c, quickSearch: l } = t, d = o || wr, p = t.customizer || Rr, [f, g] = ee(!1), [h, k] = ee("standard"), [R, x] = ee(!1), [$, W] = ee(""), {
     setQueryFilter: S,
     setQuickSearch: m,
     setSortColumns: b,
     gotoPage: s,
-    setPageSize: k,
+    setPageSize: L,
     getPageNo: w,
     refreshData: Y,
     data: z,
@@ -2290,12 +2290,12 @@ const Wn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: a 
   const j = (C, M) => {
     s(M);
   }, B = Pr(n, p), O = (C) => {
-    L(C);
+    k(C);
   }, H = () => {
-    h(!f);
-  }, J = () => g === "compact" ? { padding: "3px" } : g === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, u = () => g === "compact" ? { padding: "3px" } : g === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, v = () => {
+    g(!f);
+  }, J = () => h === "compact" ? { padding: "3px" } : h === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, u = () => h === "compact" ? { padding: "3px" } : h === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, v = () => {
     var C;
-    switch (g) {
+    switch (h) {
       case "compact":
         C = /* @__PURE__ */ i(ot, { className: "density-icon" });
         break;
@@ -2314,7 +2314,7 @@ const Wn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: a 
     c && c(C);
   }, T = (C) => {
     const M = parseInt(C.target.value, 10);
-    k(M);
+    L(M);
   }, I = () => {
     console.info("Export Clicked");
   }, E = 200, N = !!t.pageSize;
@@ -2337,7 +2337,7 @@ const Wn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: a 
         }
       ) }),
       /* @__PURE__ */ i(Dt, { onClickAway: () => {
-        h(!1);
+        g(!1);
       }, children: /* @__PURE__ */ K("div", { className: "grid-header-button", onClick: H, children: [
         /* @__PURE__ */ i(xe, { title: "Density", placement: "top", children: /* @__PURE__ */ i(Se, { className: "grid-btn", disableRipple: !0, children: v() }) }),
         f && /* @__PURE__ */ i("div", { className: "density-dropdown-content", children: /* @__PURE__ */ K("ul", { children: [
@@ -2399,50 +2399,51 @@ const Wn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: a 
     ) }) })
   ] }) });
 }), ra = le(function(t, r) {
-  const { columns: n, endPoint: a, storeFactory: o, layoutParams: c } = t, l = t.quickSearch || "", d = ie(null), p = (h, g) => {
-    console.log(g);
+  const { columns: n, endPoint: a, storeFactory: o, layoutParams: c, pagination: l } = t, d = t.quickSearch || "", p = ie(null), f = (h, k) => {
+    console.log(k);
   };
   ge(() => {
-    var h = it.subscribe(t.topic, p);
+    var h = it.subscribe(t.topic, f);
     return () => {
       it.unsubscribe(h);
     };
   }, [t.topic]), r && ve(r, () => ({
     setFilter: (h) => {
-      d.current.setFilter(h);
+      p.current.setFilter(h);
     },
     refresh: () => {
-      d.current.refresh();
+      p.current.refresh();
     }
   }), [n, a]);
-  const f = {
+  const g = {
     fields: n,
-    quickSearch: l,
+    pagination: l,
+    quickSearch: d,
     storeOptions: {
       endPoint: a
     },
     actionOptions: t.actions
   };
-  return /* @__PURE__ */ i(we, { children: /* @__PURE__ */ i(Ue.Provider, { value: o, children: /* @__PURE__ */ i(er, { layout: f, context: c, customizer: t.customizer, ref: d }) }) });
+  return /* @__PURE__ */ i(we, { children: /* @__PURE__ */ i(Ue.Provider, { value: o, children: /* @__PURE__ */ i(er, { layout: g, context: c, customizer: t.customizer, ref: p }) }) });
 }), Xn = le(function(t, r) {
   const n = t.layout, [a, o] = ee(n.fields), c = n.pagination ? n.pagination : [15], l = Ee(Ue), d = Ee(Pt);
   var p = n.storeOptions || {}, f = {};
   br(f, p, d);
-  const h = l.getGridStore(f, n.storeOptions.endPoint);
+  const g = l.getGridStore(f, n.storeOptions.endPoint);
   ge(() => {
-    p.hasLayout && h.queryLayout({}).then((R) => {
+    p.hasLayout && g.queryLayout({}).then((R) => {
       o(R.columns);
     });
   }, []);
-  const { onClick: g, onNewClick: L } = Fr(n.actionOptions, d);
+  const { onClick: h, onNewClick: k } = Fr(n.actionOptions, d);
   return /* @__PURE__ */ i("div", { children: /* @__PURE__ */ i(
     zn,
     {
       columns: a,
-      store: h,
+      store: g,
       pageSize: c,
-      onRowClick: g,
-      onNewClick: L,
+      onRowClick: h,
+      onNewClick: k,
       customizer: t.customizer,
       quickSearch: n.quickSearch,
       ref: r
@@ -2531,13 +2532,13 @@ const tr = (e) => {
     }
   }), []);
   const d = { formData: n }, p = a.tabs;
-  return /* @__PURE__ */ i("div", { children: /* @__PURE__ */ i(Ne.Provider, { value: o, children: p.map((h, g) => /* @__PURE__ */ i("div", { children: /* @__PURE__ */ i(
+  return /* @__PURE__ */ i("div", { children: /* @__PURE__ */ i(Ne.Provider, { value: o, children: p.map((g, h) => /* @__PURE__ */ i("div", { children: /* @__PURE__ */ i(
     tr,
     {
-      layout: h,
+      layout: g,
       context: d
     }
-  ) }, h.name + g)) }) });
+  ) }, g.name + h)) }) });
 }), Kn = (e) => {
   switch (e) {
     case "grid":
@@ -2563,9 +2564,9 @@ const tr = (e) => {
     setQueryFilter: d,
     refreshData: p,
     setQuickSearch: f,
-    gotoPage: h,
-    setPageSize: g,
-    getPageNo: L,
+    gotoPage: g,
+    setPageSize: h,
+    getPageNo: k,
     data: R,
     pageSizeOptions: x,
     queryLimit: $
@@ -2578,7 +2579,7 @@ const tr = (e) => {
       p();
     },
     gotoPage(Y) {
-      h(Y);
+      g(Y);
     },
     nextPage() {
     },
@@ -2586,14 +2587,14 @@ const tr = (e) => {
     }
   }), []);
   const S = (Y, z) => {
-    h(z);
+    g(z);
   }, m = (Y) => {
     const z = Y.target.value;
     f(z);
   }, b = (Y) => {
     const z = parseInt(Y.target.value, 10);
-    g(z);
-  }, s = 200, k = !!c, w = !!t.quickSearch;
+    h(z);
+  }, s = 200, L = !!c, w = !!t.quickSearch;
   return /* @__PURE__ */ i("div", { children: /* @__PURE__ */ K("div", { className: "card-page-container", children: [
     n,
     /* @__PURE__ */ K("div", { children: [
@@ -2612,12 +2613,12 @@ const tr = (e) => {
             }
           }
         ) }),
-        /* @__PURE__ */ i("div", { className: "card-pagination", children: k && /* @__PURE__ */ i(
+        /* @__PURE__ */ i("div", { className: "card-pagination", children: L && /* @__PURE__ */ i(
           Et,
           {
             component: "div",
             count: R,
-            page: L(),
+            page: k(),
             onPageChange: S,
             rowsPerPage: $.limit,
             rowsPerPageOptions: x || [],

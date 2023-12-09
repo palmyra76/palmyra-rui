@@ -26,8 +26,9 @@ const GridPage = () => {
                 columns={tableLayout.fields}
                 endPoint={tableLayout.storeOptions.endPoint}
                 actions={tableLayout.actionOptions}
-                quickSearch={tableLayout.quickSearch}                
+                quickSearch={tableLayout.quickSearch}
                 layoutParams={{}}
+                pagination={[5, 10, 25]}
                 storeFactory={storeFactory} /> : <div />}
         </div>
     </>
