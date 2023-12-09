@@ -62,6 +62,20 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         return formatter.parse(getDefaultValue(fieldDef, value))
     }
 
+
+    const doProcessDataChange = (value) => {
+        console.log('validating ', value)
+        const validStatus = validate(value);        
+        const attrib = fieldDef.attribute;
+        const key = fieldDef.name || attrib;                 
+        if (onDataChange) {
+            const formattedValue = formatter.format(value);
+            onDataChange(attrib, formattedValue, { [attrib]: validStatus.status });
+        }
+        fieldEventListener.onChange(key, value, validStatus.status);
+        fieldValueListener.onValue(key, value, validStatus.status);
+    }
+
     /**
      * The doValidate flag is required, when the data validation is not required to be triggered
      *      1. while initializing the field values
@@ -70,20 +84,9 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
      * @param doValidate 
      */
     const setValue = (value: any, doValidate?: boolean) => {
-        setData(value || '');
+        setData(value || '');        
         if (doValidate) {
-            delay(() => {
-                validate(value);
-                const attrib = fieldDef.attribute;
-                const key = fieldDef.name || attrib;
-                const validStatus = checkConstraints(value);
-                if (onDataChange) {
-                    const formattedValue = formatter.format(value);
-                    onDataChange(attrib, formattedValue, { [attrib]: validStatus.status });
-                }
-                fieldEventListener.onChange(key, value, validStatus.status);
-                fieldValueListener.onValue(key, value, validStatus.status);
-            });
+            delay(() => doProcessDataChange(value));
         }
     }
 
@@ -117,6 +120,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         } else {
             setValid(validStatus);
         }
+        return validStatus;
     }
 
     const applyAttribute = (_attr: any) => {

@@ -132,10 +132,6 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             }
         }
 
-        useEffect(() => {
-            updateFieldValue(value);
-        }, [value])
-
         const updateFieldValue = (value: any) => {
             if (value) {
                 const id = idAccessor(value);
