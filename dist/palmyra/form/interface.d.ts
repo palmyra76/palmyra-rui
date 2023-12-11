@@ -8,7 +8,7 @@ import { IFieldEventListener } from ".";
  * This definitions will cater to the Form Definition format
  *
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float";
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly";
 type InputType = string | number | Date;
 type strings = string | string[];
 type numbers = number | number[];
@@ -57,6 +57,8 @@ interface IDecoration {
     title?: string;
 }
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
+}
+interface INumberFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
 }
 interface ISwitchDefinition extends AttributeDefinition, IDecoration {
     options: Record<string | number, string | number>;
@@ -149,7 +151,7 @@ interface IFormListener {
     onChange: (attribute: string, value: any) => void;
 }
 declare const NoopFormListener: IFormListener;
-export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType };
+export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition };
 export type { IServerCheckboxDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration };
 export { NoopFormListener };

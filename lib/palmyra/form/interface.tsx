@@ -11,7 +11,7 @@ import { IFieldEventListener } from ".";
  */
 type FieldType = "string" | "number"
     | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float";
+    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly";
 
 type InputType = string | number | Date;
 
@@ -38,7 +38,7 @@ interface AttributeDefinition {
     value?: InputType,
     required?: boolean,
     readonly?: boolean,
-    hideSelectAll?:boolean,
+    hideSelectAll?: boolean,
     mutant?: boolean,
     visible?: boolean,
     disabled?: boolean,
@@ -69,6 +69,10 @@ interface IDecoration {
 }
 
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
+
+}
+
+interface INumberFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
 
 }
 
@@ -153,12 +157,12 @@ interface IFormFieldInput {
 
 interface IFormFieldManager {
     data: any,
-    setData: (d:any) => void,
+    setData: (d: any) => void,
     getData: () => any,
     error: any,
     eventListeners: IEventListeners,
     displayValue?: any,
-    setDisplayValue?: (d:any) => void,
+    setDisplayValue?: (d: any) => void,
     store?: LookupStore<any>,
     mutateOptions?: IMutateOptions,
     setMutateOptions?: (d: IMutateOptions) => void
@@ -192,7 +196,7 @@ const NoopFormListener: IFormListener = {
 };
 
 
-export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType }
+export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition }
 export type { IServerCheckboxDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration }
 

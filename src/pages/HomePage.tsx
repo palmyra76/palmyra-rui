@@ -17,6 +17,7 @@ import MuiPassword from "../../lib/palmyra/mui/form/MuiPassword";
 import { createFormHelper } from "../../lib/palmyra/form/PalmyraFormManager";
 import MuiServerCheckBox from "../../lib/palmyra/mui/form/MuiServerCheckBox";
 import MuiDateRangePicker from "../../lib/palmyra/mui/form/MuiDateRangePicker";
+import MuiNumberField from "../../lib/palmyra/mui/form/MuiNumberField";
 
 
 const HomePage = () => {
@@ -119,15 +120,18 @@ const HomePage = () => {
                             required={true} label="Service"
                             lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                             storeOptions={{ endPoint: "/api/data/fetchMe" }} />
+                        <MuiServerLookup attribute="service" displayAttribute="serviceName"
+                            required={true} label="Service"
+                            lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
+                            storeOptions={{ endPoint: "/api/data/fetchMe" }} />
                         <MuiCheckBox attribute="file" title="File"
-                            readonly={true}
                             options={{ upload: 'Upload Files', download: 'Download Files' }}
                             required={true} />
                     </FormFieldContainer>
                 </SectionContainer>
 
                 <MuiSwitch attribute="switch"
-                    readonly={true}
+
                     defaultValue={1}
                     options={{ 'Enable': 1, 'Disable': 0 }}
 
@@ -141,7 +145,10 @@ const HomePage = () => {
                 <MuiDateRangePicker attribute="dobs" variant="outlined"
                     title="Date of Birth" />
 
-
+                <MuiNumberField attribute="serv"
+                    title="Server Host"
+                    placeHolder="welcome"
+                    validationRule={'number'} />
                 <br />
                 <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 
