@@ -34,8 +34,9 @@ import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
+import "../../mui/form/MuiNumberField.js";
 import "../../form/PalmyraForm.js";
-class Z {
+class $ {
   constructor(t, o, i) {
     p(this, "request");
     p(this, "target");
@@ -88,5 +89,5 @@ function l(r) {
   return { ...i, _total: o, _orderBy: t.length ? t.join(",") : [], _offset: e, _limit: n };
 }
 export {
-  Z as PalmyraGridStore
+  $ as PalmyraGridStore
 };
