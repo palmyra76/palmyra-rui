@@ -163,7 +163,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
             )}
           </div>
           <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
-            <div className='grid-header-button' onClick={toggleDropdown}>
+            <div className='grid-header-button grid-density-btn' onClick={toggleDropdown}>
               <Tooltip title='Density' placement='top'>
                 <Button className='grid-btn' disableRipple>
                   {densityIcon()}
@@ -189,7 +189,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               )}
             </div>
           </ClickAwayListener>
-          <div className='grid-header-button'>
+          <div className='grid-header-button grid-filter-btn'>
             <Tooltip title='Filter' placement='top'>
               <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
                 <FilterAlt className='grid-button-icon' />
@@ -199,7 +199,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               defaultFilter={filter}
               isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
           </div>
-          <div className='grid-header-button' onClick={onExportClick}>
+          <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
             <Tooltip title='Export' placement='top'>
               <Button className='grid-btn' disableRipple>
                 <FileDownloadOutlined className='grid-button-icon' />
