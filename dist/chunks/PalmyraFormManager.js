@@ -26,7 +26,7 @@ const it = {
   onValue: function(t, s, m) {
   }
 }, $ = (t, s) => s ?? (t.defaultValue || "");
-function H(t, s, m, c, i, h, V) {
+function H(t, s, m, l, i, h, V) {
   const S = h || Y, M = V || Z, y = X(t), [N, g] = E(s), [F, C] = E(O(s)), [p, b] = E({ status: !1, message: "" }), B = k(null);
   var L, v;
   if (t.mutant) {
@@ -52,7 +52,7 @@ function H(t, s, m, c, i, h, V) {
   }
   const K = (e) => {
     console.log("validating ", e);
-    const n = l(e), A = t.attribute, z = t.name || A;
+    const n = f(e), A = t.attribute, z = t.name || A;
     if (m) {
       const Q = y.format(e);
       m(A, Q, { [A]: n.status });
@@ -63,40 +63,40 @@ function H(t, s, m, c, i, h, V) {
       K(e);
     }, 300));
   }, T = () => y.format(F), u = (e) => {
-    if (c && c instanceof Function) {
-      const n = c(e);
+    if (l && l instanceof Function) {
+      const n = l(e);
       if (!n.status)
         return n;
     }
     return { status: !0, message: "" };
   }, o = (e) => {
-    d({
+    c({
       status: !e.status,
       message: e.message
     });
-  }, l = (e) => {
+  }, f = (e) => {
     const n = u(e);
-    return n.status && i != null && i.asyncValid ? (r(), i.asyncValid(e, a, d)) : o(n), n;
+    return n.status && i != null && i.asyncValid ? (r(), i.asyncValid(e, a, c)) : o(n), n;
   }, a = (e) => {
-  }, f = () => {
+  }, d = () => {
     p.message != "" && b({
       status: p.status,
       message: ""
     });
   }, r = () => {
-    d({
+    c({
       status: !1,
       message: ""
     });
-  }, d = (e) => {
+  }, c = (e) => {
     e.status ? b(e) : b({
       status: !1,
       message: ""
     });
   }, w = { onBlur: () => {
-    l(F);
+    f(F);
   }, onFocus: () => {
-    f();
+    d();
   }, onValueChange: (e) => {
     q(e, !0);
   } };
@@ -115,24 +115,24 @@ function ct(t) {
 }
 function J() {
   const t = D(() => ({}), []);
-  return { addFieldRef: (c, i) => {
-    t[c] = i;
-  }, getFieldRef: (c) => {
-    const i = t[c];
+  return { addFieldRef: (l, i) => {
+    t[l] = i;
+  }, getFieldRef: (l) => {
+    const i = t[l];
     if (i)
       return i.current;
   } };
 }
-function lt(t, s, m, c, i) {
-  const h = i || { eventListeners: {}, valueListeners: {} }, V = D(() => ({}), []), S = c || J();
+function lt(t, s, m, l, i) {
+  const h = i || { eventListeners: {}, valueListeners: {} }, V = D(() => ({}), []), S = l || J();
   var M = {}, y = {};
   const N = k(!1);
   var g = k(_({}, t));
   const F = s;
   var C = k({}), p = C.current, b = {};
   (() => m && m == "new")() && _(g.current, b);
-  const L = (u, o, l) => {
-    u && P(u, g.current, o), p = Object.assign({}, p, l);
+  const L = (u, o, f) => {
+    u && P(u, g.current, o), p = Object.assign({}, p, f);
     const a = v(p);
     a != N.current && (N.current = a, F && F(a));
   }, v = (u) => {
@@ -141,17 +141,17 @@ function lt(t, s, m, c, i) {
         return !1;
     return !0;
   };
-  return { getFieldManager: D(() => (g.current = _({}, t), (o, l, a) => {
-    var f = o.name || o.attribute, r = { ...o, type: l };
-    a && (S.addFieldRef(f, a), V[f] = a);
-    const d = U(r);
-    M[r.attribute] = r, y[r.attribute] = d;
-    const j = o.eventListener || h.eventListeners[f], x = h.valueListeners[f];
+  return { getFieldManager: D(() => (g.current = _({}, t), (o, f, a) => {
+    var d = o.name || o.attribute, r = { ...o, type: f };
+    a && (S.addFieldRef(d, a), V[d] = a);
+    const c = U(r);
+    M[r.attribute] = r, y[r.attribute] = c;
+    const j = o.eventListener || h.eventListeners[d], x = h.valueListeners[d];
     var R = H(
       r,
       I(r.attribute, g.current),
       L,
-      d,
+      c,
       void 0,
       j,
       x
@@ -169,12 +169,12 @@ function lt(t, s, m, c, i) {
     }
     return R;
   }), [t]), getFormData: (u) => {
-    var f;
-    const o = u || "id", l = (f = g.current) == null ? void 0 : f[o];
-    var a = l ? { [o]: l } : {};
+    var d;
+    const o = u || "id", f = (d = g.current) == null ? void 0 : d[o];
+    var a = f ? { [o]: f } : {};
     for (const r in V) {
-      const d = V[r].current;
-      d.getValue && P(r, a, d.getValue());
+      const c = V[r].current;
+      c != null && c.getValue && P(r, a, c.getValue());
     }
     return a;
   }, initForm: () => {

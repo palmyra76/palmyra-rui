@@ -135,7 +135,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
 
         for (const fieldKey in fieldRefs) {
             const f: any = fieldRefs[fieldKey].current;
-            if (f.getValue) {
+            if (f?.getValue) {
                 setValueByKey(fieldKey, result, f.getValue());
             }
         }

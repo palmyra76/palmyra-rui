@@ -2338,7 +2338,7 @@ const zn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
       ) }),
       /* @__PURE__ */ i(Dt, { onClickAway: () => {
         g(!1);
-      }, children: /* @__PURE__ */ K("div", { className: "grid-header-button", onClick: H, children: [
+      }, children: /* @__PURE__ */ K("div", { className: "grid-header-button grid-density-btn", onClick: H, children: [
         /* @__PURE__ */ i(xe, { title: "Density", placement: "top", children: /* @__PURE__ */ i(Se, { className: "grid-btn", disableRipple: !0, children: v() }) }),
         p && /* @__PURE__ */ i("div", { className: "density-dropdown-content", children: /* @__PURE__ */ K("ul", { children: [
           /* @__PURE__ */ K("li", { onClick: () => O("standard"), children: [
@@ -2355,7 +2355,7 @@ const zn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
           ] })
         ] }) })
       ] }) }),
-      /* @__PURE__ */ K("div", { className: "grid-header-button", children: [
+      /* @__PURE__ */ K("div", { className: "grid-header-button grid-filter-btn", children: [
         /* @__PURE__ */ i(xe, { title: "Filter", placement: "top", children: /* @__PURE__ */ i(Se, { className: "grid-btn", disableRipple: !0, onClick: () => x(!0), children: /* @__PURE__ */ i(Or, { className: "grid-button-icon" }) }) }),
         /* @__PURE__ */ i(
           zn,
@@ -2368,7 +2368,7 @@ const zn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
           }
         )
       ] }),
-      /* @__PURE__ */ i("div", { className: "grid-header-button", onClick: I, children: /* @__PURE__ */ i(xe, { title: "Export", placement: "top", children: /* @__PURE__ */ i(Se, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ i(Er, { className: "grid-button-icon" }) }) }) }),
+      /* @__PURE__ */ i("div", { className: "grid-header-button grid-export-btn", onClick: I, children: /* @__PURE__ */ i(xe, { title: "Export", placement: "top", children: /* @__PURE__ */ i(Se, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ i(Er, { className: "grid-button-icon" }) }) }) }),
       t.onNewClick ? /* @__PURE__ */ i("div", { className: "grid-header-button", onClick: () => {
         t.onNewClick();
       }, children: /* @__PURE__ */ i(xe, { title: "New", placement: "top", children: /* @__PURE__ */ i(Se, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ i(Rr, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ i(we, {})
