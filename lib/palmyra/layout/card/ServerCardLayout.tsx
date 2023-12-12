@@ -23,9 +23,10 @@ interface ServerCardLayoutInput {
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
     const { children, Child, childProps, pageSize } = props;
     const currentRef: MutableRefObject<IGrid> = ref ? ref : useRef(null);
+
     const { setQueryFilter, refreshData,
         setQuickSearch, gotoPage, setPageSize, getPageNo,
-        data, pageSizeOptions, queryLimit } = useServerQuery(props);
+        data, totalRecords, pageSizeOptions, queryLimit } = useServerQuery(props);
 
     const listKeyProvider = props.listKeyProvider || ((data, index) => index);
 
@@ -33,7 +34,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
         return {
             setFilter(d) {
                 setQueryFilter(d);
-            }, 
+            },
             refresh: () => {
                 refreshData();
             },
@@ -97,7 +98,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                             {visiblePagination && (
                                 <TablePagination
                                     component="div"
-                                    count={data}
+                                    count={totalRecords || 0}
                                     page={getPageNo()}
                                     onPageChange={nextPage}
                                     rowsPerPage={queryLimit.limit}

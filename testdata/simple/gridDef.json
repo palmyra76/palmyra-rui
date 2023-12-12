@@ -40,7 +40,7 @@
                                 "attribute": "dob",
                                 "title": "Dob",
                                 "required": true,
-                                "type": "string",
+                                "type": "date",
                                 "searchable": true
                             },
                             {
@@ -49,7 +49,7 @@
                                 "required": true,
                                 "type": "string",
                                 "errorMessageType": "Invalid Phone Number",
-                                "searchable": true
+                                "searchable": false
                             },
                             {
                                 "attribute": "email",

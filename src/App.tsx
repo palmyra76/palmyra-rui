@@ -19,6 +19,7 @@ import EditPage from './pages/EditPage';
 import StaticSummaryGrid from './pages/StaticSummaryGrid';
 import DynamicFields from './pages/diy/DynamicFields';
 import DepsFields from './pages/diy/DepsFields';
+import CardPage from './pages/demo/CardPage';
 
 function App() {
 
@@ -37,7 +38,7 @@ function App() {
             <Route path="/demo/:layout/grid" element={<GridPage />} />
             <Route path="/demo/:layout/dashboard" element={<DashboardPage />} />
             <Route path="/demo/:layout/chart" element={<ChartPage />} />
-            <Route path="/demo/:layout/card" element={<HomePage />} />
+            <Route path="/demo/:layout/card" element={<CardPage />} />
             <Route path="/demo/:layout/formEdit" element={<EditFormPage />} />
             <Route path="/demo/:layout/formView" element={<ViewFormPage />} />
             <Route path="/demo/:layout/formNew" element={<NewFormPage />} />
