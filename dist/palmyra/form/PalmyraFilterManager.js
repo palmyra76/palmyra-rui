@@ -1,11 +1,11 @@
-import { getValueByKey as m, setValueByKey as y } from "./FormUtil.js";
+import { getValueByKey as y, setValueByKey as F } from "./FormUtil.js";
 import k from "../validator/DataValidator.js";
 import { g as K } from "../../chunks/PalmyraFieldManager.js";
-import { mergeDeep as F } from "../utils/index.js";
-import { useMemo as p, useRef as M } from "react";
+import { mergeDeep as b } from "../utils/index.js";
+import { useMemo as g, useRef as M } from "react";
 import { getLookupStore as S } from "./PalmyraStoreManager.js";
 function B() {
-  const t = p(() => ({}), []);
+  const t = g(() => ({}), []);
   return { addFieldRef: (a, i) => {
     t[a] = i;
   }, getFieldRef: (a) => {
@@ -14,46 +14,49 @@ function B() {
       return i.current;
   } };
 }
-function j(t, u, g) {
-  const a = g || { eventListeners: {}, valueListeners: {} }, i = p(() => ({}), []), b = u || B();
-  var L = {}, R = {}, l = M(F({}, t));
-  const D = (c, r, f) => {
-    c && y(c, l.current, r);
+function j(t, u, m) {
+  const a = m || { eventListeners: {}, valueListeners: {} }, i = g(() => ({}), []), L = u || B();
+  var R = {}, D = {}, l = M(b({}, t));
+  const V = (c, r, f) => {
+    c && F(c, l.current, r);
   };
-  return { getFieldManager: p(() => (l.current = F({}, t), (r, f, s) => {
+  return { getFieldManager: g(() => (l.current = b({}, t), (r, f, s) => {
     var n = r.name || r.attribute, e = { ...r, type: f };
-    s && (b.addFieldRef(n, s), i[n] = s);
+    s && (L.addFieldRef(n, s), i[n] = s);
     const o = k(e);
-    L[e.attribute] = e, R[e.attribute] = o;
-    const V = r.eventListener || a.eventListeners[n], A = a.valueListeners[n];
-    var d = K(
+    R[e.attribute] = e, D[e.attribute] = o;
+    const d = r.eventListener || a.eventListeners[n], A = a.valueListeners[n];
+    var v = K(
       e,
-      m(e.attribute, l.current),
-      D,
+      y(e.attribute, l.current),
+      V,
       o,
       void 0,
-      V,
+      d,
       A
     );
     try {
-      E(e) && (d.store = S(e));
-    } catch (v) {
-      console.error("Error while getting LookupStore for attribute" + e.attribute, v);
+      E(e) && (v.store = S(e));
+    } catch (p) {
+      console.error("Error while getting LookupStore for attribute" + e.attribute, p);
     }
     if (e.type == "serverlookup") {
       var h = e.displayAttribute || e.attribute;
-      d.displayValue = m(h, t), d.setDisplayValue = (v) => {
-        e.displayAttribute != e.attribute && y(e.displayAttribute, l.current, v);
+      v.displayValue = y(h, t), v.setDisplayValue = (p) => {
+        e.displayAttribute != e.attribute && F(e.displayAttribute, l.current, p);
       };
     }
-    return d;
+    return v;
   }), [t]), getFilterData: (c) => {
     var n;
     const r = c || "id", f = (n = l.current) == null ? void 0 : n[r];
     var s = f ? { [r]: f } : {};
     for (const e in i) {
       const o = i[e].current;
-      o != null && o.getValue && (s[e] = o.getValue());
+      if (o != null && o.getValue) {
+        const d = o.getValue();
+        d && d != "" && (s[e] = d);
+      }
     }
     return s;
   } };

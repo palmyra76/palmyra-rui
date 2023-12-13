@@ -7,6 +7,15 @@ interface IDateRange {
     to?: Date
 }
 
+
+
+function _isValid(d: Date) {
+    if(d)
+        return dayjs(d).isValid();
+    return false;
+}
+
+
 class DateRangeConverter implements Converter<any, IDateRange>{
     pattern: string;
 
@@ -15,20 +24,21 @@ class DateRangeConverter implements Converter<any, IDateRange>{
     }
 
     format(data: IDateRange): any {
-        if (data) {
-            if (data.from) {
-                if (data.to) {
+        if (data) {            
+            if (_isValid(data.from)) {
+                if (_isValid(data.to)) {
                     return this._formatDate(data.from) + '...' + this._formatDate(data.to);
                 } else {
                     return '>' + this._formatDate(data.from);
                 }
             } else {
-                if (data.to) {
+                if (_isValid(data.to)) {
                     return '<' + this._formatDate(data.to);
+                }else{
+                    return undefined;
                 }
             }
         }
-        return data;
     };
 
 
@@ -62,3 +72,5 @@ class DateRangeConverter implements Converter<any, IDateRange>{
 }
 
 export { DateRangeConverter }
+
+

@@ -99,7 +99,9 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
         for (const fieldKey in fieldRefs) {
             const f: any = fieldRefs[fieldKey].current;
             if (f?.getValue) {
-                result[fieldKey] = f.getValue();
+                const v = f.getValue();
+                if (v && v != '')
+                    result[fieldKey] = v;
             }
         }
         return result;
