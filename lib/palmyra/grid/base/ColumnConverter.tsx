@@ -22,6 +22,9 @@ function convert(columnDef: ColumnDefinition, customizer: GridCustomizer) {
     if (renderer) {
         return columnHelper.display({
             id: getColumnId(columnDef),
+            meta : {
+                attribute:columnDef.attribute
+            },
             enableSorting,
             enableColumnFilter,
             header, footer,
@@ -32,7 +35,10 @@ function convert(columnDef: ColumnDefinition, customizer: GridCustomizer) {
     let cell:any = customizer.formatCell(columnDef, formatColumn(columnDef));
 
     return columnHelper.accessor(getAccessor(columnDef), {
-        id: getColumnId(columnDef),
+        id: getColumnId(columnDef),        
+        meta : {
+            attribute:columnDef.attribute
+        },
         enableSorting,
         enableColumnFilter,
         header, footer,

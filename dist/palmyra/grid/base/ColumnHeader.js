@@ -1,11 +1,13 @@
-import { jsx as l, jsxs as m } from "react/jsx-runtime";
+import { jsx as l, jsxs as p } from "react/jsx-runtime";
 import { useState as f } from "react";
-import { ArrowUpward as u, ArrowDownward as b } from "@mui/icons-material";
-import { TableCell as S } from "@mui/material";
-const k = ({ header: o, children: n, onSortChange: t, onHeaderStyle: a }) => {
-  const [e, i] = f(""), d = o.id, s = !o.column.columnDef.enableSorting, p = () => {
-    if (!(t === void 0 || s)) {
-      var r = e;
+import { ArrowUpward as b, ArrowDownward as S } from "@mui/icons-material";
+import { TableCell as x } from "@mui/material";
+const v = ({ header: o, children: i, onSortChange: e, onHeaderStyle: a }) => {
+  var n;
+  console.log(o);
+  const [t, m] = f(""), u = ((n = o.column.columnDef.meta) == null ? void 0 : n.attribute) || o.id, s = !o.column.columnDef.enableSorting, d = () => {
+    if (!(e === void 0 || s)) {
+      var r = t;
       switch (r) {
         case "asc":
           r = "desc";
@@ -17,15 +19,15 @@ const k = ({ header: o, children: n, onSortChange: t, onHeaderStyle: a }) => {
           r = "asc";
           break;
       }
-      i(r), t(d, r);
+      m(r), e(u, r);
     }
   };
   var c = a(o.original);
-  return s || (c.cursor = "pointer"), /* @__PURE__ */ l(S, { colSpan: o.colSpan, style: c, children: /* @__PURE__ */ m("div", { style: { display: "flex", gap: "5px" }, onClick: () => p(), children: [
-    n,
-    e === "asc" ? /* @__PURE__ */ l(u, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : e === "desc" ? /* @__PURE__ */ l(b, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
+  return s || (c.cursor = "pointer"), /* @__PURE__ */ l(x, { colSpan: o.colSpan, style: c, children: /* @__PURE__ */ p("div", { style: { display: "flex", gap: "5px" }, onClick: () => d(), children: [
+    i,
+    t === "asc" ? /* @__PURE__ */ l(b, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : t === "desc" ? /* @__PURE__ */ l(S, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
   ] }) }, o.id);
 };
 export {
-  k as default
+  v as default
 };

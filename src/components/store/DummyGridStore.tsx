@@ -2,6 +2,7 @@ import { GetRequest, QueryRequest, QueryResponse, QueryStore } from "../../../li
 
 class DummyGridStore implements QueryStore<any>{
     query(request: QueryRequest): Promise<QueryResponse<any>> {
+        console.log(request);
         return fetch( '/simple/gridData.json')
             .then((response) => response.json());            
     }
