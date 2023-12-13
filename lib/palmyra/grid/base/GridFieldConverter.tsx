@@ -19,6 +19,19 @@ const _convertField = (column: ColumnDefinition): FieldDefinition => {
         type: _getType(column.type)
     }
 
+    if (column.displayPattern) {
+        result.displayPattern = column.displayPattern
+    }
+    if (column.serverPattern) {
+        result.serverPattern = column.serverPattern
+    }
+    if (column.displayAttribute) {
+        result.displayAttribute = column.displayAttribute
+    }
+    if (column.options) {
+        result.options = column.options
+    }
+
     return result;
 }
 
