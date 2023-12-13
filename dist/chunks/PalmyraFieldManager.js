@@ -121,7 +121,6 @@ function tt(t, s, m, c, i, E, V) {
     return y.parse(H(t, e));
   }
   const T = (e) => {
-    console.log("validating ", e);
     const n = a(e), _ = t.attribute, z = t.name || _;
     if (m) {
       const Q = y.format(e);

@@ -1,10 +1,10 @@
-import { getValueByKey as y, setValueByKey as F } from "./FormUtil.js";
-import k from "../validator/DataValidator.js";
-import { g as K } from "../../chunks/PalmyraFieldManager.js";
+import { getValueByKey as k, setValueByKey as F } from "./FormUtil.js";
+import K from "../validator/DataValidator.js";
+import { g as M } from "../../chunks/PalmyraFieldManager.js";
 import { mergeDeep as b } from "../utils/index.js";
-import { useMemo as g, useRef as M } from "react";
-import { getLookupStore as S } from "./PalmyraStoreManager.js";
-function B() {
+import { useMemo as g, useRef as S } from "react";
+import { getLookupStore as B } from "./PalmyraStoreManager.js";
+function E() {
   const t = g(() => ({}), []);
   return { addFieldRef: (a, i) => {
     t[a] = i;
@@ -14,21 +14,22 @@ function B() {
       return i.current;
   } };
 }
-function j(t, u, m) {
-  const a = m || { eventListeners: {}, valueListeners: {} }, i = g(() => ({}), []), L = u || B();
-  var R = {}, D = {}, l = M(b({}, t));
+function z(t, u, m) {
+  const a = m || { eventListeners: {}, valueListeners: {} }, i = g(() => ({}), []), L = u || E();
+  var R = {}, D = {}, l = S(b({}, t));
   const V = (c, r, f) => {
     c && F(c, l.current, r);
   };
   return { getFieldManager: g(() => (l.current = b({}, t), (r, f, s) => {
+    var y;
     var n = r.name || r.attribute, e = { ...r, type: f };
     s && (L.addFieldRef(n, s), i[n] = s);
-    const o = k(e);
+    const o = K(e);
     R[e.attribute] = e, D[e.attribute] = o;
     const d = r.eventListener || a.eventListeners[n], A = a.valueListeners[n];
-    var v = K(
+    var v = M(
       e,
-      y(e.attribute, l.current),
+      (y = l.current) == null ? void 0 : y[e.attribute],
       V,
       o,
       void 0,
@@ -36,13 +37,13 @@ function j(t, u, m) {
       A
     );
     try {
-      E(e) && (v.store = S(e));
+      H(e) && (v.store = B(e));
     } catch (p) {
       console.error("Error while getting LookupStore for attribute" + e.attribute, p);
     }
     if (e.type == "serverlookup") {
       var h = e.displayAttribute || e.attribute;
-      v.displayValue = y(h, t), v.setDisplayValue = (p) => {
+      v.displayValue = k(h, t), v.setDisplayValue = (p) => {
         e.displayAttribute != e.attribute && F(e.displayAttribute, l.current, p);
       };
     }
@@ -61,11 +62,11 @@ function j(t, u, m) {
     return s;
   } };
 }
-function E(t) {
+function H(t) {
   var u;
   return !!((u = t.storeOptions) != null && u.endPoint);
 }
 export {
-  j as createFilterData,
-  B as createFilterFormHelper
+  z as createFilterData,
+  E as createFilterFormHelper
 };

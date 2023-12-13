@@ -64,7 +64,7 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
 
             const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
             const valueListener = formListeners.valueListeners[fieldAttrib];
-            var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
+            var result = getEventListeners(fieldDef, formDataRef.current?.[fieldDef.attribute],
                 onDataChange, validationRule, undefined, eventListener, valueListener);
 
             try {

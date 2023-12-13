@@ -63,8 +63,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     }
 
 
-    const doProcessDataChange = (value) => {
-        console.log('validating ', value)
+    const doProcessDataChange = (value) => {        
         const validStatus = validate(value);
         const attrib = fieldDef.attribute;
         const key = fieldDef.name || attrib;
