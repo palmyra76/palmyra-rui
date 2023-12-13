@@ -41,7 +41,9 @@
                                 "title": "Dob",
                                 "required": true,
                                 "type": "date",
-                                "searchable": true
+                                "searchable": true,
+                                "serverPattern": "DD-MM-YYYY",
+                                "displayPattern": "DD-MM-YYYY"
                             },
                             {
                                 "attribute": "phoneNumber",

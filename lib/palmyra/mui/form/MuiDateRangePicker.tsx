@@ -69,12 +69,14 @@ const MuiDateRangePicker = forwardRef(function MuiDatePicker(props: IDateTimeDef
         eventListeners.onValueChange({ from: fromDate, to: toDate });
     }, [fromDate, toDate])
 
+
     return (<>
         {mutateOptions.visible &&
             <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
                 customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker {...fromInputProps}
+                        value={fromInputProps.value ?? dayjs}
                         readOnly={props.readonly}
                         format={displayFormat}
                         onChange={fromOnChange}
@@ -87,8 +89,9 @@ const MuiDateRangePicker = forwardRef(function MuiDatePicker(props: IDateTimeDef
                             },
                         }}
                     />
-                    <span style={{ width: '40%', textAlign: 'center' }}>to</span>
+                    <span style={{ width: '40%', textAlign: 'center', padding: '5px' }}>to</span>
                     <DatePicker {...toInputProps}
+                        value={toInputProps.value ?? dayjs}
                         readOnly={props.readonly}
                         format={displayFormat}
                         onChange={toOnChange}

@@ -66,7 +66,8 @@ const HomePage = () => {
                 userName: 'titan',
                 service: 1, serviceName: 'Rolex',
                 switch: 0,
-                time: '2023-10-19 09:21:21'
+                time: '2023-10-19 09:21:21',
+                dobs: '2023-10-19...2023-10-29'
             });
         }, 2000);
     }, [])
@@ -142,8 +143,10 @@ const HomePage = () => {
                     lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                     storeOptions={{ endPoint: "/api/palmyra/masterdata/" }} />
 
-                <MuiDateRangePicker attribute="dobs" variant="outlined"
-                    title="Date of Birth" />
+                <MuiDatePicker attribute="dob"
+                    title="Date of Birth" displayPattern="MM-YYYY-DD" serverPattern="YYYY-MM-DD" />
+                <MuiDateRangePicker attribute="dobs"
+                    title="Date Range" displayPattern="MM-DD-YYYY" serverPattern="YYYY-MM-DD" />
 
                 <MuiNumberField attribute="serv"
                     title="Server Host"
