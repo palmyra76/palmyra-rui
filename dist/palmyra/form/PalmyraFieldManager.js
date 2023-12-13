@@ -1,5 +1,5 @@
 import "react";
-import { f as s, g as i } from "../../chunks/PalmyraFormManager.js";
+import { f as s, g as i } from "../../chunks/PalmyraFieldManager.js";
 import "../utils/converter/FormatterFactory.js";
 export {
   s as decorateListenersForInput,

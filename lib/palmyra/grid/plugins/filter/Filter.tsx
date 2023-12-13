@@ -2,10 +2,10 @@ import { Button, ClickAwayListener, Dialog, Paper, PaperProps } from "@mui/mater
 import { Close } from '@mui/icons-material';
 import { convertToField } from "../../base/GridFieldConverter";
 import SectionRendererEditForm from "../../../layout/flexiLayout/SectionRendererEditForm";
-import { createFormData } from "../../../form";
 import Draggable from "react-draggable";
 import FormFieldOnlyRenderer from "../../../layout/flexiLayout/FormFieldOnlyRenderer";
 import { FieldManagerContext } from "../../../layout/flexiLayout/FlexiLayoutContext";
+import { createFilterData } from "../../../form/PalmyraFilterManager";
 
 
 function PaperComponent(props: PaperProps) {
@@ -21,14 +21,14 @@ function PaperComponent(props: PaperProps) {
 
 const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => {
 
-    var { getFieldManager, getFormData } = createFormData(defaultFilter, () => { }, 'edit');
+    var { getFieldManager, getFilterData } = createFilterData(defaultFilter);
 
     const reset = () => {
         setFilter({})
     }
 
     const assignFilter = () => {
-        var data = getFormData();
+        var data = getFilterData();
         if (setFilter) {
             setFilter(data);
         }

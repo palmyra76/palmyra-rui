@@ -2,11 +2,9 @@ import "react/jsx-runtime";
 import "@mui/material";
 import "@mui/icons-material";
 import "../../base/GridFieldConverter.js";
-import { h } from "../../../../chunks/ServerCardLayout.js";
-import "../../../../chunks/PalmyraFormManager.js";
-import "../../../form/PalmyraForm.js";
-import "react";
+import { h as f } from "../../../../chunks/ServerCardLayout.js";
 import "../../../layout/flexiLayout/FlexiLayoutContext.js";
+import "../../../form/PalmyraFilterManager.js";
 export {
-  h as default
+  f as default
 };

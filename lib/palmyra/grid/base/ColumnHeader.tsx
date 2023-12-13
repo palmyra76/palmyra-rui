@@ -3,7 +3,7 @@ import {ArrowUpward, ArrowDownward} from '@mui/icons-material';
 import { TableCell } from '@mui/material';
 
 const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
-    console.log(header);
+    
     const [sortOrder, setSortOrder] = useState('');
     const columnAttribute = header.column.columnDef.meta?.attribute || header.id;
     const  sortDisabled = !header.column.columnDef.enableSorting;

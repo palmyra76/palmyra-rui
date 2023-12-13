@@ -13,8 +13,6 @@ declare function createFormData(data: any, onValidityChange: any, mode: FormMode
     getFormData: (idProperty?: string) => {
         [x: string]: any;
     };
-    initForm: () => void;
     isFormValid: () => boolean;
 };
-declare const PalmyraFormManager: () => void;
-export { createFormData, createFormHelper, PalmyraFormManager };
+export { createFormData, createFormHelper };

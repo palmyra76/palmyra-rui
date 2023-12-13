@@ -24,7 +24,7 @@ import "./palmyra/chart/chartjs/PolarAreaChart.js";
 import "./palmyra/chart/chartjs/RadarChart.js";
 import "./palmyra/chart/chartjs/ScatterChart.js";
 import "./palmyra/chart/chartjs/BubbleChart.js";
-import { N as re, c as oe, b as te, a as ae, d as me, e as pe } from "./chunks/PalmyraFormManager.js";
+import { N as re, c as oe, b as te, a as ae, d as me, e as pe } from "./chunks/PalmyraFieldManager.js";
 import { getFieldType as ue } from "./palmyra/form/Definitions.js";
 import { StringFormat as se, concatValues as xe, hasChar as de, hasDot as le } from "./palmyra/utils/StringUtil.js";
 import { topic as ce } from "./palmyra/utils/pubsub/topic.js";

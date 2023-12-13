@@ -1,32 +1,31 @@
-import { jsx as l, jsxs as p } from "react/jsx-runtime";
+import { jsx as e, jsxs as p } from "react/jsx-runtime";
 import { useState as f } from "react";
 import { ArrowUpward as b, ArrowDownward as S } from "@mui/icons-material";
 import { TableCell as x } from "@mui/material";
-const v = ({ header: o, children: i, onSortChange: e, onHeaderStyle: a }) => {
+const v = ({ header: r, children: i, onSortChange: l, onHeaderStyle: a }) => {
   var n;
-  console.log(o);
-  const [t, m] = f(""), u = ((n = o.column.columnDef.meta) == null ? void 0 : n.attribute) || o.id, s = !o.column.columnDef.enableSorting, d = () => {
-    if (!(e === void 0 || s)) {
-      var r = t;
-      switch (r) {
+  const [t, d] = f(""), m = ((n = r.column.columnDef.meta) == null ? void 0 : n.attribute) || r.id, s = !r.column.columnDef.enableSorting, u = () => {
+    if (!(l === void 0 || s)) {
+      var o = t;
+      switch (o) {
         case "asc":
-          r = "desc";
+          o = "desc";
           break;
         case "desc":
-          r = "";
+          o = "";
           break;
         default:
-          r = "asc";
+          o = "asc";
           break;
       }
-      m(r), e(u, r);
+      d(o), l(m, o);
     }
   };
-  var c = a(o.original);
-  return s || (c.cursor = "pointer"), /* @__PURE__ */ l(x, { colSpan: o.colSpan, style: c, children: /* @__PURE__ */ p("div", { style: { display: "flex", gap: "5px" }, onClick: () => d(), children: [
+  var c = a(r.original);
+  return s || (c.cursor = "pointer"), /* @__PURE__ */ e(x, { colSpan: r.colSpan, style: c, children: /* @__PURE__ */ p("div", { style: { display: "flex", gap: "5px" }, onClick: () => u(), children: [
     i,
-    t === "asc" ? /* @__PURE__ */ l(b, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : t === "desc" ? /* @__PURE__ */ l(S, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
-  ] }) }, o.id);
+    t === "asc" ? /* @__PURE__ */ e(b, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : t === "desc" ? /* @__PURE__ */ e(S, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
+  ] }) }, r.id);
 };
 export {
   v as default

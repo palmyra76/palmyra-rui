@@ -8,12 +8,12 @@ import { default as getValidator } from "../validator/DataValidator";
 import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
 import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
-import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
+import { IFieldEventListener, IFieldValueListener, IFormHelper } from "./Types";
 import { MutableRefObject, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
 
 
-function createFormHelper(): IFormHelper {
+function createFilterFormHelper(): IFormHelper {
     const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, []);
 
     const getFieldRef = <T>(field: string): T => {
@@ -34,51 +34,17 @@ interface IListeners {
     valueListeners: Record<string, IFieldValueListener>
 }
 
-function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
-    listeners?: IListeners) {
+function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners) {
     const formListeners: IListeners = listeners || { eventListeners: {}, valueListeners: {} };
     const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, []);
-    const _formHelper = formHelper || createFormHelper();
+    const _formHelper = formHelper || createFilterFormHelper();
     var validationFormat: Record<string, FieldDefinition> = {};
     var validationRules = {};
-    const isValid = useRef(false);
     var formDataRef = useRef(mergeDeep({}, data));
-    const onDataValidityChange = onValidityChange;
-    var dataValidRef = useRef({});
-    var dataValid = dataValidRef.current;
-
-    var defaultData = {};
-
-    const isNewForm = () => {
-        return mode && mode == 'new';
-    }
-
-    if (isNewForm()) {
-        mergeDeep(formDataRef.current, defaultData);
-    }
 
     const onDataChange = (attribute: string, value: any, validity: { [x: string]: boolean }) => {
         if (attribute)
             setValueByKey(attribute, formDataRef.current, value)
-
-        dataValid = Object.assign({}, dataValid, validity);
-        const _isValid = isValidForm(dataValid);
-
-        if (_isValid != isValid.current) {
-            isValid.current = _isValid;
-            if (onDataValidityChange) {
-                onDataValidityChange(_isValid);
-            }
-        }
-    }
-
-    const isValidForm = (dv: any) => {
-        for (var key in dv) {
-            if (dv[key] == false) {
-                return false;
-            }
-        }
-        return true;
     }
 
     const getFieldManager = useMemo((): IGetFieldManager => {
@@ -124,7 +90,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
         return generate;
     }, [data])
 
-    const getFormData = (idProperty?: string) => {
+    const getFilterData = (idProperty?: string) => {
         const idp = idProperty || 'id';
         const id = formDataRef.current?.[idp];
 
@@ -133,20 +99,16 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
         for (const fieldKey in fieldRefs) {
             const f: any = fieldRefs[fieldKey].current;
             if (f?.getValue) {
-                setValueByKey(fieldKey, result, f.getValue());
+                result[fieldKey] = f.getValue();
             }
         }
         return result;
     }
 
-    const isFormValid = () => {
-        return isValidForm(dataValid); // TODO
-    }
-
-    return { getFieldManager, getFormData, isFormValid };
+    return { getFieldManager, getFilterData };
 }
 
-export { createFormData, createFormHelper };
+export { createFilterData, createFilterFormHelper };
 
 function requireStore(fieldDef: FieldDefinition) {
     return (fieldDef.storeOptions?.endPoint) ? true : false;

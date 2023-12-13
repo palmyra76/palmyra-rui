@@ -1,6 +1,6 @@
 import { jsx as t, Fragment as F } from "react/jsx-runtime";
 import { forwardRef as v, useImperativeHandle as g } from "react";
-import { b as f, d as h } from "../../chunks/PalmyraFormManager.js";
+import { b as f, d as h } from "../../chunks/PalmyraFieldManager.js";
 import { StoreFactoryContext as C, FormHelperContext as x, FieldManagerContext as y } from "../layout/flexiLayout/FlexiLayoutContext.js";
 const z = v(function(e, m) {
   const o = e.customizer || f, a = e.formData, n = e.onValidChange, i = e.mode;
