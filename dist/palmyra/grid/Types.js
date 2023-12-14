@@ -1,20 +1,30 @@
-const u = {
-  formatCell: function(r, t) {
+const i = {
+  formatCell: function(u, t) {
     return t;
   },
-  formatHeader: function(r, t) {
+  formatHeader: function(u, t) {
+    return t;
+  },
+  formatFooter: function(u, t) {
     return t;
   }
-}, e = (r) => ({
-  formatCell: function(t, n) {
-    const o = t.attribute;
-    return r[o] ? r[o](n) : n;
+}, m = (u, t) => ({
+  formatCell: function(n, r) {
+    const e = n.attribute;
+    return u[e] ? u[e](r) : r;
   },
-  formatHeader: function(t, n) {
-    return n;
+  formatHeader: function(n, r) {
+    var o;
+    const e = n.attribute;
+    return (o = t == null ? void 0 : t.header) != null && o[e] ? t.header[e](n, r) : r;
+  },
+  formatFooter: function(n, r) {
+    var o;
+    const e = n.attribute;
+    return (o = t == null ? void 0 : t.footer) != null && o[e] ? t.footer[e](n, r) : r;
   }
 });
 export {
-  u as NoopCustomizer,
-  e as gridColumnCustomizer
+  i as NoopCustomizer,
+  m as gridColumnCustomizer
 };

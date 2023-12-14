@@ -93,6 +93,24 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
                     )
                   })}
             </TableBody>)}
+          {(null == rowData || undefined == rowData || 0 == rowData.length) ? (<></>) : (
+            <tfoot>
+              {table.getFooterGroups().map(footerGroup => (
+                <tr key={footerGroup.id}>
+                  {footerGroup.headers.map(header => (
+                    <th key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                          header.column.columnDef.footer,
+                          header.getContext()
+                        )}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </tfoot>)}
+
         </Table>
         {(null == rowData) ? (<div>
           <LoadingChild />

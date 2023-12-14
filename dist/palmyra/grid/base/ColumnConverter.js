@@ -1,53 +1,54 @@
-import { jsx as m } from "react/jsx-runtime";
-import { createColumnHelper as b } from "@tanstack/react-table";
-import { formatColumn as c } from "./CellFormatter.js";
-import { getValueByKey as p } from "../../form/FormUtil.js";
-import { hasDot as d } from "../../utils/StringUtil.js";
-const s = b();
+import { jsx as b } from "react/jsx-runtime";
+import { createColumnHelper as d } from "@tanstack/react-table";
+import { formatColumn as p } from "./CellFormatter.js";
+import { getValueByKey as m } from "../../form/FormUtil.js";
+import { hasDot as g } from "../../utils/StringUtil.js";
+const s = d();
 function j(t, r) {
-  return t.map((e) => g(e, r));
+  return t.map((e) => c(e, r));
 }
-function g(t, r) {
+function c(t, r) {
   const e = t.sortable, a = t.searchable;
   var n = t.cellRenderer;
-  const i = h(t), o = y();
+  const o = r.formatHeader(t, f(t)), i = r.formatFooter(t, h());
   if (n)
     return s.display({
-      id: u(t),
+      id: l(t),
       meta: {
         attribute: t.attribute
       },
       enableSorting: e,
       enableColumnFilter: a,
-      header: i,
-      footer: o,
+      header: o,
+      footer: i,
       cell: n
     });
-  let l = r.formatCell(t, c(t));
+  let u = r.formatCell(t, p(t));
   return s.accessor(C(t), {
-    id: u(t),
+    id: l(t),
     meta: {
       attribute: t.attribute
     },
     enableSorting: e,
     enableColumnFilter: a,
-    header: i,
-    footer: o,
-    cell: l
+    header: o,
+    footer: i,
+    cell: u
   });
 }
 function C(t) {
   var r = t.attribute ? t.attribute : t.name;
-  return d(r) ? (e) => p(r, e) : (e) => e[r];
+  return g(r) ? (e) => m(r, e) : (e) => e[r];
 }
-function u(t) {
+function l(t) {
   return t.name ? t.name : t.attribute;
 }
-function h(t) {
-  return () => /* @__PURE__ */ m("span", { children: t.title });
+function f(t) {
+  return () => /* @__PURE__ */ b("span", { children: t.title });
 }
-function y(t) {
-  return (r) => r.column.id;
+function h(t) {
+  return (r, e) => {
+  };
 }
 export {
   j as generateColumns

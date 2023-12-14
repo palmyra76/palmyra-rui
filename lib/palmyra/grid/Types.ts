@@ -19,6 +19,7 @@ type CellGetter = ((props: CellContext<RowData, any>) => any);
 interface GridCustomizer {
     formatCell: (column: ColumnDefinition, cellValueGetter: CellGetter) => CellGetter,
     formatHeader: (column: ColumnDefinition, header: Function) => any,
+    formatFooter: (column: ColumnDefinition, footer: Function) => any,
 }
 
 const NoopCustomizer: GridCustomizer = {
@@ -27,10 +28,15 @@ const NoopCustomizer: GridCustomizer = {
     },
     formatHeader: function (column: ColumnDefinition, header: Function) {
         return header;
+    },
+    formatFooter: function (column: ColumnDefinition, footer: Function) {
+        return footer;
     }
 }
 
-const gridColumnCustomizer = (config: Record<string, ((d: CellGetter) => CellGetter)>): GridCustomizer => {
+const gridColumnCustomizer = (config: Record<string, ((d: CellGetter) => CellGetter)>,
+    factory?: { header?: Record<string, Function>, footer?: Record<string, Function> }
+): GridCustomizer => {
     return {
         formatCell: function (column: ColumnDefinition, cellValueGetter: CellGetter)
             : CellGetter {
@@ -41,7 +47,16 @@ const gridColumnCustomizer = (config: Record<string, ((d: CellGetter) => CellGet
                 return cellValueGetter;
         },
         formatHeader: function (column: ColumnDefinition, header: Function) {
+            const attribute = column.attribute;
+            if (factory?.header?.[attribute])
+                return factory.header[attribute](column, header);
             return header;
+        },
+        formatFooter: function (column: ColumnDefinition, footer: Function) {
+            const attribute = column.attribute;
+            if (factory?.footer?.[attribute])
+                return factory.footer[attribute](column, footer)
+            return footer;
         }
     }
 }

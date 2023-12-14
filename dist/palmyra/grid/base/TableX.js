@@ -1,52 +1,56 @@
 import "../../../assets/TableX.css";
-import { jsx as e, jsxs as d, Fragment as m } from "react/jsx-runtime";
+import { jsx as e, jsxs as s, Fragment as d } from "react/jsx-runtime";
 import { useState as x, useEffect as T } from "react";
-import { Box as S, TableContainer as v, Paper as R, Table as y, TableHead as H, TableRow as s, TableBody as M, TableCell as N } from "@mui/material";
-import P from "./ColumnHeader.js";
-import { useReactTable as j, getCoreRowModel as B, flexRender as c } from "@tanstack/react-table";
-import E from "./LoadingChild.js";
-function w({ columnDefs: u, rowData: t, onRowClick: g, onRowStyle: h, onHeaderStyle: b, onSortColumn: r, EmptyChild: p }) {
-  const a = j({
+import { Box as v, TableContainer as S, Paper as R, Table as P, TableHead as y, TableRow as c, TableBody as F, TableCell as H } from "@mui/material";
+import M from "./ColumnHeader.js";
+import { useReactTable as N, getCoreRowModel as j, flexRender as a } from "@tanstack/react-table";
+import B from "./LoadingChild.js";
+function z({ columnDefs: u, rowData: t, onRowClick: g, onRowStyle: h, onHeaderStyle: p, onSortColumn: m, EmptyChild: f }) {
+  const i = N({
     data: t,
     manualSorting: !0,
     manualFiltering: !0,
     manualPagination: !0,
     columns: u,
-    getCoreRowModel: B()
-  }), [i, f] = x({});
+    getCoreRowModel: j()
+  }), [r, b] = x({});
   T(() => {
-    r(i);
-  }, [i]);
-  const C = r ? (l, n) => {
-    var o = { ...i };
-    n == "" ? delete o[l] : o[l] = n, f(o);
+    m(r);
+  }, [r]);
+  const C = m ? (n, l) => {
+    var o = { ...r };
+    l == "" ? delete o[n] : o[n] = l, b(o);
   } : void 0;
-  return /* @__PURE__ */ e(S, { sx: { width: "100%" }, children: /* @__PURE__ */ d(v, { component: R, children: [
-    /* @__PURE__ */ d(y, { sx: { minWidth: 650 }, "aria-label": "simple table", className: "table", children: [
-      /* @__PURE__ */ e(H, { className: "table-head", children: a.getHeaderGroups().map((l) => /* @__PURE__ */ e(s, { children: l.headers.map((n) => n.isPlaceholder ? null : /* @__PURE__ */ e(
-        P,
+  return /* @__PURE__ */ e(v, { sx: { width: "100%" }, children: /* @__PURE__ */ s(S, { component: R, children: [
+    /* @__PURE__ */ s(P, { sx: { minWidth: 650 }, "aria-label": "simple table", className: "table", children: [
+      /* @__PURE__ */ e(y, { className: "table-head", children: i.getHeaderGroups().map((n) => /* @__PURE__ */ e(c, { children: n.headers.map((l) => l.isPlaceholder ? null : /* @__PURE__ */ e(
+        M,
         {
-          header: n,
+          header: l,
           onSortChange: C,
-          onHeaderStyle: b,
-          children: c(
-            n.column.columnDef.header,
-            n.getContext()
+          onHeaderStyle: p,
+          children: a(
+            l.column.columnDef.header,
+            l.getContext()
           )
         },
-        n.id
-      )) }, l.id)) }),
-      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(m, {}) : /* @__PURE__ */ e(M, { children: a.getRowModel().rows.map((l) => {
-        const n = h(l.original);
-        return /* @__PURE__ */ e(s, { className: "table-row", children: l.getVisibleCells().map((o) => /* @__PURE__ */ e(N, { style: n, onClick: () => g(l.original), children: c(
+        l.id
+      )) }, n.id)) }),
+      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(d, {}) : /* @__PURE__ */ e(F, { children: i.getRowModel().rows.map((n) => {
+        const l = h(n.original);
+        return /* @__PURE__ */ e(c, { className: "table-row", children: n.getVisibleCells().map((o) => /* @__PURE__ */ e(H, { style: l, onClick: () => g(n.original), children: a(
           o.column.columnDef.cell,
           o.getContext()
-        ) }, o.id)) }, l.id);
-      }) })
+        ) }, o.id)) }, n.id);
+      }) }),
+      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(d, {}) : /* @__PURE__ */ e("tfoot", { children: i.getFooterGroups().map((n) => /* @__PURE__ */ e("tr", { children: n.headers.map((l) => /* @__PURE__ */ e("th", { children: l.isPlaceholder ? null : a(
+        l.column.columnDef.footer,
+        l.getContext()
+      ) }, l.id)) }, n.id)) })
     ] }),
-    t == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(E, {}) }) : t == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : t.length == 0 ? /* @__PURE__ */ e(p, {}) : /* @__PURE__ */ e(m, {})
+    t == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(B, {}) }) : t == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : t.length == 0 ? /* @__PURE__ */ e(f, {}) : /* @__PURE__ */ e(d, {})
   ] }) });
 }
 export {
-  w as default
+  z as default
 };

@@ -16,8 +16,12 @@ type CellGetter = ((props: CellContext<RowData, any>) => any);
 interface GridCustomizer {
     formatCell: (column: ColumnDefinition, cellValueGetter: CellGetter) => CellGetter;
     formatHeader: (column: ColumnDefinition, header: Function) => any;
+    formatFooter: (column: ColumnDefinition, footer: Function) => any;
 }
 declare const NoopCustomizer: GridCustomizer;
-declare const gridColumnCustomizer: (config: Record<string, (d: CellGetter) => CellGetter>) => GridCustomizer;
+declare const gridColumnCustomizer: (config: Record<string, (d: CellGetter) => CellGetter>, factory?: {
+    header?: Record<string, Function>;
+    footer?: Record<string, Function>;
+}) => GridCustomizer;
 export type { ColumnDefinition, GridCustomizer, CellGetter };
 export { NoopCustomizer, gridColumnCustomizer };

@@ -16,14 +16,14 @@ function convert(columnDef: ColumnDefinition, customizer: GridCustomizer) {
     const enableColumnFilter = columnDef.searchable;
 
     var renderer = columnDef.cellRenderer;
-    const header = getHeader(columnDef);
-    const footer = getFooter(columnDef);
+    const header = customizer.formatHeader(columnDef,  getHeader(columnDef));
+    const footer = customizer.formatFooter(columnDef,  getFooter(columnDef));
 
     if (renderer) {
         return columnHelper.display({
             id: getColumnId(columnDef),
-            meta : {
-                attribute:columnDef.attribute
+            meta: {
+                attribute: columnDef.attribute
             },
             enableSorting,
             enableColumnFilter,
@@ -31,13 +31,13 @@ function convert(columnDef: ColumnDefinition, customizer: GridCustomizer) {
             cell: renderer
         });
     }
-    
-    let cell:any = customizer.formatCell(columnDef, formatColumn(columnDef));
+
+    let cell: any = customizer.formatCell(columnDef, formatColumn(columnDef));
 
     return columnHelper.accessor(getAccessor(columnDef), {
-        id: getColumnId(columnDef),        
-        meta : {
-            attribute:columnDef.attribute
+        id: getColumnId(columnDef),
+        meta: {
+            attribute: columnDef.attribute
         },
         enableSorting,
         enableColumnFilter,
@@ -65,7 +65,7 @@ function getHeader(columnDef: ColumnDefinition) {
 }
 
 function getFooter(columnDef: ColumnDefinition) {
-    return (info: { column: { id: any; }; }) => info.column.id;
+    return (info: any, arg:any) => {return undefined};
 }
 
 
