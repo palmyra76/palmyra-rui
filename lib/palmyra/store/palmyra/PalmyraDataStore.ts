@@ -25,7 +25,7 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T>{
     remove(key: any, request?: RemoveRequest): Promise<T> {
         var urlFormat = this.target + this.deleteUrl();
         var url: any = StringFormat(urlFormat, key);
-        return this.getClient().delete(url)
+        return this.getClient().delete(url, { data: {} })
             .then(response => { return response.data });
     }
 

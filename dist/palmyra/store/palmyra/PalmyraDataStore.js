@@ -48,7 +48,7 @@ class T extends m {
   }
   remove(t, r) {
     var o = this.target + this.deleteUrl(), i = e(o, t);
-    return this.getClient().delete(i).then((p) => p.data);
+    return this.getClient().delete(i, { data: {} }).then((p) => p.data);
   }
   postUrl() {
     const t = this.getEndPoint();
