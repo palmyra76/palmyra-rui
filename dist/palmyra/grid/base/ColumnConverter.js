@@ -1,52 +1,54 @@
-import { jsx as b } from "react/jsx-runtime";
-import { createColumnHelper as d } from "@tanstack/react-table";
-import { formatColumn as p } from "./CellFormatter.js";
-import { getValueByKey as m } from "../../form/FormUtil.js";
-import { hasDot as g } from "../../utils/StringUtil.js";
-const s = d();
+import { jsx as p } from "react/jsx-runtime";
+import { createColumnHelper as l } from "@tanstack/react-table";
+import { formatColumn as u } from "./CellFormatter.js";
+import { getValueByKey as g } from "../../form/FormUtil.js";
+import { hasDot as m } from "../../utils/StringUtil.js";
+const s = l();
 function j(t, r) {
-  return t.map((e) => c(e, r));
+  return t.map((e) => C(e, r));
 }
-function c(t, r) {
+function C(t, r) {
   const e = t.sortable, a = t.searchable;
   var n = t.cellRenderer;
-  const o = r.formatHeader(t, f(t)), i = r.formatFooter(t, h());
+  const i = r.formatHeader(t, h(t)), o = r.formatFooter(t, v());
   if (n)
     return s.display({
-      id: l(t),
+      id: b(t),
       meta: {
-        attribute: t.attribute
+        attribute: t.attribute,
+        columnDef: t
       },
       enableSorting: e,
       enableColumnFilter: a,
-      header: o,
-      footer: i,
+      header: i,
+      footer: o,
       cell: n
     });
-  let u = r.formatCell(t, p(t));
-  return s.accessor(C(t), {
-    id: l(t),
+  let d = r.formatCell(t, u(t));
+  return s.accessor(c(t), {
+    id: b(t),
     meta: {
-      attribute: t.attribute
+      attribute: t.attribute,
+      columnDef: t
     },
     enableSorting: e,
     enableColumnFilter: a,
-    header: o,
-    footer: i,
-    cell: u
+    header: i,
+    footer: o,
+    cell: d
   });
 }
-function C(t) {
+function c(t) {
   var r = t.attribute ? t.attribute : t.name;
-  return g(r) ? (e) => m(r, e) : (e) => e[r];
+  return m(r) ? (e) => g(r, e) : (e) => e[r];
 }
-function l(t) {
+function b(t) {
   return t.name ? t.name : t.attribute;
 }
-function f(t) {
-  return () => /* @__PURE__ */ b("span", { children: t.title });
-}
 function h(t) {
+  return () => /* @__PURE__ */ p("span", { children: t.title });
+}
+function v(t) {
   return (r, e) => {
   };
 }
