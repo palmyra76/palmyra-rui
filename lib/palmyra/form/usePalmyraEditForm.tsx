@@ -15,7 +15,7 @@ interface IPalmyraEditFormInput {
 
 interface IPalmyraEditFormOutput {
     data: FormData,
-    saveData: () => any,
+    saveData: (data?: any) => any,
     formRef: MutableRefObject<any>
 }
 
@@ -49,12 +49,12 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
         formStore.get(request).then(d => { setData(d) });
     }, [props.id])
 
-    const saveData = (): any => {
-        if (formRef && formRef.current) {
+    const saveData = (d?: any): any => {
+        if (d || formRef && formRef.current) {
             const idProperty = props.idKey || 'id';
             var endPoint = props.endPoint
             const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
-            const data = formRef.current.getData(idProperty);
+            const data = d || formRef.current.getData(idProperty);
             formStore.post(data).then((d) => {
                 setData(d);
                 formListener.onSaveSuccess(d);

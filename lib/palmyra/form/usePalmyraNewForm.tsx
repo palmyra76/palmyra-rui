@@ -16,7 +16,7 @@ interface IPalmyraNewFormInput {
 
 interface IPalmyraNewFormOutput {
     data: FormData,
-    saveData: () => any,
+    saveData: (data?: any) => any,
     formRef: MutableRefObject<any>
 }
 
@@ -52,12 +52,12 @@ const usePalmyraNewForm: IusePalmyraNewForm = (props: IPalmyraNewFormInput): IPa
         }
     }, [props.id])
 
-    const saveData = (): any => {
-        if (formRef && formRef.current) {
+    const saveData = (d?: any): any => {
+        if (d || (formRef && formRef.current)) {
             const idProperty = props.idKey;
             var endPoint = props.endPoint
             const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
-            const data = formRef.current.getData();
+            const data = d || formRef.current.getData();
             formStore.post(data).then((d) => {
                 setData(d);
                 formListener.onSaveSuccess(d);
