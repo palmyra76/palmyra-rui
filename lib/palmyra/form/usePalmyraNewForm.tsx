@@ -10,7 +10,8 @@ interface IPalmyraNewFormInput {
     id?: string,
     endPoint: IEndPoint,
     idKey?: string,
-    formListener?: IFormListener
+    formListener?: IFormListener,
+    initialData?: any
 }
 
 interface IPalmyraNewFormOutput {
@@ -23,7 +24,7 @@ type IusePalmyraNewForm = (props: IPalmyraNewFormInput) => IPalmyraNewFormOutput
 
 const usePalmyraNewForm: IusePalmyraNewForm = (props: IPalmyraNewFormInput): IPalmyraNewFormOutput => {
     const storeFactory = props.storeFactory;
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<any>(props.initialData == undefined ? null : props.initialData);
     const formRef = useRef<any>(null);
     const idKey = props.idKey || 'id';
     const formListener = props.formListener || NoopFormListener;

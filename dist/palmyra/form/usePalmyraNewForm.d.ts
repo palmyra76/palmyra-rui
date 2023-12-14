@@ -8,6 +8,7 @@ interface IPalmyraNewFormInput {
     endPoint: IEndPoint;
     idKey?: string;
     formListener?: IFormListener;
+    initialData?: any;
 }
 interface IPalmyraNewFormOutput {
     data: FormData;
