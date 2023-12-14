@@ -23,7 +23,8 @@ function convert(columnDef: ColumnDefinition, customizer: GridCustomizer) {
         return columnHelper.display({
             id: getColumnId(columnDef),
             meta: {
-                attribute: columnDef.attribute
+                attribute: columnDef.attribute,
+                columnDef
             },
             enableSorting,
             enableColumnFilter,
@@ -37,7 +38,8 @@ function convert(columnDef: ColumnDefinition, customizer: GridCustomizer) {
     return columnHelper.accessor(getAccessor(columnDef), {
         id: getColumnId(columnDef),
         meta: {
-            attribute: columnDef.attribute
+            attribute: columnDef.attribute,
+            columnDef
         },
         enableSorting,
         enableColumnFilter,

@@ -79,8 +79,15 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
                     return (
                       <TableRow key={row.id} className='table-row' >
                         {row.getVisibleCells().map(cell => {
+                          const meta:any = cell.column.columnDef.meta;
                           return (
-                            <TableCell key={cell.id} style={rowStyle} onClick={() => onRowClick(row.original)}>
+                            <TableCell key={cell.id}
+                              style={{
+                                ...(meta.columnDef.type === 'number' ? { textAlign: 'end' } : {}),
+                                ...rowStyle
+                              }}
+
+                              onClick={() => onRowClick(row.original)}>
                               {flexRender(
                                 cell.column.columnDef.cell,
                                 cell.getContext()
@@ -96,7 +103,7 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
           {(null == rowData || undefined == rowData || 0 == rowData.length) ? (<></>) : (
             <tfoot>
               {table.getFooterGroups().map(footerGroup => (
-                <tr key={footerGroup.id}>
+                <tr key={footerGroup.id} style={{ textAlign: 'end' }}>
                   {footerGroup.headers.map(header => (
                     <th key={header.id}>
                       {header.isPlaceholder
