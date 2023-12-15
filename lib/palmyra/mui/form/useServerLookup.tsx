@@ -114,6 +114,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         const autoFocus = props.autoFocus || false;
         const label = props.label;
         const readOnly = props.readonly || false;
+        const required = props.required || false;
 
         if (mutateOptions.readonly) {
             inputProps.inputProps = { readOnly: true };
@@ -149,6 +150,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             return option;
         }
 
+
         return (
             <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
                 customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
@@ -160,7 +162,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                         isOptionEqualToValue={(option, value) => idAccessor(option) == idAccessor(value)}
                         filterOptions={(x) => x}
                         renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }}
-                            variant={variant} label={label} autoFocus={autoFocus}
+                            variant={variant} label={label} autoFocus={autoFocus} required={required}
                             InputProps={{
                                 ...params.InputProps,
                                 endAdornment: (
