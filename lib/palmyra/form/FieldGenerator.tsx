@@ -18,8 +18,9 @@ const getInvalidField = (props: FieldRequest) => {
 }
 
 const getReactField = (props: FieldRequest, Input: React.FC) => {
-    const fieldDef: any = props.fieldDef;
-    return <Input
+    const fieldDef: any = props.fieldDef;    
+
+    return <Input key={fieldDef.title + fieldDef.attribute}
         {...fieldDef}
         label={props.title}
     />;

@@ -21,7 +21,7 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         return getField(field, fieldRefs);
     }, [formData.data]);
 
-
+    
     var columns = formLayout.options?.columns || 1;
     var options = { columns };
     if (FieldContainer) {
@@ -29,7 +29,7 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
             <form className="palmyra-form-field-container-wrapper" noValidate>
                 {
                     formLayout.fields.map((field, index) => (
-                        <FieldContainer key={field.attribute} index={index}
+                        <FieldContainer key={field.attribute + field.name + field.type} index={index}
                             field={field} label={field.title} options={options}>
                             {generateField(field)}
                         </FieldContainer>
@@ -41,11 +41,7 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         return (
             <form className="palmyra-form-field-container-wrapper" noValidate>
                 {
-                    formLayout.fields.map((field, index) => (
-                        <>
-                            {generateField(field)}
-                        </>
-                    ))
+                    formLayout.fields.map((field, _index) => generateField(field))
                 }
             </form>
         );
