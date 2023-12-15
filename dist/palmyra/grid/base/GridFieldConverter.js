@@ -1,4 +1,4 @@
-const d = (t) => {
+const n = (t) => {
   var e = [];
   return t.filter((r) => r.searchable).map((r, s) => {
     e.push(a(r));
@@ -20,10 +20,12 @@ const d = (t) => {
       return "checkbox";
     case "date":
       return "dateRange";
+    case "number":
+      return "string";
     default:
       return t;
   }
 };
 export {
-  d as convertToField
+  n as convertToField
 };

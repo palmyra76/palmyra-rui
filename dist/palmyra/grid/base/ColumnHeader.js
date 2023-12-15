@@ -1,34 +1,34 @@
-import { jsx as r, jsxs as p } from "react/jsx-runtime";
+import { jsx as e, jsxs as p } from "react/jsx-runtime";
 import { useState as b } from "react";
-import { ArrowUpward as S, ArrowDownward as y } from "@mui/icons-material";
-import { TableCell as D } from "@mui/material";
-const v = ({ header: o, children: a, onSortChange: l, onHeaderStyle: m }) => {
-  var i;
-  const [e, u] = b(""), d = ((i = o.column.columnDef.meta) == null ? void 0 : i.attribute) || o.id, n = !o.column.columnDef.enableSorting, f = () => {
+import { ArrowUpward as S, ArrowDownward as w } from "@mui/icons-material";
+import { TableCell as x } from "@mui/material";
+const v = ({ header: o, children: i, onSortChange: l, onHeaderStyle: a }) => {
+  var s;
+  const [t, m] = b(""), u = ((s = o.column.columnDef.meta) == null ? void 0 : s.attribute) || o.id, n = !o.column.columnDef.enableSorting, d = () => {
     if (!(l === void 0 || n)) {
-      var t = e;
-      switch (t) {
+      var r = t;
+      switch (r) {
         case "asc":
-          t = "desc";
+          r = "desc";
           break;
         case "desc":
-          t = "";
+          r = "";
           break;
         default:
-          t = "asc";
+          r = "asc";
           break;
       }
-      u(t), l(d, t);
+      m(r), l(u, r);
     }
   };
-  var c = m(o.original);
+  var c = a(o.original);
   n || (c.cursor = "pointer");
-  const s = o.column.columnDef.meta;
-  return console.log("head", s.columnDef.type), /* @__PURE__ */ r(D, { colSpan: o.colSpan, style: c, children: /* @__PURE__ */ p("div", { style: {
-    ...s.columnDef.type === "number" ? { textAlign: "end" } : {}
-  }, onClick: () => f(), children: [
-    a,
-    e === "asc" ? /* @__PURE__ */ r(S, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : e === "desc" ? /* @__PURE__ */ r(y, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
+  const f = o.column.columnDef.meta;
+  return /* @__PURE__ */ e(x, { colSpan: o.colSpan, style: c, children: /* @__PURE__ */ p("div", { style: {
+    ...f.columnDef.type === "number" ? { textAlign: "end" } : {}
+  }, onClick: () => d(), children: [
+    i,
+    t === "asc" ? /* @__PURE__ */ e(S, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : t === "desc" ? /* @__PURE__ */ e(w, { style: { fontSize: "22px", color: "rgb(0,0,0,0.65)" } }) : null
   ] }) }, o.id);
 };
 export {

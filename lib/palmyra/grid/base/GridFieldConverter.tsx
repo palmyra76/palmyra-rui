@@ -43,6 +43,8 @@ const _getType = (type: FieldType): FieldType => {
             return 'checkbox';
         case 'date':
             return 'dateRange';
+        case 'number':
+            return 'string';
         default:
             return type;
     }

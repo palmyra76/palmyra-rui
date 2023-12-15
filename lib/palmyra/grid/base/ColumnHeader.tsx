@@ -33,7 +33,7 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
         headerStyle.cursor = 'pointer';
 
     const meta: any = header.column.columnDef.meta;
-    console.log('head', meta.columnDef.type)
+
     return (
         <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
             <div style={{
