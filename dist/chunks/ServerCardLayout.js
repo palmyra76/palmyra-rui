@@ -412,6 +412,8 @@ const oa = le(function(t, r) {
       return ie(o, cr);
     case "password":
       return ie(o, lr);
+    case "float":
+    case "number":
     case "numbersOnly":
       return ie(o, ur);
     case "multiSelect":

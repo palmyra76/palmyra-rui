@@ -54,6 +54,8 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
             return getReactField(props, MuiSwitch);
         case 'password':
             return getReactField(props, MuiPassword);
+        case 'float':
+        case 'number':
         case 'numbersOnly':
             return getReactField(props, MuiNumberField);
         case 'multiSelect':
