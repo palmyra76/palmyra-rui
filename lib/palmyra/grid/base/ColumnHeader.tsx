@@ -37,14 +37,15 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
     return (
         <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
             <div style={{
-                ...(meta.columnDef.type === 'number' ? { textAlign: 'end' } : {})
+                ...(meta.columnDef.type === 'number' ? { textAlign: 'end' } : {}),
+                display:'flex', gap:'2px'
             }} onClick={() => handleSortColumn()}>
                 {children}
                 {sortOrder === 'asc' ? (
-                    <ArrowUpward style={{ fontSize: '22px', color: 'rgb(0,0,0,0.65)' }} />
+                    <ArrowUpward style={{ fontSize: '22px', color: 'rgb(0,0,0,0.5)' }} />
                 ) :
                     sortOrder === 'desc' ? (
-                        <ArrowDownward style={{ fontSize: '22px', color: 'rgb(0,0,0,0.65)' }} />
+                        <ArrowDownward style={{ fontSize: '22px', color: 'rgb(0,0,0,0.5)' }} />
                     ) : null}
 
             </div>
