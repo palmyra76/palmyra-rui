@@ -48,19 +48,6 @@ const MuiNumberField = forwardRef(function MuiNumberField(props: INumberFieldDef
         inputProps.inputProps = { readOnly: true };
     }
 
-    // const onChange = (d: any) => {
-    //     switch (props.validationRule) {
-    //         case 'number': {
-    //             return (eventListeners.onValueChange(d.target.value.replace(/\D/g, '')))
-    //         }
-    //         case 'alphabets': {
-    //             return (eventListeners.onValueChange(d.target.value.replace(/[^a-z]/gi, '')))
-    //         }
-    //         default:
-    //             return (eventListeners.onValueChange(d.target.value))
-    //     }
-    // }
-
     var callbacks = {
         onBlur: eventListeners.onBlur,
         onFocus: eventListeners.onFocus,

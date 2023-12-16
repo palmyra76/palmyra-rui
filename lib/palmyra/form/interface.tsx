@@ -9,9 +9,9 @@ import { IFieldEventListener } from ".";
  * This definitions will cater to the Form Definition format
  * 
  */
-type FieldType = "string" | "number"
-    | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly";
+type FieldType = "string" | "number" | "date" | "radio" | "select"
+    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch"
+    | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer";
 
 type InputType = string | number | Date;
 
@@ -73,6 +73,10 @@ interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDec
 }
 
 interface INumberFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
+
+}
+
+interface IIntegerFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
 
 }
 
@@ -157,7 +161,7 @@ interface IFormFieldInput {
 
 interface IFormFieldManager {
     data: any,
-    setData: (d: any, doValidate?:boolean) => void,
+    setData: (d: any, doValidate?: boolean) => void,
     getData: () => any,
     error: any,
     eventListeners: IEventListeners,
@@ -196,7 +200,7 @@ const NoopFormListener: IFormListener = {
 };
 
 
-export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition }
+export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition }
 export type { IServerCheckboxDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration }
 

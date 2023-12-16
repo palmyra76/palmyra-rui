@@ -1,15 +1,15 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IIntegerFieldDefinition } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
-import { ITextField, IMutateOptions } from '../../form/interfaceFields';
+import { IMutateOptions } from '../../form/interfaceFields';
 
-const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref: MutableRefObject<ITextField>) {
+const MuiIntegerField = forwardRef(function MuiIntegerField(props: IIntegerFieldDefinition, ref: MutableRefObject<any>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const currentRef = ref ? ref : useRef<ITextField>(null);
-    const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
+    const currentRef = ref ? ref : useRef(null);
+    const fieldManager: IFormFieldManager = getFieldManager(props, 'integer', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
@@ -58,7 +58,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     var callbacks = {
         onBlur: eventListeners.onBlur,
         onFocus: eventListeners.onFocus,
-        onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
+        onChange: (d: any) => (eventListeners.onValueChange(d.target.value.replace(/\D/g, '')))
     }
 
     return (<>{mutateOptions.visible &&
@@ -78,4 +78,4 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     );
 });
 
-export default MuiTextField;
+export default MuiIntegerField;

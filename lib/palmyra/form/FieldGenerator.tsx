@@ -11,6 +11,8 @@ import MuiCheckBox from '../mui/form/MuiCheckBox';
 import MuiSwitch from '../mui/form/MuiSwitch';
 import MuiDateRangePicker from '../mui/form/MuiDateRangePicker';
 import MuiNumberField from '../mui/form/MuiNumberField';
+import MuiIntegerField from '../mui/form/MuiIntegerField';
+
 
 const getInvalidField = (props: FieldRequest) => {
     const { fieldDef } = props;
@@ -18,7 +20,7 @@ const getInvalidField = (props: FieldRequest) => {
 }
 
 const getReactField = (props: FieldRequest, Input: React.FC) => {
-    const fieldDef: any = props.fieldDef;    
+    const fieldDef: any = props.fieldDef;
 
     return <Input key={fieldDef.title + fieldDef.attribute}
         {...fieldDef}
@@ -59,6 +61,8 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
         case 'number':
         case 'numbersOnly':
             return getReactField(props, MuiNumberField);
+        case 'integer':
+            return getReactField(props, MuiIntegerField);
         case 'multiSelect':
             return getTobeImplemented();
         case 'dateRange':

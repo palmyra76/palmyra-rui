@@ -59,6 +59,8 @@ const formatValue = (field: AttributeDefinition, value: any) => {
             return getPassword(value, field);
         case 'numbersOnly':
             return getNumberValue(value, field);
+        case 'integer':
+            return getIntegerValue(value, field);
         default:
             return getTextValue(value, field);
     }
@@ -83,6 +85,10 @@ const getTextArea = (value: InputType, field: AttributeDefinition) => {
 }
 
 const getNumberValue = (value: InputType, field: AttributeDefinition) => {
+    return value;
+}
+
+const getIntegerValue = (value: InputType, field: AttributeDefinition) => {
     return value;
 }
 
