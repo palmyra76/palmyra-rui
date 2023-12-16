@@ -5,7 +5,7 @@ import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
 import MuiSelect from "../../lib/palmyra/mui/form/MuiSelect";
 import MuiRadioGroup from "../../lib/palmyra/mui/form/MuiRadioGroup";
 import MuiDatePicker from "../../lib/palmyra/mui/form/MuiDatePicker";
-import { IFieldEventListener, IFormCustomizer, IFormHelper, IRadioGroupField, MuiDateTimePicker, MuiServerLookup, StoreFactory } from "../../lib/main";
+import { IFieldEventListener, IFormCustomizer, IFormHelper, IRadioGroupField, MuiCheckBoxGroup, MuiDateTimePicker, MuiServerLookup, StoreFactory } from "../../lib/main";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import MuiCheckBox from "../../lib/palmyra/mui/form/MuiCheckBox";
@@ -125,9 +125,10 @@ const HomePage = () => {
                             required={true} label="Service"
                             lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
                             storeOptions={{ endPoint: "/api/data/fetchMe" }} />
-                        <MuiCheckBox attribute="file" title="File"
+                        <MuiCheckBoxGroup attribute="file" title="File"
                             options={{ upload: 'Upload Files', download: 'Download Files' }}
                             required={true} />
+                        <MuiCheckBox attribute="checkBox" title="Single CheckBox" disabled={true}/>
                     </FormFieldContainer>
                 </SectionContainer>
 

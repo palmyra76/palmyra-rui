@@ -31,12 +31,13 @@ import "../../mui/form/MuiRadioGroup.js";
 import "../../mui/form/MuiSelect.js";
 import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
+import "../../mui/form/MuiCheckBoxGroup.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../form/PalmyraForm.js";
-class Z {
+class $ {
   constructor(t, o, p) {
     i(this, "request");
     i(this, "target");
@@ -68,5 +69,5 @@ function a(r) {
   return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  Z as PalmyraLookupStore
+  $ as PalmyraLookupStore
 };

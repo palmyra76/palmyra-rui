@@ -4,9 +4,9 @@ import "@mui/material";
 import "./MuiUtil.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import "./FieldDecorator.js";
-import { M as l } from "../../../chunks/ServerCardLayout.js";
+import { b as d } from "../../../chunks/ServerCardLayout.js";
 import "../../utils/StringUtil.js";
 import "../../form/FormUtil.js";
 export {
-  l as default
+  d as default
 };

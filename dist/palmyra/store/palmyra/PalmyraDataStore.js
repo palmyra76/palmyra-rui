@@ -29,12 +29,13 @@ import "../../mui/form/MuiRadioGroup.js";
 import "../../mui/form/MuiSelect.js";
 import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
+import "../../mui/form/MuiCheckBoxGroup.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../form/PalmyraForm.js";
-class T extends m {
+class W extends m {
   constructor(t, r, o) {
     super(t, r, o);
   }
@@ -64,5 +65,5 @@ class T extends m {
   }
 }
 export {
-  T as PalmyraDataStore
+  W as PalmyraDataStore
 };

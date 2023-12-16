@@ -5,6 +5,7 @@ import nr from "../palmyra/mui/form/MuiRadioGroup.js";
 import or from "../palmyra/mui/form/MuiSelect.js";
 import ar from "../palmyra/mui/form/MuiTextArea.js";
 import ir from "../palmyra/mui/form/MuiTextField.js";
+import "../palmyra/mui/form/MuiCheckBoxGroup.js";
 import sr from "../palmyra/mui/form/MuiCheckBox.js";
 import cr from "../palmyra/mui/form/MuiSwitch.js";
 import lr from "../palmyra/mui/form/MuiPassword.js";
@@ -117,7 +118,7 @@ const Me = (e) => {
 function st(e) {
   return e ? Array.isArray(e) ? e : typeof e == "string" ? e.split(",") : (console.log(e), [e]) : [];
 }
-const ia = le(function(t, r) {
+const sa = le(function(t, r) {
   const n = Oe(_e), o = r || se(null), a = n(t, "checkbox", o), { mutateOptions: l, setMutateOptions: c } = a, [d, f] = ee(!1), p = st(a.data), h = a.error, m = a.eventListeners, _ = { store: a.store, pageSize: -1 }, { data: O } = Me(_), $ = O, W = se(null), C = t.lookupOptions || {}, g = C.idAttribute || "id", b = C.titleAttribute || "name", i = Ee(g) ? (T) => Re(g, T) : (T) => T[g], k = Ee(b) ? (T) => Re(b, T) : (T) => T[b];
   ve(o, () => ({
     focus() {
@@ -2418,7 +2419,7 @@ const Bn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
       }
     ) }) })
   ] }) });
-}), ca = le(function(t, r) {
+}), la = le(function(t, r) {
   const { columns: n, endPoint: o, storeFactory: a, layoutParams: l, pagination: c } = t, d = t.quickSearch || "", f = se(null), p = (m, w) => {
     console.log(w);
   };
@@ -2572,14 +2573,14 @@ const er = (e) => {
     default:
       return St;
   }
-}, la = le(function(t, r) {
+}, ua = le(function(t, r) {
   const [n, o] = ee(t.layout), a = t.mode ? t.mode : n.type ? n.type : "grid", l = t.layoutParams || {}, c = Zn(a), d = se(0);
   return ye(() => {
     o(t.layout), d.current < 999999 ? d.current++ : d.current = 0;
   }, [t.layout]), /* @__PURE__ */ s(At, { fallback: /* @__PURE__ */ s("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ s(Ue.Provider, { value: t.storeFactory, children: /* @__PURE__ */ s(Pt.Provider, { value: l, children: /* @__PURE__ */ s(c, { ...t, ref: (f) => {
     r && (r.current = f);
   } }, d.current) }) }) });
-}), ua = le(function(t, r) {
+}), da = le(function(t, r) {
   const { children: n, Child: o, childProps: a, pageSize: l } = t, c = r || se(null), {
     setQueryFilter: d,
     refreshData: f,
@@ -2661,14 +2662,14 @@ const er = (e) => {
   ] }) });
 });
 export {
-  la as F,
+  ua as F,
   Zt as G,
-  ia as M,
-  ca as P,
-  ua as S,
+  jr as M,
+  la as P,
+  da as S,
   er as T,
   Un as a,
-  jr as b,
+  sa as b,
   Me as c,
   zr as d,
   Lt as e,

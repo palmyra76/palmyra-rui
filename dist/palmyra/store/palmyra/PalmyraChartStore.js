@@ -31,18 +31,19 @@ import "../../mui/form/MuiRadioGroup.js";
 import "../../mui/form/MuiSelect.js";
 import "../../mui/form/MuiTextArea.js";
 import "../../mui/form/MuiTextField.js";
+import "../../mui/form/MuiCheckBoxGroup.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../form/PalmyraForm.js";
-class Z {
-  constructor(t, o, e) {
+class $ {
+  constructor(t, o, p) {
     i(this, "request");
     i(this, "target");
     i(this, "endPoint");
     i(this, "idProperty");
-    this.request = t, this.target = t.target, this.endPoint = o, this.idProperty = e;
+    this.request = t, this.target = t.target, this.endPoint = o, this.idProperty = p;
   }
   getEndPoint() {
     return this.endPoint;
@@ -58,15 +59,15 @@ class Z {
     this.endPoint.get;
   }
   query(t) {
-    var o = this.target + this.queryUrl(), e = l(o, t.options);
+    var o = this.target + this.queryUrl(), p = l(o, t.options);
     const n = { params: a(t) };
-    return h.get(e, n).then((m) => m.data);
+    return h.get(p, n).then((m) => m.data);
   }
 }
 function a(r) {
-  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((p) => (r.sortOrder[p] === "asc" ? "+" : "-") + p), o = !!r.total;
+  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((e) => (r.sortOrder[e] === "asc" ? "+" : "-") + e), o = !!r.total;
   return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
 }
 export {
-  Z as PalmyraChartStore
+  $ as PalmyraChartStore
 };

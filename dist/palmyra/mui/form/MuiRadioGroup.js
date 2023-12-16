@@ -4,11 +4,11 @@ import { FormControl as L, RadioGroup as p, FormControlLabel as D, Radio as V, F
 import { copyMuiOptions as G, getFieldLabel as w } from "./MuiUtil.js";
 import { FieldManagerContext as B } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import H from "./FieldDecorator.js";
-const W = x(function(t, c) {
-  const C = M(B), d = c || f(null), { options: s } = t, r = C(t, "radio", d), { mutateOptions: F, setMutateOptions: n } = r, g = t.flexDirection != "column", l = r.error, i = r.eventListeners, b = t.autoFocus || !1, u = f(null);
-  y(d, () => ({
+const W = x(function(t, u) {
+  const C = M(B), c = u || f(null), { options: s } = t, r = C(t, "radio", c), { mutateOptions: F, setMutateOptions: n } = r, g = t.flexDirection != "column", l = r.error, i = r.eventListeners, b = t.autoFocus || !1, d = f(null);
+  y(c, () => ({
     focus() {
-      u && u.current.focus();
+      d.current.focus();
     },
     isValid() {
       return !l.status;
@@ -62,7 +62,7 @@ const W = x(function(t, c) {
           D,
           {
             value: e,
-            control: /* @__PURE__ */ a(V, { inputRef: u, autoFocus: b }),
+            control: /* @__PURE__ */ a(V, { inputRef: d, autoFocus: b }),
             label: s[e]
           },
           o

@@ -4,15 +4,15 @@ import MuiRadioGroup from "./form/MuiRadioGroup";
 import MuiSelect from "./form/MuiSelect";
 import MuiTextArea from "./form/MuiTextArea";
 import MuiTextField from "./form/MuiTextField";
+import MuiCheckBoxGroup from "./form/MuiCheckBoxGroup";
 import MuiCheckBox from "./form/MuiCheckBox";
 import MuiSwitch from "./form/MuiSwitch";
 import MuiPassword from "./form/MuiPassword";
 import MuiServerCheckBox from "./form/MuiServerCheckBox";
 import MuiNumberField from "./form/MuiNumberField";
-
-export { default as MuiServerLookup } from "./form/MuiServerLookup";
+import MuiServerLookup from "./form/MuiServerLookup";
 
 export {
-    MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect,
+    MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup,MuiServerLookup,
     MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiPassword, MuiServerCheckBox, MuiNumberField
 };

@@ -68,9 +68,11 @@ interface ISwitchDefinition extends AttributeDefinition, IDecoration {
 interface ISelectDefinition extends AttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>;
 }
-interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
+interface ICheckboxGroupDefinition extends AttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>;
     flexDirection?: 'column' | 'row';
+}
+interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
 }
 interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>;
@@ -154,6 +156,6 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };
-export type { IServerCheckboxDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
+export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration };
 export { NoopFormListener };
