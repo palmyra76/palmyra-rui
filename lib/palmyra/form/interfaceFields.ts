@@ -1,13 +1,13 @@
 interface IInputField {
     focus: () => void
     isValid: () => void
-    clear: () => void,
-    getValue: () => any,
+    clear: () => void
+    getValue: () => any
     setValue: (v: any) => void,
-    setRequired: (a: boolean) => void,
-    setAttribute: (d: IMutateOptions) => void
+    setRequired: (required: boolean) => void
     setReadOnly: (readonly: boolean) => void
     setVisible: (visible: boolean) => void
+    setAttribute: (options: IMutateOptions) => void
 }
 
 interface IOptionsField {

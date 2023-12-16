@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import { EventHandler, IFieldEventListener, IFieldValueListener, NoopFieldEventListener, NoopFieldValueListener } from "./Types";
 import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
 
@@ -31,7 +31,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
     const timer: any = useRef<ReturnType<typeof setTimeout>>(null);
 
-    var mutateOptions: IMutateOptions, setMutateOptions: (d: IMutateOptions) => void;
+    var mutateOptions: IMutateOptions, setMutateOptions: (d: SetStateAction<IMutateOptions>) => void;
 
     if (fieldDef.mutant) {
         const [opt, setOpt] = useState<IMutateOptions>({
@@ -47,7 +47,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
             readonly: fieldDef.readonly == true,
             visible: fieldDef.visible == false ? false : true
         };
-        setMutateOptions = (d: IMutateOptions) => {
+        setMutateOptions = (d: SetStateAction<IMutateOptions>) => {
             console.warn("Operation ignored, set mutant={true} in '"
                 + fieldDef.attribute + "' field definition");
         };
@@ -71,7 +71,9 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
             const formattedValue = formatter.format(value);
             onDataChange(attrib, formattedValue, { [attrib]: validStatus.status });
         }
-        fieldEventListener.onChange(key, value, validStatus.status);
+        if(fieldEventListener.onChange)
+            fieldEventListener.onChange(key, value, validStatus.status);
+
         fieldValueListener.onValue(key, value, validStatus.status);
     }
 

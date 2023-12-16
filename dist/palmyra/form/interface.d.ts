@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import { MutableRefObject, SetStateAction } from "react";
 import { IEndPoint } from "../layout";
 import { LookupStore } from "../store";
 import { IMutateOptions } from "./interfaceFields";
@@ -128,7 +128,7 @@ interface IFormFieldInput {
 }
 interface IFormFieldManager {
     data: any;
-    setData: (d: any) => void;
+    setData: (d: any, doValidate?: boolean) => void;
     getData: () => any;
     error: any;
     eventListeners: IEventListeners;
@@ -136,7 +136,7 @@ interface IFormFieldManager {
     setDisplayValue?: (d: any) => void;
     store?: LookupStore<any>;
     mutateOptions?: IMutateOptions;
-    setMutateOptions?: (d: IMutateOptions) => void;
+    setMutateOptions?: (d: SetStateAction<IMutateOptions>) => void;
 }
 interface IFieldDefinition extends AttributeDefinition, LookupOptions {
     type: string;

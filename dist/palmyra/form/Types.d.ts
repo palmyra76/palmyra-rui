@@ -40,7 +40,7 @@ interface IFieldValueListener {
     onValue: (key: string, value: any, valid?: boolean) => void;
 }
 interface IFieldEventListener {
-    onChange: (key: string, value: any, valid?: boolean) => void;
+    onChange?: (key: string, value: any, valid?: boolean) => void;
     onBlur?: (key: string, value: any, valid?: boolean) => void;
 }
 declare const NoopFieldEventListener: IFieldEventListener;
