@@ -1,59 +1,65 @@
-import { jsx as l, Fragment as C } from "react/jsx-runtime";
-import { forwardRef as v, useContext as M, useRef as c, useImperativeHandle as h } from "react";
-import { TextField as x } from "@mui/material";
-import { copyMuiOptions as L, getFieldLabel as O } from "./MuiUtil.js";
-import { FieldManagerContext as V } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import y from "./FieldDecorator.js";
-const j = v(function(e, o) {
-  const m = M(V), u = o || c(null), t = m(e, "numbersOnly", u), { mutateOptions: d, setMutateOptions: f } = t, n = t.error, s = t.eventListeners, r = c(null), g = e.variant || "standard", b = e.autoFocus || !1;
-  h(u, () => ({
+import { jsx as o, Fragment as v } from "react/jsx-runtime";
+import { forwardRef as M, useContext as h, useRef as m, useImperativeHandle as x } from "react";
+import { TextField as O } from "@mui/material";
+import { copyMuiOptions as R, getFieldLabel as y } from "./MuiUtil.js";
+import { FieldManagerContext as L } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import V from "./FieldDecorator.js";
+const p = M(function(e, u) {
+  const f = h(L), i = u || m(null), s = f(e, "numbersOnly", i), { mutateOptions: F, setMutateOptions: n } = s, r = s.error, l = s.eventListeners, c = m(null), g = e.variant || "standard", b = e.autoFocus || !1;
+  x(i, () => ({
     focus() {
-      r.current.focus();
+      c.current.focus();
     },
     isValid() {
-      return !n.status;
+      return !r.status;
     },
     getValue() {
-      return t.getData();
-    },
-    assignAttribute(a) {
-      r.current.assignAttribute(a);
+      return s.getData();
     },
     clear() {
-      t.setData("");
+      s.setData("", !0);
     },
-    setValue(a) {
-      t.setData(a);
+    setValue(t, a = !1) {
+      s.setData(t, a);
     },
-    setVisible(a) {
-      f({ visible: a });
+    setVisible(t) {
+      n((a) => ({ ...a, visible: t }));
+    },
+    setRequired(t) {
+      n((a) => ({ ...a, required: t }));
+    },
+    setReadOnly(t) {
+      n((a) => ({ ...a, readonly: t }));
+    },
+    setAttribute(t) {
+      n((a) => ({ ...a, ...t }));
     }
-  }), [t]);
-  var i = L(e, t.data, e.label);
-  e.readonly && (i.inputProps = { readOnly: !0 });
-  var F = {
-    onBlur: s.onBlur,
-    onFocus: s.onFocus,
-    onChange: (a) => s.onValueChange(a.target.value.replace(/[^\d\.\+\-]/g, ""))
+  }), [s]);
+  var d = R(e, s.data, e.label);
+  e.readonly && (d.inputProps = { readOnly: !0 });
+  var C = {
+    onBlur: l.onBlur,
+    onFocus: l.onFocus,
+    onChange: (t) => l.onValueChange(t.target.value.replace(/[^\d\.\+\-]/g, ""))
   };
-  return /* @__PURE__ */ l(C, { children: d.visible && /* @__PURE__ */ l(
-    y,
+  return /* @__PURE__ */ o(v, { children: F.visible && /* @__PURE__ */ o(
+    V,
     {
-      label: O(e),
+      label: y(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ l(
-        x,
+      children: /* @__PURE__ */ o(
+        O,
         {
-          ...i,
+          ...d,
           variant: g,
           fullWidth: !0,
-          inputRef: r,
-          ...F,
-          error: n.status,
-          helperText: n.message,
+          inputRef: c,
+          ...C,
+          error: r.status,
+          helperText: r.message,
           autoFocus: b
         }
       )
@@ -61,5 +67,5 @@ const j = v(function(e, o) {
   ) });
 });
 export {
-  j as default
+  p as default
 };

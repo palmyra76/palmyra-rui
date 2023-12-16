@@ -1,79 +1,89 @@
-import { jsx as r, Fragment as p, jsxs as L } from "react/jsx-runtime";
-import { forwardRef as O, useContext as R, useRef as b, useImperativeHandle as V } from "react";
-import { FormControl as B, FormControlLabel as j, Checkbox as y, FormHelperText as w } from "@mui/material";
-import { copyMuiOptions as A, getFieldLabel as H } from "./MuiUtil.js";
-import { FieldManagerContext as N } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import P from "./FieldDecorator.js";
-const E = O(function(t, d) {
-  const C = R(N), f = d || b(null), { options: s } = t, a = C(t, "checkbox", f), { mutateOptions: g, setMutateOptions: h } = a, x = a.data ? a.data.split(",") : [], F = t.flexDirection || "row", l = a.error, i = a.eventListeners, v = t.autoFocus || !1, o = b(null);
-  V(f, () => ({
+import { jsx as r, Fragment as M, jsxs as R } from "react/jsx-runtime";
+import { forwardRef as k, useContext as L, useRef as h, useImperativeHandle as V } from "react";
+import { FormControl as y, FormControlLabel as B, Checkbox as j, FormHelperText as w } from "@mui/material";
+import { copyMuiOptions as H, getFieldLabel as N } from "./MuiUtil.js";
+import { FieldManagerContext as P } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import S from "./FieldDecorator.js";
+const E = k(function(t, f) {
+  const b = L(P), m = f || h(null), { options: l } = t, n = b(t, "checkbox", m), { mutateOptions: g, setMutateOptions: s } = n, x = n.data ? n.data.split(",") : [], F = t.flexDirection || "row", i = n.error, c = n.eventListeners, v = t.autoFocus || !1, u = h(null);
+  V(m, () => ({
     focus() {
-      o.current.checked = !0, o.current.focus();
+      u.current.checked = !0, u.current.focus();
     },
     isValid() {
-      return !l.status;
+      return !i.status;
     },
     getValue() {
-      return a.getData();
-    },
-    assignAttribute(e) {
-      o.current.assignAttribute(e);
+      return n.getData();
     },
     clear() {
-      a.setData("");
+      n.setData("", !0);
     },
-    setValue(e) {
-      a.setData(e);
+    setValue(e, a = !1) {
+      n.setData(e, a);
     },
     setVisible(e) {
-      h({ visible: e });
+      s((a) => ({ ...a, visible: e }));
+    },
+    setRequired(e) {
+      s((a) => ({ ...a, required: e }));
+    },
+    setReadOnly(e) {
+      s((a) => ({ ...a, readonly: e }));
+    },
+    setAttribute(e) {
+      s((a) => ({ ...a, ...e }));
+    },
+    setOptions(e) {
+    },
+    getOptions() {
     }
-  }), [a]);
-  var m = A(t, a.data, t.label);
-  t.readonly && (m.inputProps = { readOnly: !0 });
-  function D(e, c) {
-    const n = a.data ? a.data.split(",") : [];
-    var u = n.indexOf(e);
-    c ? u < 0 && n.push(e) : u >= 0 && n.splice(u, 1), i.onValueChange(n.toString());
+  }), [n]);
+  var C = H(t, n.data, t.label);
+  t.readonly && (C.inputProps = { readOnly: !0 });
+  function O(e, a) {
+    const o = n.data ? n.data.split(",") : [];
+    var d = o.indexOf(e);
+    a ? d < 0 && o.push(e) : d >= 0 && o.splice(d, 1), c.onValueChange(o.toString());
   }
-  var M = {
-    onBlur: i.onBlur,
-    onFocus: i.onFocus,
+  var p = {
+    onBlur: c.onBlur,
+    onFocus: c.onFocus,
     onChange: (e) => {
-      D(e.target.value, e.target.checked);
+      O(e.target.value, e.target.checked);
     }
   };
-  const k = (e) => x.includes(e);
-  return /* @__PURE__ */ r(p, { children: g.visible && /* @__PURE__ */ r(
-    P,
+  const D = (e) => x.includes(e);
+  return /* @__PURE__ */ r(M, { children: g.visible && /* @__PURE__ */ r(
+    S,
     {
-      label: H(t),
+      label: N(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ L(B, { fullWidth: !0, error: l.status, ...m, style: { flexDirection: F }, children: [
-        s ? Object.keys(s).map((e, c) => /* @__PURE__ */ r(
-          j,
+      children: /* @__PURE__ */ R(y, { fullWidth: !0, error: i.status, ...C, style: { flexDirection: F }, children: [
+        l ? Object.keys(l).map((e, a) => /* @__PURE__ */ r(
+          B,
           {
             value: e,
             control: /* @__PURE__ */ r(
-              y,
+              j,
               {
-                ...M,
-                checked: k(e),
+                ...p,
+                checked: D(e),
                 autoFocus: v,
                 disabled: t.readonly,
-                inputRef: (n) => {
-                  c == 0 && (o.current = n);
+                inputRef: (o) => {
+                  a == 0 && (u.current = o);
                 }
               }
             ),
-            label: s[e]
+            label: l[e]
           },
           e
         )) : /* @__PURE__ */ r("div", { children: "No options provided" }),
-        /* @__PURE__ */ r(w, { className: "form-error-text", children: l.message })
+        /* @__PURE__ */ r(w, { className: "form-error-text", children: i.message })
       ] })
     }
   ) });

@@ -1,61 +1,71 @@
-import { jsx as a, Fragment as d, jsxs as x } from "react/jsx-runtime";
-import { forwardRef as L, useContext as O, useRef as m, useImperativeHandle as R } from "react";
-import { FormControl as V, InputLabel as D, Select as j, MenuItem as y, FormHelperText as I } from "@mui/material";
-import { copyMuiOptions as S, getFieldLabel as q } from "./MuiUtil.js";
-import { FieldManagerContext as A } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import B from "./FieldDecorator.js";
-const z = L(function(e, i) {
-  const f = O(A), u = i || m(null), { options: s } = e, b = e.variant || "standard", g = e.autoFocus || !1, v = e.required || !1, n = f(e, "select", u), { mutateOptions: C, setMutateOptions: F } = n, l = n.error, o = n.eventListeners, r = m(null);
-  R(u, () => ({
+import { jsx as r, Fragment as f, jsxs as O } from "react/jsx-runtime";
+import { forwardRef as x, useContext as R, useRef as b, useImperativeHandle as L } from "react";
+import { FormControl as V, InputLabel as q, Select as y, MenuItem as D, FormHelperText as j } from "@mui/material";
+import { copyMuiOptions as I, getFieldLabel as S } from "./MuiUtil.js";
+import { FieldManagerContext as B } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import H from "./FieldDecorator.js";
+const p = x(function(t, c) {
+  const g = R(B), d = c || b(null), { options: l } = t, C = t.variant || "standard", F = t.autoFocus || !1, v = t.required || !1, a = g(t, "select", d), { mutateOptions: h, setMutateOptions: s } = a, o = a.error, i = a.eventListeners, u = b(null);
+  L(d, () => ({
     focus() {
-      r && r.current.focus();
+      u && u.current.focus();
     },
     isValid() {
-      return !l.status;
-    },
-    assignAttribute(t) {
-      r.current.assignAttribute(t);
+      return !o.status;
     },
     getValue() {
-      return n.getData();
+      return a.getData();
     },
     clear() {
-      n.setData("");
+      a.setData("", !0);
     },
-    setValue(t) {
-      n.setData(t);
+    setValue(e, n = !1) {
+      a.setData(e, n);
     },
-    setVisible(t) {
-      F({ visible: t });
+    setVisible(e) {
+      s((n) => ({ ...n, visible: e }));
+    },
+    setRequired(e) {
+      s((n) => ({ ...n, required: e }));
+    },
+    setReadOnly(e) {
+      s((n) => ({ ...n, readonly: e }));
+    },
+    setAttribute(e) {
+      s((n) => ({ ...n, ...e }));
+    },
+    setOptions(e) {
+    },
+    getOptions() {
     }
-  }), [n]);
-  var c = S(e, n.data, e.label);
-  e.readonly && (c.inputProps = { readOnly: !0 });
-  var h = {
-    onBlur: o.onBlur,
-    onFocus: o.onFocus,
-    onChange: (t) => o.onValueChange(t.target.value)
+  }), [a]);
+  var m = I(t, a.data, t.label);
+  t.readonly && (m.inputProps = { readOnly: !0 });
+  var M = {
+    onBlur: i.onBlur,
+    onFocus: i.onFocus,
+    onChange: (e) => i.onValueChange(e.target.value)
   };
-  return /* @__PURE__ */ a(d, { children: C.visible && /* @__PURE__ */ a(
-    B,
+  return /* @__PURE__ */ r(f, { children: h.visible && /* @__PURE__ */ r(
+    H,
     {
-      label: q(e),
-      customContainerClass: e.customContainerClass,
-      colspan: e.colspan,
-      customFieldClass: e.customFieldClass,
-      customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ x(V, { variant: b, fullWidth: !0, error: l.status, children: [
-        e.label ? /* @__PURE__ */ a(D, { required: v, children: e.label }) : /* @__PURE__ */ a(d, {}),
-        /* @__PURE__ */ a(j, { ...c, ...h, inputRef: (t) => {
-          r.current = t;
-        }, autoFocus: g, children: s ? Object.keys(s).map(
-          (t, M) => /* @__PURE__ */ a(y, { value: t, children: s[t] }, M)
-        ) : /* @__PURE__ */ a("div", { children: "No options provided" }) }),
-        /* @__PURE__ */ a(I, { className: "form-error-text", children: l.message })
+      label: S(t),
+      customContainerClass: t.customContainerClass,
+      colspan: t.colspan,
+      customFieldClass: t.customFieldClass,
+      customLabelClass: t.customLabelClass,
+      children: /* @__PURE__ */ O(V, { variant: C, fullWidth: !0, error: o.status, children: [
+        t.label ? /* @__PURE__ */ r(q, { required: v, children: t.label }) : /* @__PURE__ */ r(f, {}),
+        /* @__PURE__ */ r(y, { ...m, ...M, inputRef: (e) => {
+          u.current = e;
+        }, autoFocus: F, children: l ? Object.keys(l).map(
+          (e, n) => /* @__PURE__ */ r(D, { value: e, children: l[e] }, n)
+        ) : /* @__PURE__ */ r("div", { children: "No options provided" }) }),
+        /* @__PURE__ */ r(j, { className: "form-error-text", children: o.message })
       ] })
     }
   ) });
 });
 export {
-  z as default
+  p as default
 };

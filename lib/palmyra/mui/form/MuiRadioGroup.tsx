@@ -4,10 +4,11 @@ import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, 
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
+import { IMutateOptions, IRadioGroupField } from '../../form/interfaceFields';
 
-const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref: MutableRefObject<any>) {
+const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref: MutableRefObject<IRadioGroupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const currentRef = ref ? ref : useRef(null);
+    const currentRef = ref ? ref : useRef<IRadioGroupField>(null);
     const { options } = props;
     const fieldManager: IFormFieldManager = getFieldManager(props, 'radio', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
@@ -26,20 +27,30 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
             isValid() {
                 return !error.status;
             },
-            assignAttribute(data: String) {
-                inputRef.current.assignAttribute(data);
-            },
             getValue() {
                 return fieldManager.getData();
             },
             clear() {
-                fieldManager.setData('');
+                fieldManager.setData('', true);
             },
-            setValue(d) {
-                fieldManager.setData(d)
+            setValue(d: any, doValidate: boolean = false) {
+                fieldManager.setData(d, doValidate);
             },
-            setVisible(d: boolean) {
-                setMutateOptions({ visible: d })
+            setVisible(visible: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, visible }));
+            },
+            setRequired(required: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, required }));
+            },
+            setReadOnly(readonly: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, readonly }));
+            },
+            setAttribute(options: IMutateOptions) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
+            },
+            setOptions(d: any) {
+            },
+            getOptions() {
             }
         };
     }, [fieldManager]);

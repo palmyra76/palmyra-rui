@@ -5,10 +5,11 @@ import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, 
 import parseOptions from './OptionsParser';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
+import { IMutateOptions, ISwitchField } from '../../form/interfaceFields';
 
-const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: MutableRefObject<any>) {
+const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: MutableRefObject<ISwitchField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const currentRef = ref ? ref : useRef(null);
+    const currentRef = ref ? ref : useRef<ISwitchField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'switch', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
@@ -46,15 +47,30 @@ const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: M
             getValue() {
                 return getValue();
             },
-            assignAttribute(data) {
-                inputRef.current.assignAttribute(data);
+            clear() {
+                fieldManager.setData('', true);
             },
-            setValue(d: any) {
-                fieldManager.setData(d)
+            setValue(d: any, doValidate: boolean = false) {
+                fieldManager.setData(d, doValidate);
             },
-            setVisible(d: boolean) {
-                setMutateOptions({ visible: d })
-            }
+            setVisible(visible: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, visible }));
+            },
+            setRequired(required: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, required }));
+            },
+            setReadOnly(readonly: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, readonly }));
+            },
+            setAttribute(options: IMutateOptions) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
+            },
+            getOptions() {
+
+            },
+            setOptions(d) {
+
+            },
         };
     }, [fieldManager]);
 

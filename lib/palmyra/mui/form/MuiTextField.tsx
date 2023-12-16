@@ -45,7 +45,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
             },
             setAttribute(options: IMutateOptions) {
                 setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
-            },
+            }
         };
     }, [fieldManager]);
 

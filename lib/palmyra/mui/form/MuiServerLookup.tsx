@@ -4,7 +4,7 @@ import { IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefi
 
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { useServerLookup } from './useServerLookup';
-import { IServerLookupField } from '../../form/interfaceFields';
+import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
 
 const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -26,25 +26,25 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
                 return !error.status;
             },
             clear() {
-                fieldManager.setData('');
+                fieldManager.setData('', true);
             },
             getValue() {
                 return fieldManager.getData();
             },
-            setValue(d: any) {
-                fieldManager.setData(d)
+            setValue(d: any, doValidate: boolean = false) {
+                fieldManager.setData(d, doValidate);
             },
-            setRequired(a: boolean) {
-
+            setVisible(visible: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, visible }));
+            },
+            setRequired(required: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, required }));
             },
             setReadOnly(readonly: boolean) {
-
+                setMutateOptions((d: IMutateOptions) => ({ ...d, readonly }));
             },
-            setVisible(d: boolean) {
-                setMutateOptions({ visible: d })
-            },
-            setAttribute(d: any) {
-
+            setAttribute(options: IMutateOptions) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
             },
             setFilter(filter: any) {
                 setQueryFilter(filter)

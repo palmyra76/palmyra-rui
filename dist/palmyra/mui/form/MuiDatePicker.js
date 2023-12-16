@@ -1,66 +1,74 @@
-import { jsx as s, Fragment as M } from "react/jsx-runtime";
-import { forwardRef as h, useContext as y, useRef as u, useImperativeHandle as P } from "react";
-import { LocalizationProvider as x, DatePicker as L } from "@mui/x-date-pickers";
+import { jsx as o, Fragment as M } from "react/jsx-runtime";
+import { forwardRef as h, useContext as P, useRef as d, useImperativeHandle as x } from "react";
+import { LocalizationProvider as L, DatePicker as R } from "@mui/x-date-pickers";
 import V from "dayjs";
-import { copyMuiOptions as A, getFieldLabel as j } from "./MuiUtil.js";
+import { copyMuiOptions as O, getFieldLabel as j } from "./MuiUtil.js";
 import { FieldManagerContext as k } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import O from "./FieldDecorator.js";
-import { A as R } from "../../../chunks/AdapterDayjs.js";
-const q = h(function(t, i) {
-  const c = y(k), l = i || u(null), d = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = c(t, "date", l), { mutateOptions: m, setMutateOptions: f } = a, n = a.error, g = a.data, r = a.eventListeners, D = t.variant || "standard", C = t.autoFocus || !1, o = u(null), F = () => V(g);
-  P(l, () => ({
+import A from "./FieldDecorator.js";
+import { A as Y } from "../../../chunks/AdapterDayjs.js";
+const E = h(function(t, i) {
+  const m = P(k), u = i || d(null), f = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = m(t, "date", u), { mutateOptions: C, setMutateOptions: s } = r, l = r.error, D = r.data, n = r.eventListeners, F = t.variant || "standard", g = t.autoFocus || !1, c = d(null), v = () => V(D);
+  x(u, () => ({
     focus() {
-      o.current.focus();
+      c.current.focus();
     },
     isValid() {
-      return !n.status;
-    },
-    assignAttribute(e) {
-      o.current.assignAttribute(e);
+      return !l.status;
     },
     getValue() {
-      return a.getData();
+      return r.getData();
     },
     clear() {
-      a.setData("");
+      r.setData("", !0);
     },
-    setValue(e) {
-      a.setData(e);
+    setValue(e, a = !1) {
+      r.setData(e, a);
     },
     setVisible(e) {
-      f({ visible: e });
+      s((a) => ({ ...a, visible: e }));
+    },
+    setRequired(e) {
+      s((a) => ({ ...a, required: e }));
+    },
+    setReadOnly(e) {
+      s((a) => ({ ...a, readonly: e }));
+    },
+    setAttribute(e) {
+      s((a) => ({ ...a, ...e }));
+    },
+    setCurrent() {
     }
-  }), [a]);
-  var v = A(t, F(), t.label), b = {
-    onBlur: r.onBlur,
-    onFocus: r.onFocus,
+  }), [r]);
+  var b = O(t, v(), t.label), y = {
+    onBlur: n.onBlur,
+    onFocus: n.onFocus,
     onChange: (e) => {
-      e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
+      e && e.toDate ? n.onValueChange(e.toDate()) : n.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ s(M, { children: m.visible && /* @__PURE__ */ s(
-    O,
+  return /* @__PURE__ */ o(M, { children: C.visible && /* @__PURE__ */ o(
+    A,
     {
       label: j(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ s(x, { dateAdapter: R, children: /* @__PURE__ */ s(
-        L,
+      children: /* @__PURE__ */ o(L, { dateAdapter: Y, children: /* @__PURE__ */ o(
+        R,
         {
-          ...v,
-          readOnly: t.readonly,
-          format: d,
           ...b,
-          autoFocus: C,
+          readOnly: t.readonly,
+          format: f,
+          ...y,
+          autoFocus: g,
           slotProps: {
             textField: {
-              error: n.status,
-              helperText: n.message,
-              variant: D,
+              error: l.status,
+              helperText: l.message,
+              variant: F,
               fullWidth: !0,
-              inputRef: o
+              inputRef: c
             }
           }
         }
@@ -69,5 +77,5 @@ const q = h(function(t, i) {
   ) });
 });
 export {
-  q as default
+  E as default
 };

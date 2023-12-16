@@ -1,69 +1,75 @@
-import { jsx as a, Fragment as h } from "react/jsx-runtime";
-import { forwardRef as x, useContext as w, useRef as d, useState as M, useImperativeHandle as V } from "react";
-import { IconButton as y, TextField as P } from "@mui/material";
-import { copyMuiOptions as p, getFieldLabel as L } from "./MuiUtil.js";
-import { FieldManagerContext as O } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import { jsx as n, Fragment as x } from "react/jsx-runtime";
+import { forwardRef as w, useContext as y, useRef as f, useState as M, useImperativeHandle as V } from "react";
+import { IconButton as O, TextField as P } from "@mui/material";
+import { copyMuiOptions as R, getFieldLabel as p } from "./MuiUtil.js";
+import { FieldManagerContext as L } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import D from "./FieldDecorator.js";
-import { Visibility as R, VisibilityOff as A } from "@mui/icons-material";
-const q = x(function(t, l) {
-  const m = w(O), u = l || d(null), [c, f] = M(!1), s = m(t, "string", u), { mutateOptions: g, setMutateOptions: b } = s, n = s.error, o = s.eventListeners, C = t.variant || "standard", F = t.autoFocus || !1, r = d(null);
-  V(u, () => ({
+import { Visibility as B, VisibilityOff as I } from "@mui/icons-material";
+const z = w(function(t, u) {
+  const g = y(L), c = u || f(null), [d, C] = M(!1), a = g(t, "string", c), { mutateOptions: F, setMutateOptions: o } = a, r = a.error, l = a.eventListeners, b = t.variant || "standard", h = t.autoFocus || !1, m = f(null);
+  V(c, () => ({
     focus() {
-      console.log("focusing"), r.current.focus();
+      m.current.focus();
     },
     isValid() {
-      return !n.status;
+      return !r.status;
     },
     getValue() {
-      return s.getData();
-    },
-    assignAttribute(e) {
-      r.current.assignAttribute(e);
+      return a.getData();
     },
     clear() {
-      s.setData("");
+      a.setData("", !0);
     },
-    setValue(e) {
-      s.setData(e);
+    setValue(e, s = !1) {
+      a.setData(e, s);
     },
     setVisible(e) {
-      b({ visible: e });
+      o((s) => ({ ...s, visible: e }));
+    },
+    setRequired(e) {
+      o((s) => ({ ...s, required: e }));
+    },
+    setReadOnly(e) {
+      o((s) => ({ ...s, readonly: e }));
+    },
+    setAttribute(e) {
+      o((s) => ({ ...s, ...e }));
     }
-  }), [s]);
-  var i = p(t, s.data, t.label);
+  }), [a]);
+  var i = R(t, a.data, t.label);
   t.readonly ? i.inputProps = { readOnly: !0 } : i.InputProps = {
-    endAdornment: /* @__PURE__ */ a(y, { onClick: () => f((e) => !e), children: c ? /* @__PURE__ */ a(R, {}) : /* @__PURE__ */ a(A, {}) })
+    endAdornment: /* @__PURE__ */ n(O, { onClick: () => C((e) => !e), children: d ? /* @__PURE__ */ n(B, {}) : /* @__PURE__ */ n(I, {}) })
   };
   var v = {
-    onBlur: o.onBlur,
-    onFocus: o.onFocus,
-    onChange: (e) => o.onValueChange(e.target.value)
+    onBlur: l.onBlur,
+    onFocus: l.onFocus,
+    onChange: (e) => l.onValueChange(e.target.value)
   };
-  return /* @__PURE__ */ a(h, { children: g.visible && /* @__PURE__ */ a(
+  return /* @__PURE__ */ n(x, { children: F.visible && /* @__PURE__ */ n(
     D,
     {
-      label: L(t),
+      label: p(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ a(
+      children: /* @__PURE__ */ n(
         P,
         {
           ...i,
-          variant: C,
-          type: c ? "text" : "password",
+          variant: b,
+          type: d ? "text" : "password",
           fullWidth: !0,
-          inputRef: r,
+          inputRef: m,
           ...v,
-          error: n.status,
-          autoFocus: F,
-          helperText: n.message
+          error: r.status,
+          autoFocus: h,
+          helperText: r.message
         }
       )
     }
   ) });
 });
 export {
-  q as default
+  z as default
 };

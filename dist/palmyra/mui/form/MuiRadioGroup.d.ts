@@ -1,4 +1,5 @@
 /// <reference types="react" />
 import { IRadioGroupDefinition } from '../../form/interface';
-declare const MuiRadioGroup: import("react").ForwardRefExoticComponent<IRadioGroupDefinition & import("react").RefAttributes<any>>;
+import { IRadioGroupField } from '../../form/interfaceFields';
+declare const MuiRadioGroup: import("react").ForwardRefExoticComponent<IRadioGroupDefinition & import("react").RefAttributes<IRadioGroupField>>;
 export default MuiRadioGroup;

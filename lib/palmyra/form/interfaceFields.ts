@@ -57,6 +57,10 @@ interface ICheckBoxField extends IInputField, IOptionsField {
 
 }
 
+interface ISwitchField extends IInputField, IOptionsField {
+
+}
+
 interface IServerLookupField extends IInputField {
     setFilter: (d: any) => void
     resetFilter: () => void
@@ -66,4 +70,4 @@ interface IServerLookupField extends IInputField {
 
 export type { IMutateOptions, IGrid }
 
-export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField }
+export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField }

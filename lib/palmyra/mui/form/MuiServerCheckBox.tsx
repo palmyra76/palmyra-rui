@@ -8,6 +8,7 @@ import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager
 import { LookupStore } from '../../store';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
+import { ICheckBoxField, IMutateOptions } from '../../form/interfaceFields';
 
 function getArrayData(d) {
     if (d) {
@@ -23,9 +24,9 @@ function getArrayData(d) {
     return [];
 }
 
-const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckboxDefinition, ref: MutableRefObject<any>) {
+const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckboxDefinition, ref: MutableRefObject<ICheckBoxField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const currentRef = ref ? ref : useRef(null);
+    const currentRef = ref ? ref : useRef<ICheckBoxField>(null);
 
     const fieldManager: IFormFieldManager = getFieldManager(props, 'checkbox', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
@@ -57,20 +58,30 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
             isValid() {
                 return !error.status;
             },
-            assignAttribute(data: String) {
-                inputRef.current.assignAttribute(data);
+            clear() {
+                fieldManager.setData('', true);
             },
             getValue() {
                 return fieldManager.getData();
             },
-            clear() {
-                fieldManager.setData('');
+            setValue(d: any, doValidate: boolean = false) {
+                fieldManager.setData(d, doValidate);
             },
-            setValue(d: any) {
-                fieldManager.setData(d)
+            setVisible(visible: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, visible }));
             },
-            setVisible(d: boolean) {
-                setMutateOptions({ visible: d })
+            setRequired(required: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, required }));
+            },
+            setReadOnly(readonly: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, readonly }));
+            },
+            setAttribute(options: IMutateOptions) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
+            },
+            setOptions(d: any) {
+            },
+            getOptions() {
             }
         };
     }, [fieldManager]);

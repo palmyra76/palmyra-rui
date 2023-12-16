@@ -6,10 +6,11 @@ import dayjs from "dayjs";
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
+import { IDateTimeField, IMutateOptions } from '../../form/interfaceFields';
 
-const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTimeDefinition, ref: MutableRefObject<any>) {
+const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTimeDefinition, ref: MutableRefObject<IDateTimeField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const currentRef = ref ? ref : useRef(null);
+    const currentRef = ref ? ref : useRef<IDateTimeField>(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD HH:mm:ss";
     const fieldManager: IFormFieldManager = getFieldManager(props, 'datetime', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
@@ -32,21 +33,30 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
             isValid() {
                 return !error.status;
             },
-            assignAttribute(data: String) {
-                inputRef.current.assignAttribute(data);
-            },
             getValue() {
                 return fieldManager.getData();
             },
             clear() {
-                fieldManager.setData('');
+                fieldManager.setData('', true);
             },
-            setValue(d: any) {
-                fieldManager.setData(d)
+            setValue(d: any, doValidate: boolean = false) {
+                fieldManager.setData(d, doValidate);
             },
-            setVisible(d: boolean) {
-                setMutateOptions({ visible: d })
-            }
+            setVisible(visible: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, visible }));
+            },
+            setRequired(required: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, required }));
+            },
+            setReadOnly(readonly: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, readonly }));
+            },
+            setAttribute(options: IMutateOptions) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
+            },
+            setCurrent() {
+
+            },
         };
     }, [fieldManager]);
 

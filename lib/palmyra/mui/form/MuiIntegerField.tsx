@@ -4,11 +4,11 @@ import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, 
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
-import { IMutateOptions } from '../../form/interfaceFields';
+import { IMutateOptions, ITextField } from '../../form/interfaceFields';
 
-const MuiIntegerField = forwardRef(function MuiIntegerField(props: IIntegerFieldDefinition, ref: MutableRefObject<any>) {
+const MuiIntegerField = forwardRef(function MuiIntegerField(props: IIntegerFieldDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
-    const currentRef = ref ? ref : useRef(null);
+    const currentRef = ref ? ref : useRef<ITextField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'integer', currentRef);
     const { mutateOptions, setMutateOptions } = fieldManager;
     const error: IFormFieldError = fieldManager.error;
@@ -45,7 +45,7 @@ const MuiIntegerField = forwardRef(function MuiIntegerField(props: IIntegerField
             },
             setAttribute(options: IMutateOptions) {
                 setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
-            },
+            }
         };
     }, [fieldManager]);
 

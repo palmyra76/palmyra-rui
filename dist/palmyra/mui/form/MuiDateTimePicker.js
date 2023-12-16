@@ -1,66 +1,74 @@
-import { jsx as s, Fragment as M } from "react/jsx-runtime";
-import { forwardRef as h, useContext as y, useRef as u, useImperativeHandle as P } from "react";
-import { LocalizationProvider as x, DateTimePicker as L } from "@mui/x-date-pickers";
+import { jsx as o, Fragment as M } from "react/jsx-runtime";
+import { forwardRef as h, useContext as P, useRef as m, useImperativeHandle as x } from "react";
+import { LocalizationProvider as L, DateTimePicker as R } from "@mui/x-date-pickers";
 import V from "dayjs";
-import { copyMuiOptions as A, getFieldLabel as j } from "./MuiUtil.js";
+import { copyMuiOptions as O, getFieldLabel as j } from "./MuiUtil.js";
 import { FieldManagerContext as k } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import O from "./FieldDecorator.js";
-import { A as R } from "../../../chunks/AdapterDayjs.js";
-const q = h(function(t, i) {
-  const c = y(k), l = i || u(null), m = t.displayPattern || t.serverPattern || "YYYY-MM-DD HH:mm:ss", a = c(t, "datetime", l), { mutateOptions: d, setMutateOptions: f } = a, n = a.error, g = a.data, r = a.eventListeners, D = t.variant || "standard", C = t.autoFocus || !1, o = u(null), F = () => V(g);
-  P(l, () => ({
+import A from "./FieldDecorator.js";
+import { A as T } from "../../../chunks/AdapterDayjs.js";
+const E = h(function(e, l) {
+  const d = P(k), u = l || m(null), f = e.displayPattern || e.serverPattern || "YYYY-MM-DD HH:mm:ss", r = d(e, "datetime", u), { mutateOptions: C, setMutateOptions: s } = r, i = r.error, D = r.data, n = r.eventListeners, F = e.variant || "standard", g = e.autoFocus || !1, c = m(null), v = () => V(D);
+  x(u, () => ({
     focus() {
-      o.current.focus();
+      c.current.focus();
     },
     isValid() {
-      return !n.status;
-    },
-    assignAttribute(e) {
-      o.current.assignAttribute(e);
+      return !i.status;
     },
     getValue() {
-      return a.getData();
+      return r.getData();
     },
     clear() {
-      a.setData("");
+      r.setData("", !0);
     },
-    setValue(e) {
-      a.setData(e);
+    setValue(t, a = !1) {
+      r.setData(t, a);
     },
-    setVisible(e) {
-      f({ visible: e });
+    setVisible(t) {
+      s((a) => ({ ...a, visible: t }));
+    },
+    setRequired(t) {
+      s((a) => ({ ...a, required: t }));
+    },
+    setReadOnly(t) {
+      s((a) => ({ ...a, readonly: t }));
+    },
+    setAttribute(t) {
+      s((a) => ({ ...a, ...t }));
+    },
+    setCurrent() {
     }
-  }), [a]);
-  var v = A(t, F(), t.label), b = {
-    onBlur: r.onBlur,
-    onFocus: r.onFocus,
-    onChange: (e) => {
-      e && e.toDate ? r.onValueChange(e.toDate()) : r.onValueChange(void 0);
+  }), [r]);
+  var b = O(e, v(), e.label), y = {
+    onBlur: n.onBlur,
+    onFocus: n.onFocus,
+    onChange: (t) => {
+      t && t.toDate ? n.onValueChange(t.toDate()) : n.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ s(M, { children: d.visible && /* @__PURE__ */ s(
-    O,
+  return /* @__PURE__ */ o(M, { children: C.visible && /* @__PURE__ */ o(
+    A,
     {
-      label: j(t),
-      customContainerClass: t.customContainerClass,
-      colspan: t.colspan,
-      customFieldClass: t.customFieldClass,
-      customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ s(x, { dateAdapter: R, children: /* @__PURE__ */ s(
-        L,
+      label: j(e),
+      customContainerClass: e.customContainerClass,
+      colspan: e.colspan,
+      customFieldClass: e.customFieldClass,
+      customLabelClass: e.customLabelClass,
+      children: /* @__PURE__ */ o(L, { dateAdapter: T, children: /* @__PURE__ */ o(
+        R,
         {
-          ...v,
-          readOnly: t.readonly,
-          format: m,
-          autoFocus: C,
           ...b,
+          readOnly: e.readonly,
+          format: f,
+          autoFocus: g,
+          ...y,
           slotProps: {
             textField: {
-              error: n.status,
-              helperText: n.message,
-              variant: D,
+              error: i.status,
+              helperText: i.message,
+              variant: F,
               fullWidth: !0,
-              inputRef: o
+              inputRef: c
             }
           }
         }
@@ -69,5 +77,5 @@ const q = h(function(t, i) {
   ) });
 });
 export {
-  q as default
+  E as default
 };
