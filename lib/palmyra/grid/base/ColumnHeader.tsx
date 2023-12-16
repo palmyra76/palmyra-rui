@@ -39,7 +39,7 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
             <div style={{
                 display: 'flex',
                 gap: '2px',
-                justifyContent: meta.columnDef.type === 'select' ? 'flex-end' : 'flex-start'
+                justifyContent: meta.columnDef.type === 'number' ? 'flex-end' : 'flex-start'
             }} onClick={() => handleSortColumn()}>
                 {children}
                 {sortOrder === 'asc' ? (
