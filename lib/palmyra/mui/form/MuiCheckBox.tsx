@@ -77,7 +77,6 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
         return values.includes(key);
     }
 
-    console.log(inputRef);
 
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}

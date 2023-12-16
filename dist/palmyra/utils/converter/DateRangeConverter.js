@@ -1,42 +1,42 @@
 var l = Object.defineProperty;
-var m = (e, r, t) => r in e ? l(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
-var n = (e, r, t) => (m(e, typeof r != "symbol" ? r + "" : r, t), t);
-import a from "dayjs";
-function o(e) {
-  return e ? a(e).isValid() : !1;
+var m = (e, t, r) => t in e ? l(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r;
+var n = (e, t, r) => (m(e, typeof t != "symbol" ? t + "" : t, r), r);
+import f from "dayjs";
+function a(e) {
+  return e ? f(e).isValid() : !1;
 }
-class D {
-  constructor(r, t) {
+class h {
+  constructor(t, r) {
     n(this, "pattern");
-    this.pattern = r.serverPattern || r.displayPattern || t;
+    this.pattern = t.serverPattern || t.displayPattern || r;
   }
-  format(r) {
-    if (r)
-      return o(r.from) ? o(r.to) ? this._formatDate(r.from) + "..." + this._formatDate(r.to) : ">" + this._formatDate(r.from) : o(r.to) ? "<" + this._formatDate(r.to) : void 0;
+  format(t) {
+    if (t)
+      return a(t.from) ? a(t.to) ? this._formatDate(t.from) + "..." + this._formatDate(t.to) : ">" + this._formatDate(t.from) : a(t.to) ? "<" + this._formatDate(t.to) : void 0;
   }
-  _formatDate(r) {
-    return a(r).format(this.pattern);
+  _formatDate(t) {
+    return f(t).format(this.pattern);
   }
-  parse(r) {
-    var t, s;
-    if (r && typeof r == "string") {
-      const f = r.charAt(0);
-      if (f == ">")
-        t = this._parseDate(r.slice(1));
-      else if (f == "<")
-        s = this._parseDate(r.slice(1));
+  parse(t) {
+    var r, s;
+    if (t && typeof t == "string") {
+      const o = t.charAt(0);
+      if (o == ">")
+        r = this._parseDate(t.slice(1));
+      else if (o == "<")
+        s = this._parseDate(t.slice(1));
       else {
-        const i = r.split("...");
-        t = this._parseDate(i[0]), i[1] && (s = this._parseDate(i[1]));
+        const i = t.split("...");
+        r = this._parseDate(i[0]), i[1] && (s = this._parseDate(i[1]));
       }
     }
-    return { from: t, to: s };
+    return { from: r, to: s };
   }
-  _parseDate(r) {
-    if (r)
-      return a(r, this.pattern).toDate();
+  _parseDate(t) {
+    if (t)
+      return f(t, this.pattern).toDate();
   }
 }
 export {
-  D as DateRangeConverter
+  h as DateRangeConverter
 };

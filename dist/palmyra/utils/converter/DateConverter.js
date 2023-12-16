@@ -2,7 +2,7 @@ var i = Object.defineProperty;
 var s = (e, r, t) => r in e ? i(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
 var n = (e, r, t) => (s(e, typeof r != "symbol" ? r + "" : r, t), t);
 import a from "dayjs";
-class p {
+class u {
   constructor(r, t) {
     n(this, "pattern");
     this.pattern = r.serverPattern || r.displayPattern || t;
@@ -15,5 +15,5 @@ class p {
   }
 }
 export {
-  p as DateTimeConverter
+  u as DateTimeConverter
 };

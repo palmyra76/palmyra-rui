@@ -1,13 +1,13 @@
 import { jsx as s, Fragment as M } from "react/jsx-runtime";
 import { forwardRef as h, useContext as y, useRef as u, useImperativeHandle as P } from "react";
 import { LocalizationProvider as x, DatePicker as L } from "@mui/x-date-pickers";
-import { AdapterDayjs as V } from "@mui/x-date-pickers/AdapterDayjs";
-import j from "dayjs";
-import { copyMuiOptions as k, getFieldLabel as A } from "./MuiUtil.js";
-import { FieldManagerContext as O } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import R from "./FieldDecorator.js";
+import V from "dayjs";
+import { copyMuiOptions as A, getFieldLabel as j } from "./MuiUtil.js";
+import { FieldManagerContext as k } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import O from "./FieldDecorator.js";
+import { A as R } from "../../../chunks/AdapterDayjs.js";
 const q = h(function(t, i) {
-  const c = y(O), l = i || u(null), d = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = c(t, "date", l), { mutateOptions: m, setMutateOptions: f } = a, n = a.error, g = a.data, r = a.eventListeners, C = t.variant || "standard", D = t.autoFocus || !1, o = u(null), F = () => j(g);
+  const c = y(k), l = i || u(null), d = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = c(t, "date", l), { mutateOptions: m, setMutateOptions: f } = a, n = a.error, g = a.data, r = a.eventListeners, D = t.variant || "standard", C = t.autoFocus || !1, o = u(null), F = () => V(g);
   P(l, () => ({
     focus() {
       o.current.focus();
@@ -31,7 +31,7 @@ const q = h(function(t, i) {
       f({ visible: e });
     }
   }), [a]);
-  var v = k(t, F(), t.label), b = {
+  var v = A(t, F(), t.label), b = {
     onBlur: r.onBlur,
     onFocus: r.onFocus,
     onChange: (e) => {
@@ -39,26 +39,26 @@ const q = h(function(t, i) {
     }
   };
   return /* @__PURE__ */ s(M, { children: m.visible && /* @__PURE__ */ s(
-    R,
+    O,
     {
-      label: A(t),
+      label: j(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ s(x, { dateAdapter: V, children: /* @__PURE__ */ s(
+      children: /* @__PURE__ */ s(x, { dateAdapter: R, children: /* @__PURE__ */ s(
         L,
         {
           ...v,
           readOnly: t.readonly,
           format: d,
           ...b,
-          autoFocus: D,
+          autoFocus: C,
           slotProps: {
             textField: {
               error: n.status,
               helperText: n.message,
-              variant: C,
+              variant: D,
               fullWidth: !0,
               inputRef: o
             }

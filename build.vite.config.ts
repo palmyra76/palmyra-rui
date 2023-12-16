@@ -41,7 +41,6 @@ export default defineConfig({
         '@emotion/react',
         '@emotion/styled',
         '@mui/x-date-pickers',
-        '@mui/x-date-pickers/AdapterDayjs',
         '@mui/material',
         '@mui/icons-material',
         '@mui/styled-engine',

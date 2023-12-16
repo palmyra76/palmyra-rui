@@ -1,13 +1,13 @@
-import { jsx as n, Fragment as A, jsxs as V } from "react/jsx-runtime";
-import { forwardRef as p, useContext as Y, useRef as D, useState as h, useImperativeHandle as k, useEffect as I } from "react";
+import { jsx as n, Fragment as j, jsxs as V } from "react/jsx-runtime";
+import { forwardRef as p, useContext as Y, useRef as C, useState as h, useImperativeHandle as k, useEffect as I } from "react";
 import { LocalizationProvider as T, DatePicker as b } from "@mui/x-date-pickers";
-import { AdapterDayjs as w } from "@mui/x-date-pickers/AdapterDayjs";
 import o from "dayjs";
-import { copyMuiOptions as x, getFieldLabel as z } from "./MuiUtil.js";
-import { FieldManagerContext as E } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import H from "./FieldDecorator.js";
+import { copyMuiOptions as x, getFieldLabel as w } from "./MuiUtil.js";
+import { FieldManagerContext as z } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import E from "./FieldDecorator.js";
+import { A as H } from "../../../chunks/AdapterDayjs.js";
 const W = p(function(t, l) {
-  const y = Y(E), i = l || D(null), u = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = y(t, "dateRange", i), { mutateOptions: F, setMutateOptions: P } = a, r = a.error, c = a.data, M = a.eventListeners, m = t.variant || "standard", s = D(null), [d, O] = h(), [f, L] = h(), g = (e) => {
+  const y = Y(z), i = l || C(null), u = t.displayPattern || t.serverPattern || "YYYY-MM-DD", a = y(t, "dateRange", i), { mutateOptions: F, setMutateOptions: P } = a, r = a.error, c = a.data, M = a.eventListeners, m = t.variant || "standard", s = C(null), [d, O] = h(), [f, A] = h(), g = (e) => {
     if (e)
       return o(e);
   };
@@ -34,31 +34,31 @@ const W = p(function(t, l) {
       P({ visible: e });
     }
   }), [a]);
-  var v = x(t, g(c.from), t.label), C = x(t, g(c.to), t.label);
-  const R = (e) => {
+  var D = x(t, g(c.from), t.label), v = x(t, g(c.to), t.label);
+  const L = (e) => {
     O(e);
-  }, j = (e) => {
-    L(e);
+  }, R = (e) => {
+    A(e);
   };
   return I(() => {
     M.onValueChange({ from: d, to: f });
-  }, [d, f]), /* @__PURE__ */ n(A, { children: F.visible && /* @__PURE__ */ n(
-    H,
+  }, [d, f]), /* @__PURE__ */ n(j, { children: F.visible && /* @__PURE__ */ n(
+    E,
     {
-      label: z(t),
+      label: w(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ V(T, { dateAdapter: w, children: [
+      children: /* @__PURE__ */ V(T, { dateAdapter: H, children: [
         /* @__PURE__ */ n(
           b,
           {
-            ...v,
-            value: v.value ?? o,
+            ...D,
+            value: D.value ?? o,
             readOnly: t.readonly,
             format: u,
-            onChange: R,
+            onChange: L,
             slotProps: {
               textField: {
                 error: r.status,
@@ -73,11 +73,11 @@ const W = p(function(t, l) {
         /* @__PURE__ */ n(
           b,
           {
-            ...C,
-            value: C.value ?? o,
+            ...v,
+            value: v.value ?? o,
             readOnly: t.readonly,
             format: u,
-            onChange: j,
+            onChange: R,
             slotProps: {
               textField: {
                 error: r.status,
