@@ -122,8 +122,8 @@ interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
 }
 
 interface IEventListeners {
-    onBlur: () => void,
-    onFocus: () => void,
+    onBlur: (data: any) => void,
+    onFocus: (data: any) => void,
     onValueChange: (data: any) => void,
     onSearch?: (searchKey: string, limt?: number, offset?: number) => void
 }

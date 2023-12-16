@@ -63,7 +63,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     }
 
 
-    const doProcessDataChange = (value) => {        
+    const doProcessDataChange = (value) => {
         const validStatus = validate(value);
         const attrib = fieldDef.attribute;
         const key = fieldDef.name || attrib;
@@ -74,7 +74,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         fieldEventListener.onChange(key, value, validStatus.status);
         fieldValueListener.onValue(key, value, validStatus.status);
     }
-    
+
     /**
      * The doValidate flag is required, when the data validation is not required to be triggered
      *      1. while initializing the field values
@@ -154,7 +154,13 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         }
     }
 
-    const onBlur = () => { validate(data); };
+    const onBlur = () => { 
+        const validStatus = validate(data); 
+        if(fieldEventListener.onBlur){
+            fieldEventListener.onBlur(fieldDef.attribute, data, validStatus.status);
+        }
+    };
+
     const onFocus = () => { hideErrorMessage() };
     const onValueChange = (value: T) => { setValue(value, true) };
 
