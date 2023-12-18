@@ -4,7 +4,6 @@ import { AppStoreFactory } from "../../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import { FieldGroupContainer } from "../../components/form";
-import MuiDFServerLookup from "../../../lib/palmyra/mui/form/Dynamic/MuiDFServerLookup";
 
 
 const DynamicFields = () => {
@@ -70,14 +69,7 @@ const DynamicFields = () => {
                         <MuiRadioGroup attribute="ncb" title="No Claim Bonus"
                             required={true}
                             options={{ true: 'Yes', false: 'No' }} />
-
-                        <MuiDFServerLookup attribute="ncbOptions" title="Declaration"
-                            required={true} visible={false}
-                            mutant={true}
-                            displayAttribute="serviceName"
-                            lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
-                            storeOptions={{ endPoint: "/api/data/fetchMe" }}
-                        />
+                      
 
                         <MuiTextField attribute="sfs" title="Server " placeHolder="welcome"
                             length={{ min: 3, message: "Minimum of 3 letters" }} />

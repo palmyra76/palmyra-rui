@@ -1,16 +1,21 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
-import { IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, IServerLookupField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, PalmyraStoreFactory, SectionContainer, StoreFactory, createFormHelper } from "../../../lib/main";
-import { AppStoreFactory } from "../../components/store/AppStoreFactory";
+import { IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, IServerLookupField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, PalmyraStoreFactory, SectionContainer, StoreFactory } from "../../../lib/main";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import { FieldGroupContainer, ServerLookup } from "../../components/form";
-import MuiDFServerLookup from "../../../lib/palmyra/mui/form/Dynamic/MuiDFServerLookup";
 
 
 const DepsFields = () => {
     const formRef = useRef<IPalmyraForm>(null);
     const [isValid, setValid] = useState(false);
-    const [data, setData] = useState({});
+    // const [data] = useState({
+    //     manufacturer: [{ id: 3, name: 'HONDA' }]
+    // });
+
+    const [data] = useState({
+        manufacturer: { id: 3, name: 'HONDA' }
+    });
+
     const model: MutableRefObject<IServerLookupField> = useRef<IServerLookupField>(null);
     const variant: MutableRefObject<IServerLookupField> = useRef<IServerLookupField>(null);
 
@@ -20,16 +25,24 @@ const DepsFields = () => {
     }
 
     const submitData = () => {
-        console.log(formRef.current.getData());
+        console.log(formRef.current.getData() + " sdf");
     }
 
-    const formHelper: IFormHelper = createFormHelper();
+    // const formHelper: IFormHelper = createFormHelper();
 
     const ManufacturerChangeListener: IFieldEventListener = {
         onChange: function (key: string, value: any, valid?: boolean): void {
-            model.current.addFilter("manufacturer.id", value);
+            // model.current.addFilter("manufacturer.id", value);
         }
     }
+
+    const textChangeListener: IFieldEventListener = {
+        onChange: function (key: string, value: any, valid?: boolean): void {
+            setV(0 == value.length);
+        }
+    }
+
+    const [v, setV] = useState(true);
 
     const ModelChangeListener: IFieldEventListener = {
         onChange: function (key: string, value: any, valid?: boolean): void {
@@ -37,17 +50,17 @@ const DepsFields = () => {
         }
     }
 
-    const customizer: IFormCustomizer = {
-        getFormHelper: function () {
-            return formHelper
-        },
-        getEventListeners: function () {
-            return {}
-        },
-        getValueListeners: function () {
-            return {};
-        }
-    }
+    // const customizer: IFormCustomizer = {
+    //     getFormHelper: function () {
+    //         return formHelper
+    //     },
+    //     getEventListeners: function () {
+    //         return {}
+    //     },
+    //     getValueListeners: function () {
+    //         return {};
+    //     }
+    // }
 
     useEffect(() => {
 
@@ -57,22 +70,26 @@ const DepsFields = () => {
 
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
-            <PalmyraForm storeFactory={storeFactory} customizer={customizer}
+            <PalmyraForm storeFactory={storeFactory}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
                 <SectionContainer title='Welcome'>
                     <FieldGroupContainer columns={2}>
+                        {v &&
                         <ServerLookup attribute="year.year" displayAttribute="year.yearNumber"
-                            title="Year"
+                            title="Year" required
                             storeOptions={{ endPoint: '/masterdata/vehicleYear' }}
                             lookupOptions={{ idAttribute: "id", titleAttribute: "yearNumber" }} />
-                        <ServerLookup attribute="make" title="Make"
-                            displayAttribute="Make" eventListener={ManufacturerChangeListener}
+                        }
+                        <ServerLookup attribute="manufacturer.id"
+                            displayAttribute="manufacturer.name"
+                            title="Make" multiple={false}
+                            eventListener={ManufacturerChangeListener}
                             lookupOptions={{}}
                             storeOptions={{ endPoint: '/masterdata/vehicleManufacturer' }}
                             required={true}
                         />
-                        <ServerLookup attribute="model" title="Model"
+                        {/* <ServerLookup attribute="model" title="Model"
                             displayAttribute="model" ref={model}
                             lookupOptions={{}} eventListener={ModelChangeListener}
                             storeOptions={{ endPoint: '/masterdata/vehicleModel' }}
@@ -83,9 +100,9 @@ const DepsFields = () => {
                             lookupOptions={{}} ref={variant}
                             storeOptions={{ endPoint: '/masterdata/vehicleVariant' }}
                             required={true}
-                        />
+                        /> */}
                         <MuiTextField attribute="sumInsured"
-                            title="Sum Insured"
+                            title="Sum Insured" eventListener={textChangeListener}
                             validationRule={"string"}
                             required={true}
                         />
