@@ -61,7 +61,7 @@ const useServerMultiLookup = (props: IServerLookupDefinition, mutateOptions: IMu
     }
 
     useEffect(() => {
-        if (idAccessor(value) == fieldManager.data)
+        if (fieldManager.data && fieldManager.data.length > 0)
             return;
 
         var option: any = getSelectedOption();
@@ -166,9 +166,9 @@ const useServerMultiLookup = (props: IServerLookupDefinition, mutateOptions: IMu
                 <FormControl fullWidth error={error.status}>
                     {options &&
                         <Autocomplete
-                            includeInputInList
-                            autoHighlight
+                            disableCloseOnSelect={true}
                             multiple={true}
+                            renderOption={props.renderOption}
                             readOnly={readOnly}
                             isOptionEqualToValue={(options, value) => {
                                 if (options instanceof Array) {

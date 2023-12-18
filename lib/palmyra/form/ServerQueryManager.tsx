@@ -6,6 +6,7 @@ import { IEndPointVars } from '../layout/Types';
 
 interface IServerQueryInput {
   store: AbstractQueryStore<any>,
+  onDataChange?: (newData: any[], oldData?: any[]) => void,
   pageSize?: numbers,
   quickSearch?: string,
   endPointVars?: IEndPointVars,
@@ -56,6 +57,17 @@ const useServerQuery = (props: IServerQueryInput) => {
     return false;
   }
 
+  const setResult = (result: any) => {
+    setData((old: any) => {
+      setTimeout(() => {
+        if (props.onDataChange) {
+          props.onDataChange(data, old);
+        }
+      }, 300)
+      return result;
+    })
+  }
+
   useEffect(() => {
     if (firstRun.current) {
       firstRun.current = false;
@@ -72,7 +84,7 @@ const useServerQuery = (props: IServerQueryInput) => {
     if (store) {
       try {
         store.query(params).then((d) => {
-          setData(d.result);
+          setResult(d.result);
           setTotalRecords(d.total);
         }).catch((e) => {
           var r = e.response ? e.response : e;
@@ -90,12 +102,12 @@ const useServerQuery = (props: IServerQueryInput) => {
   }
 
   const setEmptyData = () => {
-    setData([]);
+    setResult([]);
     setTotalRecords(0);
   }
 
   const setNoData = () => {
-    setData(undefined);
+    setResult(undefined);
     setTotalRecords(null);
   }
 

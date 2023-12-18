@@ -2,19 +2,14 @@ import { MutableRefObject, ReactNode, forwardRef, useImperativeHandle, useRef } 
 import { AiOutlineSearch } from 'react-icons/ai';
 import { TablePagination, TextField, InputAdornment } from '@mui/material';
 import './CardLayout.css';
-import { DefaultQueryParams, QueryStore } from '../../store';
-import useServerQuery from '../../form/ServerQueryManager';
+
+import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 import { CardLayout } from '..';
 import { IGrid } from '../../form/interfaceFields';
 
-interface ServerCardLayoutInput {
-    quickSearch?: string,
-    fetchAll?: boolean,
-    defaultParams?: DefaultQueryParams,
-    store: QueryStore<any>,
+interface ServerCardLayoutInput extends IServerQueryInput {
     Child: React.FC,
     childProps?: any,
-    pageSize?: number[],
     listKeyProvider?: (data: any, index: number) => string | number,
     EmptyChild?: React.FC,
     children?: ReactNode,

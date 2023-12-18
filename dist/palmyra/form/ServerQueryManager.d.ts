@@ -4,6 +4,7 @@ import { QueryRequest } from '../../main';
 import { IEndPointVars } from '../layout/Types';
 interface IServerQueryInput {
     store: AbstractQueryStore<any>;
+    onDataChange?: (newData: any[], oldData?: any[]) => void;
     pageSize?: numbers;
     quickSearch?: string;
     endPointVars?: IEndPointVars;

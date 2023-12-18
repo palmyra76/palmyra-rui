@@ -159,6 +159,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
                         includeInputInList
                         autoHighlight
                         readOnly={readOnly}
+                        renderOption={props.renderOption}
                         isOptionEqualToValue={(option, value) => idAccessor(option) == idAccessor(value)}
                         filterOptions={(x) => x}
                         renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }}

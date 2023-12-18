@@ -5,26 +5,20 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
 import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add } from '@mui/icons-material';
-import { DefaultQueryParams, QueryStore } from '../store';
 import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
-import useServerQuery from '../form/ServerQueryManager';
+import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 
 
 //TODO - show errors on data fetching
 
-interface GridXOptions {
+interface GridXOptions extends IServerQueryInput {
   columns: ColumnDefinition[],
   children?: any,
-  fetchAll?: boolean,
   EmptyChild?: React.FC,
-  store: QueryStore<any>,
   onRowClick?: Function,
   onNewClick?: Function,
-  pageSize?: number[],
-  quickSearch?: string,
-  customizer?: GridCustomizer,
-  defaultParams?: DefaultQueryParams
+  customizer?: GridCustomizer
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<any>) {

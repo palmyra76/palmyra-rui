@@ -1,13 +1,8 @@
 import { ReactNode } from 'react';
-import { DefaultQueryParams, QueryStore } from '../../store';
-interface ServerCardLayoutInput {
-    quickSearch?: string;
-    fetchAll?: boolean;
-    defaultParams?: DefaultQueryParams;
-    store: QueryStore<any>;
+import { IServerQueryInput } from '../../form/ServerQueryManager';
+interface ServerCardLayoutInput extends IServerQueryInput {
     Child: React.FC;
     childProps?: any;
-    pageSize?: number[];
     listKeyProvider?: (data: any, index: number) => string | number;
     EmptyChild?: React.FC;
     children?: ReactNode;
