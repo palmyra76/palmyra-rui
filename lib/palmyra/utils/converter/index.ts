@@ -1,3 +1,7 @@
+import { IInputField } from '../../form/interfaceFields';
+import { getFormatConverter } from './FormatterFactory'
+import { getDataTransformer } from './FormDataTransformerFactory'
+
 interface Converter<TEXT, DATA> {
     /**
      * Format and Parse functions will be used in  form data entry
@@ -9,8 +13,10 @@ interface Converter<TEXT, DATA> {
     convert: (text: TEXT) => TEXT;
 }
 
+interface FormDataTransformer {
+    getFormData: (data: any) => any;
+    getFieldData: (field: IInputField) => any;
+}
 
-import { getFormatConverter } from './FormatterFactory'
-
-export { getFormatConverter }
-export type { Converter }
+export { getFormatConverter, getDataTransformer }
+export type { Converter, FormDataTransformer }

@@ -73,6 +73,6 @@ interface IServerLookupField extends IInputField, IQueryable {
     setDefaultFilter: (d: any) => void
 }
 
-export type { IMutateOptions, IGrid, IQueryable }
+export type { IMutateOptions, IGrid, IQueryable, IInputField }
 
 export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField }
