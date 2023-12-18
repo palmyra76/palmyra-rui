@@ -1,5 +1,5 @@
 import "react";
-import { c as N } from "../../chunks/ServerCardLayout.js";
+import { u as N } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";

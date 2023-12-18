@@ -1,10 +1,12 @@
+import { MutableRefObject } from "react";
 import { Converter } from ".";
 import { FieldDefinition, FieldType } from "../../form/Definitions";
 import { DateTimeConverter } from "./DateConverter";
 import { DateRangeConverter } from "./DateRangeConverter";
 import { noopConverter } from "./NoopConverter";
+import { ServerlookupTransformer } from "./ServerlookupTransformer";
 
-const getFormatConverter = (props: FieldDefinition): Converter<any, any> => {
+const getFormatConverter = (props: FieldDefinition, formDataRef?: MutableRefObject<any>): Converter<any, any> => {
 
     const type: FieldType = props.type;
     switch (type) {
@@ -14,6 +16,8 @@ const getFormatConverter = (props: FieldDefinition): Converter<any, any> => {
             return new DateTimeConverter(props, 'YYYY-MM-DDTHH:mm:ss');
         case 'dateRange':
             return new DateRangeConverter(props, 'YYYY-MM-DD');
+        case 'serverlookup':
+            return new ServerlookupTransformer(props, formDataRef);
         default:
             return noopConverter;
     }

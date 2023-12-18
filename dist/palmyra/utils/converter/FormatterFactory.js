@@ -1,18 +1,21 @@
-import { DateTimeConverter as t } from "./DateConverter.js";
-import { DateRangeConverter as r } from "./DateRangeConverter.js";
-import { noopConverter as n } from "./NoopConverter.js";
-const D = (e) => {
+import { DateTimeConverter as r } from "./DateConverter.js";
+import { DateRangeConverter as n } from "./DateRangeConverter.js";
+import { noopConverter as o } from "./NoopConverter.js";
+import { ServerlookupTransformer as a } from "./ServerlookupTransformer.js";
+const i = (e, t) => {
   switch (e.type) {
     case "date":
-      return new t(e, "YYYY-MM-DD");
-    case "datetime":
-      return new t(e, "YYYY-MM-DDTHH:mm:ss");
-    case "dateRange":
       return new r(e, "YYYY-MM-DD");
+    case "datetime":
+      return new r(e, "YYYY-MM-DDTHH:mm:ss");
+    case "dateRange":
+      return new n(e, "YYYY-MM-DD");
+    case "serverlookup":
+      return new a(e, t);
     default:
-      return n;
+      return o;
   }
 };
 export {
-  D as getFormatConverter
+  i as getFormatConverter
 };

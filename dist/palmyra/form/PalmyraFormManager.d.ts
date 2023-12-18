@@ -1,7 +1,7 @@
 /**
  * Custom Hook for form validation
  */
-import { IGetFieldManager } from "./interface";
+import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
 declare function createFormHelper(): IFormHelper;
 interface IListeners {
@@ -9,7 +9,7 @@ interface IListeners {
     valueListeners: Record<string, IFieldValueListener>;
 }
 declare function createFormData(data: any, onValidityChange: any, mode: FormMode, formHelper?: IFormHelper, listeners?: IListeners): {
-    getFieldManager: IGetFieldManager;
+    getFieldManager: (field: AttributeDefinition, type: FieldType, ref: any) => IFormFieldManager;
     getFormData: (idProperty?: string) => {
         [x: string]: any;
     };

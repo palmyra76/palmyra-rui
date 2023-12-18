@@ -1,6 +1,12 @@
 import { Converter } from ".";
+import { AttributeDefinition } from "../../form/Definitions";
+import { getValueByKey } from "../../form/FormUtil";
 
 class NoopConverter implements Converter<any, any>{
+    getFieldData = (data: any, props: AttributeDefinition) => {
+        return getValueByKey(props.attribute, data);
+    };
+
     format = (data: any): any => {
         return data
     };
@@ -9,8 +15,12 @@ class NoopConverter implements Converter<any, any>{
         return text;
     };
 
-    convert = (text:any): any => {
+    convert = (text: any): any => {
         return text;
+    };
+
+    getDefaultValue = (d: any): any => {
+        return d || '';
     }
 }
 

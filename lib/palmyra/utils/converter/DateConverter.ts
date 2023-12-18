@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { Converter } from "."
-import { FieldDefinition } from "../../form/Definitions"
+import { AttributeDefinition, FieldDefinition } from "../../form/Definitions"
+import { getValueByKey } from "../../form/FormUtil";
 
 class DateTimeConverter implements Converter<any, Date>{
     serverPattern: string;
@@ -10,6 +11,10 @@ class DateTimeConverter implements Converter<any, Date>{
         this.serverPattern = props.serverPattern || props.displayPattern || defaultFormat;
         this.displayPattern = props.displayPattern;
     }
+
+    getFieldData = (data: any, props: AttributeDefinition) => {
+        return getValueByKey(props.attribute, data);
+    };
 
     format(data: Date): any {
         if (data) {
@@ -37,6 +42,10 @@ class DateTimeConverter implements Converter<any, Date>{
                 .format(this.displayPattern)
         }
         return text;
+    }
+
+    getDefaultValue = (d: any): any => {
+        return d || '';
     }
 }
 

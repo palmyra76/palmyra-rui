@@ -3,15 +3,14 @@
  */
 
 import { FieldDefinition } from "./Definitions";
-import { getValueByKey, setValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
 import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
-import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
+import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
 import { MutableRefObject, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
-
+import { setValueByKey } from "./FormUtil";
 
 function createFormHelper(): IFormHelper {
     const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, []);
@@ -37,10 +36,11 @@ interface IListeners {
 function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
     listeners?: IListeners) {
     const formListeners: IListeners = listeners || { eventListeners: {}, valueListeners: {} };
-    const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, []);
+    const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, [data]);
     const _formHelper = formHelper || createFormHelper();
     var validationFormat: Record<string, FieldDefinition> = {};
     var validationRules = {};
+
     const isValid = useRef(false);
     var formDataRef = useRef(mergeDeep({}, data));
     const onDataValidityChange = onValidityChange;
@@ -81,44 +81,36 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
         return true;
     }
 
-    const getFieldManager = useMemo((): IGetFieldManager => {
+    const getFieldManager = (field: AttributeDefinition, type: FieldType, ref: any): IFormFieldManager => {
         formDataRef.current = mergeDeep({}, data);
-        const generate = (field: AttributeDefinition, type: FieldType, ref: any): IFormFieldManager => {
-            var fieldAttrib = field.name || field.attribute;
-            // @ts-ignore
-            var fieldDef: FieldDefinition = { ...field, type }
-            if (ref) {
-                _formHelper.addFieldRef(fieldAttrib, ref);
-                fieldRefs[fieldAttrib] = ref;
-            }
-
-            const validationRule = getValidator(fieldDef);
-            validationFormat[fieldDef.attribute] = fieldDef;
-            validationRules[fieldDef.attribute] = validationRule;
-
-            const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
-            const valueListener = formListeners.valueListeners[fieldAttrib];
-            var result = getEventListeners(fieldDef, getValueByKey(fieldDef.attribute, formDataRef.current),
-                onDataChange, validationRule, undefined, eventListener, valueListener);
-
-            try {
-                if (requireStore(fieldDef)) {
-                    result.store = getLookupStore(fieldDef);
-                }
-            } catch (error) {
-                console.error('Error while getting LookupStore for attribute' + fieldDef.attribute, error);
-            }
-
-            if (fieldDef.type == 'serverlookup') {
-                var displayAttribute = fieldDef.displayAttribute || fieldDef.attribute;
-                const displayValue = getValueByKey(displayAttribute, data);
-                result.setMeta('displayValue', displayValue);
-            }
-
-            return result;
+        var fieldAttrib = field.name || field.attribute;        
+        // @ts-ignore
+        var fieldDef: FieldDefinition = { ...field, type }
+        if (ref) {
+            _formHelper.addFieldRef(fieldAttrib, ref);
+            fieldRefs[fieldAttrib] = ref;
         }
-        return generate;
-    }, [data])
+
+        const validationRule = getValidator(fieldDef);
+        validationFormat[fieldDef.attribute] = fieldDef;
+        validationRules[fieldDef.attribute] = validationRule;
+
+        const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
+        const valueListener = formListeners.valueListeners[fieldAttrib];
+
+        var result = getEventListeners(fieldDef, formDataRef, // getter.getFormData(formDataRef.current),
+            onDataChange, validationRule, undefined, eventListener, valueListener);
+
+        try {
+            if (requireStore(fieldDef)) {
+                result.store = getLookupStore(fieldDef);
+            }
+        } catch (error) {
+            console.error('Error while getting LookupStore for attribute' + fieldDef.attribute, error);
+        }
+
+        return result;
+    };
 
     const getFormData = (idProperty?: string) => {
         const idp = idProperty || 'id';

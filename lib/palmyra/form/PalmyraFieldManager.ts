@@ -1,33 +1,21 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { EventHandler, IFieldEventListener, IFieldValueListener, NoopFieldEventListener, NoopFieldValueListener } from "./Types";
-import { FieldDefinition, FieldValidStatus, InputType } from "./Definitions";
+import { FieldDefinition, FieldValidStatus } from "./Definitions";
 
 import { Converter, getFormatConverter } from "../utils/converter";
 import { IEventListeners, IFormFieldManager } from "./interface";
 import { IMutateOptions } from "./interfaceFields";
 
-
-
-
-const getDefaultValue = (fieldDef: FieldDefinition, value: InputType): any => {
-    if (value == undefined)
-        return fieldDef.defaultValue || '';
-    return value;
-}
-
-function getEventListeners<T>(fieldDef: FieldDefinition,
-    value: any,
-    onDataChange: (key: string, d: any, v: { [x: string]: boolean }) => void,
-    constraint: Function,
+function getEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRefObject<any>,
+    onDataChange: (key: string, d: any, v: { [x: string]: boolean }) => void, constraint: Function,
     eventHandler: EventHandler, eventListener?: IFieldEventListener, valueListener?: IFieldValueListener
 ): IFormFieldManager {
-
     const fieldEventListener = eventListener || NoopFieldEventListener;
-    const fieldValueListener = valueListener || NoopFieldValueListener;
-    const formatter: Converter<any, any> = getFormatConverter(fieldDef);
-
-    const [data, setData] = useState(getDataDefault(value));
+    const fieldValueListener = valueListener || NoopFieldValueListener;    
+    const formatter: Converter<any, any> = getFormatConverter(fieldDef, formDataRef);
+    const [fieldData, setFieldData] = useState(getDataDefault(formatter.getFieldData(formDataRef.current, fieldDef)));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
+
     const metaInfo = useRef<any>({});
     const timer: any = useRef<ReturnType<typeof setTimeout>>(null);
 
@@ -54,7 +42,10 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     }
 
     function getDataDefault(value: any) {
-        return formatter.parse(getDefaultValue(fieldDef, value))
+        var result = value;
+        if (value == undefined)
+            result = formatter.getDefaultValue(fieldDef.defaultValue);
+        return formatter.parse(result)
     }
 
     const doProcessDataChange = (value: any) => {
@@ -79,7 +70,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
      * @param doValidate 
      */
     const setValue = (value: any, doValidate?: boolean) => {
-        setData(value || '');
+        setFieldData(value);
         if (doValidate) {
             clearTimeout(timer.current);
             timer.current = setTimeout(function () {
@@ -89,7 +80,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     }
 
     const getData = () => {
-        return formatter.format(data);
+        return formatter.format(fieldData);
     }
 
     const checkConstraints = (value: String): FieldValidStatus => {
@@ -151,9 +142,9 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     }
 
     const onBlur = () => {
-        const validStatus = validate(data);
+        const validStatus = validate(fieldData);
         if (fieldEventListener.onBlur) {
-            fieldEventListener.onBlur(fieldDef.attribute, data, validStatus.status);
+            fieldEventListener.onBlur(fieldDef.attribute, fieldData, validStatus.status);
         }
     };
 
@@ -164,7 +155,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
 
     useEffect(() => {
         var key = fieldDef.attribute;
-        const validStatus = checkConstraints(data);
+        const validStatus = checkConstraints(fieldData);
         onDataChange(undefined, undefined, { [key]: validStatus.status });
     }, []);
 
@@ -177,7 +168,9 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         return metaInfo.current[d];
     }
 
-    return { data, setData: setValue, getData, error, eventListeners, mutateOptions, setMutateOptions, getMeta, setMeta };
+    return {
+        data:fieldData, setData: setValue, getData, error, eventListeners, mutateOptions, setMutateOptions, getMeta, setMeta
+    };
 }
 
 function decorateListenersForInput(eventListeners: IEventListeners): any {

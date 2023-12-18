@@ -1,6 +1,5 @@
-import { IInputField } from '../../form/interfaceFields';
+import { FieldDefinition } from '../../form/Definitions';
 import { getFormatConverter } from './FormatterFactory'
-import { getDataTransformer } from './FormDataTransformerFactory'
 
 interface Converter<TEXT, DATA> {
     /**
@@ -8,15 +7,13 @@ interface Converter<TEXT, DATA> {
      */
     format: (data: DATA) => TEXT;
     parse: (text: TEXT) => DATA;
-
+    getFieldData: (formData: any, props: FieldDefinition) => any;
     // Convert function to be used in Table/Data Grid for display purpose
     convert: (text: TEXT) => TEXT;
+
+    getDefaultValue: (d: any) => any;
+    hasMultiUpdate?: () => boolean;
 }
 
-interface FormDataTransformer {
-    getFormData: (data: any) => any;
-    getFieldData: (field: IInputField) => any;
-}
-
-export { getFormatConverter, getDataTransformer }
-export type { Converter, FormDataTransformer }
+export { getFormatConverter }
+export type { Converter }

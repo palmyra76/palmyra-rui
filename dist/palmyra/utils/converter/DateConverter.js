@@ -2,10 +2,13 @@ var s = Object.defineProperty;
 var i = (e, r, t) => r in e ? s(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
 var a = (e, r, t) => (i(e, typeof r != "symbol" ? r + "" : r, t), t);
 import n from "dayjs";
+import { getValueByKey as u } from "../../form/FormUtil.js";
 class P {
   constructor(r, t) {
     a(this, "serverPattern");
     a(this, "displayPattern");
+    a(this, "getFieldData", (r, t) => u(t.attribute, r));
+    a(this, "getDefaultValue", (r) => r || "");
     this.serverPattern = r.serverPattern || r.displayPattern || t, this.displayPattern = r.displayPattern;
   }
   format(r) {

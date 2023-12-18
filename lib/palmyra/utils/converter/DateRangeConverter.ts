@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { Converter } from "."
-import { FieldDefinition } from "../../form/Definitions"
+import { AttributeDefinition, FieldDefinition } from "../../form/Definitions"
+import { getValueByKey } from "../../form/FormUtil";
 
 interface IDateRange {
     from?: Date
@@ -20,6 +21,10 @@ class DateRangeConverter implements Converter<any, IDateRange>{
     constructor(props: FieldDefinition, defaultFormat: string) {
         this.serverPattern = props.serverPattern || props.displayPattern || defaultFormat;
     }
+
+    getFieldData = (data: any, props: AttributeDefinition) => {
+        return getValueByKey(props.attribute, data);
+    };
 
     format(data: IDateRange): any {
         if (data) {
@@ -70,6 +75,9 @@ class DateRangeConverter implements Converter<any, IDateRange>{
         return t;
     }
 
+    getDefaultValue = (d: any): any => {
+        return d || '';
+    }
 }
 
 export { DateRangeConverter }

@@ -1,14 +1,17 @@
-var t = Object.defineProperty;
-var p = (e, r, o) => r in e ? t(e, r, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[r] = o;
-var n = (e, r, o) => (p(e, typeof r != "symbol" ? r + "" : r, o), o);
-class s {
+var n = Object.defineProperty;
+var a = (t, e, r) => e in t ? n(t, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[e] = r;
+var o = (t, e, r) => (a(t, typeof e != "symbol" ? e + "" : e, r), r);
+import { getValueByKey as u } from "../../form/FormUtil.js";
+class l {
   constructor() {
-    n(this, "format", (r) => r);
-    n(this, "parse", (r) => r);
-    n(this, "convert", (r) => r);
+    o(this, "getFieldData", (e, r) => u(r.attribute, e));
+    o(this, "format", (e) => e);
+    o(this, "parse", (e) => e);
+    o(this, "convert", (e) => e);
+    o(this, "getDefaultValue", (e) => e || "");
   }
 }
-const c = new s();
+const c = new l();
 export {
   c as noopConverter
 };
