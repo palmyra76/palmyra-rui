@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "react";
-import { k as p } from "../../../chunks/ServerCardLayout.js";
+import { l as p } from "../../../chunks/ServerCardLayout.js";
 export {
   p as default
 };

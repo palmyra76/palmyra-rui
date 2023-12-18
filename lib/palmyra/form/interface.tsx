@@ -94,7 +94,7 @@ interface ICheckboxGroupDefinition extends AttributeDefinition, IDecoration {
 }
 
 interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
-    
+
 }
 
 interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
@@ -110,6 +110,7 @@ interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
 
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     displayAttribute: string,
+    multiple?: boolean,
     lookupOptions: IFormFieldServerLookup,
     store?: LookupStore<any>,
     storeOptions: {
@@ -204,8 +205,10 @@ const NoopFormListener: IFormListener = {
 
 
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition }
-export type { IServerCheckboxDefinition,  ICheckboxGroupDefinition,
-    IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers }
+export type {
+    IServerCheckboxDefinition, ICheckboxGroupDefinition,
+    IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers
+}
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration }
 
 export { NoopFormListener }

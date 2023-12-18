@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
-import { i as p } from "../../../chunks/ServerCardLayout.js";
+import { j as i } from "../../../chunks/ServerCardLayout.js";
 import "../container/SectionContainer.js";
 import "../ErrorBoundary.js";
 export {
-  p as default
+  i as default
 };

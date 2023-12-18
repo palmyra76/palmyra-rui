@@ -205,6 +205,10 @@ const isEmpty = (val) => {
     if (typeof val == 'string')
         return validator.isEmpty(val);
 
+    if (val instanceof Array) {
+        return val.length > 0;
+    }
+
     return (!val);
 }
 

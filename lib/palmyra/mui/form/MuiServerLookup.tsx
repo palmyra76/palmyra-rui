@@ -5,6 +5,7 @@ import { IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefi
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { useServerLookup } from './useServerLookup';
 import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
+import { useServerMultiLookup } from './useServerMultiLookup';
 
 const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -15,7 +16,9 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const { mutateOptions, setMutateOptions } = fieldManager;
     const inputRef: any = useRef(null);
 
-    const { getServerLookup, setQueryFilter } = useServerLookup(props, mutateOptions, fieldManager);
+    const { getServerLookup, setQueryFilter } = props.multiple ?
+        useServerMultiLookup(props, mutateOptions, fieldManager)
+        : useServerLookup(props, mutateOptions, fieldManager);
 
     useImperativeHandle(currentRef, () => {
         return {
