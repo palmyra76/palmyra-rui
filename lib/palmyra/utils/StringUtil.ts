@@ -9,7 +9,7 @@ const hasDot = (val: string): boolean => {
 }
 
 const StringFormat = function (str: string, data: any): string {
-    if(null == data || null == undefined)
+    if(!data)
         return str;
 
     if (typeof str === 'string' && (data instanceof Array)) {
@@ -28,8 +28,6 @@ const StringFormat = function (str: string, data: any): string {
             return data[key];
         });
 
-    } else if (typeof str === 'string' && data instanceof Array === false || typeof str === 'string' && data instanceof Object === false) {
-        return str;
     } else {
         return str;
     }
