@@ -1,4 +1,4 @@
-import { DataStore, PostRequest, PutRequest, RemoveRequest, StringFormat } from "../../../main";
+import { DataStore, PostRequest, PutRequest, RemoveRequest } from "../../../main";
 import { strings } from "../../form/interface";
 import { IEndPoint } from "../../layout/Types";
 import { PalmyraGridStore } from "./PalmyraGridStore";
@@ -10,21 +10,21 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T>{
 
     post(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
-        var url: any = StringFormat(urlFormat, request?.endPointVars);
+        var url: any = this.formatUrl(urlFormat, request);
         return this.getClient().post(url, data)
             .then(response => { return response.data });
     }
 
     put(data: any, request?: PutRequest): Promise<T> {
         var urlFormat = this.target + this.putUrl();
-        var url: any = StringFormat(urlFormat, request?.endPointVars);
+        var url: any = this.formatUrl(urlFormat, request);
         return this.getClient().put(url, data)
             .then(response => { return response.data });
     }
 
     remove(key: any, request?: RemoveRequest): Promise<T> {
         var urlFormat = this.target + this.deleteUrl();
-        var url: any = StringFormat(urlFormat, key);
+        var url: any = this.formatUrl(urlFormat, key);
         return this.getClient().delete(url, { data: {} })
             .then(response => { return response.data });
     }

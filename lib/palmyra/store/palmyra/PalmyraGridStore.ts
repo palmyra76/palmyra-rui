@@ -1,49 +1,45 @@
-import { QueryStore, GetRequest, QueryRequest, StringFormat, QueryResponse, QueryParams } from "../../../../lib/main";
+import { QueryStore, GetRequest, QueryRequest, QueryResponse, QueryParams } from "../../../../lib/main";
 import axios, { AxiosInstance } from 'axios';
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
+import { PalmyraAbstractStore } from "./AbstractStore";
 
-class PalmyraGridStore implements QueryStore<any>{
-    request: Record<string, string>
-    target: string
-    endPoint:IEndPoint
-    idProperty:strings
+class PalmyraGridStore extends PalmyraAbstractStore implements QueryStore<any>{
+    idProperty: strings
 
-    constructor(request: Record<string, string>, endPoint:IEndPoint, idProperty?:strings) {
-        this.request = request;
-        this.target = request.target;
-        this.endPoint = endPoint;
+    constructor(options: Record<string, any>, endPoint: IEndPoint, idProperty?: strings) {
+        super(options, endPoint);
         this.idProperty = idProperty;
     }
 
-    getClient():AxiosInstance {
+    getClient(): AxiosInstance {
         return axios;
     }
 
-    getEndPoint():IEndPoint {
+    getEndPoint(): IEndPoint {
         return this.endPoint;
     }
 
-    queryUrl():string{
-        if(typeof this.endPoint == 'string'){
+    queryUrl(): string {
+        if (typeof this.endPoint == 'string') {
             return this.endPoint;
-        }else{
+        } else {
             this.endPoint.query;
         }
     }
 
-    getUrl():string{
-        if(typeof this.endPoint == 'string'){
+    getUrl(): string {
+        if (typeof this.endPoint == 'string') {
             return this.endPoint;
-        }else{
+        } else {
             this.endPoint.get;
         }
     }
 
-    query(queryParam: QueryRequest): Promise<QueryResponse<any>> {
+    query(request: QueryRequest): Promise<QueryResponse<any>> {
         var urlFormat = this.target + this.queryUrl();
-        var url: any = StringFormat(urlFormat, queryParam.options);
-        const urlSortParams = (convertQueryParams(queryParam));
+        var url: any = this.formatUrl(urlFormat, request);
+        const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
         return axios.get(url, params)
             .then(response => { return response.data });
@@ -51,7 +47,7 @@ class PalmyraGridStore implements QueryStore<any>{
 
     queryLayout(request: QueryRequest): Promise<any> {
         var urlFormat = this.target + this.queryUrl();
-        var url: any = StringFormat(urlFormat, {});        
+        var url: any = this.formatUrl(urlFormat, request);
         return axios.get(url, {
             headers: {
                 action: 'schema'
@@ -62,7 +58,7 @@ class PalmyraGridStore implements QueryStore<any>{
 
     get(request: GetRequest, idProperty?: string): Promise<any> {
         var urlFormat = this.target + this.queryUrl();
-        var url: any = StringFormat(urlFormat, (request.options || {}));
+        var url: any = this.formatUrl(urlFormat, request);
         return axios.get(url)
             .then(response => { return response.data });
     }
@@ -84,7 +80,7 @@ function convertQueryParams(queryParams: QueryParams): any {
         return order + field;
     });
 
-    const _total:boolean = queryParams.total? true: false;
+    const _total: boolean = queryParams.total ? true : false;
 
     const _f = queryParams.filter || {};
 

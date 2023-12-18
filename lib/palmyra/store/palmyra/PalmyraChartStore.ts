@@ -1,18 +1,15 @@
-import { QueryRequest, StringFormat, QueryParams, ChartStore } from "../../../main";
+import { QueryRequest, QueryParams, ChartStore } from "../../../main";
 import axios from 'axios';
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
+import { PalmyraAbstractStore } from "./AbstractStore";
 
-class PalmyraChartStore implements ChartStore<any>{
-    request: Record<string, string>
-    target: string
-    endPoint: IEndPoint
+class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
+        
     idProperty: strings
 
     constructor(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings) {
-        this.request = request;
-        this.target = request.target;
-        this.endPoint = endPoint;
+        super(request, endPoint);
         this.idProperty = idProperty;
     }
 
@@ -36,10 +33,10 @@ class PalmyraChartStore implements ChartStore<any>{
         }
     }
 
-    query(queryParam: QueryRequest): Promise<any> {
+    query(request: QueryRequest): Promise<any> {
         var urlFormat = this.target + this.queryUrl();
-        var url: any = StringFormat(urlFormat, queryParam.options);
-        const urlSortParams = (convertQueryParams(queryParam));
+        var url: any = this.formatUrl(urlFormat, request);
+        const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
         return axios.get(url, params)
             .then(response => { return response.data });

@@ -9,16 +9,17 @@ const hasDot = (val: string): boolean => {
 }
 
 const StringFormat = function (str: string, data: any): string {
+    if(null == data || null == undefined)
+        return str;
+
     if (typeof str === 'string' && (data instanceof Array)) {
         return str.replace(/({\d})/g, function (i) {
             return data[i.replace(/{/, '').replace(/}/, '')];
         });
     } else if (typeof str === 'string' && (data instanceof Object)) {
-
         if (Object.keys(data).length === 0) {
             return str;
         }
-
         return str.replace(/({([^}]+)})/g, function (i) {
             let key = i.replace(/{/, '').replace(/}/, '');
             if (!data[key]) {

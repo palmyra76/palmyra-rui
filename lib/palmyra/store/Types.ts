@@ -69,6 +69,6 @@ interface Tree<T extends Tree<T>> {
     children?: T[];
 }
 
-export type { Pagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams }
+export type { Pagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams, AbstractRequest }
 export type { GetRequest, PostRequest, PutRequest, RemoveRequest }
 export type { QueryResponseHandler, ResponseHandler, ErrorResponse }

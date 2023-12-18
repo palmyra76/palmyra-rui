@@ -16,20 +16,20 @@ class PalmyraStoreFactory implements StoreFactory<any>{
         this.baseUrl = props.baseUrl || '/palmyra';
     }
 
-    getGridStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): QueryStore<any> {
-        var options = {target:this.baseUrl, ...request}
-        return new PalmyraGridStore(options, endPoint, idProperty);
+    getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): QueryStore<any> {
+        var storeOptions = { target: this.baseUrl, ...options }
+        return new PalmyraGridStore(storeOptions, endPoint, idProperty);
     }
-    getFormStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<any> {
-        var options = {target:this.baseUrl, ...request}
-        return new PalmyraDataStore(options, endPoint, idProperty);
+    getFormStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<any> {
+        var storeOptions = { target: this.baseUrl, ...options }
+        return new PalmyraDataStore(storeOptions, endPoint, idProperty);
     }
-    getChartStore(request: Record<string, string>): ChartStore<any> {
+    getChartStore(options: Record<string, string>): ChartStore<any> {
         throw new Error("Method not implemented.");
     }
-    getLookupStore(request: Record<string, string>, endPoint: IEndPoint, idProperty: strings): LookupStore<any> {
-        var options = {target:this.baseUrl, ...request}
-        return new PalmyraLookupStore(options, endPoint, idProperty);
+    getLookupStore(options: Record<string, string>, endPoint: IEndPoint, idProperty: strings): LookupStore<any> {
+        var storeOptions = { target: this.baseUrl, ...options }
+        return new PalmyraLookupStore(storeOptions, endPoint, idProperty);
     }
 }
 

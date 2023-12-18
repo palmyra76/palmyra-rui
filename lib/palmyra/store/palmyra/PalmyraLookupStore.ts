@@ -1,18 +1,14 @@
-import { QueryRequest, StringFormat, QueryResponse, QueryParams, LookupStore } from "../../../main";
+import { QueryRequest, QueryResponse, QueryParams, LookupStore } from "../../../main";
 import axios from 'axios';
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
+import { PalmyraAbstractStore } from "./AbstractStore";
 
-class PalmyraLookupStore implements LookupStore<any>{
-    request: Record<string, string>
-    target: string
-    endPoint: IEndPoint
+class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any>{    
     idProperty: strings
 
-    constructor(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings) {
-        this.request = request;
-        this.target = request.target;
-        this.endPoint = endPoint;
+    constructor(options: Record<string, any>, endPoint: IEndPoint, idProperty?: strings) {
+        super(options, endPoint);
         this.idProperty = idProperty;
     }
 
@@ -36,10 +32,10 @@ class PalmyraLookupStore implements LookupStore<any>{
         }
     }
 
-    query(queryParam: QueryRequest): Promise<QueryResponse<any>> {
+    query(request: QueryRequest): Promise<QueryResponse<any>> {
         var urlFormat = this.target + this.queryUrl();
-        var url: any = StringFormat(urlFormat, queryParam.options);
-        const urlSortParams = (convertQueryParams(queryParam));
+        var url: any = this.formatUrl(urlFormat, request);
+        const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
         return axios.get(url, params)
             .then(response => { return response.data });

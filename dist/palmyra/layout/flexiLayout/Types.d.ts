@@ -20,10 +20,10 @@ interface FlexiEventHandlers {
 interface LayoutParams extends Record<string, string> {
 }
 interface StoreFactory<T> {
-    getGridStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): QueryStore<T>;
-    getFormStore(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
-    getChartStore(request: Record<string, string>, endPoint?: IEndPoint): ChartStore<T>;
-    getLookupStore(request: Record<string, string>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
+    getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): QueryStore<T>;
+    getFormStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
+    getChartStore(options: Record<string, string>, endPoint?: IEndPoint): ChartStore<T>;
+    getLookupStore(options: Record<string, string>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
 }
 interface FlexiLayoutRendererInput<T> {
     layoutParams: LayoutParams;

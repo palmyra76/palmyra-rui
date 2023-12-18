@@ -1,49 +1,13 @@
-var s = Object.defineProperty;
-var d = (r, t, o) => t in r ? s(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
-var i = (r, t, o) => (d(r, typeof t != "symbol" ? t + "" : t, o), o);
-import "../../../chunks/ServerCardLayout.js";
-import "../../layout/flexiLayout/FlexiLayoutContext.js";
+var a = Object.defineProperty;
+var c = (t, o, r) => o in t ? a(t, o, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[o] = r;
+var i = (t, o, r) => (c(t, typeof o != "symbol" ? o + "" : o, r), r);
 import h from "axios";
-import "react/jsx-runtime";
-import "@mui/material";
-import "../../layout/container/SectionContainer.js";
-import "@mui/icons-material";
-import "react";
-import "react-router-dom";
-/* empty css                        */import "@emotion/styled";
-import "@mui/x-tree-view";
-/* empty css                            */import "../../layout/card/CardLayout.js";
-import { StringFormat as l } from "../../utils/StringUtil.js";
-import "../../utils/pubsub/topic.js";
-import "react-chartjs-2";
-import "../../chart/chartjs/LineChart.js";
-import "../../chart/chartjs/BarChart.js";
-import "../../chart/chartjs/PieChart.js";
-import "../../chart/chartjs/DoughnutChart.js";
-import "../../chart/chartjs/PolarAreaChart.js";
-import "../../chart/chartjs/RadarChart.js";
-import "../../chart/chartjs/ScatterChart.js";
-import "../../chart/chartjs/BubbleChart.js";
-import "dayjs";
-import "../../mui/form/MuiDatePicker.js";
-import "../../mui/form/MuiDateTimePicker.js";
-import "../../mui/form/MuiRadioGroup.js";
-import "../../mui/form/MuiSelect.js";
-import "../../mui/form/MuiTextArea.js";
-import "../../mui/form/MuiTextField.js";
-import "../../mui/form/MuiCheckBoxGroup.js";
-import "../../mui/form/MuiCheckBox.js";
-import "../../mui/form/MuiSwitch.js";
-import "../../mui/form/MuiPassword.js";
-import "../../mui/form/MuiNumberField.js";
-import "../../form/PalmyraForm.js";
-class $ {
-  constructor(t, o, p) {
-    i(this, "request");
-    i(this, "target");
-    i(this, "endPoint");
+import { PalmyraAbstractStore as u } from "./AbstractStore.js";
+class m extends u {
+  constructor(r, n, e) {
+    super(r, n);
     i(this, "idProperty");
-    this.request = t, this.target = t.target, this.endPoint = o, this.idProperty = p;
+    this.idProperty = e;
   }
   getEndPoint() {
     return this.endPoint;
@@ -58,16 +22,16 @@ class $ {
       return this.endPoint;
     this.endPoint.get;
   }
-  query(t) {
-    var o = this.target + this.queryUrl(), p = l(o, t.options);
-    const n = { params: a(t) };
-    return h.get(p, n).then((m) => m.data);
+  query(r) {
+    var n = this.target + this.queryUrl(), e = this.formatUrl(n, r);
+    const d = { params: f(r) };
+    return h.get(e, d).then((l) => l.data);
   }
 }
-function a(r) {
-  const t = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((e) => (r.sortOrder[e] === "asc" ? "+" : "-") + e), o = !!r.total;
-  return { ...r.filter || {}, _total: o, _orderBy: t.length ? t.join(",") : [] };
+function f(t) {
+  const o = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((e) => (t.sortOrder[e] === "asc" ? "+" : "-") + e), r = !!t.total;
+  return { ...t.filter || {}, _total: r, _orderBy: o.length ? o.join(",") : [] };
 }
 export {
-  $ as PalmyraChartStore
+  m as PalmyraChartStore
 };

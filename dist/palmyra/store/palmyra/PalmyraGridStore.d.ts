@@ -2,17 +2,15 @@ import { QueryStore, GetRequest, QueryRequest, QueryResponse } from "../../../..
 import { AxiosInstance } from 'axios';
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
-declare class PalmyraGridStore implements QueryStore<any> {
-    request: Record<string, string>;
-    target: string;
-    endPoint: IEndPoint;
+import { PalmyraAbstractStore } from "./AbstractStore";
+declare class PalmyraGridStore extends PalmyraAbstractStore implements QueryStore<any> {
     idProperty: strings;
-    constructor(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings);
+    constructor(options: Record<string, any>, endPoint: IEndPoint, idProperty?: strings);
     getClient(): AxiosInstance;
     getEndPoint(): IEndPoint;
     queryUrl(): string;
     getUrl(): string;
-    query(queryParam: QueryRequest): Promise<QueryResponse<any>>;
+    query(request: QueryRequest): Promise<QueryResponse<any>>;
     queryLayout(request: QueryRequest): Promise<any>;
     get(request: GetRequest, idProperty?: string): Promise<any>;
     getIdentity(o: any): void;
