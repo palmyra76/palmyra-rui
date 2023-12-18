@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
 import { QueryRequest, useKeyValue } from '../../main';
-import { IEndPointVars } from '../layout/Types';
+import { IEndPointOptions } from '../layout/Types';
 
 interface IServerQueryInput {
   store: AbstractQueryStore<any>,
   onDataChange?: (newData: any[], oldData?: any[]) => void,
   pageSize?: numbers,
   quickSearch?: string,
-  endPointVars?: IEndPointVars,
+  endPointOptions?: IEndPointOptions,
   defaultParams?: DefaultQueryParams,
   fetchAll?: boolean,
   filterTopic?: string,
@@ -17,8 +17,9 @@ interface IServerQueryInput {
 }
 
 const useServerQuery = (props: IServerQueryInput) => {
-  const { store, quickSearch, endPointVars } = props;
+  const { store, quickSearch, } = props;
   const fetchAll = props.fetchAll != false;
+  const [endPointVars, setEndPointOptions] = useState(props.endPointOptions);
   const [totalRecords, setTotalRecords] = useState(null);
   const [filter, setFilter] = props.filterTopic ? useKeyValue(props.filterTopic, {}) : useState<any>({});
   const [sortOrder, setSortOrder] = useState({});
@@ -139,7 +140,7 @@ const useServerQuery = (props: IServerQueryInput) => {
   }
 
   return {
-    setQueryFilter, setQuickSearch, setSortColumns,
+    setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
     refreshData, gotoPage, setPageSize, getPageNo, getLimit,
     filter, queryLimit, data, totalRecords, pageSizeOptions
   }

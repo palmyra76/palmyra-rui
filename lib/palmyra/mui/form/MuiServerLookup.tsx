@@ -16,7 +16,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const { mutateOptions, setMutateOptions } = fieldManager;
     const inputRef: any = useRef(null);
 
-    const { getServerLookup, setQueryFilter } = props.multiple ?
+    const { getServerLookup, setQueryFilter, refreshData, setEndPointOptions } = props.multiple ?
         useServerMultiLookup(props, mutateOptions, fieldManager)
         : useServerLookup(props, mutateOptions, fieldManager);
 
@@ -53,7 +53,13 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
                 setQueryFilter(filter)
             },
             resetFilter() {
-
+                setQueryFilter({});
+            },
+            setEndPointOptions(options: any) {
+                setEndPointOptions(options);
+            },
+            refresh: () => {
+                refreshData();
             },
             addFilter(key: string, v: any) {
                 setQueryFilter((f) => {

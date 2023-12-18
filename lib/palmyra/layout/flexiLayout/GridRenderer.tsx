@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useState, useEffect } from 'react';
+import { forwardRef, useContext, useState, useEffect, MutableRefObject } from 'react';
 import { PageContext } from './Types';
 import { TableLayout } from '.';
 import { GridCustomizer, GridX } from '../../grid';
@@ -6,6 +6,7 @@ import { GridCustomizer, GridX } from '../../grid';
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
 import { getActionPublishers } from '../../utils/pubsub/Publishers';
 import { mergeDeep } from '../../utils';
+import { IQueryable } from '../../form/interfaceFields';
 
 interface GridRendererInput {
     layout: TableLayout,
@@ -13,7 +14,7 @@ interface GridRendererInput {
     customizer?: GridCustomizer
 }
 
-const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef) {
+const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IQueryable>) {
     const tableLayout = props.layout;
     const [fields, setFields] = useState(tableLayout.fields);
     const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];

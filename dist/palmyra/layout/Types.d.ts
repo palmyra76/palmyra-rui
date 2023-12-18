@@ -49,13 +49,13 @@ interface MultiEndPoint {
     delete?: string;
 }
 type IEndPoint = string | MultiEndPoint;
-type IEndPointVars = Record<string, any>;
+type IEndPointOptions = Record<string, any>;
 interface storeBacked {
     storeOptions?: {
         endPoint?: IEndPoint;
-        endPointVars?: IEndPointVars;
+        endPointOptions?: IEndPointOptions;
         hasLayout?: boolean;
     };
 }
 export type { Positionable, Titleable, Renderable, storeBacked, transformable, transformOptions };
-export type { ActionOptions, Actionable, PublishAction, IEndPoint, IEndPointVars };
+export type { ActionOptions, Actionable, PublishAction, IEndPoint, IEndPointOptions };

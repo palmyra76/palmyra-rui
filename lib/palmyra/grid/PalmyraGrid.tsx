@@ -1,7 +1,7 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { GridRenderer, TableLayout } from "../layout/flexiLayout";
-import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, PageContext, StoreFactory, TopicListener, topic } from "../../main";
+import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IQueryable, PageContext, StoreFactory, TopicListener, topic } from "../../main";
 import { ActionOptions } from "../layout/Types";
 
 interface IPalmyraGridInput {
@@ -17,15 +17,14 @@ interface IPalmyraGridInput {
     pagination?: number[]
 }
 
-interface IPalmyraGrid {
-    setFilter: (d: any) => void
-    refresh: () => void
+interface IPalmyraGrid extends IQueryable {
+
 }
 
-const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, ref) {
+const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, ref: MutableRefObject<IQueryable>) {
     const { columns, endPoint, storeFactory, layoutParams, pagination } = props;
     const quickSearch = props.quickSearch || '';
-    const gridRef = useRef(null);
+    const gridRef = useRef<IQueryable>(null);
 
     const topicListener: TopicListener<any> = (topic: string, data: any): void => {
         console.log(data);
@@ -47,6 +46,15 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
                 },
                 refresh: () => {
                     gridRef.current.refresh();
+                },
+                resetFilter() {
+                    gridRef.current.resetFilter();
+                },
+                setEndPointOptions: (d: any) => {
+                    gridRef.current.setEndPointOptions(d);
+                },
+                addFilter: (key: string, v: any) => {
+                    gridRef.current.addFilter(key, v);
                 }
             };
         }, [columns, endPoint]);

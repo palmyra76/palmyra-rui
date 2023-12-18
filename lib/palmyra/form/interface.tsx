@@ -2,7 +2,7 @@ import { MutableRefObject, SetStateAction } from "react";
 import { IEndPoint } from "../layout";
 import { LookupStore } from "../store"
 import { IMutateOptions } from "./interfaceFields";
-import { IEndPointVars } from "../layout/Types";
+import { IEndPointOptions } from "../layout/Types";
 import { IFieldEventListener } from ".";
 
 /**
@@ -111,12 +111,12 @@ interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     displayAttribute: string,
     multiple?: boolean,
-    renderOption:Function,
+    renderOption?: Function,
     lookupOptions: IFormFieldServerLookup,
     store?: LookupStore<any>,
     storeOptions: {
         endPoint: IEndPoint,
-        endPointVars?: IEndPointVars
+        endPointOptions?: IEndPointOptions
     }
 }
 
@@ -125,7 +125,7 @@ interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
     lookupOptions: IFormFieldServerLookup,
     storeOptions: {
         endPoint: IEndPoint,
-        endPointVars?: IEndPointVars
+        endPointOptions?: IEndPointOptions
     }
     flexDirection?: 'column' | 'row'
 }

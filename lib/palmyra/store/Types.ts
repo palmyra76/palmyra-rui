@@ -1,4 +1,4 @@
-import { IEndPointVars } from "../layout/Types"
+import { IEndPointOptions } from "../layout/Types"
 
 interface Pagination {
     offset?: number,
@@ -8,7 +8,7 @@ interface Pagination {
 
 interface AbstractRequest {
     options?: QueryOptions,
-    endPointVars?: IEndPointVars
+    endPointVars?: IEndPointOptions
 }
 
 interface CriteriaOptions {

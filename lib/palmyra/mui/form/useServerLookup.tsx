@@ -28,13 +28,13 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     const loading = open && options.length < (value ? 2 : 1);
 
     const serverQueryOptions: IServerQueryInput = {
-        store, endPointVars: props.storeOptions.endPointVars, fetchAll: true,
+        store, endPointOptions: props.storeOptions.endPointOptions, fetchAll: true,
         pageSize: 15, quickSearch: searchKey, initialFetch: false
     };
 
     const serverQuery = useServerQuery(serverQueryOptions);
 
-    const { setQueryFilter, setQuickSearch, filter, totalRecords, refreshData } = serverQuery;
+    const { setQueryFilter, setEndPointOptions, setQuickSearch, filter, totalRecords, refreshData } = serverQuery;
 
     const serverResult = serverQuery.data;
 
@@ -189,8 +189,8 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
     }
 
     return {
-        getSelectedOption, filter, labelAccessor, idAccessor, getServerLookup,
-        setQueryFilter, searchText, setSearchText, refreshOptions
+        getSelectedOption, filter, labelAccessor, idAccessor, getServerLookup, refreshData,
+        setQueryFilter, searchText, setSearchText, refreshOptions, setEndPointOptions
     }
 };
 

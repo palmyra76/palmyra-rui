@@ -64,12 +64,12 @@ interface MultiEndPoint {
 }
 
 type IEndPoint = string | MultiEndPoint;
-type IEndPointVars = Record<string, any>
+type IEndPointOptions = Record<string, any>
 
 interface storeBacked {
     storeOptions?: {
         endPoint?: IEndPoint// alias for Query, if put,post, delete specific urls not provided,
-        endPointVars?: IEndPointVars
+        endPointOptions?: IEndPointOptions
         hasLayout?: boolean
     }
 }
@@ -77,4 +77,4 @@ interface storeBacked {
 
 export type { Positionable, Titleable, Renderable, storeBacked, transformable, transformOptions };
 
-export type { ActionOptions, Actionable, PublishAction, IEndPoint, IEndPointVars }
+export type { ActionOptions, Actionable, PublishAction, IEndPoint, IEndPointOptions }

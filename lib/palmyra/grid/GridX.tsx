@@ -8,6 +8,7 @@ import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add 
 import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
+import { IQueryable } from '../form/interfaceFields';
 
 
 //TODO - show errors on data fetching
@@ -21,7 +22,7 @@ interface GridXOptions extends IServerQueryInput {
   customizer?: GridCustomizer
 }
 
-const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<any>) {
+const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IQueryable>) {
   const { columns, children, EmptyChild, onRowClick, quickSearch } = props;
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
@@ -32,12 +33,12 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const [querySearchText, setQuickSearchText] = useState("");
 
   const {
-    setQueryFilter, setQuickSearch, setSortColumns,
+    setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
     gotoPage, setPageSize, getPageNo, refreshData,
     data, totalRecords, pageSizeOptions, filter, queryLimit } = useServerQuery(props);
 
 
-  const currentRef = ref ? ref : useRef(null);
+  const currentRef = ref ? ref : useRef<IQueryable>(null);
   useImperativeHandle(currentRef, () => {
     return {
       setFilter: (d: any) => {
@@ -45,6 +46,18 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
       },
       refresh: () => {
         refreshData();
+      },
+      resetFilter() {
+          setQueryFilter({});
+      },
+      setEndPointOptions: (d: any) => {
+        setEndPointOptions(d);
+      },
+      addFilter: (key: string, v: any) => {
+        setQueryFilter((f) => {
+          f[key] = v;
+          return { ...f }
+        })
       }
     };
   }, []);

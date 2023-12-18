@@ -44,11 +44,15 @@ interface ICheckBoxField extends IInputField, IOptionsField {
 }
 interface ISwitchField extends IInputField, IOptionsField {
 }
-interface IServerLookupField extends IInputField {
+interface IQueryable {
     setFilter: (d: any) => void;
     resetFilter: () => void;
+    refresh: () => void;
+    setEndPointOptions: (d: any) => void;
     addFilter: (key: string, v: any) => void;
+}
+interface IServerLookupField extends IInputField, IQueryable {
     setDefaultFilter: (d: any) => void;
 }
-export type { IMutateOptions, IGrid };
+export type { IMutateOptions, IGrid, IQueryable };
 export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField };
