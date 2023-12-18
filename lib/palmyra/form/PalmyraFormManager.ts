@@ -4,7 +4,7 @@
 
 import { FieldDefinition } from "./Definitions";
 import { default as getValidator } from "../validator/DataValidator";
-import { getEventListeners } from "./PalmyraFieldManager";
+import { useEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
 import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
@@ -33,7 +33,7 @@ interface IListeners {
     valueListeners: Record<string, IFieldValueListener>
 }
 
-function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
+function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormHelper,
     listeners?: IListeners) {
     const formListeners: IListeners = listeners || { eventListeners: {}, valueListeners: {} };
     const fieldRefs: Record<string, MutableRefObject<any>> = useMemo<any>(() => { return {}; }, [data]);
@@ -98,7 +98,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
         const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
         const valueListener = formListeners.valueListeners[fieldAttrib];
 
-        var result = getEventListeners(fieldDef, formDataRef, // getter.getFormData(formDataRef.current),
+        var result = useEventListeners(fieldDef, formDataRef, // getter.getFormData(formDataRef.current),
             onDataChange, validationRule, undefined, eventListener, valueListener);
 
         try {
@@ -134,7 +134,7 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
     return { getFieldManager, getFormData, isFormValid };
 }
 
-export { createFormData, createFormHelper };
+export { useFormData, createFormHelper };
 
 function requireStore(fieldDef: FieldDefinition) {
     return (fieldDef.storeOptions?.endPoint) ? true : false;

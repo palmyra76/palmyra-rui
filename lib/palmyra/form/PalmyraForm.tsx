@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle } from "react";
 import { IFormCustomizer, IFormHelper, FormMode, NoopFormCustomizer } from "./Types";
-import { createFormData } from ".";
+import { useFormData } from ".";
 import { FieldManagerContext, FormHelperContext, StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { StoreFactory } from "../../main";
 
@@ -28,7 +28,7 @@ const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, re
     const eventListeners = formCustomizer.getEventListeners(formHelper);
     const valueListeners = formCustomizer.getValueListeners(formHelper);
 
-    var { getFieldManager, getFormData, isFormValid } = createFormData(data, onValidityChange, mode, formHelper,
+    var { getFieldManager, getFormData, isFormValid } = useFormData(data, onValidityChange, mode, formHelper,
         { eventListeners, valueListeners });
 
     useImperativeHandle(ref, (): IPalmyraForm => {

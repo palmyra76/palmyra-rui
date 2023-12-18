@@ -5,7 +5,7 @@
 import { FieldDefinition } from "./Definitions";
 import { setValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
-import { getEventListeners } from "./PalmyraFieldManager";
+import { useEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
 import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper } from "./Types";
@@ -64,7 +64,7 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
 
             const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
             const valueListener = formListeners.valueListeners[fieldAttrib];
-            var result = getEventListeners(fieldDef, formDataRef.current?.[fieldDef.attribute],
+            var result = useEventListeners(fieldDef, formDataRef.current?.[fieldDef.attribute],
                 onDataChange, validationRule, undefined, eventListener, valueListener);
 
             try {

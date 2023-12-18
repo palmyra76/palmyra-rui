@@ -4,7 +4,7 @@ import { FormMode } from "../../form/Types";
 import TabRenderer from "./TabRenderer";
 import { FlexiLayoutRendererInput, PageContext } from "./Types";
 import { flexiPrimaryType } from ".";
-import { createFormData } from "../../form/PalmyraFormManager";
+import { useFormData } from "../../form/PalmyraFormManager";
 import { FieldManagerContext } from "./FlexiLayoutContext";
 
 const getFormMode = (mode: flexiPrimaryType): FormMode => {
@@ -23,7 +23,7 @@ const getFormMode = (mode: flexiPrimaryType): FormMode => {
 const FlexiLayoutFormRenderer = forwardRef(function FlexiLayoutFormRenderer<T>(props: FlexiLayoutRendererInput<T>, ref) {
     const formData = props.data || {};
     const { layout } = props;
-    var { getFieldManager, getFormData, isFormValid } = createFormData(formData, props.callbacks?.onFormValidChange, getFormMode(props.mode));
+    var { getFieldManager, getFormData, isFormValid } = useFormData(formData, props.callbacks?.onFormValidChange, getFormMode(props.mode));
 
 
 

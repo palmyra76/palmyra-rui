@@ -13,33 +13,30 @@ import { Autocomplete, CircularProgress, FormControl, FormHelperText, TextField 
 const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef: MutableRefObject<IServerLookupField | null> = ref ? ref : useRef(null);
+    const inputRef: any = useRef(null);
+    const total = useRef<number>(0);
+    const [options, setOptions] = useState<Array<any>>([]);
+    const [searchText, setSearchText] = useState('');
+    const [open, setOpen] = useState(false);
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'serverlookup', currentRef);
-    const eventListeners: IEventListeners = fieldManager.eventListeners;
-    const error: IFormFieldError = fieldManager.error;
-    const { mutateOptions, setMutateOptions } = fieldManager;
-    const inputRef: any = useRef(null);
+
     const store: LookupStore<any> = props.store || fieldManager.store;
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
     const labelKey = lookupOptions.titleAttribute || 'name';
     const searchKey = lookupOptions.searchAttribute || labelKey;
-    const data = fieldManager.data;
-
-    const total = useRef<number>(0);
-
-    const [options, setOptions] = useState<Array<any>>([]);
-    const [searchText, setSearchText] = useState('');
-
-    const [open, setOpen] = useState(false);
-    const loading = open && options.length < (data ? 2 : 1);
 
     const serverQueryOptions: IServerQueryInput = {
         store, endPointOptions: props.storeOptions.endPointOptions, fetchAll: true,
         pageSize: 15, quickSearch: searchKey, initialFetch: false
     };
-
     const serverQuery = useServerQuery(serverQueryOptions);
+    const eventListeners: IEventListeners = fieldManager.eventListeners;
+    const error: IFormFieldError = fieldManager.error;
+    const { mutateOptions, setMutateOptions } = fieldManager;
+    const data = fieldManager.data;
+    const loading = open && options.length < (data ? 2 : 1);
 
     const { setQueryFilter, setEndPointOptions, setQuickSearch, totalRecords, refreshData } = serverQuery;
 

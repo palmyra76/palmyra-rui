@@ -6,19 +6,23 @@ import { Converter, getFormatConverter } from "../utils/converter";
 import { IEventListeners, IFormFieldManager } from "./interface";
 import { IMutateOptions } from "./interfaceFields";
 
-function getEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRefObject<any>,
+function useEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRefObject<any>,
     onDataChange: (key: string, d: any, v: { [x: string]: boolean }) => void, constraint: Function,
     eventHandler: EventHandler, eventListener?: IFieldEventListener, valueListener?: IFieldValueListener
 ): IFormFieldManager {
-    const fieldEventListener = eventListener || NoopFieldEventListener;
-    const fieldValueListener = valueListener || NoopFieldValueListener;    
     const formatter: Converter<any, any> = getFormatConverter(fieldDef, formDataRef);
     const [fieldData, setFieldData] = useState(getDataDefault(formatter.getFieldData(formDataRef.current, fieldDef)));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
-
     const metaInfo = useRef<any>({});
     const timer: any = useRef<ReturnType<typeof setTimeout>>(null);
 
+    useEffect(() => {
+        var key = fieldDef.attribute;
+        const validStatus = checkConstraints(fieldData);
+        onDataChange(undefined, undefined, { [key]: validStatus.status });
+    }, []);
+    const fieldEventListener = eventListener || NoopFieldEventListener;
+    const fieldValueListener = valueListener || NoopFieldValueListener;
     var mutateOptions: IMutateOptions, setMutateOptions: (d: SetStateAction<IMutateOptions>) => void;
 
     if (fieldDef.mutant) {
@@ -153,11 +157,6 @@ function getEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
 
     const eventListeners: IEventListeners = { onBlur, onFocus, onValueChange };
 
-    useEffect(() => {
-        var key = fieldDef.attribute;
-        const validStatus = checkConstraints(fieldData);
-        onDataChange(undefined, undefined, { [key]: validStatus.status });
-    }, []);
 
 
     const setMeta = (d: string, v: any) => {
@@ -169,7 +168,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
     }
 
     return {
-        data:fieldData, setData: setValue, getData, error, eventListeners, mutateOptions, setMutateOptions, getMeta, setMeta
+        data: fieldData, setData: setValue, getData, error, eventListeners, mutateOptions, setMutateOptions, getMeta, setMeta
     };
 }
 
@@ -181,4 +180,4 @@ function decorateListenersForInput(eventListeners: IEventListeners): any {
     }
 }
 
-export { getEventListeners, decorateListenersForInput };
+export { useEventListeners, decorateListenersForInput };
