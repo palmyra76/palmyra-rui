@@ -1,57 +1,59 @@
-import { jsx as p } from "react/jsx-runtime";
-import { createColumnHelper as l } from "@tanstack/react-table";
-import { formatColumn as u } from "./CellFormatter.js";
-import { getValueByKey as g } from "../../form/FormUtil.js";
-import { hasDot as m } from "../../utils/StringUtil.js";
-const s = l();
-function j(t, r) {
+import { jsx as d } from "react/jsx-runtime";
+import { createColumnHelper as m } from "@tanstack/react-table";
+import { formatColumn as g } from "./CellFormatter.js";
+import { getValueByKey as l } from "../../form/FormUtil.js";
+import { hasDot as u } from "../../utils/StringUtil.js";
+import { getFormatConverter as v } from "../../utils/converter/FormatterFactory.js";
+const s = m();
+function A(t, r) {
   return t.map((e) => C(e, r));
 }
 function C(t, r) {
   const e = t.sortable, a = t.searchable;
-  var n = t.cellRenderer;
-  const i = r.formatHeader(t, h(t)), o = r.formatFooter(t, v());
-  if (n)
+  var o = t.cellRenderer;
+  const n = r.formatHeader(t, h(t)), i = r.formatFooter(t, y());
+  if (o)
     return s.display({
-      id: b(t),
+      id: p(t),
       meta: {
         attribute: t.attribute,
         columnDef: t
       },
       enableSorting: e,
       enableColumnFilter: a,
-      header: i,
-      footer: o,
-      cell: n
+      header: n,
+      footer: i,
+      cell: o
     });
-  let d = r.formatCell(t, u(t));
+  let b = r.formatCell(t, g(t));
   return s.accessor(c(t), {
-    id: b(t),
+    id: p(t),
     meta: {
       attribute: t.attribute,
       columnDef: t
     },
     enableSorting: e,
     enableColumnFilter: a,
-    header: i,
-    footer: o,
-    cell: d
+    header: n,
+    footer: i,
+    cell: b
   });
 }
 function c(t) {
   var r = t.attribute ? t.attribute : t.name;
-  return m(r) ? (e) => g(r, e) : (e) => e[r];
+  const e = v(t);
+  return u(r) ? (a) => e.convert(l(r, a)) : (a) => e.convert(a[r]);
 }
-function b(t) {
+function p(t) {
   return t.name ? t.name : t.attribute;
 }
 function h(t) {
-  return () => /* @__PURE__ */ p("span", { children: t.title });
+  return () => /* @__PURE__ */ d("span", { children: t.title });
 }
-function v(t) {
+function y(t) {
   return (r, e) => {
   };
 }
 export {
-  j as generateColumns
+  A as generateColumns
 };

@@ -5,6 +5,7 @@ class s {
   constructor() {
     n(this, "format", (r) => r);
     n(this, "parse", (r) => r);
+    n(this, "convert", (r) => r);
   }
 }
 const c = new s();

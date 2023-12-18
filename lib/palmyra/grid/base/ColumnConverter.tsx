@@ -4,6 +4,7 @@ import { formatColumn } from './CellFormatter';
 import { ColumnDefinition, GridCustomizer } from '../Types';
 import { getValueByKey } from '../../form/FormUtil';
 import { hasDot } from '../../utils';
+import { getFormatConverter } from '../../utils/converter';
 
 const columnHelper = createColumnHelper();
 
@@ -50,11 +51,13 @@ function convert(columnDef: ColumnDefinition, customizer: GridCustomizer) {
 
 function getAccessor(columnDef: ColumnDefinition): AccessorFn<RowData> {
     var key = columnDef.attribute ? columnDef.attribute : columnDef.name;
+    const formatter = getFormatConverter(columnDef);
+
     if (hasDot(key)) {
-        return (row: RowData) => getValueByKey(key, row);
+        return (row: RowData) => formatter.convert(getValueByKey(key, row));
     }
     else
-        return (row: RowData) => row[key];
+        return (row: RowData) => formatter.convert(row[key]);
 
 }
 

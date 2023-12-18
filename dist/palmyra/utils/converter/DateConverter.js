@@ -1,19 +1,24 @@
-var i = Object.defineProperty;
-var s = (e, r, t) => r in e ? i(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
-var n = (e, r, t) => (s(e, typeof r != "symbol" ? r + "" : r, t), t);
-import a from "dayjs";
-class u {
+var s = Object.defineProperty;
+var i = (e, r, t) => r in e ? s(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
+var a = (e, r, t) => (i(e, typeof r != "symbol" ? r + "" : r, t), t);
+import n from "dayjs";
+class P {
   constructor(r, t) {
-    n(this, "pattern");
-    this.pattern = r.serverPattern || r.displayPattern || t;
+    a(this, "serverPattern");
+    a(this, "displayPattern");
+    this.serverPattern = r.serverPattern || r.displayPattern || t, this.displayPattern = r.displayPattern;
   }
   format(r) {
-    return r && a(r).format(this.pattern);
+    return r && n(r).format(this.serverPattern);
   }
   parse(r) {
-    return r instanceof Date ? r : r && a(r, this.pattern).toDate();
+    return r instanceof Date ? r : r && n(r, this.serverPattern).toDate();
+  }
+  convert(r) {
+    const t = this.parse(r);
+    return t && t instanceof Date && this.displayPattern ? n(t).format(this.displayPattern) : r;
   }
 }
 export {
-  u as DateTimeConverter
+  P as DateTimeConverter
 };
