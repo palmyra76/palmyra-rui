@@ -3,7 +3,7 @@
  */
 
 import { FieldDefinition } from "./Definitions";
-import { getValueByKey, setValueByKey } from "./FormUtil";
+import { setValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
 import { getEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
@@ -75,15 +75,15 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
                 console.error('Error while getting LookupStore for attribute' + fieldDef.attribute, error);
             }
 
-            if (fieldDef.type == 'serverlookup') {
-                var displayAttribute = fieldDef.displayAttribute || fieldDef.attribute;
-                result.displayValue = getValueByKey(displayAttribute, data);
-                result.setDisplayValue = (v) => {
-                    if (fieldDef.displayAttribute != fieldDef.attribute) {
-                        setValueByKey(fieldDef.displayAttribute, formDataRef.current, v);
-                    }
-                }
-            }
+            // if (fieldDef.type == 'serverlookup') {
+            //     var displayAttribute = fieldDef.displayAttribute || fieldDef.attribute;
+            //     result.displayValue = getValueByKey(displayAttribute, data);
+            //     result.setDisplayValue = (v) => {
+            //         if (fieldDef.displayAttribute != fieldDef.attribute) {
+            //             setValueByKey(fieldDef.displayAttribute, formDataRef.current, v);
+            //         }
+            //     }
+            // }
 
             return result;
         }

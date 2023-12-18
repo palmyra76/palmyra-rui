@@ -136,10 +136,10 @@ interface IFormFieldManager {
     data: any;
     setData: (d: any, doValidate?: boolean) => void;
     getData: () => any;
+    setMeta: (d: string, v: any) => void;
+    getMeta: (d: string) => any;
     error: any;
     eventListeners: IEventListeners;
-    displayValue?: any;
-    setDisplayValue?: (d: any) => void;
     store?: LookupStore<any>;
     mutateOptions?: IMutateOptions;
     setMutateOptions?: (d: SetStateAction<IMutateOptions>) => void;

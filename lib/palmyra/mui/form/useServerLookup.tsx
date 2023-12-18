@@ -45,7 +45,7 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
         if (data) {
             var option = {};
             setValueByKey(idKey, option, data);
-            const displayValue = fieldManager.displayValue || data;
+            const displayValue = fieldManager.getMeta('displayValue') || data;
             setValueByKey(labelKey, option, displayValue);
             return option;
         } else {
@@ -137,10 +137,10 @@ const useServerLookup = (props: IServerLookupDefinition, mutateOptions: IMutateO
             if (value) {
                 const id = idAccessor(value);
                 eventListeners.onValueChange(id);
-                fieldManager.setDisplayValue(labelAccessor(value));
+                fieldManager.setMeta('displayValue', labelAccessor(value));
             } else {
                 eventListeners.onValueChange(undefined);
-                fieldManager.setDisplayValue(undefined);
+                fieldManager.setMeta('displayValue',undefined);
             }
         }
 

@@ -111,12 +111,8 @@ function createFormData(data, onValidityChange, mode: FormMode, formHelper?: IFo
 
             if (fieldDef.type == 'serverlookup') {
                 var displayAttribute = fieldDef.displayAttribute || fieldDef.attribute;
-                result.displayValue = getValueByKey(displayAttribute, data);
-                result.setDisplayValue = (v) => {
-                    if (fieldDef.displayAttribute != fieldDef.attribute) {
-                        setValueByKey(fieldDef.displayAttribute, formDataRef.current, v);
-                    }
-                }
+                const displayValue = getValueByKey(displayAttribute, data);
+                result.setMeta('displayValue', displayValue);
             }
 
             return result;

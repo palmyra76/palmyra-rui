@@ -26,9 +26,9 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
     const fieldValueListener = valueListener || NoopFieldValueListener;
     const formatter: Converter<any, any> = getFormatConverter(fieldDef);
 
-    const [_v, setVal] = useState(value);
     const [data, setData] = useState(getDataDefault(value));
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
+    const metaInfo = useRef<any>({});
     const timer: any = useRef<ReturnType<typeof setTimeout>>(null);
 
     var mutateOptions: IMutateOptions, setMutateOptions: (d: SetStateAction<IMutateOptions>) => void;
@@ -53,17 +53,11 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         };
     }
 
-    useEffect(() => {
-        setVal(value);
-        setData(getDataDefault(value));
-    }, [value])
-
-    function getDataDefault(value) {
+    function getDataDefault(value: any) {
         return formatter.parse(getDefaultValue(fieldDef, value))
     }
 
-
-    const doProcessDataChange = (value) => {
+    const doProcessDataChange = (value: any) => {
         const validStatus = validate(value);
         const attrib = fieldDef.attribute;
         const key = fieldDef.name || attrib;
@@ -71,7 +65,7 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
             const formattedValue = formatter.format(value);
             onDataChange(attrib, formattedValue, { [attrib]: validStatus.status });
         }
-        if(fieldEventListener.onChange)
+        if (fieldEventListener.onChange)
             fieldEventListener.onChange(key, value, validStatus.status);
 
         fieldValueListener.onValue(key, value, validStatus.status);
@@ -156,9 +150,9 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         }
     }
 
-    const onBlur = () => { 
-        const validStatus = validate(data); 
-        if(fieldEventListener.onBlur){
+    const onBlur = () => {
+        const validStatus = validate(data);
+        if (fieldEventListener.onBlur) {
             fieldEventListener.onBlur(fieldDef.attribute, data, validStatus.status);
         }
     };
@@ -174,7 +168,16 @@ function getEventListeners<T>(fieldDef: FieldDefinition,
         onDataChange(undefined, undefined, { [key]: validStatus.status });
     }, []);
 
-    return { data, setData: setValue, getData, error, eventListeners, mutateOptions, setMutateOptions };
+
+    const setMeta = (d: string, v: any) => {
+        metaInfo.current[d] = v;
+    }
+
+    const getMeta = (d: string) => {
+        return metaInfo.current[d];
+    }
+
+    return { data, setData: setValue, getData, error, eventListeners, mutateOptions, setMutateOptions, getMeta, setMeta };
 }
 
 function decorateListenersForInput(eventListeners: IEventListeners): any {

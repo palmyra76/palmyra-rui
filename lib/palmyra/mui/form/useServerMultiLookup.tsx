@@ -47,8 +47,7 @@ const useServerMultiLookup = (props: IServerLookupDefinition, mutateOptions: IMu
                 const options = data.map((d) => {
                     var option = {};
                     setValueByKey(idKey, option, idAccessor(d));
-                    setValueByKey(labelKey, option, labelAccessor(d));
-                    console.log(option);
+                    setValueByKey(labelKey, option, labelAccessor(d));                    
                     return option;
                 });
                 return options;
@@ -148,8 +147,7 @@ const useServerMultiLookup = (props: IServerLookupDefinition, mutateOptions: IMu
             if (values) {
                 eventListeners.onValueChange(values);
             } else {
-                eventListeners.onValueChange(undefined);
-                fieldManager.setDisplayValue(undefined);
+                eventListeners.onValueChange(undefined);                
             }
         }
 
