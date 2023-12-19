@@ -1,25 +1,26 @@
 var s = Object.defineProperty;
-var i = (e, r, t) => r in e ? s(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
-var a = (e, r, t) => (i(e, typeof r != "symbol" ? r + "" : r, t), t);
+var u = (e, t, r) => t in e ? s(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r;
+var a = (e, t, r) => (u(e, typeof t != "symbol" ? t + "" : t, r), r);
 import n from "dayjs";
-import { getValueByKey as u } from "../../form/FormUtil.js";
+import { getValueByKey as i } from "../../form/FormUtil.js";
 class P {
-  constructor(r, t) {
+  constructor(t, r) {
     a(this, "serverPattern");
     a(this, "displayPattern");
-    a(this, "getFieldData", (r, t) => u(t.attribute, r));
-    a(this, "getDefaultValue", (r) => r || "");
-    this.serverPattern = r.serverPattern || r.displayPattern || t, this.displayPattern = r.displayPattern;
+    a(this, "getFieldData", (t, r) => i(r.attribute, t));
+    a(this, "getRawdata", (t, r) => i(r.attribute, t));
+    a(this, "getDefaultValue", (t) => t || "");
+    this.serverPattern = t.serverPattern || t.displayPattern || r, this.displayPattern = t.displayPattern;
   }
-  format(r) {
-    return r && n(r).format(this.serverPattern);
+  format(t) {
+    return t && n(t).format(this.serverPattern);
   }
-  parse(r) {
-    return r instanceof Date ? r : r && n(r, this.serverPattern).toDate();
+  parse(t) {
+    return t instanceof Date ? t : t && n(t, this.serverPattern).toDate();
   }
-  convert(r) {
-    const t = this.parse(r);
-    return t && t instanceof Date && this.displayPattern ? n(t).format(this.displayPattern) : r;
+  convert(t) {
+    const r = this.parse(t);
+    return r && r instanceof Date && this.displayPattern ? n(r).format(this.displayPattern) : t;
   }
 }
 export {

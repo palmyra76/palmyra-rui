@@ -6,6 +6,7 @@ interface Converter<TEXT, DATA> {
      */
     format: (data: DATA) => TEXT;
     parse: (text: TEXT) => DATA;
+    getRawdata: (data: DATA, props: FieldDefinition) => TEXT;
     getFieldData: (formData: any, props: FieldDefinition) => any;
     convert: (text: TEXT) => TEXT;
     getDefaultValue: (d: any) => any;

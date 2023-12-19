@@ -1,200 +1,204 @@
-import { useMemo as j, useRef as R, useState as q, useEffect as D } from "react";
-import G from "../palmyra/validator/DataValidator.js";
-import { getFormatConverter as J } from "../palmyra/utils/converter/FormatterFactory.js";
-import { mergeDeep as w } from "../palmyra/utils/index.js";
-import { getLookupStore as Q } from "../palmyra/form/PalmyraStoreManager.js";
-import { setValueByKey as T } from "../palmyra/form/FormUtil.js";
-function x() {
-  const e = j(() => ({}), []);
+import { useMemo as _, useRef as h, useEffect as A, useState as q } from "react";
+import Q from "../palmyra/validator/DataValidator.js";
+import { getFormatConverter as U } from "../palmyra/utils/converter/FormatterFactory.js";
+import { mergeDeep as B } from "../palmyra/utils/index.js";
+import { getLookupStore as W } from "../palmyra/form/PalmyraStoreManager.js";
+import { setValueByKey as z } from "../palmyra/form/FormUtil.js";
+function G() {
+  const t = _(() => ({}), []);
   return { addFieldRef: (f, u) => {
-    e[f] = u;
+    t[f] = u;
   }, getFieldRef: (f) => {
-    const u = e[f];
+    const u = t[f];
     if (u)
       return u.current;
   } };
 }
-function at(e, a, g, f, u) {
-  const h = u || { eventListeners: {}, valueListeners: {} }, L = j(() => ({}), [e]), v = f || x();
-  var F = {}, S = {};
-  const V = R(!1);
-  var d = R(w({}, e));
-  const b = a;
-  var C = R({}), m = C.current, B = {};
-  (() => g && g == "new")() && w(d.current, B);
-  const y = (s, i, c) => {
-    s && T(s, d.current, i), m = Object.assign({}, m, c);
-    const n = M(m);
-    n != V.current && (V.current = n, b && b(n));
-  }, M = (s) => {
-    for (var i in s)
-      if (s[i] == !1)
+function at(t, s, F, f, u) {
+  const C = u || { eventListeners: {}, valueListeners: {} }, L = _(() => ({}), [t]), d = f || G();
+  var p = {}, E = {};
+  const V = h(!1);
+  var l = h(B({}, t));
+  const b = s;
+  var M = h({}), m = M.current, N = {};
+  (() => F && F == "new")() && B(l.current, N), A(() => {
+    l.current = B({}, t), console.log("setting form data to", t);
+  }, [t]);
+  const y = (i, n, g) => {
+    i && z(i, l.current, n), m = Object.assign({}, m, g);
+    const a = R(m);
+    a != V.current && (V.current = a, b && b(a));
+  }, R = (i) => {
+    for (var n in i)
+      if (i[n] == !1)
         return !1;
     return !0;
   };
-  return { getFieldManager: (s, i, c) => {
-    d.current = w({}, e);
-    var n = s.name || s.attribute, o = { ...s, type: i };
-    c && (v.addFieldRef(n, c), L[n] = c);
-    const p = G(o);
-    F[o.attribute] = o, S[o.attribute] = p;
-    const l = s.eventListener || h.eventListeners[n], I = h.valueListeners[n];
-    var k = Y(
+  return { getFieldManager: _(() => (n, g, a) => {
+    l.current = B({}, t);
+    var v = n.name || n.attribute, o = { ...n, type: g };
+    a && (d.addFieldRef(v, a), L[v] = a);
+    const c = Q(o);
+    p[o.attribute] = o, E[o.attribute] = c;
+    const P = n.eventListener || C.eventListeners[v], T = C.valueListeners[v];
+    var w = $(
       o,
-      d,
+      l,
       // getter.getFormData(formDataRef.current),
       y,
-      p,
+      c,
       void 0,
-      l,
-      I
+      P,
+      T
     );
     try {
-      U(o) && (k.store = Q(o));
-    } catch (K) {
-      console.error("Error while getting LookupStore for attribute" + o.attribute, K);
+      X(o) && (w.store = W(o));
+    } catch (j) {
+      console.error("Error while getting LookupStore for attribute" + o.attribute, j);
     }
-    return k;
-  }, getFormData: (s) => {
-    var o;
-    const i = s || "id", c = (o = d.current) == null ? void 0 : o[i];
-    var n = c ? { [i]: c } : {};
-    for (const p in L) {
-      const l = L[p].current;
-      l != null && l.getValue && T(p, n, l.getValue());
+    return w;
+  }, [t]), getFormData: (i) => {
+    var v;
+    const n = i || "id", g = (v = l.current) == null ? void 0 : v[n];
+    var a = g ? { [n]: g } : {};
+    for (const o in L) {
+      const c = L[o].current;
+      c != null && c.getValue && z(o, a, c.getValue());
     }
-    return n;
-  }, isFormValid: () => M(m) };
+    return a;
+  }, isFormValid: () => R(m) };
 }
-function U(e) {
-  var a;
-  return !!((a = e.storeOptions) != null && a.endPoint);
+function X(t) {
+  var s;
+  return !!((s = t.storeOptions) != null && s.endPoint);
 }
 const ut = {
-  getFieldRef: function(e) {
+  getFieldRef: function(t) {
   },
-  addFieldRef: function(e, a) {
+  addFieldRef: function(t, s) {
   }
 }, it = {
   getFormHelper: function() {
-    return x();
+    return G();
   },
-  getEventListeners: function(e) {
+  getEventListeners: function(t) {
     return {};
   },
-  getValueListeners: function(e) {
+  getValueListeners: function(t) {
     return {};
   }
-}, W = {}, X = {
-  onValue: function(e, a, g) {
+}, Y = {}, Z = {
+  onValue: function(t, s, F) {
   }
 };
-function Y(e, a, g, f, u, h, L) {
-  const v = J(e, a), [F, S] = q(M(v.getFieldData(a.current, e))), [V, d] = q({ status: !1, message: "" }), b = R({}), C = R(null);
-  D(() => {
-    var t = e.attribute;
-    const r = s(F);
-    g(void 0, void 0, { [t]: r.status });
-  }, []);
-  const m = h || W, B = L || X;
-  var E, y;
-  if (e.mutant) {
-    const [t, r] = q({
-      required: e.required == !0,
-      readonly: e.readonly == !0,
-      visible: e.visible != !1
+function $(t, s, F, f, u, C, L) {
+  const d = U(t, s), [p, E] = q(R(d.getFieldData(s.current, t))), [V, l] = q({ status: !1, message: "" }), b = h({}), M = h(null);
+  A(() => {
+    var e = t.attribute;
+    const r = i(p);
+    F(void 0, void 0, { [e]: r.status });
+  }, []), A(() => {
+    E(R(d.getFieldData(s.current, t)));
+  }, [d.getRawdata(s.current, t)]);
+  const m = C || Y, N = L || Z;
+  var S, y;
+  if (t.mutant) {
+    const [e, r] = q({
+      required: t.required == !0,
+      readonly: t.readonly == !0,
+      visible: t.visible != !1
     });
-    E = t, y = r;
+    S = e, y = r;
   } else
-    E = {
-      required: e.required == !0,
-      readonly: e.readonly == !0,
-      visible: e.visible != !1
-    }, y = (t) => {
-      console.warn("Operation ignored, set mutant={true} in '" + e.attribute + "' field definition");
+    S = {
+      required: t.required == !0,
+      readonly: t.readonly == !0,
+      visible: t.visible != !1
+    }, y = (e) => {
+      console.warn("Operation ignored, set mutant={true} in '" + t.attribute + "' field definition");
     };
-  function M(t) {
-    var r = t;
-    return t == null && (r = v.getDefaultValue(e.defaultValue)), v.parse(r);
+  function R(e) {
+    var r = e;
+    return e == null && (r = d.getDefaultValue(t.defaultValue)), d.parse(r);
   }
-  const _ = (t) => {
-    const r = c(t), O = e.attribute, P = e.name || O;
-    if (g) {
-      const z = v.format(t);
-      g(O, z, { [O]: r.status });
+  const I = (e) => {
+    const r = g(e), O = t.attribute, x = t.name || O;
+    if (F) {
+      const J = d.format(e);
+      F(O, J, { [O]: r.status });
     }
-    m.onChange && m.onChange(P, t, r.status), B.onValue(P, t, r.status);
-  }, N = (t, r) => {
-    S(t), r && (clearTimeout(C.current), C.current = setTimeout(function() {
-      _(t);
+    m.onChange && m.onChange(x, e, r.status), N.onValue(x, e, r.status);
+  }, k = (e, r) => {
+    E(e), r && (clearTimeout(M.current), M.current = setTimeout(function() {
+      I(e);
     }, 300));
-  }, A = () => v.format(F), s = (t) => {
+  }, K = () => d.format(p), i = (e) => {
     if (f && f instanceof Function) {
-      const r = f(t);
+      const r = f(e);
       if (!r.status)
         return r;
     }
     return { status: !0, message: "" };
-  }, i = (t) => {
-    l({
-      status: !t.status,
-      message: t.message
+  }, n = (e) => {
+    c({
+      status: !e.status,
+      message: e.message
     });
-  }, c = (t) => {
-    const r = s(t);
-    return r.status && u != null && u.asyncValid ? (p(), u.asyncValid(t, n, l)) : i(r), r;
-  }, n = (t) => {
-  }, o = () => {
-    V.message != "" && d({
+  }, g = (e) => {
+    const r = i(e);
+    return r.status && u != null && u.asyncValid ? (o(), u.asyncValid(e, a, c)) : n(r), r;
+  }, a = (e) => {
+  }, v = () => {
+    V.message != "" && l({
       status: V.status,
       message: ""
     });
-  }, p = () => {
-    l({
+  }, o = () => {
+    c({
       status: !1,
       message: ""
     });
-  }, l = (t) => {
-    t.status ? d(t) : d({
+  }, c = (e) => {
+    e.status ? l(e) : l({
       status: !1,
       message: ""
     });
   };
   return {
-    data: F,
-    setData: N,
-    getData: A,
+    data: p,
+    setData: k,
+    getData: K,
     error: V,
     eventListeners: { onBlur: () => {
-      const t = c(F);
-      m.onBlur && m.onBlur(e.attribute, F, t.status);
+      const e = g(p);
+      m.onBlur && m.onBlur(t.attribute, p, e.status);
     }, onFocus: () => {
-      o();
-    }, onValueChange: (t) => {
-      N(t, !0);
+      v();
+    }, onValueChange: (e) => {
+      k(e, !0);
     } },
-    mutateOptions: E,
+    mutateOptions: S,
     setMutateOptions: y,
-    getMeta: (t) => b.current[t],
-    setMeta: (t, r) => {
-      b.current[t] = r;
+    getMeta: (e) => b.current[e],
+    setMeta: (e, r) => {
+      b.current[e] = r;
     }
   };
 }
-function ct(e) {
+function ct(t) {
   return {
-    onBlur: e.onBlur,
-    onFocus: e.onFocus,
-    onChange: (a) => e.onValueChange(a.target.value)
+    onBlur: t.onBlur,
+    onFocus: t.onFocus,
+    onChange: (s) => t.onValueChange(s.target.value)
   };
 }
 export {
-  W as N,
+  Y as N,
   ut as a,
   it as b,
-  X as c,
-  x as d,
-  Y as e,
+  Z as c,
+  G as d,
+  $ as e,
   ct as f,
   at as u
 };

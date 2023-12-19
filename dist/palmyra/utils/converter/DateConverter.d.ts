@@ -5,6 +5,7 @@ declare class DateTimeConverter implements Converter<any, Date> {
     displayPattern: string;
     constructor(props: FieldDefinition, defaultFormat: string);
     getFieldData: (data: any, props: AttributeDefinition) => import("../../form/Definitions").InputType;
+    getRawdata: (data: any, props: AttributeDefinition) => import("../../form/Definitions").InputType;
     format(data: Date): any;
     parse(text: any): Date;
     convert(text: any): any;

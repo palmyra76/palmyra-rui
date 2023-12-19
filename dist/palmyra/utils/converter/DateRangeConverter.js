@@ -1,15 +1,16 @@
-var u = Object.defineProperty;
-var l = (t, e, r) => e in t ? u(t, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[e] = r;
-var s = (t, e, r) => (l(t, typeof e != "symbol" ? e + "" : e, r), r);
+var l = Object.defineProperty;
+var m = (t, e, r) => e in t ? l(t, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[e] = r;
+var s = (t, e, r) => (m(t, typeof e != "symbol" ? e + "" : e, r), r);
 import f from "dayjs";
-import { getValueByKey as m } from "../../form/FormUtil.js";
+import { getValueByKey as u } from "../../form/FormUtil.js";
 function o(t) {
   return t ? f(t).isValid() : !1;
 }
 class _ {
   constructor(e, r) {
     s(this, "serverPattern");
-    s(this, "getFieldData", (e, r) => m(r.attribute, e));
+    s(this, "getFieldData", (e, r) => u(r.attribute, e));
+    s(this, "getRawdata", (e, r) => u(r.attribute, e));
     s(this, "getDefaultValue", (e) => e || "");
     this.serverPattern = e.serverPattern || e.displayPattern || r;
   }
@@ -21,19 +22,19 @@ class _ {
     return f(e).format(this.serverPattern);
   }
   parse(e) {
-    var r, i;
+    var r, a;
     if (e && typeof e == "string") {
       const n = e.charAt(0);
       if (n == ">")
         r = this._parseDate(e.slice(1));
       else if (n == "<")
-        i = this._parseDate(e.slice(1));
+        a = this._parseDate(e.slice(1));
       else {
-        const a = e.split("...");
-        r = this._parseDate(a[0]), a[1] && (i = this._parseDate(a[1]));
+        const i = e.split("...");
+        r = this._parseDate(i[0]), i[1] && (a = this._parseDate(i[1]));
       }
     }
-    return { from: r, to: i };
+    return { from: r, to: a };
   }
   _parseDate(e) {
     if (e)

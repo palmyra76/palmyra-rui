@@ -6,6 +6,7 @@ declare class ServerlookupTransformer implements Converter<any, any> {
     props: IServerLookupDefinition;
     formDataRef: MutableRefObject<any>;
     constructor(props: AttributeDefinition, formDataRef: MutableRefObject<any>);
+    getRawdata: (data: any, props: AttributeDefinition) => import("../../form/Definitions").InputType;
     getFieldData: (data: any, p: AttributeDefinition) => {};
     format: (data: any) => any;
     parse: (text: any) => any;

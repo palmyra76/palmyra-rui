@@ -13,6 +13,10 @@ class ServerlookupTransformer implements Converter<any, any> {
         this.formDataRef = formDataRef;
     }
 
+    getRawdata = (data: any, props: AttributeDefinition) => {
+        return getValueByKey(props.attribute, data);
+    };
+
     getFieldData = (data: any, p: AttributeDefinition) => {
         const props: IServerLookupDefinition = this.props;
         if (props.multiple) {

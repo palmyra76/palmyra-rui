@@ -7,6 +7,10 @@ class NoopConverter implements Converter<any, any>{
         return getValueByKey(props.attribute, data);
     };
 
+    getRawdata = (data: any, props: AttributeDefinition) => {
+        return getValueByKey(props.attribute, data);
+    };
+
     format = (data: any): any => {
         return data
     };

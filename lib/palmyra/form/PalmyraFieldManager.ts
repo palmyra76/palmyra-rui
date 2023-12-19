@@ -21,6 +21,11 @@ function useEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
         const validStatus = checkConstraints(fieldData);
         onDataChange(undefined, undefined, { [key]: validStatus.status });
     }, []);
+
+    useEffect(() => {
+        setFieldData(getDataDefault(formatter.getFieldData(formDataRef.current, fieldDef)));
+    }, [formatter.getRawdata(formDataRef.current, fieldDef)])
+
     const fieldEventListener = eventListener || NoopFieldEventListener;
     const fieldValueListener = valueListener || NoopFieldValueListener;
     var mutateOptions: IMutateOptions, setMutateOptions: (d: SetStateAction<IMutateOptions>) => void;

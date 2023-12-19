@@ -26,6 +26,10 @@ class DateRangeConverter implements Converter<any, IDateRange>{
         return getValueByKey(props.attribute, data);
     };
 
+    getRawdata = (data: any, props: AttributeDefinition) => {
+        return getValueByKey(props.attribute, data);
+    };
+
     format(data: IDateRange): any {
         if (data) {
             if (_isValid(data.from)) {

@@ -1,17 +1,18 @@
-var n = Object.defineProperty;
-var a = (t, e, r) => e in t ? n(t, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[e] = r;
-var o = (t, e, r) => (a(t, typeof e != "symbol" ? e + "" : e, r), r);
-import { getValueByKey as u } from "../../form/FormUtil.js";
+var o = Object.defineProperty;
+var u = (a, t, e) => t in a ? o(a, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : a[t] = e;
+var r = (a, t, e) => (u(a, typeof t != "symbol" ? t + "" : t, e), e);
+import { getValueByKey as n } from "../../form/FormUtil.js";
 class l {
   constructor() {
-    o(this, "getFieldData", (e, r) => u(r.attribute, e));
-    o(this, "format", (e) => e);
-    o(this, "parse", (e) => e);
-    o(this, "convert", (e) => e);
-    o(this, "getDefaultValue", (e) => e || "");
+    r(this, "getFieldData", (t, e) => n(e.attribute, t));
+    r(this, "getRawdata", (t, e) => n(e.attribute, t));
+    r(this, "format", (t) => t);
+    r(this, "parse", (t) => t);
+    r(this, "convert", (t) => t);
+    r(this, "getDefaultValue", (t) => t || "");
   }
 }
-const c = new l();
+const i = new l();
 export {
-  c as noopConverter
+  i as noopConverter
 };

@@ -16,6 +16,10 @@ class DateTimeConverter implements Converter<any, Date>{
         return getValueByKey(props.attribute, data);
     };
 
+    getRawdata = (data: any, props: AttributeDefinition) => {
+        return getValueByKey(props.attribute, data);
+    };
+
     format(data: Date): any {
         if (data) {
             return dayjs(data)

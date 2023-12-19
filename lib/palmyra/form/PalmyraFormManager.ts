@@ -6,9 +6,9 @@ import { FieldDefinition } from "./Definitions";
 import { default as getValidator } from "../validator/DataValidator";
 import { useEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
-import { AttributeDefinition, FieldType, IFormFieldManager } from "./interface";
+import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
-import { MutableRefObject, useMemo, useRef } from "react";
+import { MutableRefObject, useEffect, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
 import { setValueByKey } from "./FormUtil";
 
@@ -57,6 +57,11 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
         mergeDeep(formDataRef.current, defaultData);
     }
 
+    useEffect(() => {
+        formDataRef.current = mergeDeep({}, data);
+        console.log('setting form data to', data);
+    }, [data])
+
     const onDataChange = (attribute: string, value: any, validity: { [x: string]: boolean }) => {
         if (attribute)
             setValueByKey(attribute, formDataRef.current, value)
@@ -81,36 +86,42 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
         return true;
     }
 
-    const getFieldManager = (field: AttributeDefinition, type: FieldType, ref: any): IFormFieldManager => {
-        formDataRef.current = mergeDeep({}, data);
-        var fieldAttrib = field.name || field.attribute;        
-        // @ts-ignore
-        var fieldDef: FieldDefinition = { ...field, type }
-        if (ref) {
-            _formHelper.addFieldRef(fieldAttrib, ref);
-            fieldRefs[fieldAttrib] = ref;
-        }
+    const getFieldManager = useMemo((): IGetFieldManager => {
 
-        const validationRule = getValidator(fieldDef);
-        validationFormat[fieldDef.attribute] = fieldDef;
-        validationRules[fieldDef.attribute] = validationRule;
+        const generator = (field: AttributeDefinition, type: FieldType, ref: any): IFormFieldManager => {
+            formDataRef.current = mergeDeep({}, data);
 
-        const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
-        const valueListener = formListeners.valueListeners[fieldAttrib];
-
-        var result = useEventListeners(fieldDef, formDataRef, // getter.getFormData(formDataRef.current),
-            onDataChange, validationRule, undefined, eventListener, valueListener);
-
-        try {
-            if (requireStore(fieldDef)) {
-                result.store = getLookupStore(fieldDef);
+            var fieldAttrib = field.name || field.attribute;
+            // @ts-ignore
+            var fieldDef: FieldDefinition = { ...field, type }
+            if (ref) {
+                _formHelper.addFieldRef(fieldAttrib, ref);
+                fieldRefs[fieldAttrib] = ref;
             }
-        } catch (error) {
-            console.error('Error while getting LookupStore for attribute' + fieldDef.attribute, error);
-        }
 
-        return result;
-    };
+            const validationRule = getValidator(fieldDef);
+            validationFormat[fieldDef.attribute] = fieldDef;
+            validationRules[fieldDef.attribute] = validationRule;
+
+            const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
+            const valueListener = formListeners.valueListeners[fieldAttrib];
+
+            var result = useEventListeners(fieldDef, formDataRef, // getter.getFormData(formDataRef.current),
+                onDataChange, validationRule, undefined, eventListener, valueListener);
+
+            try {
+                if (requireStore(fieldDef)) {
+                    result.store = getLookupStore(fieldDef);
+                }
+            } catch (error) {
+                console.error('Error while getting LookupStore for attribute' + fieldDef.attribute, error);
+            }
+
+            return result;
+        };
+
+        return generator
+    }, [data]);
 
     const getFormData = (idProperty?: string) => {
         const idp = idProperty || 'id';
