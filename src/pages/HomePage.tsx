@@ -18,13 +18,14 @@ import { createFormHelper } from "../../lib/palmyra/form/PalmyraFormManager";
 import MuiServerCheckBox from "../../lib/palmyra/mui/form/MuiServerCheckBox";
 import MuiDateRangePicker from "../../lib/palmyra/mui/form/MuiDateRangePicker";
 import MuiNumberField from "../../lib/palmyra/mui/form/MuiNumberField";
+import MuiIntegerField from "../../lib/palmyra/mui/form/MuiIntegerField";
 
 
 const HomePage = () => {
     const formRef = useRef<IPalmyraForm>(null);
     const [isValid, setValid] = useState(false);
     const [data, setData] = useState({});
-
+    const sd = useRef(null);
     const onValidityChange = (valid: boolean): void => {
         setValid(valid);
         console.log("validity changed to " + formRef.current.isValid(), formRef.current.getData());
@@ -40,6 +41,10 @@ const HomePage = () => {
         onChange: function (key: string, value: any, valid?: boolean): void {
             const gendersField: IRadioGroupField = formHelper.getFieldRef<IRadioGroupField>('gender');
             gendersField.setValue(value);
+        },
+        onBlur(key, value, valid) {
+            console.log(value, valid);
+            sd.current.setValue('', true);
         }
     }
 
@@ -49,7 +54,7 @@ const HomePage = () => {
         },
         getEventListeners: function () {
             return {
-                'genders': genderEventListener
+                'gender': genderEventListener
             }
         },
         getValueListeners: function () {
@@ -66,7 +71,7 @@ const HomePage = () => {
                 userName: 'titan',
                 service: 1, serviceName: 'Rolex',
                 switch: 0,
-                time: '2023-10-19 09:21:21',
+                time: '2023-10-19T09:21:21',
                 dobs: '2023-10-19...2023-10-29'
             });
         }, 2000);
@@ -84,10 +89,11 @@ const HomePage = () => {
                     <FormFieldContainer>
                         <MuiTextField attribute="serverHost"
                             title="Server Host"
+                            required={true} ref={sd}
                             placeHolder="welcome"
                             length={{ min: 3, message: "Minimum of 3 letters" }} />
-                        <MuiSelect attribute="gender" title="Gender"
-                            options={{ M: 'Male', F: 'Female' }} />
+                        <MuiSelect attribute="gender" label="Gender"
+                            options={{ M: 'Male', F: 'Female' }} required />
                         <MuiRadioGroup attribute="genders" title="Gender"
                             options={{ M: 'Male', F: 'Female' }} />
                     </FormFieldContainer>
@@ -111,12 +117,18 @@ const HomePage = () => {
                             readonly={true} />
                         <MuiDateTimePicker attribute="time"
                             title="Time"
+                            serverPattern="YYYY-MM-DDTHH:MM:SS"
+                            displayPattern="DD-MM-YYYY HH"
                             readonly={true} />
 
                         <MuiTextArea attribute="address" title="Address"
                             length={{ min: 3, message: "Minimum of 3 letters" }}
                             required={true}
                             readonly={true} />
+                        <MuiTextField attribute="serverHost"
+                            title="Server Host"
+                            placeHolder="welcome"
+                            length={{ min: 3, message: "Minimum of 3 letters" }} />
                         <MuiServerLookup attribute="service" displayAttribute="serviceName"
                             required={true} label="Service"
                             lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
@@ -128,7 +140,7 @@ const HomePage = () => {
                         <MuiCheckBoxGroup attribute="file" title="File"
                             options={{ upload: 'Upload Files', download: 'Download Files' }}
                             required={true} />
-                        <MuiCheckBox attribute="checkBox" title="Single CheckBox" disabled={true}/>
+                        <MuiCheckBox attribute="checkBox" title="Single CheckBox" disabled={true} />
                     </FormFieldContainer>
                 </SectionContainer>
 
@@ -150,9 +162,12 @@ const HomePage = () => {
                     title="Date Range" displayPattern="MM-DD-YYYY" serverPattern="YYYY-MM-DD" />
 
                 <MuiNumberField attribute="serv"
-                    title="Server Host"
-                    placeHolder="welcome"
+                    title="Number"
+                    placeHolder="numbersOnly"
                     validationRule={'number'} />
+                <MuiIntegerField attribute="integer"
+                    title="Integer"
+                    placeHolder="integer" />
                 <br />
                 <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 

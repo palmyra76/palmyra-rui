@@ -43,6 +43,15 @@
                                 "type": "date",
                                 "searchable": true,
                                 "serverPattern": "DD-MM-YYYY",
+                                "displayPattern": "YYYY-MM-DD"
+                            },
+                            {
+                                "attribute": "dobs",
+                                "title": "DobTime",
+                                "required": true,
+                                "type": "date",
+                                "searchable": true,
+                                "serverPattern": "YYYY-MM-DDTHH:MM:SS",
                                 "displayPattern": "DD-MM-YYYY"
                             },
                             {
