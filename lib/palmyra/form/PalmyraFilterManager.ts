@@ -64,7 +64,7 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
 
             const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
             const valueListener = formListeners.valueListeners[fieldAttrib];
-            var result = useEventListeners(fieldDef, formDataRef.current?.[fieldDef.attribute],
+            var result = useEventListeners(fieldDef, formDataRef,
                 onDataChange, validationRule, undefined, eventListener, valueListener);
 
             try {
@@ -74,16 +74,6 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
             } catch (error) {
                 console.error('Error while getting LookupStore for attribute' + fieldDef.attribute, error);
             }
-
-            // if (fieldDef.type == 'serverlookup') {
-            //     var displayAttribute = fieldDef.displayAttribute || fieldDef.attribute;
-            //     result.displayValue = getValueByKey(displayAttribute, data);
-            //     result.setDisplayValue = (v) => {
-            //         if (fieldDef.displayAttribute != fieldDef.attribute) {
-            //             setValueByKey(fieldDef.displayAttribute, formDataRef.current, v);
-            //         }
-            //     }
-            // }
 
             return result;
         }
