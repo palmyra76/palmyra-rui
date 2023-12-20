@@ -8,3 +8,4 @@ export { default as CardLayout } from '../layout/card/CardLayout';
 export { default as ServerCardLayout } from '../layout/card/ServerCardLayout';
 export { NoopEmptyChildCard } from '../layout/card/EmptyChildCard';
 export type { IEndPoint } from './Types';
+export { FieldManagerContext } from './flexiLayout/FlexiLayoutContext';
