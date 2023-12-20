@@ -52,6 +52,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
             onClose={onFilterClose}
             PaperComponent={PaperComponent}
             onKeyDown={handleKeyClose}
+            PaperProps={{ sx: { minWidth: '500px' } }}
         >
             <ClickAwayListener onClickAway={onClose}>
                 <div>

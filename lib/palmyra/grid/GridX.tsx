@@ -48,7 +48,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         refreshData();
       },
       resetFilter() {
-          setQueryFilter({});
+        setQueryFilter({});
       },
       setEndPointOptions: (d: any) => {
         setEndPointOptions(d);
@@ -144,6 +144,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const visiblePagination = !!props.pageSize;
   const visibleFilter = !!quickSearch;
 
+  
   return (
     <div>
       <div>
@@ -196,16 +197,17 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               )}
             </div>
           </ClickAwayListener>
-          <div className='grid-header-button grid-filter-btn'>
-            <Tooltip title='Filter' placement='top'>
-              <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
-                <FilterAlt className='grid-button-icon' />
-              </Button>
-            </Tooltip>
-            <Filter columns={columns} setFilter={setQueryFilter}
-              defaultFilter={filter}
-              isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
-          </div>
+          {columns[0]?.searchable ? (
+            <div className='grid-header-button grid-filter-btn'>
+              <Tooltip title='Filter' placement='top'>
+                <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
+                  <FilterAlt className='grid-button-icon' />
+                </Button>
+              </Tooltip>
+              <Filter columns={columns} setFilter={setQueryFilter}
+                defaultFilter={filter}
+                isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
+            </div>) : ''}
           <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
             <Tooltip title='Export' placement='top'>
               <Button className='grid-btn' disableRipple>

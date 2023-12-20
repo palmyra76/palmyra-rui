@@ -37,7 +37,7 @@
                                 "title": "Name",
                                 "required": true,
                                 "type": "string",
-                                "searchable": true
+                                "searchable": false
                             }
                         ]
                     }

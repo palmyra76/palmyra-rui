@@ -59,7 +59,6 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
 
     useEffect(() => {
         formDataRef.current = mergeDeep({}, data);
-        console.log('setting form data to', data);
     }, [data])
 
     const onDataChange = (attribute: string, value: any, validity: { [x: string]: boolean }) => {

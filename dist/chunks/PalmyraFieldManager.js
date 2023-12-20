@@ -22,7 +22,7 @@ function at(t, s, F, f, u) {
   const b = s;
   var M = h({}), m = M.current, N = {};
   (() => F && F == "new")() && B(l.current, N), A(() => {
-    l.current = B({}, t), console.log("setting form data to", t);
+    l.current = B({}, t);
   }, [t]);
   const y = (i, n, g) => {
     i && z(i, l.current, n), m = Object.assign({}, m, g);
