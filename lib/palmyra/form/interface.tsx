@@ -128,7 +128,8 @@ interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
         endPoint: IEndPoint,
         endPointOptions?: IEndPointOptions
     }
-    flexDirection?: 'column' | 'row'
+    flexDirection?: 'column' | 'row',
+    showSelectedOnly? : boolean
 }
 
 interface IEventListeners {

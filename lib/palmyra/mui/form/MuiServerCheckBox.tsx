@@ -46,6 +46,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
     const labelKey = lookupOptions.titleAttribute || 'name';
+    const displaySelectedOnly = props.showSelectedOnly && props.readonly;
 
     const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data[idKey]);
     const labelAccessor = hasDot(labelKey) ? (data: any) => (getValueByKey(labelKey, data)) : (data: any) => (data[labelKey]);
@@ -130,6 +131,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
         eventListeners.onValueChange(allData.toString())
     }
 
+
     return (<div className={props.className}>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
@@ -142,13 +144,20 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
             <FormControl className='MuiServerCheckBoxFormControl'
                 fullWidth error={error.status} {...inputProps}>
                 {options ?
-                    options.map((option) => (
-                        <FormControlLabel key={idAccessor(option)} value={idAccessor(option)}
-                            control={<Checkbox {...callbacks} checked={isSelected(idAccessor(option))}
-                                disabled={props.readonly}
-                            />}
-                            label={labelAccessor(option)} />
-                    ))
+                    options
+                        .filter((option: any) => {
+                            if (displaySelectedOnly) {
+                                return isSelected(idAccessor(option));
+                            }
+                            return true;
+                        })
+                        .map((option: any) => (
+                            <FormControlLabel key={idAccessor(option)} value={idAccessor(option)}
+                                control={<Checkbox {...callbacks} checked={isSelected(idAccessor(option))}
+                                    disabled={props.readonly}
+                                />}
+                                label={labelAccessor(option)} />
+                        ))
                     : <div>No options provided</div>}
                 <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
             </FormControl>
@@ -158,4 +167,3 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
 });
 
 export default MuiServerCheckBox;
-

@@ -103,6 +103,7 @@ interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
         endPointOptions?: IEndPointOptions;
     };
     flexDirection?: 'column' | 'row';
+    showSelectedOnly?: boolean;
 }
 interface IEventListeners {
     onBlur: (data: any) => void;
