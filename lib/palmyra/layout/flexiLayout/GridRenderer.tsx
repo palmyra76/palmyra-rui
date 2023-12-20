@@ -7,11 +7,13 @@ import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
 import { getActionPublishers } from '../../utils/pubsub/Publishers';
 import { mergeDeep } from '../../utils';
 import { IQueryable } from '../../form/interfaceFields';
+import { DefaultQueryParams } from '../../store';
 
 interface GridRendererInput {
     layout: TableLayout,
     context: PageContext,
-    customizer?: GridCustomizer
+    customizer?: GridCustomizer,
+    defaultParams?: DefaultQueryParams
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IQueryable>) {
@@ -41,7 +43,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
                 onNewClick={onNewClick} customizer={props.customizer}
-                quickSearch={tableLayout.quickSearch} ref={gridRef}
+                quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
             ></GridX>
         </div>
     );

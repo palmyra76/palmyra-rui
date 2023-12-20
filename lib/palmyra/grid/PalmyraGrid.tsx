@@ -73,7 +73,9 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
     return (
         <>
             <StoreFactoryContext.Provider value={storeFactory}>
-                <GridRenderer layout={layout} context={layoutParams} customizer={props.customizer} ref={gridRef}></GridRenderer>
+                <GridRenderer layout={layout} context={layoutParams} 
+                defaultParams={props.defaultParams}
+                customizer={props.customizer} ref={gridRef}></GridRenderer>
             </StoreFactoryContext.Provider>
         </>);
 

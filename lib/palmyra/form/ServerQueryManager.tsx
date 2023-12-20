@@ -21,7 +21,12 @@ const useServerQuery = (props: IServerQueryInput) => {
   const fetchAll = props.fetchAll != false;
   const [endPointVars, setEndPointOptions] = useState(props.endPointOptions);
   const [totalRecords, setTotalRecords] = useState(null);
-  const [filter, setFilter] = props.filterTopic ? useKeyValue(props.filterTopic, {}) : useState<any>({});
+
+  const defaultFilter = props.defaultParams?.filter || {};
+  const defaultSort = props.defaultParams?.sort || {};
+
+  const [filter, setFilter] = props.filterTopic ?
+    useKeyValue(props.filterTopic, defaultFilter) : useState<any>(defaultFilter);
   const [sortOrder, setSortOrder] = useState({});
 
   const firstRun = useRef<Boolean>(props.initialFetch == false);
@@ -81,7 +86,13 @@ const useServerQuery = (props: IServerQueryInput) => {
   }, [queryLimit, filter, sortOrder])
 
   const refreshData = () => {
-    const params: QueryRequest = { filter, sortOrder, total: true, endPointVars, ...queryLimit };
+
+    const _sort = sortOrder && Object.keys(sortOrder).length > 0 ? sortOrder : defaultSort;
+
+    const params: QueryRequest = {
+      sortOrder: _sort, total: true, endPointVars,
+      ...queryLimit, filter: { ...filter, ...defaultFilter }
+    };
     if (store) {
       try {
         store.query(params).then((d) => {
