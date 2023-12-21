@@ -35,8 +35,8 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
   const {
     setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
-    gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit,
-    data, totalRecords, pageSizeOptions, filter, queryLimit } = useServerQuery(props);
+    gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit, getQueryLimit,
+    data, totalRecords, queryLimit, pageSizeOptions, filter } = useServerQuery(props);
 
 
   const currentRef = ref ? ref : useRef<IPageQueryable>(null);
@@ -55,7 +55,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         setEndPointOptions(d);
       },
       addFilter: (key: string, v: any) => {
-        setQueryFilter((f) => {
+        setQueryFilter((f: any) => {
           f[key] = v;
           return { ...f }
         })
@@ -64,10 +64,11 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         setQueryLimit(d);
       },
       getQueryLimit: () => {
-        return queryLimit;
+        console.log("GET querlsdf", getQueryLimit());
+        return getQueryLimit();
       }
     };
-  }, []);
+  }, [getQueryLimit]);
 
 
   const nextPage = (event, newPage) => {

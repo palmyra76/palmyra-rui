@@ -1,7 +1,7 @@
-import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { MutableRefObject, forwardRef, useEffect } from "react";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { GridRenderer, TableLayout } from "../layout/flexiLayout";
-import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IPageQueryable, PageContext, Pagination, StoreFactory, TopicListener, topic } from "../../main";
+import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IPageQueryable, PageContext, StoreFactory, TopicListener, topic } from "../../main";
 import { ActionOptions } from "../layout/Types";
 
 interface IPalmyraGridInput {
@@ -21,13 +21,12 @@ interface IPalmyraGrid extends IPageQueryable {
 
 }
 
-const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, ref: MutableRefObject<IPageQueryable>) {
+const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, ref: MutableRefObject<IPalmyraGrid>) {
     const { columns, endPoint, storeFactory, layoutParams, pagination } = props;
     const quickSearch = props.quickSearch || '';
-    const gridRef = useRef<IPageQueryable>(null);
-
+    
     const topicListener: TopicListener<any> = (topic: string, data: any): void => {
-        console.log(data);
+        
     }
 
     useEffect(() => {
@@ -37,34 +36,6 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
             topic.unsubscribe(handle);
         }
     }, [props.topic]);
-
-    if (ref) {
-        useImperativeHandle(ref, (): IPalmyraGrid => {
-            return {
-                setFilter: (d: any) => {
-                    gridRef.current.setFilter(d);
-                },
-                refresh: () => {
-                    gridRef.current.refresh();
-                },
-                resetFilter() {
-                    gridRef.current.resetFilter();
-                },
-                setEndPointOptions: (d: any) => {
-                    gridRef.current.setEndPointOptions(d);
-                },
-                addFilter: (key: string, v: any) => {
-                    gridRef.current.addFilter(key, v);
-                },
-                setQueryLimit: (d: Pagination) =>{
-                    gridRef.current.setQueryLimit(d);
-                },
-                getQueryLimit: () => {
-                    return gridRef.current.getQueryLimit();
-                }
-            };
-        }, [columns, endPoint]);
-    }
 
     const layout: TableLayout = {
         fields: columns,
@@ -81,7 +52,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
             <StoreFactoryContext.Provider value={storeFactory}>
                 <GridRenderer layout={layout} context={layoutParams} 
                 defaultParams={props.defaultParams}
-                customizer={props.customizer} ref={gridRef}></GridRenderer>
+                customizer={props.customizer} ref={ref}></GridRenderer>
             </StoreFactoryContext.Provider>
         </>);
 

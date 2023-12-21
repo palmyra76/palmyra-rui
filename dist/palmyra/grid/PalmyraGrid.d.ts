@@ -15,6 +15,6 @@ interface IPalmyraGridInput {
 }
 interface IPalmyraGrid extends IPageQueryable {
 }
-declare const PalmyraGrid: import("react").ForwardRefExoticComponent<IPalmyraGridInput & import("react").RefAttributes<IPageQueryable>>;
+declare const PalmyraGrid: import("react").ForwardRefExoticComponent<IPalmyraGridInput & import("react").RefAttributes<IPalmyraGrid>>;
 export { PalmyraGrid };
 export type { IPalmyraGrid };

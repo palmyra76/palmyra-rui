@@ -1,63 +1,61 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
-import { FlexiLayoutDefinition, FlexiLayoutRenderer, ServerCardLayout, StoreFactory, StringFormat, topic } from '../../../lib/main';
+import { CellGetter, ColumnDefinition, FlexiLayoutDefinition, FlexiLayoutRenderer, GridCustomizer, IPalmyraGrid, Pagination, PalmyraGrid, ServerCardLayout, StoreFactory, StringFormat, gridColumnCustomizer, topic } from '../../../lib/main';
 import { PalmyraStoreFactory } from '../../../lib/palmyra/store/palmyra/PalmyraStoreFactory';
 import './BackEndGridPage.css';
 import { UserCard } from '../../components/usermgmt/UserCard';
 import { NoopEmptyChildCard } from '../../../lib/palmyra/layout/card/EmptyChildCard';
 
 const BackEndGridPage = () => {
-    const { layout } = useParams();
-    const [pageDef, setPageDef] = useState(null);
-    const key = '/' + layout + '/';
-    const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api/palmyra' });
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        fetch(key + '/sampleGridDef.json')
-            .then((response) => response.json())
-            .then((d) => { setPageDef(enhance(d)) });
-    }, [layout])
-
-    useEffect(() => {
-        const idKey: any = pageDef?.idProperty || "id";
-        var handle = topic.subscribe<any>("viewPage", (topic, data) => {
-            data.id = data[idKey];
-            navigate(StringFormat('view/{id}', data));
-        });
-        return () => {
-            topic.unsubscribe(handle);
+    const gridRef = useRef<IPalmyraGrid>(null);
+    const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api/palmyra" });
+    const fields: ColumnDefinition[] = [
+        {
+            attribute: "s.no",
+            name: "S.No",
+            title: "S.No",
+            type: "string"
+        },
+        {
+            attribute: "name",
+            name: "name",
+            title: "Material Name",
+            searchable: true,
+            quickSearch: true,
+            type: "string"
         }
-    }, [pageDef])
+    ]
 
-    const store = storeFactory.getGridStore({}, '/userManagement');
+    const endPoint = "/materialType";
+
+    const customConfig: Record<string, ((d: CellGetter) => CellGetter)> = {
+        's.no': enhance,
+    }
+
+    function enhance(): CellGetter {
+        let count = 1;
+        if (gridRef && gridRef.current) {
+            const queryList: Pagination = gridRef.current.getQueryLimit();
+            count += queryList.offset;
+        }
+        return () => {
+            return (
+                <div >
+                    {count++}
+                </div>
+            )
+        };
+    }
+    const gridCustomizer: GridCustomizer = gridColumnCustomizer(customConfig);
 
     return <>
         <div className='grid-renderer-container'>
-            {pageDef ? <FlexiLayoutRenderer layout={pageDef}
-                layoutParams={{}}
-                storeFactory={storeFactory} /> : <div />}
+            <PalmyraGrid columns={fields} endPoint={endPoint} 
+                ref={gridRef} customizer={gridCustomizer}
+                layoutParams={{}} storeFactory={storeFactory} />
         </div>
-        <ServerCardLayout Child={UserCard} store={store}
-            fetchAll={false} quickSearch='email' EmptyChild={NoopEmptyChildCard}/>
     </>
 }
 
 export default BackEndGridPage;
-
-function enhance(pageDef: FlexiLayoutDefinition): FlexiLayoutDefinition {
-    if (pageDef) {
-        const result = pageDef;
-        const tableLayout = result.tabs[0]?.sections[0]?.tableLayout;
-        if (tableLayout) {
-            tableLayout.actionOptions = {
-                onClick: {
-                    topic: "viewPage"
-                }
-            }
-        }
-        return result;
-    }
-    return pageDef;
-}

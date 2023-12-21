@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
-import { QueryRequest, useKeyValue } from '../../main';
+import { Pagination, QueryRequest, useKeyValue } from '../../main';
 import { IEndPointOptions } from '../layout/Types';
 
 interface IServerQueryInput {
@@ -36,24 +36,28 @@ const useServerQuery = (props: IServerQueryInput) => {
   var pageSizeOptions = pageSize instanceof Array ? pageSize : [pageSize];
   var defaultPageSize = pageSize instanceof Array ? pageSize[0] : pageSize;
 
-  const [queryLimit, setQueryLimit] = useState<QueryRequest>({ limit: defaultPageSize, offset: 0 });
+  const [queryLimit, setQueryLimit] = useState<Pagination>({ limit: defaultPageSize, offset: 0, total: true });
   const [data, setData] = useState(null);
 
   const getPageNo = () => {
     return Math.round(queryLimit.offset / queryLimit.limit);
   }
 
-  const getLimit = () => {
-    return queryLimit.limit;
+  const getQueryLimit = () => {
+    return queryLimit;
   }
 
-  const gotoPage = (pageNo: number) => {
-    setQueryLimit({ ...queryLimit, offset: (pageNo * defaultPageSize) });
+  const gotoPage = (pageNo: number) => {    
+    setQueryLimit((q) => {      
+      return { limit: q.limit, total: q.total, offset: (pageNo * defaultPageSize) }
+    });
   };
 
   const setPageSize = (pageSize: number) => {
-    const limit = (pageSize > 10 || pageSize == -1) ? pageSize : 15;
-    setQueryLimit({ ...queryLimit, limit });
+    const limit = (pageSize > 10 || pageSize == -1) ? pageSize : 15;    
+    setQueryLimit((q) => {
+      return { limit, total: q.total, offset: q.offset }
+    });
   }
 
   const isEmptyFilter = () => {
@@ -152,7 +156,7 @@ const useServerQuery = (props: IServerQueryInput) => {
 
   return {
     setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
-    refreshData, gotoPage, setPageSize, getPageNo, getLimit, setQueryLimit,
+    refreshData, gotoPage, setPageSize, getPageNo, getQueryLimit, setQueryLimit,
     filter, queryLimit, data, totalRecords, pageSizeOptions
   }
 
