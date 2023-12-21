@@ -8,7 +8,8 @@ import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add 
 import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
-import { IQueryable } from '../form/interfaceFields';
+import { IPageQueryable } from '../form/interfaceFields';
+import { Pagination } from "../../palmyra/store/Types"
 
 
 //TODO - show errors on data fetching
@@ -22,7 +23,7 @@ interface GridXOptions extends IServerQueryInput {
   customizer?: GridCustomizer
 }
 
-const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IQueryable>) {
+const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
   const { columns, children, EmptyChild, onRowClick, quickSearch } = props;
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
@@ -34,11 +35,11 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
   const {
     setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
-    gotoPage, setPageSize, getPageNo, refreshData,
+    gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit,
     data, totalRecords, pageSizeOptions, filter, queryLimit } = useServerQuery(props);
 
 
-  const currentRef = ref ? ref : useRef<IQueryable>(null);
+  const currentRef = ref ? ref : useRef<IPageQueryable>(null);
   useImperativeHandle(currentRef, () => {
     return {
       setFilter: (d: any) => {
@@ -58,6 +59,12 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
           f[key] = v;
           return { ...f }
         })
+      },
+      setQueryLimit: (d: Pagination) => {
+        setQueryLimit(d);
+      },
+      getQueryLimit: () => {
+        return queryLimit;
       }
     };
   }, []);
@@ -144,7 +151,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const visiblePagination = !!props.pageSize;
   const visibleFilter = !!quickSearch;
 
-  
+
   return (
     <div>
       <div>

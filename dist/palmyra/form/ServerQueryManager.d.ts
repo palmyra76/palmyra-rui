@@ -24,6 +24,7 @@ declare const useServerQuery: (props: IServerQueryInput) => {
     setPageSize: (pageSize: number) => void;
     getPageNo: () => number;
     getLimit: () => number;
+    setQueryLimit: import("react").Dispatch<import("react").SetStateAction<QueryRequest>>;
     filter: any;
     queryLimit: QueryRequest;
     data: any;

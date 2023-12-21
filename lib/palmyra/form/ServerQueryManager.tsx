@@ -152,7 +152,7 @@ const useServerQuery = (props: IServerQueryInput) => {
 
   return {
     setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
-    refreshData, gotoPage, setPageSize, getPageNo, getLimit,
+    refreshData, gotoPage, setPageSize, getPageNo, getLimit, setQueryLimit,
     filter, queryLimit, data, totalRecords, pageSizeOptions
   }
 

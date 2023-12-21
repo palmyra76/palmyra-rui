@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IQueryable, PageContext, StoreFactory } from "../../main";
+import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IPageQueryable, PageContext, StoreFactory } from "../../main";
 import { ActionOptions } from "../layout/Types";
 interface IPalmyraGridInput {
     columns: ColumnDefinition[];
@@ -13,8 +13,8 @@ interface IPalmyraGridInput {
     defaultParams?: DefaultQueryParams;
     pagination?: number[];
 }
-interface IPalmyraGrid extends IQueryable {
+interface IPalmyraGrid extends IPageQueryable {
 }
-declare const PalmyraGrid: import("react").ForwardRefExoticComponent<IPalmyraGridInput & import("react").RefAttributes<IQueryable>>;
+declare const PalmyraGrid: import("react").ForwardRefExoticComponent<IPalmyraGridInput & import("react").RefAttributes<IPageQueryable>>;
 export { PalmyraGrid };
 export type { IPalmyraGrid };

@@ -1,3 +1,5 @@
+import { Pagination } from "../../palmyra/store/Types"
+
 interface IInputField {
     focus: () => void
     isValid: () => void
@@ -69,10 +71,15 @@ interface IQueryable {
     addFilter: (key: string, v: any) => void
 }
 
+interface IPageQueryable extends IQueryable {
+    setQueryLimit: (d: Pagination) => void
+    getQueryLimit: () => Pagination
+}
+
 interface IServerLookupField extends IInputField, IQueryable {
     setDefaultFilter: (d: any) => void
 }
 
-export type { IMutateOptions, IGrid, IQueryable, IInputField }
+export type { IMutateOptions, IGrid, IQueryable, IInputField, IPageQueryable }
 
 export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField }

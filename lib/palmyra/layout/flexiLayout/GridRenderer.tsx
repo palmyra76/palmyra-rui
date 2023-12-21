@@ -6,7 +6,7 @@ import { GridCustomizer, GridX } from '../../grid';
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
 import { getActionPublishers } from '../../utils/pubsub/Publishers';
 import { mergeDeep } from '../../utils';
-import { IQueryable } from '../../form/interfaceFields';
+import { IPageQueryable } from '../../form/interfaceFields';
 import { DefaultQueryParams } from '../../store';
 
 interface GridRendererInput {
@@ -16,7 +16,7 @@ interface GridRendererInput {
     defaultParams?: DefaultQueryParams
 }
 
-const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IQueryable>) {
+const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IPageQueryable>) {
     const tableLayout = props.layout;
     const [fields, setFields] = useState(tableLayout.fields);
     const pageSize = tableLayout.pagination ? tableLayout.pagination : [15];

@@ -2,7 +2,7 @@
 import { PageContext } from './Types';
 import { TableLayout } from '.';
 import { GridCustomizer } from '../../grid';
-import { IQueryable } from '../../form/interfaceFields';
+import { IPageQueryable } from '../../form/interfaceFields';
 import { DefaultQueryParams } from '../../store';
 interface GridRendererInput {
     layout: TableLayout;
@@ -10,6 +10,6 @@ interface GridRendererInput {
     customizer?: GridCustomizer;
     defaultParams?: DefaultQueryParams;
 }
-declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IQueryable>>;
+declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
 export default GridRenderer;
 export type { GridRendererInput };
