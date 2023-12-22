@@ -72,7 +72,8 @@ const HomePage = () => {
                 service: 1, serviceName: 'Rolex',
                 switch: 0,
                 time: '2023-10-19T09:21:21',
-                dobs: '2023-10-19...2023-10-29'
+                dobs: '2023-10-19...2023-10-29',
+                asd: '2'
             });
         }, 2000);
     }, [])
@@ -154,6 +155,11 @@ const HomePage = () => {
                 <MuiServerCheckBox attribute="asd" displayAttribute="serviceName" flexDirection="column"
                     required={true} label="Server Checkbox" className="branchBox"
                     lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }}
+                    storeOptions={{ endPoint: "/api/palmyra/masterdata/" }} />
+
+                <MuiServerCheckBox attribute="asd" displayAttribute="serviceName" flexDirection="column"
+                    readonly={true} label="Server Checkbox" className="branchBox" hideSelectAll
+                    lookupOptions={{ idAttribute: "id", titleAttribute: "userName" }} showSelectedOnly={true}
                     storeOptions={{ endPoint: "/api/palmyra/masterdata/" }} />
 
                 <MuiDatePicker attribute="dob"

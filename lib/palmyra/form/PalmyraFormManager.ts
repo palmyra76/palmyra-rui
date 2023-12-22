@@ -78,7 +78,8 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
 
     const isValidForm = (dv: any) => {
         for (var key in dv) {
-            if (dv[key] == false) {
+            const f: any = fieldRefs[key].current;
+            if (f && dv[key] == false) {
                 return false;
             }
         }
