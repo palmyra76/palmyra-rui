@@ -96,7 +96,6 @@ interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     };
 }
 interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
-    displayAttribute: string;
     lookupOptions: IFormFieldServerLookup;
     storeOptions: {
         endPoint: IEndPoint;
