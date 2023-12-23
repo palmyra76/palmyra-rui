@@ -1,27 +1,54 @@
-# React + TypeScript + Vite
+# Palmyra - React UI
+Palmyra-Rui provides a set of rich user interfaces natively connected with Server side data loading. The components available are 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
+* [Features](#Features)
+* [Installation](#Installation)
+* [Data Table](#data-table)
+* [Form](#form)
+* [Data Store](#data-store)
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<b> Data Table - Based on [TanStack](https://tanstack.com/table/v8) </b>
+* Pagination
+* Filtering & Ordering
+* Based on TanStack table
 
-## Expanding the ESLint configuration
+<b> Form Data </b>
+* Native react-style
+* Auto Query/Populate for Existing records
+* Field validation integrated with Form Validation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<b> Data Store </b>
+* Extensible implementation
+* Bring your own implementation to integrate with backend services
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Installation
+
+npm i --save palmyra76/palmyra-rui
+
+
+## Data Table 
+
+
+
+
+
+
+## Form
+
+
+
+## Data Store
+
+StoreFactory
+
+DataStore
+
+GridStore
+
+LookupStore
