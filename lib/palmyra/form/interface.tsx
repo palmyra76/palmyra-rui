@@ -27,7 +27,6 @@ interface RangeValidation<T> {
 
 interface LookupOptions {
     idAttribute?: string,
-    searchAttribute?: string,
     titleAttribute?: string
 }
 
@@ -145,7 +144,6 @@ interface IFormFieldSelect {
 
 interface IFormFieldServerLookup {
     idAttribute?: string,
-    searchAttribute?: string,
     titleAttribute?: string
 }
 

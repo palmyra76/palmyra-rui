@@ -22,7 +22,6 @@ interface RangeValidation<T> {
 
 interface LookupOptions {
     idAttribute?: string,
-    searchAttribute?: string,
     titleAttribute?: string
 }
 

@@ -1,8 +1,8 @@
-var A = Object.defineProperty;
-var d = (s, t, e) => t in s ? A(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
-var i = (s, t, e) => (d(s, typeof t != "symbol" ? t + "" : t, e), e);
+var d = Object.defineProperty;
+var A = (s, t, e) => t in s ? d(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
+var i = (s, t, e) => (A(s, typeof t != "symbol" ? t + "" : t, e), e);
 import { getValueByKey as o, setValueByKey as c } from "../../form/FormUtil.js";
-class g {
+class k {
   constructor(t, e) {
     i(this, "props");
     i(this, "formDataRef");
@@ -15,20 +15,20 @@ class g {
       if (r.idAttribute)
         return o(this.props.attribute, t);
       {
-        const p = r.attribute, l = r.displayAttribute, a = {}, f = o(p, t);
-        if (f == null)
+        const p = r.attribute, l = r.displayAttribute, a = {}, b = o(p, t);
+        if (b == null)
           return;
-        const b = o(l, t), m = ((u = r.lookupOptions) == null ? void 0 : u.idAttribute) || "id", y = ((n = r.lookupOptions) == null ? void 0 : n.titleAttribute) || "name";
-        return c(m, a, f), c(y, a, b), a;
+        const f = o(l, t), y = ((u = r.lookupOptions) == null ? void 0 : u.idAttribute) || "id", m = ((n = r.lookupOptions) == null ? void 0 : n.titleAttribute) || "name";
+        return c(y, a, b), c(m, a, f), a;
       }
     });
     i(this, "format", (t) => {
       var p, l;
       const e = this.props;
       if (e.multiple)
-        return console.log(t), t;
+        return t;
       const r = ((p = e.lookupOptions) == null ? void 0 : p.idAttribute) || "id", u = ((l = e.lookupOptions) == null ? void 0 : l.titleAttribute) || "name";
-      return o(r, t) != null && c(e.displayAttribute, this.formDataRef.current, o(u, t)), o(r, t);
+      return o(r, t) != null && e.displayAttribute && c(e.displayAttribute, this.formDataRef.current, o(u, t)), o(r, t);
     });
     i(this, "parse", (t) => t);
     i(this, "convert", (t) => t);
@@ -37,5 +37,5 @@ class g {
   }
 }
 export {
-  g as ServerlookupTransformer
+  k as ServerlookupTransformer
 };

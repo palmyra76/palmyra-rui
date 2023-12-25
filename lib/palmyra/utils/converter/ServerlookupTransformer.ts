@@ -4,6 +4,9 @@ import { AttributeDefinition } from "../../form/Definitions";
 import { getValueByKey, setValueByKey } from "../../form/FormUtil";
 import { IServerLookupDefinition } from "../../form/interface";
 
+
+// TODO - idKey and labelKey to be calculated based on props.attribute/idAttribute/displayAttribute.
+
 class ServerlookupTransformer implements Converter<any, any> {
     props: IServerLookupDefinition;
     formDataRef: MutableRefObject<any>
@@ -48,7 +51,6 @@ class ServerlookupTransformer implements Converter<any, any> {
 
         const props: IServerLookupDefinition = this.props;
         if (props.multiple) {
-            console.log(data);
             return data;
         }
 
@@ -56,7 +58,7 @@ class ServerlookupTransformer implements Converter<any, any> {
         const idKey = props.lookupOptions?.idAttribute || 'id';
         const labelKey = props.lookupOptions?.titleAttribute || 'name';
         const result = getValueByKey(idKey, data);
-        if (undefined != result) {
+        if (undefined != result && props.displayAttribute) {
             setValueByKey(props.displayAttribute, this.formDataRef.current, getValueByKey(labelKey, data));
         }
         return getValueByKey(idKey, data);

@@ -25,7 +25,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
     const labelKey = lookupOptions.titleAttribute || 'name';
-    const searchKey = lookupOptions.searchAttribute || labelKey;
+    const searchKey = labelKey;
 
     const serverQueryOptions: IServerQueryInput = {
         store, endPointOptions: props.storeOptions.endPointOptions, fetchAll: true,
