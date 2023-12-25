@@ -59,11 +59,11 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
                 setData(d);
                 if (formListener.onSaveSuccess)
                     formListener.onSaveSuccess(d);
-                return d;
+                return Promise.resolve(d);
             }).catch(e => {
                 if (formListener.onSaveFailure)
                     formListener.onSaveFailure(e);
-                return e;
+                return Promise.reject(e);
             });
         } else
             return Promise.reject('invalid data');
