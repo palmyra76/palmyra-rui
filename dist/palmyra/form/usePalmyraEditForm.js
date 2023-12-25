@@ -1,30 +1,27 @@
-import { useState as S, useRef as l, useEffect as v } from "react";
+import { useState as l, useRef as v, useEffect as y } from "react";
 import { NoopFormListener as F } from "./interface.js";
 const h = (t) => {
-  const i = t.storeFactory, [u, f] = S(null), n = l(null), d = t.idKey || "id", m = t.formListener || F, y = (e, o) => typeof e == "string" ? e + "/{" + o + "}" : e;
-  return v(() => {
+  const u = t.storeFactory, [m, f] = l(null), n = v(null), d = t.idKey || "id", a = t.formListener || F, S = (e, o) => typeof e == "string" ? e + "/{" + o + "}" : e;
+  return y(() => {
     const e = t.id, o = d;
-    var a = y(t.endPoint, o);
-    const s = i.getFormStore({}, a, o);
+    var s = S(t.endPoint, o);
+    const i = u.getFormStore({}, s, o);
     var c = {
       options: {
         [o]: e
       }
     };
-    s.get(c).then((r) => {
+    i.get(c).then((r) => {
       f(r);
     });
-  }, [t.id]), { data: u, saveData: (e) => {
+  }, [t.id]), { data: m, saveData: (e) => {
     if (e || n && n.current) {
-      const a = t.idKey || "id";
+      const s = t.idKey || "id";
       var o = t.endPoint;
-      const s = i.getFormStore({}, o, a), c = e || n.current.getData(a);
-      s.post(c).then((r) => {
-        f(r), m.onSaveSuccess(r);
-      }).catch((r) => {
-        m.onSaveFailure(r);
-      });
-    }
+      const i = u.getFormStore({}, o, s), c = e || n.current.getData(s);
+      i.post(c).then((r) => (f(r), a.onSaveSuccess && a.onSaveSuccess(r), r)).catch((r) => (a.onSaveFailure && a.onSaveFailure(r), r));
+    } else
+      return Promise.reject("invalid data");
   }, formRef: n };
 };
 export {

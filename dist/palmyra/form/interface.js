@@ -3,8 +3,6 @@ const e = {
   },
   onSaveFailure: function(o) {
     console.error("Error while saving", o);
-  },
-  onChange: function(o, n) {
   }
 };
 export {

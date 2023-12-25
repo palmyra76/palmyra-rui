@@ -127,7 +127,7 @@ interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
         endPointOptions?: IEndPointOptions
     }
     flexDirection?: 'column' | 'row',
-    showSelectedOnly? : boolean
+    showSelectedOnly?: boolean
 }
 
 interface IEventListeners {
@@ -189,8 +189,7 @@ interface IFormFieldInputDefinition extends IFieldDefinition {
 
 interface IFormListener {
     onSaveSuccess: (data: any) => void,
-    onSaveFailure: (e: any) => void,
-    onChange: (attribute: string, value: any) => void
+    onSaveFailure: (e: any) => void
 }
 
 const NoopFormListener: IFormListener = {
@@ -198,8 +197,6 @@ const NoopFormListener: IFormListener = {
     },
     onSaveFailure: function (e: any): void {
         console.error('Error while saving', e);
-    },
-    onChange: function (attribute: string, value: any): void {
     }
 };
 

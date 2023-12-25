@@ -153,7 +153,6 @@ interface IFormFieldInputDefinition extends IFieldDefinition {
 interface IFormListener {
     onSaveSuccess: (data: any) => void;
     onSaveFailure: (e: any) => void;
-    onChange: (attribute: string, value: any) => void;
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };

@@ -11,7 +11,7 @@ interface IPalmyraEditFormInput {
 }
 interface IPalmyraEditFormOutput {
     data: FormData;
-    saveData: (data?: any) => any;
+    saveData: (data?: any) => Promise<any>;
     formRef: MutableRefObject<any>;
 }
 type IusePalmyraEditForm = (props: IPalmyraEditFormInput) => IPalmyraEditFormOutput;
