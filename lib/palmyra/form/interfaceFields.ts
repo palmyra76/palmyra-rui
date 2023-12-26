@@ -5,7 +5,7 @@ interface IInputField {
     isValid: () => void
     clear: () => void
     getValue: () => any
-    setValue: (v: any) => void,
+    setValue: (v: any, doValidate?: boolean) => void,
     setRequired: (required: boolean) => void
     setReadOnly: (readonly: boolean) => void
     setVisible: (visible: boolean) => void
