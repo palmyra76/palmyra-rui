@@ -53,6 +53,9 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
             getQueryLimit: () => {
                 return getQueryLimit();
             },
+            getCurrentData: () => {
+                return data;
+            },
             setSortOptions(d) {
                 setSortColumns(d);
             }
@@ -119,7 +122,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                     </div>
 
                     <div>
-                        <CardLayout Child={Child} childKeyProvider={listKeyProvider}
+                        <CardLayout Child={Child} childKeyProvider={listKeyProvider} preProcess={props.preProcess}
                             dataList={data} childProps={childProps} EmptyChild={props.EmptyChild}
                         ></CardLayout>
                     </div>

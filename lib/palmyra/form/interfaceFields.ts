@@ -62,6 +62,7 @@ interface IQueryable {
     setEndPointOptions: (d: any) => void,
     addFilter: (key: string, v: any) => void,
     setSortOptions: (d: any) => void
+    getCurrentData: () => Array<any>
 }
 
 interface IPageQueryable extends IQueryable {

@@ -163,6 +163,9 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
             setEndPointOptions(options: any) {
                 setEndPointOptions(options);
             },
+            getCurrentData: () => {
+                return data;
+            },
             refresh: () => {
                 refreshData();
             },

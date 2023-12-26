@@ -68,6 +68,9 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
       },
       setSortOptions(d) {
         setSortColumns(d);
+      },
+      getCurrentData: () => {
+          return data;
       }
     };
   }, [getQueryLimit]);
