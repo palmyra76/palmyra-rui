@@ -324,7 +324,7 @@ const aa = ue(function(t, r) {
     },
     setSortOptions(u) {
     }
-  }), [E]);
+  }), [E, z]);
   var T = Rt(t, W, t.label);
   R.readonly && (T.inputProps = { readOnly: !0 });
   const F = (u, P) => u instanceof Array ? u.some((x) => G(x) == G(P)) : G(u) == G(P);
@@ -2639,7 +2639,7 @@ const Zt = (e) => {
     setSortOptions(C) {
       h(C);
     }
-  }), []);
+  }), [m]);
   const R = (C, D) => {
     E(D);
   }, q = (C) => {

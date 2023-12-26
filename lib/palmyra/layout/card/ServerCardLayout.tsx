@@ -60,7 +60,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                 setSortColumns(d);
             }
         };
-    }, []);
+    }, [setQueryFilter]);
 
 
     const nextPage = (event, newPage) => {

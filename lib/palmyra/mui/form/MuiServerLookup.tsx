@@ -182,7 +182,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
 
             }
         };
-    }, [fieldManager]);
+    }, [fieldManager, setQueryFilter]);
 
     var inputProps: any = copyMuiOptions(props, data, props.label);
 
