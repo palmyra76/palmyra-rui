@@ -12,6 +12,7 @@ body {
     border-radius: 5px !important;
     gap: 5px !important;
     cursor: pointer;
+    text-transform: none !important;
 }
 
 .outlined-button {
@@ -21,6 +22,7 @@ body {
     font-size: 14px !important;
     gap: 8px !important;
     cursor: pointer;
+    text-transform: none !important;
 }
 
 .outlined-button:hover {
@@ -58,6 +60,7 @@ body {
     border-radius: 5px !important;
     gap: 5px !important;
     cursor: not-allowed;
+    text-transform: none !important;
 }
 
 .form-container {
