@@ -1,20 +1,21 @@
 import { ReactNode } from 'react';
 import '../card/CardLayout.css';
-import {EmptyChildCard} from './EmptyChildCard';
+import { EmptyChildCard } from './EmptyChildCard';
 
 interface CardLayoutInput {
     children?: ReactNode,
     dataList: any[],
     Child: React.FC,
-    EmptyChild?:React.FC
+    EmptyChild?: React.FC
     childProps: any,
-    childKeyProvider: (data: any, index: number) => string | number;
+    childKeyProvider: (data: any, index: number) => string | number,
+    preProcess?: (data: any) => any
 }
 
 const CardLayout = (props: CardLayoutInput) => {
     const { children, dataList, Child, childProps } = props;
     const childKeyProvider = props.childKeyProvider || ((data: any, index: number) => index);
-
+    const preProcess = props.preProcess || ((d: any) => d);
     const EmptyChild = props.EmptyChild ? props.EmptyChild : EmptyChildCard;
 
     return (
@@ -25,7 +26,7 @@ const CardLayout = (props: CardLayoutInput) => {
                 {children}
                 <div className="card-wrapper" >
                     {dataList.map((data: any, index: number) => (
-                        <Child key={childKeyProvider(data, index)}
+                        <Child key={childKeyProvider(preProcess(data), index)}
                             {...childProps} data={data}></Child>
                     ))}
                 </div>

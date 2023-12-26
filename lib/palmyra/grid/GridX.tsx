@@ -64,7 +64,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         setQueryLimit(d);
       },
       getQueryLimit: () => {
-        console.log("GET querlsdf", getQueryLimit());
         return getQueryLimit();
       },
       setSortOptions(d) {

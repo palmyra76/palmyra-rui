@@ -62,10 +62,10 @@ const Ne = (e) => {
   var I = N instanceof Array ? N : [N], $ = N instanceof Array ? N[0] : N;
   const [S, v] = ee({ limit: $, offset: 0, total: !0 }), [b, s] = ee(null), _ = () => Math.round(S.offset / S.limit), R = () => S, q = (l) => {
     v((p) => ({ limit: p.limit, total: p.total, offset: l * $ }));
-  }, z = (l) => {
+  }, W = (l) => {
     const p = l > 10 || l == -1 ? l : 15;
     v((w) => ({ limit: p, total: w.total, offset: w.offset }));
-  }, U = () => h ? Object.keys(h).length == 0 : !1, W = (l) => {
+  }, U = () => h ? Object.keys(h).length == 0 : !1, z = (l) => {
     s((p) => (setTimeout(() => {
       e.onDataChange && e.onDataChange(b, p);
     }, 300), l));
@@ -88,7 +88,7 @@ const Ne = (e) => {
     if (t)
       try {
         t.query(p).then((w) => {
-          W(w.result), c(w.total);
+          z(w.result), c(w.total);
         }).catch((w) => {
           var M = w.response ? w.response : w;
           console.error("error while fetching", M), D();
@@ -99,9 +99,9 @@ const Ne = (e) => {
     else
       console.error("Store is not provided for the Grid"), C();
   }, C = () => {
-    W([]), c(0);
+    z([]), c(0);
   }, D = () => {
-    W(void 0), c(null);
+    z(void 0), c(null);
   };
   return {
     setQueryFilter: (l) => {
@@ -117,7 +117,7 @@ const Ne = (e) => {
     setEndPointOptions: a,
     refreshData: K,
     gotoPage: q,
-    setPageSize: z,
+    setPageSize: W,
     getPageNo: _,
     getQueryLimit: R,
     setQueryLimit: v,
@@ -168,7 +168,7 @@ const aa = ue(function(t, r) {
   }), [a]);
   var q = Rt(t, a.data, t.label);
   t.readonly && (q.inputProps = { readOnly: !0 });
-  function z(C, D) {
+  function W(C, D) {
     const X = it(a.data);
     var V = X.indexOf(C);
     D ? V < 0 && X.push(C) : V >= 0 && X.splice(V, 1), O.onValueChange(X.toString());
@@ -177,10 +177,10 @@ const aa = ue(function(t, r) {
     onBlur: O.onBlur,
     onFocus: O.onFocus,
     onChange: (C) => {
-      z(C.target.value, C.target.checked);
+      W(C.target.value, C.target.checked);
     }
   };
-  const W = (C) => {
+  const z = (C) => {
     const D = C.toString();
     return h.includes(D);
   }, K = (C) => {
@@ -215,7 +215,7 @@ const aa = ue(function(t, r) {
             error: y.status,
             ...q,
             children: [
-              I ? I.filter((C) => s ? W(_(C)) : !0).map((C) => /* @__PURE__ */ i(
+              I ? I.filter((C) => s ? z(_(C)) : !0).map((C) => /* @__PURE__ */ i(
                 et,
                 {
                   value: _(C),
@@ -223,7 +223,7 @@ const aa = ue(function(t, r) {
                     tt,
                     {
                       ...U,
-                      checked: W(_(C)),
+                      checked: z(_(C)),
                       disabled: t.readonly
                     }
                   ),
@@ -246,18 +246,18 @@ const aa = ue(function(t, r) {
     pageSize: 15,
     quickSearch: S,
     initialFetch: !1
-  }, b = Ne(v), s = E.eventListeners, _ = E.error, { mutateOptions: R, setMutateOptions: q } = E, z = E.data, U = y && c.length < (z ? 2 : 1), { setQueryFilter: W, setEndPointOptions: K, setQuickSearch: C, totalRecords: D, refreshData: X } = b, V = b.data, G = Ee(I) ? (u) => Re(I, u) : (u) => u == null ? void 0 : u[I], J = Ee($) ? (u) => Re($, u) : (u) => u == null ? void 0 : u[$];
+  }, b = Ne(v), s = E.eventListeners, _ = E.error, { mutateOptions: R, setMutateOptions: q } = E, W = E.data, U = y && c.length < (W ? 2 : 1), { setQueryFilter: z, setEndPointOptions: K, setQuickSearch: C, totalRecords: D, refreshData: X } = b, V = b.data, G = Ee(I) ? (u) => Re(I, u) : (u) => u == null ? void 0 : u[I], J = Ee($) ? (u) => Re($, u) : (u) => u == null ? void 0 : u[$];
   ve(() => {
-    var u = z != "" ? z : void 0;
+    var u = W != "" ? W : void 0;
     u && m([u]);
   }, [E.data]), ve(() => {
-    const u = V ? [...V] : [], P = z != "" ? z : void 0, x = G(P), L = J(P);
+    const u = V ? [...V] : [], P = W != "" ? W : void 0, x = G(P), L = J(P);
     u && x && L && !M(u, x) && u.unshift(P), m(u), f.current < D && (f.current = D);
   }, [V, D]), ve(() => {
     yr(oe);
   }, [g, y]);
   function oe() {
-    y && (g.length > 0 && g != J(z) ? C("*" + g + "*") : V ? C(null) : X());
+    y && (g.length > 0 && g != J(W) ? C("*" + g + "*") : V ? C(null) : X());
   }
   var l = {
     onBlur: s.onBlur,
@@ -305,10 +305,10 @@ const aa = ue(function(t, r) {
       q((P) => ({ ...P, ...u }));
     },
     setFilter(u) {
-      W(u);
+      z(u);
     },
     resetFilter() {
-      W({});
+      z({});
     },
     setEndPointOptions(u) {
       K(u);
@@ -317,14 +317,14 @@ const aa = ue(function(t, r) {
       X();
     },
     addFilter(u, P) {
-      W((x) => (x[u] = P, { ...x }));
+      z((x) => (x[u] = P, { ...x }));
     },
     setDefaultFilter(u) {
     },
     setSortOptions(u) {
     }
   }), [E]);
-  var T = Rt(t, z, t.label);
+  var T = Rt(t, W, t.label);
   R.readonly && (T.inputProps = { readOnly: !0 });
   const F = (u, P) => u instanceof Array ? u.some((x) => G(x) == G(P)) : G(u) == G(P);
   return /* @__PURE__ */ i(
@@ -659,7 +659,7 @@ function Ur() {
         }
       }
     }
-    var s = m, _ = g, R = c, q = f, z = t, U = h, W = n, K = k, C = E, D = r, X = a, V = o, G = y, J = !1;
+    var s = m, _ = g, R = c, q = f, W = t, U = h, z = n, K = k, C = E, D = r, X = a, V = o, G = y, J = !1;
     function oe(d) {
       return J || (J = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), l(d) || b(d) === m;
     }
@@ -699,7 +699,7 @@ function Ur() {
     function te(d) {
       return b(d) === y;
     }
-    j.AsyncMode = s, j.ConcurrentMode = _, j.ContextConsumer = R, j.ContextProvider = q, j.Element = z, j.ForwardRef = U, j.Fragment = W, j.Lazy = K, j.Memo = C, j.Portal = D, j.Profiler = X, j.StrictMode = V, j.Suspense = G, j.isAsyncMode = oe, j.isConcurrentMode = l, j.isContextConsumer = p, j.isContextProvider = w, j.isElement = M, j.isForwardRef = T, j.isFragment = F, j.isLazy = u, j.isMemo = P, j.isPortal = x, j.isProfiler = L, j.isStrictMode = A, j.isSuspense = te, j.isValidElementType = v, j.typeOf = b;
+    j.AsyncMode = s, j.ConcurrentMode = _, j.ContextConsumer = R, j.ContextProvider = q, j.Element = W, j.ForwardRef = U, j.Fragment = z, j.Lazy = K, j.Memo = C, j.Portal = D, j.Profiler = X, j.StrictMode = V, j.Suspense = G, j.isAsyncMode = oe, j.isConcurrentMode = l, j.isContextConsumer = p, j.isContextProvider = w, j.isElement = M, j.isForwardRef = T, j.isFragment = F, j.isLazy = u, j.isMemo = P, j.isPortal = x, j.isProfiler = L, j.isStrictMode = A, j.isSuspense = te, j.isValidElementType = v, j.typeOf = b;
   }()), j;
 }
 var ut;
@@ -862,7 +862,7 @@ function Hr() {
       node: U(),
       objectOf: q,
       oneOf: R,
-      oneOfType: z,
+      oneOfType: W,
       shape: K,
       exact: C
     };
@@ -997,7 +997,7 @@ function Hr() {
       }
       return I(p);
     }
-    function z(l) {
+    function W(l) {
       if (!Array.isArray(l))
         return process.env.NODE_ENV !== "production" && a("Invalid argument supplied to oneOfType, expected an instance of array."), f;
       for (var p = 0; p < l.length; p++) {
@@ -1025,7 +1025,7 @@ function Hr() {
       }
       return I(l);
     }
-    function W(l, p, w, M, T) {
+    function z(l, p, w, M, T) {
       return new N(
         (l || "React class") + ": " + p + " type `" + w + "." + M + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + T + "`."
       );
@@ -1038,7 +1038,7 @@ function Hr() {
         for (var L in l) {
           var A = l[L];
           if (typeof A != "function")
-            return W(T, F, u, L, G(A));
+            return z(T, F, u, L, G(A));
           var te = A(P, L, T, F, u + "." + L, r);
           if (te)
             return te;
@@ -1056,7 +1056,7 @@ function Hr() {
         for (var A in L) {
           var te = l[A];
           if (n(l, A) && typeof te != "function")
-            return W(T, F, u, A, G(te));
+            return z(T, F, u, A, G(te));
           if (!te)
             return new N(
               "Invalid " + F + " `" + u + "` key `" + A + "` supplied to `" + T + "`.\nBad object: " + JSON.stringify(w[M], null, "  ") + `
@@ -1972,12 +1972,12 @@ re(Le, "defaultProps", {
         };
         if (this.props.bounds) {
           const {
-            x: z,
+            x: W,
             y: U
           } = R;
           R.x += this.state.slackX, R.y += this.state.slackY;
-          const [W, K] = (0, f.getBoundPosition)(this, R.x, R.y);
-          R.x = W, R.y = K, R.slackX = this.state.slackX + (z - R.x), R.slackY = this.state.slackY + (U - R.y), _.x = R.x, _.y = R.y, _.deltaX = R.x - this.state.x, _.deltaY = R.y - this.state.y;
+          const [z, K] = (0, f.getBoundPosition)(this, R.x, R.y);
+          R.x = z, R.y = K, R.slackX = this.state.slackX + (W - R.x), R.slackY = this.state.slackY + (U - R.y), _.x = R.x, _.y = R.y, _.deltaX = R.x - this.state.x, _.deltaY = R.y - this.state.y;
         }
         if (this.props.onDrag(b, _) === !1)
           return !1;
@@ -1993,10 +1993,10 @@ re(Le, "defaultProps", {
         };
         if (!!this.props.position) {
           const {
-            x: z,
+            x: W,
             y: U
           } = this.props.position;
-          R.x = z, R.y = U;
+          R.x = W, R.y = U;
         }
         this.setState(R);
       }), this.state = {
@@ -2041,9 +2041,9 @@ re(Le, "defaultProps", {
         defaultPosition: _,
         defaultClassName: R,
         defaultClassNameDragging: q,
-        defaultClassNameDragged: z,
+        defaultClassNameDragged: W,
         position: U,
-        positionOffset: W,
+        positionOffset: z,
         scale: K,
         ...C
       } = this.props;
@@ -2054,10 +2054,10 @@ re(Le, "defaultProps", {
         // Set top if vertical drag is enabled
         y: (0, f.canDragY)(this) && G ? this.state.y : J.y
       };
-      this.state.isElementSVG ? X = (0, a.createSVGTransform)(oe, W) : D = (0, a.createCSSTransform)(oe, W);
+      this.state.isElementSVG ? X = (0, a.createSVGTransform)(oe, z) : D = (0, a.createCSSTransform)(oe, z);
       const l = (0, o.default)(s.props.className || "", R, {
         [q]: this.state.dragging,
-        [z]: this.state.dragged
+        [W]: this.state.dragged
       });
       return /* @__PURE__ */ t.createElement(m.default, E({}, C, {
         onStart: this.onDragStart,
@@ -2289,9 +2289,9 @@ const Vn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
     gotoPage: _,
     setPageSize: R,
     getPageNo: q,
-    refreshData: z,
+    refreshData: W,
     setQueryLimit: U,
-    getQueryLimit: W,
+    getQueryLimit: z,
     data: K,
     totalRecords: C,
     queryLimit: D,
@@ -2303,7 +2303,7 @@ const Vn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
       S(d);
     },
     refresh: () => {
-      z();
+      W();
     },
     resetFilter() {
       S({});
@@ -2317,11 +2317,11 @@ const Vn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
     setQueryLimit: (d) => {
       U(d);
     },
-    getQueryLimit: () => (console.log("GET querlsdf", W()), W()),
+    getQueryLimit: () => z(),
     setSortOptions(d) {
       b(d);
     }
-  }), [W]);
+  }), [z]);
   const J = (d, Q) => {
     _(Q);
   }, oe = Pr(n, g), l = (d) => {
@@ -2642,10 +2642,10 @@ const Zt = (e) => {
   }, q = (C) => {
     const D = C.target.value;
     O(D);
-  }, z = (C) => {
+  }, W = (C) => {
     const D = parseInt(C.target.value, 10);
     k(D);
-  }, U = 200, W = !!f, K = !!t.quickSearch;
+  }, U = 200, z = !!f, K = !!t.quickSearch;
   return /* @__PURE__ */ i("div", { children: /* @__PURE__ */ H("div", { className: "card-page-container", children: [
     n,
     /* @__PURE__ */ H("div", { children: [
@@ -2664,7 +2664,7 @@ const Zt = (e) => {
             }
           }
         ) }),
-        /* @__PURE__ */ i("div", { className: "card-pagination", children: W && /* @__PURE__ */ i(
+        /* @__PURE__ */ i("div", { className: "card-pagination", children: z && /* @__PURE__ */ i(
           Et,
           {
             component: "div",
@@ -2673,7 +2673,7 @@ const Zt = (e) => {
             onPageChange: R,
             rowsPerPage: s.limit,
             rowsPerPageOptions: b || [],
-            onRowsPerPageChange: z
+            onRowsPerPageChange: W
           }
         ) })
       ] }),

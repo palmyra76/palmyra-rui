@@ -13,6 +13,7 @@ interface ServerCardLayoutInput extends IServerQueryInput {
     listKeyProvider?: (data: any, index: number) => string | number,
     EmptyChild?: React.FC,
     children?: ReactNode,
+    preProcess?: (data: any) => any
 }
 
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
