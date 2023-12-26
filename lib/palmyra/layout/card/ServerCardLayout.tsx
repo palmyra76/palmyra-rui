@@ -5,7 +5,7 @@ import './CardLayout.css';
 
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 import { CardLayout } from '..';
-import { IGrid } from '../../form/interfaceFields';
+import { IPageQueryable } from '../../form/interfaceFields';
 
 interface ServerCardLayoutInput extends IServerQueryInput {
     Child: React.FC,
@@ -17,30 +17,43 @@ interface ServerCardLayoutInput extends IServerQueryInput {
 
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
     const { children, Child, childProps, pageSize } = props;
-    const currentRef: MutableRefObject<IGrid> = ref ? ref : useRef(null);
+    const currentRef: MutableRefObject<IPageQueryable> = ref ? ref : useRef(null);
 
-    const { setQueryFilter, refreshData,
-        setQuickSearch, gotoPage, setPageSize, getPageNo,
+    const { setQueryFilter, refreshData, setSortColumns, setEndPointOptions,
+        setQuickSearch, gotoPage, setPageSize, getPageNo, setQueryLimit, getQueryLimit,
         data, totalRecords, pageSizeOptions, queryLimit } = useServerQuery(props);
+
 
     const listKeyProvider = props.listKeyProvider || ((data, index) => index);
 
     useImperativeHandle(currentRef, () => {
         return {
-            setFilter(d) {
+            setFilter: (d: any) => {
                 setQueryFilter(d);
             },
             refresh: () => {
                 refreshData();
             },
-            gotoPage(p: number) {
-                gotoPage(p)
+            resetFilter() {
+                setQueryFilter({});
             },
-            nextPage() {
-
+            setEndPointOptions: (d: any) => {
+                setEndPointOptions(d);
             },
-            prevPage() {
-
+            addFilter: (key: string, v: any) => {
+                setQueryFilter((f: any) => {
+                    f[key] = v;
+                    return { ...f }
+                })
+            },
+            setQueryLimit: (d) => {
+                setQueryLimit(d);
+            },
+            getQueryLimit: () => {
+                return getQueryLimit();
+            },
+            setSortOptions(d) {
+                setSortColumns(d);
             }
         };
     }, []);

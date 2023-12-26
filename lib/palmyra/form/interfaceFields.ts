@@ -23,14 +23,6 @@ interface IMutateOptions {
     visible?: boolean
 }
 
-interface IGrid {
-    setFilter: (d: any) => void
-    gotoPage: (p: number) => void
-    refresh: () => void
-    nextPage: () => void
-    prevPage: () => void
-}
-
 interface ITextField extends IInputField {
 
 }
@@ -68,7 +60,8 @@ interface IQueryable {
     resetFilter: () => void,
     refresh: () => void,
     setEndPointOptions: (d: any) => void,
-    addFilter: (key: string, v: any) => void
+    addFilter: (key: string, v: any) => void,
+    setSortOptions: (d: any) => void
 }
 
 interface IPageQueryable extends IQueryable {
@@ -80,6 +73,6 @@ interface IServerLookupField extends IInputField, IQueryable {
     setDefaultFilter: (d: any) => void
 }
 
-export type { IMutateOptions, IGrid, IQueryable, IInputField, IPageQueryable }
+export type { IMutateOptions, IQueryable, IInputField, IPageQueryable }
 
 export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField }

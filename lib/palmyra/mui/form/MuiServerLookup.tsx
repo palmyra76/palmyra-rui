@@ -174,6 +174,9 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
             },
             setDefaultFilter(d: any) {
 
+            },
+            setSortOptions(d) {
+
             }
         };
     }, [fieldManager]);
