@@ -1,29 +1,29 @@
-import { useState as v, useRef as S, useEffect as y } from "react";
+import { useState as l, useRef as P, useEffect as y } from "react";
 import { NoopFormListener as F } from "./interface.js";
-const h = (e) => {
-  const u = e.storeFactory, [f, m] = v(null), n = S(null), d = e.idKey || "id", s = e.formListener || F, l = (t, o) => typeof t == "string" ? t + "/{" + o + "}" : t;
+const E = (e) => {
+  const m = e.storeFactory, [d, f] = l(null), a = P(null), v = e.idKey || "id", o = e.formListener || F, S = (t, r) => typeof t == "string" ? t + "/{" + r + "}" : t;
   return y(() => {
-    const t = e.id, o = d;
-    var a = l(e.endPoint, o);
-    const i = u.getFormStore({}, a, o);
+    const t = e.id, r = v;
+    var s = S(e.endPoint, r);
+    const i = m.getFormStore({}, s, r);
     var c = {
       options: {
-        [o]: t
+        [r]: t
       }
     };
-    i.get(c).then((r) => {
-      m(r);
+    i.get(c).then((u) => {
+      f(u);
     });
-  }, [e.id]), { data: f, saveData: (t) => {
-    if (t || n && n.current) {
-      const a = e.idKey || "id";
-      var o = e.endPoint;
-      const i = u.getFormStore({}, o, a), c = t || n.current.getData(a);
-      i.post(c).then((r) => (m(r), s.onSaveSuccess && s.onSaveSuccess(r), Promise.resolve(r))).catch((r) => (s.onSaveFailure && s.onSaveFailure(r), Promise.reject(r)));
+  }, [e.id]), { data: d, saveData: (t) => {
+    if (t || a && a.current) {
+      const s = e.idKey || "id";
+      var r = e.endPoint;
+      const i = m.getFormStore({}, r, s), c = t || a.current.getData(s), u = o.preProcessSaveData ? o.preProcessSaveData(c) : c;
+      i.post(u).then((n) => (f(n), o.onSaveSuccess && o.onSaveSuccess(n), Promise.resolve(n))).catch((n) => (o.onSaveFailure && o.onSaveFailure(n), Promise.reject(n)));
     } else
       return Promise.reject("invalid data");
-  }, formRef: n };
+  }, formRef: a };
 };
 export {
-  h as usePalmyraEditForm
+  E as usePalmyraEditForm
 };

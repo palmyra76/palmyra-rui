@@ -188,8 +188,9 @@ interface IFormFieldInputDefinition extends IFieldDefinition {
 
 
 interface IFormListener {
-    onSaveSuccess: (data: any) => void,
-    onSaveFailure: (e: any) => void
+    onSaveSuccess?: (data: any) => void,
+    onSaveFailure?: (e: any) => void,
+    preProcessSaveData?: (data: FormData) => FormData
 }
 
 const NoopFormListener: IFormListener = {

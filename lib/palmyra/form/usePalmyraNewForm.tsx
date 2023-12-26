@@ -57,8 +57,12 @@ const usePalmyraNewForm: IusePalmyraNewForm = (props: IPalmyraNewFormInput): IPa
             const idProperty = props.idKey;
             var endPoint = props.endPoint
             const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
+            
             const data = d || formRef.current.getData();
-            return formStore.post(data).then((d) => {
+            const processedData = formListener.preProcessSaveData ?
+                formListener.preProcessSaveData(data) : data;
+
+            return formStore.post(processedData).then((d) => {
                 setData(d);
                 if (formListener.onSaveSuccess)
                     formListener.onSaveSuccess(d);

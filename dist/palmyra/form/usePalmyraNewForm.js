@@ -1,32 +1,32 @@
-import { useState as v, useRef as S, useEffect as y } from "react";
-import { NoopFormListener as F } from "./interface.js";
-const h = (t) => {
-  const u = t.storeFactory, [m, f] = v(t.initialData == null ? null : t.initialData), a = S(null), l = t.idKey || "id", i = t.formListener || F, d = (e, o) => typeof e == "string" ? e + "/{" + o + "}" : e;
-  return y(() => {
-    const e = t.id;
-    if (e) {
-      const n = l;
-      var o = d(t.endPoint, n);
-      const c = u.getFormStore({}, o, n);
-      var s = {
+import { useState as S, useRef as y, useEffect as D } from "react";
+import { NoopFormListener as P } from "./interface.js";
+const K = (e) => {
+  const f = e.storeFactory, [v, m] = S(e.initialData == null ? null : e.initialData), s = y(null), d = e.idKey || "id", r = e.formListener || P, l = (t, a) => typeof t == "string" ? t + "/{" + a + "}" : t;
+  return D(() => {
+    const t = e.id;
+    if (t) {
+      const n = d;
+      var a = l(e.endPoint, n);
+      const i = f.getFormStore({}, a, n);
+      var c = {
         options: {
-          [n]: e
+          [n]: t
         }
       };
-      c.get(s).then((r) => {
-        f(r);
+      i.get(c).then((u) => {
+        m(u);
       });
     }
-  }, [t.id]), { data: m, saveData: (e) => {
-    if (e || a && a.current) {
-      const s = t.idKey;
-      var o = t.endPoint;
-      const n = u.getFormStore({}, o, s), c = e || a.current.getData();
-      return n.post(c).then((r) => (f(r), i.onSaveSuccess && i.onSaveSuccess(r), Promise.resolve(r))).catch((r) => (i.onSaveFailure && i.onSaveFailure(r), Promise.reject(r)));
+  }, [e.id]), { data: v, saveData: (t) => {
+    if (t || s && s.current) {
+      const c = e.idKey;
+      var a = e.endPoint;
+      const n = f.getFormStore({}, a, c), i = t || s.current.getData(), u = r.preProcessSaveData ? r.preProcessSaveData(i) : i;
+      return n.post(u).then((o) => (m(o), r.onSaveSuccess && r.onSaveSuccess(o), Promise.resolve(o))).catch((o) => (r.onSaveFailure && r.onSaveFailure(o), Promise.reject(o)));
     } else
       return Promise.reject("invalid data");
-  }, formRef: a };
+  }, formRef: s };
 };
 export {
-  h as usePalmyraNewForm
+  K as usePalmyraNewForm
 };

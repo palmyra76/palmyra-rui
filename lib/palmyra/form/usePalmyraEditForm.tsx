@@ -54,8 +54,12 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
             const idProperty = props.idKey || 'id';
             var endPoint = props.endPoint
             const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
+
             const data = d || formRef.current.getData(idProperty);
-            formStore.post(data).then((d) => {
+            const processedData = formListener.preProcessSaveData ?
+                formListener.preProcessSaveData(data) : data;
+
+            formStore.post(processedData).then((d) => {
                 setData(d);
                 if (formListener.onSaveSuccess)
                     formListener.onSaveSuccess(d);
