@@ -19,7 +19,7 @@ const E = (e) => {
       const s = e.idKey || "id";
       var r = e.endPoint;
       const i = m.getFormStore({}, r, s), c = t || a.current.getData(s), u = o.preProcessSaveData ? o.preProcessSaveData(c) : c;
-      i.post(u).then((n) => (f(n), o.onSaveSuccess && o.onSaveSuccess(n), Promise.resolve(n))).catch((n) => (o.onSaveFailure && o.onSaveFailure(n), Promise.reject(n)));
+      return i.post(u).then((n) => (f(n), o.onSaveSuccess && o.onSaveSuccess(n), Promise.resolve(n))).catch((n) => (o.onSaveFailure && o.onSaveFailure(n), Promise.reject(n)));
     } else
       return Promise.reject("invalid data");
   }, formRef: a };

@@ -37,6 +37,10 @@ interface AttributeDefinition {
     autoFocus?: boolean;
     variant?: 'standard' | 'outlined' | 'filled';
     eventListener?: IFieldEventListener;
+    fieldProps?: IFieldProps;
+}
+interface IFieldProps {
+    size?: 'small' | 'medium' | 'large';
 }
 interface abstractValidation {
     validationRule?: strings;

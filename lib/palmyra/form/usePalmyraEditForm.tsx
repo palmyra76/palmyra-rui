@@ -59,7 +59,8 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
             const processedData = formListener.preProcessSaveData ?
                 formListener.preProcessSaveData(data) : data;
 
-            formStore.post(processedData).then((d) => {
+
+            return formStore.post(processedData).then((d) => {
                 setData(d);
                 if (formListener.onSaveSuccess)
                     formListener.onSaveSuccess(d);
