@@ -40,7 +40,7 @@ interface AttributeDefinition {
     fieldProps?: IFieldProps;
 }
 interface IFieldProps {
-    size?: 'small' | 'medium' | 'large';
+    size?: 'small';
 }
 interface abstractValidation {
     validationRule?: strings;
