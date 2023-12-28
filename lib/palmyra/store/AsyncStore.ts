@@ -24,6 +24,7 @@ interface TreeQueryStore<T> {
 interface DataStore<T> extends QueryStore<T> {
     post(data: T, request?: PostRequest): Promise<T>;
     put(data: T, request?: PutRequest): Promise<T>;
+    save(data: T, request?: PutRequest): Promise<T>;
     remove(key: T | any, request?: RemoveRequest): Promise<T>;
 }
 

@@ -8,6 +8,13 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T>{
         super(request, endPoint, idProperty);
     }
 
+    save(data: any, request?: PostRequest): Promise<T> {
+        var urlFormat = this.target + this.postUrl();
+        var url: any = this.formatUrl(urlFormat, request);
+        return this.getClient().post(url, data, { headers: { action: 'save' } })
+            .then(response => { return response.data });
+    }
+
     post(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
         var url: any = this.formatUrl(urlFormat, request);

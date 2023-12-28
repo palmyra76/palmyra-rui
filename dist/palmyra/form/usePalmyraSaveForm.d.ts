@@ -2,19 +2,19 @@ import { MutableRefObject } from "react";
 import { IEndPoint } from "../layout/Types";
 import { FormData, StoreFactory } from "../../main";
 import { IFormListener } from "./interface";
-interface IPalmyraNewFormInput {
+interface IPalmyraSaveFormInput {
     storeFactory: StoreFactory<any>;
+    id: string;
     endPoint: IEndPoint;
     idKey?: string;
     formListener?: IFormListener;
-    initialData?: any;
 }
-interface IPalmyraNewFormOutput {
+interface IPalmyraSaveFormOutput {
     data: FormData;
     saveData: (data?: any) => Promise<any>;
     formRef: MutableRefObject<any>;
 }
-type IusePalmyraNewForm = (props: IPalmyraNewFormInput) => IPalmyraNewFormOutput;
-declare const usePalmyraNewForm: IusePalmyraNewForm;
-export { usePalmyraNewForm };
-export type { IPalmyraNewFormInput, IPalmyraNewFormOutput };
+type IusePalmyraEditForm = (props: IPalmyraSaveFormInput) => IPalmyraSaveFormOutput;
+declare const usePalmyraEditForm: IusePalmyraEditForm;
+export { usePalmyraEditForm };
+export type { IPalmyraSaveFormInput, IPalmyraSaveFormOutput };

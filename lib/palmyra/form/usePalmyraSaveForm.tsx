@@ -5,7 +5,7 @@ import { GetRequest, PutRequest } from "../store/Types";
 import { FormData, StoreFactory } from "../../main";
 import { IFormListener, NoopFormListener } from "./interface";
 
-interface IPalmyraEditFormInput {
+interface IPalmyraSaveFormInput {
     storeFactory: StoreFactory<any>,
     id: string,
     endPoint: IEndPoint,
@@ -13,15 +13,15 @@ interface IPalmyraEditFormInput {
     formListener?: IFormListener
 }
 
-interface IPalmyraEditFormOutput {
+interface IPalmyraSaveFormOutput {
     data: FormData,
     saveData: (data?: any) => Promise<any>,
     formRef: MutableRefObject<any>
 }
 
-type IusePalmyraEditForm = (props: IPalmyraEditFormInput) => IPalmyraEditFormOutput;
+type IusePalmyraEditForm = (props: IPalmyraSaveFormInput) => IPalmyraSaveFormOutput;
 
-const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): IPalmyraEditFormOutput => {
+const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraSaveFormInput): IPalmyraSaveFormOutput => {
     const storeFactory = props.storeFactory;
     const [data, setData] = useState<any>(null);
     const formRef = useRef<any>(null);
@@ -29,7 +29,7 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
     const formListener = props.formListener || NoopFormListener;
 
     const getEndPoint = (endPoint: IEndPoint, idProperty: string): IEndPoint => {
-        if (typeof endPoint == 'string') {
+        if (typeof endPoint == 'string' && props.id) {
             return endPoint + '/{' + idProperty + '}';
         } else {
             return endPoint;
@@ -38,15 +38,17 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
 
     useEffect(() => {
         const id = props.id;
-        const idProperty = idKey;
-        var endPoint = getEndPoint(props.endPoint, idProperty);
-        const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
-        var request: GetRequest = {
-            endPointVars: {
-                [idProperty]: id
-            }
-        };
-        formStore.get(request).then(d => { setData(d) });
+        if (id) {
+            const idProperty = idKey;
+            var endPoint = getEndPoint(props.endPoint, idProperty);
+            const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
+            var request: GetRequest = {
+                options: {
+                    [idProperty]: id
+                }
+            };
+            formStore.get(request).then(d => { setData(d) });
+        }
     }, [props.id])
 
     const saveData = (d?: any): Promise<any> => {
@@ -54,18 +56,18 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
             const idProperty = props.idKey || 'id';
             var endPoint = getEndPoint(props.endPoint, idProperty);
             const formStore = storeFactory.getFormStore({}, endPoint, idProperty);
-            const id = props.id;
+
             const data = d || formRef.current.getData(idProperty);
             const processedData = formListener.preProcessSaveData ?
                 formListener.preProcessSaveData(data) : data;
-
-            var request: PutRequest = {
+            const id = props.id;
+            var request: PutRequest = id ? {
                 endPointVars: {
                     [idProperty]: id
                 }
-            };
+            } : {};
 
-            return formStore.put(processedData, request).then((d) => {
+            return formStore.save(processedData, request).then((d) => {
                 setData(d);
                 if (formListener.onSaveSuccess)
                     formListener.onSaveSuccess(d);
@@ -84,4 +86,4 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraEditFormInput): 
 
 
 export { usePalmyraEditForm }
-export type { IPalmyraEditFormInput, IPalmyraEditFormOutput }
+export type { IPalmyraSaveFormInput, IPalmyraSaveFormOutput }
