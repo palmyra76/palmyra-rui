@@ -77,6 +77,8 @@ const getDateTimeValue = (value: InputType, field: AttributeDefinition) => {
 }
 
 const getTextValue = (value: InputType, field: AttributeDefinition) => {
+    if(value instanceof Object)
+        return JSON.stringify(value);
     return value;
 }
 

@@ -1,10 +1,10 @@
-const u = (e, r) => {
+const o = (e, r) => {
   if (!(r === void 0 || r == null)) {
     var t = e.indexOf(".");
     if (t < 0)
       return r[e];
     var s = e.substring(0, t), n = e.substring(t + 1);
-    return u(n, r[s]);
+    return o(n, r[s]);
   }
 }, c = (e, r, t) => {
   var s = e.indexOf(".");
@@ -12,10 +12,10 @@ const u = (e, r) => {
     r[e] = t;
     return;
   }
-  var n = e.substring(0, s), o = e.substring(s + 1);
-  return (r[n] === void 0 || r[n] == null) && (r[n] = {}), c(o, r[n], t);
+  var n = e.substring(0, s), u = e.substring(s + 1);
+  return (r[n] === void 0 || r[n] == null) && (r[n] = {}), c(u, r[n], t);
 }, d = (e, r) => {
-  const t = u(e.attribute, r);
+  const t = o(e.attribute, r);
   return i(e, t);
 }, i = (e, r) => {
   switch (e.type || "string") {
@@ -27,27 +27,27 @@ const u = (e, r) => {
     case "switch":
       return V(r, e);
     case "datetime":
-      return a(r);
+      return y(r);
     case "serverlookup":
       return x(r);
     case "textarea":
-      return y(r);
-    case "password":
       return f(r);
-    case "numbersOnly":
+    case "password":
       return p(r);
-    case "integer":
+    case "numbersOnly":
       return b(r);
-    default:
+    case "integer":
       return l(r);
+    default:
+      return a(r);
   }
-}, g = (e, r) => e, a = (e, r) => e, l = (e, r) => e, y = (e, r) => e, p = (e, r) => e, b = (e, r) => e, f = (e, r) => e, V = (e, r) => {
+}, g = (e, r) => e, y = (e, r) => e, a = (e, r) => e instanceof Object ? JSON.stringify(e) : e, f = (e, r) => e, b = (e, r) => e, l = (e, r) => e, p = (e, r) => e, V = (e, r) => {
   var t = r.options;
   return t[e];
 }, x = (e, r) => e;
 export {
   i as formatValue,
   d as getDisplayValue,
-  u as getValueByKey,
+  o as getValueByKey,
   c as setValueByKey
 };
