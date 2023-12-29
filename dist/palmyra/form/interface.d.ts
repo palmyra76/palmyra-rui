@@ -98,6 +98,29 @@ interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
         endPointOptions?: IEndPointOptions;
     };
 }
+interface IAutoCompleteDefinition extends AttributeDefinition, IDecoration {
+    renderOption?: Function;
+    lookupOptions: {
+        attribute?: string;
+    };
+    store?: LookupStore<any>;
+    storeOptions: {
+        endPoint: IEndPoint;
+        endPointOptions?: IEndPointOptions;
+    };
+}
+interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
+    displayAttribute?: string;
+    idAttribute?: string;
+    multiple?: boolean;
+    renderOption?: Function;
+    lookupOptions: IFormFieldServerLookup;
+    store?: LookupStore<any>;
+    storeOptions: {
+        endPoint: IEndPoint;
+        endPointOptions?: IEndPointOptions;
+    };
+}
 interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
     lookupOptions: IFormFieldServerLookup;
     storeOptions: {
@@ -161,6 +184,6 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };
-export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
+export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration };
 export { NoopFormListener };

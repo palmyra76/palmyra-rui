@@ -1,10 +1,12 @@
 import { AttributeDefinition, IDecoration } from "../../form/interface";
 
 const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string) => {
+    const fieldProps = props.fieldProps || {};
+    
     var result: any = {
         disabled: props.disabled, required: props.required,
-        placeholder: props.placeHolder, value, variant: props.variant, 
-        size: props.fieldProps?.size
+        placeholder: props.placeHolder, value, variant: props.variant,
+        ...fieldProps
     }
 
     if (label) {

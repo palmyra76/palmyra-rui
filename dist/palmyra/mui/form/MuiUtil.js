@@ -1,14 +1,14 @@
-const d = (e, r, i) => {
-  var l;
-  var t = {
+const d = (e, l, t) => {
+  const r = e.fieldProps || {};
+  var i = {
     disabled: e.disabled,
     required: e.required,
     placeholder: e.placeHolder,
-    value: r,
+    value: l,
     variant: e.variant,
-    size: (l = e.fieldProps) == null ? void 0 : l.size
+    ...r
   };
-  return i && (t.label = i), t;
+  return t && (i.label = t), i;
 }, a = (e) => e.required && e.title ? e.title + "*" : e.title;
 export {
   d as copyMuiOptions,

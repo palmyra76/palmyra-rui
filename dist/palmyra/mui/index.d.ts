@@ -12,4 +12,5 @@ import MuiServerCheckBox from "./form/MuiServerCheckBox";
 import MuiNumberField from "./form/MuiNumberField";
 import MuiServerLookup from "./form/MuiServerLookup";
 import FieldDecorator from "./form/FieldDecorator";
-export { MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiPassword, MuiServerCheckBox, MuiNumberField, FieldDecorator };
+import MuiAutoComplete from "./form/MuiAutoComplete";
+export { MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiPassword, MuiServerCheckBox, MuiNumberField, MuiAutoComplete, FieldDecorator };
