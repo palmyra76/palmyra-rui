@@ -57,8 +57,8 @@ import Lr from "../palmyra/layout/flexiLayout/SectionRendererViewForm.js";
 import { u as Ir } from "./PalmyraFieldManager.js";
 import { useKeyValue as $r } from "../palmyra/utils/pubsub/PubSubHelper.js";
 const Re = (e) => {
-  var Z, te;
-  const { store: t, quickSearch: r } = e, n = e.fetchAll != !1, [o, a] = J(e.endPointOptions), [f, c] = J(null), p = ((Z = e.defaultParams) == null ? void 0 : Z.filter) || {}, g = ((te = e.defaultParams) == null ? void 0 : te.sort) || {}, [y, v] = e.filterTopic ? $r(e.filterTopic, p) : J(p), [T, x] = J({}), k = ie(e.initialFetch == !1), F = e.pageSize ? e.pageSize : 15;
+  var Z, ee;
+  const { store: t, quickSearch: r } = e, n = e.fetchAll != !1, [o, a] = J(e.endPointOptions), [f, c] = J(null), p = ((Z = e.defaultParams) == null ? void 0 : Z.filter) || {}, g = ((ee = e.defaultParams) == null ? void 0 : ee.sort) || {}, [y, v] = e.filterTopic ? $r(e.filterTopic, p) : J(p), [T, x] = J({}), k = ie(e.initialFetch == !1), F = e.pageSize ? e.pageSize : 15;
   var A = F instanceof Array ? F : [F], $ = F instanceof Array ? F[0] : F;
   const [C, b] = J({ limit: $, offset: 0, total: !0 }), [S, s] = J(null), M = () => Math.round(C.offset / C.limit), E = () => C, L = (l) => {
     b((h) => ({ limit: h.limit, total: h.total, offset: l * $ }));
@@ -254,9 +254,9 @@ const ia = ce(function(t, r) {
     const d = X ? [...X] : [], w = W != "" ? W : void 0, _ = U(w), Y = Z(w);
     d && _ && Y && !O(d, _) && d.unshift(w), p(d), f.current < R && (f.current = R);
   }, [X, R]), de(() => {
-    Nt(te);
+    Nt(ee);
   }, [g, v]);
-  function te() {
+  function ee() {
     v && (g.length > 0 && g != Z(W) ? P("*" + g + "*") : X ? P(null) : z());
   }
   var l = {
@@ -406,14 +406,16 @@ const ia = ce(function(t, r) {
     v && (g.length > 0 && g != L ? Q("*" + g + "*") : z ? Q(null) : R());
   }
   var Z = {
-    onBlur: S.onBlur,
+    onBlur: (u) => {
+      ee(g), S.onBlur(g);
+    },
     onFocus: S.onFocus,
     onChange: (u, O) => {
-      te(O);
+      ee(O);
     },
     onInputChange: (u, O) => (y(O), !0)
   };
-  const te = (u) => {
+  const ee = (u) => {
     S.onValueChange(u);
   };
   function l(u, O) {
@@ -804,7 +806,7 @@ function Gr() {
       }
     }
     var s = p, M = g, E = c, L = f, W = t, B = y, V = n, Q = k, P = x, R = r, z = a, X = o, U = v, Z = !1;
-    function te(m) {
+    function ee(m) {
       return Z || (Z = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), l(m) || S(m) === p;
     }
     function l(m) {
@@ -843,7 +845,7 @@ function Gr() {
     function re(m) {
       return S(m) === v;
     }
-    j.AsyncMode = s, j.ConcurrentMode = M, j.ContextConsumer = E, j.ContextProvider = L, j.Element = W, j.ForwardRef = B, j.Fragment = V, j.Lazy = Q, j.Memo = P, j.Portal = R, j.Profiler = z, j.StrictMode = X, j.Suspense = U, j.isAsyncMode = te, j.isConcurrentMode = l, j.isContextConsumer = h, j.isContextProvider = u, j.isElement = O, j.isForwardRef = D, j.isFragment = N, j.isLazy = d, j.isMemo = w, j.isPortal = _, j.isProfiler = Y, j.isStrictMode = I, j.isSuspense = re, j.isValidElementType = b, j.typeOf = S;
+    j.AsyncMode = s, j.ConcurrentMode = M, j.ContextConsumer = E, j.ContextProvider = L, j.Element = W, j.ForwardRef = B, j.Fragment = V, j.Lazy = Q, j.Memo = P, j.Portal = R, j.Profiler = z, j.StrictMode = X, j.Suspense = U, j.isAsyncMode = ee, j.isConcurrentMode = l, j.isContextConsumer = h, j.isContextProvider = u, j.isElement = O, j.isForwardRef = D, j.isFragment = N, j.isLazy = d, j.isMemo = w, j.isPortal = _, j.isProfiler = Y, j.isStrictMode = I, j.isSuspense = re, j.isValidElementType = b, j.typeOf = S;
   }()), j;
 }
 var ht;
@@ -1100,7 +1102,7 @@ function Kr() {
     function M(l) {
       function h(u, O, D, N, d) {
         if (!(u[O] instanceof l)) {
-          var w = l.name || T, _ = te(u[O]);
+          var w = l.name || T, _ = ee(u[O]);
           return new F("Invalid " + N + " `" + d + "` of type " + ("`" + _ + "` supplied to `" + D + "`, expected ") + ("instance of `" + w + "`."));
         }
         return null;
@@ -1280,7 +1282,7 @@ Valid keys: ` + JSON.stringify(Object.keys(l), null, "  ")
           return h;
       }
     }
-    function te(l) {
+    function ee(l) {
       return !l.constructor || !l.constructor.name ? T : l.constructor.name;
     }
     return x.checkPropTypes = o, x.resetWarningCache = o.resetWarningCache, x.PropTypes = x, x;
@@ -1703,7 +1705,7 @@ Object.defineProperty(ke, "__esModule", {
   value: !0
 });
 ke.default = void 0;
-var Xe = Ln(pe), ae = nt(Xt), kn = nt(kt), ee = G, he = me, Be = fe, Oe = nt(Le);
+var Xe = Ln(pe), ae = nt(Xt), kn = nt(kt), te = G, he = me, Be = fe, Oe = nt(Le);
 function nt(e) {
   return e && e.__esModule ? e : { default: e };
 }
@@ -1773,10 +1775,10 @@ let ge = ue.mouse, Ie = class extends Xe.Component {
       const {
         ownerDocument: n
       } = r;
-      if (this.props.disabled || !(t.target instanceof n.defaultView.Node) || this.props.handle && !(0, ee.matchesSelectorAndParentsTo)(t.target, this.props.handle, r) || this.props.cancel && (0, ee.matchesSelectorAndParentsTo)(t.target, this.props.cancel, r))
+      if (this.props.disabled || !(t.target instanceof n.defaultView.Node) || this.props.handle && !(0, te.matchesSelectorAndParentsTo)(t.target, this.props.handle, r) || this.props.cancel && (0, te.matchesSelectorAndParentsTo)(t.target, this.props.cancel, r))
         return;
       t.type === "touchstart" && t.preventDefault();
-      const o = (0, ee.getTouchIdentifier)(t);
+      const o = (0, te.getTouchIdentifier)(t);
       this.touchIdentifier = o;
       const a = (0, he.getControlPosition)(t, o, this);
       if (a == null)
@@ -1785,7 +1787,7 @@ let ge = ue.mouse, Ie = class extends Xe.Component {
         x: f,
         y: c
       } = a, p = (0, he.createCoreData)(this, f, c);
-      (0, Oe.default)("DraggableCore: handleDragStart: %j", p), (0, Oe.default)("calling", this.props.onStart), !(this.props.onStart(t, p) === !1 || this.mounted === !1) && (this.props.enableUserSelectHack && (0, ee.addUserSelectStyles)(n), this.dragging = !0, this.lastX = f, this.lastY = c, (0, ee.addEvent)(n, ge.move, this.handleDrag), (0, ee.addEvent)(n, ge.stop, this.handleDragStop));
+      (0, Oe.default)("DraggableCore: handleDragStart: %j", p), (0, Oe.default)("calling", this.props.onStart), !(this.props.onStart(t, p) === !1 || this.mounted === !1) && (this.props.enableUserSelectHack && (0, te.addUserSelectStyles)(n), this.dragging = !0, this.lastX = f, this.lastY = c, (0, te.addEvent)(n, ge.move, this.handleDrag), (0, te.addEvent)(n, ge.stop, this.handleDragStop));
     }), ne(this, "handleDrag", (t) => {
       const r = (0, he.getControlPosition)(t, this.touchIdentifier, this);
       if (r == null)
@@ -1829,13 +1831,13 @@ let ge = ue.mouse, Ie = class extends Xe.Component {
       if (this.props.onStop(t, a) === !1 || this.mounted === !1)
         return !1;
       const c = this.findDOMNode();
-      c && this.props.enableUserSelectHack && (0, ee.removeUserSelectStyles)(c.ownerDocument), (0, Oe.default)("DraggableCore: handleDragStop: %j", a), this.dragging = !1, this.lastX = NaN, this.lastY = NaN, c && ((0, Oe.default)("DraggableCore: Removing handlers"), (0, ee.removeEvent)(c.ownerDocument, ge.move, this.handleDrag), (0, ee.removeEvent)(c.ownerDocument, ge.stop, this.handleDragStop));
+      c && this.props.enableUserSelectHack && (0, te.removeUserSelectStyles)(c.ownerDocument), (0, Oe.default)("DraggableCore: handleDragStop: %j", a), this.dragging = !1, this.lastX = NaN, this.lastY = NaN, c && ((0, Oe.default)("DraggableCore: Removing handlers"), (0, te.removeEvent)(c.ownerDocument, ge.move, this.handleDrag), (0, te.removeEvent)(c.ownerDocument, ge.stop, this.handleDragStop));
     }), ne(this, "onMouseDown", (t) => (ge = ue.mouse, this.handleDragStart(t))), ne(this, "onMouseUp", (t) => (ge = ue.mouse, this.handleDragStop(t))), ne(this, "onTouchStart", (t) => (ge = ue.touch, this.handleDragStart(t))), ne(this, "onTouchEnd", (t) => (ge = ue.touch, this.handleDragStop(t)));
   }
   componentDidMount() {
     this.mounted = !0;
     const t = this.findDOMNode();
-    t && (0, ee.addEvent)(t, ue.touch.start, this.onTouchStart, {
+    t && (0, te.addEvent)(t, ue.touch.start, this.onTouchStart, {
       passive: !1
     });
   }
@@ -1846,9 +1848,9 @@ let ge = ue.mouse, Ie = class extends Xe.Component {
       const {
         ownerDocument: r
       } = t;
-      (0, ee.removeEvent)(r, ue.mouse.move, this.handleDrag), (0, ee.removeEvent)(r, ue.touch.move, this.handleDrag), (0, ee.removeEvent)(r, ue.mouse.stop, this.handleDragStop), (0, ee.removeEvent)(r, ue.touch.stop, this.handleDragStop), (0, ee.removeEvent)(t, ue.touch.start, this.onTouchStart, {
+      (0, te.removeEvent)(r, ue.mouse.move, this.handleDrag), (0, te.removeEvent)(r, ue.touch.move, this.handleDrag), (0, te.removeEvent)(r, ue.mouse.stop, this.handleDragStop), (0, te.removeEvent)(r, ue.touch.stop, this.handleDragStop), (0, te.removeEvent)(t, ue.touch.start, this.onTouchStart, {
         passive: !1
-      }), this.props.enableUserSelectHack && (0, ee.removeUserSelectStyles)(r);
+      }), this.props.enableUserSelectHack && (0, te.removeUserSelectStyles)(r);
     }
   }
   // React Strict Mode compatibility: if `nodeRef` is passed, we will use it instead of trying to find
@@ -2192,13 +2194,13 @@ ne(Ie, "defaultProps", {
         ...P
       } = this.props;
       let R = {}, z = null;
-      const U = !!!B || this.state.dragging, Z = B || M, te = {
+      const U = !!!B || this.state.dragging, Z = B || M, ee = {
         // Set left if horizontal drag is enabled
         x: (0, f.canDragX)(this) && U ? this.state.x : Z.x,
         // Set top if vertical drag is enabled
         y: (0, f.canDragY)(this) && U ? this.state.y : Z.y
       };
-      this.state.isElementSVG ? z = (0, a.createSVGTransform)(te, V) : R = (0, a.createCSSTransform)(te, V);
+      this.state.isElementSVG ? z = (0, a.createSVGTransform)(ee, V) : R = (0, a.createCSSTransform)(ee, V);
       const l = (0, o.default)(s.props.className || "", E, {
         [L]: this.state.dragging,
         [W]: this.state.dragged
@@ -2469,7 +2471,7 @@ const Xn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
   }), [V]);
   const Z = (m, K) => {
     M(K);
-  }, te = Pr(n, g), l = (m) => {
+  }, ee = Pr(n, g), l = (m) => {
     x(m);
   }, h = () => {
     v(!y);
@@ -2556,7 +2558,7 @@ const Xn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
     /* @__PURE__ */ i("div", { className: "grid-table", children: /* @__PURE__ */ i(
       wr,
       {
-        columnDefs: te,
+        columnDefs: ee,
         EmptyChild: p,
         rowData: Q,
         onRowClick: d,

@@ -88,7 +88,10 @@ const MuiAutoComplete = forwardRef(function MuiAutoComplete(props: IAutoComplete
     }
 
     var callbacks = {
-        onBlur: eventListeners.onBlur,
+        onBlur: (d) => {
+            updateFieldValue(searchText);
+            eventListeners.onBlur(searchText);
+        },
         onFocus: eventListeners.onFocus,
         onChange: (d: any, value: any) => {
             updateFieldValue(value);
