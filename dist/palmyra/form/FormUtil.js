@@ -1,53 +1,55 @@
-const o = (e, r) => {
-  if (!(r === void 0 || r == null)) {
-    var t = e.indexOf(".");
-    if (t < 0)
-      return r[e];
-    var s = e.substring(0, t), n = e.substring(t + 1);
-    return o(n, r[s]);
+const o = (e, t) => {
+  if (!(t === void 0 || t == null)) {
+    var r = e.indexOf(".");
+    if (r < 0)
+      return t[e];
+    var s = e.substring(0, r), n = e.substring(r + 1);
+    return o(n, t[s]);
   }
-}, c = (e, r, t) => {
+}, c = (e, t, r) => {
   var s = e.indexOf(".");
   if (s < 0) {
-    r[e] = t;
+    t[e] = r;
     return;
   }
   var n = e.substring(0, s), u = e.substring(s + 1);
-  return (r[n] === void 0 || r[n] == null) && (r[n] = {}), c(u, r[n], t);
-}, d = (e, r) => {
-  const t = o(e.attribute, r);
-  return i(e, t);
-}, i = (e, r) => {
+  return (t[n] === void 0 || t[n] == null) && (t[n] = {}), c(u, t[n], r);
+}, K = (e, t) => {
+  const r = o(e.attribute, t);
+  return i(e, r);
+}, i = (e, t) => {
   switch (e.type || "string") {
     case "date":
-      return g(r);
+      return g(t);
     case "radio":
     case "select":
     case "checkbox":
     case "switch":
-      return V(r, e);
+      return d(t, e);
     case "datetime":
-      return y(r);
+      return a(t);
     case "serverlookup":
-      return x(r);
+      return x(t);
     case "textarea":
-      return f(r);
+      return l(t);
     case "password":
-      return p(r);
+      return V(t);
     case "numbersOnly":
-      return b(r);
+      return y(t);
     case "integer":
-      return l(r);
+      return p(t);
+    case "autoComplete":
+      return b(t);
     default:
-      return a(r);
+      return f(t);
   }
-}, g = (e, r) => e, y = (e, r) => e, a = (e, r) => e instanceof Object ? JSON.stringify(e) : e, f = (e, r) => e, b = (e, r) => e, l = (e, r) => e, p = (e, r) => e, V = (e, r) => {
-  var t = r.options;
-  return t[e];
-}, x = (e, r) => e;
+}, g = (e, t) => e, a = (e, t) => e, f = (e, t) => e instanceof Object ? JSON.stringify(e) : e, l = (e, t) => e, y = (e, t) => e, p = (e, t) => e, b = (e, t) => e, V = (e, t) => e, d = (e, t) => {
+  var r = t.options;
+  return r[e];
+}, x = (e, t) => e;
 export {
   i as formatValue,
-  d as getDisplayValue,
+  K as getDisplayValue,
   o as getValueByKey,
   c as setValueByKey
 };

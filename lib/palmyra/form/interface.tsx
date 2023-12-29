@@ -10,7 +10,7 @@ import { IFieldEventListener } from ".";
  * 
  */
 type FieldType = "string" | "number" | "date" | "radio" | "select"
-    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch"
+    | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete"
     | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer";
 
 type InputType = string | number | Date;

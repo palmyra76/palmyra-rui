@@ -6,7 +6,7 @@ import MuiRadioGroup from '../mui/form/MuiRadioGroup';
 import MuiSelect from '../mui/form/MuiSelect';
 import MuiDatePicker from '../mui/form/MuiDatePicker';
 import MuiDateTimePicker from '../mui/form/MuiDateTimePicker';
-import { MuiPassword, MuiServerLookup } from '../mui';
+import { MuiAutoComplete, MuiPassword, MuiServerLookup } from '../mui';
 import MuiCheckBox from '../mui/form/MuiCheckBox';
 import MuiSwitch from '../mui/form/MuiSwitch';
 import MuiDateRangePicker from '../mui/form/MuiDateRangePicker';
@@ -67,6 +67,8 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
             return getTobeImplemented();
         case 'dateRange':
             return getReactField(props, MuiDateRangePicker);
+        case 'autoComplete':
+            return getReactField(props, MuiAutoComplete);
         default:
             return getInvalidField(props);
     }

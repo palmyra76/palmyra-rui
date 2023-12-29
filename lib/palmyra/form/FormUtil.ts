@@ -61,6 +61,8 @@ const formatValue = (field: AttributeDefinition, value: any) => {
             return getNumberValue(value, field);
         case 'integer':
             return getIntegerValue(value, field);
+        case 'autoComplete':
+            return getAutoCompleteValue(value, field);
         default:
             return getTextValue(value, field);
     }
@@ -77,7 +79,7 @@ const getDateTimeValue = (value: InputType, field: AttributeDefinition) => {
 }
 
 const getTextValue = (value: InputType, field: AttributeDefinition) => {
-    if(value instanceof Object)
+    if (value instanceof Object)
         return JSON.stringify(value);
     return value;
 }
@@ -91,6 +93,10 @@ const getNumberValue = (value: InputType, field: AttributeDefinition) => {
 }
 
 const getIntegerValue = (value: InputType, field: AttributeDefinition) => {
+    return value;
+}
+
+const getAutoCompleteValue = (value: InputType, field: AttributeDefinition) => {
     return value;
 }
 
