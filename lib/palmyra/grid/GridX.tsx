@@ -243,7 +243,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
             onHeaderStyle={handleHeaderDensityChange} onSortColumn={setSortColumns}
           />
         </div>
-        <div className='grid-header'>
+        <div className='grid-footer'>
           <div className='grid-filter'>
             {visiblePagination && (
               <TablePagination

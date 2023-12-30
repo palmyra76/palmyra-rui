@@ -2567,7 +2567,7 @@ const Xn = ({ columns: e, isOpen: t, onClose: r, setFilter: n, defaultFilter: o 
         onSortColumn: S
       }
     ) }),
-    /* @__PURE__ */ i("div", { className: "grid-header", children: /* @__PURE__ */ i("div", { className: "grid-filter", children: I && /* @__PURE__ */ i(
+    /* @__PURE__ */ i("div", { className: "grid-footer", children: /* @__PURE__ */ i("div", { className: "grid-filter", children: I && /* @__PURE__ */ i(
       Ft,
       {
         component: "div",

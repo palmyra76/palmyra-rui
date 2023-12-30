@@ -7,6 +7,15 @@
   gap: 10px;
 }
 
+.grid-footer {
+  display: flex;
+  justify-content: right;
+  margin-left: auto;
+  position: relative;
+  align-items: center;
+  gap: 10px;
+}
+
 .grid-table {
   margin-top: 10px;
 }
