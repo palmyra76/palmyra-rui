@@ -191,7 +191,7 @@ const MuiAutoComplete = forwardRef(function MuiAutoComplete(props: IAutoComplete
                     filterOptions={(x) => x}
                     renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }}
                         variant={props.variant || 'standard'} label={props.label}
-                        autoFocus={props.autoFocus} required={props.required}
+                        autoFocus={props.autoFocus} required={props.required} {...inputProps}
                         InputProps={{
                             ...params.InputProps,
                             endAdornment: (

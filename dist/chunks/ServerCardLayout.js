@@ -502,6 +502,7 @@ const ia = ce(function(t, r) {
                 label: t.label,
                 autoFocus: t.autoFocus,
                 required: t.required,
+                ...h,
                 InputProps: {
                   ...u.InputProps,
                   endAdornment: /* @__PURE__ */ H(Ee, { children: [
