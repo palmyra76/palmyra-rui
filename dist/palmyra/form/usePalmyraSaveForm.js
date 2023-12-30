@@ -1,6 +1,6 @@
 import { useState as y, useRef as F, useEffect as D } from "react";
 import { NoopFormListener as g } from "./interface.js";
-const L = (e) => {
+const j = (e) => {
   const d = e.storeFactory, [S, f] = y(null), s = F(null), l = e.idKey || "id", o = e.formListener || g, m = (t, n) => typeof t == "string" && e.id ? t + "/{" + n + "}" : t;
   return D(() => {
     const t = e.id;
@@ -33,5 +33,5 @@ const L = (e) => {
   }, formRef: s };
 };
 export {
-  L as usePalmyraEditForm
+  j as usePalmyraSaveForm
 };

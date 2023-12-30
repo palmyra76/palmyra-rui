@@ -19,9 +19,9 @@ interface IPalmyraSaveFormOutput {
     formRef: MutableRefObject<any>
 }
 
-type IusePalmyraEditForm = (props: IPalmyraSaveFormInput) => IPalmyraSaveFormOutput;
+type IusePalmyraSaveForm = (props: IPalmyraSaveFormInput) => IPalmyraSaveFormOutput;
 
-const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraSaveFormInput): IPalmyraSaveFormOutput => {
+const usePalmyraSaveForm: IusePalmyraSaveForm = (props: IPalmyraSaveFormInput): IPalmyraSaveFormOutput => {
     const storeFactory = props.storeFactory;
     const [data, setData] = useState<any>(null);
     const formRef = useRef<any>(null);
@@ -85,5 +85,5 @@ const usePalmyraEditForm: IusePalmyraEditForm = (props: IPalmyraSaveFormInput): 
 }
 
 
-export { usePalmyraEditForm }
+export { usePalmyraSaveForm }
 export type { IPalmyraSaveFormInput, IPalmyraSaveFormOutput }

@@ -14,7 +14,7 @@ interface IPalmyraSaveFormOutput {
     saveData: (data?: any) => Promise<any>;
     formRef: MutableRefObject<any>;
 }
-type IusePalmyraEditForm = (props: IPalmyraSaveFormInput) => IPalmyraSaveFormOutput;
-declare const usePalmyraEditForm: IusePalmyraEditForm;
-export { usePalmyraEditForm };
+type IusePalmyraSaveForm = (props: IPalmyraSaveFormInput) => IPalmyraSaveFormOutput;
+declare const usePalmyraSaveForm: IusePalmyraSaveForm;
+export { usePalmyraSaveForm };
 export type { IPalmyraSaveFormInput, IPalmyraSaveFormOutput };
