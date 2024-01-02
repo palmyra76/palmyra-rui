@@ -3,7 +3,7 @@ import { strings } from "../../form/interface";
 import { TreeQueryStore } from "../../store/AsyncStore";
 import { QueryResponse, QueryRequest, GetRequest } from "../../store/Types";
 
-class StaticMenuStore implements TreeQueryStore<MenuDef> {
+class StaticMenuStore implements TreeQueryStore<MenuDef, MenuDef> {
     data: MenuDef
 
     constructor(menuList: MenuDef[]) {

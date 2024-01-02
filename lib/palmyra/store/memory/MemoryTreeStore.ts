@@ -2,7 +2,7 @@
 import { TreeQueryStore } from "../AsyncStore";
 import { QueryRequest, GetRequest, Tree, QueryResponse } from "../Types";
 
-abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T>{
+abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T, T>{
     root: T;
     constructor(data: T) {
         this.root = data;

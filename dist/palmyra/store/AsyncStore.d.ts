@@ -11,9 +11,9 @@ interface QueryStore<T> extends AbstractQueryStore<T> {
     getIdentity(o: T): any;
     getIdProperty(): strings;
 }
-interface TreeQueryStore<T> {
-    getChildren(data: T): Promise<QueryResponse<T>>;
-    getRoot(): Promise<T>;
+interface TreeQueryStore<T, R> {
+    getChildren(data: T): Promise<QueryResponse<R>>;
+    getRoot(): Promise<R>;
 }
 interface DataStore<T> extends QueryStore<T> {
     post(data: T, request?: PostRequest): Promise<T>;

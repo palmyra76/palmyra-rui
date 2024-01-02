@@ -1,8 +1,9 @@
 import "react/jsx-runtime";
 import "react";
-import { S } from "../../../chunks/ServerCardLayout.js";
+import "../../../chunks/index.js";
 import "@mui/material";
 import "./CardLayout.js";
+import { S as b } from "../../../chunks/ServerCardLayout.js";
 import "../container/SectionContainer.js";
 import "@mui/icons-material";
 import "react-router-dom";
@@ -10,5 +11,5 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css                            */import "../flexiLayout/FlexiLayoutContext.js";
 export {
-  S as default
+  b as default
 };

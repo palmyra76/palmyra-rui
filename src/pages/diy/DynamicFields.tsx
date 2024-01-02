@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, SectionContainer, StoreFactory, createFormHelper } from "../../../lib/main";
+import { IEndPoint, IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, SectionContainer, StoreFactory, TreeQueryStore, createFormHelper } from "../../../lib/main";
 import { AppStoreFactory } from "../../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import { FieldGroupContainer } from "../../components/form";
+import AsyncTreeMenu from "../../../lib/palmyra/layout/tree/AsyncTreeMenu";
+import { PalmyraTreeStore } from "../../../lib/palmyra/store/palmyra/PalmyraTreeStore";
 
 
 const DynamicFields = () => {
@@ -52,9 +54,12 @@ const DynamicFields = () => {
     }, [])
 
     const storeFactory: StoreFactory<any> = new AppStoreFactory();
+    // const endPoint:IEndPoint = '/app/menu';
+    // const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({target:"/api/palmyra"}, endPoint);
 
     return (<>
-        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
+        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>            
+            {/* <AsyncTreeMenu store={treeStore}/> */}
             <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
