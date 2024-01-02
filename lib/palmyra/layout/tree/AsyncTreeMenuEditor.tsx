@@ -99,7 +99,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                     aria-live="polite"
                 ></div>
                 <div className="checkbox">
-                    <TreeView className="async-tree-menu-container"
+                    <TreeView
                         data={data}
                         aria-label="Checkbox tree"
                         onLoadData={wrappedOnLoadData}
@@ -140,17 +140,21 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
-                                    // style={{ marginLeft: 40 * (level - 1)}}
+                                    style={{ marginLeft: 40 * (level - 1) }}
                                 >
-                                    <div className="async-tree-menu-list">
-                                        <div className="async-tree-menu-list-text-container">
-                                            <div>I</div>
-                                            <span className="menu-name">{element.name}</span>
-                                        </div>
-                                        <div className="async-tree-menu-list-arrow-container">
-                                            {isBranch && branchNode(isExpanded, element)}
-                                        </div>
-                                    </div>
+                                    <CheckBoxIcon
+                                        className="checkbox-icon"
+                                        onClick={(e) => {
+                                            handleSelect(e);
+                                            e.stopPropagation();
+                                        }}
+                                        variant={
+                                            isHalfSelected ? "some" : isSelected ? "all" : "none"
+                                        }
+                                    />
+
+                                    <span className="name">{element.name}</span>
+                                    {isBranch && branchNode(isExpanded, element)}
                                 </div>
                             );
                         }}
@@ -176,4 +180,17 @@ const ArrowIcon = (props: IArrowIconInput) => {
         className
     );
     return <IoMdArrowDropright className={classes} />;
+};
+
+const CheckBoxIcon = ({ variant, ...rest }) => {
+    switch (variant) {
+        case "all":
+            return <FaCheckSquare {...rest} />;
+        case "none":
+            return <FaSquare {...rest} />;
+        case "some":
+            return <FaMinusSquare {...rest} />;
+        default:
+            return null;
+    }
 };
