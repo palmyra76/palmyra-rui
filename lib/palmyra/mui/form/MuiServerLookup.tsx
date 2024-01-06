@@ -4,11 +4,27 @@ import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext
 import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
 import { LookupStore } from '../../store';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
-import { delay, hasDot } from '../../utils';
+import { delay, delayGenerator, hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
 import { Autocomplete, CircularProgress, FormControl, FormHelperText, TextField } from '@mui/material';
+
+/**
+ * The server lookup would take either Object or Array Elements as input attribute
+ * 
+ * within the Object (or array), 
+ *      * idAttribute defines the id (or object key)
+ *      * displayAttribute defines the text to be displayed in the web page.
+ * 
+ * If primitive data (string, number) to be taken as input, the below logic will be utilized
+ *      * query the server using the given input and consider the titleAttribute of the returned data.
+ * 
+ * the lookupOptions defines how to fetch the id and display(title) values from the server lookup options.
+ * note that this is different from the (edit) form data.
+ */
+
+const delay100 = delayGenerator(100);
 
 const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -24,7 +40,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const store: LookupStore<any> = props.store || fieldManager.store;
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
-    const labelKey = lookupOptions.titleAttribute || 'name';
+    const labelKey = lookupOptions.displayAttribute || 'name';
     const searchKey = labelKey;
 
     const serverQueryOptions: IServerQueryInput = {
@@ -70,7 +86,11 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
 
     useEffect(() => {
         delay(refreshOptions);
-    }, [searchText, open]);
+    }, [searchText]);
+
+    useEffect(() => {
+        delay100(refreshOptions);
+    }, [open]);
 
 
     function refreshOptions() {
@@ -111,7 +131,6 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
             console.log(option);
         }
         return '';
-        //return 'unknown' + option;
     }
 
     function getMatch(result: any, key: any): any {

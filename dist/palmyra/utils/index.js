@@ -27,6 +27,7 @@ export {
   s as cloneDeep,
   p as concatValues,
   f as delay,
+  i as delayGenerator,
   y as hasChar,
   h as hasDot,
   t as isObject,

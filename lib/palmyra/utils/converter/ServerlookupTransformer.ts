@@ -26,7 +26,7 @@ class ServerlookupTransformer implements Converter<any, any> {
             return getValueByKey(props.attribute, data);
         }
 
-        if (!props.idAttribute) {
+        if (props.displayAttribute) {
             const idAttribute = props.attribute;
             const displayAttribute = props.displayAttribute;
 
@@ -38,7 +38,7 @@ class ServerlookupTransformer implements Converter<any, any> {
             const displayValue = getValueByKey(displayAttribute, data);
 
             const idKey = props.lookupOptions?.idAttribute || 'id';
-            const labelKey = props.lookupOptions?.titleAttribute || 'name';
+            const labelKey = props.lookupOptions?.displayAttribute || 'name';
             setValueByKey(idKey, option, value);
             setValueByKey(labelKey, option, displayValue);
             return option;
@@ -56,7 +56,7 @@ class ServerlookupTransformer implements Converter<any, any> {
 
 
         const idKey = props.lookupOptions?.idAttribute || 'id';
-        const labelKey = props.lookupOptions?.titleAttribute || 'name';
+        const labelKey = props.lookupOptions?.displayAttribute || 'name';
         const result = getValueByKey(idKey, data);
         if (undefined != result && props.displayAttribute) {
             setValueByKey(props.displayAttribute, this.formDataRef.current, getValueByKey(labelKey, data));

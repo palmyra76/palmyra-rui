@@ -142,7 +142,7 @@ interface IFormFieldSelect {
 }
 interface IFormFieldServerLookup {
     idAttribute?: string;
-    titleAttribute?: string;
+    displayAttribute?: string;
 }
 interface IFormFieldError {
     status: boolean;

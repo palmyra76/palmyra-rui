@@ -45,7 +45,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
     const inputRef: any = useRef(null);
     const lookupOptions = props.lookupOptions || {};
     const idKey = lookupOptions.idAttribute || 'id';
-    const labelKey = lookupOptions.titleAttribute || 'name';
+    const labelKey = lookupOptions.displayAttribute || 'name';
     const displaySelectedOnly = props.showSelectedOnly && props.readonly;
 
     const idAccessor = hasDot(idKey) ? (data: any) => (getValueByKey(idKey, data)) : (data: any) => (data[idKey]);
@@ -90,7 +90,7 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
     if (props.readonly) {
-        inputProps.inputProps = { readOnly: true };
+        inputProps.inputprops = { readOnly: true };
     }
 
     function _updateData(value: any, checked: any) {
