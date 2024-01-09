@@ -25,10 +25,11 @@ const CardLayout = (props: CardLayoutInput) => {
             <div className="card-container" >
                 {children}
                 <div className="card-wrapper" >
-                    {dataList.map((data: any, index: number) => (
-                        <Child key={childKeyProvider(preProcess(data), index)}
+                    {dataList.map((rawData: any, index: number) => {
+                        const data = preProcess(rawData);
+                        return <Child key={childKeyProvider(data, index)}
                             {...childProps} data={data}></Child>
-                    ))}
+                    })}
                 </div>
             </div>)}
 
