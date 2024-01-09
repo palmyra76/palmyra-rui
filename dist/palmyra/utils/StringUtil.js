@@ -1,20 +1,23 @@
 const c = (e, n) => {
   var r = e.indexOf(n);
   return r >= 0;
-}, u = (e) => c(e, "."), i = function(e, n) {
+}, i = (e) => c(e, "."), o = function(e, n) {
   return n ? typeof e == "string" && n instanceof Array ? e.replace(/({\d})/g, function(r) {
     return n[r.replace(/{/, "").replace(/}/, "")];
   }) : typeof e == "string" && n instanceof Object ? Object.keys(n).length === 0 ? e : e.replace(/({([^}]+)})/g, function(r) {
     let t = r.replace(/{/, "").replace(/}/, "");
     return n[t] ? n[t] : r;
   }) : e : e;
+}, f = function(e) {
+  return typeof e == "string" && (e.search(/({([^}]+)})/g) < 0 || e.search(/({\d})/g) < 0);
 };
-function o(e) {
+function u(e) {
   return Object.values(e).join();
 }
 export {
-  i as StringFormat,
-  o as concatValues,
+  o as StringFormat,
+  u as concatValues,
   c as hasChar,
-  u as hasDot
+  i as hasDot,
+  f as hasUnfilledParameter
 };

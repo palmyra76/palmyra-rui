@@ -41,14 +41,14 @@ class PalmyraGridStore extends PalmyraAbstractStore implements QueryStore<any>{
         var url: any = this.formatUrl(urlFormat, request);
         const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
-        return axios.get(url, params)
+        return this.isUrlValid(url) || this.getClient().get(url, params)
             .then(response => { return response.data });
     }
 
     queryLayout(request: QueryRequest): Promise<any> {
         var urlFormat = this.target + this.queryUrl();
         var url: any = this.formatUrl(urlFormat, request);
-        return axios.get(url, {
+        return this.isUrlValid(url) || this.getClient().get(url, {
             headers: {
                 action: 'schema'
             }
@@ -59,7 +59,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements QueryStore<any>{
     get(request: GetRequest, idProperty?: string): Promise<any> {
         var urlFormat = this.target + this.queryUrl();
         var url: any = this.formatUrl(urlFormat, request);
-        return axios.get(url)
+        return this.isUrlValid(url) || this.getClient().get(url)
             .then(response => { return response.data });
     }
 

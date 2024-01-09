@@ -1,6 +1,6 @@
 var m = Object.defineProperty;
-var n = (o, t, r) => t in o ? m(o, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : o[t] = r;
-var i = (o, t, r) => (n(o, typeof t != "symbol" ? t + "" : t, r), r);
+var e = (i, t, r) => t in i ? m(i, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : i[t] = r;
+var o = (i, t, r) => (e(i, typeof t != "symbol" ? t + "" : t, r), r);
 import "../../../chunks/ServerCardLayout.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
@@ -13,7 +13,7 @@ import "react-router-dom";
 /* empty css                        */import "@emotion/styled";
 import "@mui/x-tree-view";
 /* empty css                            */import "../../layout/card/CardLayout.js";
-import { StringFormat as p } from "../../utils/StringUtil.js";
+import { StringFormat as p, hasUnfilledParameter as n } from "../../utils/StringUtil.js";
 import "../../utils/pubsub/topic.js";
 import "react-chartjs-2";
 import "../../chart/chartjs/LineChart.js";
@@ -37,11 +37,11 @@ import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../form/PalmyraForm.js";
-class R {
+class W {
   constructor(t, r) {
-    i(this, "options");
-    i(this, "target");
-    i(this, "endPoint");
+    o(this, "options");
+    o(this, "target");
+    o(this, "endPoint");
     this.options = t, this.target = t.target, this.endPoint = r;
   }
   getEndPoint() {
@@ -56,7 +56,11 @@ class R {
   formatUrl(t, r) {
     return r ? p(p(t, r.options), r.endPointVars) : t;
   }
+  isUrlValid(t) {
+    if (n(t))
+      return Promise.reject("endPoint options yet to be populated " + t);
+  }
 }
 export {
-  R as PalmyraAbstractStore
+  W as PalmyraAbstractStore
 };

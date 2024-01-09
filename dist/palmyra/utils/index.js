@@ -1,35 +1,36 @@
-import { StringFormat as l, concatValues as p, hasChar as y, hasDot as h } from "./StringUtil.js";
-function t(n) {
-  return n && typeof n == "object" && !Array.isArray(n);
+import { StringFormat as u, concatValues as p, hasChar as y, hasDot as h, hasUnfilledParameter as m } from "./StringUtil.js";
+function t(e) {
+  return e && typeof e == "object" && !Array.isArray(e);
 }
-function c(n, ...e) {
-  if (!e.length)
-    return n;
-  const r = e.shift();
-  if (t(n) && t(r))
+function i(e, ...n) {
+  if (!n.length)
+    return e;
+  const r = n.shift();
+  if (t(e) && t(r))
     for (const o in r)
-      t(r[o]) ? (n[o] || Object.assign(n, { [o]: {} }), c(n[o], r[o])) : Object.assign(n, { [o]: r[o] });
-  return c(n, ...e);
+      t(r[o]) ? (e[o] || Object.assign(e, { [o]: {} }), i(e[o], r[o])) : Object.assign(e, { [o]: r[o] });
+  return i(e, ...n);
 }
-const s = (n) => {
-  var e = {};
-  return c(e, n), e;
-}, i = (n) => {
-  var e;
+const s = (e) => {
+  var n = {};
+  return i(n, e), n;
+}, c = (e) => {
+  var n;
   return function(r) {
-    clearTimeout(e), e = setTimeout(function() {
+    clearTimeout(n), n = setTimeout(function() {
       r.apply(null);
-    }, n || 0);
+    }, e || 0);
   };
-}, f = i(300);
+}, a = c(300);
 export {
-  l as StringFormat,
+  u as StringFormat,
   s as cloneDeep,
   p as concatValues,
-  f as delay,
-  i as delayGenerator,
+  a as delay,
+  c as delayGenerator,
   y as hasChar,
   h as hasDot,
+  m as hasUnfilledParameter,
   t as isObject,
-  c as mergeDeep
+  i as mergeDeep
 };

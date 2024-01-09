@@ -1,16 +1,16 @@
 var h = Object.defineProperty;
-var u = (r, e, t) => e in r ? h(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t;
-var d = (r, e, t) => (u(r, typeof e != "symbol" ? e + "" : e, t), t);
-import a from "axios";
-import { PalmyraAbstractStore as c } from "./AbstractStore.js";
-class y extends c {
-  constructor(t, n, o) {
-    super(t, n);
-    d(this, "idProperty");
-    this.idProperty = o;
+var d = (r, e, t) => e in r ? h(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t;
+var a = (r, e, t) => (d(r, typeof e != "symbol" ? e + "" : e, t), t);
+import u from "axios";
+import { PalmyraAbstractStore as g } from "./AbstractStore.js";
+class y extends g {
+  constructor(t, o, i) {
+    super(t, o);
+    a(this, "idProperty");
+    this.idProperty = i;
   }
   getClient() {
-    return a;
+    return u;
   }
   getEndPoint() {
     return this.endPoint;
@@ -26,21 +26,21 @@ class y extends c {
     this.endPoint.get;
   }
   query(t) {
-    var n = this.target + this.queryUrl(), o = this.formatUrl(n, t);
-    const s = { params: f(t) };
-    return a.get(o, s).then((l) => l.data);
+    var o = this.target + this.queryUrl(), i = this.formatUrl(o, t);
+    const s = { params: c(t) };
+    return this.isUrlValid(i) || this.getClient().get(i, s).then((l) => l.data);
   }
   queryLayout(t) {
-    var n = this.target + this.queryUrl(), o = this.formatUrl(n, t);
-    return a.get(o, {
+    var o = this.target + this.queryUrl(), i = this.formatUrl(o, t);
+    return this.isUrlValid(i) || this.getClient().get(i, {
       headers: {
         action: "schema"
       }
-    }).then((i) => i.data);
+    }).then((n) => n.data);
   }
-  get(t, n) {
-    var o = this.target + this.queryUrl(), i = this.formatUrl(o, t);
-    return a.get(i).then((s) => s.data);
+  get(t, o) {
+    var i = this.target + this.queryUrl(), n = this.formatUrl(i, t);
+    return this.isUrlValid(n) || this.getClient().get(n).then((s) => s.data);
   }
   getIdentity(t) {
     throw new Error("Method not implemented.");
@@ -49,9 +49,9 @@ class y extends c {
     return "id";
   }
 }
-function f(r) {
-  const e = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((s) => (r.sortOrder[s] === "asc" ? "+" : "-") + s), t = !!r.total, n = r.filter || {}, o = r.offset || 0, i = r.limit || 15;
-  return { ...n, _total: t, _orderBy: e.length ? e.join(",") : [], _offset: o, _limit: i };
+function c(r) {
+  const e = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((s) => (r.sortOrder[s] === "asc" ? "+" : "-") + s), t = !!r.total, o = r.filter || {}, i = r.offset || 0, n = r.limit || 15;
+  return { ...o, _total: t, _orderBy: e.length ? e.join(",") : [], _offset: i, _limit: n };
 }
 export {
   y as PalmyraGridStore

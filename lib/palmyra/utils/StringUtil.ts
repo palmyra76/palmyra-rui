@@ -9,7 +9,7 @@ const hasDot = (val: string): boolean => {
 }
 
 const StringFormat = function (str: string, data: any): string {
-    if(!data)
+    if (!data)
         return str;
 
     if (typeof str === 'string' && (data instanceof Array)) {
@@ -33,8 +33,12 @@ const StringFormat = function (str: string, data: any): string {
     }
 };
 
+const hasUnfilledParameter = function (url: string): boolean {
+    return (typeof url === 'string' && (url.search(/({([^}]+)})/g) < 0 || url.search(/({\d})/g) < 0));
+}
+
 function concatValues(param: Object): string {
     return Object.values(param).join()
 }
 
-export { StringFormat, hasChar, hasDot, concatValues };
+export { StringFormat, hasChar, hasDot, concatValues, hasUnfilledParameter };

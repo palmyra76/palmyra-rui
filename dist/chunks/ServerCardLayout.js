@@ -77,7 +77,7 @@ const Ce = (t) => {
       return;
     }
     (r || !_()) && q();
-  }, [u, b, D]);
+  }, [u, b, D, a]);
   const q = () => {
     const W = {
       sortOrder: D && Object.keys(D).length > 0 ? D : g,

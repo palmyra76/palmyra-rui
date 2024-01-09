@@ -1,23 +1,23 @@
-import { PalmyraGridStore as n } from "./PalmyraGridStore.js";
-class o extends n {
-  constructor(t, e, r) {
-    super(t, e, r);
+import { PalmyraGridStore as a } from "./PalmyraGridStore.js";
+class o extends a {
+  constructor(t, s, e) {
+    super(t, s, e);
   }
-  save(t, e) {
-    var r = this.target + this.postUrl(), s = this.formatUrl(r, e);
-    return this.getClient().post(s, t, { headers: { action: "save" } }).then((a) => a.data);
+  save(t, s) {
+    var e = this.target + this.postUrl(), r = this.formatUrl(e, s);
+    return this.isUrlValid(r) || this.getClient().post(r, t, { headers: { action: "save" } }).then((i) => i.data);
   }
-  post(t, e) {
-    var r = this.target + this.postUrl(), s = this.formatUrl(r, e);
-    return this.getClient().post(s, t).then((a) => a.data);
+  post(t, s) {
+    var e = this.target + this.postUrl(), r = this.formatUrl(e, s);
+    return this.isUrlValid(r) || this.getClient().post(r, t).then((i) => i.data);
   }
-  put(t, e) {
-    var r = this.target + this.putUrl(), s = this.formatUrl(r, e);
-    return this.getClient().put(s, t).then((a) => a.data);
+  put(t, s) {
+    var e = this.target + this.putUrl(), r = this.formatUrl(e, s);
+    return this.isUrlValid(r) || this.getClient().put(r, t).then((i) => i.data);
   }
-  remove(t, e) {
-    var r = this.target + this.deleteUrl(), s = this.formatUrl(r, t);
-    return this.getClient().delete(s, { data: {} }).then((a) => a.data);
+  remove(t, s) {
+    var e = this.target + this.deleteUrl(), r = this.formatUrl(e, t);
+    return this.isUrlValid(r) || this.getClient().delete(r, { data: {} }).then((i) => i.data);
   }
   postUrl() {
     const t = this.getEndPoint();

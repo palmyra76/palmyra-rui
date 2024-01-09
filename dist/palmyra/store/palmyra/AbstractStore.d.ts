@@ -8,5 +8,6 @@ declare class PalmyraAbstractStore {
     getOptions(): Record<string, any>;
     getTarget(): string;
     formatUrl(urlFormat: string, request: AbstractRequest): string;
+    isUrlValid(url: string): Promise<any>;
 }
 export { PalmyraAbstractStore };

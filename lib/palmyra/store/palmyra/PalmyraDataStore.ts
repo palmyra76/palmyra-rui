@@ -11,28 +11,29 @@ class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T>{
     save(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
         var url: any = this.formatUrl(urlFormat, request);
-        return this.getClient().post(url, data, { headers: { action: 'save' } })
+
+        return this.isUrlValid(url) || this.getClient().post(url, data, { headers: { action: 'save' } })
             .then(response => { return response.data });
     }
 
     post(data: any, request?: PostRequest): Promise<T> {
         var urlFormat = this.target + this.postUrl();
         var url: any = this.formatUrl(urlFormat, request);
-        return this.getClient().post(url, data)
+        return this.isUrlValid(url) || this.getClient().post(url, data)
             .then(response => { return response.data });
     }
 
     put(data: any, request?: PutRequest): Promise<T> {
         var urlFormat = this.target + this.putUrl();
         var url: any = this.formatUrl(urlFormat, request);
-        return this.getClient().put(url, data)
+        return this.isUrlValid(url) || this.getClient().put(url, data)
             .then(response => { return response.data });
     }
 
     remove(key: any, request?: RemoveRequest): Promise<T> {
         var urlFormat = this.target + this.deleteUrl();
         var url: any = this.formatUrl(urlFormat, key);
-        return this.getClient().delete(url, { data: {} })
+        return this.isUrlValid(url) || this.getClient().delete(url, { data: {} })
             .then(response => { return response.data });
     }
 

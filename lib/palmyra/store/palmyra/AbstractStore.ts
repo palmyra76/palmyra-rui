@@ -1,4 +1,4 @@
-import { StringFormat, IEndPoint, AbstractRequest } from "../../../main";
+import { StringFormat, IEndPoint, AbstractRequest, hasUnfilledParameter } from "../../../main";
 
 class PalmyraAbstractStore {
     options: Record<string, any>
@@ -28,6 +28,13 @@ class PalmyraAbstractStore {
             return StringFormat(StringFormat(urlFormat, request.options), request.endPointVars);
         else
             return urlFormat;
+    }
+
+    isUrlValid(url: string): Promise<any> {
+        if (hasUnfilledParameter(url)) {
+            return Promise.reject("endPoint options yet to be populated " + url)
+        }
+        return undefined;
     }
 }
 

@@ -87,7 +87,7 @@ const useServerQuery = (props: IServerQueryInput) => {
     if (fetchAll || !isEmptyFilter())
       refreshData();
 
-  }, [queryLimit, filter, sortOrder])
+  }, [queryLimit, filter, sortOrder, endPointVars])
 
   const refreshData = () => {
 
