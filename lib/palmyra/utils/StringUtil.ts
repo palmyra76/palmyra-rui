@@ -34,7 +34,7 @@ const StringFormat = function (str: string, data: any): string {
 };
 
 const hasUnfilledParameter = function (url: string): boolean {
-    return (typeof url === 'string' && (url.search(/({([^}]+)})/g) < 0 || url.search(/({\d})/g) < 0));
+    return (typeof url === 'string' && (url.search(/({([^}]+)})/g) < 0 || url.search(/(\[([\d]+)\])/g) < 0));
 }
 
 function concatValues(param: Object): string {

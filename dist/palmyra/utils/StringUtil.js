@@ -9,7 +9,7 @@ const c = (e, n) => {
     return n[t] ? n[t] : r;
   }) : e : e;
 }, f = function(e) {
-  return typeof e == "string" && (e.search(/({([^}]+)})/g) < 0 || e.search(/({\d})/g) < 0);
+  return typeof e == "string" && (e.search(/({([^}]+)})/g) < 0 || e.search(/(\[([\d]+)\])/g) < 0);
 };
 function u(e) {
   return Object.values(e).join();
