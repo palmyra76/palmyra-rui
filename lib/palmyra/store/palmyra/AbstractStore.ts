@@ -30,11 +30,11 @@ class PalmyraAbstractStore {
             return urlFormat;
     }
 
-    isUrlValid(url: string): Promise<any> {
-        if (hasUnfilledParameter(url)) {
-            return Promise.reject("endPoint options yet to be populated " + url)
+    isUrlValid(url: string): any {
+        if (hasUnfilledParameter(url)) {           
+            return Promise.reject("endPoint options yet to be populated " + url);
         }
-        return undefined;
+        return false;
     }
 }
 

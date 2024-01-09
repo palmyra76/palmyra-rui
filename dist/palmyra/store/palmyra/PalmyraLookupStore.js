@@ -24,8 +24,8 @@ class m extends u {
   }
   query(r) {
     var n = this.target + this.queryUrl(), e = this.formatUrl(n, r);
-    const d = { params: p(r) };
-    return h.get(e, d).then((l) => l.data);
+    const l = { params: p(r) };
+    return this.isUrlValid(e) || h.get(e, l).then((d) => d.data);
   }
 }
 function p(t) {

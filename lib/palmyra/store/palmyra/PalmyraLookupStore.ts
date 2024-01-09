@@ -37,7 +37,7 @@ class PalmyraLookupStore extends PalmyraAbstractStore implements LookupStore<any
         var url: any = this.formatUrl(urlFormat, request);
         const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
-        return axios.get(url, params)
+        return this.isUrlValid(url) || axios.get(url, params)
             .then(response => { return response.data });
     }
 }

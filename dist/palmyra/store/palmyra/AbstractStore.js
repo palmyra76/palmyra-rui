@@ -57,8 +57,7 @@ class W {
     return r ? p(p(t, r.options), r.endPointVars) : t;
   }
   isUrlValid(t) {
-    if (n(t))
-      return Promise.reject("endPoint options yet to be populated " + t);
+    return n(t) ? Promise.reject("endPoint options yet to be populated " + t) : !1;
   }
 }
 export {
