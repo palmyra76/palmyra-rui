@@ -37,10 +37,18 @@ const StaticSummaryGrid = () => {
             }
         }).build();
 
+    const customButtom = [
+        <div>
+            <Button className='grid-btn'>aa</Button>
+        </div>,
+        <div>
+            <Button className='grid-btn'>bb</Button>
+        </div>
+    ];
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <PalmyraGrid columns={columns} endPoint="/welcome"
-                customizer={gridCustomizer}
+                customizer={gridCustomizer} customButton={customButtom}
                 layoutParams={{}} storeFactory={storeFactory}
             />
         </ErrorBoundary>

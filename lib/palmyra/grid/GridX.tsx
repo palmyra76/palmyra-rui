@@ -20,13 +20,15 @@ interface GridXOptions extends IServerQueryInput {
   EmptyChild?: React.FC,
   onRowClick?: Function,
   onNewClick?: Function,
-  customizer?: GridCustomizer
+  customizer?: GridCustomizer,
+  customButton?: React.ReactNode[]
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
   const { columns, children, EmptyChild, onRowClick, quickSearch } = props;
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
+  const customButton = props.customButton;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
@@ -70,7 +72,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         setSortColumns(d);
       },
       getCurrentData: () => {
-          return data;
+        return data;
       }
     };
   }, [getQueryLimit]);
@@ -157,7 +159,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const visiblePagination = !!props.pageSize;
   const visibleFilter = !!quickSearch;
 
-
   return (
     <div>
       <div>
@@ -236,6 +237,11 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                 </Button>
               </Tooltip>
             </div>) : <></>}
+          {customButton && customButton.map((button: any, index: any) => (
+            <div key={index} className='grid-header-button grid-export-btn'>
+              {button}
+            </div>
+          ))}
         </div>
         <div className='grid-table'>
           <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer}
