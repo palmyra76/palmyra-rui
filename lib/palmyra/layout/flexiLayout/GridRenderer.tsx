@@ -12,6 +12,7 @@ import { DefaultQueryParams } from '../../store';
 interface GridRendererInput {
     layout: TableLayout,
     context: PageContext,
+    onDataChange?: (newData: any[], oldData?: any[]) => void
     customizer?: GridCustomizer,
     defaultParams?: DefaultQueryParams,
     customButton?: React.ReactNode[]
@@ -43,6 +44,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
+                onDataChange={props.onDataChange}
                 onNewClick={onNewClick} customizer={props.customizer} customButton={props.customButton}
                 quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
             ></GridX>

@@ -8,6 +8,7 @@ interface IPalmyraGridInput {
     columns: ColumnDefinition[],
     actions?: ActionOptions,
     topic?: string,
+    onDataChange?: (newData: any[], oldData?: any[]) => void
     quickSearch?: string,
     customizer?: GridCustomizer,
     endPoint: IEndPoint,
@@ -53,6 +54,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
         <>
             <StoreFactoryContext.Provider value={storeFactory}>
                 <GridRenderer layout={layout} context={layoutParams} 
+                onDataChange={props.onDataChange}
                 defaultParams={props.defaultParams} customButton={customButton}
                 customizer={props.customizer} ref={ref}></GridRenderer>
             </StoreFactoryContext.Provider>

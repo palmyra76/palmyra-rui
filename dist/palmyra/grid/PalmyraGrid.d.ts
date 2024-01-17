@@ -5,6 +5,7 @@ interface IPalmyraGridInput {
     columns: ColumnDefinition[];
     actions?: ActionOptions;
     topic?: string;
+    onDataChange?: (newData: any[], oldData?: any[]) => void;
     quickSearch?: string;
     customizer?: GridCustomizer;
     endPoint: IEndPoint;

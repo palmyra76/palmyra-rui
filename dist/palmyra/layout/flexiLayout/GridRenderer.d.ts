@@ -7,6 +7,7 @@ import { DefaultQueryParams } from '../../store';
 interface GridRendererInput {
     layout: TableLayout;
     context: PageContext;
+    onDataChange?: (newData: any[], oldData?: any[]) => void;
     customizer?: GridCustomizer;
     defaultParams?: DefaultQueryParams;
     customButton?: React.ReactNode[];

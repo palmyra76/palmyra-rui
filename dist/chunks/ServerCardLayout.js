@@ -1884,6 +1884,7 @@ const cr = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
     {
       layout: v,
       context: s,
+      onDataChange: e.onDataChange,
       defaultParams: e.defaultParams,
       customButton: g,
       customizer: e.customizer,
@@ -1908,6 +1909,7 @@ const cr = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
       store: v,
       pageSize: s,
       onRowClick: P,
+      onDataChange: e.onDataChange,
       onNewClick: C,
       customizer: e.customizer,
       customButton: e.customButton,
