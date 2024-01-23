@@ -45,6 +45,10 @@
   position: relative;
 }
 
+.grid-custom-button {
+  position: relative;
+}
+
 .grid-button-icon {
   font-size: 1.5rem !important;
 }
@@ -135,6 +139,11 @@
 
 /* grid button  */
 .grid-header-button .MuiButton-root {
+  min-width: auto !important;
+  width: auto;
+}
+
+.grid-custom-button .MuiButton-root {
   min-width: auto !important;
   width: auto;
 }

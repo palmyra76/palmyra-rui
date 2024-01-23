@@ -1834,7 +1834,7 @@ const lr = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
       e.onNewClick ? /* @__PURE__ */ o("div", { className: "grid-header-button", onClick: () => {
         e.onNewClick();
       }, children: /* @__PURE__ */ o(De, { title: "New", placement: "top", children: /* @__PURE__ */ o(fe, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ o(nn, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ o(Se, {}),
-      b && b.map((N, re) => /* @__PURE__ */ o("div", { className: "grid-header-button grid-export-btn", children: N }, re))
+      b && b.map((N, re) => /* @__PURE__ */ o("div", { className: "grid-custom-button grid-export-btn", children: N }, re))
     ] }),
     /* @__PURE__ */ o("div", { className: "grid-table", children: /* @__PURE__ */ o(
       Jt,

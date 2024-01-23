@@ -238,7 +238,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               </Tooltip>
             </div>) : <></>}
           {customButton && customButton.map((button: any, index: any) => (
-            <div key={index} className='grid-header-button grid-export-btn'>
+            <div key={index} className='grid-custom-button grid-export-btn'>
               {button}
             </div>
           ))}
