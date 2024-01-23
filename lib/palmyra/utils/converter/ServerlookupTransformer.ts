@@ -20,6 +20,8 @@ class ServerlookupTransformer implements Converter<any, any> {
         const p: any = props;
         const idKey = p?.lookupOptions?.idAttribute || 'id';
         const r:any = getValueByKey(props.attribute, data);
+        if(r instanceof Array)
+            return r;
         return r?.[idKey];
     };
 
