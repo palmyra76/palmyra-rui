@@ -28,9 +28,9 @@ const getReactField = (props: FieldRequest, Input: React.FC) => {
     />;
 }
 
-const getTobeImplemented = () => {
-    return <div>To be Implemented</div>
-}
+// const getTobeImplemented = () => {
+//     return <div>To be Implemented</div>
+// }
 
 const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
     const { type } = fieldDef;
@@ -64,7 +64,7 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
         case 'integer':
             return getReactField(props, MuiIntegerField);
         case 'multiSelect':
-            return getTobeImplemented();
+            return getReactField(props, MuiSelect);
         case 'dateRange':
             return getReactField(props, MuiDateRangePicker);
         case 'autoComplete':
