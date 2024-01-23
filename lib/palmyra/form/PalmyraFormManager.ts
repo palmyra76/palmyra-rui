@@ -106,7 +106,7 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
             validationRules[fieldDef.attribute] = validationRule;
 
             const eventListener = field.eventListener || formListeners.eventListeners[fieldAttrib]
-            const valueListener = formListeners.valueListeners[fieldAttrib];
+            const valueListener = field.valueListener || formListeners.valueListeners[fieldAttrib];
 
             var result = useEventListeners(fieldDef, formDataRef, // getter.getFormData(formDataRef.current),
                 onDataChange, validationRule, undefined, eventListener, valueListener);

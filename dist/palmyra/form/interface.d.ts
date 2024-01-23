@@ -3,7 +3,7 @@ import { IEndPoint } from "../layout";
 import { LookupStore } from "../store";
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
-import { IFieldEventListener } from ".";
+import { IFieldEventListener, IFieldValueListener } from ".";
 /**
  * This definitions will cater to the Form Definition format
  *
@@ -37,6 +37,7 @@ interface AttributeDefinition {
     autoFocus?: boolean;
     variant?: 'standard' | 'outlined' | 'filled';
     eventListener?: IFieldEventListener;
+    valueListener?: IFieldValueListener;
     fieldProps?: IFieldProps;
 }
 interface IFieldProps {

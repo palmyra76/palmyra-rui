@@ -40,7 +40,7 @@ function at(t, n, F, d, u) {
     a && (m.addFieldRef(v, a), p[v] = a);
     const c = Q(o);
     V[o.attribute] = o, M[o.attribute] = c;
-    const P = s.eventListener || E.eventListeners[v], T = E.valueListeners[v];
+    const P = s.eventListener || E.eventListeners[v], T = s.valueListener || E.valueListeners[v];
     var k = $(
       o,
       l,
