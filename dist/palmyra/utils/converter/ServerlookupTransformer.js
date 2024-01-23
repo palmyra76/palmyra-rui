@@ -9,7 +9,7 @@ class k {
     o(this, "getRawdata", (t, e) => {
       var u;
       const r = e, p = ((u = r == null ? void 0 : r.lookupOptions) == null ? void 0 : u.idAttribute) || "id", i = s(e.attribute, t);
-      return i instanceof Array ? i : i == null ? void 0 : i[p];
+      return i instanceof Array ? i : i instanceof Object ? i == null ? void 0 : i[p] : i;
     });
     o(this, "getFieldData", (t, e) => {
       var p, i;
@@ -17,11 +17,11 @@ class k {
       if (r.multiple)
         return s(r.attribute, t);
       if (r.displayAttribute) {
-        const u = r.attribute, l = r.displayAttribute, a = {}, y = s(u, t);
-        if (y == null)
+        const u = r.attribute, l = r.displayAttribute, a = {}, b = s(u, t);
+        if (b == null)
           return;
-        const b = s(l, t), d = ((p = r.lookupOptions) == null ? void 0 : p.idAttribute) || "id", f = ((i = r.lookupOptions) == null ? void 0 : i.displayAttribute) || "name";
-        return c(d, a, y), c(f, a, b), a;
+        const f = s(l, t), y = ((p = r.lookupOptions) == null ? void 0 : p.idAttribute) || "id", d = ((i = r.lookupOptions) == null ? void 0 : i.displayAttribute) || "name";
+        return c(y, a, b), c(d, a, f), a;
       } else
         return s(this.props.attribute, t);
     });

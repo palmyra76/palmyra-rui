@@ -22,7 +22,9 @@ class ServerlookupTransformer implements Converter<any, any> {
         const r:any = getValueByKey(props.attribute, data);
         if(r instanceof Array)
             return r;
-        return r?.[idKey];
+        if(r instanceof Object)
+            return r?.[idKey];
+        return r;
     };
 
     getFieldData = (data: any, p: AttributeDefinition) => {
