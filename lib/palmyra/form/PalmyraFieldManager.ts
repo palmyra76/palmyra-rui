@@ -15,6 +15,8 @@ function useEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
     const [error, setError] = useState<FieldValidStatus>({ status: false, message: '' });
     const metaInfo = useRef<any>({});
     const timer: any = useRef<ReturnType<typeof setTimeout>>(null);
+    const fieldEventListener = eventListener || NoopFieldEventListener;
+    const fieldValueListener = valueListener || NoopFieldValueListener;
 
     useEffect(() => {
         var key = fieldDef.attribute;
@@ -23,11 +25,13 @@ function useEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
     }, []);
 
     useEffect(() => {
-        setFieldData(getDataDefault(formatter.getFieldData(formDataRef.current, fieldDef)));
+        const d = getDataDefault(formatter.getFieldData(formDataRef.current, fieldDef));
+        setFieldData(d);
+        const attrib = fieldDef.attribute;
+        const key = fieldDef.name || attrib;
+        valueListener.onValue(key, d);
     }, [formatter.getRawdata(formDataRef.current, fieldDef)])
 
-    const fieldEventListener = eventListener || NoopFieldEventListener;
-    const fieldValueListener = valueListener || NoopFieldValueListener;
     var mutateOptions: IMutateOptions, setMutateOptions: (d: SetStateAction<IMutateOptions>) => void;
 
     if (fieldDef.mutant) {
