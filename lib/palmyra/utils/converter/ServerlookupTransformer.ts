@@ -53,10 +53,10 @@ class ServerlookupTransformer implements Converter<any, any> {
     format = (data: any): any => {
 
         const props: IServerLookupDefinition = this.props;
-        if (props.multiple) {
+        // return the data as it is for Array and Objects - where displayAttribute is not specified
+        if (props.multiple || undefined == props.displayAttribute || null == props.displayAttribute) {
             return data;
         }
-
 
         const idKey = props.lookupOptions?.idAttribute || 'id';
         const labelKey = props.lookupOptions?.displayAttribute || 'name';
