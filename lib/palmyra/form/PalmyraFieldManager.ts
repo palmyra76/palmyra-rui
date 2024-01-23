@@ -29,7 +29,7 @@ function useEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
         setFieldData(d);
         const attrib = fieldDef.attribute;
         const key = fieldDef.name || attrib;
-        valueListener.onValue(key, d);
+        fieldValueListener.onValue(key, d);
     }, [formatter.getRawdata(formDataRef.current, fieldDef)])
 
     var mutateOptions: IMutateOptions, setMutateOptions: (d: SetStateAction<IMutateOptions>) => void;

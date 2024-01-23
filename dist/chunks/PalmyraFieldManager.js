@@ -1,7 +1,7 @@
 import { useMemo as _, useRef as C, useEffect as A, useState as q } from "react";
 import Q from "../palmyra/validator/DataValidator.js";
 import { getFormatConverter as U } from "../palmyra/utils/converter/FormatterFactory.js";
-import { mergeDeep as N } from "../palmyra/utils/index.js";
+import { mergeDeep as w } from "../palmyra/utils/index.js";
 import { getLookupStore as W } from "../palmyra/form/PalmyraStoreManager.js";
 import { setValueByKey as z } from "../palmyra/form/FormUtil.js";
 function G() {
@@ -18,11 +18,11 @@ function at(t, n, F, d, u) {
   const E = u || { eventListeners: {}, valueListeners: {} }, p = _(() => ({}), [t]), m = d || G();
   var V = {}, M = {};
   const b = C(!1);
-  var l = C(N({}, t));
+  var l = C(w({}, t));
   const L = n;
-  var S = C({}), g = S.current, w = {};
-  (() => F && F == "new")() && N(l.current, w), A(() => {
-    l.current = N({}, t);
+  var S = C({}), g = S.current, B = {};
+  (() => F && F == "new")() && w(l.current, B), A(() => {
+    l.current = w({}, t);
   }, [t]);
   const y = (i, s, f) => {
     i && z(i, l.current, s), g = Object.assign({}, g, f);
@@ -35,7 +35,7 @@ function at(t, n, F, d, u) {
     return !0;
   };
   return { getFieldManager: _(() => (s, f, a) => {
-    l.current = N({}, t);
+    l.current = w({}, t);
     var v = s.name || s.attribute, o = { ...s, type: f };
     a && (m.addFieldRef(v, a), p[v] = a);
     const c = Q(o);
@@ -92,7 +92,7 @@ const ut = {
   }
 };
 function $(t, n, F, d, u, E, p) {
-  const m = U(t, n), [V, M] = q(R(m.getFieldData(n.current, t))), [b, l] = q({ status: !1, message: "" }), L = C({}), S = C(null), g = E || Y, w = p || Z;
+  const m = U(t, n), [V, M] = q(R(m.getFieldData(n.current, t))), [b, l] = q({ status: !1, message: "" }), L = C({}), S = C(null), g = E || Y, B = p || Z;
   A(() => {
     var e = t.attribute;
     const r = i(V);
@@ -101,18 +101,18 @@ function $(t, n, F, d, u, E, p) {
     const e = R(m.getFieldData(n.current, t));
     M(e);
     const r = t.attribute, h = t.name || r;
-    p.onValue(h, e);
+    B.onValue(h, e);
   }, [m.getRawdata(n.current, t)]);
-  var B, y;
+  var N, y;
   if (t.mutant) {
     const [e, r] = q({
       required: t.required == !0,
       readonly: t.readonly == !0,
       visible: t.visible != !1
     });
-    B = e, y = r;
+    N = e, y = r;
   } else
-    B = {
+    N = {
       required: t.required == !0,
       readonly: t.readonly == !0,
       visible: t.visible != !1
@@ -129,7 +129,7 @@ function $(t, n, F, d, u, E, p) {
       const J = m.format(e);
       F(h, J, { [h]: r.status });
     }
-    g.onChange && g.onChange(x, e, r.status), w.onValue(x, e, r.status);
+    g.onChange && g.onChange(x, e, r.status), B.onValue(x, e, r.status);
   }, O = (e, r) => {
     M(e), r && (clearTimeout(S.current), S.current = setTimeout(function() {
       I(e);
@@ -179,7 +179,7 @@ function $(t, n, F, d, u, E, p) {
     }, onValueChange: (e) => {
       O(e, !0);
     } },
-    mutateOptions: B,
+    mutateOptions: N,
     setMutateOptions: y,
     getMeta: (e) => L.current[e],
     setMeta: (e, r) => {
