@@ -17,7 +17,10 @@ class ServerlookupTransformer implements Converter<any, any> {
     }
 
     getRawdata = (data: any, props: AttributeDefinition) => {
-        return getValueByKey(props.attribute, data);
+        const p: any = props;
+        const idKey = p?.lookupOptions?.idAttribute || 'id';
+        const r:any = getValueByKey(props.attribute, data);
+        return r?.[idKey];
     };
 
     getFieldData = (data: any, p: AttributeDefinition) => {
