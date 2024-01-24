@@ -1,41 +1,44 @@
 var A = Object.defineProperty;
-var m = (n, t, e) => t in n ? A(n, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : n[t] = e;
-var o = (n, t, e) => (m(n, typeof t != "symbol" ? t + "" : t, e), e);
-import { getValueByKey as s, setValueByKey as c } from "../../form/FormUtil.js";
+var m = (p, t, e) => t in p ? A(p, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : p[t] = e;
+var s = (p, t, e) => (m(p, typeof t != "symbol" ? t + "" : t, e), e);
+import { getValueByKey as n, setValueByKey as f } from "../../form/FormUtil.js";
 class k {
   constructor(t, e) {
-    o(this, "props");
-    o(this, "formDataRef");
-    o(this, "getRawdata", (t, e) => {
+    s(this, "props");
+    s(this, "formDataRef");
+    s(this, "getRawdata", (t, e) => {
       var u;
-      const r = e, p = ((u = r == null ? void 0 : r.lookupOptions) == null ? void 0 : u.idAttribute) || "id", i = s(e.attribute, t);
-      return i instanceof Array ? i : i instanceof Object ? i == null ? void 0 : i[p] : i;
+      const r = e, l = ((u = r == null ? void 0 : r.lookupOptions) == null ? void 0 : u.idAttribute) || "id", i = n(e.attribute, t);
+      return i instanceof Array ? i : i instanceof Object ? i == null ? void 0 : i[l] : i;
     });
-    o(this, "getFieldData", (t, e) => {
-      var p, i;
+    s(this, "getFieldData", (t, e) => {
+      var u, a;
       const r = this.props;
       if (r.multiple)
-        return s(r.attribute, t);
+        return n(r.attribute, t);
+      const l = ((u = r.lookupOptions) == null ? void 0 : u.idAttribute) || "id", i = ((a = r.lookupOptions) == null ? void 0 : a.displayAttribute) || "name";
       if (r.displayAttribute) {
-        const u = r.attribute, l = r.displayAttribute, a = {}, b = s(u, t);
+        const o = r.attribute, y = r.displayAttribute, c = {}, b = n(o, t);
         if (b == null)
           return;
-        const f = s(l, t), y = ((p = r.lookupOptions) == null ? void 0 : p.idAttribute) || "id", d = ((i = r.lookupOptions) == null ? void 0 : i.displayAttribute) || "name";
-        return c(y, a, b), c(d, a, f), a;
-      } else
-        return s(this.props.attribute, t);
+        const d = n(y, t);
+        return f(l, c, b), f(i, c, d), c;
+      } else {
+        const o = n(this.props.attribute, t);
+        return o != null && o[l] || o != null && o[i] ? o : void 0;
+      }
     });
-    o(this, "format", (t) => {
-      var u, l;
+    s(this, "format", (t) => {
+      var u, a;
       const e = this.props;
       if (e.multiple || e.displayAttribute == null || e.displayAttribute == null)
         return t;
-      const r = ((u = e.lookupOptions) == null ? void 0 : u.idAttribute) || "id", p = ((l = e.lookupOptions) == null ? void 0 : l.displayAttribute) || "name";
-      return s(r, t) != null && e.displayAttribute && c(e.displayAttribute, this.formDataRef.current, s(p, t)), s(r, t);
+      const r = ((u = e.lookupOptions) == null ? void 0 : u.idAttribute) || "id", l = ((a = e.lookupOptions) == null ? void 0 : a.displayAttribute) || "name";
+      return n(r, t) != null && e.displayAttribute && f(e.displayAttribute, this.formDataRef.current, n(l, t)), n(r, t);
     });
-    o(this, "parse", (t) => t);
-    o(this, "convert", (t) => t);
-    o(this, "getDefaultValue", (t) => this.props.multiple ? t || [] : t || null);
+    s(this, "parse", (t) => t);
+    s(this, "convert", (t) => t);
+    s(this, "getDefaultValue", (t) => this.props.multiple ? t || [] : t || null);
     this.props = t, this.formDataRef = e;
   }
 }

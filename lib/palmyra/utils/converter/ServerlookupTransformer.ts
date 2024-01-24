@@ -19,10 +19,10 @@ class ServerlookupTransformer implements Converter<any, any> {
     getRawdata = (data: any, props: AttributeDefinition) => {
         const p: any = props;
         const idKey = p?.lookupOptions?.idAttribute || 'id';
-        const r:any = getValueByKey(props.attribute, data);
-        if(r instanceof Array)
+        const r: any = getValueByKey(props.attribute, data);
+        if (r instanceof Array)
             return r;
-        if(r instanceof Object)
+        if (r instanceof Object)
             return r?.[idKey];
         return r;
     };
@@ -33,6 +33,9 @@ class ServerlookupTransformer implements Converter<any, any> {
             return getValueByKey(props.attribute, data);
         }
 
+        const idKey = props.lookupOptions?.idAttribute || 'id';
+        const labelKey = props.lookupOptions?.displayAttribute || 'name';
+
         if (props.displayAttribute) {
             const idAttribute = props.attribute;
             const displayAttribute = props.displayAttribute;
@@ -42,15 +45,16 @@ class ServerlookupTransformer implements Converter<any, any> {
             if (undefined == value) {
                 return;
             }
-            const displayValue = getValueByKey(displayAttribute, data);
 
-            const idKey = props.lookupOptions?.idAttribute || 'id';
-            const labelKey = props.lookupOptions?.displayAttribute || 'name';
+            const displayValue = getValueByKey(displayAttribute, data);
             setValueByKey(idKey, option, value);
             setValueByKey(labelKey, option, displayValue);
             return option;
         } else {
-            return getValueByKey(this.props.attribute, data);
+            const v = getValueByKey(this.props.attribute, data);
+            if (v?.[idKey] || v?.[labelKey])
+                return v;
+            return undefined;
         }
     };
 
