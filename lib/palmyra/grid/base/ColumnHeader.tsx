@@ -38,6 +38,7 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
         <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
             <div style={{
                 display: 'flex',
+                fontWeight:'bold',
                 gap: '2px',
                 justifyContent: meta.columnDef.type === 'number' ? 'flex-end' : 'flex-start'
             }} onClick={() => handleSortColumn()}>
