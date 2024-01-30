@@ -49,14 +49,16 @@ const useServerQuery = (props: IServerQueryInput) => {
 
   const gotoPage = (pageNo: number) => {    
     setQueryLimit((q) => {      
-      return { limit: q.limit, total: q.total, offset: (pageNo * defaultPageSize) }
+      return { limit: q.limit, total: q.total, offset: (pageNo * q.limit) }
     });
   };
 
   const setPageSize = (pageSize: number) => {
-    const limit = (pageSize > 10 || pageSize == -1) ? pageSize : 15;    
+    const limit:number = (pageSize > 10 || pageSize == -1) ? pageSize : 15;
+    
     setQueryLimit((q) => {
-      return { limit, total: q.total, offset: q.offset }
+      const offset:number = Math.floor(q.offset / limit) * limit;      
+      return { limit, total: q.total, offset: offset }
     });
   }
 
