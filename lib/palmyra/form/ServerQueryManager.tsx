@@ -47,17 +47,17 @@ const useServerQuery = (props: IServerQueryInput) => {
     return queryLimit;
   }
 
-  const gotoPage = (pageNo: number) => {    
-    setQueryLimit((q) => {      
+  const gotoPage = (pageNo: number) => {
+    setQueryLimit((q) => {
       return { limit: q.limit, total: q.total, offset: (pageNo * q.limit) }
     });
   };
 
   const setPageSize = (pageSize: number) => {
-    const limit:number = (pageSize > 10 || pageSize == -1) ? pageSize : 15;
-    
+    const limit: number = (pageSize > 10 || pageSize == -1) ? pageSize : 15;
+
     setQueryLimit((q) => {
-      const offset:number = Math.floor(q.offset / limit) * limit;      
+      const offset: number = Math.floor(q.offset / limit) * limit;
       return { limit, total: q.total, offset: offset }
     });
   }
@@ -89,7 +89,7 @@ const useServerQuery = (props: IServerQueryInput) => {
     if (fetchAll || !isEmptyFilter())
       refreshData();
 
-  }, [queryLimit, filter, sortOrder, endPointVars])
+  }, [queryLimit, sortOrder, endPointVars])
 
   const refreshData = () => {
 
@@ -142,6 +142,7 @@ const useServerQuery = (props: IServerQueryInput) => {
         return { ...f };
       });
     }
+    gotoPage(0);
   };
 
   const setQueryFilter = (filter) => {
@@ -150,6 +151,7 @@ const useServerQuery = (props: IServerQueryInput) => {
     else {
       setFilter({});
     }
+    gotoPage(0);
   };
 
   const setSortColumns = (sortOrder) => {
