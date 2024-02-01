@@ -61,13 +61,13 @@ const Ce = (t) => {
   var j, J;
   const { store: e, quickSearch: n } = t, r = t.fetchAll != !1, [a, i] = I(t.endPointOptions), [s, c] = I(null), d = ((j = t.defaultParams) == null ? void 0 : j.filter) || {}, g = ((J = t.defaultParams) == null ? void 0 : J.sort) || {}, [b, v] = t.filterTopic ? mn(t.filterTopic, d) : I(d), [P, C] = I({}), _ = K(t.initialFetch == !1), W = t.pageSize ? t.pageSize : 15;
   var A = W instanceof Array ? W : [W], B = W instanceof Array ? W[0] : W;
-  const [h, f] = I({ limit: B, offset: 0, total: !0 }), [y, p] = I(null), w = () => Math.round(h.offset / h.limit), S = () => h, x = (M) => {
+  const [h, f] = I({ limit: B, offset: 0, total: !0 }), [y, p] = I(null), w = () => Math.round(h.offset / h.limit), S = () => h, O = (M) => {
     f((k) => ({ limit: k.limit, total: k.total, offset: M * k.limit }));
   }, R = (M) => {
     const k = M > 10 || M == -1 ? M : 15;
     f((u) => {
-      const O = Math.floor(u.offset / k) * k;
-      return { limit: k, total: u.total, offset: O };
+      const x = Math.floor(u.offset / k) * k;
+      return { limit: k, total: u.total, offset: x };
     });
   }, V = () => b ? Object.keys(b).length == 0 : !1, E = (M) => {
     p((k) => (setTimeout(() => {
@@ -80,7 +80,7 @@ const Ce = (t) => {
       return;
     }
     (r || !V()) && Y();
-  }, [h, b, P, a]);
+  }, [h, P, a]);
   const Y = () => {
     const k = {
       sortOrder: P && Object.keys(P).length > 0 ? P : g,
@@ -94,8 +94,8 @@ const Ce = (t) => {
         e.query(k).then((u) => {
           E(u.result), c(u.total);
         }).catch((u) => {
-          var O = u.response ? u.response : u;
-          console.error("error while fetching", O), D();
+          var x = u.response ? u.response : u;
+          console.error("error while fetching", x), D();
         });
       } catch (u) {
         console.error(u), l();
@@ -109,18 +109,18 @@ const Ce = (t) => {
   };
   return {
     setQueryFilter: (M) => {
-      typeof M == "function" || M && Object.keys(M).length > 0 ? v(M) : v({});
+      typeof M == "function" || M && Object.keys(M).length > 0 ? v(M) : v({}), O(0);
     },
     setQuickSearch: (M) => {
       const k = n;
-      v(M ? (u) => (u[k] = M, { ...u }) : (u) => (delete u[k], { ...u }));
+      v(M ? (u) => (u[k] = M, { ...u }) : (u) => (delete u[k], { ...u })), O(0);
     },
     setSortColumns: (M) => {
       C(M);
     },
     setEndPointOptions: i,
     refreshData: Y,
-    gotoPage: x,
+    gotoPage: O,
     setPageSize: R,
     getPageNo: w,
     getQueryLimit: S,
@@ -170,8 +170,8 @@ const Oo = ne(function(e, n) {
     getOptions() {
     }
   }), [i]);
-  var x = Ve(e, i.data, e.label);
-  e.readonly && (x.inputprops = { readOnly: !0 });
+  var O = Ve(e, i.data, e.label);
+  e.readonly && (O.inputprops = { readOnly: !0 });
   function R(l, D) {
     const T = Ke(i.data);
     var q = T.indexOf(l);
@@ -217,7 +217,7 @@ const Oo = ne(function(e, n) {
             className: "MuiServerCheckBoxFormControl",
             fullWidth: !0,
             error: v.status,
-            ...x,
+            ...O,
             children: [
               A ? A.filter((l) => p ? E(w(l)) : !0).map((l) => /* @__PURE__ */ o(
                 ze,
@@ -250,13 +250,13 @@ const Oo = ne(function(e, n) {
     pageSize: 15,
     quickSearch: h,
     initialFetch: !1
-  }, y = Ce(f), p = C.eventListeners, w = C.error, { mutateOptions: S, setMutateOptions: x } = C, R = C.data, V = v && c.length < (R ? 2 : 1), { setQueryFilter: E, setEndPointOptions: Y, setQuickSearch: l, totalRecords: D, refreshData: T } = y, q = y.data, U = ye(A) ? (m) => ve(A, m) : (m) => m == null ? void 0 : m[A], j = ye(B) ? (m) => ve(B, m) : (m) => m == null ? void 0 : m[B];
+  }, y = Ce(f), p = C.eventListeners, w = C.error, { mutateOptions: S, setMutateOptions: O } = C, R = C.data, V = v && c.length < (R ? 2 : 1), { setQueryFilter: E, setEndPointOptions: Y, setQuickSearch: l, totalRecords: D, refreshData: T } = y, q = y.data, U = ye(A) ? (m) => ve(A, m) : (m) => m == null ? void 0 : m[A], j = ye(B) ? (m) => ve(B, m) : (m) => m == null ? void 0 : m[B];
   ae(() => {
     var m = R != "" ? R : void 0;
     m && d([m]);
   }, [C.data]), ae(() => {
     const m = q ? [...q] : [], F = R != "" ? R : void 0, te = U(F), Me = j(F);
-    m && te && Me && !O(m, te) && m.unshift(F), d(m), s.current < D && (s.current = D);
+    m && te && Me && !x(m, te) && m.unshift(F), d(m), s.current < D && (s.current = D);
   }, [q, D]), ae(() => {
     dt(J);
   }, [g]), ae(() => {
@@ -276,7 +276,7 @@ const Oo = ne(function(e, n) {
   const k = (m) => {
     p.onValueChange(m);
   }, u = (m) => typeof m == "object" ? j(m) + "" : (console.log(m), "");
-  function O(m, F) {
+  function x(m, F) {
     return m.find((te) => {
       if (U(te) == F)
         return te;
@@ -299,16 +299,16 @@ const Oo = ne(function(e, n) {
       C.setData(m, F);
     },
     setVisible(m) {
-      x((F) => ({ ...F, visible: m }));
+      O((F) => ({ ...F, visible: m }));
     },
     setRequired(m) {
-      x((F) => ({ ...F, required: m }));
+      O((F) => ({ ...F, required: m }));
     },
     setReadOnly(m) {
-      x((F) => ({ ...F, readonly: m }));
+      O((F) => ({ ...F, readonly: m }));
     },
     setAttribute(m) {
-      x((F) => ({ ...F, ...m }));
+      O((F) => ({ ...F, ...m }));
     },
     setFilter(m) {
       E(m);
@@ -398,35 +398,35 @@ const Oo = ne(function(e, n) {
     pageSize: 15,
     quickSearch: B,
     initialFetch: !1
-  }, f = Ce(h), y = C.eventListeners, p = C.error, { mutateOptions: w, setMutateOptions: S } = C, x = C.data, R = v && c.length < (x ? 2 : 1), { setQueryFilter: V, setEndPointOptions: E, setQuickSearch: Y, totalRecords: l, refreshData: D } = f, T = f.data, q = ye(A) ? (u) => ve(A, u) : (u) => u == null ? void 0 : u[A];
+  }, f = Ce(h), y = C.eventListeners, p = C.error, { mutateOptions: w, setMutateOptions: S } = C, O = C.data, R = v && c.length < (O ? 2 : 1), { setQueryFilter: V, setEndPointOptions: E, setQuickSearch: Y, totalRecords: l, refreshData: D } = f, T = f.data, q = ye(A) ? (u) => ve(A, u) : (u) => u == null ? void 0 : u[A];
   ae(() => {
-    var u = x != "" ? x : void 0;
+    var u = O != "" ? O : void 0;
     u && d([u]);
   }, [C.data]), ae(() => {
-    const O = (T ? [...T] : []).map((he) => q(he)), $ = x != "" ? x : void 0;
-    O && $ && !M(O, $) && O.unshift($), d(O), s.current < l && (s.current = l);
+    const x = (T ? [...T] : []).map((he) => q(he)), $ = O != "" ? O : void 0;
+    x && $ && !M(x, $) && x.unshift($), d(x), s.current < l && (s.current = l);
   }, [T, l]), ae(() => {
     dt(U);
   }, [g, v]);
   function U() {
-    v && (g.length > 0 && g != x ? Y("*" + g + "*") : T ? Y(null) : D());
+    v && (g.length > 0 && g != O ? Y("*" + g + "*") : T ? Y(null) : D());
   }
   var j = {
     onBlur: (u) => {
       J(g), y.onBlur(g);
     },
     onFocus: y.onFocus,
-    onChange: (u, O) => {
-      J(O);
+    onChange: (u, x) => {
+      J(x);
     },
-    onInputChange: (u, O) => (b(O), !0)
+    onInputChange: (u, x) => (b(x), !0)
   };
   const J = (u) => {
     y.onValueChange(u);
   };
-  function M(u, O) {
+  function M(u, x) {
     return u.find(($) => {
-      if ($ == O)
+      if ($ == x)
         return $;
     });
   }
@@ -443,20 +443,20 @@ const Oo = ne(function(e, n) {
     getValue() {
       return C.getData();
     },
-    setValue(u, O = !1) {
-      C.setData(u, O);
+    setValue(u, x = !1) {
+      C.setData(u, x);
     },
     setVisible(u) {
-      S((O) => ({ ...O, visible: u }));
+      S((x) => ({ ...x, visible: u }));
     },
     setRequired(u) {
-      S((O) => ({ ...O, required: u }));
+      S((x) => ({ ...x, required: u }));
     },
     setReadOnly(u) {
-      S((O) => ({ ...O, readonly: u }));
+      S((x) => ({ ...x, readonly: u }));
     },
     setAttribute(u) {
-      S((O) => ({ ...O, ...u }));
+      S((x) => ({ ...x, ...u }));
     },
     setFilter(u) {
       V(u);
@@ -467,19 +467,19 @@ const Oo = ne(function(e, n) {
     setEndPointOptions(u) {
       E(u);
     },
-    getCurrentData: () => x,
+    getCurrentData: () => O,
     refresh: () => {
       D();
     },
-    addFilter(u, O) {
-      V(($) => ($[u] = O, { ...$ }));
+    addFilter(u, x) {
+      V(($) => ($[u] = x, { ...$ }));
     },
     setDefaultFilter(u) {
     },
     setSortOptions(u) {
     }
   }), [C, V]);
-  var k = Ve(e, x, e.label);
+  var k = Ve(e, O, e.label);
   return w.readonly && (k.inputProps = { readOnly: !0 }), /* @__PURE__ */ o(
     Ee,
     {
@@ -501,8 +501,8 @@ const Oo = ne(function(e, n) {
               we,
               {
                 ...u,
-                inputRef: (O) => {
-                  i.current = O;
+                inputRef: (x) => {
+                  i.current = x;
                 },
                 variant: e.variant || "standard",
                 label: e.label,
@@ -1327,8 +1327,8 @@ G(Ne, "defaultProps", {
     var p = {}, w = Object.defineProperty && Object.getOwnPropertyDescriptor;
     for (var S in h)
       if (S !== "default" && Object.prototype.hasOwnProperty.call(h, S)) {
-        var x = w ? Object.getOwnPropertyDescriptor(h, S) : null;
-        x && (x.get || x.set) ? Object.defineProperty(p, S, x) : p[S] = h[S];
+        var O = w ? Object.getOwnPropertyDescriptor(h, S) : null;
+        O && (O.get || O.set) ? Object.defineProperty(p, S, O) : p[S] = h[S];
       }
     return p.default = h, y && y.set(h, p), p;
   }
@@ -1469,7 +1469,7 @@ G(Ne, "defaultProps", {
         children: p,
         defaultPosition: w,
         defaultClassName: S,
-        defaultClassNameDragging: x,
+        defaultClassNameDragging: O,
         defaultClassNameDragged: R,
         position: V,
         positionOffset: E,
@@ -1485,7 +1485,7 @@ G(Ne, "defaultProps", {
       };
       this.state.isElementSVG ? T = (0, i.createSVGTransform)(J, E) : D = (0, i.createCSSTransform)(J, E);
       const M = (0, a.default)(p.props.className || "", S, {
-        [x]: this.state.dragging,
+        [O]: this.state.dragging,
         [R]: this.state.dragged
       });
       return /* @__PURE__ */ e.createElement(d.default, C({}, l, {
@@ -1716,7 +1716,7 @@ const lr = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
     setSortColumns: p,
     setEndPointOptions: w,
     gotoPage: S,
-    setPageSize: x,
+    setPageSize: O,
     getPageNo: R,
     refreshData: V,
     setQueryLimit: E,
@@ -1758,7 +1758,7 @@ const lr = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
     _(N);
   }, u = () => {
     P(!v);
-  }, O = () => C === "compact" ? { padding: "3px" } : C === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, $ = () => C === "compact" ? { padding: "3px" } : C === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, he = () => {
+  }, x = () => C === "compact" ? { padding: "3px" } : C === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, $ = () => C === "compact" ? { padding: "3px" } : C === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, he = () => {
     var N;
     switch (C) {
       case "compact":
@@ -1779,7 +1779,7 @@ const lr = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
     s && s(N);
   }, te = (N) => {
     const re = parseInt(N.target.value, 10);
-    x(re);
+    O(re);
   }, Me = () => {
     console.info("Export Clicked");
   }, Mt = 200, Rt = !!e.pageSize;
@@ -1846,7 +1846,7 @@ const lr = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
         EmptyChild: d,
         rowData: l,
         onRowClick: F,
-        onRowStyle: O,
+        onRowStyle: x,
         onHeaderStyle: $,
         onSortColumn: p
       }
@@ -2075,7 +2075,7 @@ const Nt = (t) => {
   }), [d]);
   const S = (l, D) => {
     C(D);
-  }, x = (l) => {
+  }, O = (l) => {
     const D = l.target.value;
     P(D);
   }, R = (l) => {
@@ -2090,7 +2090,7 @@ const Nt = (t) => {
         {
           sx: { width: V },
           type: "text",
-          onChange: x,
+          onChange: O,
           style: { border: "0px" },
           size: "small",
           placeholder: "Name",
