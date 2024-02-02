@@ -115,6 +115,7 @@ interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
 
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     displayAttribute?: string,
+    defaultValue?: InputType | any,
     idAttribute?: string,
     multiple?: boolean,
     renderOption?: Function,
