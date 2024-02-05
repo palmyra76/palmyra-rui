@@ -15,9 +15,10 @@ import {
 import LoadingChild from './LoadingChild';
 
 
-export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild }) {
+export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild, customizer }) {
+  const preProcessData = customizer?.preProcessData || ((d: any) => d);
   const table = useReactTable({
-    data: rowData,
+    data: preProcessData(rowData),
     manualSorting: true,
     manualFiltering: true,
     manualPagination: true,
@@ -79,7 +80,7 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
                     return (
                       <TableRow key={row.id} className='table-row' >
                         {row.getVisibleCells().map(cell => {
-                          const meta:any = cell.column.columnDef.meta;
+                          const meta: any = cell.column.columnDef.meta;
                           return (
                             <TableCell key={cell.id}
                               style={{

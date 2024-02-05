@@ -20,6 +20,7 @@ interface GridCustomizer {
     formatCell: (column: ColumnDefinition, cellValueGetter: CellGetter) => CellGetter,
     formatHeader: (column: ColumnDefinition, header: Function) => any,
     formatFooter: (column: ColumnDefinition, footer: Function) => any,
+    preProcessData?: (data: any) => any
 }
 
 const NoopCustomizer: GridCustomizer = {

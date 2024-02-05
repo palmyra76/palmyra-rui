@@ -1,4 +1,4 @@
-import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { TablePagination, TextField, InputAdornment, Button, Tooltip, ClickAwayListener } from '@mui/material';
 import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -9,13 +9,13 @@ import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { Pagination } from "../../palmyra/store/Types"
+import { Pagination } from "../store/Types"
 
 
 //TODO - show errors on data fetching
 
 interface GridXOptions extends IServerQueryInput {
-  columns: ColumnDefinition[],
+  columns: (data: any) => ColumnDefinition[],
   children?: any,
   EmptyChild?: React.FC,
   onRowClick?: Function,
@@ -24,8 +24,10 @@ interface GridXOptions extends IServerQueryInput {
   customButton?: React.ReactNode[]
 }
 
-const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
-  const { columns, children, EmptyChild, onRowClick, quickSearch } = props;
+const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
+  const { children, EmptyChild, onRowClick, quickSearch } = props;
+  const colGenerator = props.columns;
+
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
   const customButton = props.customButton;
@@ -40,6 +42,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit, getQueryLimit,
     data, totalRecords, queryLimit, pageSizeOptions, filter } = useServerQuery(props);
 
+  const [columns, setColumns] = useState(colGenerator(data));
 
   const currentRef = ref ? ref : useRef<IPageQueryable>(null);
   useImperativeHandle(currentRef, () => {
@@ -75,8 +78,12 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         return data;
       }
     };
-  }, [getQueryLimit]);
+  }, [getQueryLimit, columns]);
 
+
+  useEffect(() => {
+    setColumns(colGenerator(data));
+  }, [data])
 
   const nextPage = (event, newPage) => {
     gotoPage(newPage);
@@ -269,4 +276,4 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   )
 });
 
-export default GridX;
+export default DynColGridX;

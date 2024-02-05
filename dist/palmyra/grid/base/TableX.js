@@ -1,53 +1,53 @@
 import "../../../assets/TableX.css";
 import { jsx as e, jsxs as c, Fragment as d } from "react/jsx-runtime";
-import { useState as T, useEffect as v } from "react";
-import { Box as S, TableContainer as R, Paper as y, Table as P, TableHead as F, TableRow as s, TableBody as H, TableCell as M } from "@mui/material";
-import N from "./ColumnHeader.js";
-import { useReactTable as j, getCoreRowModel as A, flexRender as m } from "@tanstack/react-table";
-import B from "./LoadingChild.js";
-function z({ columnDefs: u, rowData: t, onRowClick: g, onRowStyle: h, onHeaderStyle: f, onSortColumn: a, EmptyChild: p }) {
-  const i = j({
-    data: t,
+import { useState as S, useEffect as P } from "react";
+import { Box as R, TableContainer as y, Paper as F, Table as H, TableHead as M, TableRow as u, TableBody as N, TableCell as j } from "@mui/material";
+import A from "./ColumnHeader.js";
+import { useReactTable as B, getCoreRowModel as E, flexRender as m } from "@tanstack/react-table";
+import k from "./LoadingChild.js";
+function K({ columnDefs: g, rowData: t, onRowClick: h, onRowStyle: p, onHeaderStyle: f, onSortColumn: s, EmptyChild: b, customizer: i }) {
+  const C = (i == null ? void 0 : i.preProcessData) || ((l) => l), r = B({
+    data: C(t),
     manualSorting: !0,
     manualFiltering: !0,
     manualPagination: !0,
-    columns: u,
-    getCoreRowModel: A()
-  }), [r, b] = T({});
-  v(() => {
-    a(r);
-  }, [r]);
-  const C = a ? (n, l) => {
-    var o = { ...r };
-    l == "" ? delete o[n] : o[n] = l, b(o);
+    columns: g,
+    getCoreRowModel: E()
+  }), [a, x] = S({});
+  P(() => {
+    s(a);
+  }, [a]);
+  const T = s ? (l, n) => {
+    var o = { ...a };
+    n == "" ? delete o[l] : o[l] = n, x(o);
   } : void 0;
-  return /* @__PURE__ */ e(S, { sx: { width: "100%" }, children: /* @__PURE__ */ c(R, { component: y, children: [
-    /* @__PURE__ */ c(P, { sx: { minWidth: 650 }, "aria-label": "simple table", className: "table", children: [
-      /* @__PURE__ */ e(F, { className: "table-head", children: i.getHeaderGroups().map((n) => /* @__PURE__ */ e(s, { children: n.headers.map((l) => l.isPlaceholder ? null : /* @__PURE__ */ e(
-        N,
+  return /* @__PURE__ */ e(R, { sx: { width: "100%" }, children: /* @__PURE__ */ c(y, { component: F, children: [
+    /* @__PURE__ */ c(H, { sx: { minWidth: 650 }, "aria-label": "simple table", className: "table", children: [
+      /* @__PURE__ */ e(M, { className: "table-head", children: r.getHeaderGroups().map((l) => /* @__PURE__ */ e(u, { children: l.headers.map((n) => n.isPlaceholder ? null : /* @__PURE__ */ e(
+        A,
         {
-          header: l,
-          onSortChange: C,
+          header: n,
+          onSortChange: T,
           onHeaderStyle: f,
           children: m(
-            l.column.columnDef.header,
-            l.getContext()
+            n.column.columnDef.header,
+            n.getContext()
           )
         },
-        l.id
-      )) }, n.id)) }),
-      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(d, {}) : /* @__PURE__ */ e(H, { children: i.getRowModel().rows.map((n) => {
-        const l = h(n.original);
-        return /* @__PURE__ */ e(s, { className: "table-row", children: n.getVisibleCells().map((o) => {
-          const x = o.column.columnDef.meta;
+        n.id
+      )) }, l.id)) }),
+      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(d, {}) : /* @__PURE__ */ e(N, { children: r.getRowModel().rows.map((l) => {
+        const n = p(l.original);
+        return /* @__PURE__ */ e(u, { className: "table-row", children: l.getVisibleCells().map((o) => {
+          const v = o.column.columnDef.meta;
           return /* @__PURE__ */ e(
-            M,
+            j,
             {
               style: {
-                ...x.columnDef.type === "number" ? { textAlign: "end" } : {},
-                ...l
+                ...v.columnDef.type === "number" ? { textAlign: "end" } : {},
+                ...n
               },
-              onClick: () => g(n.original),
+              onClick: () => h(l.original),
               children: m(
                 o.column.columnDef.cell,
                 o.getContext()
@@ -55,16 +55,16 @@ function z({ columnDefs: u, rowData: t, onRowClick: g, onRowStyle: h, onHeaderSt
             },
             o.id
           );
-        }) }, n.id);
+        }) }, l.id);
       }) }),
-      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(d, {}) : /* @__PURE__ */ e("tfoot", { children: i.getFooterGroups().map((n) => /* @__PURE__ */ e("tr", { style: { textAlign: "end" }, children: n.headers.map((l) => /* @__PURE__ */ e("th", { children: l.isPlaceholder ? null : m(
-        l.column.columnDef.footer,
-        l.getContext()
-      ) }, l.id)) }, n.id)) })
+      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(d, {}) : /* @__PURE__ */ e("tfoot", { children: r.getFooterGroups().map((l) => /* @__PURE__ */ e("tr", { style: { textAlign: "end" }, children: l.headers.map((n) => /* @__PURE__ */ e("th", { children: n.isPlaceholder ? null : m(
+        n.column.columnDef.footer,
+        n.getContext()
+      ) }, n.id)) }, l.id)) })
     ] }),
-    t == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(B, {}) }) : t == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : t.length == 0 ? /* @__PURE__ */ e(p, {}) : /* @__PURE__ */ e(d, {})
+    t == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(k, {}) }) : t == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : t.length == 0 ? /* @__PURE__ */ e(b, {}) : /* @__PURE__ */ e(d, {})
   ] }) });
 }
 export {
-  z as default
+  K as default
 };

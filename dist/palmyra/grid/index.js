@@ -1,14 +1,15 @@
-import { a as m, P as e } from "../../chunks/ServerCardLayout.js";
-import { NoopCustomizer as a, gridColumnCustomizer as d } from "./Types.js";
-import { usePalmyraPageGrid as p } from "./usePalmyraPageGrid.js";
+import { D as m, a as e, P as i } from "../../chunks/ServerCardLayout.js";
+import { NoopCustomizer as d, gridColumnCustomizer as s } from "./Types.js";
+import { usePalmyraPageGrid as l } from "./usePalmyraPageGrid.js";
 import { GridColumnsBuilder as u } from "./utils/GridBuilder.js";
-import { gridFn as l } from "./GridFunctions.js";
+import { gridFn as x } from "./GridFunctions.js";
 export {
+  m as DynColGridX,
   u as GridColumnsBuilder,
-  m as GridX,
-  a as NoopCustomizer,
-  e as PalmyraGrid,
-  d as gridColumnCustomizer,
-  l as gridFn,
-  p as usePalmyraPageGrid
+  e as GridX,
+  d as NoopCustomizer,
+  i as PalmyraGrid,
+  s as gridColumnCustomizer,
+  x as gridFn,
+  l as usePalmyraPageGrid
 };
