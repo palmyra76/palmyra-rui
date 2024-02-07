@@ -4,7 +4,7 @@ import { AppStoreFactory } from "../../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import { FieldGroupContainer } from "../../components/form";
-import AsyncTreeMenu from "../../../lib/palmyra/layout/tree/AsyncTreeMenu";
+import AsyncTreeMenuEditor from "../../../lib/palmyra/layout/tree/AsyncTreeMenuEditor";
 import { PalmyraTreeStore } from "../../../lib/palmyra/store/palmyra/PalmyraTreeStore";
 
 
@@ -54,12 +54,12 @@ const DynamicFields = () => {
     }, [])
 
     const storeFactory: StoreFactory<any> = new AppStoreFactory();
-    // const endPoint:IEndPoint = '/app/menu';
-    // const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({target:"/api/palmyra"}, endPoint);
+    const endPoint:IEndPoint = '/acl/editor/menu/list';
+    const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({target:"/api"}, endPoint);
 
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>            
-            {/* <AsyncTreeMenu store={treeStore}/> */}
+            <AsyncTreeMenuEditor store={treeStore}/>
             <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >

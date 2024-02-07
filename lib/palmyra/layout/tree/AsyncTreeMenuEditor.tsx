@@ -3,17 +3,20 @@ import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
 import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
-import TreeView from "react-accessible-treeview";
+import TreeView, { INode, NodeId } from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
 import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 
-interface IAsyncTreeMenuInput {
+interface IAsyncTreeEditorInput {
     store: TreeQueryStore<IChildTreeRequest, any>
 }
 
-export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
+type MenuData = INode;
+
+
+export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
 
     const loadedAlertElement = useRef(null);
     let rootNode = { name: "", id: -1, parent: null, children: [], isBranch: true };
@@ -151,10 +154,11 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                                         variant={
                                             isHalfSelected ? "some" : isSelected ? "all" : "none"
                                         }
-                                    />
-
-                                    <span className="name">{element.name}</span>
-                                    {isBranch && branchNode(isExpanded, element)}
+                                    />                     
+                                    <div>               
+                                    <span className="name">{element.name}</span>                                     
+                                    {isBranch ? branchNode(isExpanded, element) : 'CRUD'}
+                                    </div>
                                 </div>
                             );
                         }}
