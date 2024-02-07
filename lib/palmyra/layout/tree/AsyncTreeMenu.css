@@ -25,20 +25,23 @@
   white-space: nowrap;
 }
 
-.checkbox .arrow--open{
+.checkbox .arrow--open {
   transition: transform 0.3s ease-in-out;
   transform: rotate(90deg);
+  vertical-align: text-bottom;
 }
 
-/* .checkbox .arrow--closed{
+.checkbox .arrow--closed {
   transition: transform 0.3s ease-in-out;
-  transform: rotate(90deg);
-} */
+  transform: rotate(0deg);
+  vertical-align: text-bottom;
+}
+
 /* .checkbox .arrow--open {
   transform: rotate(90deg);
 } */
 
-.async-tree-menu-container {
+/* .async-tree-menu-container {
   width: 250px;
   background-color: green;
 }
@@ -47,9 +50,30 @@
 .async-tree-menu-container li {
   list-style: none;
   margin-left: -15px;
-}
+} */
+/* .tree{
+  height:auto;
+  max-height: 0; transition:max-height 0.9s ease-in-out;
+} */
+/* .tree-node-group--expanded {
+  min-height: 0 !important;
+  transition: min-height 0.9s ease-in-out !important;
+  background-color: aqua;
+} */
 
-.async-tree-menu-list {
+/* .tree-node-group {
+  overflow: hidden;
+  min-height: 50;
+  transition: min-height 0.3s ease-in-out;
+  /* background-color: aqua; */
+/* }
+
+.tree-node-group .tree-node-group--expanded {
+  max-height: 1000px; /* Adjust this value to fit your content 
+} 
+
+
+/* .async-tree-menu-list {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,4 +83,57 @@
   display: flex;
   align-items: center;
   gap: 5px;
+} */
+
+
+.text-icon {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
+
+.menu-list {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.tree {
+  list-style: none;
+}
+
+.tree-node {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.tree-node-group {
+  list-style: none;
+}
+
+.crud-checkbox-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.crud-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.checkbox-icon{
+  vertical-align: text-top;
+}
+.crud-checkbox-label {
+  vertical-align: text-bottom;
+}
+
+/* .tree{
+  display: flex;
+  gap: 5px;
+} */

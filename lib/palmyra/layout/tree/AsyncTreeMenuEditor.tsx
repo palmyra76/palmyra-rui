@@ -140,6 +140,64 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                                     <ArrowIcon isOpen={isExpanded} />
                                 );
                             };
+
+
+                            const renderCrudCheckboxes = () => (
+                                <div className="crud-checkbox-list">
+                                    <div className="crud-checkbox">
+                                        <div>
+                                            <CheckBoxIcon
+                                                className="checkbox-icon"
+                                                onClick={(e) => {
+                                                    handleSelect(e);
+                                                    e.stopPropagation();
+                                                }}
+                                                variant={
+                                                    isHalfSelected ? "some" : isSelected ? "all" : "none"
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <span className="crud-checkbox-label">Create</span>
+                                        </div>
+                                    </div>
+                                    <div className="crud-checkbox">
+                                        <div>
+                                            <CheckBoxIcon
+                                                className="checkbox-icon"
+                                                onClick={(e) => {
+                                                    handleSelect(e);
+                                                    e.stopPropagation();
+                                                }}
+                                                variant={
+                                                    isHalfSelected ? "some" : isSelected ? "all" : "none"
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <span className="crud-checkbox-label">Update</span>
+                                        </div>
+                                    </div>
+                                    <div className="crud-checkbox">
+                                        <div>
+                                            <CheckBoxIcon
+                                                className="checkbox-icon"
+                                                onClick={(e) => {
+                                                    handleSelect(e);
+                                                    e.stopPropagation();
+                                                }}
+                                                variant={
+                                                    isHalfSelected ? "some" : isSelected ? "all" : "none"
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <span className="crud-checkbox-label">Delete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
@@ -154,10 +212,15 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                                         variant={
                                             isHalfSelected ? "some" : isSelected ? "all" : "none"
                                         }
-                                    />                     
-                                    <div>               
-                                    <span className="name">{element.name}</span>                                     
-                                    {isBranch ? branchNode(isExpanded, element) : 'CRUD'}
+                                    />
+                                    <div className="menu-list">
+                                        <div className="text-icon">
+                                            <div>I</div>
+                                            <span className="menu-name">{element.name}</span>
+                                        </div>
+                                        <div>
+                                            {isBranch ? branchNode(isExpanded, element) : renderCrudCheckboxes()}
+                                        </div>
                                     </div>
                                 </div>
                             );
