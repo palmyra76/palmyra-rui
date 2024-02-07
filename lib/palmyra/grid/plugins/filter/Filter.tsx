@@ -83,8 +83,8 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                         </FieldManagerContext.Provider>
                     </div>
                     <div className="grid-filter-btn-container">
-                        <Button className='filter-reset-btn' disableRipple onClick={reset}>Reset</Button>
-                        <Button className='filter-button' disableRipple onClick={assignFilter}>Filter</Button>
+                        <Button className='filter-reset-btn dialog-btn' disableRipple onClick={reset}>Reset</Button>
+                        <Button className='filter-button dialog-btn' disableRipple onClick={assignFilter}>Filter</Button>
                     </div>
                 </div>
             </ClickAwayListener>
