@@ -206,12 +206,11 @@
   gap: 10px;
 }
 
-.filter-button {
+.dialog-btn{
   background-color: rgb(102, 124, 146) !important;
   color: white !important;
 }
 
-.filter-reset-btn {
-  background-color: rgb(102, 124, 146) !important;
-  color: white !important;
+.dialog-btn:hover{
+  background-color:  rgb(53, 70, 87) !important;
 }
