@@ -21,7 +21,8 @@ interface GridXOptions extends IServerQueryInput {
   onRowClick?: Function,
   onNewClick?: Function,
   customizer?: GridCustomizer,
-  customButton?: React.ReactNode[]
+  customButton?: React.ReactNode[],
+  gridTitle?: any
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
@@ -29,6 +30,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
   const customButton = props.customButton;
+  const gridTitle = props.gridTitle;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
@@ -164,84 +166,89 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
       <div>
         {children}
         <div className='grid-header'>
-          <div className='grid-header-filter'>
-            {visibleFilter && (
-              <TextField
-                sx={{ width: width }}
-                type="text"
-                value={querySearchText}
-                onChange={handleSearch}
-                style={{ border: "0px" }}
-                size="small"
-                placeholder="Name"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <AiOutlineSearch className="card-filter-icon" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            )}
+          <div className='grid-header-right-content'>
+            <span className='grid-header-right-content-text'>{gridTitle}</span>
           </div>
-          <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
-            <div className='grid-header-button grid-density-btn' onClick={toggleDropdown}>
-              <Tooltip title='Density' placement='top'>
-                <Button className='grid-btn' disableRipple>
-                  {densityIcon()}
-                </Button>
-              </Tooltip>
-              {dropdownOpen && (
-                <div className="density-dropdown-content">
-                  <ul>
-                    <li onClick={() => handleDensityChange('standard')}>
-                      <Menu className='density-icon' />
-                      <span className='drodown-content-text'>Standard</span>
-                    </li>
-                    <li onClick={() => handleDensityChange('compact')}>
-                      <DensitySmall className='density-icon' />
-                      <span className='drodown-content-text'>Compact</span>
-                    </li>
-                    <li onClick={() => handleDensityChange('comfortable')}>
-                      <DensityLarge className='density-icon' />
-                      <span className='drodown-content-text'>Comfortable</span>
-                    </li>
-                  </ul>
-                </div>
+          <div className='grid-header-left-content'>
+            <div className='grid-header-filter'>
+              {visibleFilter && (
+                <TextField
+                  sx={{ width: width }}
+                  type="text"
+                  value={querySearchText}
+                  onChange={handleSearch}
+                  style={{ border: "0px" }}
+                  size="small"
+                  placeholder="Name"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <AiOutlineSearch className="card-filter-icon" />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
               )}
             </div>
-          </ClickAwayListener>
-          {columns.some(column => column.searchable) && (
-            <div className='grid-header-button grid-filter-btn'>
-              <Tooltip title='Filter' placement='top'>
-                <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
-                  <FilterAlt className='grid-button-icon' />
-                </Button>
-              </Tooltip>
-              <Filter columns={columns} setFilter={setQueryFilter}
-                defaultFilter={filter}
-                isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
-            </div>)}
-          <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
-            <Tooltip title='Export' placement='top'>
-              <Button className='grid-btn' disableRipple>
-                <FileDownloadOutlined className='grid-button-icon' />
-              </Button>
-            </Tooltip>
-          </div>
-          {props.onNewClick ? (
-            <div className='grid-header-button' onClick={() => { props.onNewClick(); }}>
-              <Tooltip title='New' placement='top'>
+            <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
+              <div className='grid-header-button grid-density-btn' onClick={toggleDropdown}>
+                <Tooltip title='Density' placement='top'>
+                  <Button className='grid-btn' disableRipple>
+                    {densityIcon()}
+                  </Button>
+                </Tooltip>
+                {dropdownOpen && (
+                  <div className="density-dropdown-content">
+                    <ul>
+                      <li onClick={() => handleDensityChange('standard')}>
+                        <Menu className='density-icon' />
+                        <span className='drodown-content-text'>Standard</span>
+                      </li>
+                      <li onClick={() => handleDensityChange('compact')}>
+                        <DensitySmall className='density-icon' />
+                        <span className='drodown-content-text'>Compact</span>
+                      </li>
+                      <li onClick={() => handleDensityChange('comfortable')}>
+                        <DensityLarge className='density-icon' />
+                        <span className='drodown-content-text'>Comfortable</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </ClickAwayListener>
+            {columns.some(column => column.searchable) && (
+              <div className='grid-header-button grid-filter-btn'>
+                <Tooltip title='Filter' placement='top'>
+                  <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
+                    <FilterAlt className='grid-button-icon' />
+                  </Button>
+                </Tooltip>
+                <Filter columns={columns} setFilter={setQueryFilter}
+                  defaultFilter={filter}
+                  isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
+              </div>)}
+            <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
+              <Tooltip title='Export' placement='top'>
                 <Button className='grid-btn' disableRipple>
-                  <Add className='grid-button-icon' />
+                  <FileDownloadOutlined className='grid-button-icon' />
                 </Button>
               </Tooltip>
-            </div>) : <></>}
-          {customButton && customButton.map((button: any, index: any) => (
-            <div key={index} className='grid-custom-button grid-export-btn'>
-              {button}
             </div>
-          ))}
+            {props.onNewClick ? (
+              <div className='grid-header-button' onClick={() => { props.onNewClick(); }}>
+                <Tooltip title='New' placement='top'>
+                  <Button className='grid-btn' disableRipple>
+                    <Add className='grid-button-icon' />
+                  </Button>
+                </Tooltip>
+              </div>) : <></>}
+            {customButton && customButton.map((button: any, index: any) => (
+              <div key={index} className='grid-custom-button grid-export-btn'>
+                {button}
+              </div>
+            ))}
+          </div>
         </div>
         <div className='grid-table'>
           <TableX columnDefs={columnDefs} EmptyChild={EmptyChildContainer} customizer={customizer}
