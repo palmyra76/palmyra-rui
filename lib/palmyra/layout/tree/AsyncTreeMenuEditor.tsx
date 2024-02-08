@@ -3,7 +3,7 @@ import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
 import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
-import TreeView, { INode, NodeId } from "react-accessible-treeview";
+import TreeView from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
@@ -13,7 +13,7 @@ interface IAsyncTreeEditorInput {
     store: TreeQueryStore<IChildTreeRequest, any>
 }
 
-type MenuData = INode;
+// type MenuData = INode;
 
 
 export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {

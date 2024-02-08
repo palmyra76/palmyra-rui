@@ -1703,8 +1703,8 @@ const Xt = ({ columns: t, isOpen: e, onClose: n, setFilter: r, defaultFilter: a 
           }
         ) }) }),
         /* @__PURE__ */ k("div", { className: "grid-filter-btn-container", children: [
-          /* @__PURE__ */ o(le, { className: "filter-reset-btn", disableRipple: !0, onClick: u, children: "Reset" }),
-          /* @__PURE__ */ o(le, { className: "filter-button", disableRipple: !0, onClick: f, children: "Filter" })
+          /* @__PURE__ */ o(le, { className: "filter-reset-btn dialog-btn", disableRipple: !0, onClick: u, children: "Reset" }),
+          /* @__PURE__ */ o(le, { className: "filter-button dialog-btn", disableRipple: !0, onClick: f, children: "Filter" })
         ] })
       ] }) })
     }
