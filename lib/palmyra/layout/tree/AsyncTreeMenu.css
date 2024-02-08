@@ -85,6 +85,46 @@
   gap: 5px;
 } */
 
+/* .tree-node-group--expanded .tree-node--selected .checkbox-icon {
+  color: rgb(47, 126, 176) !important;
+  border: none
+} */
+
+/* {
+  color: rgb(47, 126, 176) !important;
+  border: none
+} */
+
+.tree-leaf-list-item--selected .checkbox-icon,
+.tree-node-group--selected .checkbox-icon ,
+.tree-node-group--expanded .tree-node--selected .checkbox-icon,
+.tree-node--selected .tree-node-group--selected .checkbox-icon,
+/* .tree-branch-wrapper .tree-node--expanded .checkbox-icon, */
+.tree-branch-wrapper .tree-node--selected .checkbox-icon {
+  color: rgb(47, 126, 176) !important;
+  border: none
+}
+
+/* .tree-leaf-list-item--selected  */
+.tree-node .checkbox-icon {
+  color: rgb(255, 255, 255) !important;
+  border: 1px solid #2b2b2b2b
+}
+
+/* {
+  color: rgb(47, 126, 176) !important;
+  border: none
+}
+
+ {
+  color: rgb(47, 126, 176) !important;
+  border: none
+} */
+
+.checkbox-icon {
+  color: #57575712;
+  border: 0px solid #0000002b
+}
 
 .text-icon {
   display: flex;
@@ -112,7 +152,7 @@
   list-style: none;
 }
 
-.crud-checkbox-list {
+/* .crud-checkbox-list {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,16 +164,51 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+} */
+
+.crud-checkbox-list {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
 }
 
-.checkbox-icon{
+.crud-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+
+.crud-dropdown-container {}
+
+.checkbox-icon {
   vertical-align: text-top;
 }
+
 .crud-checkbox-label {
   vertical-align: text-bottom;
 }
 
-/* .tree{
-  display: flex;
-  gap: 5px;
-} */
+/* --dropdown css-- */
+/* .crud-dropdown-container {} */
+
+.crud-dropdown-text {
+  position: relative;
+  cursor: pointer;
+}
+
+.crud-dropdown-content {
+  position: absolute;
+  /* top: 85%;
+  right: 0.5%; */
+  border: 1px solid rgba(128, 128, 128, 0.288);
+  background-color: var(--dropdown-bgcolor);
+  color: var(--dropdown-color);
+  box-shadow: var(--dropdown-boxshadow);
+  z-index: 1;
+  padding: 8px;
+  border-radius: 4px;
+  min-width: 200px;
+}
