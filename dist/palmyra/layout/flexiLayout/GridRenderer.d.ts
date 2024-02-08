@@ -11,6 +11,7 @@ interface GridRendererInput {
     customizer?: GridCustomizer;
     defaultParams?: DefaultQueryParams;
     customButton?: React.ReactNode[];
+    gridTitle?: any;
 }
 declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
 export default GridRenderer;

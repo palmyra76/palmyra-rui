@@ -10,6 +10,7 @@ interface GridXOptions extends IServerQueryInput {
     onNewClick?: Function;
     customizer?: GridCustomizer;
     customButton?: React.ReactNode[];
+    gridTitle?: any;
 }
 declare const GridX: import("react").ForwardRefExoticComponent<GridXOptions & import("react").RefAttributes<IPageQueryable>>;
 export default GridX;
