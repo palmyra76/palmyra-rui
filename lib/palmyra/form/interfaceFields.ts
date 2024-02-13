@@ -21,6 +21,7 @@ interface IMutateOptions {
     required?: boolean
     readonly?: boolean
     visible?: boolean
+    disableFuture?: boolean
 }
 
 interface ITextField extends IInputField {

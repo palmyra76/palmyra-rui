@@ -51,6 +51,9 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
             setReadOnly(readonly: boolean) {
                 setMutateOptions((d: IMutateOptions) => ({ ...d, readonly }));
             },
+            setDisableFuture(disableFuture: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, disableFuture }));
+            },
             setAttribute(options: IMutateOptions) {
                 setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
             },
@@ -79,6 +82,7 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker {...inputProps}
                     readOnly={props.readonly}
+                    disableFuture = {props.disableFuture}
                     format={displayFormat}
                     {...callbacks}
                     autoFocus={autoFocus}

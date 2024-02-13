@@ -37,6 +37,7 @@ interface AttributeDefinition {
     value?: InputType,
     required?: boolean,
     readonly?: boolean,
+    disableFuture?: boolean,
     hideSelectAll?: boolean,
     mutant?: boolean,
     visible?: boolean,
