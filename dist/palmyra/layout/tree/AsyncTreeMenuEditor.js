@@ -1,70 +1,63 @@
-import { jsx as e, Fragment as C, jsxs as s } from "react/jsx-runtime";
-import { useRef as I, useState as L, useEffect as z } from "react";
-import { G as p, A as H } from "../../../chunks/index.js";
-import { u as O, c as T, I as F } from "../../../chunks/AsyncTreeMenu.js";
-function P(o) {
-  return p({ tag: "svg", attr: { viewBox: "0 0 448 512" }, child: [{ tag: "path", attr: { d: "M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z" } }] })(o);
-}
-function q(o) {
-  return p({ tag: "svg", attr: { viewBox: "0 0 448 512" }, child: [{ tag: "path", attr: { d: "M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM92 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H92z" } }] })(o);
-}
-function R(o) {
-  return p({ tag: "svg", attr: { viewBox: "0 0 448 512" }, child: [{ tag: "path", attr: { d: "M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z" } }] })(o);
-}
-function J(o) {
-  const i = I(null);
-  let v = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [d, h] = L([v]), [N, w] = L([]), x = o.store, b = (a, r, l) => a.map((t) => (t.id === r && (t.loaded = !0, t.children = l.map((g) => g.id)), t)).concat(l), k = (a, r) => a.map((n) => {
-    const t = n.children || "";
+import { jsx as e, Fragment as h, jsxs as u } from "react/jsx-runtime";
+import { useRef as x, useState as f, useEffect as b } from "react";
+import { A as O } from "../../../chunks/index.js";
+import { F as T, a as F, b as H, A as I } from "../../../chunks/AsyncTreeCrudDropDown.js";
+import { u as M, c as B, I as q } from "../../../chunks/AsyncTreeMenu.js";
+import { ClickAwayListener as R } from "@mui/material";
+function V(c) {
+  const r = x(null);
+  let d = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
+  const [l, i] = f([d]), [g, L] = f([]), v = c.store, N = (n, t, o) => n.map((s) => (s.id === t && (s.loaded = !0, s.children = o.map((p) => p.id)), s)).concat(o), w = (n, t) => n.map((a) => {
+    const s = a.children || "";
     return {
-      id: n.id,
-      name: n.name,
-      parent: r,
+      id: a.id,
+      name: a.name,
+      parent: t,
       children: [],
-      isBranch: t.length > 0,
+      isBranch: s.length > 0,
       loaded: !1
     };
   });
-  z(() => {
-    x.getRoot().then((a) => {
-      var r = k(a.result, -1);
-      const l = b(d, -1, r);
-      h(l);
+  b(() => {
+    v.getRoot().then((n) => {
+      var t = w(n.result, -1);
+      const o = N(l, -1, t);
+      i(o);
     });
   }, []);
-  const A = ({ element: a }) => {
-    console.log(a.id);
-    const r = a.id;
-    return x.getChildren({ parent: r }).then((l) => {
-      var n = k(l.result, r);
-      const t = b(d, r, n);
-      h(t);
+  const C = ({ element: n }) => {
+    console.log(n.id);
+    const t = n.id;
+    return v.getChildren({ parent: t }).then((o) => {
+      var a = w(o.result, t);
+      const s = N(l, t, a);
+      i(s);
     });
   };
-  return /* @__PURE__ */ e(C, { children: /* @__PURE__ */ s("div", { children: [
+  return /* @__PURE__ */ e(h, { children: /* @__PURE__ */ u("div", { children: [
     /* @__PURE__ */ e(
       "div",
       {
         className: "visually-hidden",
-        ref: i,
+        ref: r,
         role: "alert",
         "aria-live": "polite"
       }
     ),
     /* @__PURE__ */ e("div", { className: "checkbox", children: /* @__PURE__ */ e(
-      O,
+      M,
       {
-        data: d,
+        data: l,
         "aria-label": "Checkbox tree",
-        onLoadData: async (a) => {
-          console.log(a);
-          const r = a.element.children.length === 0, l = N.find(
-            (n) => n.id === a.element.id
+        onLoadData: async (n) => {
+          console.log(n);
+          const t = n.element.children.length === 0, o = g.find(
+            (a) => a.id === n.element.id
           );
-          if (a.element.loaded || await A(a), r && !l) {
-            const n = i.current;
-            w([...N, a.element]), n && (n.innerHTML = `${a.element.name} loaded`), setTimeout(() => {
-              n && (n.innerHTML = "");
+          if (n.element.loaded || await C(n), t && !o) {
+            const a = r.current;
+            L([...g, n.element]), a && (a.innerHTML = `${n.element.name} loaded`), setTimeout(() => {
+              a && (a.innerHTML = "");
             }, 5e3);
           }
         },
@@ -73,18 +66,18 @@ function J(o) {
         togglableSelect: !0,
         propagateSelectUpwards: !0,
         nodeRenderer: ({
-          element: a,
-          isBranch: r,
-          isExpanded: l,
-          isSelected: n,
-          isHalfSelected: t,
-          getNodeProps: g,
+          element: n,
+          isBranch: t,
+          isExpanded: o,
+          isSelected: a,
+          isHalfSelected: s,
+          getNodeProps: p,
           level: D,
-          handleSelect: u,
-          handleExpand: M
+          handleSelect: S,
+          handleExpand: y
         }) => {
-          const y = (c, f) => c && f.children.length === 0 ? /* @__PURE__ */ s(C, { children: [
-            /* @__PURE__ */ s(
+          const k = (m, A) => m && A.children.length === 0 ? /* @__PURE__ */ u(h, { children: [
+            /* @__PURE__ */ u(
               "span",
               {
                 role: "alert",
@@ -92,80 +85,37 @@ function J(o) {
                 className: "visually-hidden",
                 children: [
                   "loading ",
-                  f.name
+                  A.name
                 ]
               }
             ),
             /* @__PURE__ */ e(
-              H,
+              O,
               {
                 "aria-hidden": !0,
                 className: "loading-icon"
               }
             )
-          ] }) : /* @__PURE__ */ e(V, { isOpen: c }), B = () => /* @__PURE__ */ s("div", { className: "crud-checkbox-list", children: [
-            /* @__PURE__ */ s("div", { className: "crud-checkbox", children: [
-              /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-                m,
-                {
-                  className: "checkbox-icon",
-                  onClick: (c) => {
-                    u(c), c.stopPropagation();
-                  },
-                  variant: t ? "some" : n ? "all" : "none"
-                }
-              ) }),
-              /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { className: "crud-checkbox-label", children: "Create" }) })
-            ] }),
-            /* @__PURE__ */ s("div", { className: "crud-checkbox", children: [
-              /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-                m,
-                {
-                  className: "checkbox-icon",
-                  onClick: (c) => {
-                    u(c), c.stopPropagation();
-                  },
-                  variant: t ? "some" : n ? "all" : "none"
-                }
-              ) }),
-              /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { className: "crud-checkbox-label", children: "Update" }) })
-            ] }),
-            /* @__PURE__ */ s("div", { className: "crud-checkbox", children: [
-              /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-                m,
-                {
-                  className: "checkbox-icon",
-                  onClick: (c) => {
-                    u(c), c.stopPropagation();
-                  },
-                  variant: t ? "some" : n ? "all" : "none"
-                }
-              ) }),
-              /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { className: "crud-checkbox-label", children: "Delete" }) })
-            ] })
-          ] });
-          return /* @__PURE__ */ s(
+          ] }) : /* @__PURE__ */ e($, { isOpen: m });
+          return /* @__PURE__ */ u(
             "div",
             {
-              ...g({ onClick: M }),
+              ...p({ onClick: y }),
               style: { marginLeft: 40 * (D - 1) },
               children: [
                 /* @__PURE__ */ e(
-                  m,
+                  j,
                   {
                     className: "checkbox-icon",
-                    onClick: (c) => {
-                      u(c), c.stopPropagation();
+                    onClick: (m) => {
+                      S(m), m.stopPropagation();
                     },
-                    variant: t ? "some" : n ? "all" : "none"
+                    variant: s ? "some" : a ? "all" : "none"
                   }
                 ),
-                /* @__PURE__ */ s("div", { className: "menu-list", children: [
-                  /* @__PURE__ */ s("div", { className: "text-icon", children: [
-                    /* @__PURE__ */ e("div", { children: "I" }),
-                    /* @__PURE__ */ e("span", { className: "menu-name", children: a.name })
-                  ] }),
-                  /* @__PURE__ */ e("div", { children: r ? y(l, a) : B() })
+                /* @__PURE__ */ u("div", { className: "menu-list", children: [
+                  /* @__PURE__ */ e("div", { className: "text-icon", children: /* @__PURE__ */ e("span", { className: "menu-name", children: n.name }) }),
+                  /* @__PURE__ */ e("div", { children: t ? k(o, n) : /* @__PURE__ */ e(h, { children: /* @__PURE__ */ e(E, { element: n, isSelected: a }) }) })
                 ] })
               ]
             }
@@ -175,26 +125,44 @@ function J(o) {
     ) })
   ] }) });
 }
-const V = (o) => {
-  const { isOpen: i, className: v } = o, d = "arrow", h = T(
-    d,
-    { [`${d}--closed`]: !i },
-    { [`${d}--open`]: i },
-    v
+const $ = (c) => {
+  const { isOpen: r, className: d } = c, l = "arrow", i = B(
+    l,
+    { [`${l}--closed`]: !r },
+    { [`${l}--open`]: r },
+    d
   );
-  return /* @__PURE__ */ e(F, { className: h });
-}, m = ({ variant: o, ...i }) => {
-  switch (o) {
+  return /* @__PURE__ */ e(q, { className: i });
+}, j = ({ variant: c, ...r }) => {
+  switch (c) {
     case "all":
-      return /* @__PURE__ */ e(P, { ...i });
+      return /* @__PURE__ */ e(H, { ...r });
     case "none":
-      return /* @__PURE__ */ e(R, { ...i });
+      return /* @__PURE__ */ e(F, { ...r });
     case "some":
-      return /* @__PURE__ */ e(q, { ...i });
+      return /* @__PURE__ */ e(T, { ...r });
     default:
       return null;
   }
+}, E = (c) => {
+  const [r, d] = f(!1), l = () => {
+    d(!r);
+  }, i = () => {
+  };
+  return /* @__PURE__ */ e(h, { children: /* @__PURE__ */ u("div", { className: "crud-dropdown-container", children: [
+    /* @__PURE__ */ e("span", { className: "crud-dropdown-text", onClick: l, children: "crud" }),
+    r && /* @__PURE__ */ e(R, { onClickAway: () => {
+      d(!1);
+    }, children: /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
+      I,
+      {
+        isHalfSelected: c.isSelected,
+        isSelected: c.isSelected,
+        handleSelect: i
+      }
+    ) }) })
+  ] }) });
 };
 export {
-  J as default
+  V as default
 };

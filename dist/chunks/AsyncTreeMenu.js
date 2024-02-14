@@ -1,8 +1,9 @@
 import "../assets/AsyncTreeMenu.css";
-import { G as ot, t as M } from "./index.js";
+import { G as ot } from "./iconBase.js";
 import { g as ut } from "./_commonjsHelpers.js";
+import { t as M } from "./index.js";
 import ee, { useRef as ve, useReducer as ft, useEffect as X } from "react";
-function Ct(t) {
+function Mt(t) {
   return ot({ tag: "svg", attr: { viewBox: "0 0 512 512" }, child: [{ tag: "path", attr: { d: "M192 128l128 128-128 128z" } }] })(t);
 }
 var Je = { exports: {} };
@@ -813,7 +814,7 @@ var Ye = { root: "tree", node: "tree-node", branch: "tree-node__branch", branchW
 };
 xt.propTypes = { data: M.array.isRequired, onSelect: M.func, onNodeSelect: M.func, onExpand: M.func, className: M.string, nodeRenderer: M.func.isRequired, defaultExpandedIds: M.array, defaultSelectedIds: M.array, expandedIds: M.array, selectedIds: M.array, defaultDisabledIds: M.array, propagateCollapse: M.bool, propagateSelect: M.bool, propagateSelectUpwards: M.bool, multiSelect: M.bool, expandOnKeyboardSelect: M.bool, togglableSelect: M.bool, nodeAction: M.oneOf(vt), clickAction: M.oneOf(pt), onBlur: M.func, onLoadData: M.func };
 export {
-  Ct as I,
+  Mt as I,
   we as c,
   xt as u
 };

@@ -14,7 +14,8 @@ const StringFormat = function (str: string, data: any): string {
 
     if (typeof str === 'string' && (data instanceof Array)) {
         return str.replace(/({\d})/g, function (i) {
-            return data[i.replace(/{/, '').replace(/}/, '')];
+            let key: any = i.replace(/{/, '').replace(/}/, '')
+            return data[key];
         });
     } else if (typeof str === 'string' && (data instanceof Object)) {
         if (Object.keys(data).length === 0) {
@@ -33,7 +34,7 @@ const StringFormat = function (str: string, data: any): string {
     }
 };
 
-const hasUnfilledParameter = function (url: string): boolean {    
+const hasUnfilledParameter = function (url: string): boolean {
     return (typeof url === 'string' && (url.search(/({([^}]+)})/g) > 0 || url.search(/({\d})/g) > 0));
 }
 

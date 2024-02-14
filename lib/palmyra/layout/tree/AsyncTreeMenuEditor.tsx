@@ -145,62 +145,62 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                             };
 
     
-                            const renderCrudCheckbox = () => (
-                                <>
-                                    <div className="crud-checkbox-list">
-                                        <div className="crud-checkbox">
-                                            <div>
-                                                <CheckBoxIcon
-                                                    className="checkbox-icon"
-                                                    onClick={(e) => {
-                                                        handleSelect(e);
-                                                        e.stopPropagation();
-                                                    }}
-                                                    variant={
-                                                        isHalfSelected ? "some" : isSelected ? "all" : "none"
-                                                    }
-                                                />
-                                            </div>
-                                            <div>
-                                                <span className="crud-checkbox-label">Create</span>
-                                            </div>
-                                        </div>
-                                        <div className="crud-checkbox">
-                                            <div>
-                                                <CheckBoxIcon
-                                                    className="checkbox-icon"
-                                                    onClick={(e) => {
-                                                        handleSelect(e);
-                                                        e.stopPropagation();
-                                                    }}
-                                                    variant={
-                                                        isHalfSelected ? "some" : isSelected ? "all" : "none"
-                                                    }
-                                                />
-                                            </div>
-                                            <div>
-                                                <span className="crud-checkbox-label">Update</span>
-                                            </div>
-                                        </div>
-                                        <div className="crud-checkbox">
-                                            <div>
-                                                <CheckBoxIcon
-                                                    className="checkbox-icon"
-                                                    onClick={(e) => {
-                                                        handleSelect(e);
-                                                        e.stopPropagation();
-                                                    }}
-                                                    variant={
-                                                        isHalfSelected ? "some" : isSelected ? "all" : "none"
-                                                    }
-                                                />
-                                            </div>
-                                            <div>
-                                                <span className="crud-checkbox-label">Delete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </>);
+                            // const renderCrudCheckbox = () => (
+                            //     <>
+                            //         <div className="crud-checkbox-list">
+                            //             <div className="crud-checkbox">
+                            //                 <div>
+                            //                     <CheckBoxIcon
+                            //                         className="checkbox-icon"
+                            //                         onClick={(e) => {
+                            //                             handleSelect(e);
+                            //                             e.stopPropagation();
+                            //                         }}
+                            //                         variant={
+                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
+                            //                         }
+                            //                     />
+                            //                 </div>
+                            //                 <div>
+                            //                     <span className="crud-checkbox-label">Create</span>
+                            //                 </div>
+                            //             </div>
+                            //             <div className="crud-checkbox">
+                            //                 <div>
+                            //                     <CheckBoxIcon
+                            //                         className="checkbox-icon"
+                            //                         onClick={(e) => {
+                            //                             handleSelect(e);
+                            //                             e.stopPropagation();
+                            //                         }}
+                            //                         variant={
+                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
+                            //                         }
+                            //                     />
+                            //                 </div>
+                            //                 <div>
+                            //                     <span className="crud-checkbox-label">Update</span>
+                            //                 </div>
+                            //             </div>
+                            //             <div className="crud-checkbox">
+                            //                 <div>
+                            //                     <CheckBoxIcon
+                            //                         className="checkbox-icon"
+                            //                         onClick={(e) => {
+                            //                             handleSelect(e);
+                            //                             e.stopPropagation();
+                            //                         }}
+                            //                         variant={
+                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
+                            //                         }
+                            //                     />
+                            //                 </div>
+                            //                 <div>
+                            //                     <span className="crud-checkbox-label">Delete</span>
+                            //                 </div>
+                            //             </div>
+                            //         </div>
+                            //     </>);
 
                             // const renderCrudCheckboxes: any =
                             //     <>

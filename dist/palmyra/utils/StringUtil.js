@@ -3,7 +3,8 @@ const c = (e, n) => {
   return r >= 0;
 }, i = (e) => c(e, "."), o = function(e, n) {
   return n ? typeof e == "string" && n instanceof Array ? e.replace(/({\d})/g, function(r) {
-    return n[r.replace(/{/, "").replace(/}/, "")];
+    let t = r.replace(/{/, "").replace(/}/, "");
+    return n[t];
   }) : typeof e == "string" && n instanceof Object ? Object.keys(n).length === 0 ? e : e.replace(/({([^}]+)})/g, function(r) {
     let t = r.replace(/{/, "").replace(/}/, "");
     return n[t] ? n[t] : r;

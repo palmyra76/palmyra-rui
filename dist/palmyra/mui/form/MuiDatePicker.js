@@ -6,8 +6,8 @@ import { copyMuiOptions as O, getFieldLabel as j } from "./MuiUtil.js";
 import { FieldManagerContext as k } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import A from "./FieldDecorator.js";
 import { A as Y } from "../../../chunks/AdapterDayjs.js";
-const E = h(function(t, i) {
-  const m = P(k), u = i || d(null), f = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = m(t, "date", u), { mutateOptions: C, setMutateOptions: s } = r, l = r.error, D = r.data, n = r.eventListeners, F = t.variant || "standard", g = t.autoFocus || !1, c = d(null), v = () => V(D);
+const G = h(function(t, i) {
+  const m = P(k), u = i || d(null), f = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = m(t, "date", u), { mutateOptions: F, setMutateOptions: s } = r, l = r.error, D = r.data, n = r.eventListeners, C = t.variant || "standard", b = t.autoFocus || !1, c = d(null), g = () => V(D);
   x(u, () => ({
     focus() {
       c.current.focus();
@@ -33,20 +33,23 @@ const E = h(function(t, i) {
     setReadOnly(e) {
       s((a) => ({ ...a, readonly: e }));
     },
+    setDisableFuture(e) {
+      s((a) => ({ ...a, disableFuture: e }));
+    },
     setAttribute(e) {
       s((a) => ({ ...a, ...e }));
     },
     setCurrent() {
     }
   }), [r]);
-  var b = O(t, v(), t.label), y = {
+  var v = O(t, g(), t.label), y = {
     onBlur: n.onBlur,
     onFocus: n.onFocus,
     onChange: (e) => {
       e && e.toDate ? n.onValueChange(e.toDate()) : n.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ o(M, { children: C.visible && /* @__PURE__ */ o(
+  return /* @__PURE__ */ o(M, { children: F.visible && /* @__PURE__ */ o(
     A,
     {
       label: j(t),
@@ -57,16 +60,17 @@ const E = h(function(t, i) {
       children: /* @__PURE__ */ o(L, { dateAdapter: Y, children: /* @__PURE__ */ o(
         R,
         {
-          ...b,
+          ...v,
           readOnly: t.readonly,
+          disableFuture: t.disableFuture,
           format: f,
           ...y,
-          autoFocus: g,
+          autoFocus: b,
           slotProps: {
             textField: {
               error: l.status,
               helperText: l.message,
-              variant: F,
+              variant: C,
               fullWidth: !0,
               inputRef: c
             }
@@ -77,5 +81,5 @@ const E = h(function(t, i) {
   ) });
 });
 export {
-  E as default
+  G as default
 };
