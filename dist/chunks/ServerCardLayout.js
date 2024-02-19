@@ -1836,10 +1836,10 @@ const Bt = ({ columns: t, isOpen: e, onClose: n, setFilter: o, defaultFilter: a 
           )
         ] }),
         /* @__PURE__ */ r("div", { className: "grid-header-button grid-export-btn", onClick: _e, children: /* @__PURE__ */ r(me, { title: "Export", placement: "top", children: /* @__PURE__ */ r(le, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ r(Pt, { className: "grid-button-icon" }) }) }) }),
-        e.onNewClick ? /* @__PURE__ */ r("div", { className: "grid-header-button", onClick: () => {
+        e.onNewClick ? /* @__PURE__ */ r("div", { className: "grid-header-button grid-add-btn", onClick: () => {
           e.onNewClick();
         }, children: /* @__PURE__ */ r(me, { title: "New", placement: "top", children: /* @__PURE__ */ r(le, { className: "grid-btn", disableRipple: !0, children: /* @__PURE__ */ r(wt, { className: "grid-button-icon" }) }) }) }) : /* @__PURE__ */ r(ve, {}),
-        b && b.map((k, oe) => /* @__PURE__ */ r("div", { className: "grid-custom-button grid-export-btn", children: k }, oe))
+        b && b.map((k, oe) => /* @__PURE__ */ r("div", { className: "grid-custom-button", children: k }, oe))
       ] })
     ] }),
     /* @__PURE__ */ r("div", { className: "grid-table", children: /* @__PURE__ */ r(
