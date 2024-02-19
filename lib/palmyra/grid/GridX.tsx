@@ -236,7 +236,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               </Tooltip>
             </div>
             {props.onNewClick ? (
-              <div className='grid-header-button' onClick={() => { props.onNewClick(); }}>
+              <div className='grid-header-button grid-add-btn' onClick={() => { props.onNewClick(); }}>
                 <Tooltip title='New' placement='top'>
                   <Button className='grid-btn' disableRipple>
                     <Add className='grid-button-icon' />
