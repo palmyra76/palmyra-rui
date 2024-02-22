@@ -3,7 +3,6 @@
     flex-wrap: wrap;
     gap: 2px;
     flex-basis: 20%;
-    margin: 10px;
 }
 
 .card-container {
@@ -19,9 +18,8 @@
     display: flex;
     position: relative;
     margin-top: 1%;
-    margin: 20px;
+    padding-bottom: 10px;
     justify-content: flex-end;
-    margin-left: auto;
     align-items: center;
 }
 
