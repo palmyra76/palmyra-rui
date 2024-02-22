@@ -1,23 +1,35 @@
 import { PalmyraGridStore as a } from "./PalmyraGridStore.js";
 class o extends a {
-  constructor(t, s, e) {
-    super(t, s, e);
+  constructor(t, i, s) {
+    super(t, i, s);
   }
-  save(t, s) {
-    var e = this.target + this.postUrl(), r = this.formatUrl(e, s);
-    return this.isUrlValid(r) || this.getClient().post(r, t, { headers: { action: "save" } }).then((i) => i.data);
+  save(t, i) {
+    var s = this.target + this.postUrl(), r = this.formatUrl(s, i);
+    return this.isUrlValid(r) || this.getClient().post(r, t, { headers: { action: "save" } }).then((l) => {
+      var e;
+      return (e = l.data) == null ? void 0 : e.result;
+    });
   }
-  post(t, s) {
-    var e = this.target + this.postUrl(), r = this.formatUrl(e, s);
-    return this.isUrlValid(r) || this.getClient().post(r, t).then((i) => i.data);
+  post(t, i) {
+    var s = this.target + this.postUrl(), r = this.formatUrl(s, i);
+    return this.isUrlValid(r) || this.getClient().post(r, t).then((l) => {
+      var e;
+      return (e = l.data) == null ? void 0 : e.result;
+    });
   }
-  put(t, s) {
-    var e = this.target + this.putUrl(), r = this.formatUrl(e, s);
-    return this.isUrlValid(r) || this.getClient().put(r, t).then((i) => i.data);
+  put(t, i) {
+    var s = this.target + this.putUrl(), r = this.formatUrl(s, i);
+    return this.isUrlValid(r) || this.getClient().put(r, t).then((l) => {
+      var e;
+      return (e = l.data) == null ? void 0 : e.result;
+    });
   }
-  remove(t, s) {
-    var e = this.target + this.deleteUrl(), r = this.formatUrl(e, t);
-    return this.isUrlValid(r) || this.getClient().delete(r, { data: {} }).then((i) => i.data);
+  remove(t, i) {
+    var s = this.target + this.deleteUrl(), r = this.formatUrl(s, t);
+    return this.isUrlValid(r) || this.getClient().delete(r, { data: {} }).then((l) => {
+      var e;
+      return (e = l.data) == null ? void 0 : e.result;
+    });
   }
   postUrl() {
     const t = this.getEndPoint();

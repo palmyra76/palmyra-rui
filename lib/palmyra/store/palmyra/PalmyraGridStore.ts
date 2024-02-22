@@ -60,7 +60,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements QueryStore<any>{
         var urlFormat = this.target + this.queryUrl();
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().get(url)
-            .then(response => { return response.data });
+            .then(response => { return response.data?.result });
     }
 
     getIdentity(o: any) {

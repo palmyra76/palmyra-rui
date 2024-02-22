@@ -40,7 +40,10 @@ class y extends g {
   }
   get(t, o) {
     var i = this.target + this.queryUrl(), n = this.formatUrl(i, t);
-    return this.isUrlValid(n) || this.getClient().get(n).then((s) => s.data);
+    return this.isUrlValid(n) || this.getClient().get(n).then((s) => {
+      var l;
+      return (l = s.data) == null ? void 0 : l.result;
+    });
   }
   getIdentity(t) {
     throw new Error("Method not implemented.");
