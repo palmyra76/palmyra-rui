@@ -39,37 +39,43 @@
 .card-view-x2 {
     flex: 0 1 0;
     width: 0;
-    min-width: calc(50% - 2px);
+    min-width: calc(50% - 12px);
+    margin: 5px;
 }
 
 .card-view-x3 {
     flex: 0 1 0;
     width: 0;
-    min-width: calc(33% - 2px);
+    min-width: calc(33% - 7px);
+    margin: 5px;
 }
 
 .card-view-x4 {
     flex: 0 1 0;
     width: 0;
-    min-width: calc(25% - 2px);
+    min-width: calc(25% - 12px);
+    margin: 5px;
 }
 
 .card-view-x5 {
     flex: 0 1 0;
     width: 0;
-    min-width: calc(20% - 2px);
+    min-width: calc(20% - 12px);
+    margin: 5px;
 }
 
 .card-view-x6 {
     flex: 0 1 0;
     width: 0;
-    min-width: calc(16.6% - 2px);
+    min-width: calc(16.6% - 11px);
+    margin: 5px;
 }
 
 .card-view-x7 {
     flex: 0 1 0;
     width: 0;
-    min-width: calc(14.3% - 2px);
+    min-width: calc(14.3% - 12px);
+    margin: 5px;
 }
 
 /*...Responsive Card-view-x In ( em )... */
