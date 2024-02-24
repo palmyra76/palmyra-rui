@@ -16,41 +16,41 @@ const SectionContainer = (props: SectionContainerInput) => {
 
     return <>
         <div className='section-container'>
-            {/* {title ? ( */}
-            <Accordion expanded={expanded} onChange={toggleExpand}>
-                <AccordionSummary className="palmyra-form-section-header-container" expandIcon={
-                    // <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            {title ? (
+                <Accordion expanded={expanded} onChange={toggleExpand}>
+                    <AccordionSummary className="palmyra-form-section-header-container" expandIcon={
+                        // <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
 
-                    <ExpandMore />
+                        <ExpandMore />
 
-                    // </div>
+                        // </div>
 
-                }>
-                    <div className="section-header">
-                        {title && !hideTitle ? (
-                            <div className="section-header-text">
-                                <div>{title}</div>
+                    }>
+                        <div className="section-header">
+                            {title && !hideTitle ? (
+                                <div className="section-header-text">
+                                    <div>{title}</div>
+                                </div>
+                            ) : null}
+                            <div className="accordian-custom-btn-container">
+                                {customButton}
                             </div>
-                        ) : null}
-                        <div className="accordian-custom-btn-container">
-                            {customButton}
-                        </div>
 
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails className='section-container-child'>
+                        {props.children}
+                    </AccordionDetails>
+                </Accordion>) : (
+                <div>
+                    {(title && !hideTitle) ? (
+                        <div className="palmyra-form-section-header">{title}</div>) : ''
+                    }
+                    <div className='section-container-child'>
+                        {props.children}
                     </div>
-                </AccordionSummary>
-                <AccordionDetails className='section-container-child'>
-                    {props.children}
-                </AccordionDetails>
-            </Accordion>
-            <div>
-                {(title && !hideTitle) ? (
-                    <div className="palmyra-form-section-header">{title}</div>) : ''
-                }
-                <div className='section-container-child'>
-                    {props.children}
                 </div>
-            </div>
-            {/* // )} */}
+            )}
         </div>
     </>
 }
