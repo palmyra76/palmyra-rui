@@ -2265,18 +2265,6 @@ const qt = (t) => {
             endAdornment: /* @__PURE__ */ r(Ue, { position: "end", children: /* @__PURE__ */ r(Qe, { className: "card-filter-icon" }) })
           }
         }
-      ) }),
-      /* @__PURE__ */ r("div", { className: "card-pagination", children: _ && /* @__PURE__ */ r(
-        $e,
-        {
-          component: "div",
-          count: g || 0,
-          page: q(),
-          onPageChange: S,
-          rowsPerPage: y.limit,
-          rowsPerPageOptions: h || [],
-          onRowsPerPageChange: E
-        }
       ) })
     ] }),
     /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
@@ -2288,6 +2276,18 @@ const qt = (t) => {
         dataList: m,
         childProps: i,
         EmptyChild: e.EmptyChild
+      }
+    ) }),
+    /* @__PURE__ */ r("div", { className: "card-pagination", children: _ && /* @__PURE__ */ r(
+      $e,
+      {
+        component: "div",
+        count: g || 0,
+        page: q(),
+        onPageChange: S,
+        rowsPerPage: y.limit,
+        rowsPerPageOptions: h || [],
+        onRowsPerPageChange: E
       }
     ) })
   ] }) }) });
