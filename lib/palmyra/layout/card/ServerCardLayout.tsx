@@ -106,25 +106,26 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                                 />
                             )}
                         </div>
-                        <div className='card-pagination'>
-                            {visiblePagination && (
-                                <TablePagination
-                                    component="div"
-                                    count={totalRecords || 0}
-                                    page={getPageNo()}
-                                    onPageChange={nextPage}
-                                    rowsPerPage={queryLimit.limit}
-                                    rowsPerPageOptions={pageSizeOptions || []}
-                                    onRowsPerPageChange={handleRowsPerPageChange}
-                                />
-                            )}
-                        </div>
+
                     </div>
 
                     <div>
                         <CardLayout Child={Child} childKeyProvider={listKeyProvider} preProcess={props.preProcess}
                             dataList={data} childProps={childProps} EmptyChild={props.EmptyChild}
                         ></CardLayout>
+                    </div>
+                    <div className='card-pagination'>
+                        {visiblePagination && (
+                            <TablePagination
+                                component="div"
+                                count={totalRecords || 0}
+                                page={getPageNo()}
+                                onPageChange={nextPage}
+                                rowsPerPage={queryLimit.limit}
+                                rowsPerPageOptions={pageSizeOptions || []}
+                                onRowsPerPageChange={handleRowsPerPageChange}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
