@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { FormData } from "../../form/Definitions";
 import { strings } from "../../form/interface";
 import { ChartStore, QueryStore, DataStore, LookupStore } from "../../store";
@@ -41,6 +42,7 @@ interface PageContext {
 interface TabContainerInput extends TabDefinition, Parent {
 }
 interface SectionContainerInput extends Titleable, Parent {
+    customButton?: React.ReactNode[];
 }
 export type { SectionRendererInput, TabRendererInput, PageContext, StoreFactory, LayoutParams };
 export type { TabContainerInput, SectionContainerInput, FlexiLayoutRendererInput, FlexiEventHandlers };
