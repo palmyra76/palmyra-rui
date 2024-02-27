@@ -17,7 +17,8 @@ interface IPalmyraGridInput {
     defaultParams?: DefaultQueryParams,
     pagination?: number[],
     customButton?: React.ReactNode[],
-    gridTitle?: any
+    gridTitle?: any,
+    customAddButton?: any
 }
 
 interface IPalmyraGrid extends IPageQueryable {
@@ -28,6 +29,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
     const { columns, endPoint, storeFactory, layoutParams, pagination } = props;
     const quickSearch = props.quickSearch || '';
     const customButton = props.customButton;
+    const customAddButton = props.customAddButton;
     const gridTitle = props.gridTitle;
     
     const topicListener: TopicListener<any> = (topic: string, data: any): void => {
@@ -55,7 +57,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
     return (
         <>
             <StoreFactoryContext.Provider value={storeFactory}>
-                <GridRenderer layout={layout} context={layoutParams} 
+                <GridRenderer layout={layout} context={layoutParams} customAddButton={customAddButton}
                 onDataChange={props.onDataChange} gridTitle={gridTitle}
                 defaultParams={props.defaultParams} customButton={customButton}
                 customizer={props.customizer} ref={ref}></GridRenderer>

@@ -1,15 +1,17 @@
 import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { TablePagination, TextField, InputAdornment, Button, Tooltip, ClickAwayListener } from '@mui/material';
+import { TablePagination, TextField, InputAdornment, Button, ClickAwayListener } from '@mui/material';
 import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
-import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add } from '@mui/icons-material';
+import { Menu, DensitySmall, DensityLarge, Add, KeyboardArrowDown } from '@mui/icons-material';
 import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
 import { Pagination } from "../../palmyra/store/Types"
+import { TbFilterShare, TbTableExport } from "react-icons/tb";
+import { PiFileXls, PiFilePdf } from "react-icons/pi";
 
 
 //TODO - show errors on data fetching
@@ -22,7 +24,8 @@ interface GridXOptions extends IServerQueryInput {
   onNewClick?: Function,
   customizer?: GridCustomizer,
   customButton?: React.ReactNode[],
-  gridTitle?: any
+  gridTitle?: any,
+  customAddButton?: any
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
@@ -33,6 +36,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const gridTitle = props.gridTitle;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
   const [filterDialogOpen, setFilterDialogOpen] = useState(false);
   const [querySearchText, setQuickSearchText] = useState("");
@@ -154,13 +158,31 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   }
 
   const onExportClick = () => {
-    console.info('Export Clicked');
+    setExportDropdownOpen(!exportDropdownOpen);
   }
 
+  const handlePdfGen = () => {
+
+  }
+
+  const handleExcelGen = () => {
+
+  }
+  const onNewClick = () => {
+    props.onNewClick();
+  }
   const width = 200;
   const visiblePagination = !!props.pageSize;
   const visibleFilter = !!quickSearch;
 
+  const arrowStyles = {
+    transform: dropdownOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
+    transition: 'transform 0.3s ease',
+  };
+  const exportArrowStyles = {
+    transform: exportDropdownOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
+    transition: 'transform 0.3s ease',
+  };
   return (
     <div>
       <div>
@@ -192,24 +214,24 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
             </div>
             <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
               <div className='grid-header-button grid-density-btn' onClick={toggleDropdown}>
-                <Tooltip title='Density' placement='top'>
-                  <Button className='grid-btn' disableRipple>
-                    {densityIcon()}
-                  </Button>
-                </Tooltip>
+                <Button className='grid-btn' disableRipple>
+                  {densityIcon()}
+                  <span>Density</span>
+                  <KeyboardArrowDown style={arrowStyles} className='avathar-arrw-icon' />
+                </Button>
                 {dropdownOpen && (
                   <div className="density-dropdown-content">
                     <ul>
                       <li onClick={() => handleDensityChange('standard')}>
-                        <Menu className='density-icon' />
+                        <Menu className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Standard</span>
                       </li>
                       <li onClick={() => handleDensityChange('compact')}>
-                        <DensitySmall className='density-icon' />
+                        <DensitySmall className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Compact</span>
                       </li>
                       <li onClick={() => handleDensityChange('comfortable')}>
-                        <DensityLarge className='density-icon' />
+                        <DensityLarge className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Comfortable</span>
                       </li>
                     </ul>
@@ -219,29 +241,51 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
             </ClickAwayListener>
             {columns.some(column => column.searchable) && (
               <div className='grid-header-button grid-filter-btn'>
-                <Tooltip title='Filter' placement='top'>
-                  <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
-                    <FilterAlt className='grid-button-icon' />
-                  </Button>
-                </Tooltip>
+                <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
+                  <TbFilterShare className='grid-button-icon' />
+                  <span>Filter</span>
+                </Button>
                 <Filter columns={columns} setFilter={setQueryFilter}
                   defaultFilter={filter}
                   isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
               </div>)}
-            <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
-              <Tooltip title='Export' placement='top'>
+            <ClickAwayListener onClickAway={() => { setExportDropdownOpen(false) }}>
+              <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
                 <Button className='grid-btn' disableRipple>
-                  <FileDownloadOutlined className='grid-button-icon' />
+                  <TbTableExport className='grid-button-icon' />
+                  <span>Export</span>
+                  <KeyboardArrowDown style={exportArrowStyles} className='avathar-arrw-icon' />
                 </Button>
-              </Tooltip>
-            </div>
+                {exportDropdownOpen && (
+                  <div className="density-dropdown-content">
+                    <ul>
+                      <li onClick={handlePdfGen}>
+                        <PiFilePdf className='density-icon grid-button-icon' />
+                        <span className='drodown-content-text'>Export as PDF</span>
+                      </li>
+                      <li onClick={handleExcelGen}>
+                        <PiFileXls className='density-icon grid-button-icon' />
+                        <span className='drodown-content-text'>Export as Excel</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </ClickAwayListener>
             {props.onNewClick ? (
-              <div className='grid-header-button grid-add-btn' onClick={() => { props.onNewClick(); }}>
-                <Tooltip title='New' placement='top'>
-                  <Button className='grid-btn' disableRipple>
-                    <Add className='grid-button-icon' />
-                  </Button>
-                </Tooltip>
+              <div className='grid-header-button grid-add-btn'>
+                {props.customAddButton ? (
+                  <div onClick={onNewClick}>
+                    {props.customAddButton}
+                  </div>
+                ) : (
+                  <div onClick={onNewClick}>
+                    <Button className='grid-btn' disableRipple>
+                      <Add className='grid-button-icon' />
+                      <span>Add</span>
+                    </Button>
+                  </div>
+                )}
               </div>) : <></>}
             {customButton && customButton.map((button: any, index: any) => (
               <div key={index} className='grid-custom-button'>

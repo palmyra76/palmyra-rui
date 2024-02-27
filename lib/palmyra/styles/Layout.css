@@ -4,6 +4,21 @@
     --left-menu-fontsize: 1.01em;
 }
 
+.MuiFormLabel-root-MuiInputLabel-root {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.MuiSwitch-switchBase {
+    transition-duration: 350ms !important;
+    transition-timing-function: ease-in-out !important;
+}
+
+.MuiFormLabel-asterisk {
+    color: red !important;
+}
+
 body {
     background-color: var(--body-bgcolor) !important;
 }
@@ -23,6 +38,30 @@ body {
     gap: 8px !important;
     cursor: pointer;
     text-transform: none !important;
+}
+
+.cancel-filled-button {
+    border-radius: 5px !important;
+    gap: 5px !important;
+    font-size: 14px !important;
+    cursor: pointer;
+    text-transform: none !important;
+}
+
+.secondary-filled-button {
+    border-radius: 5px !important;
+    gap: 5px !important;
+    font-size: 14px !important;
+    cursor: pointer;
+    text-transform: none !important;
+}
+.default-filled-button {
+    border-radius: 5px !important;
+    gap: 5px !important;
+    font-size: 14px !important;
+    cursor: pointer;
+    text-transform: none !important;
+    border: 1px solid var(--border-color) !important;
 }
 
 .outlined-button:hover {

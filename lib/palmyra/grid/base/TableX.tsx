@@ -46,7 +46,7 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
 
   return (
     <Box sx={{ width: '100%' }}>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{border:'1px solid var(--border-color)',borderRadius:'5px'}}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table" className='table'>
           <TableHead className='table-head'>
             {table.getHeaderGroups().map(headerGroup => (

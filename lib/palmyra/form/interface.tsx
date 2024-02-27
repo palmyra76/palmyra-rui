@@ -9,7 +9,7 @@ import { IFieldEventListener, IFieldValueListener } from ".";
  * This definitions will cater to the Form Definition format
  * 
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select"
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch" 
     | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete"
     | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer";
 

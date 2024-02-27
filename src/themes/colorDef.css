@@ -32,6 +32,21 @@
     color: var(--filled-btn-hover-text-color) !important;
 }
 
+.cancel-filled-button {
+    background-color: var(--cancel-btn-bgcolor) !important;
+    color: var(--cancel-btn-color) !important;
+}
+
+.secondary-filled-button {
+    background-color: var(--secondary-btn-bgcolor) !important;
+    color: var(--secondary-btn-color) !important;
+}
+
+.default-filled-button {
+    background-color: var(--default-btn-bgcolor) !important;
+    color: var(--default-btn-color) !important;
+}
+
 .accent-outlined-button {
     background: var(--accent-btn-bgcolor) !important;
     color: var(--accent-btn-text-color) !important;

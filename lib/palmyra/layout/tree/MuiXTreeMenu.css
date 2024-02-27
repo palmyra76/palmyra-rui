@@ -14,6 +14,7 @@
 }
 
 .mui-sidebar-minimize-tree-menu-list {
+    position: relative;
     margin-left: 0px !important;
 }
 
@@ -61,4 +62,14 @@
 
 .MuiTreeItem-group {
     margin-left: 35px !important;
+}
+
+.dropdown-menu{
+    position: absolute;
+    z-index: 1000;
+    width: 200px;
+    overflow-x: visible;
+    top:2%;left:20%;
+    background-color: white;
+    color: black;
 }

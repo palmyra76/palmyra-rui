@@ -17,17 +17,41 @@ const BackEndGridPage = () => {
             title: "S.No",
             type: "string"
         },
+        // {
+        //     attribute: "name",
+        //     name: "name",
+        //     title: "Material Name",
+        //     searchable: true,
+        //     quickSearch: true,
+        //     type: "string"
+        // },
         {
             attribute: "name",
             name: "name",
-            title: "Material Name",
+            title: "Project Name",
             searchable: true,
             quickSearch: true,
             type: "string"
+        },
+        {
+            attribute: "description",
+            name: "Description",
+            title: "Description",
+            searchable: true,
+            quickSearch: true,
+            type: "string"
+        },
+        {
+            attribute: "projectValue",
+            name: "projectValue",
+            title: "Project Value",
+            searchable: true,
+            quickSearch: true,
+            type: "number"
         }
     ]
 
-    const endPoint = "/materialType";
+    const endPoint = "/masterdata/project";
 
     const customConfig: Record<string, ((d: CellGetter) => CellGetter)> = {
         's.no': enhance,
@@ -50,9 +74,9 @@ const BackEndGridPage = () => {
     const gridCustomizer: GridCustomizer = gridColumnCustomizer(customConfig);
 
     return <>
-        <div className='grid-renderer-container'>
+        <div className='grid-renderer-container'> 
             <PalmyraGrid columns={fields} endPoint={endPoint} 
-                ref={gridRef} customizer={gridCustomizer}
+                ref={gridRef} customizer={gridCustomizer} gridTitle='GRID'
                 layoutParams={{}} storeFactory={storeFactory} />
         </div>
     </>

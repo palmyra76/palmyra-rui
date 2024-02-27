@@ -78,6 +78,13 @@
 
     --body-bgcolor: rgba(var(--body-bgcolor-rgb), 1);
 
+    --cancel-btn-bgcolor:rgba(255, 0, 0, 0.08);
+    --cancel-btn-color:rgba(255, 0, 0, 1);
+    --default-btn-bgcolor:var(--default-bgcolor);
+    --default-btn-color:var(--dark-bgcolor);
+    --secondary-btn-bgcolor:rgba(246, 129, 13, 0.1);
+    --secondary-btn-color:rgb(246, 129, 13);
+
     --palmyra-grid-table-head-bgcolor: rgba(var(--primary-bgcolor-rgb), 0.15);
 
     --filled-btn-bgcolor: rgba(var(--primary-bgcolor-rgb), 0.85);
@@ -115,7 +122,7 @@
     --primary-boxshadow-color: rgba(var(--default-border-color-rgb), 0.07);
     /* consider opaque from primary-border-color */
 
-
+    --border-color: rgba(var(--secondary-border-color-rgb), 0.2);
 
 
     --dropdown-bgcolor: var(--secondary-text-color);

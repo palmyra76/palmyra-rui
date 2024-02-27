@@ -47,6 +47,8 @@ const formatValue = (field: AttributeDefinition, value: any) => {
         case 'radio':
         case 'select':
         case 'checkbox':
+        case 'iosswitch':
+            return getOptionsValue(value, field);
         case 'switch':
             return getOptionsValue(value, field);
         case 'datetime':

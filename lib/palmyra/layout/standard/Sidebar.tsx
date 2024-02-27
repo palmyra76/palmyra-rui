@@ -3,6 +3,7 @@ import {Menu} from '@mui/icons-material';
 import { FC, useState } from "react";
 
 import './Sidebar.scss';
+import AsyncTreeMenu from "../tree/AsyncTreeMenu";
 // import ApplicationMenu from "../../../../src/components/ApplicationMenu";
 
 interface ISideMenuInput{
@@ -80,6 +81,7 @@ const Sidebar = (props: SidebarInput) => {
       </div>
       <div className='sidebar-middle' style={{ display: isMinimized ? 'block' : 'block' }}>
         <AppMenu sidebarWidth={isMinimized} />
+        {/* <AsyncTreeMenu store={}/> */}
       </div>
       <div className='sidebar-footer' style={{ display: isMinimized ? 'none' : 'block' }}>
         <p className='sidebar-footer-text'>Powered by Palmyra</p>

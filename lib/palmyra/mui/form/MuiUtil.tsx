@@ -2,7 +2,7 @@ import { AttributeDefinition, IDecoration } from "../../form/interface";
 
 const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string) => {
     const fieldProps = props.fieldProps || {};
-    
+
     var result: any = {
         disabled: props.disabled, required: props.required,
         placeholder: props.placeHolder, value, variant: props.variant,
@@ -18,7 +18,14 @@ const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string) 
 
 const getFieldLabel = (props: AttributeDefinition & IDecoration) => {
     if (props.required && props.title)
-        return props.title + '*';
+        return (
+            <>
+                <div style={{display:'flex',alignItems:'center',gap:'3px'}}>
+                    {props.title}
+                    <span style={{ color: 'red' }}>*</span>
+                </div>
+            </>
+        );
     else
         return props.title;
 }

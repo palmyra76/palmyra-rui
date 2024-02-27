@@ -1,9 +1,10 @@
 
 import { Button } from "@mui/material";
-import { CellGetter, GridCustomizer, PalmyraGrid, gridColumnCustomizer } from "../../lib/main";
+import { CellGetter, GridCustomizer, PalmyraGrid, gridColumnCustomizer, topic } from "../../lib/main";
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { GridColumnsBuilder } from "../../lib/palmyra/grid/utils/GridBuilder";
+import { useEffect } from "react";
 
 const StaticSummaryGrid = () => {
 
@@ -36,7 +37,24 @@ const StaticSummaryGrid = () => {
                 'F': 'Female'
             }
         }).build();
+    const newTopic = "/newPage";
+    const actionOptions = {
+        newRecord: {
+            topic: newTopic
+        }
+    };
 
+    useEffect(() => {
+
+        var newPageHandle = topic.subscribe(newTopic, (_topicName, data) => {
+            // setData(data);
+            // setDrawerOpen(true);
+        });
+        return () => {
+            topic.unsubscribe(newPageHandle);
+        }
+
+    }, []);
     const customButtom = [
         <div>
             <Button className='grid-btn'>aa</Button>
@@ -45,10 +63,18 @@ const StaticSummaryGrid = () => {
             <Button className='grid-btn'>bb</Button>
         </div>
     ];
+
+    // const add =[
+    //     <Button className='grid-btn' disableRipple>
+    //         {/* <Add className='grid-button-icon' /> */}
+    //         <span>Add</span>
+    //     </Button>
+    // ]
+
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
-            <PalmyraGrid columns={columns} endPoint="/welcome"
-                customizer={gridCustomizer} customButton={customButtom}
+            <PalmyraGrid columns={columns} endPoint="/welcome" actions={actionOptions}
+                customizer={gridCustomizer} customButton={customButtom} 
                 layoutParams={{}} storeFactory={storeFactory}
             />
         </ErrorBoundary>

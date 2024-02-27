@@ -13,8 +13,6 @@ const getTitle = (d: MenuDef) => {
     return d.title ? d.title : d.name;
 }
 
-
-
 export default function MuiTreeMenu(props: TreeMenuInput) {
     const appRoutes = props.data;
     const sidebarWidth = props.sidebarWidth;
@@ -24,6 +22,15 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
     const [isParentExpanded, setIsParentExpanded] = useState([]);
 
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
+    const [hoveredItem, setHoveredItem] = useState<MenuDef | null>(null);
+
+    const handleMouseEnter = (node: MenuDef, e: React.MouseEvent<HTMLDivElement>) => {
+        setHoveredItem(node);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredItem(null);
+    };
 
     const handleSelectItem = (node: MenuDef) => {
         const path = node.path;
@@ -37,9 +44,9 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
 
         if (storedSelectedItem) {
             setSelectedItem(storedSelectedItem);
-        }
 
-    }, []);
+        }
+    }, [appRoutes]);
 
     const getLabelIcon = (node: MenuDef): any => {
         if (node.icon)
@@ -47,7 +54,7 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
     }
 
     const StyledTreeItem = styled(TreeItem)`
-              
+        
     `;
 
     const toggleNode = (node: MenuDef) => {
@@ -56,8 +63,6 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
         setTimeout(() => {
             setIsParentExpanded(updatedExpansion);
         }, 250);
-
-        localStorage.setItem("expandedNodes", JSON.stringify(updatedExpansion));
     }
 
     const renderTree = (parent, node: MenuDef, index) => {
@@ -91,7 +96,7 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
                                     </div>
                                 )}
                                 {sidebarWidth && (
-                                    <div className="mui-sidebar-minimize-tree-menu-list">
+                                    <div className="mui-sidebar-minimize-tree-menu-list" onMouseEnter={(e) => handleMouseEnter(node,e)} onMouseLeave={handleMouseLeave}>
                                         {LabelIcon ? <LabelIcon className='mui-sidebar-minimize-label-icon' /> : <></>}
                                     </div>
                                 )}
@@ -128,19 +133,37 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
         }
     };
 
-    const renderMenu = (appRoutes) => {
-        return appRoutes.filter((node) => node.name)
-            .map((route, index) => (renderTree(null, route, index)));
-    }
+    const renderDropdown = () => {
+        if (hoveredItem && hoveredItem.children) {
+            return (
+                <div className="dropdown-menu">
+                    {hoveredItem.children.map((childNode, index) => (
+                        <div key={index} className="dropdown-item" onClick={() => handleSelectItem(childNode)}>
+                            {getTitle(childNode)}
+                        </div>
+                    ))}
+                </div>
+            )
+        }};
+        const renderMenu = (appRoutes) => {
+            return appRoutes.filter((node) => node.name)
+                .map((route, index) => (renderTree(null, route, index)));
+        }
 
-    const menu = renderMenu(appRoutes);
-    return (
-        <TreeView
-            aria-label="rich object"
-            defaultExpanded={['root']}
-            sx={{ height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-        >
-            {menu}
-        </TreeView>
-    );
-}
+        const menu = renderMenu(appRoutes);
+        return (
+            <div>
+                <TreeView
+                    aria-label="rich object"
+                    defaultExpanded={['Simple Layout Demo']}
+                    sx={{ height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+                >
+                    {menu}
+                </TreeView>
+                <div style={{overflow:'auto'}}>
+                { hoveredItem && renderDropdown()}
+                </div>
+                
+            </div>
+        );
+    }

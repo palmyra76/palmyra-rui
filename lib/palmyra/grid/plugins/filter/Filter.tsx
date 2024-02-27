@@ -6,6 +6,8 @@ import Draggable from "react-draggable";
 import FormFieldOnlyRenderer from "../../../layout/flexiLayout/FormFieldOnlyRenderer";
 import { FieldManagerContext } from "../../../layout/flexiLayout/FlexiLayoutContext";
 import { createFilterData } from "../../../form/PalmyraFilterManager";
+import { TbRefresh } from "react-icons/tb";
+import { TbFilterShare } from "react-icons/tb";
 
 
 function PaperComponent(props: PaperProps) {
@@ -52,7 +54,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
             onClose={onFilterClose}
             PaperComponent={PaperComponent}
             onKeyDown={handleKeyClose}
-            PaperProps={{ sx: { minWidth: '500px' } }}
+            PaperProps={{ sx: { minWidth: '500px', borderRadius: '10px' } }}
         >
             <ClickAwayListener onClickAway={onClose}>
                 <div>
@@ -61,7 +63,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                             <div id="draggable-dialog-title"> Filter</div>
                         </div>
                         <div className="grid-header-icon-container" onClick={onFilterClose}>
-                            <Close className="filter-cancel-icon" />
+                            <span className="grid-header-icon"><Close className="filter-cancel-icon" /></span>
                         </div>
                     </div>
                     <span className="filter-header-border"></span>
@@ -83,8 +85,14 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                         </FieldManagerContext.Provider>
                     </div>
                     <div className="grid-filter-btn-container">
-                        <Button className='filter-reset-btn dialog-btn' disableRipple onClick={reset}>Reset</Button>
-                        <Button className='filter-button dialog-btn' disableRipple onClick={assignFilter}>Filter</Button>
+                        <Button className='secondary-filled-button' disableRipple onClick={reset}>
+                            <TbRefresh className="button-icon" />
+                            Reset
+                        </Button>
+                        <Button className='filled-button' disableRipple onClick={assignFilter}>
+                            <TbFilterShare className='button-icon' />
+                            Filter
+                        </Button>
                     </div>
                 </div>
             </ClickAwayListener>

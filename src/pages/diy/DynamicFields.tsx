@@ -60,7 +60,7 @@ const DynamicFields = () => {
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>            
             <AsyncTreeMenuEditor store={treeStore}/>
-            <PalmyraForm storeFactory={storeFactory} customizer={customizer}
+            {/* <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
                 <SectionContainer title='Welcome'>
@@ -84,7 +84,7 @@ const DynamicFields = () => {
                 <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 
                 <Button onClick={() => { onValidityChange(false) }}>Toggle Me</Button>
-            </PalmyraForm>
+            </PalmyraForm> */}
 
         </ErrorBoundary>
 

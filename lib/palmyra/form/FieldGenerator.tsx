@@ -9,6 +9,7 @@ import MuiDateTimePicker from '../mui/form/MuiDateTimePicker';
 import { MuiAutoComplete, MuiPassword, MuiServerLookup } from '../mui';
 import MuiCheckBox from '../mui/form/MuiCheckBox';
 import MuiSwitch from '../mui/form/MuiSwitch';
+import MuiIOSSwitch from '../mui/form/MuiIOSSwitch';
 import MuiDateRangePicker from '../mui/form/MuiDateRangePicker';
 import MuiNumberField from '../mui/form/MuiNumberField';
 import MuiIntegerField from '../mui/form/MuiIntegerField';
@@ -55,6 +56,8 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
             return getReactField(props, MuiTextArea);
         case 'switch':
             return getReactField(props, MuiSwitch);
+        case 'iosswitch':
+            return getReactField(props, MuiIOSSwitch);
         case 'password':
             return getReactField(props, MuiPassword);
         case 'float':

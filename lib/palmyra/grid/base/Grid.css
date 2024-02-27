@@ -42,17 +42,20 @@
   cursor: pointer;
 }
 
-.table-row:nth-child(even) {
-  background-color: rgba(220, 220, 220, 0.2);
+/* .table-row:nth-child(even) {
+  background-color: rgba(220, 220, 220, 0.12);
+} */
+.table-row {
+  border-bottom: 1px solid var(--border-color);
 }
 
 .table-row:hover {
-  background-color: rgba(220, 220, 220, 0.35);
+  background-color: rgba(220, 220, 220, 0.15);
   cursor: pointer;
 }
 
 .table-head {
-  background-color: rgba(72, 152, 231, 0.15);
+  background-color: rgba(250, 250, 250, 1);
 }
 
 .grid-header-button {
@@ -64,13 +67,17 @@
 }
 
 .grid-button-icon {
-  font-size: 1.5rem !important;
+  font-size: 1.2rem !important;
 }
 
 .grid-btn {
-  background-color: rgba(72, 152, 231, 0.15) !important;
-  color: rgba(0, 0, 0, 0.75) !important;
-  width: 55px !important;
+  background-color: rgba(255, 255, 255) !important;
+  color: rgba(0, 0, 0, 1) !important;
+  border: 1.5px solid var(--border-color) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-transform: capitalize !important;
 }
 
 .density-dropdown-content {
@@ -95,6 +102,9 @@
 .density-dropdown-content li {
   padding: 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .density-dropdown-content li:hover {
@@ -108,9 +118,9 @@
 
 }
 
-.density-icon {
+/* .density-icon {
   font-size: 22px;
-}
+} */
 
 .css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar {
   width: auto;
@@ -171,12 +181,18 @@
 
 .grid-filter-header-container {
   display: flex;
-  background-color: rgb(102, 124, 146);
-  color: rgb(255, 255, 255);
-  padding: 10px;
+  /* background-color: rgb(102, 124, 146); */
+  /* color: rgb(255, 255, 255); */
+  padding: 20px 30px 0px 38px;
   justify-content: space-between;
   width: auto;
-  height: 45px;
+}
+
+.button-icon {
+  font-size: 16px !important;
+  margin-left: 0px !important;
+  vertical-align: middle !important;
+  cursor: pointer !important;
 }
 
 .loading-child-container {
@@ -200,6 +216,13 @@
   text-align: end;
 }
 
+.grid-header-icon {
+  background-color: var(--cancel-btn-bgcolor);
+  color: var(--cancel-btn-color);
+  border-radius: 5px;
+  padding: 12px 5px 0 5px;
+}
+
 .filter-cancel-icon {
   cursor: pointer;
 }
@@ -209,12 +232,12 @@
 } */
 
 .grid-filter-content {
-  padding: 10px;
+  padding: 10px 0 0 0;
   margin-top: 10px;
 }
 
 .grid-filter-btn-container {
-  padding: 20px 15px 15px 0px;
+  padding: 20px 30px 15px 0px;
   display: flex;
   justify-content: end;
   gap: 10px;

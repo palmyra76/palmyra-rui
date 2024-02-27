@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
 import { TableCell } from '@mui/material';
+import { LuArrowDownUp,LuArrowUpDown } from "react-icons/lu";
 
 const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
 
@@ -39,15 +39,16 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
             <div style={{
                 display: 'flex',
                 fontWeight:'bold',
-                gap: '2px',
+                alignItems:'center',
+                gap: '10px',
                 justifyContent: meta.columnDef.type === 'number' ? 'flex-end' : 'flex-start'
             }} onClick={() => handleSortColumn()}>
                 {children}
                 {sortOrder === 'asc' ? (
-                    <ArrowUpward style={{ fontSize: '22px', color: 'rgb(0,0,0,0.5)' }} />
+                    <LuArrowUpDown style={{ fontSize: '18px', color: 'rgb(0,0,0,0.5)' }} />
                 ) :
                     sortOrder === 'desc' ? (
-                        <ArrowDownward style={{ fontSize: '22px', color: 'rgb(0,0,0,0.5)' }} />
+                        <LuArrowDownUp style={{ fontSize: '18px', color: 'rgb(0,0,0,0.5)'}} />
                     ) : null}
 
             </div>

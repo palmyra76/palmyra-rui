@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import MuiTextField from "../../lib/palmyra/mui/form/MuiTextField";
 import { useEffect, useRef, useState } from "react";
 import MuiTextArea from "../../lib/palmyra/mui/form/MuiTextArea";
@@ -19,6 +19,7 @@ import MuiServerCheckBox from "../../lib/palmyra/mui/form/MuiServerCheckBox";
 import MuiDateRangePicker from "../../lib/palmyra/mui/form/MuiDateRangePicker";
 import MuiNumberField from "../../lib/palmyra/mui/form/MuiNumberField";
 import MuiIntegerField from "../../lib/palmyra/mui/form/MuiIntegerField";
+import MuiIOSSwitch from "../../lib/palmyra/mui/form/MuiIOSSwitch";
 
 
 const HomePage = () => {
@@ -77,16 +78,38 @@ const HomePage = () => {
             });
         }, 2000);
     }, [])
-
+    const b = [
+        <>
+            <div>
+                dd
+            </div>
+            <div>
+                ss
+            </div>
+            <div>
+                ss
+            </div>
+        </>
+    ]
+    // const customButton = [
+    //     <IconButton
+    //         onClick={(e) => {
+    //             e.stopPropagation(); 
+    //         }}
+    //         size="small"
+    //     >
+    //         pp
+    //     </IconButton>
+    // ];
     const storeFactory: StoreFactory<any> = new AppStoreFactory();
-
+    const date = new Date();
     return (<>
 
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
-                mode="edit" ref={formRef} >
-                <SectionContainer title='Welcome'>
+                mode="new" ref={formRef} >
+                <SectionContainer title='Welcome' customButton={b} hideTitle>
                     <FormFieldContainer>
                         <MuiTextField attribute="serverHost"
                             title="Server Host"
@@ -95,8 +118,9 @@ const HomePage = () => {
                             length={{ min: 3, message: "Minimum of 3 letters" }} />
                         <MuiSelect attribute="gender" label="Gender"
                             options={{ M: 'Male', F: 'Female' }} required />
-                        <MuiRadioGroup attribute="genders" title="Gender"
-                            options={{ M: 'Male', F: 'Female' }} />
+                        <MuiTextField attribute="genders" label="gender" />
+                        {/* <MuiRadioGroup attribute="genders" title="Gender"
+                            options={{ M: 'Male', F: 'Female' }} /> */}
                     </FormFieldContainer>
                 </SectionContainer>
 
@@ -113,9 +137,9 @@ const HomePage = () => {
                             validationRule={["oneUpperCase", 'oneLowerCase', 'oneSpecialChar']}
                         />
 
-                        <MuiDatePicker attribute="dob"
-                            title="Date of Birth"
-                            readonly={true} />
+                        <MuiDatePicker attribute="" disableFuture
+                            title="Date of Birth" defaultValue={date}
+                        />
                         <MuiDateTimePicker attribute="time"
                             title="Time"
                             serverPattern="YYYY-MM-DDTHH:MM:SS"
@@ -124,8 +148,7 @@ const HomePage = () => {
 
                         <MuiTextArea attribute="address" title="Address"
                             length={{ min: 3, message: "Minimum of 3 letters" }}
-                            required={true}
-                            readonly={true} />
+                            required={true} />
                         <MuiTextField attribute="serverHost"
                             title="Server Host"
                             placeHolder="welcome"
@@ -146,11 +169,16 @@ const HomePage = () => {
                 </SectionContainer>
 
                 <MuiSwitch attribute="switch"
-
                     defaultValue={1}
                     options={{ 'Enable': 1, 'Disable': 0 }}
 
                 ></MuiSwitch>
+
+                <MuiIOSSwitch attribute="switch"
+                    defaultValue={1}
+                    options={{ 'Enable': 1, 'Disable': 0 }}
+
+                ></MuiIOSSwitch>
 
                 <MuiServerCheckBox attribute="asd" displayAttribute="serviceName" flexDirection="column"
                     required={true} label="Server Checkbox" className="branchBox"

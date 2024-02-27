@@ -16,7 +16,8 @@ interface GridRendererInput {
     customizer?: GridCustomizer,
     defaultParams?: DefaultQueryParams,
     customButton?: React.ReactNode[],
-    gridTitle?: any
+    gridTitle?: any,
+    customAddButton?: any
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IPageQueryable>) {
@@ -45,7 +46,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
-                onDataChange={props.onDataChange} gridTitle={props.gridTitle}
+                onDataChange={props.onDataChange} gridTitle={props.gridTitle} customAddButton={props.customAddButton}
                 onNewClick={onNewClick} customizer={props.customizer} customButton={props.customButton}
                 quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
             ></GridX>
