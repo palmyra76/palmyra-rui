@@ -8,21 +8,21 @@ import Jt from "../palmyra/mui/form/MuiTextField.js";
 import "../palmyra/mui/form/MuiCheckBoxGroup.js";
 import en from "../palmyra/mui/form/MuiCheckBox.js";
 import tn from "../palmyra/mui/form/MuiSwitch.js";
-import nn from "../palmyra/mui/form/MuiPassword.js";
-import rn from "../palmyra/mui/form/MuiNumberField.js";
+import nn from "../palmyra/mui/form/MuiIOSSwitch.js";
+import rn from "../palmyra/mui/form/MuiPassword.js";
+import on from "../palmyra/mui/form/MuiNumberField.js";
 import Ge from "../palmyra/mui/form/FieldDecorator.js";
 import { FieldManagerContext as Pe, StoreFactoryContext as Ue, LayoutParamsContext as pt } from "../palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { jsx as r, jsxs as P, Fragment as ye } from "react/jsx-runtime";
 import yt, { useState as _, useRef as Z, useEffect as ae, forwardRef as oe, useContext as Se, useImperativeHandle as he, useMemo as vt } from "react";
 import { a as $e } from "./index.esm.js";
-import { FormControlLabel as st, Checkbox as lt, FormControl as Ke, FormHelperText as je, Autocomplete as bt, TextField as xe, CircularProgress as Ct, Dialog as on, ClickAwayListener as ke, Button as le, Paper as an, InputAdornment as Ze, TablePagination as Je, Tooltip as Fe, Box as sn } from "@mui/material";
-import ln from "../palmyra/layout/card/CardLayout.js";
-import cn from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
+import { FormControlLabel as st, Checkbox as lt, FormControl as Ke, FormHelperText as je, Autocomplete as bt, TextField as xe, CircularProgress as Ct, Dialog as an, ClickAwayListener as ke, Button as le, Paper as sn, InputAdornment as Ze, TablePagination as Je, Tooltip as Fe, Box as ln } from "@mui/material";
+import cn from "../palmyra/layout/card/CardLayout.js";
+import dn from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
 import { copyMuiOptions as et, getFieldLabel as tt } from "../palmyra/mui/form/MuiUtil.js";
 import { hasDot as De } from "../palmyra/utils/StringUtil.js";
 import { getValueByKey as we } from "../palmyra/form/FormUtil.js";
-import { delay as St, delayGenerator as dn, mergeDeep as un } from "../palmyra/utils/index.js";
-import fn from "../palmyra/mui/form/MuiIOSSwitch.js";
+import { delay as St, delayGenerator as un, mergeDeep as fn } from "../palmyra/utils/index.js";
 import hn from "../palmyra/mui/form/MuiDateRangePicker.js";
 import mn from "../palmyra/mui/form/MuiIntegerField.js";
 import Dt from "../palmyra/layout/container/SectionContainer.js";
@@ -245,7 +245,7 @@ const qo = oe(function(e, n) {
       ]
     }
   ) });
-}), Fn = dn(100), Mn = oe(function(e, n) {
+}), Fn = un(100), Mn = oe(function(e, n) {
   const o = Se(Pe), a = n || Z(null), i = Z(null), s = Z(0), [c, u] = _([]), [g, b] = _(""), [v, x] = _(!1), w = o(e, "serverlookup", a), F = e.store || w.store, z = e.lookupOptions || {}, L = z.idAttribute || "id", X = z.displayAttribute || "name", h = X, m = {
     store: F,
     endPointOptions: e.storeOptions.endPointOptions,
@@ -575,13 +575,13 @@ const qo = oe(function(e, n) {
     case "switch":
       return U(a, tn);
     case "iosswitch":
-      return U(a, fn);
-    case "password":
       return U(a, nn);
+    case "password":
+      return U(a, rn);
     case "float":
     case "number":
     case "numbersOnly":
-      return U(a, rn);
+      return U(a, on);
     case "integer":
       return U(a, mn);
     case "multiSelect":
@@ -1670,7 +1670,7 @@ function wr(t) {
     {
       handle: "#draggable-dialog-title",
       cancel: '[class*="MuiDialogContent-root"]',
-      children: /* @__PURE__ */ r(an, { ...t })
+      children: /* @__PURE__ */ r(sn, { ...t })
     }
   );
 }
@@ -1687,7 +1687,7 @@ const qt = ({ columns: t, isOpen: e, onClose: n, setFilter: o, defaultFilter: a 
     x.keyCode === 27 && g();
   }, v = bn(t);
   return /* @__PURE__ */ r("div", { className: "grid-filter-container", children: /* @__PURE__ */ r(
-    on,
+    an,
     {
       open: e,
       onClose: g,
@@ -2127,7 +2127,7 @@ const Nr = oe(function(e, n) {
 }), Or = oe(function(e, n) {
   const o = e.layout, [a, i] = _(o.fields), s = o.pagination ? o.pagination : [15], c = Se(Ue), u = Se(pt);
   var g = o.storeOptions || {}, b = {};
-  un(b, g, u);
+  fn(b, g, u);
   const v = c.getGridStore(b, o.storeOptions.endPoint);
   ae(() => {
     g.hasLayout && v.queryLayout({}).then((F) => {
@@ -2173,7 +2173,7 @@ const Nr = oe(function(e, n) {
     case "grid":
       return /* @__PURE__ */ r(Fr, { ...t });
     case "chart":
-      return /* @__PURE__ */ r(cn, { ...t });
+      return /* @__PURE__ */ r(dn, { ...t });
     default:
       return /* @__PURE__ */ r(Pn, { ...t });
   }
@@ -2189,7 +2189,7 @@ const Yt = (t) => {
   const { layout: e, context: n } = t, o = e.sections;
   function a(i, s, c) {
     const { w: u, h: g } = kr(i.width, i.height);
-    return /* @__PURE__ */ r(sn, { sx: { width: u, height: g }, children: /* @__PURE__ */ r(
+    return /* @__PURE__ */ r(ln, { sx: { width: u, height: g }, children: /* @__PURE__ */ r(
       Mr,
       {
         layout: i,
@@ -2333,7 +2333,7 @@ const Yt = (t) => {
       ) })
     ] }),
     /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
-      ln,
+      cn,
       {
         Child: a,
         childKeyProvider: D,

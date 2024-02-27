@@ -34,10 +34,11 @@ import "../../mui/form/MuiTextField.js";
 import "../../mui/form/MuiCheckBoxGroup.js";
 import "../../mui/form/MuiCheckBox.js";
 import "../../mui/form/MuiSwitch.js";
+import "../../mui/form/MuiIOSSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../form/PalmyraForm.js";
-class W {
+class X {
   constructor(t, r) {
     o(this, "options");
     o(this, "target");
@@ -61,5 +62,5 @@ class W {
   }
 }
 export {
-  W as PalmyraAbstractStore
+  X as PalmyraAbstractStore
 };
