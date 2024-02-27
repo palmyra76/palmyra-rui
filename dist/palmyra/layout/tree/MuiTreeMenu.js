@@ -1,93 +1,103 @@
-import { jsx as t, jsxs as s, Fragment as n } from "react/jsx-runtime";
-import z from "@emotion/styled";
-import { useNavigate as j } from "react-router-dom";
-import { ChevronRight as C } from "@mui/icons-material";
-import { TreeItem as W, TreeView as k } from "@mui/x-tree-view";
-/* empty css                            */import { SimpleIconProvider as A } from "../flexiLayout/IconProvider.js";
-import { useState as p, useEffect as L } from "react";
-const I = (a) => a.title ? a.title : a.name;
-function B(a) {
-  const g = a.data, l = a.sidebarWidth, b = a.iconProvider || A, N = j(), [o, v] = p([]), [S, d] = p(null), x = (i) => {
-    const e = i.path;
-    localStorage.setItem("selectedMenuItem", e), d(e), N(e);
+import { jsxs as a, jsx as i, Fragment as l } from "react/jsx-runtime";
+import W from "@emotion/styled";
+import { useNavigate as A } from "react-router-dom";
+import { ChevronRight as D } from "@mui/icons-material";
+import { TreeItem as R, TreeView as $ } from "@mui/x-tree-view";
+/* empty css                            */import { SimpleIconProvider as F } from "../flexiLayout/IconProvider.js";
+import { useState as d, useEffect as G } from "react";
+const u = (n) => n.title ? n.title : n.name;
+function U(n) {
+  const h = n.data, m = n.sidebarWidth, S = n.iconProvider || F, M = A(), [p, x] = d([]), [w, f] = d(null), [c, v] = d(null), y = (t, e) => {
+    v(t);
+  }, E = () => {
+    v(null);
+  }, I = (t) => {
+    const e = t.path;
+    localStorage.setItem("selectedMenuItem", e), f(e), M(e);
   };
-  L(() => {
-    const i = localStorage.getItem("selectedMenuItem");
-    i && d(i);
-  }, []);
-  const y = (i) => {
-    if (i.icon)
-      return b.getIcon(i.icon);
-  }, u = z(W)`
-              
-    `, T = (i) => {
-    const e = { ...o };
-    e[i.name] = !e[i.name], setTimeout(() => {
-      v(e);
-    }, 250), localStorage.setItem("expandedNodes", JSON.stringify(e));
-  }, h = (i, e, m) => {
-    const f = S === e.path;
-    var r = y(e);
+  G(() => {
+    const t = localStorage.getItem("selectedMenuItem");
+    t && f(t);
+  }, [h]);
+  const T = (t) => {
+    if (t.icon)
+      return S.getIcon(t.icon);
+  }, b = W(R)`
+        
+    `, L = (t) => {
+    const e = { ...p };
+    e[t.name] = !e[t.name], setTimeout(() => {
+      x(e);
+    }, 250);
+  }, g = (t, e, o) => {
+    const N = w === e.path;
+    var r = T(e);
     if (e.name) {
-      let E = e.path;
-      const P = {
-        transform: o[e.name] ? "rotate(90deg)" : "rotate(0deg)",
+      let C = e.path;
+      const j = {
+        transform: p[e.name] ? "rotate(90deg)" : "rotate(0deg)",
         transition: "transform 0.3s ease"
       };
-      return e.children ? /* @__PURE__ */ t(
-        u,
+      return e.children ? /* @__PURE__ */ i(
+        b,
         {
           nodeId: e.name,
-          className: `mui-tree ${f ? "selected" : ""}`,
-          label: /* @__PURE__ */ s(n, { children: [
-            !l && /* @__PURE__ */ s("div", { className: "mui-tree-menu", children: [
-              /* @__PURE__ */ s(
+          className: `mui-tree ${N ? "selected" : ""}`,
+          label: /* @__PURE__ */ a(l, { children: [
+            !m && /* @__PURE__ */ a("div", { className: "mui-tree-menu", children: [
+              /* @__PURE__ */ a(
                 "div",
                 {
                   className: "mui-tree-menu-list",
                   children: [
-                    r ? /* @__PURE__ */ t(r, { className: "mui-label-icon" }) : /* @__PURE__ */ t(n, {}),
-                    I(e)
+                    r ? /* @__PURE__ */ i(r, { className: "mui-label-icon" }) : /* @__PURE__ */ i(l, {}),
+                    u(e)
                   ]
                 }
               ),
-              /* @__PURE__ */ t("div", { className: "mui-arrow-icon", children: /* @__PURE__ */ t(C, { style: P }) })
+              /* @__PURE__ */ i("div", { className: "mui-arrow-icon", children: /* @__PURE__ */ i(D, { style: j }) })
             ] }),
-            l && /* @__PURE__ */ t("div", { className: "mui-sidebar-minimize-tree-menu-list", children: r ? /* @__PURE__ */ t(r, { className: "mui-sidebar-minimize-label-icon" }) : /* @__PURE__ */ t(n, {}) })
+            m && /* @__PURE__ */ i("div", { className: "mui-sidebar-minimize-tree-menu-list", onMouseEnter: (s) => y(e), onMouseLeave: E, children: r ? /* @__PURE__ */ i(r, { className: "mui-sidebar-minimize-label-icon" }) : /* @__PURE__ */ i(l, {}) })
           ] }),
-          onClick: () => T(e),
-          children: Array.isArray(e.children) ? e.children.filter((c) => c.name).map((c, w) => h(E, c, w)) : null
+          onClick: () => L(e),
+          children: Array.isArray(e.children) ? e.children.filter((s) => s.name).map((s, k) => g(C, s, k)) : null
         },
-        m
-      ) : /* @__PURE__ */ t(
-        u,
+        o
+      ) : /* @__PURE__ */ i(
+        b,
         {
-          className: `mui-tree ${f ? "selected" : ""}`,
+          className: `mui-tree ${N ? "selected" : ""}`,
           nodeId: e.name,
-          label: /* @__PURE__ */ s("div", { onClick: (c) => {
-            x(e);
+          label: /* @__PURE__ */ a("div", { onClick: (s) => {
+            I(e);
           }, className: "mui-tree-menu-list", children: [
-            !l && /* @__PURE__ */ s(n, { children: [
-              r ? /* @__PURE__ */ t(r, { className: "mui-label-icon" }) : /* @__PURE__ */ t(n, {}),
-              I(e)
+            !m && /* @__PURE__ */ a(l, { children: [
+              r ? /* @__PURE__ */ i(r, { className: "mui-label-icon" }) : /* @__PURE__ */ i(l, {}),
+              u(e)
             ] }),
-            l && /* @__PURE__ */ t("div", { className: "mui-sidebar-minimize-tree-menu-list", children: r ? /* @__PURE__ */ t(r, { className: "mui-sidebar-minimize-label-icon" }) : /* @__PURE__ */ t(n, {}) })
+            m && /* @__PURE__ */ i("div", { className: "mui-sidebar-minimize-tree-menu-list", children: r ? /* @__PURE__ */ i(r, { className: "mui-sidebar-minimize-label-icon" }) : /* @__PURE__ */ i(l, {}) })
           ] })
         },
-        m
+        o
       );
     }
-  }, M = ((i) => i.filter((e) => e.name).map((e, m) => h(null, e, m)))(g);
-  return /* @__PURE__ */ t(
-    k,
-    {
-      "aria-label": "rich object",
-      defaultExpanded: ["root"],
-      sx: { height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: "auto" },
-      children: M
-    }
-  );
+  }, P = () => {
+    if (c && c.children)
+      return /* @__PURE__ */ i("div", { className: "dropdown-menu", children: c.children.map((t, e) => /* @__PURE__ */ i("div", { className: "dropdown-item", onClick: () => I(t), children: u(t) }, e)) });
+  }, z = ((t) => t.filter((e) => e.name).map((e, o) => g(null, e, o)))(h);
+  return /* @__PURE__ */ a("div", { children: [
+    /* @__PURE__ */ i(
+      $,
+      {
+        "aria-label": "rich object",
+        defaultExpanded: ["Simple Layout Demo"],
+        sx: { height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: "auto" },
+        children: z
+      }
+    ),
+    /* @__PURE__ */ i("div", { style: { overflow: "auto" }, children: c && P() })
+  ] });
 }
 export {
-  B as default
+  U as default
 };

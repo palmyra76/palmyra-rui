@@ -3,7 +3,7 @@ import {Menu} from '@mui/icons-material';
 import { FC, useState } from "react";
 
 import './Sidebar.scss';
-import AsyncTreeMenu from "../tree/AsyncTreeMenu";
+// import AsyncTreeMenu from "../tree/AsyncTreeMenu";
 // import ApplicationMenu from "../../../../src/components/ApplicationMenu";
 
 interface ISideMenuInput{

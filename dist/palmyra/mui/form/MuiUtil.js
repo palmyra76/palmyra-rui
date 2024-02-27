@@ -1,16 +1,20 @@
-const d = (e, l, t) => {
-  const r = e.fieldProps || {};
-  var i = {
+import { jsx as t, Fragment as n, jsxs as a } from "react/jsx-runtime";
+const s = (e, r, i) => {
+  const d = e.fieldProps || {};
+  var l = {
     disabled: e.disabled,
     required: e.required,
     placeholder: e.placeHolder,
-    value: l,
+    value: r,
     variant: e.variant,
-    ...r
+    ...d
   };
-  return t && (i.label = t), i;
-}, a = (e) => e.required && e.title ? e.title + "*" : e.title;
+  return i && (l.label = i), l;
+}, u = (e) => e.required && e.title ? /* @__PURE__ */ t(n, { children: /* @__PURE__ */ a("div", { style: { display: "flex", alignItems: "center", gap: "3px" }, children: [
+  e.title,
+  /* @__PURE__ */ t("span", { style: { color: "red" }, children: "*" })
+] }) }) : e.title;
 export {
-  d as copyMuiOptions,
-  a as getFieldLabel
+  s as copyMuiOptions,
+  u as getFieldLabel
 };

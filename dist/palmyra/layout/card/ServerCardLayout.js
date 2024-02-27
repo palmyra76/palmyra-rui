@@ -1,6 +1,6 @@
 import "react/jsx-runtime";
 import "react";
-import "../../../chunks/index.js";
+import "../../../chunks/index.esm.js";
 import "@mui/material";
 import "./CardLayout.js";
 import { S as b } from "../../../chunks/ServerCardLayout.js";

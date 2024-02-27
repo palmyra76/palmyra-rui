@@ -15,6 +15,7 @@ interface IPalmyraGridInput {
     pagination?: number[];
     customButton?: React.ReactNode[];
     gridTitle?: any;
+    customAddButton?: any;
 }
 interface IPalmyraGrid extends IPageQueryable {
 }
