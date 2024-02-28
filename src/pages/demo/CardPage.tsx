@@ -2,7 +2,6 @@ import { PalmyraStoreFactory, ServerCardLayout, StoreFactory } from "../../../li
 // import { Pagination } from '@mui/material';
 
 const card = (props: any) => {
-    console.log(props);
 
     return <>
         <div style={{ border: "1px solid", padding: '10px' }}>Card</div>

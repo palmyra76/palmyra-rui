@@ -17,7 +17,6 @@ function getArrayData(d) {
         if (typeof d == 'string') {
             return d.split(',')
         } else {
-            console.log(d);
             return [d]
         }
     }

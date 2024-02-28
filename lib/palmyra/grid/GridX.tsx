@@ -46,7 +46,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit, getQueryLimit,
     data, totalRecords, queryLimit, pageSizeOptions, filter } = useServerQuery(props);
 
-  console.log(pageSizeOptions, 'p');
   const currentRef = ref ? ref : useRef<IPageQueryable>(null);
   useImperativeHandle(currentRef, () => {
     return {

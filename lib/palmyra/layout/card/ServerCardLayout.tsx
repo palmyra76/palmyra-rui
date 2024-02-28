@@ -82,7 +82,6 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
     const visibleFilter = !!props.quickSearch;
 
     const totalPages = Math.ceil(totalRecords / queryLimit.limit);
-    console.log( 'p', pageSizeOptions,pageSize ,'s');
 
     return (
         <div>
@@ -129,7 +128,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                             //     onRowsPerPageChange={handleRowsPerPageChange}
                             // />
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <div style={{ width: '50%' }}>
+                                <div>
                                     {
                                         pageSizeOptions && pageSizeOptions.length > 1  ? (
                                             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>

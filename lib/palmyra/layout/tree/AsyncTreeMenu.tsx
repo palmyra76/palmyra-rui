@@ -58,7 +58,6 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
     }, [])
 
     const onLoadData = ({ element }) => {
-        console.log(element.id);
         const parent = element.id;
         return store.getChildren({ parent }).then((d) => {
             var nodes: any[] = convert(d.result, parent);
@@ -68,7 +67,6 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
     };
 
     const wrappedOnLoadData = async (props) => {
-        console.log(props);
         const nodeHasNoChildData = props.element.children.length === 0;
         const nodeHasAlreadyBeenLoaded = nodesAlreadyLoaded.find(
             (e) => e.id === props.element.id
