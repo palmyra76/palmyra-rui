@@ -1,4 +1,4 @@
-import { Pagination } from "../../palmyra/store/Types"
+import { IPagination } from "../../palmyra/store/Types"
 
 interface IInputField {
     focus: () => void
@@ -67,8 +67,8 @@ interface IQueryable {
 }
 
 interface IPageQueryable extends IQueryable {
-    setQueryLimit: (d: Pagination) => void
-    getQueryLimit: () => Pagination
+    setQueryLimit: (d: IPagination) => void
+    getQueryLimit: () => IPagination
 }
 
 interface IServerLookupField extends IInputField, IQueryable {

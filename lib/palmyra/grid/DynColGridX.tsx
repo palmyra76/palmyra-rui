@@ -9,7 +9,7 @@ import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { Pagination } from "../store/Types"
+import { IPagination } from "../store/Types"
 
 
 //TODO - show errors on data fetching
@@ -67,7 +67,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
           return { ...f }
         })
       },
-      setQueryLimit: (d: Pagination) => {
+      setQueryLimit: (d: IPagination) => {
         setQueryLimit(d);
       },
       getQueryLimit: () => {

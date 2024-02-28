@@ -1,5 +1,5 @@
 import { IEndPointOptions } from "../layout/Types";
-interface Pagination {
+interface IPagination {
     offset?: number;
     limit?: number;
     total?: boolean;
@@ -11,10 +11,10 @@ interface AbstractRequest {
 interface CriteriaOptions {
     filter?: Record<string, any>;
 }
-interface QueryRequest extends Pagination, CriteriaOptions, AbstractRequest {
+interface QueryRequest extends IPagination, CriteriaOptions, AbstractRequest {
     sortOrder?: QueryOptions;
 }
-interface QueryParams extends Pagination, CriteriaOptions {
+interface QueryParams extends IPagination, CriteriaOptions {
     sortOrder?: QueryOptions;
 }
 interface QueryResponse<T> {
@@ -49,6 +49,6 @@ interface ResponseHandler<T> {
 interface Tree<T extends Tree<T>> {
     children?: T[];
 }
-export type { Pagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams, AbstractRequest };
+export type { IPagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams, AbstractRequest };
 export type { GetRequest, PostRequest, PutRequest, RemoveRequest };
 export type { QueryResponseHandler, ResponseHandler, ErrorResponse };
