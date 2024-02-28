@@ -5,15 +5,21 @@
     flex-basis: 20%;
 }
 
+.card-pagination {
+    margin-top: 10px;
+}
+
 .MuiSelect-root::after {
     border-bottom: 1px solid white !important;
 }
+
 .MuiSelect-select-MuiInputBase-input-MuiInput-input {
     padding-right: 24px;
     min-width: 16px;
     border: 1px solid #8080806b !important;
     padding-left: 5px !important;
-  }
+}
+
 .MuiInputBase-root-MuiInput-root-MuiSelect-root::before {
     border: 1px solid rgb(151, 151, 151) !important;
     border-bottom: none !important;
