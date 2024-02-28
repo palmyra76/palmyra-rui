@@ -17,7 +17,10 @@ interface GridRendererInput {
     defaultParams?: DefaultQueryParams,
     customButton?: React.ReactNode[],
     gridTitle?: any,
-    customAddButton?: any
+    customAddButton?: any,
+    fetchAll?: boolean,
+    filterTopic?: string,
+    initialFetch?: boolean
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IPageQueryable>) {
@@ -49,6 +52,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
                 onDataChange={props.onDataChange} gridTitle={props.gridTitle} customAddButton={props.customAddButton}
                 onNewClick={onNewClick} customizer={props.customizer} customButton={props.customButton}
                 quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
+                fetchAll={props.fetchAll} filterTopic={props.filterTopic} initialFetch={props.initialFetch}
             ></GridX>
         </div>
     );

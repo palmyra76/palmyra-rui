@@ -16,6 +16,9 @@ interface IPalmyraGridInput {
     customButton?: React.ReactNode[];
     gridTitle?: any;
     customAddButton?: any;
+    fetchAll?: boolean;
+    filterTopic?: string;
+    initialFetch?: boolean;
 }
 interface IPalmyraGrid extends IPageQueryable {
 }
