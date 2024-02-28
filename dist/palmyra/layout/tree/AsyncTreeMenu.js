@@ -5,31 +5,30 @@ import { u as H, c as I, I as O } from "../../../chunks/AsyncTreeMenu.js";
 function F(i) {
   const d = b(null);
   let u = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [s, o] = L([u]), [h, A] = L([]), v = i.store, f = (e, n, t) => e.map((l) => (l.id === n && (l.loaded = !0, l.children = t.map((m) => m.id)), l)).concat(t), g = (e, n) => e.map((a) => {
-    const l = a.children || "";
+  const [l, o] = L([u]), [h, A] = L([]), p = i.store, v = (e, n, t) => e.map((s) => (s.id === n && (s.loaded = !0, s.children = t.map((m) => m.id)), s)).concat(t), f = (e, n) => e.map((a) => {
+    const s = a.children || "";
     return {
       id: a.id,
       name: a.name,
       parent: n,
       children: [],
-      isBranch: l.length > 0,
+      isBranch: s.length > 0,
       loaded: !1
     };
   });
   x(() => {
-    v.getRoot().then((e) => {
-      var n = g(e.result, -1);
-      const t = f(s, -1, n);
+    p.getRoot().then((e) => {
+      var n = f(e.result, -1);
+      const t = v(l, -1, n);
       o(t);
     });
   }, []);
   const w = ({ element: e }) => {
-    console.log(e.id);
     const n = e.id;
-    return v.getChildren({ parent: n }).then((t) => {
-      var a = g(t.result, n);
-      const l = f(s, n, a);
-      o(l);
+    return p.getChildren({ parent: n }).then((t) => {
+      var a = f(t.result, n);
+      const s = v(l, n, a);
+      o(s);
     });
   };
   return /* @__PURE__ */ r(y, { children: /* @__PURE__ */ c("div", { children: [
@@ -46,10 +45,9 @@ function F(i) {
       H,
       {
         className: "async-tree-menu-container",
-        data: s,
+        data: l,
         "aria-label": "Checkbox tree",
         onLoadData: async (e) => {
-          console.log(e);
           const n = e.element.children.length === 0, t = h.find(
             (a) => a.id === e.element.id
           );
@@ -69,13 +67,13 @@ function F(i) {
           isBranch: n,
           isExpanded: t,
           isSelected: a,
-          isHalfSelected: l,
+          isHalfSelected: s,
           getNodeProps: m,
           level: k,
           handleSelect: B,
           handleExpand: D
         }) => {
-          const S = (p, N) => p && N.children.length === 0 ? /* @__PURE__ */ c(y, { children: [
+          const S = (N, g) => N && g.children.length === 0 ? /* @__PURE__ */ c(y, { children: [
             /* @__PURE__ */ c(
               "span",
               {
@@ -84,7 +82,7 @@ function F(i) {
                 className: "visually-hidden",
                 children: [
                   "loading ",
-                  N.name
+                  g.name
                 ]
               }
             ),
@@ -95,7 +93,7 @@ function F(i) {
                 className: "loading-icon"
               }
             )
-          ] }) : /* @__PURE__ */ r(T, { isOpen: p });
+          ] }) : /* @__PURE__ */ r(T, { isOpen: N });
           return /* @__PURE__ */ r(
             "div",
             {
@@ -115,10 +113,10 @@ function F(i) {
   ] }) });
 }
 const T = (i) => {
-  const { isOpen: d, className: u } = i, s = "arrow", o = I(
-    s,
-    { [`${s}--closed`]: !d },
-    { [`${s}--open`]: d },
+  const { isOpen: d, className: u } = i, l = "arrow", o = I(
+    l,
+    { [`${l}--closed`]: !d },
+    { [`${l}--open`]: d },
     u
   );
   return /* @__PURE__ */ r(O, { className: o });

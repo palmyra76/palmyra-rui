@@ -61,8 +61,8 @@ import kn from "../palmyra/layout/flexiLayout/SectionRendererViewForm.js";
 import { u as Rn } from "./PalmyraFieldManager.js";
 import { useKeyValue as Tn } from "../palmyra/utils/pubsub/PubSubHelper.js";
 const ve = (t) => {
-  var K, H;
-  const { store: e, quickSearch: n } = t, o = t.fetchAll != !1, [a, i] = _(t.endPointOptions), [s, l] = _(null), d = ((K = t.defaultParams) == null ? void 0 : K.filter) || {}, g = ((H = t.defaultParams) == null ? void 0 : H.sort) || {}, [C, b] = t.filterTopic ? Tn(t.filterTopic, d) : _(d), [x, P] = _({}), M = Z(t.initialFetch == !1), X = t.pageSize ? t.pageSize : 15;
+  var K, q;
+  const { store: e, quickSearch: n } = t, o = t.fetchAll != !1, [a, i] = _(t.endPointOptions), [s, l] = _(null), d = ((K = t.defaultParams) == null ? void 0 : K.filter) || {}, g = ((q = t.defaultParams) == null ? void 0 : q.sort) || {}, [C, b] = t.filterTopic ? Tn(t.filterTopic, d) : _(d), [x, P] = _({}), M = Z(t.initialFetch == !1), X = t.pageSize ? t.pageSize : 15;
   var L = X instanceof Array ? X : [X], W = X instanceof Array ? X[0] : X;
   const [f, h] = _({ limit: W, offset: 0, total: !0 }), [m, v] = _(null), w = () => Math.round(f.offset / f.limit), S = () => f, N = (E) => {
     h((B) => ({ limit: B.limit, total: B.total, offset: E * B.limit }));
@@ -136,7 +136,7 @@ const ve = (t) => {
   };
 };
 function dt(t) {
-  return t ? Array.isArray(t) ? t : typeof t == "string" ? t.split(",") : (console.log(t), [t]) : [];
+  return t ? Array.isArray(t) ? t : typeof t == "string" ? t.split(",") : [t] : [];
 }
 const $o = oe(function(e, n) {
   const o = Se(Pe), a = n || Z(null), i = o(e, "checkbox", a), { mutateOptions: s, setMutateOptions: l } = i, [d, g] = _(!1), C = dt(i.data), b = i.error, x = i.eventListeners, M = { store: i.store, pageSize: -1 }, { data: X } = ve(M), L = X, W = Z(null), f = e.lookupOptions || {}, h = f.idAttribute || "id", m = f.displayAttribute || "name", v = e.showSelectedOnly && e.readonly, w = De(h) ? (y) => we(h, y) : (y) => y[h], S = De(m) ? (y) => we(m, y) : (y) => y[m];
@@ -261,11 +261,11 @@ const $o = oe(function(e, n) {
     const u = z ? [...z] : [], R = A != "" ? A : void 0, J = G(R), be = K(R);
     u && J && be && !F(u, J) && u.unshift(R), d(u), s.current < p && (s.current = p);
   }, [z, p]), ae(() => {
-    wt(H);
+    wt(q);
   }, [g]), ae(() => {
-    En(H);
+    En(q);
   }, [b]);
-  function H() {
+  function q() {
     b && (g.length > 0 && g != K(A) ? y("*" + g + "*") : z ? y(null) : O());
   }
   var E = {
@@ -416,15 +416,15 @@ const $o = oe(function(e, n) {
   }
   var K = {
     onBlur: (c) => {
-      H(g), m.onBlur(g);
+      q(g), m.onBlur(g);
     },
     onFocus: m.onFocus,
     onChange: (c, F) => {
-      H(F);
+      q(F);
     },
     onInputChange: (c, F) => (C(F), !0)
   };
-  const H = (c) => {
+  const q = (c) => {
     m.onValueChange(c);
   };
   function E(c, F) {
@@ -654,7 +654,7 @@ const Bn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   clsx: ut,
   default: ut
 }, Symbol.toStringTag, { value: "Module" })), In = /* @__PURE__ */ xn(Bn);
-var q = {}, ce = {};
+var H = {}, ce = {};
 Object.defineProperty(ce, "__esModule", {
   value: !0
 });
@@ -716,27 +716,27 @@ function Yn(t) {
   return e;
 }
 ge.default = Vt();
-Object.defineProperty(q, "__esModule", {
+Object.defineProperty(H, "__esModule", {
   value: !0
 });
-q.addClassName = Wt;
-q.addEvent = $n;
-q.addUserSelectStyles = ir;
-q.createCSSTransform = nr;
-q.createSVGTransform = rr;
-q.getTouch = or;
-q.getTouchIdentifier = ar;
-q.getTranslation = tt;
-q.innerHeight = Jn;
-q.innerWidth = er;
-q.matchesSelector = Xt;
-q.matchesSelectorAndParentsTo = Un;
-q.offsetXYFromParent = tr;
-q.outerHeight = jn;
-q.outerWidth = Zn;
-q.removeClassName = zt;
-q.removeEvent = Kn;
-q.removeUserSelectStyles = sr;
+H.addClassName = Wt;
+H.addEvent = $n;
+H.addUserSelectStyles = ir;
+H.createCSSTransform = nr;
+H.createSVGTransform = rr;
+H.getTouch = or;
+H.getTouchIdentifier = ar;
+H.getTranslation = tt;
+H.innerHeight = Jn;
+H.innerWidth = er;
+H.matchesSelector = Xt;
+H.matchesSelectorAndParentsTo = Un;
+H.offsetXYFromParent = tr;
+H.outerHeight = jn;
+H.outerWidth = Zn;
+H.removeClassName = zt;
+H.removeEvent = Kn;
+H.removeUserSelectStyles = sr;
 var re = ce, ft = Gn(ge);
 function It(t) {
   if (typeof WeakMap != "function")
@@ -893,7 +893,7 @@ de.createDraggableData = mr;
 de.getBoundPosition = lr;
 de.getControlPosition = fr;
 de.snapToGrid = cr;
-var ne = ce, pe = q;
+var ne = ce, pe = H;
 function lr(t, e, n) {
   if (!t.props.bounds)
     return [e, n];
@@ -993,7 +993,7 @@ Object.defineProperty(_e, "__esModule", {
   value: !0
 });
 _e.default = void 0;
-var Ye = vr(pt), ee = rt(kt), yr = rt(Rt), $ = q, ue = de, Ge = ce, Ce = rt(Ve);
+var Ye = vr(pt), ee = rt(kt), yr = rt(Rt), $ = H, ue = de, Ge = ce, Ce = rt(Ve);
 function rt(t) {
   return t && t.__esModule ? t : { default: t };
 }
@@ -1309,7 +1309,7 @@ j(Be, "defaultProps", {
       return d.default;
     }
   }), t.default = void 0;
-  var e = x(pt), n = C(kt), o = C(Rt), a = C(In), i = q, s = de, l = ce, d = C(_e), g = C(Ve);
+  var e = x(pt), n = C(kt), o = C(Rt), a = C(In), i = H, s = de, l = ce, d = C(_e), g = C(Ve);
   function C(f) {
     return f && f.__esModule ? f : { default: f };
   }
@@ -1482,13 +1482,13 @@ j(Be, "defaultProps", {
         ...y
       } = this.props;
       let p = {}, O = null;
-      const G = !!!I || this.state.dragging, K = I || w, H = {
+      const G = !!!I || this.state.dragging, K = I || w, q = {
         // Set left if horizontal drag is enabled
         x: (0, s.canDragX)(this) && G ? this.state.x : K.x,
         // Set top if vertical drag is enabled
         y: (0, s.canDragY)(this) && G ? this.state.y : K.y
       };
-      this.state.isElementSVG ? O = (0, i.createSVGTransform)(H, V) : p = (0, i.createCSSTransform)(H, V);
+      this.state.isElementSVG ? O = (0, i.createSVGTransform)(q, V) : p = (0, i.createCSSTransform)(q, V);
       const E = (0, a.default)(v.props.className || "", S, {
         [N]: this.state.dragging,
         [A]: this.state.dragged
@@ -1751,11 +1751,9 @@ const Rr = oe(function(e, n) {
     data: z,
     totalRecords: G,
     queryLimit: K,
-    pageSizeOptions: H,
+    pageSizeOptions: q,
     filter: E
-  } = ve(e);
-  console.log(H, "p");
-  const B = n || Z(null);
+  } = ve(e), B = n || Z(null);
   he(B, () => ({
     setFilter: (k) => {
       w(k);
@@ -1921,17 +1919,17 @@ const Rr = oe(function(e, n) {
       }
     ) }),
     /* @__PURE__ */ r("div", { className: "grid-footer", children: /* @__PURE__ */ r("div", { className: "grid-filter", children: te && /* @__PURE__ */ r("div", { children: /* @__PURE__ */ D("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
-      /* @__PURE__ */ r("div", { style: { width: "50%" }, children: H && H[0] !== 15 ? /* @__PURE__ */ r(xe, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ D("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
+      /* @__PURE__ */ r("div", { style: { width: "50%" }, children: q && q[0] !== 15 ? /* @__PURE__ */ r(xe, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ D("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
         /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r("span", { children: "Showing" }) }),
         /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
           Ct,
           {
             labelId: "rows-per-page-select-label",
             id: "rows-per-page-select",
-            defaultValue: H[0],
+            defaultValue: q[0],
             onChange: Xe,
             label: "Rows per page",
-            children: H.map((k) => /* @__PURE__ */ r(St, { value: k, children: k }, k))
+            children: q.map((k) => /* @__PURE__ */ r(St, { value: k, children: k }, k))
           }
         ) }),
         /* @__PURE__ */ r("div", { children: /* @__PURE__ */ D("span", { children: [
@@ -1969,7 +1967,7 @@ const Rr = oe(function(e, n) {
     queryLimit: z,
     pageSizeOptions: G,
     filter: K
-  } = ve(e), [H, E] = _(l(p)), B = n || Z(null);
+  } = ve(e), [q, E] = _(l(p)), B = n || Z(null);
   he(B, () => ({
     setFilter: (T) => {
       m(T);
@@ -1994,12 +1992,12 @@ const Rr = oe(function(e, n) {
       w(T);
     },
     getCurrentData: () => p
-  }), [y, H]), ae(() => {
+  }), [y, q]), ae(() => {
     E(l(p));
   }, [p]);
   const c = (T, te) => {
     N(te);
-  }, F = xt(H, g), Q = (T) => {
+  }, F = xt(q, g), Q = (T) => {
     X(T);
   }, me = () => {
     P(!x);
@@ -2067,12 +2065,12 @@ const Rr = oe(function(e, n) {
             ] })
           ] }) })
         ] }) }),
-        H.some((T) => T.searchable) && /* @__PURE__ */ D("div", { className: "grid-header-button grid-filter-btn", children: [
+        q.some((T) => T.searchable) && /* @__PURE__ */ D("div", { className: "grid-header-button grid-filter-btn", children: [
           /* @__PURE__ */ r(Me, { title: "Filter", placement: "top", children: /* @__PURE__ */ r(le, { className: "grid-btn", disableRipple: !0, onClick: () => W(!0), children: /* @__PURE__ */ r(Dn, { className: "grid-button-icon" }) }) }),
           /* @__PURE__ */ r(
             Yt,
             {
-              columns: H,
+              columns: q,
               setFilter: m,
               defaultFilter: K,
               isOpen: L,
@@ -2335,7 +2333,7 @@ const Ut = (t) => {
     const O = parseInt(p.target.value, 10);
     M(O);
   }, I = 200, V = !!s, Y = !!e.quickSearch, y = Math.ceil(h / v.limit);
-  return console.log("p", m, s, "s"), /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r("div", { className: "card-page-container", children: /* @__PURE__ */ D("div", { children: [
+  return /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r("div", { className: "card-page-container", children: /* @__PURE__ */ D("div", { children: [
     /* @__PURE__ */ D("div", { className: "card-header", children: [
       o,
       /* @__PURE__ */ r("div", { className: "card-filter", children: Y && /* @__PURE__ */ r(
@@ -2374,7 +2372,7 @@ const Ut = (t) => {
     //     onRowsPerPageChange={handleRowsPerPageChange}
     // />
     /* @__PURE__ */ D("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
-      /* @__PURE__ */ r("div", { style: { width: "50%" }, children: m && m.length > 1 ? /* @__PURE__ */ r(xe, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ D("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
+      /* @__PURE__ */ r("div", { children: m && m.length > 1 ? /* @__PURE__ */ r(xe, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ D("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
         /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r("span", { children: "Showing" }) }),
         /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
           Ct,

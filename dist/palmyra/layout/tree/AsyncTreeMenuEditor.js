@@ -26,7 +26,6 @@ function V(c) {
     });
   }, []);
   const C = ({ element: n }) => {
-    console.log(n.id);
     const t = n.id;
     return v.getChildren({ parent: t }).then((o) => {
       var a = w(o.result, t);
@@ -50,7 +49,6 @@ function V(c) {
         data: l,
         "aria-label": "Checkbox tree",
         onLoadData: async (n) => {
-          console.log(n);
           const t = n.element.children.length === 0, o = g.find(
             (a) => a.id === n.element.id
           );
