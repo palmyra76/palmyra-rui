@@ -1,6 +1,6 @@
 import { MutableRefObject, ReactNode, forwardRef, useImperativeHandle, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { TablePagination, TextField, InputAdornment } from '@mui/material';
+import { TextField, InputAdornment, MenuItem, Pagination, FormControl, Select, Stack } from '@mui/material';
 import './CardLayout.css';
 
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
@@ -64,7 +64,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
 
 
     const nextPage = (event, newPage) => {
-        gotoPage(newPage);
+        gotoPage(newPage - 1);
     };
 
     const handleFilter = (event) => {
@@ -80,6 +80,9 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
     const width = 200;
     const visiblePagination = !!pageSize;
     const visibleFilter = !!props.quickSearch;
+
+    const totalPages = Math.ceil(totalRecords / queryLimit.limit);
+    console.log(getPageNo(), 'p', totalPages);
 
     return (
         <div>
@@ -116,15 +119,53 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                     </div>
                     <div className='card-pagination'>
                         {visiblePagination && (
-                            <TablePagination
-                                component="div"
-                                count={totalRecords || 0}
-                                page={getPageNo()}
-                                onPageChange={nextPage}
-                                rowsPerPage={queryLimit.limit}
-                                rowsPerPageOptions={pageSizeOptions || []}
-                                onRowsPerPageChange={handleRowsPerPageChange}
-                            />
+                            // <TablePagination
+                            //     component="div"
+                            //     count={totalRecords || 0}
+                            //     page={getPageNo()}
+                            //     onPageChange={nextPage}
+                            //     rowsPerPage={queryLimit.limit}
+                            //     rowsPerPageOptions={pageSizeOptions || []}
+                            //     onRowsPerPageChange={handleRowsPerPageChange}
+                            // />
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <div style={{ width: '50%' }}>
+                                    {
+                                        pageSizeOptions || pageSizeOptions[0] !== 15 ? (
+                                            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                    <div><span>Showing</span></div>
+                                                    <div>
+                                                        <Select
+                                                            labelId="rows-per-page-select-label"
+                                                            id="rows-per-page-select"
+                                                            // value={pag}
+                                                            defaultValue={pageSizeOptions[0]}
+                                                            onChange={handleRowsPerPageChange}
+                                                            label="Rows per page"
+                                                        >
+                                                            {pageSizeOptions.map((pageSize) => (
+                                                                <MenuItem key={pageSize} value={pageSize}>
+                                                                    {pageSize}
+                                                                </MenuItem>
+                                                            ))}
+                                                        </Select>
+                                                    </div>
+                                                    <div><span>of {totalRecords} Results</span></div>
+                                                </div>
+                                            </FormControl>
+
+                                        ) : null
+                                    }
+                                </div>
+                                <div style={{}}>
+                                    <Stack direction="row" alignItems="center" spacing={1}>
+                                        <Pagination count={totalPages} shape="rounded" componentName='div'
+                                            onChange={nextPage} page={getPageNo() + 1}
+                                        />
+                                    </Stack>
+                                </div>
+                            </div>
                         )}
                     </div>
                 </div>

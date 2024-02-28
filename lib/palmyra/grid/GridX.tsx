@@ -1,5 +1,5 @@
 import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { TablePagination, TextField, InputAdornment, Button, ClickAwayListener } from '@mui/material';
+import { TablePagination, TextField, InputAdornment, Button, ClickAwayListener, Pagination, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
@@ -9,7 +9,7 @@ import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { Pagination } from "../../palmyra/store/Types"
+import { IPagination } from "../../palmyra/store/Types"
 import { TbFilterShare, TbTableExport } from "react-icons/tb";
 import { PiFileXls, PiFilePdf } from "react-icons/pi";
 
@@ -46,7 +46,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit, getQueryLimit,
     data, totalRecords, queryLimit, pageSizeOptions, filter } = useServerQuery(props);
 
-
+  console.log(pageSizeOptions, 'p');
   const currentRef = ref ? ref : useRef<IPageQueryable>(null);
   useImperativeHandle(currentRef, () => {
     return {
@@ -68,7 +68,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
           return { ...f }
         })
       },
-      setQueryLimit: (d: Pagination) => {
+      setQueryLimit: (d: IPagination) => {
         setQueryLimit(d);
       },
       getQueryLimit: () => {
@@ -85,7 +85,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
 
   const nextPage = (event, newPage) => {
-    gotoPage(newPage);
+    gotoPage(newPage - 1);
   };
 
   const columnDefs = generateColumns(columns, customizer);
@@ -183,6 +183,8 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     transform: exportDropdownOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
     transition: 'transform 0.3s ease',
   };
+
+  const totalPages = Math.ceil(totalRecords / queryLimit.limit);
   return (
     <div>
       <div>
@@ -303,16 +305,74 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         <div className='grid-footer'>
           <div className='grid-filter'>
             {visiblePagination && (
-              <TablePagination
-                component="div"
-                count={totalRecords || 0}
-                page={getPageNo()}
-                onPageChange={nextPage}
-                rowsPerPage={queryLimit.limit}
-                rowsPerPageOptions={pageSizeOptions || []}
-                onRowsPerPageChange={handleRowsPerPageChange}
-              />
+              <div>
+                {/* <TablePagination
+                  component="div"
+                  count={totalRecords || 0}
+                  page={getPageNo()}
+                  onPageChange={nextPage}
+                  rowsPerPage={queryLimit.limit}
+                  rowsPerPageOptions={pageSizeOptions || []}
+                  onRowsPerPageChange={handleRowsPerPageChange}
+                /> */}
+                {/* {pageSizeOptions  &&
+                  <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="rows-per-page-select-label">Rows per page</InputLabel>
+                    <Select
+                      labelId="rows-per-page-select-label"
+                      id="rows-per-page-select"
+                      // value={queryLimit.limit}
+                      onChange={handleRowsPerPageChange}
+                      label="Rows per page"
+                      
+                    >
+                      {pageSizeOptions.map((pageSize) => (
+                        <MenuItem key={pageSize} value={pageSize}>
+                          {pageSize}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>} */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ width: '50%' }}>
+                    {
+                      pageSizeOptions && pageSizeOptions[0] !== 15 ? (
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                          {/* <InputLabel id="rows-per-page-select-label">Rows per page</InputLabel> */}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <div><span>Showing</span></div>
+                            <div>
+                              <Select
+                                labelId="rows-per-page-select-label"
+                                id="rows-per-page-select"
+                                defaultValue={pageSizeOptions[0]}
+                                onChange={handleRowsPerPageChange}
+                                label="Rows per page"
+                              >
+                                {pageSizeOptions.map((pageSize) => (
+                                  <MenuItem key={pageSize} value={pageSize}>
+                                    {pageSize}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            </div>
+                            <div><span>of {totalRecords} Results</span></div>
+                          </div>
+                        </FormControl>
+
+                      ) : null
+                    }
+                  </div>
+                  <div style={{}}>
+                    <Pagination count={totalPages} shape="rounded" componentName='div'
+                      onChange={nextPage} page={getPageNo() + 1}
+                    // onChange={nextPage}
+                    />
+                  </div>
+                </div>
+              </div>
             )}
+
           </div>
         </div>
       </div >

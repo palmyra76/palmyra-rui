@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
-import { Pagination, QueryRequest, useKeyValue } from '../../main';
+import { IPagination, QueryRequest, useKeyValue } from '../../main';
 import { IEndPointOptions } from '../layout/Types';
 
 interface IServerQueryInput {
@@ -36,7 +36,7 @@ const useServerQuery = (props: IServerQueryInput) => {
   var pageSizeOptions = pageSize instanceof Array ? pageSize : [pageSize];
   var defaultPageSize = pageSize instanceof Array ? pageSize[0] : pageSize;
 
-  const [queryLimit, setQueryLimit] = useState<Pagination>({ limit: defaultPageSize, offset: 0, total: true });
+  const [queryLimit, setQueryLimit] = useState<IPagination>({ limit: defaultPageSize, offset: 0, total: true });
   const [data, setData] = useState(null);
 
   const getPageNo = () => {
