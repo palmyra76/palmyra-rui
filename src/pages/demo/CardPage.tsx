@@ -1,4 +1,5 @@
 import { PalmyraStoreFactory, ServerCardLayout, StoreFactory } from "../../../lib/main";
+// import { Pagination } from '@mui/material';
 
 const card = (props: any) => {
     console.log(props);
@@ -13,7 +14,7 @@ const CardPage = () => {
     const store = storeFactory.getGridStore({}, '/params/definition');
     return <><div className="param-list-servercard-layout">
         <ServerCardLayout Child={card} store={store} EmptyChild={card} children='sss'
-            pageSize={[15, 30]}></ServerCardLayout>
+            pageSize={[15,16,17]}></ServerCardLayout>
     </div></>
 }
 
