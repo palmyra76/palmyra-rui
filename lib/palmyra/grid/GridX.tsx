@@ -303,7 +303,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         </div>
         <div className='grid-footer'>
           <div className='grid-filter'>
-            {visiblePagination && (
+            {visiblePagination && totalRecords !== null && (
               <div>
                 {/* <TablePagination
                   component="div"
@@ -314,30 +314,11 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                   rowsPerPageOptions={pageSizeOptions || []}
                   onRowsPerPageChange={handleRowsPerPageChange}
                 /> */}
-                {/* {pageSizeOptions  &&
-                  <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="rows-per-page-select-label">Rows per page</InputLabel>
-                    <Select
-                      labelId="rows-per-page-select-label"
-                      id="rows-per-page-select"
-                      // value={queryLimit.limit}
-                      onChange={handleRowsPerPageChange}
-                      label="Rows per page"
-                      
-                    >
-                      {pageSizeOptions.map((pageSize) => (
-                        <MenuItem key={pageSize} value={pageSize}>
-                          {pageSize}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>} */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ width: '50%' }}>
                     {
-                      pageSizeOptions && pageSizeOptions[0] !== 15 ? (
+                      pageSizeOptions && pageSizeOptions.length > 1 ? (
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                          {/* <InputLabel id="rows-per-page-select-label">Rows per page</InputLabel> */}
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <div><span>Showing</span></div>
                             <div>
@@ -365,7 +346,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                   <div style={{}}>
                     <Pagination count={totalPages} shape="rounded" componentName='div'
                       onChange={nextPage} page={getPageNo() + 1}
-                    // onChange={nextPage}
                     />
                   </div>
                 </div>
