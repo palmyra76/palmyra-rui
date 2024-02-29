@@ -11,6 +11,7 @@ interface GridXOptions extends IServerQueryInput {
     customizer?: GridCustomizer;
     customButton?: React.ReactNode[];
     gridTitle?: any;
+    customAddButton?: any;
 }
 declare const DynColGridX: import("react").ForwardRefExoticComponent<GridXOptions & import("react").RefAttributes<IPageQueryable>>;
 export default DynColGridX;
