@@ -4,6 +4,17 @@
     --left-menu-fontsize: 1.01em;
 }
 
+.MuiTableContainer-root {
+    max-height: 75vh;
+    overflow: scroll;
+}
+
+.MuiTableRow-head .MuiTableCell-root {
+    position: sticky;
+    top: 0;
+    background-color: rgba(228, 240, 251);
+}
+
 .MuiFormLabel-root-MuiInputLabel-root {
     display: flex;
     align-items: center;
@@ -55,6 +66,7 @@ body {
     cursor: pointer;
     text-transform: none !important;
 }
+
 .default-filled-button {
     border-radius: 5px !important;
     gap: 5px !important;
