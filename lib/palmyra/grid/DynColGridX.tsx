@@ -1,15 +1,17 @@
 import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { TablePagination, TextField, InputAdornment, Button, Tooltip, ClickAwayListener } from '@mui/material';
+import { TextField, InputAdornment, Button, ClickAwayListener, FormControl, Select, MenuItem, Pagination } from '@mui/material';
 import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
-import { Menu, DensitySmall, DensityLarge, FileDownloadOutlined, FilterAlt, Add } from '@mui/icons-material';
+import { Menu, DensitySmall, DensityLarge, Add, KeyboardArrowDown } from '@mui/icons-material';
 import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { IPagination } from "../store/Types"
+import { IPagination } from "../store/Types";
+import { TbFilterShare, TbTableExport } from "react-icons/tb";
+import { PiFileXls, PiFilePdf } from "react-icons/pi";
 
 
 //TODO - show errors on data fetching
@@ -22,7 +24,8 @@ interface GridXOptions extends IServerQueryInput {
   onNewClick?: Function,
   customizer?: GridCustomizer,
   customButton?: React.ReactNode[],
-  gridTitle?: any
+  gridTitle?: any,
+  customAddButton?: any
 }
 
 const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
@@ -35,6 +38,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
   const gridTitle = props.gridTitle;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
   const [filterDialogOpen, setFilterDialogOpen] = useState(false);
   const [querySearchText, setQuickSearchText] = useState("");
@@ -88,7 +92,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
   }, [data])
 
   const nextPage = (event, newPage) => {
-    gotoPage(newPage);
+    gotoPage(newPage - 1);
   };
 
   const columnDefs = generateColumns(columns, customizer);
@@ -161,13 +165,33 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
   }
 
   const onExportClick = () => {
-    console.info('Export Clicked');
+    setExportDropdownOpen(!exportDropdownOpen);
+  }
+  const onNewClick = () => {
+    props.onNewClick();
+  }
+  const handlePdfGen = () => {
+
+  }
+
+  const handleExcelGen = () => {
+
   }
 
   const width = 200;
   const visiblePagination = !!props.pageSize;
   const visibleFilter = !!quickSearch;
 
+  const arrowStyles = {
+    transform: dropdownOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
+    transition: 'transform 0.3s ease',
+  };
+  const exportArrowStyles = {
+    transform: exportDropdownOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
+    transition: 'transform 0.3s ease',
+  };
+
+  const totalPages = Math.ceil(totalRecords / queryLimit.limit);
   return (
     <div>
       <div>
@@ -199,24 +223,24 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
             </div>
             <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
               <div className='grid-header-button grid-density-btn' onClick={toggleDropdown}>
-                <Tooltip title='Density' placement='top'>
-                  <Button className='grid-btn' disableRipple>
-                    {densityIcon()}
-                  </Button>
-                </Tooltip>
+                <Button className='grid-btn' disableRipple>
+                  {densityIcon()}
+                  <span>Density</span>
+                  <KeyboardArrowDown style={arrowStyles} className='avathar-arrw-icon' />
+                </Button>
                 {dropdownOpen && (
                   <div className="density-dropdown-content">
                     <ul>
                       <li onClick={() => handleDensityChange('standard')}>
-                        <Menu className='density-icon' />
+                        <Menu className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Standard</span>
                       </li>
                       <li onClick={() => handleDensityChange('compact')}>
-                        <DensitySmall className='density-icon' />
+                        <DensitySmall className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Compact</span>
                       </li>
                       <li onClick={() => handleDensityChange('comfortable')}>
-                        <DensityLarge className='density-icon' />
+                        <DensityLarge className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Comfortable</span>
                       </li>
                     </ul>
@@ -226,32 +250,54 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
             </ClickAwayListener>
             {columns.some(column => column.searchable) && (
               <div className='grid-header-button grid-filter-btn'>
-                <Tooltip title='Filter' placement='top'>
-                  <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
-                    <FilterAlt className='grid-button-icon' />
-                  </Button>
-                </Tooltip>
+                <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
+                  <TbFilterShare className='grid-button-icon' />
+                  <span>Filter</span>
+                </Button>
                 <Filter columns={columns} setFilter={setQueryFilter}
                   defaultFilter={filter}
                   isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
               </div>)}
-            <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
-              <Tooltip title='Export' placement='top'>
+            <ClickAwayListener onClickAway={() => { setExportDropdownOpen(false) }}>
+              <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
                 <Button className='grid-btn' disableRipple>
-                  <FileDownloadOutlined className='grid-button-icon' />
+                  <TbTableExport className='grid-button-icon' />
+                  <span>Export</span>
+                  <KeyboardArrowDown style={exportArrowStyles} className='avathar-arrw-icon' />
                 </Button>
-              </Tooltip>
-            </div>
+                {exportDropdownOpen && (
+                  <div className="density-dropdown-content">
+                    <ul>
+                      <li onClick={handlePdfGen}>
+                        <PiFilePdf className='density-icon grid-button-icon' />
+                        <span className='drodown-content-text'>Export as PDF</span>
+                      </li>
+                      <li onClick={handleExcelGen}>
+                        <PiFileXls className='density-icon grid-button-icon' />
+                        <span className='drodown-content-text'>Export as Excel</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </ClickAwayListener>
             {props.onNewClick ? (
-              <div className='grid-header-button' onClick={() => { props.onNewClick(); }}>
-                <Tooltip title='New' placement='top'>
-                  <Button className='grid-btn' disableRipple>
-                    <Add className='grid-button-icon' />
-                  </Button>
-                </Tooltip>
+              <div className='grid-header-button grid-add-btn'>
+                {props.customAddButton ? (
+                  <div onClick={onNewClick}>
+                    {props.customAddButton}
+                  </div>
+                ) : (
+                  <div onClick={onNewClick}>
+                    <Button className='grid-btn' disableRipple>
+                      <Add className='grid-button-icon' />
+                      <span>Add</span>
+                    </Button>
+                  </div>
+                )}
               </div>) : <></>}
             {customButton && customButton.map((button: any, index: any) => (
-              <div key={index} className='grid-custom-button grid-export-btn'>
+              <div key={index} className='grid-custom-button'>
                 {button}
               </div>
             ))}
@@ -265,8 +311,9 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
         </div>
         <div className='grid-footer'>
           <div className='grid-filter'>
-            {visiblePagination && (
-              <TablePagination
+            {visiblePagination && totalRecords !== null && (
+              <div>
+                {/* <TablePagination
                 component="div"
                 count={totalRecords || 0}
                 page={getPageNo()}
@@ -274,8 +321,45 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
                 rowsPerPage={queryLimit.limit}
                 rowsPerPageOptions={pageSizeOptions || []}
                 onRowsPerPageChange={handleRowsPerPageChange}
-              />
+              /> */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ width: '50%' }}>
+                    {
+                      pageSizeOptions && pageSizeOptions.length > 1 ? (
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <div><span>Showing</span></div>
+                            <div>
+                              <Select
+                                labelId="rows-per-page-select-label"
+                                id="rows-per-page-select"
+                                defaultValue={pageSizeOptions[0]}
+                                onChange={handleRowsPerPageChange}
+                                label="Rows per page"
+                              >
+                                {pageSizeOptions.map((pageSize) => (
+                                  <MenuItem key={pageSize} value={pageSize}>
+                                    {pageSize}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            </div>
+                            <div><span>of {totalRecords} Results</span></div>
+                          </div>
+                        </FormControl>
+
+                      ) : null
+                    }
+                  </div>
+                  <div style={{}}>
+                    <Pagination count={totalPages} shape="rounded" componentName='div'
+                      onChange={nextPage} page={getPageNo() + 1}
+                    />
+                  </div>
+                </div>
+              </div>
             )}
+
           </div>
         </div>
       </div >
