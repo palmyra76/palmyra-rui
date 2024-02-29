@@ -9,6 +9,9 @@ import { LookupStore } from '../../store';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 import { ICheckBoxField, IMutateOptions } from '../../form/interfaceFields';
+import { TbSquareRounded } from "react-icons/tb";
+import { TbSquareRoundedCheckFilled } from "react-icons/tb";
+
 
 function getArrayData(d) {
     if (d) {
@@ -138,7 +141,8 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
                 {props.hideSelectAll ? (
                     <></>
                 ) : (<FormControlLabel
-                    control={<Checkbox onChange={handleSelectAll} />} label="Select All" />)}
+                    control={<Checkbox icon={<TbSquareRounded style={{ fontSize: '20px' }} />} checkedIcon={<TbSquareRoundedCheckFilled style={{ fontSize: '20px' }} />}
+                        onChange={handleSelectAll} />} label="Select All" />)}
             </div>
             <FormControl className='MuiServerCheckBoxFormControl'
                 fullWidth error={error.status} {...inputProps}>
@@ -152,7 +156,8 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
                         })
                         .map((option: any) => (
                             <FormControlLabel key={idAccessor(option)} value={idAccessor(option)}
-                                control={<Checkbox {...callbacks} checked={isSelected(idAccessor(option))}
+                                control={<Checkbox icon={<TbSquareRounded style={{ fontSize: '20px' }} />} checkedIcon={<TbSquareRoundedCheckFilled style={{ fontSize: '20px' }} />}
+                                    {...callbacks} checked={isSelected(idAccessor(option))}
                                     disabled={props.readonly}
                                 />}
                                 label={labelAccessor(option)} />

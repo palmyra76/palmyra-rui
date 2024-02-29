@@ -5,6 +5,8 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ICheckBoxField, IMutateOptions } from '../../form/interfaceFields';
+import { TbSquareRounded } from "react-icons/tb";
+import { TbSquareRoundedCheckFilled } from "react-icons/tb";
 
 const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref: MutableRefObject<ICheckBoxField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -68,7 +70,8 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl {...inputProps}>
                 <FormControlLabel
-                    control={<Checkbox {...callbacks} checked={value} autoFocus={autoFocus}
+                    control={<Checkbox icon={<TbSquareRounded style={{ fontSize: '20px' }} />} checkedIcon={<TbSquareRoundedCheckFilled style={{ fontSize: '20px' }} />}
+                        {...callbacks} checked={value} autoFocus={autoFocus}
                         disabled={props.disabled} readOnly={props.readonly}
                         inputRef={(r) => { inputRef.current = r }}
                     />}

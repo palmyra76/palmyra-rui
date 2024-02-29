@@ -1,6 +1,6 @@
 import { jsx as r, Fragment as y, jsxs as c } from "react/jsx-runtime";
 import { useRef as b, useState as L, useEffect as x } from "react";
-import { A as C } from "../../../chunks/index.esm.js";
+import { A as C } from "../../../chunks/index.esm2.js";
 import { u as H, c as I, I as O } from "../../../chunks/AsyncTreeMenu.js";
 function F(i) {
   const d = b(null);
