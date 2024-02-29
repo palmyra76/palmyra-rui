@@ -1,4 +1,4 @@
-import { MutableRefObject, ReactNode, forwardRef, useImperativeHandle, useRef } from 'react';
+import { MutableRefObject, forwardRef, useImperativeHandle, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { TextField, InputAdornment, MenuItem, Pagination, FormControl, Select, Stack } from '@mui/material';
 import './CardLayout.css';
@@ -12,12 +12,13 @@ interface ServerCardLayoutInput extends IServerQueryInput {
     childProps?: any,
     listKeyProvider?: (data: any, index: number) => string | number,
     EmptyChild?: React.FC,
-    children?: ReactNode,
+    title?: String,
+    customButton?: React.ReactNode[],
     preProcess?: (data: any) => any
 }
 
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
-    const { children, Child, childProps, pageSize } = props;
+    const { title, Child, childProps, pageSize, customButton } = props;
     const currentRef: MutableRefObject<IPageQueryable> = ref ? ref : useRef(null);
 
     const { setQueryFilter, refreshData, setSortColumns, setEndPointOptions,
@@ -88,8 +89,10 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
             <div className="card-page-container" >
                 <div>
                     <div className='card-header'>
-                        {children}
-                        <div className='card-filter'>
+                        <div className='card-left-content'>
+                            {title}
+                        </div>
+                        <div className='card-right-content'>
                             {visibleFilter && (
                                 <TextField
                                     sx={{ width: width }}
@@ -107,8 +110,12 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                                     }}
                                 />
                             )}
+                            {customButton && customButton.map((button: any, index: any) => (
+                                <div key={index} className='card-custom-button'>
+                                    {button}
+                                </div>
+                            ))}
                         </div>
-
                     </div>
 
                     <div>
@@ -130,7 +137,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                 <div>
                                     {
-                                        pageSizeOptions && pageSizeOptions.length > 1  ? (
+                                        pageSizeOptions && pageSizeOptions.length > 1 ? (
                                             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                                     <div><span>Showing</span></div>
