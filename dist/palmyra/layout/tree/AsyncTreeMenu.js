@@ -1,11 +1,12 @@
 import { jsx as r, Fragment as y, jsxs as c } from "react/jsx-runtime";
 import { useRef as b, useState as L, useEffect as x } from "react";
 import { A as C } from "../../../chunks/index.esm2.js";
-import { u as H, c as I, I as O } from "../../../chunks/AsyncTreeMenu.js";
-function F(i) {
+import { I as H } from "../../../chunks/index.esm3.js";
+import { u as I, c as O } from "../../../chunks/AsyncTreeMenu.js";
+function U(i) {
   const d = b(null);
-  let u = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [l, o] = L([u]), [h, A] = L([]), p = i.store, v = (e, n, t) => e.map((s) => (s.id === n && (s.loaded = !0, s.children = t.map((m) => m.id)), s)).concat(t), f = (e, n) => e.map((a) => {
+  let m = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
+  const [l, o] = L([m]), [h, A] = L([]), p = i.store, f = (e, n, t) => e.map((s) => (s.id === n && (s.loaded = !0, s.children = t.map((u) => u.id)), s)).concat(t), v = (e, n) => e.map((a) => {
     const s = a.children || "";
     return {
       id: a.id,
@@ -18,16 +19,16 @@ function F(i) {
   });
   x(() => {
     p.getRoot().then((e) => {
-      var n = f(e.result, -1);
-      const t = v(l, -1, n);
+      var n = v(e.result, -1);
+      const t = f(l, -1, n);
       o(t);
     });
   }, []);
   const w = ({ element: e }) => {
     const n = e.id;
     return p.getChildren({ parent: n }).then((t) => {
-      var a = f(t.result, n);
-      const s = v(l, n, a);
+      var a = v(t.result, n);
+      const s = f(l, n, a);
       o(s);
     });
   };
@@ -42,7 +43,7 @@ function F(i) {
       }
     ),
     /* @__PURE__ */ r("div", { className: "checkbox", children: /* @__PURE__ */ r(
-      H,
+      I,
       {
         className: "async-tree-menu-container",
         data: l,
@@ -68,7 +69,7 @@ function F(i) {
           isExpanded: t,
           isSelected: a,
           isHalfSelected: s,
-          getNodeProps: m,
+          getNodeProps: u,
           level: k,
           handleSelect: B,
           handleExpand: D
@@ -97,7 +98,7 @@ function F(i) {
           return /* @__PURE__ */ r(
             "div",
             {
-              ...m({ onClick: D }),
+              ...u({ onClick: D }),
               children: /* @__PURE__ */ c("div", { className: "async-tree-menu-list", children: [
                 /* @__PURE__ */ c("div", { className: "async-tree-menu-list-text-container", children: [
                   /* @__PURE__ */ r("div", { children: "I" }),
@@ -113,14 +114,14 @@ function F(i) {
   ] }) });
 }
 const T = (i) => {
-  const { isOpen: d, className: u } = i, l = "arrow", o = I(
+  const { isOpen: d, className: m } = i, l = "arrow", o = O(
     l,
     { [`${l}--closed`]: !d },
     { [`${l}--open`]: d },
-    u
+    m
   );
-  return /* @__PURE__ */ r(O, { className: o });
+  return /* @__PURE__ */ r(H, { className: o });
 };
 export {
-  F as default
+  U as default
 };
