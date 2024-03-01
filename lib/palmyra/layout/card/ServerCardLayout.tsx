@@ -124,7 +124,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                         ></CardLayout>
                     </div>
                     <div className='card-pagination'>
-                        {visiblePagination && totalRecords !== null && (
+                        {(visiblePagination && totalPages !== 0) && (
                             // <TablePagination
                             //     component="div"
                             //     count={totalRecords || 0}

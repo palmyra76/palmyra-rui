@@ -303,7 +303,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         </div>
         <div className='grid-footer'>
           <div className='grid-filter'>
-            {visiblePagination && totalRecords !== null && (
+            {(visiblePagination && totalPages !== 0)  && (
               <div>
                 {/* <TablePagination
                   component="div"
