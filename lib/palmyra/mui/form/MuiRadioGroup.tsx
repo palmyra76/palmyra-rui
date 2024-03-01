@@ -5,6 +5,8 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IMutateOptions, IRadioGroupField } from '../../form/interfaceFields';
+import { RiRadioButtonFill } from "react-icons/ri";
+import { IoMdRadioButtonOff } from "react-icons/io";
 
 const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref: MutableRefObject<IRadioGroupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -74,11 +76,13 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} >
-                <RadioGroup row={row} {...callbacks} {...inputProps}>
+                <RadioGroup icon row={row} {...callbacks} {...inputProps}>
                     {options ?
                         Object.keys(options).map((key, index) => (
                             <FormControlLabel key={index} value={key}
-                                control={<Radio inputRef={inputRef} autoFocus={autoFocus} />} label={options[key]} />
+                                control={<Radio
+                                    icon={<IoMdRadioButtonOff size={24} />} checkedIcon={<RiRadioButtonFill size={24} />}
+                                    inputRef={inputRef} autoFocus={autoFocus} />} label={options[key]} />
                         ))
                         : <div>No options provided</div>}
                 </RadioGroup>

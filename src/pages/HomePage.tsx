@@ -116,7 +116,7 @@ const HomePage = () => {
                             required={true} ref={sd}
                             placeHolder="welcome"
                             length={{ min: 3, message: "Minimum of 3 letters" }} />
-                        <MuiSelect attribute="gender" label="Gender"
+                        <MuiRadioGroup attribute="gender" label="Gender"
                             options={{ M: 'Male', F: 'Female' }} required />
                         <MuiTextField attribute="genders" label="gender" />
                         {/* <MuiRadioGroup attribute="genders" title="Gender"

@@ -55,8 +55,9 @@
   cursor: pointer;
 }
 
-.table-head {
-  background-color: rgba(250, 250, 250, 1);
+.table-head,
+.table-footer {
+  background-color: rgba(248, 248, 248);
 }
 
 .grid-header-button {

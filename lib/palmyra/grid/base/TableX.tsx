@@ -102,7 +102,7 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
                   })}
             </TableBody>)}
           {(null == rowData || undefined == rowData || 0 == rowData.length) ? (<></>) : (
-            <tfoot>
+            <tfoot className='table-footer'>
               {table.getFooterGroups().map(footerGroup => (
                 <tr key={footerGroup.id} style={{ textAlign: 'end' }}>
                   {footerGroup.headers.map(header => (
