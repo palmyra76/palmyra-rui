@@ -3,7 +3,7 @@ import { IFormCustomizer, IFormHelper, FormMode, NoopFormCustomizer } from "./Ty
 import { useFormData } from ".";
 import { FieldManagerContext, FormHelperContext, StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { StoreFactory } from "../../main";
-import { makeStyles } from '@mui/styles';
+
 
 interface IPalmyraFormInput {
     children?: any,
@@ -19,26 +19,11 @@ interface IPalmyraForm {
     isValid: () => boolean
 }
 
-
-const useStyles = makeStyles({
-    hideElementsInViewMode: {
-        '& .MuiAutocomplete-endAdornment, .MuiIconButton-root,.MuiSelect-icon': {
-            display: 'none',
-        },
-    },
-    removeBorderInViewMode: {
-        '& .MuiInput-root::after,.MuiInput-root::before, .MuiInput-root:hover, .MuiInput-root:focus,.MuiOutlinedInput-notchedOutline,MuiOutlinedInput-root:hover.MuiOutlinedInput-notchedOutline,MuiOutlinedInput-root.Mui-error.MuiOutlinedInput-notchedOutline': {
-            borderBottom: 'none !important',
-            border:'none !important'
-        }
-    },
-});
 const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, ref) {
     const formCustomizer: IFormCustomizer = props.customizer || NoopFormCustomizer;
     const data = props.formData;
     const onValidityChange = props.onValidChange;
     const mode = props.mode;
-    const classes = useStyles();
 
     var formHelper: IFormHelper = formCustomizer.getFormHelper();
     const eventListeners = formCustomizer.getEventListeners(formHelper);
@@ -62,7 +47,7 @@ const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, re
         <StoreFactoryContext.Provider value={props.storeFactory}>
             <FormHelperContext.Provider value={formHelper}>
                 <FieldManagerContext.Provider value={getFieldManager}>
-                    <div className={`${mode === "view" ? classes.hideElementsInViewMode : ''} ${mode === "view" ? classes.removeBorderInViewMode : ''}`}>
+                    <div >
                         {props.children}
                     </div>
                 </FieldManagerContext.Provider>
