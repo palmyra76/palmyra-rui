@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { ColumnDefinition, GridCustomizer } from './Types';
 import { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
@@ -13,5 +13,5 @@ interface GridXOptions extends IServerQueryInput {
     gridTitle?: any;
     customAddButton?: any;
 }
-declare const GridX: import("react").ForwardRefExoticComponent<GridXOptions & import("react").RefAttributes<IPageQueryable>>;
+declare const GridX: React.ForwardRefExoticComponent<GridXOptions & React.RefAttributes<IPageQueryable>>;
 export default GridX;

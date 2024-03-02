@@ -1,21 +1,21 @@
 import { jsx as r, Fragment as F, jsxs as V } from "react/jsx-runtime";
-import { forwardRef as v, useContext as R, useRef as M, useMemo as L, useState as E, useEffect as k, useImperativeHandle as I } from "react";
-import { styled as D, Switch as A, FormControl as j, FormControlLabel as H, FormHelperText as P } from "@mui/material";
+import { forwardRef as v, useContext as L, useRef as M, useMemo as R, useState as D, useEffect as k, useImperativeHandle as E } from "react";
+import { styled as I, Switch as A, FormControl as j, FormControlLabel as H, FormHelperText as P } from "@mui/material";
 import { copyMuiOptions as q, getFieldLabel as z } from "./MuiUtil.js";
 import B from "./OptionsParser.js";
 import { FieldManagerContext as N } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import T from "./FieldDecorator.js";
 const Z = v(function(e, d) {
-  const C = R(N), f = d || M(null), i = C(e, "iosswitch", f), { mutateOptions: S, setMutateOptions: n } = i, s = i.error, w = i.eventListeners, y = e.autoFocus || !1, c = L(
+  const w = L(N), m = d || M(null), i = w(e, "iosswitch", m), { mutateOptions: C, setMutateOptions: n } = i, s = i.error, S = i.eventListeners, y = e.autoFocus || !1, c = R(
     () => B(e.options, e.name),
     [e.options, e.name]
-  ), m = (t, a) => {
-    var g = c.checked.value;
-    return t != null && t != null ? g == t : g == a;
-  }, [o, h] = E(m(i.data, e.defaultValue)), l = M(null);
+  ), f = (t, a) => {
+    var b = c.checked.value;
+    return t != null && t != null ? b == t : b == a;
+  }, [o, h] = D(f(i.data, e.defaultValue)), l = M(null);
   k(() => {
-    h(m(i.data, e.defaultValue));
-  }, [i.data]), I(f, () => ({
+    h(f(i.data, e.defaultValue));
+  }, [i.data]), E(m, () => ({
     focus() {
       l.current.checked = !0, l.current.focus();
     },
@@ -48,13 +48,13 @@ const Z = v(function(e, d) {
     setOptions(t) {
     }
   }), [i]);
-  var b = q(e, i.data, e.label);
-  e.readonly && (b.inputProps = { readOnly: !0 });
+  var g = q(e, i.data, e.label);
+  e.readonly && (g.inputProps = { readOnly: !0 });
   const O = () => {
     h(!o);
   };
   k(() => {
-    w.onValueChange(u());
+    S.onValueChange(u());
   }, [o]);
   const p = () => {
     var t = o ? "checked" : "unchecked";
@@ -62,22 +62,18 @@ const Z = v(function(e, d) {
   }, u = () => {
     var t = o ? "checked" : "unchecked";
     return c[t].value;
-  }, x = D((t) => /* @__PURE__ */ r(A, { ...t }))(({ theme: t }) => ({
-    width: 42,
-    height: 26,
+  }, x = I((t) => /* @__PURE__ */ r(A, { ...t }))(({ theme: t }) => ({
+    width: 46,
+    height: 25,
     padding: 0,
     "& .MuiSwitch-switchBase": {
       padding: 0,
-      margin: 2,
-      transition: t.transitions.create(["transform"], {
-        // Ensure smooth transition for transform
-        duration: t.transitions.duration.shortest
-      }),
-      // transitionDuration: '350ms',
-      // transitionTimingFunction: 'ease-in-out',
+      margin: 1.8,
+      transitionDuration: "300ms",
       "&.Mui-checked": {
         transform: "translateX(16px)",
         color: "#fff",
+        marginLeft: 7,
         "& + .MuiSwitch-track": {
           backgroundColor: t.palette.mode === "dark" ? "#2ECA45" : "#65C466",
           opacity: 1,
@@ -100,8 +96,11 @@ const Z = v(function(e, d) {
     },
     "& .MuiSwitch-thumb": {
       boxSizing: "border-box",
-      width: 22,
-      height: 22
+      width: 21,
+      height: 21,
+      transition: t.transitions.create(["width", "transform"], {
+        duration: 200
+      })
     },
     "& .MuiSwitch-track": {
       borderRadius: 26 / 2,
@@ -112,7 +111,7 @@ const Z = v(function(e, d) {
       })
     }
   }));
-  return /* @__PURE__ */ r(F, { children: S.visible && /* @__PURE__ */ r(
+  return /* @__PURE__ */ r(F, { children: C.visible && /* @__PURE__ */ r(
     T,
     {
       label: z(e),
@@ -120,7 +119,7 @@ const Z = v(function(e, d) {
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ V(j, { error: s.status, ...b, children: [
+      children: /* @__PURE__ */ V(j, { error: s.status, ...g, children: [
         /* @__PURE__ */ r(
           H,
           {

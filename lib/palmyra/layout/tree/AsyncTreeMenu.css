@@ -96,7 +96,7 @@
 } */
 
 .tree-leaf-list-item--selected .checkbox-icon,
-.tree-node-group--selected .checkbox-icon ,
+.tree-node-group--selected .checkbox-icon,
 .tree-node-group--expanded .tree-node--selected .checkbox-icon,
 .tree-node--selected .tree-node-group--selected .checkbox-icon,
 /* .tree-branch-wrapper .tree-node--expanded .checkbox-icon, */
@@ -107,8 +107,7 @@
 
 /* .tree-leaf-list-item--selected  */
 .tree-node .checkbox-icon {
-  color: rgb(255, 255, 255) !important;
-  border: 1px solid #2b2b2b2b
+  color: rgb(47, 126, 176) !important;
 }
 
 /* {
