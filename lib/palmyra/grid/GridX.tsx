@@ -1,4 +1,4 @@
-import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { TextField, InputAdornment, Button, ClickAwayListener, Pagination, FormControl, Select, MenuItem } from '@mui/material';
 import { generateColumns } from './base/ColumnConverter';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -292,18 +292,23 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
             </ClickAwayListener>
             {props.onNewClick ? (
               <div className='grid-header-button grid-add-btn'>
-                {props.customAddButton ? (
-                  <div onClick={onNewClick}>
-                    {props.customAddButton}
-                  </div>
-                ) : (
-                  <div onClick={onNewClick}>
-                    <Button className='grid-btn' disableRipple>
+                <div onClick={onNewClick}>
+                  <Button className='grid-btn' disableRipple>
+                    {props.customAddButton ? (
+                      React.cloneElement(props.customAddButton.icon, {
+                        className: 'grid-button-icon'
+                      })
+
+                    ) : (
                       <Add className='grid-button-icon' />
+                    )}
+                    {props.customAddButton ? (
+                      <>{props.customAddButton.text}</>
+                    ) : (
                       <span>Add</span>
-                    </Button>
-                  </div>
-                )}
+                    )}
+                  </Button>
+                </div>
               </div>) : <></>}
             {customButton && customButton.map((button: any, index: any) => (
               <div key={index} className='grid-custom-button'>

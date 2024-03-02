@@ -54,9 +54,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
             onKeyDown={handleKeyClose}
             PaperProps={{ sx: { minWidth: '500px', borderRadius: '10px' } }} 
         > */}
-
-        <div>
-            {/* <div className="grid-filter-header-container">
+        {/* <div className="grid-filter-header-container">
                         <div className="grid-header-text-container">
                             <div id="draggable-dialog-title"> Filter</div>
                         </div>
@@ -64,33 +62,31 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
                             <span className="grid-header-icon"><Close className="filter-cancel-icon" /></span>
                         </div>
                     </div> */}
-            <div className="grid-filter-content">
-                <FieldManagerContext.Provider value={getFieldManager}>
-                    <SectionRendererEditForm context={{ formData: {} }}
-
-                        layout={{
-                            type: 'form',
-                            formLayout: {
-                                fields,
-                                options: {
-                                    columns: 2
-                                },
+        <div className="grid-filter-content">
+            <FieldManagerContext.Provider value={getFieldManager}>
+                <SectionRendererEditForm context={{ formData: {} }}
+                    layout={{
+                        type: 'form',
+                        formLayout: {
+                            fields,
+                            options: {
+                                columns: 2
                             },
-                            Renderer: FormFieldOnlyRenderer
-                        }}
-                    />
-                </FieldManagerContext.Provider>
-            </div>
-            <div className="grid-filter-btn-container">
-                <Button className='secondary-filled-button' disableRipple onClick={reset}>
-                    <TbRefresh className="button-icon" />
-                    Reset
-                </Button>
-                <Button className='filled-button' disableRipple onClick={assignFilter}>
-                    <TbFilterShare className='button-icon' />
-                    Filter
-                </Button>
-            </div>
+                        },
+                        Renderer: FormFieldOnlyRenderer
+                    }}
+                />
+            </FieldManagerContext.Provider>
+        </div>
+        <div className="grid-filter-btn-container">
+            <Button className='secondary-filled-button' disableRipple onClick={reset}>
+                <TbRefresh className="button-icon" />
+                Reset
+            </Button>
+            <Button className='filled-button' disableRipple onClick={assignFilter}>
+                <TbFilterShare className='button-icon' />
+                Filter
+            </Button>
         </div>
         {/* </Dialog> */}
     </div>

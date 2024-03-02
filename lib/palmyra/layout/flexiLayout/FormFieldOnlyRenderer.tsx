@@ -30,7 +30,7 @@ const calcContainerClass = (props: EditFormRendererInput) => {
 }
 
 const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: EditFormRendererInput, ref) {
-    
+
     const { formLayout, context } = props;
     const { formData } = context;
     const fieldRefs = useRef({});
@@ -45,7 +45,7 @@ const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: E
         <form className='palmyra-form-field-only-container-wrapper' noValidate>
             {
                 formLayout.fields.map((field, index) => (
-                    <div key={field.attribute} className={containerClass}>
+                    <div key={field.attribute} className={field.type === 'dateRange' ? 'palmyra-form-field-container' : containerClass}>
                         <div className={fieldClass}>
                             {generateField(field)}
                         </div>

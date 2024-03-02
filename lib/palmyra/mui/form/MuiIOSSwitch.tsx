@@ -101,20 +101,17 @@ const MuiIOSSwitch = forwardRef(function MuiIOSSwitch(props: ISwitchDefinition, 
     const IOSSwitch = styled((props: SwitchProps) => (
         <Switch {...props} />
     ))(({ theme }) => ({
-        width: 42,
-        height: 26,
+        width: 46,
+        height: 25,
         padding: 0,
         '& .MuiSwitch-switchBase': {
             padding: 0,
-            margin: 2,
-            transition: theme.transitions.create(['transform'], { // Ensure smooth transition for transform
-                duration: theme.transitions.duration.shortest,
-              }),
-            // transitionDuration: '350ms',
-            // transitionTimingFunction: 'ease-in-out',
+            margin: 1.8,
+            transitionDuration: '300ms',
             '&.Mui-checked': {
                 transform: 'translateX(16px)',
                 color: '#fff',
+                marginLeft: 7,
                 '& + .MuiSwitch-track': {
                     backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
                     opacity: 1,
@@ -140,8 +137,11 @@ const MuiIOSSwitch = forwardRef(function MuiIOSSwitch(props: ISwitchDefinition, 
         },
         '& .MuiSwitch-thumb': {
             boxSizing: 'border-box',
-            width: 22,
-            height: 22,
+            width: 21,
+            height: 21,
+            transition: theme.transitions.create(['width', 'transform'], {
+                duration: 200,
+            }),
         },
         '& .MuiSwitch-track': {
             borderRadius: 26 / 2,
@@ -201,13 +201,13 @@ const MuiIOSSwitch = forwardRef(function MuiIOSSwitch(props: ISwitchDefinition, 
     //     },
     //   }));
 
-    
+
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl error={error.status} {...inputProps}>
                 <FormControlLabel value={getValue()} inputRef={(i) => { inputRef.current = i; }}
-                    control={<IOSSwitch  sx={{ m: 1 }} checked={isOn} onClick={toggleStatus}
+                    control={<IOSSwitch sx={{ m: 1 }} checked={isOn} onClick={toggleStatus}
                         disabled={props.readonly} autoFocus={autoFocus}
                     />}
                     label={getLabel()}

@@ -43,9 +43,10 @@
   cursor: pointer;
 }
 
-/* .table-row:nth-child(even) {
-  background-color: rgba(220, 220, 220, 0.12);
-} */
+.table-row:nth-child(even) {
+  background-color: rgba(220, 220, 220, 0.05);
+}
+
 .table-row {
   border-bottom: 1px solid var(--border-color);
 }
@@ -84,7 +85,7 @@
 
 .filter-dropdown-content {
   position: absolute;
-  width: max-content;
+  min-width: 650px;
   top: 110%;
   right: 0%;
   background-color: rgb(255, 255, 255);
@@ -261,7 +262,7 @@
 } */
 
 .grid-filter-btn-container {
-  padding: 20px 30px 15px 0px;
+  padding: 25px 20px 15px 0px;
   display: flex;
   justify-content: end;
   gap: 10px;

@@ -21,6 +21,10 @@
     gap: 3px;
 }
 
+.grid-filter-content .palmyra-field-group-container .palmyra-form-field-container {
+    padding: 10px 10px 0px 10px;
+}
+
 .MuiSwitch-switchBase {
     transition-duration: 350ms !important;
     transition-timing-function: ease-in-out !important;
