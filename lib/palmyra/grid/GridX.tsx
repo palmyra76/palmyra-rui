@@ -36,6 +36,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const gridTitle = props.gridTitle;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
   const [filterDialogOpen, setFilterDialogOpen] = useState(false);
@@ -156,6 +157,11 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     setPageSize(limit);
   }
 
+
+  const onFilterClick = (event: any) => {
+    setFilterDropdownOpen(!filterDropdownOpen);
+  }
+
   const onExportClick = () => {
     setExportDropdownOpen(!exportDropdownOpen);
   }
@@ -176,6 +182,10 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
   const arrowStyles = {
     transform: dropdownOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
+    transition: 'transform 0.3s ease',
+  };
+  const filterArrowStyles = {
+    transform: filterDropdownOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
     transition: 'transform 0.3s ease',
   };
   const exportArrowStyles = {
@@ -241,15 +251,22 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               </div>
             </ClickAwayListener>
             {columns.some(column => column.searchable) && (
-              <div className='grid-header-button grid-filter-btn'>
-                <Button className='grid-btn' disableRipple onClick={() => setFilterDialogOpen(true)}>
-                  <TbFilterShare className='grid-button-icon' />
-                  <span>Filter</span>
-                </Button>
-                <Filter columns={columns} setFilter={setQueryFilter}
-                  defaultFilter={filter}
-                  isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
-              </div>)}
+              <ClickAwayListener onClickAway={() => { setFilterDropdownOpen(false) }}>
+                <div className='grid-header-button grid-filter-btn' onClick={onFilterClick}>
+                  <Button className='grid-btn' disableRipple>
+                    <TbFilterShare className='grid-button-icon' />
+                    <span>Filter</span>
+                    <KeyboardArrowDown style={filterArrowStyles} className='avathar-arrw-icon' />
+                  </Button>
+                  {filterDropdownOpen && (
+                    <div className="filter-dropdown-content" onClick={(e) => e.stopPropagation()}>
+                      <Filter columns={columns} setFilter={setQueryFilter}
+                        defaultFilter={filter}
+                        isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
+                    </div>
+                  )}
+                </div>
+              </ClickAwayListener>)}
             <ClickAwayListener onClickAway={() => { setExportDropdownOpen(false) }}>
               <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
                 <Button className='grid-btn' disableRipple>
@@ -303,7 +320,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         </div>
         <div className='grid-footer'>
           <div className='grid-filter'>
-            {(visiblePagination && totalPages !== 0)  && (
+            {(visiblePagination && totalPages !== 0) && (
               <div>
                 {/* <TablePagination
                   component="div"
