@@ -24,7 +24,7 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
     let rootNode = { name: "", id: -1, parent: null, children: [], isBranch: true };
     const [data, setData] = useState([rootNode]);
     const [nodesAlreadyLoaded, setNodesAlreadyLoaded] = useState([]);
-   
+
     const store: TreeQueryStore<IChildTreeRequest, any> = props.store;
 
     const updateTreeData = (list, id, children) => {
@@ -142,7 +142,7 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                                 );
                             };
 
-    
+
                             // const renderCrudCheckbox = () => (
                             //     <>
                             //         <div className="crud-checkbox-list">
@@ -261,7 +261,7 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
-                                    style={{ marginLeft: 40 * (level - 1) }}
+                                // style={{ marginLeft: 40 * (level - 1) }}
                                 >
                                     <CheckBoxIcon
                                         className="checkbox-icon"
@@ -281,8 +281,8 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                                         <div>
                                             {isBranch ? branchNode(isExpanded, element) :
                                                 <>
-                                                <LeafNode element={element} isSelected={isSelected}/>
-                                                    
+                                                    <LeafNode element={element} isSelected={isSelected} />
+
                                                 </>
                                             }
                                         </div>
@@ -317,22 +317,22 @@ const ArrowIcon = (props: IArrowIconInput) => {
 const CheckBoxIcon = ({ variant, ...rest }) => {
     switch (variant) {
         case "all":
-            return <FaCheckSquare {...rest} />;
+            return <FaCheckSquare style={{ color: 'rgb(44, 134, 213)', backgroundColor: 'white' }}{...rest} />;
         case "none":
-            return <FaSquare {...rest} />;
+            return <FaSquare style={{ color: 'white', border: '1px solid rgba(128, 128,128, 0.2)' }} {...rest} />;
         case "some":
-            return <FaMinusSquare {...rest} />;
+            return <FaMinusSquare style={{ color: 'rgb(44, 134, 213)', backgroundColor: 'white' }} {...rest} />;
         default:
             return null;
     }
 };
 
 interface ILeafNodeProps {
-    isSelected:boolean,
-    element:any
+    isSelected: boolean,
+    element: any
 }
 
-const LeafNode = (props:ILeafNodeProps)=>{
+const LeafNode = (props: ILeafNodeProps) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -344,17 +344,17 @@ const LeafNode = (props:ILeafNodeProps)=>{
     }
 
     return <>
-    <div className="crud-dropdown-container" >
-        <span className="crud-dropdown-text" onClick={toggleDropdown}>crud
-        </span>
-        {dropdownOpen && (
-            <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
-                <div>
-                    <AsyncTreeCrudDropDown isHalfSelected={props.isSelected}
-                       isSelected={props.isSelected} handleSelect={handleSelect} />
-                </div>
-            </ClickAwayListener>
-        )}
-    </div>
-</>
+        <div className="crud-dropdown-container" >
+            <span className="crud-dropdown-text" onClick={toggleDropdown}>crud
+            </span>
+            {dropdownOpen && (
+                <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
+                    <div>
+                        <AsyncTreeCrudDropDown isHalfSelected={props.isSelected}
+                            isSelected={props.isSelected} handleSelect={handleSelect} />
+                    </div>
+                </ClickAwayListener>
+            )}
+        </div>
+    </>
 }

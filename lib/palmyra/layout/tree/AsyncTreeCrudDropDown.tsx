@@ -73,11 +73,11 @@ export default AsyncTreeCrudDropDown
 const CheckBoxIcon = ({ variant, ...rest }) => {
     switch (variant) {
         case "all":
-            return <FaCheckSquare {...rest} />;
+            return <FaCheckSquare style={{ color: 'rgb(44, 134, 213)', backgroundColor: 'white' }}{...rest} />;
         case "none":
-            return <FaSquare {...rest} />;
+            return <FaSquare style={{ color: 'white', border: '1px solid rgba(128, 128,128, 0.2)' }} {...rest} />;
         case "some":
-            return <FaMinusSquare {...rest} />;
+            return <FaMinusSquare style={{ color: 'rgb(44, 134, 213)', backgroundColor: 'white' }} {...rest} />;
         default:
             return null;
     }

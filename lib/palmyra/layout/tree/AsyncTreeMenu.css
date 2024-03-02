@@ -101,13 +101,13 @@
 .tree-node--selected .tree-node-group--selected .checkbox-icon,
 /* .tree-branch-wrapper .tree-node--expanded .checkbox-icon, */
 .tree-branch-wrapper .tree-node--selected .checkbox-icon {
-  color: rgb(47, 126, 176) !important;
+  /* color: rgb(47, 126, 176) !important; */
   border: none
 }
 
 /* .tree-leaf-list-item--selected  */
 .tree-node .checkbox-icon {
-  color: rgb(47, 126, 176) !important;
+  /* color: rgb(47, 126, 176) !important; */
 }
 
 /* {
@@ -211,3 +211,19 @@
   border-radius: 4px;
   min-width: 200px;
 }
+
+
+/* .isSelected {
+  color: rgb(44, 134, 213) !important;
+  background-color: white !important;
+}
+
+.isHalfelected {
+  color: rgb(44, 134, 213) !important;
+  background-color: white !important;
+}
+
+.noneSelected {
+  color: white !important;
+  border: 1px solid rgba(128, 128, 128, 0.2) !important;
+} */
