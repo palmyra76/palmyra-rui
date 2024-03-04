@@ -1,84 +1,87 @@
-import { jsx as e, Fragment as p, jsxs as d } from "react/jsx-runtime";
-import { useRef as I, useState as f, useEffect as D } from "react";
+import { jsx as r, Fragment as m, jsxs as u } from "react/jsx-runtime";
+import { useRef as D, useState as g, useEffect as E } from "react";
 import { A as F } from "../../../chunks/index.esm2.js";
 import { F as L, a as O, b as B, A as q } from "../../../chunks/AsyncTreeCrudDropDown.js";
 import { I as M } from "../../../chunks/index.esm3.js";
 import { u as R, c as T } from "../../../chunks/AsyncTreeMenu.js";
-import { Button as j, ClickAwayListener as E } from "@mui/material";
-function Y(c) {
-  const s = I(null);
-  let i = { name: "", id: -1, parent: null, children: [], isBranch: !0, loaded: !1, selected: 0 };
-  const [l, u] = f([i]), [v, b] = f([]), w = c.store, N = (a, r, n) => a.map((o) => (o.id === r && !o.loaded && (o.loaded = !0, o.children = n.filter((m) => r == m.parent).map((m) => m.id)), o)).concat(n), C = (a) => a.split(",").map((n) => parseInt(n)), k = (a, r) => a.map((t) => {
-    const o = t.children || "";
+import { Button as j, ClickAwayListener as $ } from "@mui/material";
+function Y(i) {
+  const o = D(null);
+  let d = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
+  const [s, h] = g([d]), [N, b] = g([]), w = i.store, C = (t, c, e) => t.map((a) => (a.id === c && !a.loaded && (a.loaded = !0, a.children = e.filter((l) => c == l.parent).map((l) => l.id)), a)).concat(e), k = (t) => t.split(",").map((e) => parseInt(e)), S = (t, c) => t.map((n) => {
+    const a = n.children || "";
     return {
-      id: t.id,
-      name: t.name,
-      parent: t.parent ? t.parent : r,
-      children: t.children ? C(t.children) : [],
-      isBranch: o.length > 0,
+      id: n.id,
+      name: n.name,
+      parent: n.parent ? n.parent : c,
+      children: n.children ? k(n.children) : [],
+      isBranch: a.length > 0,
       loaded: !0
     };
   });
-  return D(() => {
-    w.getRoot().then((a) => {
-      var r = k(a.result, -1);
-      const n = N(l, -1, r);
-      u(n), b([5, 7]);
+  return E(() => {
+    w.getRoot().then((t) => {
+      var c = S(t.result, -1);
+      const e = C(s, -1, c);
+      h(e), b([5, 7]);
     });
-  }, []), /* @__PURE__ */ e(p, { children: /* @__PURE__ */ d("div", { children: [
-    /* @__PURE__ */ e(j, { onClick: () => {
-      const a = l.filter((r) => {
-        var n;
-        return (
-          //@ts-ignore
-          r.id > 0 && ((n = r.metadata) == null ? void 0 : n.selected) != null
-        );
-      }).map((r) => {
-        var t;
-        const n = r.parent > 0 ? r.parent : null;
-        return {
-          id: r.id,
+  }, []), /* @__PURE__ */ r(m, { children: /* @__PURE__ */ u("div", { children: [
+    /* @__PURE__ */ r(j, { onClick: () => {
+      const t = {}, c = [];
+      s.forEach((e) => {
+        var a, l;
+        if (((a = e.metadata) == null ? void 0 : a.selected) == null)
+          return;
+        const n = e.parent > 0 ? e.parent : null;
+        t[e.id] = {
+          id: e.id,
           parent: n,
-          name: r.name,
-          selected: (t = r.metadata) == null ? void 0 : t.selected
-        };
+          name: e.name,
+          selected: (l = e.metadata) == null ? void 0 : l.selected,
+          children: []
+        }, n == null && e.id > 0 && c.push(t[e.id]);
+      }), s.forEach((e) => {
+        const n = e.id, a = t[n];
+        a && e.children && e.children.forEach((l) => {
+          const f = t[l];
+          f && a.children.push(f);
+        });
       });
-      console.log(a);
     }, children: "ellosdf" }),
-    /* @__PURE__ */ e(
+    /* @__PURE__ */ r(
       "div",
       {
         className: "visually-hidden",
-        ref: s,
+        ref: o,
         role: "alert",
         "aria-live": "polite"
       }
     ),
-    /* @__PURE__ */ e("div", { className: "checkbox", children: /* @__PURE__ */ e(
+    /* @__PURE__ */ r("div", { className: "checkbox", children: /* @__PURE__ */ r(
       R,
       {
-        data: l,
-        selectedIds: v,
+        data: s,
+        selectedIds: N,
         "aria-label": "Checkbox tree",
         multiSelect: !0,
         propagateSelect: !0,
         togglableSelect: !0,
         propagateSelectUpwards: !0,
         nodeRenderer: ({
-          element: a,
-          isBranch: r,
-          isExpanded: n,
-          isSelected: t,
-          isHalfSelected: o,
-          getNodeProps: m,
-          level: G,
-          handleSelect: S,
-          handleExpand: x
+          element: t,
+          isBranch: c,
+          isExpanded: e,
+          isSelected: n,
+          isHalfSelected: a,
+          getNodeProps: l,
+          level: f,
+          handleSelect: x,
+          handleExpand: A
         }) => {
-          const A = o ? 1 : t ? 2 : 0;
-          a.metadata = { selected: A };
-          const y = (h, g) => h && g.children.length === 0 ? /* @__PURE__ */ d(p, { children: [
-            /* @__PURE__ */ d(
+          const I = a ? 1 : n ? 2 : 0;
+          t.metadata = { selected: I };
+          const y = (p, v) => p && v.children.length === 0 ? /* @__PURE__ */ u(m, { children: [
+            /* @__PURE__ */ u(
               "span",
               {
                 role: "alert",
@@ -86,36 +89,36 @@ function Y(c) {
                 className: "visually-hidden",
                 children: [
                   "loading ",
-                  g.name
+                  v.name
                 ]
               }
             ),
-            /* @__PURE__ */ e(
+            /* @__PURE__ */ r(
               F,
               {
                 "aria-hidden": !0,
                 className: "loading-icon"
               }
             )
-          ] }) : /* @__PURE__ */ e($, { isOpen: h });
-          return /* @__PURE__ */ d(
+          ] }) : /* @__PURE__ */ r(P, { isOpen: p });
+          return /* @__PURE__ */ u(
             "div",
             {
-              ...m({ onClick: x }),
+              ...l({ onClick: A }),
               children: [
-                /* @__PURE__ */ e(
-                  P,
+                /* @__PURE__ */ r(
+                  U,
                   {
                     className: "checkbox-icon",
-                    onClick: (h) => {
-                      S(h), h.stopPropagation();
+                    onClick: (p) => {
+                      x(p), p.stopPropagation();
                     },
-                    variant: o ? "some" : t ? "all" : "none"
+                    variant: a ? "some" : n ? "all" : "none"
                   }
                 ),
-                /* @__PURE__ */ d("div", { className: "menu-list", children: [
-                  /* @__PURE__ */ e("div", { className: "text-icon", children: /* @__PURE__ */ e("span", { className: "menu-name", children: a.name }) }),
-                  /* @__PURE__ */ e("div", { children: r ? y(n, a) : /* @__PURE__ */ e(p, { children: /* @__PURE__ */ e(U, { element: a, isSelected: t }) }) })
+                /* @__PURE__ */ u("div", { className: "menu-list", children: [
+                  /* @__PURE__ */ r("div", { className: "text-icon", children: /* @__PURE__ */ r("span", { className: "menu-name", children: t.name }) }),
+                  /* @__PURE__ */ r("div", { children: c ? y(e, t) : /* @__PURE__ */ r(m, { children: /* @__PURE__ */ r(z, { element: t, isSelected: n }) }) })
                 ] })
               ]
             }
@@ -125,40 +128,40 @@ function Y(c) {
     ) })
   ] }) });
 }
-const $ = (c) => {
-  const { isOpen: s, className: i } = c, l = "arrow", u = T(
-    l,
-    { [`${l}--closed`]: !s },
-    { [`${l}--open`]: s },
-    i
+const P = (i) => {
+  const { isOpen: o, className: d } = i, s = "arrow", h = T(
+    s,
+    { [`${s}--closed`]: !o },
+    { [`${s}--open`]: o },
+    d
   );
-  return /* @__PURE__ */ e(M, { className: u });
-}, P = ({ variant: c, ...s }) => {
-  switch (c) {
+  return /* @__PURE__ */ r(M, { className: h });
+}, U = ({ variant: i, ...o }) => {
+  switch (i) {
     case "all":
-      return /* @__PURE__ */ e(B, { style: { color: "rgb(44, 134, 213)", backgroundColor: "white" }, ...s });
+      return /* @__PURE__ */ r(B, { style: { color: "rgb(44, 134, 213)", backgroundColor: "white" }, ...o });
     case "none":
-      return /* @__PURE__ */ e(O, { style: { color: "white", border: "1px solid rgba(128, 128,128, 0.2)" }, ...s });
+      return /* @__PURE__ */ r(O, { style: { color: "white", border: "1px solid rgba(128, 128,128, 0.2)" }, ...o });
     case "some":
-      return /* @__PURE__ */ e(L, { style: { color: "rgb(44, 134, 213)", backgroundColor: "white" }, ...s });
+      return /* @__PURE__ */ r(L, { style: { color: "rgb(44, 134, 213)", backgroundColor: "white" }, ...o });
     default:
       return null;
   }
-}, U = (c) => {
-  const [s, i] = f(!1), l = () => {
-    i(!s);
-  }, u = () => {
+}, z = (i) => {
+  const [o, d] = g(!1), s = () => {
+    d(!o);
+  }, h = () => {
   };
-  return /* @__PURE__ */ e(p, { children: /* @__PURE__ */ d("div", { className: "crud-dropdown-container", children: [
-    /* @__PURE__ */ e("span", { className: "crud-dropdown-text", onClick: l, children: "crud" }),
-    s && /* @__PURE__ */ e(E, { onClickAway: () => {
-      i(!1);
-    }, children: /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
+  return /* @__PURE__ */ r(m, { children: /* @__PURE__ */ u("div", { className: "crud-dropdown-container", children: [
+    /* @__PURE__ */ r("span", { className: "crud-dropdown-text", onClick: s, children: "crud" }),
+    o && /* @__PURE__ */ r($, { onClickAway: () => {
+      d(!1);
+    }, children: /* @__PURE__ */ r("div", { children: /* @__PURE__ */ r(
       q,
       {
-        isHalfSelected: c.isSelected,
-        isSelected: c.isSelected,
-        handleSelect: u
+        isHalfSelected: i.isSelected,
+        isSelected: i.isSelected,
+        handleSelect: h
       }
     ) }) })
   ] }) });

@@ -17,14 +17,13 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
     const loadedAlertElement = useRef(null);
     let rootNode = { name: "", id: -1, parent: null, children: [], isBranch: true };
     const [data, setData] = useState([rootNode]);
-    const [nodesAlreadyLoaded, setNodesAlreadyLoaded] = useState([]);
     const store: TreeQueryStore<IChildTreeRequest, any> = props.store;
 
     const updateTreeData = (list, id, children) => {
         const data = list.map((node) => {
-            if (node.id === id) {
+            if (node.id === id && !node.loaded) {
                 node.loaded = true
-                node.children = children.map((el) => {
+                node.children = children.filter((e) => id == e.parent).map((el) => {
                     return el.id;
                 });
             }
@@ -33,16 +32,23 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
         return data.concat(children);
     };
 
+    const getChildId = (ids: string): number[] => {
+        const idList: string[] = ids.split(",");
+        return idList.map((s) => {
+            return parseInt(s);
+        })
+    }
+
     const convert = (nodes, parentId) => {
         const result = nodes.map((d) => {
             const childIds: string = d.children || "";
             return {
                 id: d.id,
                 name: d.name,
-                parent: parentId,
-                children: [],
+                parent: d.parent ? d.parent : parentId,
+                children: d.children ? getChildId(d.children) : [],
                 isBranch: childIds.length > 0,
-                loaded: false
+                loaded: true
             }
         });
 
@@ -55,36 +61,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
             const sd = updateTreeData(data, -1, nodes);
             setData(sd);
         });
-    }, [])
-
-    const onLoadData = ({ element }) => {
-        const parent = element.id;
-        return store.getChildren({ parent }).then((d) => {
-            var nodes: any[] = convert(d.result, parent);
-            const sd = updateTreeData(data, parent, nodes);
-            setData(sd);
-        });
-    };
-
-    const wrappedOnLoadData = async (props) => {
-        const nodeHasNoChildData = props.element.children.length === 0;
-        const nodeHasAlreadyBeenLoaded = nodesAlreadyLoaded.find(
-            (e) => e.id === props.element.id
-        );
-        if (!props.element.loaded)
-            await onLoadData(props);
-
-        if (nodeHasNoChildData && !nodeHasAlreadyBeenLoaded) {
-            const el = loadedAlertElement.current;
-            setNodesAlreadyLoaded([...nodesAlreadyLoaded, props.element]);
-            el && (el.innerHTML = `${props.element.name} loaded`);
-
-            // Clearing aria-live region so loaded node alerts no longer appear in DOM
-            setTimeout(() => {
-                el && (el.innerHTML = "");
-            }, 5000);
-        }
-    };
+    }, []);
 
     return (
         <>
@@ -99,7 +76,6 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                     <TreeView className="async-tree-menu-container"
                         data={data}
                         aria-label="Checkbox tree"
-                        onLoadData={wrappedOnLoadData}
                         multiSelect
                         propagateSelect
                         togglableSelect

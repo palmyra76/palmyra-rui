@@ -1,81 +1,61 @@
-import { jsx as r, Fragment as y, jsxs as c } from "react/jsx-runtime";
-import { useRef as b, useState as L, useEffect as x } from "react";
-import { A as C } from "../../../chunks/index.esm2.js";
-import { I as H } from "../../../chunks/index.esm3.js";
-import { u as I, c as O } from "../../../chunks/AsyncTreeMenu.js";
-function U(i) {
-  const d = b(null);
-  let m = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [l, o] = L([m]), [h, A] = L([]), p = i.store, f = (e, n, t) => e.map((s) => (s.id === n && (s.loaded = !0, s.children = t.map((u) => u.id)), s)).concat(t), v = (e, n) => e.map((a) => {
-    const s = a.children || "";
+import { jsx as e, Fragment as v, jsxs as i } from "react/jsx-runtime";
+import { useRef as b, useState as x, useEffect as A } from "react";
+import { A as w } from "../../../chunks/index.esm2.js";
+import { I as C } from "../../../chunks/index.esm3.js";
+import { u as k, c as D } from "../../../chunks/AsyncTreeMenu.js";
+function E(d) {
+  const o = b(null);
+  let u = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
+  const [l, m] = x([u]), f = d.store, g = (r, t, a) => r.map((s) => (s.id === t && !s.loaded && (s.loaded = !0, s.children = a.filter((c) => t == c.parent).map((c) => c.id)), s)).concat(a), N = (r) => r.split(",").map((a) => parseInt(a)), S = (r, t) => r.map((n) => {
+    const s = n.children || "";
     return {
-      id: a.id,
-      name: a.name,
-      parent: n,
-      children: [],
+      id: n.id,
+      name: n.name,
+      parent: n.parent ? n.parent : t,
+      children: n.children ? N(n.children) : [],
       isBranch: s.length > 0,
-      loaded: !1
+      loaded: !0
     };
   });
-  x(() => {
-    p.getRoot().then((e) => {
-      var n = v(e.result, -1);
-      const t = f(l, -1, n);
-      o(t);
+  return A(() => {
+    f.getRoot().then((r) => {
+      var t = S(r.result, -1);
+      const a = g(l, -1, t);
+      m(a);
     });
-  }, []);
-  const w = ({ element: e }) => {
-    const n = e.id;
-    return p.getChildren({ parent: n }).then((t) => {
-      var a = v(t.result, n);
-      const s = f(l, n, a);
-      o(s);
-    });
-  };
-  return /* @__PURE__ */ r(y, { children: /* @__PURE__ */ c("div", { children: [
-    /* @__PURE__ */ r(
+  }, []), /* @__PURE__ */ e(v, { children: /* @__PURE__ */ i("div", { children: [
+    /* @__PURE__ */ e(
       "div",
       {
         className: "visually-hidden",
-        ref: d,
+        ref: o,
         role: "alert",
         "aria-live": "polite"
       }
     ),
-    /* @__PURE__ */ r("div", { className: "checkbox", children: /* @__PURE__ */ r(
-      I,
+    /* @__PURE__ */ e("div", { className: "checkbox", children: /* @__PURE__ */ e(
+      k,
       {
         className: "async-tree-menu-container",
         data: l,
         "aria-label": "Checkbox tree",
-        onLoadData: async (e) => {
-          const n = e.element.children.length === 0, t = h.find(
-            (a) => a.id === e.element.id
-          );
-          if (e.element.loaded || await w(e), n && !t) {
-            const a = d.current;
-            A([...h, e.element]), a && (a.innerHTML = `${e.element.name} loaded`), setTimeout(() => {
-              a && (a.innerHTML = "");
-            }, 5e3);
-          }
-        },
         multiSelect: !0,
         propagateSelect: !0,
         togglableSelect: !0,
         propagateSelectUpwards: !0,
         nodeRenderer: ({
-          element: e,
-          isBranch: n,
-          isExpanded: t,
-          isSelected: a,
+          element: r,
+          isBranch: t,
+          isExpanded: a,
+          isSelected: n,
           isHalfSelected: s,
-          getNodeProps: u,
-          level: k,
-          handleSelect: B,
-          handleExpand: D
+          getNodeProps: c,
+          level: O,
+          handleSelect: R,
+          handleExpand: y
         }) => {
-          const S = (N, g) => N && g.children.length === 0 ? /* @__PURE__ */ c(y, { children: [
-            /* @__PURE__ */ c(
+          const I = (h, p) => h && p.children.length === 0 ? /* @__PURE__ */ i(v, { children: [
+            /* @__PURE__ */ i(
               "span",
               {
                 role: "alert",
@@ -83,28 +63,28 @@ function U(i) {
                 className: "visually-hidden",
                 children: [
                   "loading ",
-                  g.name
+                  p.name
                 ]
               }
             ),
-            /* @__PURE__ */ r(
-              C,
+            /* @__PURE__ */ e(
+              w,
               {
                 "aria-hidden": !0,
                 className: "loading-icon"
               }
             )
-          ] }) : /* @__PURE__ */ r(T, { isOpen: N });
-          return /* @__PURE__ */ r(
+          ] }) : /* @__PURE__ */ e(L, { isOpen: h });
+          return /* @__PURE__ */ e(
             "div",
             {
-              ...u({ onClick: D }),
-              children: /* @__PURE__ */ c("div", { className: "async-tree-menu-list", children: [
-                /* @__PURE__ */ c("div", { className: "async-tree-menu-list-text-container", children: [
-                  /* @__PURE__ */ r("div", { children: "I" }),
-                  /* @__PURE__ */ r("span", { className: "menu-name", children: e.name })
+              ...c({ onClick: y }),
+              children: /* @__PURE__ */ i("div", { className: "async-tree-menu-list", children: [
+                /* @__PURE__ */ i("div", { className: "async-tree-menu-list-text-container", children: [
+                  /* @__PURE__ */ e("div", { children: "I" }),
+                  /* @__PURE__ */ e("span", { className: "menu-name", children: r.name })
                 ] }),
-                /* @__PURE__ */ r("div", { className: "async-tree-menu-list-arrow-container", children: n && S(t, e) })
+                /* @__PURE__ */ e("div", { className: "async-tree-menu-list-arrow-container", children: t && I(a, r) })
               ] })
             }
           );
@@ -113,15 +93,15 @@ function U(i) {
     ) })
   ] }) });
 }
-const T = (i) => {
-  const { isOpen: d, className: m } = i, l = "arrow", o = O(
+const L = (d) => {
+  const { isOpen: o, className: u } = d, l = "arrow", m = D(
     l,
-    { [`${l}--closed`]: !d },
-    { [`${l}--open`]: d },
-    m
+    { [`${l}--closed`]: !o },
+    { [`${l}--open`]: o },
+    u
   );
-  return /* @__PURE__ */ r(H, { className: o });
+  return /* @__PURE__ */ e(C, { className: m });
 };
 export {
-  U as default
+  E as default
 };

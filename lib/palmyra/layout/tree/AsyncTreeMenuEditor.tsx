@@ -110,19 +110,6 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                 })
             }
         })
-
-
-        // const result = data.filter((d: INode) =>
-        //     //@ts-ignore
-        //     (d.id > 0) && d.metadata?.selected != undefined).map((d: INode) => {
-        //         //@ts-ignore
-        //         const parent = d.parent > 0 ? d.parent : null;
-        //         return {
-        //             id: d.id, parent, name: d.name, selected: d.metadata?.selected
-        //         }
-        //     });
-
-        console.log(result);
     }
 
     return (
