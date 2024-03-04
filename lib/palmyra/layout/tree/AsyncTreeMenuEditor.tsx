@@ -3,35 +3,42 @@ import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
 import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
-import TreeView from "react-accessible-treeview";
+import TreeView, { INode } from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
 import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 import AsyncTreeCrudDropDown from "./AsyncTreeCrudDropDown";
-import { ClickAwayListener } from "@mui/material";
+import { Button, ClickAwayListener } from "@mui/material";
 
 interface IAsyncTreeEditorInput {
     store: TreeQueryStore<IChildTreeRequest, any>
 }
 
-// type MenuData = INode;
-
+interface Node {
+    id: number,
+    parent: number,
+    name: string,
+    loaded: boolean,
+    isBranch: true,
+    children: number[],
+    selected: 0 | 1 | 2;
+}
 
 export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
 
     const loadedAlertElement = useRef(null);
-    let rootNode = { name: "", id: -1, parent: null, children: [], isBranch: true };
-    const [data, setData] = useState([rootNode]);
-    const [nodesAlreadyLoaded, setNodesAlreadyLoaded] = useState([]);
+    let rootNode: Node = { name: "", id: -1, parent: null, children: [], isBranch: true, loaded: false, selected: 0 };
+    const [data, setData] = useState<Node[]>([rootNode]);
+    const [selectedIds, setSelectedIds] = useState([]);
 
     const store: TreeQueryStore<IChildTreeRequest, any> = props.store;
 
     const updateTreeData = (list, id, children) => {
         const data = list.map((node) => {
-            if (node.id === id) {
+            if (node.id === id && !node.loaded) {
                 node.loaded = true
-                node.children = children.map((el) => {
+                node.children = children.filter((e) => id == e.parent).map((el) => {
                     return el.id;
                 });
             }
@@ -40,16 +47,23 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
         return data.concat(children);
     };
 
+    const getChildId = (ids: string): number[] => {
+        const idList: string[] = ids.split(",");
+        return idList.map((s) => {
+            return parseInt(s);
+        })
+    }
+
     const convert = (nodes, parentId) => {
         const result = nodes.map((d) => {
             const childIds: string = d.children || "";
             return {
                 id: d.id,
                 name: d.name,
-                parent: parentId,
-                children: [],
+                parent: d.parent ? d.parent : parentId,
+                children: d.children ? getChildId(d.children) : [],
                 isBranch: childIds.length > 0,
-                loaded: false
+                loaded: true
             }
         });
 
@@ -61,41 +75,31 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
             var nodes: any[] = convert(d.result, -1);
             const sd = updateTreeData(data, -1, nodes);
             setData(sd);
+            setSelectedIds([5, 7]); // TODO   update based on the server side value.
         });
-    }, [])
+    }, []);
 
-    const onLoadData = ({ element }) => {
-        const parent = element.id;
-        return store.getChildren({ parent }).then((d) => {
-            var nodes: any[] = convert(d.result, parent);
-            const sd = updateTreeData(data, parent, nodes);
-            setData(sd);
-        });
-    };
 
-    const wrappedOnLoadData = async (props) => {
-        const nodeHasNoChildData = props.element.children.length === 0;
-        const nodeHasAlreadyBeenLoaded = nodesAlreadyLoaded.find(
-            (e) => e.id === props.element.id
-        );
-        if (!props.element.loaded)
-            await onLoadData(props);
+    const submit = () => {
+        const result = data.filter((d: INode) =>
+            //@ts-ignore
+            (d.id > 0) && d.metadata?.selected != undefined).map((d: INode) => {
+                //@ts-ignore
+                const parent = d.parent > 0 ? d.parent : null;
+                return {
+                    id: d.id, parent, name: d.name, selected: d.metadata?.selected
+                }
+            });
 
-        if (nodeHasNoChildData && !nodeHasAlreadyBeenLoaded) {
-            const el = loadedAlertElement.current;
-            setNodesAlreadyLoaded([...nodesAlreadyLoaded, props.element]);
-            el && (el.innerHTML = `${props.element.name} loaded`);
-
-            // Clearing aria-live region so loaded node alerts no longer appear in DOM
-            setTimeout(() => {
-                el && (el.innerHTML = "");
-            }, 5000);
-        }
-    };
+        console.log(result);
+    }
 
     return (
         <>
             <div>
+
+                <Button onClick={submit} >ellosdf</Button>
+
                 <div
                     className="visually-hidden"
                     ref={loadedAlertElement}
@@ -105,8 +109,8 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                 <div className="checkbox">
                     <TreeView
                         data={data}
+                        selectedIds={selectedIds}
                         aria-label="Checkbox tree"
-                        onLoadData={wrappedOnLoadData}
                         multiSelect
                         propagateSelect
                         togglableSelect
@@ -122,6 +126,9 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                             handleSelect,
                             handleExpand,
                         }) => {
+                            const selected = isHalfSelected ? 1 : isSelected ? 2 : 0;
+                            element.metadata = { selected: selected };
+
                             const branchNode = (isExpanded, element) => {
                                 return isExpanded && element.children.length === 0 ? (
                                     <>
@@ -142,126 +149,9 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                                 );
                             };
 
-
-                            // const renderCrudCheckbox = () => (
-                            //     <>
-                            //         <div className="crud-checkbox-list">
-                            //             <div className="crud-checkbox">
-                            //                 <div>
-                            //                     <CheckBoxIcon
-                            //                         className="checkbox-icon"
-                            //                         onClick={(e) => {
-                            //                             handleSelect(e);
-                            //                             e.stopPropagation();
-                            //                         }}
-                            //                         variant={
-                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
-                            //                         }
-                            //                     />
-                            //                 </div>
-                            //                 <div>
-                            //                     <span className="crud-checkbox-label">Create</span>
-                            //                 </div>
-                            //             </div>
-                            //             <div className="crud-checkbox">
-                            //                 <div>
-                            //                     <CheckBoxIcon
-                            //                         className="checkbox-icon"
-                            //                         onClick={(e) => {
-                            //                             handleSelect(e);
-                            //                             e.stopPropagation();
-                            //                         }}
-                            //                         variant={
-                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
-                            //                         }
-                            //                     />
-                            //                 </div>
-                            //                 <div>
-                            //                     <span className="crud-checkbox-label">Update</span>
-                            //                 </div>
-                            //             </div>
-                            //             <div className="crud-checkbox">
-                            //                 <div>
-                            //                     <CheckBoxIcon
-                            //                         className="checkbox-icon"
-                            //                         onClick={(e) => {
-                            //                             handleSelect(e);
-                            //                             e.stopPropagation();
-                            //                         }}
-                            //                         variant={
-                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
-                            //                         }
-                            //                     />
-                            //                 </div>
-                            //                 <div>
-                            //                     <span className="crud-checkbox-label">Delete</span>
-                            //                 </div>
-                            //             </div>
-                            //         </div>
-                            //     </>);
-
-                            // const renderCrudCheckboxes: any =
-                            //     <>
-                            //         <div className="crud-checkbox-list">
-                            //             <div className="crud-checkbox">
-                            //                 <div>
-                            //                     <CheckBoxIcon
-                            //                         className="checkbox-icon"
-                            //                         onClick={(e) => {
-                            //                             handleSelect(e);
-                            //                             e.stopPropagation();
-                            //                         }}
-                            //                         variant={
-                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
-                            //                         }
-                            //                     />
-                            //                 </div>
-                            //                 <div>
-                            //                     <span className="crud-checkbox-label">Create</span>
-                            //                 </div>
-                            //             </div>
-                            //             <div className="crud-checkbox">
-                            //                 <div>
-                            //                     <CheckBoxIcon
-                            //                         className="checkbox-icon"
-                            //                         onClick={(e) => {
-                            //                             handleSelect(e);
-                            //                             e.stopPropagation();
-                            //                         }}
-                            //                         variant={
-                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
-                            //                         }
-                            //                     />
-                            //                 </div>
-                            //                 <div>
-                            //                     <span className="crud-checkbox-label">Update</span>
-                            //                 </div>
-                            //             </div>
-                            //             <div className="crud-checkbox">
-                            //                 <div>
-                            //                     <CheckBoxIcon
-                            //                         className="checkbox-icon"
-                            //                         onClick={(e) => {
-                            //                             handleSelect(e);
-                            //                             e.stopPropagation();
-                            //                         }}
-                            //                         variant={
-                            //                             isHalfSelected ? "some" : isSelected ? "all" : "none"
-                            //                         }
-                            //                     />
-                            //                 </div>
-                            //                 <div>
-                            //                     <span className="crud-checkbox-label">Delete</span>
-                            //                 </div>
-                            //             </div>
-                            //         </div>
-                            //     </>;
-
-
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
-                                // style={{ marginLeft: 40 * (level - 1) }}
                                 >
                                     <CheckBoxIcon
                                         className="checkbox-icon"

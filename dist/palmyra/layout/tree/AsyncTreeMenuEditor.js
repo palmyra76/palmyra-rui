@@ -1,82 +1,84 @@
-import { jsx as e, Fragment as h, jsxs as u } from "react/jsx-runtime";
-import { useRef as x, useState as f, useEffect as b } from "react";
-import { A as O } from "../../../chunks/index.esm2.js";
-import { F as T, a as F, b as H, A as I } from "../../../chunks/AsyncTreeCrudDropDown.js";
+import { jsx as e, Fragment as p, jsxs as d } from "react/jsx-runtime";
+import { useRef as I, useState as f, useEffect as D } from "react";
+import { A as F } from "../../../chunks/index.esm2.js";
+import { F as L, a as O, b as B, A as q } from "../../../chunks/AsyncTreeCrudDropDown.js";
 import { I as M } from "../../../chunks/index.esm3.js";
-import { u as B, c as q } from "../../../chunks/AsyncTreeMenu.js";
-import { ClickAwayListener as R } from "@mui/material";
-function W(c) {
-  const t = x(null);
-  let d = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [l, i] = f([d]), [g, L] = f([]), v = c.store, N = (n, r, o) => n.map((s) => (s.id === r && (s.loaded = !0, s.children = o.map((p) => p.id)), s)).concat(o), w = (n, r) => n.map((a) => {
-    const s = a.children || "";
+import { u as R, c as T } from "../../../chunks/AsyncTreeMenu.js";
+import { Button as j, ClickAwayListener as E } from "@mui/material";
+function Y(c) {
+  const s = I(null);
+  let i = { name: "", id: -1, parent: null, children: [], isBranch: !0, loaded: !1, selected: 0 };
+  const [l, u] = f([i]), [v, b] = f([]), w = c.store, N = (a, r, n) => a.map((o) => (o.id === r && !o.loaded && (o.loaded = !0, o.children = n.filter((m) => r == m.parent).map((m) => m.id)), o)).concat(n), C = (a) => a.split(",").map((n) => parseInt(n)), k = (a, r) => a.map((t) => {
+    const o = t.children || "";
     return {
-      id: a.id,
-      name: a.name,
-      parent: r,
-      children: [],
-      isBranch: s.length > 0,
-      loaded: !1
+      id: t.id,
+      name: t.name,
+      parent: t.parent ? t.parent : r,
+      children: t.children ? C(t.children) : [],
+      isBranch: o.length > 0,
+      loaded: !0
     };
   });
-  b(() => {
-    v.getRoot().then((n) => {
-      var r = w(n.result, -1);
-      const o = N(l, -1, r);
-      i(o);
+  return D(() => {
+    w.getRoot().then((a) => {
+      var r = k(a.result, -1);
+      const n = N(l, -1, r);
+      u(n), b([5, 7]);
     });
-  }, []);
-  const C = ({ element: n }) => {
-    const r = n.id;
-    return v.getChildren({ parent: r }).then((o) => {
-      var a = w(o.result, r);
-      const s = N(l, r, a);
-      i(s);
-    });
-  };
-  return /* @__PURE__ */ e(h, { children: /* @__PURE__ */ u("div", { children: [
+  }, []), /* @__PURE__ */ e(p, { children: /* @__PURE__ */ d("div", { children: [
+    /* @__PURE__ */ e(j, { onClick: () => {
+      const a = l.filter((r) => {
+        var n;
+        return (
+          //@ts-ignore
+          r.id > 0 && ((n = r.metadata) == null ? void 0 : n.selected) != null
+        );
+      }).map((r) => {
+        var t;
+        const n = r.parent > 0 ? r.parent : null;
+        return {
+          id: r.id,
+          parent: n,
+          name: r.name,
+          selected: (t = r.metadata) == null ? void 0 : t.selected
+        };
+      });
+      console.log(a);
+    }, children: "ellosdf" }),
     /* @__PURE__ */ e(
       "div",
       {
         className: "visually-hidden",
-        ref: t,
+        ref: s,
         role: "alert",
         "aria-live": "polite"
       }
     ),
     /* @__PURE__ */ e("div", { className: "checkbox", children: /* @__PURE__ */ e(
-      B,
+      R,
       {
         data: l,
+        selectedIds: v,
         "aria-label": "Checkbox tree",
-        onLoadData: async (n) => {
-          const r = n.element.children.length === 0, o = g.find(
-            (a) => a.id === n.element.id
-          );
-          if (n.element.loaded || await C(n), r && !o) {
-            const a = t.current;
-            L([...g, n.element]), a && (a.innerHTML = `${n.element.name} loaded`), setTimeout(() => {
-              a && (a.innerHTML = "");
-            }, 5e3);
-          }
-        },
         multiSelect: !0,
         propagateSelect: !0,
         togglableSelect: !0,
         propagateSelectUpwards: !0,
         nodeRenderer: ({
-          element: n,
+          element: a,
           isBranch: r,
-          isExpanded: o,
-          isSelected: a,
-          isHalfSelected: s,
-          getNodeProps: p,
-          level: D,
+          isExpanded: n,
+          isSelected: t,
+          isHalfSelected: o,
+          getNodeProps: m,
+          level: G,
           handleSelect: S,
-          handleExpand: y
+          handleExpand: x
         }) => {
-          const k = (m, A) => m && A.children.length === 0 ? /* @__PURE__ */ u(h, { children: [
-            /* @__PURE__ */ u(
+          const A = o ? 1 : t ? 2 : 0;
+          a.metadata = { selected: A };
+          const y = (h, g) => h && g.children.length === 0 ? /* @__PURE__ */ d(p, { children: [
+            /* @__PURE__ */ d(
               "span",
               {
                 role: "alert",
@@ -84,37 +86,36 @@ function W(c) {
                 className: "visually-hidden",
                 children: [
                   "loading ",
-                  A.name
+                  g.name
                 ]
               }
             ),
             /* @__PURE__ */ e(
-              O,
+              F,
               {
                 "aria-hidden": !0,
                 className: "loading-icon"
               }
             )
-          ] }) : /* @__PURE__ */ e($, { isOpen: m });
-          return /* @__PURE__ */ u(
+          ] }) : /* @__PURE__ */ e($, { isOpen: h });
+          return /* @__PURE__ */ d(
             "div",
             {
-              ...p({ onClick: y }),
-              style: { marginLeft: 40 * (D - 1) },
+              ...m({ onClick: x }),
               children: [
                 /* @__PURE__ */ e(
-                  j,
+                  P,
                   {
                     className: "checkbox-icon",
-                    onClick: (m) => {
-                      S(m), m.stopPropagation();
+                    onClick: (h) => {
+                      S(h), h.stopPropagation();
                     },
-                    variant: s ? "some" : a ? "all" : "none"
+                    variant: o ? "some" : t ? "all" : "none"
                   }
                 ),
-                /* @__PURE__ */ u("div", { className: "menu-list", children: [
-                  /* @__PURE__ */ e("div", { className: "text-icon", children: /* @__PURE__ */ e("span", { className: "menu-name", children: n.name }) }),
-                  /* @__PURE__ */ e("div", { children: r ? k(o, n) : /* @__PURE__ */ e(h, { children: /* @__PURE__ */ e(E, { element: n, isSelected: a }) }) })
+                /* @__PURE__ */ d("div", { className: "menu-list", children: [
+                  /* @__PURE__ */ e("div", { className: "text-icon", children: /* @__PURE__ */ e("span", { className: "menu-name", children: a.name }) }),
+                  /* @__PURE__ */ e("div", { children: r ? y(n, a) : /* @__PURE__ */ e(p, { children: /* @__PURE__ */ e(U, { element: a, isSelected: t }) }) })
                 ] })
               ]
             }
@@ -125,43 +126,43 @@ function W(c) {
   ] }) });
 }
 const $ = (c) => {
-  const { isOpen: t, className: d } = c, l = "arrow", i = q(
+  const { isOpen: s, className: i } = c, l = "arrow", u = T(
     l,
-    { [`${l}--closed`]: !t },
-    { [`${l}--open`]: t },
-    d
+    { [`${l}--closed`]: !s },
+    { [`${l}--open`]: s },
+    i
   );
-  return /* @__PURE__ */ e(M, { className: i });
-}, j = ({ variant: c, ...t }) => {
+  return /* @__PURE__ */ e(M, { className: u });
+}, P = ({ variant: c, ...s }) => {
   switch (c) {
     case "all":
-      return /* @__PURE__ */ e(H, { ...t });
+      return /* @__PURE__ */ e(B, { style: { color: "rgb(44, 134, 213)", backgroundColor: "white" }, ...s });
     case "none":
-      return /* @__PURE__ */ e(F, { ...t });
+      return /* @__PURE__ */ e(O, { style: { color: "white", border: "1px solid rgba(128, 128,128, 0.2)" }, ...s });
     case "some":
-      return /* @__PURE__ */ e(T, { ...t });
+      return /* @__PURE__ */ e(L, { style: { color: "rgb(44, 134, 213)", backgroundColor: "white" }, ...s });
     default:
       return null;
   }
-}, E = (c) => {
-  const [t, d] = f(!1), l = () => {
-    d(!t);
-  }, i = () => {
+}, U = (c) => {
+  const [s, i] = f(!1), l = () => {
+    i(!s);
+  }, u = () => {
   };
-  return /* @__PURE__ */ e(h, { children: /* @__PURE__ */ u("div", { className: "crud-dropdown-container", children: [
+  return /* @__PURE__ */ e(p, { children: /* @__PURE__ */ d("div", { className: "crud-dropdown-container", children: [
     /* @__PURE__ */ e("span", { className: "crud-dropdown-text", onClick: l, children: "crud" }),
-    t && /* @__PURE__ */ e(R, { onClickAway: () => {
-      d(!1);
+    s && /* @__PURE__ */ e(E, { onClickAway: () => {
+      i(!1);
     }, children: /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-      I,
+      q,
       {
         isHalfSelected: c.isSelected,
         isSelected: c.isSelected,
-        handleSelect: i
+        handleSelect: u
       }
     ) }) })
   ] }) });
 };
 export {
-  W as default
+  Y as default
 };
