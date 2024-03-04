@@ -47,9 +47,7 @@ const PalmyraForm = forwardRef(function PalmyraForm(props: IPalmyraFormInput, re
         <StoreFactoryContext.Provider value={props.storeFactory}>
             <FormHelperContext.Provider value={formHelper}>
                 <FieldManagerContext.Provider value={getFieldManager}>
-                    <div >
-                        {props.children}
-                    </div>
+                    {props.children}
                 </FieldManagerContext.Provider>
             </FormHelperContext.Provider>
         </StoreFactoryContext.Provider>
