@@ -21,15 +21,15 @@ interface Node {
     name: string,
     loaded: boolean,
     isBranch: true,
-    children: number[],
+    children: (Node | number)[],
     selected: 0 | 1 | 2;
 }
 
 export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
 
     const loadedAlertElement = useRef(null);
-    let rootNode: Node = { name: "", id: -1, parent: null, children: [], isBranch: true, loaded: false, selected: 0 };
-    const [data, setData] = useState<Node[]>([rootNode]);
+    let rootNode: INode = { name: "", id: -1, parent: null, children: [], isBranch: true };
+    const [data, setData] = useState<INode[]>([rootNode]);
     const [selectedIds, setSelectedIds] = useState([]);
 
     const store: TreeQueryStore<IChildTreeRequest, any> = props.store;
@@ -81,15 +81,46 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
 
 
     const submit = () => {
-        const result = data.filter((d: INode) =>
+
+        const mappedData = {};
+        const result: Node[] = [];
+
+        data.forEach((d: INode) => {
+            if (d.metadata?.selected == undefined)
+                return;
             //@ts-ignore
-            (d.id > 0) && d.metadata?.selected != undefined).map((d: INode) => {
-                //@ts-ignore
-                const parent = d.parent > 0 ? d.parent : null;
-                return {
-                    id: d.id, parent, name: d.name, selected: d.metadata?.selected
-                }
-            });
+            const parent = d.parent > 0 ? d.parent : null;
+            mappedData[d.id] = {
+                id: d.id, parent, name: d.name, selected: d.metadata?.selected, children: []
+            }
+            //@ts-ignore
+            if (null == parent && d.id > 0) {
+                result.push(mappedData[d.id]);
+            }
+        });
+
+        data.forEach((v: INode) => {
+            const parentId = v.id;
+            const parentNode = mappedData[parentId];
+            if (parentNode && v.children) {
+                v.children.forEach((id) => {
+                    const childNode = mappedData[id];
+                    if (childNode)
+                        parentNode.children.push(childNode);
+                })
+            }
+        })
+
+
+        // const result = data.filter((d: INode) =>
+        //     //@ts-ignore
+        //     (d.id > 0) && d.metadata?.selected != undefined).map((d: INode) => {
+        //         //@ts-ignore
+        //         const parent = d.parent > 0 ? d.parent : null;
+        //         return {
+        //             id: d.id, parent, name: d.name, selected: d.metadata?.selected
+        //         }
+        //     });
 
         console.log(result);
     }
