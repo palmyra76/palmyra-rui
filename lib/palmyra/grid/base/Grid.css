@@ -107,6 +107,9 @@
   z-index: 1;
   padding: 5px;
   border-radius: 4px;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Initially not visible */
+  transition: opacity 0.5s, visibility 0.5s;
 }
 
 .density-dropdown-content ul {
@@ -262,7 +265,7 @@
 } */
 
 .grid-filter-btn-container {
-  padding: 25px 20px 15px 0px;
+  padding: 20px 35px 15px 0px;
   display: flex;
   justify-content: end;
   gap: 10px;

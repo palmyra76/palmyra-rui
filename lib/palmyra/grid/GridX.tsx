@@ -294,15 +294,14 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
               <div className='grid-header-button grid-add-btn'>
                 <div onClick={onNewClick}>
                   <Button className='grid-btn' disableRipple>
-                    {props.customAddButton ? (
+                    {props.customAddButton && props.customAddButton.icon ? (
                       React.cloneElement(props.customAddButton.icon, {
                         className: 'grid-button-icon'
                       })
-
                     ) : (
                       <Add className='grid-button-icon' />
                     )}
-                    {props.customAddButton ? (
+                    {props.customAddButton && props.customAddButton.text ? (
                       <>{props.customAddButton.text}</>
                     ) : (
                       <span>Add</span>
