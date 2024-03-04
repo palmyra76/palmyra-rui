@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
-import { IoMdArrowDropright } from "react-icons/io";
+import { IoIosArrowForward  } from "react-icons/io";
 import TreeView, { INode, ITreeViewOnSelectProps } from "react-accessible-treeview";
 import cx from "classnames";
 
@@ -78,7 +78,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
 
     return (
         <>
-            <div>
+            <div className="sidebar-asyn-menu">
                 <div
                     className="visually-hidden"
                     ref={loadedAlertElement}
@@ -129,11 +129,11 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
-                                // style={{ marginLeft: 40 * (level - 1)}}
+                                style={{ marginLeft: 5 * (level - 1)}}
                                 >
                                     <div className="async-tree-menu-list" onClick={() => navigateTo(element)}>
                                         <div className="async-tree-menu-list-text-container">
-                                            <div>I</div>
+                                            <div className="menu-icon">I</div>
                                             <span className="menu-name">{element.name}</span>
                                         </div>
                                         <div className="async-tree-menu-list-arrow-container">
@@ -164,5 +164,5 @@ const ArrowIcon = (props: IArrowIconInput) => {
         { [`${baseClass}--open`]: isOpen },
         className
     );
-    return <IoMdArrowDropright className={classes} />;
+    return <IoIosArrowForward  className={classes} />;
 };
