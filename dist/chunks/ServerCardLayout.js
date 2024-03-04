@@ -11,21 +11,21 @@ import kt from "../palmyra/mui/form/MuiSwitch.js";
 import Ot from "../palmyra/mui/form/MuiIOSSwitch.js";
 import Pt from "../palmyra/mui/form/MuiPassword.js";
 import Rt from "../palmyra/mui/form/MuiNumberField.js";
+import Dt from "../palmyra/mui/form/MuiIntegerField.js";
 import Le from "../palmyra/mui/form/FieldDecorator.js";
 import { FieldManagerContext as he, StoreFactoryContext as Me, LayoutParamsContext as Ye } from "../palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { jsx as e, jsxs as a, Fragment as ie } from "react/jsx-runtime";
-import Dt, { useState as R, useRef as X, useEffect as Y, forwardRef as U, useContext as de, useImperativeHandle as ne, useMemo as et } from "react";
+import At, { useState as R, useRef as X, useEffect as Y, forwardRef as U, useContext as de, useImperativeHandle as ne, useMemo as et } from "react";
 import { a as Ee } from "./index.esm2.js";
-import { FormControlLabel as Ze, Checkbox as je, FormControl as oe, FormHelperText as Ve, Autocomplete as tt, TextField as fe, CircularProgress as nt, Button as te, InputAdornment as Te, ClickAwayListener as le, Select as Ie, MenuItem as Qe, Pagination as Be, Box as At, Stack as Lt } from "@mui/material";
-import Mt from "../palmyra/layout/card/CardLayout.js";
-import Et from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
+import { FormControlLabel as Ze, Checkbox as je, FormControl as oe, FormHelperText as Ve, Autocomplete as tt, TextField as fe, CircularProgress as nt, Button as te, InputAdornment as Te, ClickAwayListener as le, Select as Ie, MenuItem as Qe, Pagination as Be, Box as Lt, Stack as Mt } from "@mui/material";
+import Et from "../palmyra/layout/card/CardLayout.js";
+import Vt from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
 import { copyMuiOptions as ze, getFieldLabel as qe } from "../palmyra/mui/form/MuiUtil.js";
 import { hasDot as ue } from "../palmyra/utils/StringUtil.js";
 import { getValueByKey as me } from "../palmyra/form/FormUtil.js";
-import { T as We, a as Xe, b as Vt, c as Ge, d as rt } from "./index.esm.js";
-import { delay as it, delayGenerator as Tt, mergeDeep as It } from "../palmyra/utils/index.js";
-import Qt from "../palmyra/mui/form/MuiDateRangePicker.js";
-import Bt from "../palmyra/mui/form/MuiIntegerField.js";
+import { T as We, a as Xe, c as Tt, d as Ge, e as rt } from "./index.esm.js";
+import { delay as it, delayGenerator as It, mergeDeep as Qt } from "../palmyra/utils/index.js";
+import Bt from "../palmyra/mui/form/MuiDateRangePicker.js";
 import ot from "../palmyra/layout/container/SectionContainer.js";
 import zt from "../palmyra/layout/container/FieldGroupContainer.js";
 import { generateColumns as at } from "../palmyra/grid/base/ColumnConverter.js";
@@ -252,7 +252,7 @@ const yr = U(function(t, c) {
       ]
     }
   ) });
-}), Xt = Tt(100), _t = U(function(t, c) {
+}), Xt = It(100), _t = U(function(t, c) {
   const o = de(he), s = c || X(null), l = X(null), g = X(0), [f, C] = R([]), [m, p] = R(""), [u, b] = R(!1), y = o(t, "serverlookup", s), M = t.store || y.store, E = t.lookupOptions || {}, P = E.idAttribute || "id", V = E.displayAttribute || "name", A = V, T = {
     store: M,
     endPointOptions: t.storeOptions.endPointOptions,
@@ -590,11 +590,11 @@ const yr = U(function(t, c) {
     case "numbersOnly":
       return j(s, Rt);
     case "integer":
-      return j(s, Bt);
+      return j(s, Dt);
     case "multiSelect":
       return j(s, Ke);
     case "dateRange":
-      return j(s, Qt);
+      return j(s, Bt);
     case "autoComplete":
       return j(s, $t);
     default:
@@ -681,7 +681,7 @@ const Yt = (n) => {
     ) }) }),
     /* @__PURE__ */ a("div", { className: "grid-filter-btn-container", children: [
       /* @__PURE__ */ a(te, { className: "secondary-filled-button", disableRipple: !0, onClick: f, children: [
-        /* @__PURE__ */ e(Vt, { className: "button-icon" }),
+        /* @__PURE__ */ e(Tt, { className: "button-icon" }),
         "Reset"
       ] }),
       /* @__PURE__ */ a(te, { className: "filled-button", disableRipple: !0, onClick: C, children: [
@@ -868,7 +868,7 @@ const tn = U(function(t, c) {
           ] }) })
         ] }) }),
         t.onNewClick ? /* @__PURE__ */ e("div", { className: "grid-header-button grid-add-btn", children: /* @__PURE__ */ e("div", { onClick: ke, children: /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, children: [
-          t.customAddButton ? Dt.cloneElement(t.customAddButton.icon, {
+          t.customAddButton ? At.cloneElement(t.customAddButton.icon, {
             className: "grid-button-icon"
           }) : /* @__PURE__ */ e(ct, { className: "grid-button-icon" }),
           t.customAddButton ? /* @__PURE__ */ e(ie, { children: t.customAddButton.text }) : /* @__PURE__ */ e("span", { children: "Add" })
@@ -1175,7 +1175,7 @@ const tn = U(function(t, c) {
 }), nn = U(function(t, c) {
   const o = t.layout, [s, l] = R(o.fields), g = o.pagination ? o.pagination : [15], f = de(Me), C = de(Ye);
   var m = o.storeOptions || {}, p = {};
-  It(p, m, C);
+  Qt(p, m, C);
   const u = f.getGridStore(p, o.storeOptions.endPoint);
   Y(() => {
     m.hasLayout && u.queryLayout({}).then((M) => {
@@ -1224,7 +1224,7 @@ const tn = U(function(t, c) {
     case "grid":
       return /* @__PURE__ */ e(rn, { ...n });
     case "chart":
-      return /* @__PURE__ */ e(Et, { ...n });
+      return /* @__PURE__ */ e(Vt, { ...n });
     default:
       return /* @__PURE__ */ e(Kt, { ...n });
   }
@@ -1240,7 +1240,7 @@ const Ct = (n) => {
   const { layout: t, context: c } = n, o = t.sections;
   function s(l, g, f) {
     const { w: C, h: m } = an(l.width, l.height);
-    return /* @__PURE__ */ e(At, { sx: { width: C, height: m }, children: /* @__PURE__ */ e(
+    return /* @__PURE__ */ e(Lt, { sx: { width: C, height: m }, children: /* @__PURE__ */ e(
       on,
       {
         layout: l,
@@ -1387,7 +1387,7 @@ const Ct = (n) => {
       ] })
     ] }),
     /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-      Mt,
+      Et,
       {
         Child: s,
         childKeyProvider: H,
@@ -1426,7 +1426,7 @@ const Ct = (n) => {
           " Results"
         ] }) })
       ] }) }) : null }),
-      /* @__PURE__ */ e("div", { style: {}, children: /* @__PURE__ */ e(Lt, { direction: "row", alignItems: "center", spacing: 1, children: /* @__PURE__ */ e(
+      /* @__PURE__ */ e("div", { style: {}, children: /* @__PURE__ */ e(Mt, { direction: "row", alignItems: "center", spacing: 1, children: /* @__PURE__ */ e(
         Be,
         {
           count: N,

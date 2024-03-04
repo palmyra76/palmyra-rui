@@ -11,6 +11,7 @@ import MuiIOSSwitch from "./form/MuiIOSSwitch";
 import MuiPassword from "./form/MuiPassword";
 import MuiServerCheckBox from "./form/MuiServerCheckBox";
 import MuiNumberField from "./form/MuiNumberField";
+import MuiIntegerField from "./form/MuiIntegerField";
 import MuiServerLookup from "./form/MuiServerLookup";
 import FieldDecorator from "./form/FieldDecorator";
 import MuiAutoComplete from "./form/MuiAutoComplete";
@@ -18,5 +19,5 @@ import MuiAutoComplete from "./form/MuiAutoComplete";
 export {
     MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup,
     MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword, MuiServerCheckBox,
-    MuiNumberField, MuiAutoComplete, FieldDecorator
+    MuiNumberField, MuiIntegerField, MuiAutoComplete, FieldDecorator
 };

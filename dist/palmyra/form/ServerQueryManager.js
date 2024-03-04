@@ -1,5 +1,5 @@
 import "react";
-import { u as O } from "../../chunks/ServerCardLayout.js";
+import { u as P } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
@@ -34,7 +34,8 @@ import "../mui/form/MuiSwitch.js";
 import "../mui/form/MuiIOSSwitch.js";
 import "../mui/form/MuiPassword.js";
 import "../mui/form/MuiNumberField.js";
+import "../mui/form/MuiIntegerField.js";
 import "./PalmyraForm.js";
 export {
-  O as default
+  P as default
 };

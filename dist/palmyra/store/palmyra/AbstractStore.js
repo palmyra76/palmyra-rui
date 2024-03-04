@@ -37,8 +37,9 @@ import "../../mui/form/MuiSwitch.js";
 import "../../mui/form/MuiIOSSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
+import "../../mui/form/MuiIntegerField.js";
 import "../../form/PalmyraForm.js";
-class X {
+class Y {
   constructor(t, r) {
     o(this, "options");
     o(this, "target");
@@ -62,5 +63,5 @@ class X {
   }
 }
 export {
-  X as PalmyraAbstractStore
+  Y as PalmyraAbstractStore
 };
