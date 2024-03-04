@@ -2,18 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
 import { IoMdArrowDropright } from "react-icons/io";
-import TreeView from "react-accessible-treeview";
+import TreeView, { INode, ITreeViewOnSelectProps } from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
 import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
+import { useNavigate } from "react-router-dom";
 
 interface IAsyncTreeMenuInput {
     store: TreeQueryStore<IChildTreeRequest, any>
 }
 
 export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
-
+    const navigate = useNavigate();
     const loadedAlertElement = useRef(null);
     let rootNode = { name: "", id: -1, parent: null, children: [], isBranch: true };
     const [data, setData] = useState([rootNode]);
@@ -48,7 +49,10 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                 parent: d.parent ? d.parent : parentId,
                 children: d.children ? getChildId(d.children) : [],
                 isBranch: childIds.length > 0,
-                loaded: true
+                loaded: true,
+                metadata: {
+                    code: d.code, action:d.action
+                }
             }
         });
 
@@ -62,6 +66,15 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
             setData(sd);
         });
     }, []);
+
+    const navigateTo = (element: INode) => {
+        if(!element.isBranch && element.metadata?.code){
+            console.log(element);
+            //@ts-ignore
+            const target:string = element.metadata.code;
+            navigate(target);
+        }
+    }
 
     return (
         <>
@@ -80,6 +93,9 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                         propagateSelect
                         togglableSelect
                         propagateSelectUpwards
+                        onSelect={(props: ITreeViewOnSelectProps) => {
+                            console.log(props);
+                        }}
                         nodeRenderer={({
                             element,
                             isBranch,
@@ -113,9 +129,9 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
-                                    // style={{ marginLeft: 40 * (level - 1)}}
+                                // style={{ marginLeft: 40 * (level - 1)}}
                                 >
-                                    <div className="async-tree-menu-list">
+                                    <div className="async-tree-menu-list" onClick={() => navigateTo(element)}>
                                         <div className="async-tree-menu-list-text-container">
                                             <div>I</div>
                                             <span className="menu-name">{element.name}</span>
