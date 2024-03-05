@@ -12,6 +12,8 @@ import { IPageQueryable } from '../form/interfaceFields';
 import { IPagination } from "../../palmyra/store/Types"
 import { TbFilterShare, TbTableExport } from "react-icons/tb";
 import { PiFileXls, PiFilePdf } from "react-icons/pi";
+import { BsInfoCircle } from "react-icons/bs";
+import { InfoTooltip } from '../tooltip/InfoTooltip';
 
 
 //TODO - show errors on data fetching
@@ -24,8 +26,9 @@ interface GridXOptions extends IServerQueryInput {
   onNewClick?: Function,
   customizer?: GridCustomizer,
   customButton?: React.ReactNode[],
-  gridTitle?: any,
-  customAddButton?: any
+  title?: any,
+  customAddButton?: any,
+  titleInfo?: String
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
@@ -33,7 +36,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
   const customButton = props.customButton;
-  const gridTitle = props.gridTitle;
+  const title = props.title;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
@@ -200,7 +203,16 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         {children}
         <div className='grid-header'>
           <div className='grid-header-right-content'>
-            <span className='grid-header-right-content-text'>{gridTitle}</span>
+            {props.titleInfo ? (
+              <InfoTooltip placement='right' title={props.titleInfo} arrow>
+                <div className='info-grid-header'>
+                  <span className='grid-header-right-content-text'>{title}</span>
+                  <BsInfoCircle class='grid-header-info-icon' />
+                </div>
+              </InfoTooltip>
+            ) : (
+              <span className='grid-header-right-content-text'>{title}</span>
+            )}
           </div>
           <div className='grid-header-left-content'>
             <div className='grid-header-filter'>

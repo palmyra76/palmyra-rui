@@ -3,9 +3,12 @@ import { SectionContainerInput } from "../flexiLayout/Types";
 import './SectionLayout.css';
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from 'react';
+import { BsInfoCircle } from "react-icons/bs";
+import { InfoTooltip } from "../../tooltip/InfoTooltip";
 
 const SectionContainer = (props: SectionContainerInput) => {
     const title = props.title;
+    const titleInfo = props.titleInfo;
     const customButton = props.customButton;
     const hideTitle = props.hideTitle || false;
     const [expanded, setExpanded] = useState(true);
@@ -29,7 +32,17 @@ const SectionContainer = (props: SectionContainerInput) => {
                         <div className="section-header">
                             {title && !hideTitle ? (
                                 <div className="section-header-text">
-                                    <div>{title}</div>
+                                    {titleInfo ? (
+                                        <InfoTooltip placement="right" title={titleInfo} arrow>
+                                            <div className="section-header-info">
+                                                {title}
+                                                <BsInfoCircle class='grid-header-info-icon' />
+                                            </div>
+                                        </InfoTooltip>
+                                    ) : (
+                                        <div>{title}</div>
+                                    )}
+
                                 </div>
                             ) : null}
                             <div className="accordian-custom-btn-container">
@@ -51,7 +64,7 @@ const SectionContainer = (props: SectionContainerInput) => {
                     </div>
                 </div>
             )}
-        </div>
+        </div >
     </>
 }
 

@@ -61,6 +61,20 @@
     gap: 10px;
 }
 
+.card-left-content-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.card-header-info-icon {
+    background-color: rgb(246, 132, 2);
+    font-size: 17px;
+    fill: white;
+    border-radius: 50%;
+}
+
 .card-right-content {
     display: flex;
     align-items: center;

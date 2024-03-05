@@ -15,6 +15,21 @@
     width: 100%;
 }
 
+.section-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: max-content;
+}
+
+.grid-header-info-icon {
+    background-color: rgb(246, 132, 2);
+    font-size: 17px;
+    fill: white;
+    border-radius: 50%;
+}
+
 .section-header-text {
     color: rgb(92, 92, 92);
     width: 100%;

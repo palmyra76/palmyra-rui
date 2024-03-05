@@ -2,10 +2,11 @@ import { MutableRefObject, forwardRef, useImperativeHandle, useRef } from 'react
 import { AiOutlineSearch } from 'react-icons/ai';
 import { TextField, InputAdornment, MenuItem, Pagination, FormControl, Select, Stack } from '@mui/material';
 import './CardLayout.css';
-
+import { BsInfoCircle } from "react-icons/bs";
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 import { CardLayout } from '..';
 import { IPageQueryable } from '../../form/interfaceFields';
+import { InfoTooltip } from '../../tooltip/InfoTooltip';
 
 interface ServerCardLayoutInput extends IServerQueryInput {
     Child: React.FC,
@@ -14,7 +15,8 @@ interface ServerCardLayoutInput extends IServerQueryInput {
     EmptyChild?: React.FC,
     title?: String,
     customButton?: React.ReactNode[],
-    preProcess?: (data: any) => any
+    preProcess?: (data: any) => any,
+    titleInfo?: string
 }
 
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
@@ -90,7 +92,19 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                 <div>
                     <div className='card-header'>
                         <div className='card-left-content'>
-                            {title}
+                            {props.titleInfo ? (
+                                <InfoTooltip placement='right' title={props.titleInfo} arrow>
+                                    <div className='card-left-content-info'>
+                                        {title}
+                                        <BsInfoCircle class='card-header-info-icon'/>
+                                    </div>
+                                </InfoTooltip>
+                            ) : (
+                                <>
+                                    {title}
+                                </>
+                            )}
+
                         </div>
                         <div className='card-right-content'>
                             {visibleFilter && (

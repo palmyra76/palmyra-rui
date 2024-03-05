@@ -67,19 +67,22 @@ const DepsFields = () => {
     }, [])
 
     const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api/palmyra' });
-
+    const info: any = <>
+        <p>hgdhbuysgdcbsdigcisbkcbnisd</p><br />
+        <span>2234/323 kodsiudd kjsdjdnk iuiahdjlnj</span>
+    </>
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <PalmyraForm storeFactory={storeFactory}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
-                <SectionContainer title='Welcome'>
+                <SectionContainer title='Welcome' titleInfo={info}>
                     <FieldGroupContainer columns={2}>
                         {v &&
-                        <ServerLookup attribute="year.year" displayAttribute="year.yearNumber"
-                            title="Year" required
-                            storeOptions={{ endPoint: '/masterdata/vehicleYear' }}
-                            lookupOptions={{ idAttribute: "id", titleAttribute: "yearNumber" }} />
+                            <ServerLookup attribute="year.year" displayAttribute="year.yearNumber"
+                                title="Year" required
+                                storeOptions={{ endPoint: '/masterdata/vehicleYear' }}
+                                lookupOptions={{ idAttribute: "id", displayAttribute: "yearNumber" }} />
                         }
                         <ServerLookup attribute="manufacturer.id"
                             displayAttribute="manufacturer.name"

@@ -17,11 +17,12 @@ interface IPalmyraGridInput {
     defaultParams?: DefaultQueryParams,
     pagination?: number[],
     customButton?: React.ReactNode[],
-    gridTitle?: any,
+    title?: any,
     customAddButton?: any,
     fetchAll?: boolean,
     filterTopic?: string,
-    initialFetch?: boolean
+    initialFetch?: boolean,
+    titleInfo?: String
 }
 
 interface IPalmyraGrid extends IPageQueryable {
@@ -33,7 +34,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
     const quickSearch = props.quickSearch || '';
     const customButton = props.customButton;
     const customAddButton = props.customAddButton;
-    const gridTitle = props.gridTitle;
+    const title = props.title;
     const fetchAll = props.fetchAll;
     const filterTopic = props.filterTopic;
     const initialFetch = props.initialFetch;
@@ -64,9 +65,9 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
         <>
             <StoreFactoryContext.Provider value={storeFactory}>
                 <GridRenderer layout={layout} context={layoutParams} customAddButton={customAddButton}
-                    onDataChange={props.onDataChange} gridTitle={gridTitle}
+                    onDataChange={props.onDataChange} title={title}
                     defaultParams={props.defaultParams} customButton={customButton}
-                    customizer={props.customizer} ref={ref}
+                    customizer={props.customizer} ref={ref} titleInfo={props.titleInfo}
                     fetchAll={fetchAll} filterTopic={filterTopic} initialFetch={initialFetch}></GridRenderer>
             </StoreFactoryContext.Provider>
         </>);

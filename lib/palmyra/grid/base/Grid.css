@@ -9,6 +9,20 @@
 
 .grid-header-right-content {}
 
+.info-grid-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.grid-header-info-icon {
+  background-color:   rgb(246, 132, 2);
+  font-size: 17px;
+  fill: white;
+  border-radius: 50%;
+}
+
 .grid-header-right-content-text {
   color: rgb(128, 128, 128);
 }
@@ -90,7 +104,7 @@
   right: 0%;
   background-color: rgb(255, 255, 255);
   color: black;
-  border: 1px solid rgb(232,232,232);
+  border: 1px solid rgb(232, 232, 232);
   /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
   z-index: 1;
   padding: 5px;
@@ -104,7 +118,7 @@
   right: 0%;
   background-color: rgb(255, 255, 255);
   color: black;
-  border: 1px solid rgb(232,232,232);
+  border: 1px solid rgb(232, 232, 232);
   /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
   z-index: 1;
   padding: 5px;
