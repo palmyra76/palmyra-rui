@@ -36,7 +36,7 @@ const SectionContainer = (props: SectionContainerInput) => {
                                         <InfoTooltip placement="right" title={titleTooltip} arrow>
                                             <div className="section-header-info">
                                                 {title}
-                                                <BsInfoCircle class='grid-header-info-icon' />
+                                                <BsInfoCircle className='grid-header-info-icon' />
                                             </div>
                                         </InfoTooltip>
                                     ) : (

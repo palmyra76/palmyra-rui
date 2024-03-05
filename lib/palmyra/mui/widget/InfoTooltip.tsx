@@ -21,7 +21,7 @@ const InfoTooltip = styled(({ className, ...props }: TooltipProps) => (
 }));
 
 const InfoCircle = function () {
-    return <BsInfoCircle class='grid-header-info-icon' />;
+    return <BsInfoCircle className='grid-header-info-icon' />;
 };
 
 export { InfoTooltip };

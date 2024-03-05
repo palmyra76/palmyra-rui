@@ -20,7 +20,7 @@ const n = e(({ className: o, ...a }) => /* @__PURE__ */ t(l, { ...a, classes: { 
     }
   }
 })), p = function() {
-  return /* @__PURE__ */ t(i, { class: "grid-header-info-icon" });
+  return /* @__PURE__ */ t(i, { className: "grid-header-info-icon" });
 };
 export {
   i as B,

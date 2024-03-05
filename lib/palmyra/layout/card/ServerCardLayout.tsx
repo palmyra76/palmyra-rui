@@ -96,7 +96,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                                 <InfoTooltip placement='right' title={props.titleTooltip} arrow>
                                     <div className='card-left-content-info'>
                                         {title}
-                                        <BsInfoCircle class='card-header-info-icon'/>
+                                        <BsInfoCircle className='card-header-info-icon'/>
                                     </div>
                                 </InfoTooltip>
                             ) : (

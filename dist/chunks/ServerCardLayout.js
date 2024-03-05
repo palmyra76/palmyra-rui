@@ -1383,7 +1383,7 @@ const bt = (n) => {
     /* @__PURE__ */ a("div", { className: "card-header", children: [
       /* @__PURE__ */ e("div", { className: "card-left-content", children: t.titleTooltip ? /* @__PURE__ */ e(Ye, { placement: "right", title: t.titleTooltip, arrow: !0, children: /* @__PURE__ */ a("div", { className: "card-left-content-info", children: [
         o,
-        /* @__PURE__ */ e(Mt, { class: "card-header-info-icon" })
+        /* @__PURE__ */ e(Mt, { className: "card-header-info-icon" })
       ] }) }) : /* @__PURE__ */ e(re, { children: o }) }),
       /* @__PURE__ */ a("div", { className: "card-right-content", children: [
         d && /* @__PURE__ */ e(
