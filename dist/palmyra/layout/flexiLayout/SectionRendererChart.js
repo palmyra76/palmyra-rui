@@ -1,6 +1,6 @@
 import { jsx as e, jsxs as d } from "react/jsx-runtime";
 import l from "./ChartRenderer.js";
-import c from "../container/SectionContainer.js";
+import { S as c } from "../../../chunks/SectionContainer.js";
 import { ErrorBoundary as h } from "../ErrorBoundary.js";
 const f = (t) => {
   const { layout: r } = t;

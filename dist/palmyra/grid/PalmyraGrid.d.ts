@@ -14,11 +14,12 @@ interface IPalmyraGridInput {
     defaultParams?: DefaultQueryParams;
     pagination?: number[];
     customButton?: React.ReactNode[];
-    gridTitle?: any;
+    title?: any;
     customAddButton?: any;
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;
+    titleInfo?: String;
 }
 interface IPalmyraGrid extends IPageQueryable {
 }

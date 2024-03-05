@@ -1,11 +1,12 @@
 import "react";
-import { u as P } from "../../chunks/ServerCardLayout.js";
+import { u as Q } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
 import "@mui/material";
-import "../layout/container/SectionContainer.js";
+import "../../chunks/SectionContainer.js";
 import "@mui/icons-material";
+import "../tooltip/InfoTooltip.js";
 import "react-router-dom";
 /* empty css                     */import "@emotion/styled";
 import "@mui/x-tree-view";
@@ -37,5 +38,5 @@ import "../mui/form/MuiNumberField.js";
 import "../mui/form/MuiIntegerField.js";
 import "./PalmyraForm.js";
 export {
-  P as default
+  Q as default
 };

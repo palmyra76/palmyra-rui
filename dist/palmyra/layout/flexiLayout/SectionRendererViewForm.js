@@ -1,14 +1,14 @@
 import { jsx as e } from "react/jsx-runtime";
 import m from "./FormViewRenderer.js";
-import c from "../container/SectionContainer.js";
+import { S as c } from "../../../chunks/SectionContainer.js";
 const l = (o) => {
   const { layout: r, context: t } = o;
-  var n = r.Renderer || m, i = r.Container || c;
-  return /* @__PURE__ */ e(i, { ...r, children: ((a) => /* @__PURE__ */ e(
+  var n = r.Renderer || m, a = r.Container || c;
+  return /* @__PURE__ */ e(a, { ...r, children: ((i) => /* @__PURE__ */ e(
     n,
     {
       context: t,
-      formLayout: a
+      formLayout: i
     }
   ))(r.formLayout) });
 };

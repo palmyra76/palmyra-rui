@@ -1,41 +1,42 @@
 import "../assets/ServerCardLayout.css";
-import bt from "../palmyra/mui/form/MuiDatePicker.js";
-import xt from "../palmyra/mui/form/MuiDateTimePicker.js";
-import Ft from "../palmyra/mui/form/MuiRadioGroup.js";
+import Ft from "../palmyra/mui/form/MuiDatePicker.js";
+import Nt from "../palmyra/mui/form/MuiDateTimePicker.js";
+import wt from "../palmyra/mui/form/MuiRadioGroup.js";
 import Ke from "../palmyra/mui/form/MuiSelect.js";
-import wt from "../palmyra/mui/form/MuiTextArea.js";
-import Nt from "../palmyra/mui/form/MuiTextField.js";
+import St from "../palmyra/mui/form/MuiTextArea.js";
+import kt from "../palmyra/mui/form/MuiTextField.js";
 import "../palmyra/mui/form/MuiCheckBoxGroup.js";
-import St from "../palmyra/mui/form/MuiCheckBox.js";
-import kt from "../palmyra/mui/form/MuiSwitch.js";
-import Ot from "../palmyra/mui/form/MuiIOSSwitch.js";
-import Pt from "../palmyra/mui/form/MuiPassword.js";
-import Rt from "../palmyra/mui/form/MuiNumberField.js";
-import Dt from "../palmyra/mui/form/MuiIntegerField.js";
+import Ot from "../palmyra/mui/form/MuiCheckBox.js";
+import Pt from "../palmyra/mui/form/MuiSwitch.js";
+import Rt from "../palmyra/mui/form/MuiIOSSwitch.js";
+import Dt from "../palmyra/mui/form/MuiPassword.js";
+import At from "../palmyra/mui/form/MuiNumberField.js";
+import Lt from "../palmyra/mui/form/MuiIntegerField.js";
 import Le from "../palmyra/mui/form/FieldDecorator.js";
 import { FieldManagerContext as he, StoreFactoryContext as Me, LayoutParamsContext as Ye } from "../palmyra/layout/flexiLayout/FlexiLayoutContext.js";
-import { jsx as e, jsxs as a, Fragment as ie } from "react/jsx-runtime";
-import At, { useState as R, useRef as X, useEffect as Y, forwardRef as U, useContext as de, useImperativeHandle as ne, useMemo as et } from "react";
-import { a as Ee } from "./index.esm2.js";
-import { FormControlLabel as Ze, Checkbox as je, FormControl as oe, FormHelperText as Ve, Autocomplete as tt, TextField as fe, CircularProgress as nt, Button as te, InputAdornment as Te, ClickAwayListener as le, Select as Ie, MenuItem as Be, Pagination as Qe, Box as Lt, Stack as Mt } from "@mui/material";
-import Et from "../palmyra/layout/card/CardLayout.js";
-import Vt from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
+import { jsx as e, jsxs as a, Fragment as ne } from "react/jsx-runtime";
+import Mt, { useState as R, useRef as X, useEffect as Y, forwardRef as U, useContext as de, useImperativeHandle as re, useMemo as et } from "react";
+import { a as Ie } from "./index.esm2.js";
+import { FormControlLabel as Ze, Checkbox as je, FormControl as oe, FormHelperText as Ee, Autocomplete as tt, TextField as fe, CircularProgress as nt, Button as te, InputAdornment as Ve, ClickAwayListener as le, Select as Te, MenuItem as Be, Pagination as Qe, Box as It, Stack as Et } from "@mui/material";
+import Vt from "../palmyra/layout/card/CardLayout.js";
+import { S as rt, B as it } from "./SectionContainer.js";
+import Tt from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
 import { copyMuiOptions as ze, getFieldLabel as qe } from "../palmyra/mui/form/MuiUtil.js";
 import { hasDot as ue } from "../palmyra/utils/StringUtil.js";
 import { getValueByKey as me } from "../palmyra/form/FormUtil.js";
-import { T as We, a as Xe, b as Tt, c as Ge, d as rt } from "./index.esm.js";
-import { delay as it, delayGenerator as It, mergeDeep as Bt } from "../palmyra/utils/index.js";
-import Qt from "../palmyra/mui/form/MuiDateRangePicker.js";
-import ot from "../palmyra/layout/container/SectionContainer.js";
-import zt from "../palmyra/layout/container/FieldGroupContainer.js";
-import { generateColumns as at } from "../palmyra/grid/base/ColumnConverter.js";
-import st from "../palmyra/grid/base/EmptyChildTable.js";
-import lt from "../palmyra/grid/base/TableX.js";
-import { KeyboardArrowDown as ce, Menu as ye, DensitySmall as pe, DensityLarge as ve, Add as ct } from "@mui/icons-material";
-import { NoopCustomizer as dt } from "../palmyra/grid/Types.js";
-import { convertToField as qt } from "../palmyra/grid/base/GridFieldConverter.js";
-import { createFilterData as Gt } from "../palmyra/form/PalmyraFilterManager.js";
-import { G as ut } from "./iconBase.js";
+import { T as We, a as Xe, b as Bt, c as Ge, d as ot } from "./index.esm.js";
+import { delay as at, delayGenerator as Qt, mergeDeep as zt } from "../palmyra/utils/index.js";
+import qt from "../palmyra/mui/form/MuiDateRangePicker.js";
+import Gt from "../palmyra/layout/container/FieldGroupContainer.js";
+import { generateColumns as st } from "../palmyra/grid/base/ColumnConverter.js";
+import lt from "../palmyra/grid/base/EmptyChildTable.js";
+import ct from "../palmyra/grid/base/TableX.js";
+import { KeyboardArrowDown as ce, Menu as ye, DensitySmall as pe, DensityLarge as ve, Add as dt } from "@mui/icons-material";
+import { NoopCustomizer as ut } from "../palmyra/grid/Types.js";
+import { convertToField as Ht } from "../palmyra/grid/base/GridFieldConverter.js";
+import { createFilterData as Kt } from "../palmyra/form/PalmyraFilterManager.js";
+import { G as mt } from "./iconBase.js";
+import { InfoTooltip as ht } from "../palmyra/tooltip/InfoTooltip.js";
 import "axios";
 import "react-router-dom";
 /* empty css          */import "@emotion/styled";
@@ -52,27 +53,27 @@ import "../palmyra/chart/chartjs/ScatterChart.js";
 import "../palmyra/chart/chartjs/BubbleChart.js";
 import "dayjs";
 import "../palmyra/form/PalmyraForm.js";
-import { getActionPublishers as Ht } from "../palmyra/utils/pubsub/Publishers.js";
-import { ErrorBoundary as mt } from "../palmyra/layout/ErrorBoundary.js";
-import Kt from "../palmyra/layout/flexiLayout/SectionRendererInvalid.js";
-import Zt from "../palmyra/layout/flexiLayout/SectionRendererViewForm.js";
-import { u as jt } from "./PalmyraFieldManager.js";
-import { useKeyValue as Wt } from "../palmyra/utils/pubsub/PubSubHelper.js";
+import { getActionPublishers as Zt } from "../palmyra/utils/pubsub/Publishers.js";
+import { ErrorBoundary as ft } from "../palmyra/layout/ErrorBoundary.js";
+import jt from "../palmyra/layout/flexiLayout/SectionRendererInvalid.js";
+import Wt from "../palmyra/layout/flexiLayout/SectionRendererViewForm.js";
+import { u as Xt } from "./PalmyraFieldManager.js";
+import { useKeyValue as _t } from "../palmyra/utils/pubsub/PubSubHelper.js";
 const ae = (n) => {
   var J, K;
-  const { store: t, quickSearch: c } = n, o = n.fetchAll != !1, [s, l] = R(n.endPointOptions), [g, f] = R(null), C = ((J = n.defaultParams) == null ? void 0 : J.filter) || {}, m = ((K = n.defaultParams) == null ? void 0 : K.sort) || {}, [y, u] = n.filterTopic ? Wt(n.filterTopic, C) : R(C), [b, p] = R({}), M = X(n.initialFetch == !1), E = n.pageSize ? n.pageSize : 15;
-  var P = E instanceof Array ? E : [E], V = E instanceof Array ? E[0] : E;
-  const [A, T] = R({ limit: V, offset: 0, total: !0 }), [I, B] = R(null), L = () => Math.round(A.offset / A.limit), H = () => A, S = (D) => {
-    T((k) => ({ limit: k.limit, total: k.total, offset: D * k.limit }));
+  const { store: t, quickSearch: c } = n, o = n.fetchAll != !1, [s, l] = R(n.endPointOptions), [g, f] = R(null), C = ((J = n.defaultParams) == null ? void 0 : J.filter) || {}, m = ((K = n.defaultParams) == null ? void 0 : K.sort) || {}, [y, u] = n.filterTopic ? _t(n.filterTopic, C) : R(C), [b, p] = R({}), M = X(n.initialFetch == !1), I = n.pageSize ? n.pageSize : 15;
+  var P = I instanceof Array ? I : [I], E = I instanceof Array ? I[0] : I;
+  const [A, V] = R({ limit: E, offset: 0, total: !0 }), [T, B] = R(null), L = () => Math.round(A.offset / A.limit), H = () => A, S = (D) => {
+    V((k) => ({ limit: k.limit, total: k.total, offset: D * k.limit }));
   }, Q = (D) => {
     const k = D > 10 || D == -1 ? D : 15;
-    T((i) => {
+    V((i) => {
       const x = Math.floor(i.offset / k) * k;
       return { limit: k, total: i.total, offset: x };
     });
   }, G = () => y ? Object.keys(y).length == 0 : !1, z = (D) => {
     B((k) => (setTimeout(() => {
-      n.onDataChange && n.onDataChange(I, k);
+      n.onDataChange && n.onDataChange(T, k);
     }, 300), D));
   };
   Y(() => {
@@ -96,7 +97,7 @@ const ae = (n) => {
           z(i.result), f(i.total);
         }).catch((i) => {
           var x = i.response ? i.response : i;
-          console.error("error while fetching", x), N();
+          console.error("error while fetching", x), w();
         });
       } catch (i) {
         console.error(i), d();
@@ -105,7 +106,7 @@ const ae = (n) => {
       console.error("Store is not provided for the Grid"), d();
   }, d = () => {
     z([]), f(0);
-  }, N = () => {
+  }, w = () => {
     z(void 0), f(null);
   };
   return {
@@ -125,10 +126,10 @@ const ae = (n) => {
     setPageSize: Q,
     getPageNo: L,
     getQueryLimit: H,
-    setQueryLimit: T,
+    setQueryLimit: V,
     filter: y,
     queryLimit: A,
-    data: I,
+    data: T,
     totalRecords: g,
     pageSizeOptions: P
   };
@@ -136,11 +137,11 @@ const ae = (n) => {
 function $e(n) {
   return n ? Array.isArray(n) ? n : typeof n == "string" ? n.split(",") : [n] : [];
 }
-const pr = U(function(t, c) {
-  const o = de(he), s = c || X(null), l = o(t, "checkbox", s), { mutateOptions: g, setMutateOptions: f } = l, [C, m] = R(!1), y = $e(l.data), u = l.error, b = l.eventListeners, M = { store: l.store, pageSize: -1 }, { data: E } = ae(M), P = E, V = X(null), A = t.lookupOptions || {}, T = A.idAttribute || "id", I = A.displayAttribute || "name", B = t.showSelectedOnly && t.readonly, L = ue(T) ? (d) => me(T, d) : (d) => d[T], H = ue(I) ? (d) => me(I, d) : (d) => d[I];
-  ne(s, () => ({
+const br = U(function(t, c) {
+  const o = de(he), s = c || X(null), l = o(t, "checkbox", s), { mutateOptions: g, setMutateOptions: f } = l, [C, m] = R(!1), y = $e(l.data), u = l.error, b = l.eventListeners, M = { store: l.store, pageSize: -1 }, { data: I } = ae(M), P = I, E = X(null), A = t.lookupOptions || {}, V = A.idAttribute || "id", T = A.displayAttribute || "name", B = t.showSelectedOnly && t.readonly, L = ue(V) ? (d) => me(V, d) : (d) => d[V], H = ue(T) ? (d) => me(T, d) : (d) => d[T];
+  re(s, () => ({
     focus() {
-      V.current.focus();
+      E.current.focus();
     },
     isValid() {
       return !u.status;
@@ -151,20 +152,20 @@ const pr = U(function(t, c) {
     getValue() {
       return l.getData();
     },
-    setValue(d, N = !1) {
-      l.setData(d, N);
+    setValue(d, w = !1) {
+      l.setData(d, w);
     },
     setVisible(d) {
-      f((N) => ({ ...N, visible: d }));
+      f((w) => ({ ...w, visible: d }));
     },
     setRequired(d) {
-      f((N) => ({ ...N, required: d }));
+      f((w) => ({ ...w, required: d }));
     },
     setReadOnly(d) {
-      f((N) => ({ ...N, readonly: d }));
+      f((w) => ({ ...w, readonly: d }));
     },
     setAttribute(d) {
-      f((N) => ({ ...N, ...d }));
+      f((w) => ({ ...w, ...d }));
     },
     setOptions(d) {
     },
@@ -173,10 +174,10 @@ const pr = U(function(t, c) {
   }), [l]);
   var S = ze(t, l.data, t.label);
   t.readonly && (S.inputprops = { readOnly: !0 });
-  function Q(d, N) {
+  function Q(d, w) {
     const h = $e(l.data);
     var F = h.indexOf(d);
-    N ? F < 0 && h.push(d) : F >= 0 && h.splice(F, 1), b.onValueChange(h.toString());
+    w ? F < 0 && h.push(d) : F >= 0 && h.splice(F, 1), b.onValueChange(h.toString());
   }
   var G = {
     onBlur: b.onBlur,
@@ -186,13 +187,13 @@ const pr = U(function(t, c) {
     }
   };
   const z = (d) => {
-    const N = d.toString();
-    return y.includes(N);
+    const w = d.toString();
+    return y.includes(w);
   }, W = (d) => {
-    const N = d.target.checked;
-    m(N);
+    const w = d.target.checked;
+    m(w);
     var h = [];
-    N && P.map((F) => {
+    w && P.map((F) => {
       h.push(L(F));
     }), b.onValueChange(h.toString());
   };
@@ -205,7 +206,7 @@ const pr = U(function(t, c) {
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
       children: [
-        /* @__PURE__ */ e("div", { children: t.hideSelectAll ? /* @__PURE__ */ e(ie, {}) : /* @__PURE__ */ e(
+        /* @__PURE__ */ e("div", { children: t.hideSelectAll ? /* @__PURE__ */ e(ne, {}) : /* @__PURE__ */ e(
           Ze,
           {
             control: /* @__PURE__ */ e(
@@ -245,32 +246,32 @@ const pr = U(function(t, c) {
                 },
                 L(d)
               )) : /* @__PURE__ */ e("div", { children: "No options provided" }),
-              /* @__PURE__ */ e(Ve, { className: "form-error-text", children: u.message })
+              /* @__PURE__ */ e(Ee, { className: "form-error-text", children: u.message })
             ]
           }
         )
       ]
     }
   ) });
-}), Xt = It(100), _t = U(function(t, c) {
-  const o = de(he), s = c || X(null), l = X(null), g = X(0), [f, C] = R([]), [m, y] = R(""), [u, b] = R(!1), p = o(t, "serverlookup", s), M = t.store || p.store, E = t.lookupOptions || {}, P = E.idAttribute || "id", V = E.displayAttribute || "name", A = V, T = {
+}), $t = Qt(100), Jt = U(function(t, c) {
+  const o = de(he), s = c || X(null), l = X(null), g = X(0), [f, C] = R([]), [m, y] = R(""), [u, b] = R(!1), p = o(t, "serverlookup", s), M = t.store || p.store, I = t.lookupOptions || {}, P = I.idAttribute || "id", E = I.displayAttribute || "name", A = E, V = {
     store: M,
     endPointOptions: t.storeOptions.endPointOptions,
     fetchAll: !0,
     pageSize: 15,
     quickSearch: A,
     initialFetch: !1
-  }, I = ae(T), B = p.eventListeners, L = p.error, { mutateOptions: H, setMutateOptions: S } = p, Q = p.data, G = u && f.length < (Q ? 2 : 1), { setQueryFilter: z, setEndPointOptions: W, setQuickSearch: d, totalRecords: N, refreshData: h } = I, F = I.data, q = ue(P) ? (r) => me(P, r) : (r) => r == null ? void 0 : r[P], J = ue(V) ? (r) => me(V, r) : (r) => r == null ? void 0 : r[V];
+  }, T = ae(V), B = p.eventListeners, L = p.error, { mutateOptions: H, setMutateOptions: S } = p, Q = p.data, G = u && f.length < (Q ? 2 : 1), { setQueryFilter: z, setEndPointOptions: W, setQuickSearch: d, totalRecords: w, refreshData: h } = T, F = T.data, q = ue(P) ? (r) => me(P, r) : (r) => r == null ? void 0 : r[P], J = ue(E) ? (r) => me(E, r) : (r) => r == null ? void 0 : r[E];
   Y(() => {
     var r = Q != "" ? Q : void 0;
     r && C([r]);
   }, [p.data]), Y(() => {
     const r = F ? [...F] : [], O = Q != "" ? Q : void 0, _ = q(O), se = J(O);
-    r && _ && se && !x(r, _) && r.unshift(O), C(r), g.current < N && (g.current = N);
-  }, [F, N]), Y(() => {
-    it(K);
+    r && _ && se && !x(r, _) && r.unshift(O), C(r), g.current < w && (g.current = w);
+  }, [F, w]), Y(() => {
+    at(K);
   }, [m]), Y(() => {
-    Xt(K);
+    $t(K);
   }, [u]);
   function K() {
     u && (m.length > 0 && m != J(Q) ? d("*" + m + "*") : F ? d(null) : h());
@@ -292,7 +293,7 @@ const pr = U(function(t, c) {
         return _;
     });
   }
-  ne(s, () => ({
+  re(s, () => ({
     focus() {
       l.current.focus();
     },
@@ -343,7 +344,7 @@ const pr = U(function(t, c) {
   }), [p, z]);
   var Z = ze(t, Q, t.label);
   H.readonly && (Z.inputProps = { readOnly: !0 });
-  const re = (r, O) => r instanceof Array ? r.some((_) => q(_) == q(O)) : q(r) == q(O);
+  const ie = (r, O) => r instanceof Array ? r.some((_) => q(_) == q(O)) : q(r) == q(O);
   return /* @__PURE__ */ e(
     Le,
     {
@@ -361,7 +362,7 @@ const pr = U(function(t, c) {
             multiple: t.multiple,
             readOnly: t.readonly,
             renderOption: t.renderOption,
-            isOptionEqualToValue: re,
+            isOptionEqualToValue: ie,
             filterOptions: (r) => r,
             renderInput: (r) => /* @__PURE__ */ e(
               fe,
@@ -376,7 +377,7 @@ const pr = U(function(t, c) {
                 required: t.required,
                 InputProps: {
                   ...r.InputProps,
-                  endAdornment: /* @__PURE__ */ a(ie, { children: [
+                  endAdornment: /* @__PURE__ */ a(ne, { children: [
                     G ? /* @__PURE__ */ e(nt, { color: "inherit", size: 18 }) : null,
                     r.InputProps.endAdornment
                   ] })
@@ -396,43 +397,43 @@ const pr = U(function(t, c) {
             ...D
           }
         ),
-        /* @__PURE__ */ e(Ve, { className: "form-error-text", children: L.message })
+        /* @__PURE__ */ e(Ee, { className: "form-error-text", children: L.message })
       ] })
     }
   );
-}), $t = U(function(t, c) {
-  const o = de(he), s = c || X(null), l = X(null), g = X(0), [f, C] = R([]), [m, y] = R(""), [u, b] = R(!1), p = o(t, "autoComplete", s), M = t.store || p.store, P = (t.lookupOptions || {}).attribute || "name", V = P, A = {
+}), Ut = U(function(t, c) {
+  const o = de(he), s = c || X(null), l = X(null), g = X(0), [f, C] = R([]), [m, y] = R(""), [u, b] = R(!1), p = o(t, "autoComplete", s), M = t.store || p.store, P = (t.lookupOptions || {}).attribute || "name", E = P, A = {
     store: M,
     endPointOptions: t.storeOptions.endPointOptions,
     fetchAll: !0,
     pageSize: 15,
-    quickSearch: V,
+    quickSearch: E,
     initialFetch: !1
-  }, T = ae(A), I = p.eventListeners, B = p.error, { mutateOptions: L, setMutateOptions: H } = p, S = p.data, Q = u && f.length < (S ? 2 : 1), { setQueryFilter: G, setEndPointOptions: z, setQuickSearch: W, totalRecords: d, refreshData: N } = T, h = T.data, F = ue(P) ? (i) => me(P, i) : (i) => i == null ? void 0 : i[P];
+  }, V = ae(A), T = p.eventListeners, B = p.error, { mutateOptions: L, setMutateOptions: H } = p, S = p.data, Q = u && f.length < (S ? 2 : 1), { setQueryFilter: G, setEndPointOptions: z, setQuickSearch: W, totalRecords: d, refreshData: w } = V, h = V.data, F = ue(P) ? (i) => me(P, i) : (i) => i == null ? void 0 : i[P];
   Y(() => {
     var i = S != "" ? S : void 0;
     i && C([i]);
   }, [p.data]), Y(() => {
-    const x = (h ? [...h] : []).map((re) => F(re)), Z = S != "" ? S : void 0;
+    const x = (h ? [...h] : []).map((ie) => F(ie)), Z = S != "" ? S : void 0;
     x && Z && !D(x, Z) && x.unshift(Z), C(x), g.current < d && (g.current = d);
   }, [h, d]), Y(() => {
-    it(q);
+    at(q);
   }, [m, u]);
   function q() {
-    u && (m.length > 0 && m != S ? W("*" + m + "*") : h ? W(null) : N());
+    u && (m.length > 0 && m != S ? W("*" + m + "*") : h ? W(null) : w());
   }
   var J = {
     onBlur: (i) => {
-      K(m), I.onBlur(m);
+      K(m), T.onBlur(m);
     },
-    onFocus: I.onFocus,
+    onFocus: T.onFocus,
     onChange: (i, x) => {
       K(x);
     },
     onInputChange: (i, x) => (y(x), !0)
   };
   const K = (i) => {
-    I.onValueChange(i);
+    T.onValueChange(i);
   };
   function D(i, x) {
     return i.find((Z) => {
@@ -440,7 +441,7 @@ const pr = U(function(t, c) {
         return Z;
     });
   }
-  ne(s, () => ({
+  re(s, () => ({
     focus() {
       l.current.focus();
     },
@@ -479,7 +480,7 @@ const pr = U(function(t, c) {
     },
     getCurrentData: () => S,
     refresh: () => {
-      N();
+      w();
     },
     addFilter(i, x) {
       G((Z) => (Z[i] = x, { ...Z }));
@@ -521,7 +522,7 @@ const pr = U(function(t, c) {
                 ...k,
                 InputProps: {
                   ...i.InputProps,
-                  endAdornment: /* @__PURE__ */ a(ie, { children: [
+                  endAdornment: /* @__PURE__ */ a(ne, { children: [
                     Q ? /* @__PURE__ */ e(nt, { color: "inherit", size: 18 }) : null,
                     i.InputProps.endAdornment
                   ] })
@@ -540,11 +541,11 @@ const pr = U(function(t, c) {
             ...J
           }
         ),
-        /* @__PURE__ */ e(Ve, { className: "form-error-text", children: B.message })
+        /* @__PURE__ */ e(Ee, { className: "form-error-text", children: B.message })
       ] })
     }
   );
-}), Jt = (n) => {
+}), Yt = (n) => {
   const { fieldDef: t } = n;
   return /* @__PURE__ */ a("div", { children: [
     "invalid type " + t.type,
@@ -560,51 +561,51 @@ const pr = U(function(t, c) {
     },
     c.title + c.attribute
   );
-}, ht = (n, t, c) => {
+}, gt = (n, t, c) => {
   const { type: o } = n, s = { fieldDef: n, title: c };
   switch (o) {
     case "string":
-      return j(s, Nt);
+      return j(s, kt);
     case "radio":
-      return j(s, Ft);
+      return j(s, wt);
     case "select":
       return j(s, Ke);
     case "date":
-      return j(s, bt);
+      return j(s, Ft);
     case "datetime":
-      return j(s, xt);
+      return j(s, Nt);
     case "checkbox":
-      return j(s, St);
-    case "serverlookup":
-      return j(s, _t);
-    case "textarea":
-      return j(s, wt);
-    case "switch":
-      return j(s, kt);
-    case "iosswitch":
       return j(s, Ot);
-    case "password":
+    case "serverlookup":
+      return j(s, Jt);
+    case "textarea":
+      return j(s, St);
+    case "switch":
       return j(s, Pt);
+    case "iosswitch":
+      return j(s, Rt);
+    case "password":
+      return j(s, Dt);
     case "float":
     case "number":
     case "numbersOnly":
-      return j(s, Rt);
+      return j(s, At);
     case "integer":
-      return j(s, Dt);
+      return j(s, Lt);
     case "multiSelect":
       return j(s, Ke);
     case "dateRange":
-      return j(s, Qt);
+      return j(s, qt);
     case "autoComplete":
-      return j(s, $t);
+      return j(s, Ut);
     default:
-      return Jt(s);
+      return Yt(s);
   }
-}, Ut = U(function(t, c) {
+}, en = U(function(t, c) {
   var y;
   const { formLayout: o, context: s } = t, { formData: l } = s, g = o.Container;
   X({});
-  const f = et(() => (u) => ht(u), [l.data]);
+  const f = et(() => (u) => gt(u), [l.data]);
   var C = ((y = o.options) == null ? void 0 : y.columns) || 1, m = { columns: C };
   return g ? /* @__PURE__ */ e("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: o.fields.map((u, b) => /* @__PURE__ */ e(
     g,
@@ -617,9 +618,9 @@ const pr = U(function(t, c) {
     },
     u.attribute + u.name + u.type
   )) }) : /* @__PURE__ */ e("form", { className: "palmyra-form-field-container-wrapper", noValidate: !0, children: o.fields.map((u, b) => f(u)) });
-}), ft = (n) => {
+}), yt = (n) => {
   const { layout: t, context: c } = n;
-  var o = t.Renderer || Ut, s = t.Container || ot;
+  var o = t.Renderer || en, s = t.Container || rt;
   const l = (g) => /* @__PURE__ */ e(
     o,
     {
@@ -633,11 +634,11 @@ const pr = U(function(t, c) {
       hideTitle: t.hideTitle,
       title: t.title,
       name: t.name,
-      children: /* @__PURE__ */ e(zt, { columns: t.columns, children: l(t.formLayout) })
+      children: /* @__PURE__ */ e(Gt, { columns: t.columns, children: l(t.formLayout) })
     }
   );
 };
-const Yt = (n) => {
+const tn = (n) => {
   const { formLayout: t } = n;
   var c = "palmyra-form-field-container";
   const o = t.options;
@@ -651,20 +652,20 @@ const Yt = (n) => {
         return c + " palmyra-form-field-container-4column";
     }
   return c;
-}, en = U(function(t, c) {
-  const { formLayout: o, context: s } = t, { formData: l } = s, g = X({}), f = Yt(t), C = "palmyra-form-field-data", m = et(() => (y) => ht(y, g, y.label), [l.data]);
+}, nn = U(function(t, c) {
+  const { formLayout: o, context: s } = t, { formData: l } = s, g = X({}), f = tn(t), C = "palmyra-form-field-data", m = et(() => (y) => gt(y, g, y.label), [l.data]);
   return /* @__PURE__ */ e("form", { className: "palmyra-form-field-only-container-wrapper", noValidate: !0, children: o.fields.map((y, u) => /* @__PURE__ */ e("div", { className: y.type === "dateRange" ? "palmyra-form-field-container" : f, children: /* @__PURE__ */ e("div", { className: C, children: m(y) }) }, y.attribute)) });
-}), gt = ({ columns: n, isOpen: t, onClose: c, setFilter: o, defaultFilter: s = {} }) => {
-  var { getFieldManager: l, getFilterData: g } = Gt(s);
+}), pt = ({ columns: n, isOpen: t, onClose: c, setFilter: o, defaultFilter: s = {} }) => {
+  var { getFieldManager: l, getFilterData: g } = Kt(s);
   const f = () => {
     o({});
   }, C = () => {
     var y = g();
     o && o(y);
-  }, m = qt(n);
+  }, m = Ht(n);
   return /* @__PURE__ */ a("div", { className: "grid-filter-container", children: [
     /* @__PURE__ */ e("div", { className: "grid-filter-content", children: /* @__PURE__ */ e(he.Provider, { value: l, children: /* @__PURE__ */ e(
-      ft,
+      yt,
       {
         context: { formData: {} },
         layout: {
@@ -675,13 +676,13 @@ const Yt = (n) => {
               columns: 2
             }
           },
-          Renderer: en
+          Renderer: nn
         }
       }
     ) }) }),
     /* @__PURE__ */ a("div", { className: "grid-filter-btn-container", children: [
       /* @__PURE__ */ a(te, { className: "secondary-filled-button", disableRipple: !0, onClick: f, children: [
-        /* @__PURE__ */ e(Tt, { className: "button-icon" }),
+        /* @__PURE__ */ e(Bt, { className: "button-icon" }),
         "Reset"
       ] }),
       /* @__PURE__ */ a(te, { className: "filled-button", disableRipple: !0, onClick: C, children: [
@@ -691,21 +692,21 @@ const Yt = (n) => {
     ] })
   ] });
 };
-function yt(n) {
-  return ut({ tag: "svg", attr: { viewBox: "0 0 256 256", fill: "currentColor" }, child: [{ tag: "path", attr: { d: "M224,152a8,8,0,0,1-8,8H192v16h16a8,8,0,0,1,0,16H192v16a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8h32A8,8,0,0,1,224,152ZM92,172a28,28,0,0,1-28,28H56v8a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8H64A28,28,0,0,1,92,172Zm-16,0a12,12,0,0,0-12-12H56v24h8A12,12,0,0,0,76,172Zm88,8a36,36,0,0,1-36,36H112a8,8,0,0,1-8-8V152a8,8,0,0,1,8-8h16A36,36,0,0,1,164,180Zm-16,0a20,20,0,0,0-20-20h-8v40h8A20,20,0,0,0,148,180ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,0,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.69L160,51.31Z" } }] })(n);
+function vt(n) {
+  return mt({ tag: "svg", attr: { viewBox: "0 0 256 256", fill: "currentColor" }, child: [{ tag: "path", attr: { d: "M224,152a8,8,0,0,1-8,8H192v16h16a8,8,0,0,1,0,16H192v16a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8h32A8,8,0,0,1,224,152ZM92,172a28,28,0,0,1-28,28H56v8a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8H64A28,28,0,0,1,92,172Zm-16,0a12,12,0,0,0-12-12H56v24h8A12,12,0,0,0,76,172Zm88,8a36,36,0,0,1-36,36H112a8,8,0,0,1-8-8V152a8,8,0,0,1,8-8h16A36,36,0,0,1,164,180Zm-16,0a20,20,0,0,0-20-20h-8v40h8A20,20,0,0,0,148,180ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,0,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.69L160,51.31Z" } }] })(n);
 }
-function pt(n) {
-  return ut({ tag: "svg", attr: { viewBox: "0 0 256 256", fill: "currentColor" }, child: [{ tag: "path", attr: { d: "M156,208a8,8,0,0,1-8,8H120a8,8,0,0,1-8-8V152a8,8,0,0,1,16,0v48h20A8,8,0,0,1,156,208ZM92.65,145.49a8,8,0,0,0-11.16,1.86L68,166.24,54.51,147.35a8,8,0,1,0-13,9.3L58.17,180,41.49,203.35a8,8,0,0,0,13,9.3L68,193.76l13.49,18.89a8,8,0,0,0,13-9.3L77.83,180l16.68-23.35A8,8,0,0,0,92.65,145.49Zm98.94,25.82c-4-1.16-8.14-2.35-10.45-3.84-1.25-.82-1.23-1-1.12-1.9a4.54,4.54,0,0,1,2-3.67c4.6-3.12,15.34-1.72,19.82-.56a8,8,0,0,0,4.07-15.48c-2.11-.55-21-5.22-32.83,2.76a20.58,20.58,0,0,0-8.95,14.95c-2,15.88,13.65,20.41,23,23.11,12.06,3.49,13.12,4.92,12.78,7.59-.31,2.41-1.26,3.33-2.15,3.93-4.6,3.06-15.16,1.55-19.54.35A8,8,0,0,0,173.93,214a60.63,60.63,0,0,0,15.19,2c5.82,0,12.3-1,17.49-4.46a20.81,20.81,0,0,0,9.18-15.23C218,179,201.48,174.17,191.59,171.31ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,1,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.68L160,51.31Z" } }] })(n);
+function Ct(n) {
+  return mt({ tag: "svg", attr: { viewBox: "0 0 256 256", fill: "currentColor" }, child: [{ tag: "path", attr: { d: "M156,208a8,8,0,0,1-8,8H120a8,8,0,0,1-8-8V152a8,8,0,0,1,16,0v48h20A8,8,0,0,1,156,208ZM92.65,145.49a8,8,0,0,0-11.16,1.86L68,166.24,54.51,147.35a8,8,0,1,0-13,9.3L58.17,180,41.49,203.35a8,8,0,0,0,13,9.3L68,193.76l13.49,18.89a8,8,0,0,0,13-9.3L77.83,180l16.68-23.35A8,8,0,0,0,92.65,145.49Zm98.94,25.82c-4-1.16-8.14-2.35-10.45-3.84-1.25-.82-1.23-1-1.12-1.9a4.54,4.54,0,0,1,2-3.67c4.6-3.12,15.34-1.72,19.82-.56a8,8,0,0,0,4.07-15.48c-2.11-.55-21-5.22-32.83,2.76a20.58,20.58,0,0,0-8.95,14.95c-2,15.88,13.65,20.41,23,23.11,12.06,3.49,13.12,4.92,12.78,7.59-.31,2.41-1.26,3.33-2.15,3.93-4.6,3.06-15.16,1.55-19.54.35A8,8,0,0,0,173.93,214a60.63,60.63,0,0,0,15.19,2c5.82,0,12.3-1,17.49-4.46a20.81,20.81,0,0,0,9.18-15.23C218,179,201.48,174.17,191.59,171.31ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,1,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.68L160,51.31Z" } }] })(n);
 }
-const tn = U(function(t, c) {
-  const { columns: o, children: s, EmptyChild: l, onRowClick: g, quickSearch: f } = t, C = l || st, m = t.customizer || dt, y = t.customButton, u = t.gridTitle, [b, p] = R(!1), [M, E] = R(!1), [P, V] = R(!1), [A, T] = R("standard"), [I, B] = R(!1), [L, H] = R(""), {
+const rn = U(function(t, c) {
+  const { columns: o, children: s, EmptyChild: l, onRowClick: g, quickSearch: f } = t, C = l || lt, m = t.customizer || ut, y = t.customButton, u = t.title, [b, p] = R(!1), [M, I] = R(!1), [P, E] = R(!1), [A, V] = R("standard"), [T, B] = R(!1), [L, H] = R(""), {
     setQueryFilter: S,
     setQuickSearch: Q,
     setSortColumns: G,
     setEndPointOptions: z,
     gotoPage: W,
     setPageSize: d,
-    getPageNo: N,
+    getPageNo: w,
     refreshData: h,
     setQueryLimit: F,
     getQueryLimit: q,
@@ -715,7 +716,7 @@ const tn = U(function(t, c) {
     pageSizeOptions: k,
     filter: i
   } = ae(t), x = c || X(null);
-  ne(x, () => ({
+  re(x, () => ({
     setFilter: (v) => {
       S(v);
     },
@@ -742,8 +743,8 @@ const tn = U(function(t, c) {
   }), [q]);
   const Z = (v, ee) => {
     W(ee - 1);
-  }, re = at(o, m), r = (v) => {
-    T(v);
+  }, ie = st(o, m), r = (v) => {
+    V(v);
   }, O = () => {
     p(!b);
   }, _ = () => A === "compact" ? { padding: "3px" } : A === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, se = () => A === "compact" ? { padding: "3px" } : A === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, Ce = () => {
@@ -768,11 +769,11 @@ const tn = U(function(t, c) {
   }, Fe = (v) => {
     const ee = parseInt(v.target.value, 10);
     d(ee);
-  }, we = (v) => {
-    E(!M);
+  }, Ne = (v) => {
+    I(!M);
   }, ge = () => {
-    V(!P);
-  }, Ne = () => {
+    E(!P);
+  }, we = () => {
   }, Se = () => {
   }, ke = () => {
     t.onNewClick();
@@ -782,14 +783,17 @@ const tn = U(function(t, c) {
   }, Ae = {
     transform: M ? "rotate(-180deg)" : "rotate(0deg)",
     transition: "transform 0.3s ease"
-  }, w = {
+  }, N = {
     transform: P ? "rotate(-180deg)" : "rotate(0deg)",
     transition: "transform 0.3s ease"
   }, $ = Math.ceil(K / D.limit);
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ a("div", { children: [
     s,
     /* @__PURE__ */ a("div", { className: "grid-header", children: [
-      /* @__PURE__ */ e("div", { className: "grid-header-right-content", children: /* @__PURE__ */ e("span", { className: "grid-header-right-content-text", children: u }) }),
+      /* @__PURE__ */ e("div", { className: "grid-header-right-content", children: t.titleInfo ? /* @__PURE__ */ e(ht, { placement: "right", title: t.titleInfo, arrow: !0, children: /* @__PURE__ */ a("div", { className: "info-grid-header", children: [
+        /* @__PURE__ */ e("span", { className: "grid-header-right-content-text", children: u }),
+        /* @__PURE__ */ e(it, { class: "grid-header-info-icon" })
+      ] }) }) : /* @__PURE__ */ e("span", { className: "grid-header-right-content-text", children: u }) }),
       /* @__PURE__ */ a("div", { className: "grid-header-left-content", children: [
         /* @__PURE__ */ e("div", { className: "grid-header-filter", children: Re && /* @__PURE__ */ e(
           fe,
@@ -802,7 +806,7 @@ const tn = U(function(t, c) {
             size: "small",
             placeholder: "Name",
             InputProps: {
-              endAdornment: /* @__PURE__ */ e(Te, { position: "end", children: /* @__PURE__ */ e(Ee, { className: "card-filter-icon" }) })
+              endAdornment: /* @__PURE__ */ e(Ve, { position: "end", children: /* @__PURE__ */ e(Ie, { className: "card-filter-icon" }) })
             }
           }
         ) }),
@@ -830,56 +834,56 @@ const tn = U(function(t, c) {
           ] }) })
         ] }) }),
         o.some((v) => v.searchable) && /* @__PURE__ */ e(le, { onClickAway: () => {
-          E(!1);
-        }, children: /* @__PURE__ */ a("div", { className: "grid-header-button grid-filter-btn", onClick: we, children: [
+          I(!1);
+        }, children: /* @__PURE__ */ a("div", { className: "grid-header-button grid-filter-btn", onClick: Ne, children: [
           /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, children: [
             /* @__PURE__ */ e(Ge, { className: "grid-button-icon" }),
             /* @__PURE__ */ e("span", { children: "Filter" }),
             /* @__PURE__ */ e(ce, { style: Ae, className: "avathar-arrw-icon" })
           ] }),
           M && /* @__PURE__ */ e("div", { className: "filter-dropdown-content", onClick: (v) => v.stopPropagation(), children: /* @__PURE__ */ e(
-            gt,
+            pt,
             {
               columns: o,
               setFilter: S,
               defaultFilter: i,
-              isOpen: I,
+              isOpen: T,
               onClose: () => B(!1)
             }
           ) })
         ] }) }),
         /* @__PURE__ */ e(le, { onClickAway: () => {
-          V(!1);
+          E(!1);
         }, children: /* @__PURE__ */ a("div", { className: "grid-header-button grid-export-btn", onClick: ge, children: [
           /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, children: [
-            /* @__PURE__ */ e(rt, { className: "grid-button-icon" }),
+            /* @__PURE__ */ e(ot, { className: "grid-button-icon" }),
             /* @__PURE__ */ e("span", { children: "Export" }),
-            /* @__PURE__ */ e(ce, { style: w, className: "avathar-arrw-icon" })
+            /* @__PURE__ */ e(ce, { style: N, className: "avathar-arrw-icon" })
           ] }),
           P && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ a("ul", { children: [
-            /* @__PURE__ */ a("li", { onClick: Ne, children: [
-              /* @__PURE__ */ e(yt, { className: "density-icon grid-button-icon" }),
+            /* @__PURE__ */ a("li", { onClick: we, children: [
+              /* @__PURE__ */ e(vt, { className: "density-icon grid-button-icon" }),
               /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Export as PDF" })
             ] }),
             /* @__PURE__ */ a("li", { onClick: Se, children: [
-              /* @__PURE__ */ e(pt, { className: "density-icon grid-button-icon" }),
+              /* @__PURE__ */ e(Ct, { className: "density-icon grid-button-icon" }),
               /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Export as Excel" })
             ] })
           ] }) })
         ] }) }),
         t.onNewClick ? /* @__PURE__ */ e("div", { className: "grid-header-button grid-add-btn", children: /* @__PURE__ */ e("div", { onClick: ke, children: /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, children: [
-          t.customAddButton && t.customAddButton.icon ? At.cloneElement(t.customAddButton.icon, {
+          t.customAddButton && t.customAddButton.icon ? Mt.cloneElement(t.customAddButton.icon, {
             className: "grid-button-icon"
-          }) : /* @__PURE__ */ e(ct, { className: "grid-button-icon" }),
-          t.customAddButton && t.customAddButton.text ? /* @__PURE__ */ e(ie, { children: t.customAddButton.text }) : /* @__PURE__ */ e("span", { children: "Add" })
-        ] }) }) }) : /* @__PURE__ */ e(ie, {}),
+          }) : /* @__PURE__ */ e(dt, { className: "grid-button-icon" }),
+          t.customAddButton && t.customAddButton.text ? /* @__PURE__ */ e(ne, { children: t.customAddButton.text }) : /* @__PURE__ */ e("span", { children: "Add" })
+        ] }) }) }) : /* @__PURE__ */ e(ne, {}),
         y && y.map((v, ee) => /* @__PURE__ */ e("div", { className: "grid-custom-button", children: v }, ee))
       ] })
     ] }),
     /* @__PURE__ */ e("div", { className: "grid-table", children: /* @__PURE__ */ e(
-      lt,
+      ct,
       {
-        columnDefs: re,
+        columnDefs: ie,
         EmptyChild: C,
         customizer: m,
         rowData: J,
@@ -893,7 +897,7 @@ const tn = U(function(t, c) {
       /* @__PURE__ */ e("div", { style: { width: "50%" }, children: k && k.length > 1 ? /* @__PURE__ */ e(oe, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ a("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { children: "Showing" }) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-          Ie,
+          Te,
           {
             labelId: "rows-per-page-select-label",
             id: "rows-per-page-select",
@@ -916,13 +920,13 @@ const tn = U(function(t, c) {
           shape: "rounded",
           componentName: "div",
           onChange: Z,
-          page: N() + 1
+          page: w() + 1
         }
       ) })
     ] }) }) }) })
   ] }) });
-}), vr = U(function(t, c) {
-  const { children: o, EmptyChild: s, onRowClick: l, quickSearch: g } = t, f = t.columns, C = s || st, m = t.customizer || dt, y = t.customButton, u = t.gridTitle, [b, p] = R(!1), [M, E] = R(!1), [P, V] = R("standard"), [A, T] = R(!1), [I, B] = R(""), {
+}), xr = U(function(t, c) {
+  const { children: o, EmptyChild: s, onRowClick: l, quickSearch: g } = t, f = t.columns, C = s || lt, m = t.customizer || ut, y = t.customButton, u = t.gridTitle, [b, p] = R(!1), [M, I] = R(!1), [P, E] = R("standard"), [A, V] = R(!1), [T, B] = R(""), {
     setQueryFilter: L,
     setQuickSearch: H,
     setSortColumns: S,
@@ -931,7 +935,7 @@ const tn = U(function(t, c) {
     setPageSize: z,
     getPageNo: W,
     refreshData: d,
-    setQueryLimit: N,
+    setQueryLimit: w,
     getQueryLimit: h,
     data: F,
     totalRecords: q,
@@ -939,9 +943,9 @@ const tn = U(function(t, c) {
     pageSizeOptions: K,
     filter: D
   } = ae(t), [k, i] = R(f(F)), x = c || X(null);
-  ne(x, () => ({
-    setFilter: (w) => {
-      L(w);
+  re(x, () => ({
+    setFilter: (N) => {
+      L(N);
     },
     refresh: () => {
       d();
@@ -949,56 +953,56 @@ const tn = U(function(t, c) {
     resetFilter() {
       L({});
     },
-    setEndPointOptions: (w) => {
-      Q(w);
+    setEndPointOptions: (N) => {
+      Q(N);
     },
-    addFilter: (w, $) => {
-      L((v) => (v[w] = $, { ...v }));
+    addFilter: (N, $) => {
+      L((v) => (v[N] = $, { ...v }));
     },
-    setQueryLimit: (w) => {
-      N(w);
+    setQueryLimit: (N) => {
+      w(N);
     },
     getQueryLimit: () => h(),
-    setSortOptions(w) {
-      S(w);
+    setSortOptions(N) {
+      S(N);
     },
     getCurrentData: () => F
   }), [h, k]), Y(() => {
     i(f(F));
   }, [F]);
-  const Z = (w, $) => {
+  const Z = (N, $) => {
     G($ - 1);
-  }, re = at(k, m), r = (w) => {
-    V(w);
+  }, ie = st(k, m), r = (N) => {
+    E(N);
   }, O = () => {
     p(!b);
   }, _ = () => P === "compact" ? { padding: "3px" } : P === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, se = () => P === "compact" ? { padding: "3px" } : P === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, Ce = () => {
-    var w;
+    var N;
     switch (P) {
       case "compact":
-        w = /* @__PURE__ */ e(pe, { className: "density-icon" });
+        N = /* @__PURE__ */ e(pe, { className: "density-icon" });
         break;
       case "comfortable":
-        w = /* @__PURE__ */ e(ve, { className: "density-icon" });
+        N = /* @__PURE__ */ e(ve, { className: "density-icon" });
         break;
       default:
-        w = /* @__PURE__ */ e(ye, { className: "grid-button-icon" });
+        N = /* @__PURE__ */ e(ye, { className: "grid-button-icon" });
         break;
     }
-    return w;
-  }, be = (w) => {
-    const $ = w.target.value;
+    return N;
+  }, be = (N) => {
+    const $ = N.target.value;
     B($), $ ? H($) : L({});
-  }, xe = (w) => {
-    l && l(w);
-  }, Fe = (w) => {
-    const $ = parseInt(w.target.value, 10);
+  }, xe = (N) => {
+    l && l(N);
+  }, Fe = (N) => {
+    const $ = parseInt(N.target.value, 10);
     z($);
-  }, we = () => {
-    E(!M);
+  }, Ne = () => {
+    I(!M);
   }, ge = () => {
     t.onNewClick();
-  }, Ne = () => {
+  }, we = () => {
   }, Se = () => {
   }, ke = 200, Oe = !!t.pageSize, Pe = !!g, Re = {
     transform: b ? "rotate(-180deg)" : "rotate(0deg)",
@@ -1017,13 +1021,13 @@ const tn = U(function(t, c) {
           {
             sx: { width: ke },
             type: "text",
-            value: I,
+            value: T,
             onChange: be,
             style: { border: "0px" },
             size: "small",
             placeholder: "Name",
             InputProps: {
-              endAdornment: /* @__PURE__ */ e(Te, { position: "end", children: /* @__PURE__ */ e(Ee, { className: "card-filter-icon" }) })
+              endAdornment: /* @__PURE__ */ e(Ve, { position: "end", children: /* @__PURE__ */ e(Ie, { className: "card-filter-icon" }) })
             }
           }
         ) }),
@@ -1050,52 +1054,52 @@ const tn = U(function(t, c) {
             ] })
           ] }) })
         ] }) }),
-        k.some((w) => w.searchable) && /* @__PURE__ */ a("div", { className: "grid-header-button grid-filter-btn", children: [
-          /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, onClick: () => T(!0), children: [
+        k.some((N) => N.searchable) && /* @__PURE__ */ a("div", { className: "grid-header-button grid-filter-btn", children: [
+          /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, onClick: () => V(!0), children: [
             /* @__PURE__ */ e(Ge, { className: "grid-button-icon" }),
             /* @__PURE__ */ e("span", { children: "Filter" })
           ] }),
           /* @__PURE__ */ e(
-            gt,
+            pt,
             {
               columns: k,
               setFilter: L,
               defaultFilter: D,
               isOpen: A,
-              onClose: () => T(!1)
+              onClose: () => V(!1)
             }
           )
         ] }),
         /* @__PURE__ */ e(le, { onClickAway: () => {
-          E(!1);
-        }, children: /* @__PURE__ */ a("div", { className: "grid-header-button grid-export-btn", onClick: we, children: [
+          I(!1);
+        }, children: /* @__PURE__ */ a("div", { className: "grid-header-button grid-export-btn", onClick: Ne, children: [
           /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, children: [
-            /* @__PURE__ */ e(rt, { className: "grid-button-icon" }),
+            /* @__PURE__ */ e(ot, { className: "grid-button-icon" }),
             /* @__PURE__ */ e("span", { children: "Export" }),
             /* @__PURE__ */ e(ce, { style: De, className: "avathar-arrw-icon" })
           ] }),
           M && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ a("ul", { children: [
-            /* @__PURE__ */ a("li", { onClick: Ne, children: [
-              /* @__PURE__ */ e(yt, { className: "density-icon grid-button-icon" }),
+            /* @__PURE__ */ a("li", { onClick: we, children: [
+              /* @__PURE__ */ e(vt, { className: "density-icon grid-button-icon" }),
               /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Export as PDF" })
             ] }),
             /* @__PURE__ */ a("li", { onClick: Se, children: [
-              /* @__PURE__ */ e(pt, { className: "density-icon grid-button-icon" }),
+              /* @__PURE__ */ e(Ct, { className: "density-icon grid-button-icon" }),
               /* @__PURE__ */ e("span", { className: "drodown-content-text", children: "Export as Excel" })
             ] })
           ] }) })
         ] }) }),
         t.onNewClick ? /* @__PURE__ */ e("div", { className: "grid-header-button grid-add-btn", children: t.customAddButton ? /* @__PURE__ */ e("div", { onClick: ge, children: t.customAddButton }) : /* @__PURE__ */ e("div", { onClick: ge, children: /* @__PURE__ */ a(te, { className: "grid-btn", disableRipple: !0, children: [
-          /* @__PURE__ */ e(ct, { className: "grid-button-icon" }),
+          /* @__PURE__ */ e(dt, { className: "grid-button-icon" }),
           /* @__PURE__ */ e("span", { children: "Add" })
-        ] }) }) }) : /* @__PURE__ */ e(ie, {}),
-        y && y.map((w, $) => /* @__PURE__ */ e("div", { className: "grid-custom-button", children: w }, $))
+        ] }) }) }) : /* @__PURE__ */ e(ne, {}),
+        y && y.map((N, $) => /* @__PURE__ */ e("div", { className: "grid-custom-button", children: N }, $))
       ] })
     ] }),
     /* @__PURE__ */ e("div", { className: "grid-table", children: /* @__PURE__ */ e(
-      lt,
+      ct,
       {
-        columnDefs: re,
+        columnDefs: ie,
         EmptyChild: C,
         customizer: m,
         rowData: F,
@@ -1109,14 +1113,14 @@ const tn = U(function(t, c) {
       /* @__PURE__ */ e("div", { style: { width: "50%" }, children: K && K.length > 1 ? /* @__PURE__ */ e(oe, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ a("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { children: "Showing" }) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-          Ie,
+          Te,
           {
             labelId: "rows-per-page-select-label",
             id: "rows-per-page-select",
             defaultValue: K[0],
             onChange: Fe,
             label: "Rows per page",
-            children: K.map((w) => /* @__PURE__ */ e(Be, { value: w, children: w }, w))
+            children: K.map((N) => /* @__PURE__ */ e(Be, { value: N, children: N }, N))
           }
         ) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ a("span", { children: [
@@ -1137,13 +1141,13 @@ const tn = U(function(t, c) {
       ) })
     ] }) }) }) })
   ] }) });
-}), Cr = U(function(t, c) {
-  const { columns: o, endPoint: s, storeFactory: l, layoutParams: g, pagination: f } = t, C = t.quickSearch || "", m = t.customButton, y = t.customAddButton, u = t.gridTitle, b = t.fetchAll, p = t.filterTopic, M = t.initialFetch, E = (V, A) => {
+}), Fr = U(function(t, c) {
+  const { columns: o, endPoint: s, storeFactory: l, layoutParams: g, pagination: f } = t, C = t.quickSearch || "", m = t.customButton, y = t.customAddButton, u = t.title, b = t.fetchAll, p = t.filterTopic, M = t.initialFetch, I = (E, A) => {
   };
   Y(() => {
-    var V = _e.subscribe(t.topic, E);
+    var E = _e.subscribe(t.topic, I);
     return () => {
-      _e.unsubscribe(V);
+      _e.unsubscribe(E);
     };
   }, [t.topic]);
   const P = {
@@ -1155,43 +1159,44 @@ const tn = U(function(t, c) {
     },
     actionOptions: t.actions
   };
-  return /* @__PURE__ */ e(ie, { children: /* @__PURE__ */ e(Me.Provider, { value: l, children: /* @__PURE__ */ e(
-    vt,
+  return /* @__PURE__ */ e(ne, { children: /* @__PURE__ */ e(Me.Provider, { value: l, children: /* @__PURE__ */ e(
+    bt,
     {
       layout: P,
       context: g,
       customAddButton: y,
       onDataChange: t.onDataChange,
-      gridTitle: u,
+      title: u,
       defaultParams: t.defaultParams,
       customButton: m,
       customizer: t.customizer,
       ref: c,
+      titleInfo: t.titleInfo,
       fetchAll: b,
       filterTopic: p,
       initialFetch: M
     }
   ) }) });
-}), nn = U(function(t, c) {
+}), on = U(function(t, c) {
   const o = t.layout, [s, l] = R(o.fields), g = o.pagination ? o.pagination : [15], f = de(Me), C = de(Ye);
   var m = o.storeOptions || {}, y = {};
-  Bt(y, m, C);
+  zt(y, m, C);
   const u = f.getGridStore(y, o.storeOptions.endPoint);
   Y(() => {
     m.hasLayout && u.queryLayout({}).then((M) => {
       l(M.columns);
     });
   }, []);
-  const { onClick: b, onNewClick: p } = Ht(o.actionOptions, C);
+  const { onClick: b, onNewClick: p } = Zt(o.actionOptions, C);
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-    tn,
+    rn,
     {
       columns: s,
       store: u,
       pageSize: g,
       onRowClick: b,
       onDataChange: t.onDataChange,
-      gridTitle: t.gridTitle,
+      title: t.title,
       customAddButton: t.customAddButton,
       onNewClick: p,
       customizer: t.customizer,
@@ -1201,47 +1206,48 @@ const tn = U(function(t, c) {
       defaultParams: t.defaultParams,
       fetchAll: t.fetchAll,
       filterTopic: t.filterTopic,
-      initialFetch: t.initialFetch
+      initialFetch: t.initialFetch,
+      titleInfo: t.titleInfo
     }
   ) });
-}), vt = nn, rn = (n) => {
+}), bt = on, an = (n) => {
   const { layout: t, context: c } = n;
-  var o = t.Container || ot;
-  return /* @__PURE__ */ e(mt, { fallback: /* @__PURE__ */ e("p", { children: "SectionRendererGrid: Something went wrong" }), children: /* @__PURE__ */ e(o, { ...t, children: ((l) => /* @__PURE__ */ e(
-    vt,
+  var o = t.Container || rt;
+  return /* @__PURE__ */ e(ft, { fallback: /* @__PURE__ */ e("p", { children: "SectionRendererGrid: Something went wrong" }), children: /* @__PURE__ */ e(o, { ...t, children: ((l) => /* @__PURE__ */ e(
+    bt,
     {
       context: c,
       layout: l
     }
   ))(t.tableLayout) }) });
-}, on = (n) => {
+}, sn = (n) => {
   const { layout: t } = n;
   switch (t.type) {
     case "form":
-      return /* @__PURE__ */ e(ft, { ...n });
+      return /* @__PURE__ */ e(yt, { ...n });
     case "view":
-      return /* @__PURE__ */ e(Zt, { ...n });
+      return /* @__PURE__ */ e(Wt, { ...n });
     case "grid":
-      return /* @__PURE__ */ e(rn, { ...n });
+      return /* @__PURE__ */ e(an, { ...n });
     case "chart":
-      return /* @__PURE__ */ e(Vt, { ...n });
+      return /* @__PURE__ */ e(Tt, { ...n });
     default:
-      return /* @__PURE__ */ e(Kt, { ...n });
+      return /* @__PURE__ */ e(jt, { ...n });
   }
 };
-function an(n, t) {
+function ln(n, t) {
   var c = n || 1, o = t;
   return {
     w: c,
     h: o
   };
 }
-const Ct = (n) => {
+const xt = (n) => {
   const { layout: t, context: c } = n, o = t.sections;
   function s(l, g, f) {
-    const { w: C, h: m } = an(l.width, l.height);
-    return /* @__PURE__ */ e(Lt, { sx: { width: C, height: m }, children: /* @__PURE__ */ e(
-      on,
+    const { w: C, h: m } = ln(l.width, l.height);
+    return /* @__PURE__ */ e(It, { sx: { width: C, height: m }, children: /* @__PURE__ */ e(
+      sn,
       {
         layout: l,
         context: g
@@ -1251,19 +1257,19 @@ const Ct = (n) => {
   return /* @__PURE__ */ e("div", { style: { display: "flex", flexWrap: "wrap" }, children: o.map((l, g) => s(l, c, g)) });
 }, Je = U(function(t, c) {
   const { layout: o } = t;
-  ne(c, () => ({
+  re(c, () => ({
     resetFilter() {
     }
   }), []);
   const s = {}, l = o.tabs;
   return /* @__PURE__ */ e("div", { children: l.map((g, f) => /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-    Ct,
+    xt,
     {
       layout: g,
       context: s
     }
   ) }, g.name + f)) });
-}), sn = (n) => {
+}), cn = (n) => {
   switch (n) {
     case "formEdit":
       return "edit";
@@ -1277,8 +1283,8 @@ const Ct = (n) => {
 }, Ue = U(function(t, c) {
   var y;
   const o = t.data || {}, { layout: s } = t;
-  var { getFieldManager: l, getFormData: g, isFormValid: f } = jt(o, (y = t.callbacks) == null ? void 0 : y.onFormValidChange, sn(t.mode));
-  ne(c, () => ({
+  var { getFieldManager: l, getFormData: g, isFormValid: f } = Xt(o, (y = t.callbacks) == null ? void 0 : y.onFormValidChange, cn(t.mode));
+  re(c, () => ({
     getData() {
       return g();
     },
@@ -1288,13 +1294,13 @@ const Ct = (n) => {
   }), []);
   const C = { formData: o }, m = s.tabs;
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(he.Provider, { value: l, children: m.map((u, b) => /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-    Ct,
+    xt,
     {
       layout: u,
       context: C
     }
   ) }, u.name + b)) }) });
-}), ln = (n) => {
+}), dn = (n) => {
   switch (n) {
     case "grid":
       return Je;
@@ -1307,14 +1313,14 @@ const Ct = (n) => {
     default:
       return Je;
   }
-}, br = U(function(t, c) {
-  const [o, s] = R(t.layout), l = t.mode ? t.mode : o.type ? o.type : "grid", g = t.layoutParams || {}, f = ln(l), C = X(0);
+}, Nr = U(function(t, c) {
+  const [o, s] = R(t.layout), l = t.mode ? t.mode : o.type ? o.type : "grid", g = t.layoutParams || {}, f = dn(l), C = X(0);
   return Y(() => {
     s(t.layout), C.current < 999999 ? C.current++ : C.current = 0;
-  }, [t.layout]), /* @__PURE__ */ e(mt, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(Me.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(Ye.Provider, { value: g, children: /* @__PURE__ */ e(f, { ...t, ref: (m) => {
+  }, [t.layout]), /* @__PURE__ */ e(ft, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(Me.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(Ye.Provider, { value: g, children: /* @__PURE__ */ e(f, { ...t, ref: (m) => {
     c && (c.current = m);
   } }, C.current) }) }) });
-}), xr = U(function(t, c) {
+}), wr = U(function(t, c) {
   const { title: o, Child: s, childProps: l, pageSize: g, customButton: f } = t, C = c || X(null), {
     setQueryFilter: m,
     refreshData: y,
@@ -1322,16 +1328,16 @@ const Ct = (n) => {
     setEndPointOptions: b,
     setQuickSearch: p,
     gotoPage: M,
-    setPageSize: E,
+    setPageSize: I,
     getPageNo: P,
-    setQueryLimit: V,
+    setQueryLimit: E,
     getQueryLimit: A,
-    data: T,
-    totalRecords: I,
+    data: V,
+    totalRecords: T,
     pageSizeOptions: B,
     queryLimit: L
   } = ae(t), H = t.listKeyProvider || ((h, F) => F);
-  ne(C, () => ({
+  re(C, () => ({
     setFilter: (h) => {
       m(h);
     },
@@ -1348,10 +1354,10 @@ const Ct = (n) => {
       m((q) => (q[h] = F, { ...q }));
     },
     setQueryLimit: (h) => {
-      V(h);
+      E(h);
     },
     getQueryLimit: () => A(),
-    getCurrentData: () => T,
+    getCurrentData: () => V,
     setSortOptions(h) {
       u(h);
     }
@@ -1363,11 +1369,14 @@ const Ct = (n) => {
     p(F);
   }, G = (h) => {
     const F = parseInt(h.target.value, 10);
-    E(F);
-  }, z = 200, W = !!g, d = !!t.quickSearch, N = Math.ceil(I / L.limit);
+    I(F);
+  }, z = 200, W = !!g, d = !!t.quickSearch, w = Math.ceil(T / L.limit);
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("div", { className: "card-page-container", children: /* @__PURE__ */ a("div", { children: [
     /* @__PURE__ */ a("div", { className: "card-header", children: [
-      /* @__PURE__ */ e("div", { className: "card-left-content", children: o }),
+      /* @__PURE__ */ e("div", { className: "card-left-content", children: t.titleInfo ? /* @__PURE__ */ e(ht, { placement: "right", title: t.titleInfo, arrow: !0, children: /* @__PURE__ */ a("div", { className: "card-left-content-info", children: [
+        o,
+        /* @__PURE__ */ e(it, { class: "card-header-info-icon" })
+      ] }) }) : /* @__PURE__ */ e(ne, { children: o }) }),
       /* @__PURE__ */ a("div", { className: "card-right-content", children: [
         d && /* @__PURE__ */ e(
           fe,
@@ -1379,7 +1388,7 @@ const Ct = (n) => {
             size: "small",
             placeholder: "Name",
             InputProps: {
-              endAdornment: /* @__PURE__ */ e(Te, { position: "end", children: /* @__PURE__ */ e(Ee, { className: "card-filter-icon" }) })
+              endAdornment: /* @__PURE__ */ e(Ve, { position: "end", children: /* @__PURE__ */ e(Ie, { className: "card-filter-icon" }) })
             }
           }
         ),
@@ -1387,17 +1396,17 @@ const Ct = (n) => {
       ] })
     ] }),
     /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-      Et,
+      Vt,
       {
         Child: s,
         childKeyProvider: H,
         preProcess: t.preProcess,
-        dataList: T,
+        dataList: V,
         childProps: l,
         EmptyChild: t.EmptyChild
       }
     ) }),
-    /* @__PURE__ */ e("div", { className: "card-pagination", children: W && N !== 0 && // <TablePagination
+    /* @__PURE__ */ e("div", { className: "card-pagination", children: W && w !== 0 && // <TablePagination
     //     component="div"
     //     count={totalRecords || 0}
     //     page={getPageNo()}
@@ -1410,7 +1419,7 @@ const Ct = (n) => {
       /* @__PURE__ */ e("div", { children: B && B.length > 1 ? /* @__PURE__ */ e(oe, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ a("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { children: "Showing" }) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-          Ie,
+          Te,
           {
             labelId: "rows-per-page-select-label",
             id: "rows-per-page-select",
@@ -1422,14 +1431,14 @@ const Ct = (n) => {
         ) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ a("span", { children: [
           "of ",
-          I,
+          T,
           " Results"
         ] }) })
       ] }) }) : null }),
-      /* @__PURE__ */ e("div", { style: {}, children: /* @__PURE__ */ e(Mt, { direction: "row", alignItems: "center", spacing: 1, children: /* @__PURE__ */ e(
+      /* @__PURE__ */ e("div", { style: {}, children: /* @__PURE__ */ e(Et, { direction: "row", alignItems: "center", spacing: 1, children: /* @__PURE__ */ e(
         Qe,
         {
-          count: N,
+          count: w,
           shape: "rounded",
           componentName: "div",
           onChange: S,
@@ -1440,23 +1449,23 @@ const Ct = (n) => {
   ] }) }) });
 });
 export {
-  vr as D,
-  br as F,
-  vt as G,
-  _t as M,
-  Cr as P,
-  xr as S,
-  Ct as T,
-  tn as a,
-  pr as b,
-  $t as c,
-  Ut as d,
-  ft as e,
-  en as f,
-  ht as g,
-  gt as h,
-  rn as i,
-  on as j,
+  xr as D,
+  Nr as F,
+  bt as G,
+  Jt as M,
+  Fr as P,
+  wr as S,
+  xt as T,
+  rn as a,
+  br as b,
+  Ut as c,
+  en as d,
+  yt as e,
+  nn as f,
+  gt as g,
+  pt as h,
+  an as i,
+  sn as j,
   Je as k,
   Ue as l,
   ae as u
