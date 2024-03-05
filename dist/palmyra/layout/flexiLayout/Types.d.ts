@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { FormData } from "../../form/Definitions";
 import { strings } from "../../form/interface";
-import { ChartStore, QueryStore, DataStore, LookupStore } from "../../store";
+import { ChartStore, QueryStore, DataStore, LookupStore, TreeQueryStore } from "../../store";
 import { IEndPoint, Titleable } from "../Types";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 interface Parent {
@@ -21,10 +21,11 @@ interface FlexiEventHandlers {
 interface LayoutParams extends Record<string, string> {
 }
 interface StoreFactory<T> {
-    getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): QueryStore<T>;
-    getFormStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
-    getChartStore(options: Record<string, string>, endPoint?: IEndPoint): ChartStore<T>;
-    getLookupStore(options: Record<string, string>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
+    getGridStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): QueryStore<T>;
+    getFormStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
+    getChartStore(options: Record<string, string | number>, endPoint?: IEndPoint): ChartStore<T>;
+    getLookupStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
+    getTreeStore(options: Record<string, string | number>, endPoint: IEndPoint): TreeQueryStore<any, any>;
 }
 interface FlexiLayoutRendererInput<T> {
     layoutParams: LayoutParams;

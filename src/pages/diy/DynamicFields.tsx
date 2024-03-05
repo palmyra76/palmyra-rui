@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { IEndPoint, IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, SectionContainer, StoreFactory, TreeQueryStore, createFormHelper } from "../../../lib/main";
+import { IEndPoint, IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, PalmyraStoreFactory, SectionContainer, StoreFactory, TreeQueryStore, createFormHelper } from "../../../lib/main";
 import { AppStoreFactory } from "../../components/store/AppStoreFactory";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import { FieldGroupContainer } from "../../components/form";
-import AsyncTreeMenuEditor from "../../../lib/palmyra/layout/tree/AsyncTreeMenuEditor";
+import AsyncTreeMenuEditor, { IAsyncTreeMenuEditor } from "../../../lib/palmyra/layout/tree/AsyncTreeMenuEditor";
 import { PalmyraTreeStore } from "../../../lib/palmyra/store/palmyra/PalmyraTreeStore";
 
 
@@ -48,18 +48,23 @@ const DynamicFields = () => {
             return {};
         }
     }
+    const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({baseUrl: '/api'});
+    const treeRef = useRef<IAsyncTreeMenuEditor>();
 
-    useEffect(() => {
+    const submitValue = () => {
+        console.log(treeRef.current.getValue())
+        const formStore = storeFactory.getFormStore({},'/acl/editor/menu/group/{groupId}');
+        const rootMenu = treeRef.current.getValue();
+        formStore.post(rootMenu, {endPointVars : {groupId:2}});
+    }
 
-    }, [])
-
-    const storeFactory: StoreFactory<any> = new AppStoreFactory();
+    
     const endPoint:IEndPoint = '/acl/editor/menu/list';
-    const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({target:"/api"}, endPoint);
-
+    
     return (<>
-        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>            
-            <AsyncTreeMenuEditor store={treeStore}/>
+        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>  
+            <AsyncTreeMenuEditor ref={treeRef} storeFactory={storeFactory} endPoint={endPoint} groupId={1}/>
+            <div> <Button onClick={submitValue}>Submit</Button> </div>
             {/* <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >

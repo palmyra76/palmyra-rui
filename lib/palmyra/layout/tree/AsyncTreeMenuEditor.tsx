@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
 import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
@@ -9,10 +9,14 @@ import cx from "classnames";
 import "./AsyncTreeMenu.css";
 import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 import AsyncTreeCrudDropDown from "./AsyncTreeCrudDropDown";
-import { Button, ClickAwayListener } from "@mui/material";
+import { ClickAwayListener } from "@mui/material";
+import { IEndPoint } from "..";
+import { StoreFactory } from "../flexiLayout/Types";
 
 interface IAsyncTreeEditorInput {
-    store: TreeQueryStore<IChildTreeRequest, any>
+    storeFactory: StoreFactory<IChildTreeRequest>
+    endPoint: IEndPoint,
+    groupId: number
 }
 
 interface Node {
@@ -25,14 +29,28 @@ interface Node {
     selected: 0 | 1 | 2;
 }
 
-export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
+interface IAsyncTreeMenuEditor {
+    getValue: () => Node
+}
 
+const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput, ref: MutableRefObject<IAsyncTreeMenuEditor>) {
+    const groupId = props.groupId;
     const loadedAlertElement = useRef(null);
+    const currentRef = ref ? ref : useRef<IAsyncTreeMenuEditor>(null);
+
     let rootNode: INode = { name: "", id: -1, parent: null, children: [], isBranch: true };
     const [data, setData] = useState<INode[]>([rootNode]);
     const [selectedIds, setSelectedIds] = useState([]);
+    const store: TreeQueryStore<IChildTreeRequest, any> = props.storeFactory.getTreeStore({ groupId: groupId }, props.endPoint);
 
-    const store: TreeQueryStore<IChildTreeRequest, any> = props.store;
+    useImperativeHandle(currentRef, () => {
+        return {
+            getValue() {
+                return getValue();
+            }
+        };
+    }, [groupId, data, selectedIds]);
+
 
     const updateTreeData = (list, id, children) => {
         const data = list.map((node) => {
@@ -77,13 +95,15 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
             setData(sd);
             setSelectedIds([5, 7]); // TODO   update based on the server side value.
         });
-    }, []);
+    }, [groupId]);
 
-
-    const submit = () => {
-
+    const getValue = () => {
         const mappedData = {};
-        const result: Node[] = [];
+        const result: any = {
+            name: 'root',
+            children: [],
+            id: -1
+        }
 
         data.forEach((d: INode) => {
             if (d.metadata?.selected == undefined)
@@ -95,7 +115,7 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
             }
             //@ts-ignore
             if (null == parent && d.id > 0) {
-                result.push(mappedData[d.id]);
+                result.children.push(mappedData[d.id]);
             }
         });
 
@@ -110,14 +130,13 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
                 })
             }
         })
+
+        return result;
     }
 
     return (
         <>
             <div>
-
-                <Button onClick={submit} >ellosdf</Button>
-
                 <div
                     className="visually-hidden"
                     ref={loadedAlertElement}
@@ -203,7 +222,7 @@ export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput) {
             </div>
         </>
     );
-}
+});
 
 interface IArrowIconInput {
     isOpen: boolean,
@@ -266,3 +285,6 @@ const LeafNode = (props: ILeafNodeProps) => {
         </div>
     </>
 }
+
+export default AsyncTreeMenuEditor;
+export type { IAsyncTreeEditorInput, IAsyncTreeMenuEditor }

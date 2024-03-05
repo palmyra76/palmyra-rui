@@ -1,7 +1,24 @@
-import { TreeQueryStore } from "../../store";
+/// <reference types="react" />
 import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
+import { IEndPoint } from "..";
+import { StoreFactory } from "../flexiLayout/Types";
 interface IAsyncTreeEditorInput {
-    store: TreeQueryStore<IChildTreeRequest, any>;
+    storeFactory: StoreFactory<IChildTreeRequest>;
+    endPoint: IEndPoint;
+    groupId: number;
 }
-export default function AsyncTreeMenuEditor(props: IAsyncTreeEditorInput): import("react/jsx-runtime").JSX.Element;
-export {};
+interface Node {
+    id: number;
+    parent: number;
+    name: string;
+    loaded: boolean;
+    isBranch: true;
+    children: (Node | number)[];
+    selected: 0 | 1 | 2;
+}
+interface IAsyncTreeMenuEditor {
+    getValue: () => Node;
+}
+declare const AsyncTreeMenuEditor: import("react").ForwardRefExoticComponent<IAsyncTreeEditorInput & import("react").RefAttributes<IAsyncTreeMenuEditor>>;
+export default AsyncTreeMenuEditor;
+export type { IAsyncTreeEditorInput, IAsyncTreeMenuEditor };

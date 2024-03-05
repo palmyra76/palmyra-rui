@@ -1,4 +1,5 @@
-import { ChartStore, QueryStore, DataStore, StoreFactory, LookupStore, IEndPoint } from "../../../lib/main";
+import { ChartStore, QueryStore, DataStore, StoreFactory, LookupStore, IEndPoint, TreeQueryStore } from "../../../lib/main";
+import { strings } from "../../../lib/palmyra/form/interface";
 import { DummyChartStore } from "./DummyChartStore";
 import { DummyGridStore } from "./DummyGridStore";
 import { DummyLookupStore } from "./DummyLookupStore";
@@ -16,6 +17,9 @@ class AppStoreFactory implements StoreFactory<any>{
     }
     getLookupStore(request: Record<string, string>,endPoint: IEndPoint,  idProperty: strings): LookupStore<any> {
         return new DummyLookupStore();
+    }
+    getTreeStore(options: Record<string, string>, endPoint: IEndPoint):TreeQueryStore<any, any>{
+        throw new Error("Method not implemented.");
     }
 }
 
