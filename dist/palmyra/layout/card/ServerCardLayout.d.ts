@@ -8,7 +8,7 @@ interface ServerCardLayoutInput extends IServerQueryInput {
     title?: String;
     customButton?: React.ReactNode[];
     preProcess?: (data: any) => any;
-    titleInfo?: string;
+    titleTooltip?: string;
 }
 declare const ServerCardLayout: import("react").ForwardRefExoticComponent<ServerCardLayoutInput & import("react").RefAttributes<any>>;
 export default ServerCardLayout;

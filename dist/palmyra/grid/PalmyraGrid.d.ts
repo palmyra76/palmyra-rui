@@ -19,7 +19,7 @@ interface IPalmyraGridInput {
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;
-    titleInfo?: String;
+    titleTooltip?: String;
 }
 interface IPalmyraGrid extends IPageQueryable {
 }

@@ -21,7 +21,7 @@ interface GridRendererInput {
     fetchAll?: boolean,
     filterTopic?: string,
     initialFetch?: boolean,
-    titleInfo?: String
+    titleTooltip?: String
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IPageQueryable>) {
@@ -54,7 +54,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
                 onNewClick={onNewClick} customizer={props.customizer} customButton={props.customButton}
                 quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
                 fetchAll={props.fetchAll} filterTopic={props.filterTopic} initialFetch={props.initialFetch}
-                titleInfo={props.titleInfo}
+                titleTooltip={props.titleTooltip}
             ></GridX>
         </div>
     );

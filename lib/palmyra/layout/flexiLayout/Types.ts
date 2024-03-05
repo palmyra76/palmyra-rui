@@ -57,7 +57,7 @@ interface TabContainerInput extends TabDefinition, Parent {
 
 interface SectionContainerInput extends Titleable, Parent {
     customButton?: React.ReactNode[],
-    titleInfo?:string
+    titleTooltip?:string
 }
 
 

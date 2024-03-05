@@ -8,7 +8,7 @@ import { InfoTooltip } from "../../tooltip/InfoTooltip";
 
 const SectionContainer = (props: SectionContainerInput) => {
     const title = props.title;
-    const titleInfo = props.titleInfo;
+    const titleTooltip = props.titleTooltip;
     const customButton = props.customButton;
     const hideTitle = props.hideTitle || false;
     const [expanded, setExpanded] = useState(true);
@@ -32,8 +32,8 @@ const SectionContainer = (props: SectionContainerInput) => {
                         <div className="section-header">
                             {title && !hideTitle ? (
                                 <div className="section-header-text">
-                                    {titleInfo ? (
-                                        <InfoTooltip placement="right" title={titleInfo} arrow>
+                                    {titleTooltip ? (
+                                        <InfoTooltip placement="right" title={titleTooltip} arrow>
                                             <div className="section-header-info">
                                                 {title}
                                                 <BsInfoCircle class='grid-header-info-icon' />

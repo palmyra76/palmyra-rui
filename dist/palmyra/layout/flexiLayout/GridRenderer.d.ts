@@ -16,7 +16,7 @@ interface GridRendererInput {
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;
-    titleInfo?: String;
+    titleTooltip?: String;
 }
 declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
 export default GridRenderer;

@@ -16,7 +16,7 @@ interface ServerCardLayoutInput extends IServerQueryInput {
     title?: String,
     customButton?: React.ReactNode[],
     preProcess?: (data: any) => any,
-    titleInfo?: string
+    titleTooltip?: string
 }
 
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
@@ -92,8 +92,8 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                 <div>
                     <div className='card-header'>
                         <div className='card-left-content'>
-                            {props.titleInfo ? (
-                                <InfoTooltip placement='right' title={props.titleInfo} arrow>
+                            {props.titleTooltip ? (
+                                <InfoTooltip placement='right' title={props.titleTooltip} arrow>
                                     <div className='card-left-content-info'>
                                         {title}
                                         <BsInfoCircle class='card-header-info-icon'/>

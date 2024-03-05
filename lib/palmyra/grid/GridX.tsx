@@ -28,7 +28,7 @@ interface GridXOptions extends IServerQueryInput {
   customButton?: React.ReactNode[],
   title?: any,
   customAddButton?: any,
-  titleInfo?: String
+  titleTooltip?: String
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
@@ -203,8 +203,8 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         {children}
         <div className='grid-header'>
           <div className='grid-header-right-content'>
-            {props.titleInfo ? (
-              <InfoTooltip placement='right' title={props.titleInfo} arrow>
+            {props.titleTooltip ? (
+              <InfoTooltip placement='right' title={props.titleTooltip} arrow>
                 <div className='info-grid-header'>
                   <span className='grid-header-right-content-text'>{title}</span>
                   <BsInfoCircle class='grid-header-info-icon' />

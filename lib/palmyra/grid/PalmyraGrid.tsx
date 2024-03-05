@@ -22,7 +22,7 @@ interface IPalmyraGridInput {
     fetchAll?: boolean,
     filterTopic?: string,
     initialFetch?: boolean,
-    titleInfo?: String
+    titleTooltip?: String
 }
 
 interface IPalmyraGrid extends IPageQueryable {
@@ -67,7 +67,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
                 <GridRenderer layout={layout} context={layoutParams} customAddButton={customAddButton}
                     onDataChange={props.onDataChange} title={title}
                     defaultParams={props.defaultParams} customButton={customButton}
-                    customizer={props.customizer} ref={ref} titleInfo={props.titleInfo}
+                    customizer={props.customizer} ref={ref} titleTooltip={props.titleTooltip}
                     fetchAll={fetchAll} filterTopic={filterTopic} initialFetch={initialFetch}></GridRenderer>
             </StoreFactoryContext.Provider>
         </>);
