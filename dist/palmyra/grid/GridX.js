@@ -7,10 +7,9 @@ import "./base/EmptyChildTable.js";
 import "./base/TableX.js";
 import "@mui/icons-material";
 import "./Types.js";
-import { a as b } from "../../chunks/ServerCardLayout.js";
+import { a as x } from "../../chunks/ServerCardLayout.js";
 import "../../chunks/index.esm.js";
-import "../../chunks/SectionContainer.js";
-import "../tooltip/InfoTooltip.js";
+import "../../chunks/InfoTooltip.js";
 export {
-  b as default
+  x as default
 };

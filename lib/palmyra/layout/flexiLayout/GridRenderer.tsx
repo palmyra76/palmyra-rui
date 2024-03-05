@@ -46,7 +46,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     }, [])
 
     const { onClick, onNewClick } = getActionPublishers(tableLayout.actionOptions, layoutParams);
-    console.log(props.title);
+    
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}

@@ -12,8 +12,7 @@ import { IPageQueryable } from '../form/interfaceFields';
 import { IPagination } from "../../palmyra/store/Types"
 import { TbFilterShare, TbTableExport } from "react-icons/tb";
 import { PiFileXls, PiFilePdf } from "react-icons/pi";
-import { BsInfoCircle } from "react-icons/bs";
-import { InfoTooltip } from '../tooltip/InfoTooltip';
+import { InfoCircle, InfoTooltip } from '../mui/widget/InfoTooltip';
 import { IDecoratedTitle, ITitle } from '../form/interface';
 
 
@@ -203,7 +202,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         return <InfoTooltip placement='right' title={p.toolTip} arrow>
           <div className='info-grid-header'>
             <span className='grid-header-right-content-text'>{p.title}</span>
-            <BsInfoCircle class='grid-header-info-icon' />
+            <InfoCircle />
           </div>
         </InfoTooltip>
       }

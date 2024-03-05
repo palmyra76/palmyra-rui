@@ -4,7 +4,7 @@ import './SectionLayout.css';
 import { ExpandMore } from "@mui/icons-material";
 import { useState } from 'react';
 import { BsInfoCircle } from "react-icons/bs";
-import { InfoTooltip } from "../../tooltip/InfoTooltip";
+import { InfoTooltip } from "../../mui/widget/InfoTooltip";
 
 const SectionContainer = (props: SectionContainerInput) => {
     const title = props.title;

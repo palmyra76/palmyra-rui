@@ -6,7 +6,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 import { CardLayout } from '..';
 import { IPageQueryable } from '../../form/interfaceFields';
-import { InfoTooltip } from '../../tooltip/InfoTooltip';
+import { InfoTooltip } from '../../mui/widget/InfoTooltip';
 
 interface ServerCardLayoutInput extends IServerQueryInput {
     Child: React.FC,
