@@ -8,6 +8,7 @@ import { getActionPublishers } from '../../utils/pubsub/Publishers';
 import { mergeDeep } from '../../utils';
 import { IPageQueryable } from '../../form/interfaceFields';
 import { DefaultQueryParams } from '../../store';
+import { ITitle } from '../../form/interface';
 
 interface GridRendererInput {
     layout: TableLayout,
@@ -16,12 +17,11 @@ interface GridRendererInput {
     customizer?: GridCustomizer,
     defaultParams?: DefaultQueryParams,
     customButton?: React.ReactNode[],
-    title?: any,
+    title?: ITitle,
     customAddButton?: any,
     fetchAll?: boolean,
     filterTopic?: string,
-    initialFetch?: boolean,
-    titleTooltip?: String
+    initialFetch?: boolean
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IPageQueryable>) {
@@ -46,15 +46,14 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     }, [])
 
     const { onClick, onNewClick } = getActionPublishers(tableLayout.actionOptions, layoutParams);
-
+    console.log(props.title);
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick}
                 onDataChange={props.onDataChange} title={props.title} customAddButton={props.customAddButton}
                 onNewClick={onNewClick} customizer={props.customizer} customButton={props.customButton}
                 quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
-                fetchAll={props.fetchAll} filterTopic={props.filterTopic} initialFetch={props.initialFetch}
-                titleTooltip={props.titleTooltip}
+                fetchAll={props.fetchAll} filterTopic={props.filterTopic} initialFetch={props.initialFetch}                
             ></GridX>
         </div>
     );

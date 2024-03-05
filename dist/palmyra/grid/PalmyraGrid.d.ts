@@ -1,6 +1,7 @@
 /// <reference types="react" />
 import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IPageQueryable, PageContext, StoreFactory } from "../../main";
 import { ActionOptions } from "../layout/Types";
+import { ITitle } from "../form/interface";
 interface IPalmyraGridInput {
     columns: ColumnDefinition[];
     actions?: ActionOptions;
@@ -14,12 +15,11 @@ interface IPalmyraGridInput {
     defaultParams?: DefaultQueryParams;
     pagination?: number[];
     customButton?: React.ReactNode[];
-    title?: any;
+    title?: ITitle;
     customAddButton?: any;
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;
-    titleTooltip?: String;
 }
 interface IPalmyraGrid extends IPageQueryable {
 }

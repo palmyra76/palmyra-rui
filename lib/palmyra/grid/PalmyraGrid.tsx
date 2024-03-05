@@ -3,6 +3,7 @@ import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { GridRenderer, TableLayout } from "../layout/flexiLayout";
 import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IPageQueryable, PageContext, StoreFactory, TopicListener, topic } from "../../main";
 import { ActionOptions } from "../layout/Types";
+import { ITitle } from "../form/interface";
 
 interface IPalmyraGridInput {
     columns: ColumnDefinition[],
@@ -17,12 +18,11 @@ interface IPalmyraGridInput {
     defaultParams?: DefaultQueryParams,
     pagination?: number[],
     customButton?: React.ReactNode[],
-    title?: any,
+    title?: ITitle,
     customAddButton?: any,
     fetchAll?: boolean,
     filterTopic?: string,
-    initialFetch?: boolean,
-    titleTooltip?: String
+    initialFetch?: boolean
 }
 
 interface IPalmyraGrid extends IPageQueryable {
@@ -67,7 +67,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
                 <GridRenderer layout={layout} context={layoutParams} customAddButton={customAddButton}
                     onDataChange={props.onDataChange} title={title}
                     defaultParams={props.defaultParams} customButton={customButton}
-                    customizer={props.customizer} ref={ref} titleTooltip={props.titleTooltip}
+                    customizer={props.customizer} ref={ref} 
                     fetchAll={fetchAll} filterTopic={filterTopic} initialFetch={initialFetch}></GridRenderer>
             </StoreFactoryContext.Provider>
         </>);

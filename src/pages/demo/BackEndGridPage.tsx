@@ -76,7 +76,7 @@ const BackEndGridPage = () => {
     return <>
         <div className='grid-renderer-container'> 
             <PalmyraGrid columns={fields} endPoint={endPoint} 
-                ref={gridRef} customizer={gridCustomizer} gridTitle='GRID'
+                ref={gridRef} customizer={gridCustomizer} title={{title:"Header", toolTip:"welcome"}}
                 layoutParams={{}} storeFactory={storeFactory} />
         </div>
     </>

@@ -9,7 +9,7 @@ import { IFieldEventListener, IFieldValueListener } from ".";
  * This definitions will cater to the Form Definition format
  * 
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch" 
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch"
     | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete"
     | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer";
 
@@ -17,6 +17,13 @@ type InputType = string | number | Date;
 
 type strings = string | string[];
 type numbers = number | number[];
+
+interface IDecoratedTitle {
+    title: string,
+    toolTip?: string
+}
+
+type ITitle = string | IDecoratedTitle;
 
 interface RangeValidation<T> {
     is?: T,
@@ -239,5 +246,9 @@ export type {
     IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers
 }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration }
+
+export type {
+    ITitle, IDecoratedTitle
+}
 
 export { NoopFormListener }

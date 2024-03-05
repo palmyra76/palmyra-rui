@@ -14,6 +14,7 @@ import { TbFilterShare, TbTableExport } from "react-icons/tb";
 import { PiFileXls, PiFilePdf } from "react-icons/pi";
 import { BsInfoCircle } from "react-icons/bs";
 import { InfoTooltip } from '../tooltip/InfoTooltip';
+import { IDecoratedTitle, ITitle } from '../form/interface';
 
 
 //TODO - show errors on data fetching
@@ -26,9 +27,8 @@ interface GridXOptions extends IServerQueryInput {
   onNewClick?: Function,
   customizer?: GridCustomizer,
   customButton?: React.ReactNode[],
-  title?: any,
-  customAddButton?: any,
-  titleTooltip?: String
+  title?: ITitle,
+  customAddButton?: any
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
@@ -36,7 +36,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
   const customButton = props.customButton;
-  const title = props.title;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
@@ -196,6 +195,26 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     transition: 'transform 0.3s ease',
   };
 
+  const renderTitle = () => {
+    if (props.title) {
+      if (typeof props.title === 'object' && props.title.toolTip) {
+        //@ts-ignore
+        const p: IDecoratedTitle = props.title;
+        return <InfoTooltip placement='right' title={p.toolTip} arrow>
+          <div className='info-grid-header'>
+            <span className='grid-header-right-content-text'>{p.title}</span>
+            <BsInfoCircle class='grid-header-info-icon' />
+          </div>
+        </InfoTooltip>
+      }
+      //@ts-ignore
+      const title: string = typeof props.title == 'string' ? props.title : props.title.title;
+      return <span className='grid-header-right-content-text'>{title}</span>
+    }
+    else
+      return <></>;
+  }
+
   const totalPages = Math.ceil(totalRecords / queryLimit.limit);
   return (
     <div>
@@ -203,16 +222,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         {children}
         <div className='grid-header'>
           <div className='grid-header-right-content'>
-            {props.titleTooltip ? (
-              <InfoTooltip placement='right' title={props.titleTooltip} arrow>
-                <div className='info-grid-header'>
-                  <span className='grid-header-right-content-text'>{title}</span>
-                  <BsInfoCircle class='grid-header-info-icon' />
-                </div>
-              </InfoTooltip>
-            ) : (
-              <span className='grid-header-right-content-text'>{title}</span>
-            )}
+            {renderTitle()}
           </div>
           <div className='grid-header-left-content'>
             <div className='grid-header-filter'>

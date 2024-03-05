@@ -4,6 +4,7 @@ import { TableLayout } from '.';
 import { GridCustomizer } from '../../grid';
 import { IPageQueryable } from '../../form/interfaceFields';
 import { DefaultQueryParams } from '../../store';
+import { ITitle } from '../../form/interface';
 interface GridRendererInput {
     layout: TableLayout;
     context: PageContext;
@@ -11,12 +12,11 @@ interface GridRendererInput {
     customizer?: GridCustomizer;
     defaultParams?: DefaultQueryParams;
     customButton?: React.ReactNode[];
-    title?: any;
+    title?: ITitle;
     customAddButton?: any;
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;
-    titleTooltip?: String;
 }
 declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
 export default GridRenderer;
