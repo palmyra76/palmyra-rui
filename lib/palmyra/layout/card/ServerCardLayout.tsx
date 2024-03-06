@@ -2,21 +2,20 @@ import { MutableRefObject, forwardRef, useImperativeHandle, useRef } from 'react
 import { AiOutlineSearch } from 'react-icons/ai';
 import { TextField, InputAdornment, MenuItem, Pagination, FormControl, Select, Stack } from '@mui/material';
 import './CardLayout.css';
-import { BsInfoCircle } from "react-icons/bs";
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 import { CardLayout } from '..';
 import { IPageQueryable } from '../../form/interfaceFields';
-import { InfoTooltip } from '../../mui/widget/InfoTooltip';
+import { renderTitle } from '../../mui/widget/InfoTooltip';
+import { ITitle } from '../../form';
 
 interface ServerCardLayoutInput extends IServerQueryInput {
     Child: React.FC,
     childProps?: any,
     listKeyProvider?: (data: any, index: number) => string | number,
     EmptyChild?: React.FC,
-    title?: String,
+    title?: ITitle,
     customButton?: React.ReactNode[],
-    preProcess?: (data: any) => any,
-    titleTooltip?: string
+    preProcess?: (data: any) => any
 }
 
 const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutInput, ref: MutableRefObject<any>) {
@@ -92,19 +91,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                 <div>
                     <div className='card-header'>
                         <div className='card-left-content'>
-                            {props.titleTooltip ? (
-                                <InfoTooltip placement='right' title={props.titleTooltip} arrow>
-                                    <div className='card-left-content-info'>
-                                        {title}
-                                        <BsInfoCircle className='card-header-info-icon'/>
-                                    </div>
-                                </InfoTooltip>
-                            ) : (
-                                <>
-                                    {title}
-                                </>
-                            )}
-
+                            {renderTitle(title)}
                         </div>
                         <div className='card-right-content'>
                             {visibleFilter && (

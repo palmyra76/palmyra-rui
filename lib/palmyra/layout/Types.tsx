@@ -1,4 +1,4 @@
-import { strings } from "../form/interface";
+import { ITitle, strings } from "../form/interface";
 
 type measure = string | number;
 
@@ -30,7 +30,7 @@ interface transformable {
 
 interface Titleable {
     name?: string,
-    title?: string,
+    title?: ITitle
     hideTitle?: boolean
 }
 

@@ -76,7 +76,7 @@ const DepsFields = () => {
             <PalmyraForm storeFactory={storeFactory}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
-                <SectionContainer title='Welcome' titleInfo={info}>
+                <SectionContainer title={{title:"Header", toolTip:"welcome"}}>
                     <FieldGroupContainer columns={2}>
                         {v &&
                             <ServerLookup attribute="year.year" displayAttribute="year.yearNumber"
