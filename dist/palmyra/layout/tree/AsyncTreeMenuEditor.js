@@ -6,10 +6,10 @@ import { I as H } from "../../../chunks/index.esm3.js";
 import { u as U, c as z } from "../../../chunks/AsyncTreeMenu.js";
 import { ClickAwayListener as G } from "@mui/material";
 const te = T(function(o, d) {
-  const l = o.groupId, h = b(null), C = d || b(null);
-  let I = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [p, k] = v([I]), [w, S] = v([]), y = o.storeFactory.getTreeStore({ groupId: l }, o.endPoint);
-  M(C, () => ({
+  const l = o.groupId, h = b(null), I = d || b(null);
+  let C = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
+  const [p, k] = v([C]), [w, S] = v([]), y = o.storeFactory.getTreeStore({ groupId: l }, o.endPoint);
+  M(I, () => ({
     getValue() {
       return E();
     }
@@ -44,7 +44,7 @@ const te = T(function(o, d) {
         return;
       const n = e.parent > 0 ? e.parent : null;
       t[e.id] = {
-        id: e.id,
+        menuId: e.id,
         parent: n,
         name: e.name,
         selected: (s = e.metadata) == null ? void 0 : s.selected,

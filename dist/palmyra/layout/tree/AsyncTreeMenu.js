@@ -1,13 +1,13 @@
-import { jsx as n, Fragment as g, jsxs as l } from "react/jsx-runtime";
-import { useRef as A, useState as C, useEffect as k } from "react";
+import { jsx as n, Fragment as v, jsxs as l } from "react/jsx-runtime";
+import { useRef as I, useState as C, useEffect as k } from "react";
 import { A as L } from "../../../chunks/index.esm2.js";
 import { a as B } from "../../../chunks/index.esm3.js";
 import { u as O, c as R } from "../../../chunks/AsyncTreeMenu.js";
 import { useNavigate as T } from "react-router-dom";
 function q(u) {
-  const o = T(), m = A(null);
+  const o = T(), m = I(null);
   let c = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [d, v] = C([c]), f = u.store, N = (e, a, t) => e.map((s) => (s.id === a && !s.loaded && (s.loaded = !0, s.children = t.filter((i) => a == i.parent).map((i) => i.id)), s)).concat(t), y = (e) => e.split(",").map((t) => parseInt(t)), S = (e, a) => e.map((r) => {
+  const [d, f] = C([c]), g = u.store, N = (e, a, t) => e.map((s) => (s.id === a && !s.loaded && (s.loaded = !0, s.children = t.filter((i) => a == i.parent).map((i) => i.id)), s)).concat(t), y = (e) => e.split(",").map((t) => parseInt(t)), S = (e, a) => e.map((r) => {
     const s = r.children || "";
     return {
       id: r.id,
@@ -23,21 +23,20 @@ function q(u) {
     };
   });
   k(() => {
-    f.getRoot().then((e) => {
+    g.getRoot().then((e) => {
       var a = S(e.result, -1);
       const t = N(d, -1, a);
-      v(t);
+      f(t);
     });
   }, []);
   const b = (e) => {
     var a;
     if (!e.isBranch && ((a = e.metadata) != null && a.code)) {
-      console.log(e);
       const t = e.metadata.code;
       o(t);
     }
   };
-  return /* @__PURE__ */ n(g, { children: /* @__PURE__ */ l("div", { className: "sidebar-asyn-menu", children: [
+  return /* @__PURE__ */ n(v, { children: /* @__PURE__ */ l("div", { className: "sidebar-asyn-menu", children: [
     /* @__PURE__ */ n(
       "div",
       {
@@ -57,9 +56,6 @@ function q(u) {
         propagateSelect: !0,
         togglableSelect: !0,
         propagateSelectUpwards: !0,
-        onSelect: (e) => {
-          console.log(e);
-        },
         nodeRenderer: ({
           element: e,
           isBranch: a,
@@ -67,11 +63,11 @@ function q(u) {
           isSelected: r,
           isHalfSelected: s,
           getNodeProps: i,
-          level: I,
+          level: w,
           handleSelect: D,
-          handleExpand: w
+          handleExpand: x
         }) => {
-          const x = (h, p) => h && p.children.length === 0 ? /* @__PURE__ */ l(g, { children: [
+          const A = (h, p) => h && p.children.length === 0 ? /* @__PURE__ */ l(v, { children: [
             /* @__PURE__ */ l(
               "span",
               {
@@ -95,14 +91,14 @@ function q(u) {
           return /* @__PURE__ */ n(
             "div",
             {
-              ...i({ onClick: w }),
-              style: { marginLeft: 5 * (I - 1) },
+              ...i({ onClick: x }),
+              style: { marginLeft: 5 * (w - 1) },
               children: /* @__PURE__ */ l("div", { className: "async-tree-menu-list", onClick: () => b(e), children: [
                 /* @__PURE__ */ l("div", { className: "async-tree-menu-list-text-container", children: [
-                  /* @__PURE__ */ n("div", { className: "menu-icon", children: "I" }),
+                  /* @__PURE__ */ n("div", { className: "menu-icon" }),
                   /* @__PURE__ */ n("span", { className: "menu-name", children: e.name })
                 ] }),
-                /* @__PURE__ */ n("div", { className: "async-tree-menu-list-arrow-container", children: a && x(t, e) })
+                /* @__PURE__ */ n("div", { className: "async-tree-menu-list-arrow-container", children: a && A(t, e) })
               ] })
             }
           );

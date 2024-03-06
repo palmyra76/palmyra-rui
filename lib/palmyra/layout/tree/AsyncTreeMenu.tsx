@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
-import { IoIosArrowForward  } from "react-icons/io";
-import TreeView, { INode, ITreeViewOnSelectProps } from "react-accessible-treeview";
+import { IoIosArrowForward } from "react-icons/io";
+import TreeView, { INode } from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
@@ -51,7 +51,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                 isBranch: childIds.length > 0,
                 loaded: true,
                 metadata: {
-                    code: d.code, action:d.action
+                    code: d.code, action: d.action
                 }
             }
         });
@@ -68,10 +68,9 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
     }, []);
 
     const navigateTo = (element: INode) => {
-        if(!element.isBranch && element.metadata?.code){
-            console.log(element);
+        if (!element.isBranch && element.metadata?.code) {
             //@ts-ignore
-            const target:string = element.metadata.code;
+            const target: string = element.metadata.code;
             navigate(target);
         }
     }
@@ -93,9 +92,6 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                         propagateSelect
                         togglableSelect
                         propagateSelectUpwards
-                        onSelect={(props: ITreeViewOnSelectProps) => {
-                            console.log(props);
-                        }}
                         nodeRenderer={({
                             element,
                             isBranch,
@@ -129,11 +125,11 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
-                                style={{ marginLeft: 5 * (level - 1)}}
+                                    style={{ marginLeft: 5 * (level - 1) }}
                                 >
                                     <div className="async-tree-menu-list" onClick={() => navigateTo(element)}>
                                         <div className="async-tree-menu-list-text-container">
-                                            <div className="menu-icon">I</div>
+                                            <div className="menu-icon"></div>
                                             <span className="menu-name">{element.name}</span>
                                         </div>
                                         <div className="async-tree-menu-list-arrow-container">
@@ -164,5 +160,5 @@ const ArrowIcon = (props: IArrowIconInput) => {
         { [`${baseClass}--open`]: isOpen },
         className
     );
-    return <IoIosArrowForward  className={classes} />;
+    return <IoIosArrowForward className={classes} />;
 };

@@ -1,4 +1,4 @@
-import { MutableRefObject, SetStateAction } from "react";
+import { MutableRefObject, ReactNode, SetStateAction } from "react";
 import { IEndPoint } from "../layout";
 import { LookupStore } from "../store";
 import { IMutateOptions } from "./interfaceFields";
@@ -16,7 +16,8 @@ interface IDecoratedTitle {
     title: string;
     toolTip?: string;
 }
-type ITitle = string | IDecoratedTitle;
+type widgetFn = () => ReactNode;
+type ITitle = string | IDecoratedTitle | widgetFn;
 interface RangeValidation<T> {
     is?: T;
     min?: T;

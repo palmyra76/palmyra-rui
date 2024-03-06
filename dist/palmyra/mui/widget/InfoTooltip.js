@@ -1,7 +1,8 @@
 import "react/jsx-runtime";
 import "@mui/material";
-import { I as t, a } from "../../../chunks/InfoTooltip.js";
+import { I as t, a, r as p } from "../../../chunks/InfoTooltip.js";
 export {
   t as InfoCircle,
-  a as InfoTooltip
+  a as InfoTooltip,
+  p as renderTitle
 };

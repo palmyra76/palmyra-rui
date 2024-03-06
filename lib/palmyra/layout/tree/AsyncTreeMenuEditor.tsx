@@ -111,7 +111,7 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
             //@ts-ignore
             const parent = d.parent > 0 ? d.parent : null;
             mappedData[d.id] = {
-                id: d.id, parent, name: d.name, selected: d.metadata?.selected, children: []
+                menuId: d.id, parent, name: d.name, selected: d.metadata?.selected, children: []
             }
             //@ts-ignore
             if (null == parent && d.id > 0) {

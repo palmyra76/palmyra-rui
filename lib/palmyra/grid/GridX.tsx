@@ -12,8 +12,8 @@ import { IPageQueryable } from '../form/interfaceFields';
 import { IPagination } from "../../palmyra/store/Types"
 import { TbFilterShare, TbTableExport } from "react-icons/tb";
 import { PiFileXls, PiFilePdf } from "react-icons/pi";
-import { InfoCircle, InfoTooltip } from '../mui/widget/InfoTooltip';
-import { IDecoratedTitle, ITitle } from '../form/interface';
+import { renderTitle } from '../mui/widget/InfoTooltip';
+import { ITitle } from '../form/interface';
 
 
 //TODO - show errors on data fetching
@@ -194,26 +194,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     transition: 'transform 0.3s ease',
   };
 
-  const renderTitle = () => {
-    if (props.title) {
-      if (typeof props.title === 'object' && props.title.toolTip) {
-        //@ts-ignore
-        const p: IDecoratedTitle = props.title;
-        return <InfoTooltip placement='right' title={p.toolTip} arrow>
-          <div className='info-grid-header'>
-            <span className='grid-header-right-content-text'>{p.title}</span>
-            <InfoCircle />
-          </div>
-        </InfoTooltip>
-      }
-      //@ts-ignore
-      const title: string = typeof props.title == 'string' ? props.title : props.title.title;
-      return <span className='grid-header-right-content-text'>{title}</span>
-    }
-    else
-      return <></>;
-  }
-
   const totalPages = Math.ceil(totalRecords / queryLimit.limit);
   return (
     <div>
@@ -221,7 +201,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
         {children}
         <div className='grid-header'>
           <div className='grid-header-right-content'>
-            {renderTitle()}
+            {renderTitle(props.title)}
           </div>
           <div className='grid-header-left-content'>
             <div className='grid-header-filter'>

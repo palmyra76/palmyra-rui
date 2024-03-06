@@ -1,5 +1,6 @@
 import { Tooltip, TooltipProps, styled, tooltipClasses } from "@mui/material";
 import { BsInfoCircle } from "react-icons/bs";
+import { ITitle } from "../../form";
 
 const InfoTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -21,9 +22,39 @@ const InfoTooltip = styled(({ className, ...props }: TooltipProps) => (
 }));
 
 const InfoCircle = function () {
-    return <BsInfoCircle className='grid-header-info-icon' />;
+    return <BsInfoCircle className='grid-header-info-icon' style={{ verticalAlign: "middle" }} />;
 };
 
-export { InfoTooltip };
 
-export { InfoCircle }
+
+const renderTitle = (titleInfo: ITitle) => {
+
+    if (titleInfo) {
+        if (typeof titleInfo === 'function') {
+            return titleInfo();
+        }
+
+        if (typeof titleInfo === 'object' && titleInfo.toolTip) {
+            //@ts-ignore
+            const p: IDecoratedTitle = titleInfo;
+            return <div className='info-grid-header'>
+                <span className='grid-header-right-content-text'>{p.title}</span>
+                <InfoTooltip placement='right' title={p.toolTip} arrow>
+                    <span>
+                        <InfoCircle />
+                    </span>
+                </InfoTooltip>
+            </div >
+
+        }
+        //@ts-ignore
+        const title: string = typeof titleInfo == 'string' ? titleInfo : titleInfo.title;
+        return <span className='grid-header-right-content-text'>{title}</span>
+    }
+    else
+        return <></>;
+}
+
+export { InfoCircle, InfoTooltip };
+
+export { renderTitle }
