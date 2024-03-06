@@ -24,7 +24,7 @@ interface GridXOptions extends IServerQueryInput {
   onNewClick?: Function,
   customizer?: GridCustomizer,
   customButton?: React.ReactNode[],
-  gridTitle?: any,
+  title?: any,
   customAddButton?: any
 }
 
@@ -35,7 +35,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
   const customButton = props.customButton;
-  const gridTitle = props.gridTitle;
+  const title = props.title;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
@@ -198,7 +198,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
         {children}
         <div className='grid-header'>
           <div className='grid-header-right-content'>
-            <span className='grid-header-right-content-text'>{gridTitle}</span>
+            <span className='grid-header-right-content-text'>{title}</span>
           </div>
           <div className='grid-header-left-content'>
             <div className='grid-header-filter'>

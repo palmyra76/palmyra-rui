@@ -29,7 +29,7 @@ const p = s(({ className: r, ...e }) => /* @__PURE__ */ o(i, { ...e, classes: { 
       const t = r;
       return /* @__PURE__ */ n("div", { className: "info-header", children: [
         /* @__PURE__ */ o("span", { className: "header-content-text", children: t.title }),
-        /* @__PURE__ */ o(p, { placement: "right", title: t.toolTip, arrow: !0, children: /* @__PURE__ */ o("span", { children: /* @__PURE__ */ o(f, {}) }) })
+        /* @__PURE__ */ o(p, { placement: "right", title: t.toolTip, arrow: !0, children: /* @__PURE__ */ o("span", { style: { paddingBottom: "2px" }, children: /* @__PURE__ */ o(f, {}) }) })
       ] });
     }
     const e = typeof r == "string" ? r : r.title;
