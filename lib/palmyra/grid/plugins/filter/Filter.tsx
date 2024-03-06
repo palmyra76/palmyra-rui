@@ -6,6 +6,7 @@ import { FieldManagerContext } from "../../../layout/flexiLayout/FlexiLayoutCont
 import { createFilterData } from "../../../form/PalmyraFilterManager";
 import { TbRefresh } from "react-icons/tb";
 import { TbFilterShare } from "react-icons/tb";
+import { setValueByKey } from "../../../form/FormUtil";
 
 
 // function PaperComponent(props: PaperProps) {
@@ -21,7 +22,14 @@ import { TbFilterShare } from "react-icons/tb";
 
 const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => {
 
-    var { getFieldManager, getFilterData } = createFilterData(defaultFilter);
+    const formattedFilterValue = {};
+
+    Object.keys(defaultFilter || {}).map((k)=>{
+        const v = defaultFilter[k];
+        setValueByKey(k, formattedFilterValue, v);
+    })
+
+    var { getFieldManager, getFilterData } = createFilterData(formattedFilterValue);
 
     const reset = () => {
         setFilter({})

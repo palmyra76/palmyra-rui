@@ -352,7 +352,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
                     }
                   </div>
                   <div style={{}}>
-                    <Pagination count={totalPages} shape="rounded" componentName='div'
+                    <Pagination count={totalPages} shape="rounded" 
                       onChange={nextPage} page={getPageNo() + 1}
                     />
                   </div>

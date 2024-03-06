@@ -366,7 +366,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                     }
                   </div>
                   <div style={{}}>
-                    <Pagination count={totalPages} shape="rounded" componentName='div'
+                    <Pagination count={totalPages} shape="rounded" 
                       onChange={nextPage} page={getPageNo() + 1}
                     />
                   </div>

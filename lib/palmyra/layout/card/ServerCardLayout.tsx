@@ -167,7 +167,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                                 </div>
                                 <div style={{}}>
                                     <Stack direction="row" alignItems="center" spacing={1}>
-                                        <Pagination count={totalPages} shape="rounded" componentName='div'
+                                        <Pagination count={totalPages} shape="rounded"
                                             onChange={nextPage} page={getPageNo() + 1}
                                         />
                                     </Stack>
