@@ -25,8 +25,6 @@ const InfoCircle = function () {
     return <BsInfoCircle className='header-info-icon' />;
 };
 
-
-
 const renderTitle = (titleInfo: ITitle) => {
 
     if (titleInfo) {
@@ -40,7 +38,7 @@ const renderTitle = (titleInfo: ITitle) => {
             return <div className='info-header'>
                 <span className='header-content-text'>{p.title}</span>
                 <InfoTooltip placement='right' title={p.toolTip} arrow>
-                    <span>
+                    <span style={{ paddingBottom: '2px' }}>
                         <InfoCircle />
                     </span>
                 </InfoTooltip>
