@@ -9,7 +9,7 @@ import "@mui/icons-material";
 import "./Types.js";
 import { a as x } from "../../chunks/ServerCardLayout.js";
 import "../../chunks/index.esm.js";
-import "../../chunks/InfoTooltip.js";
+import "../mui/widget/InfoTooltip.js";
 export {
   x as default
 };

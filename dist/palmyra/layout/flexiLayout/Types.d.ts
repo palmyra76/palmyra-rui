@@ -44,7 +44,6 @@ interface TabContainerInput extends TabDefinition, Parent {
 }
 interface SectionContainerInput extends Titleable, Parent {
     customButton?: React.ReactNode[];
-    titleTooltip?: string;
 }
 export type { SectionRendererInput, TabRendererInput, PageContext, StoreFactory, LayoutParams };
 export type { TabContainerInput, SectionContainerInput, FlexiLayoutRendererInput, FlexiEventHandlers };

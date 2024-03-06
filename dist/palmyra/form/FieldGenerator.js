@@ -13,7 +13,7 @@ import "../mui/form/MuiPassword.js";
 import { g as j } from "../../chunks/ServerCardLayout.js";
 import "../mui/form/MuiNumberField.js";
 import "../mui/form/MuiIntegerField.js";
-import "../../chunks/InfoTooltip.js";
+import "../mui/widget/InfoTooltip.js";
 import "../mui/form/MuiDateRangePicker.js";
 export {
   j as default

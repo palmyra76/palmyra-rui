@@ -5,6 +5,7 @@ import { default as DefaultSectionContainer } from '../container/SectionContaine
 import { SectionRendererInput } from './Types';
 import { ChartLayout } from './Definitions';
 import { ErrorBoundary } from '../ErrorBoundary';
+import { renderTitle } from '../../mui/widget/InfoTooltip';
 
 
 const SectionRendererChart = (props: SectionRendererInput) => {
@@ -20,7 +21,7 @@ const SectionRendererChart = (props: SectionRendererInput) => {
     };
 
     return (
-        <ErrorBoundary fallback={<div>Error while loading chart {layout.title}</div>}>
+        <ErrorBoundary fallback={<div>Error while loading chart <>{renderTitle(layout.title)}</></div>}>
             <Container  {...layout}>
                 {getChart(layout.chartLayout)}
             </Container>

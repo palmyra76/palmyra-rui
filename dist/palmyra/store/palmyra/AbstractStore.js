@@ -9,7 +9,7 @@ import "@mui/material";
 import "../../layout/container/SectionContainer.js";
 import "@mui/icons-material";
 import "react";
-import "../../../chunks/InfoTooltip.js";
+import "../../mui/widget/InfoTooltip.js";
 import "react-router-dom";
 /* empty css                        */import "@emotion/styled";
 import "@mui/x-tree-view";

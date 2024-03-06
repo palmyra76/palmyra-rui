@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { strings } from "../form/interface";
+import { ITitle, strings } from "../form/interface";
 type measure = string | number;
 interface Positionable {
     height?: measure;
@@ -23,7 +23,7 @@ interface transformable {
 }
 interface Titleable {
     name?: string;
-    title?: string;
+    title?: ITitle;
     hideTitle?: boolean;
 }
 interface Renderable {

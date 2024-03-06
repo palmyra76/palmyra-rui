@@ -1,3 +1,4 @@
+import { renderTitle } from "../../mui/widget/InfoTooltip";
 import { TabContainerInput } from "../flexiLayout/Types";
 
 const TabContainer = (props: TabContainerInput) => {
@@ -6,7 +7,7 @@ const TabContainer = (props: TabContainerInput) => {
 
     return (
         <div>
-            <h2>{title}</h2>
+            <h2>{renderTitle(title)}</h2>
             {props.children}
         </div>
     )
