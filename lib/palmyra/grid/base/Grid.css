@@ -9,21 +9,26 @@
 
 .grid-header-right-content {}
 
-.info-grid-header {
+.info-header {
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
 }
 
-.grid-header-info-icon {
-  background-color:   rgb(246, 132, 2);
+.header-info-icon {
+  background-color: rgb(246, 132, 2);
   font-size: 17px;
   fill: white;
   border-radius: 50%;
+  vertical-align: middle;
 }
 
 .grid-header-right-content-text {
+  color: rgb(128, 128, 128);
+}
+
+.header-content-text {
   color: rgb(128, 128, 128);
 }
 

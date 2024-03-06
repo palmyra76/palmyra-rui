@@ -22,7 +22,7 @@ const InfoTooltip = styled(({ className, ...props }: TooltipProps) => (
 }));
 
 const InfoCircle = function () {
-    return <BsInfoCircle className='grid-header-info-icon' style={{ verticalAlign: "middle" }} />;
+    return <BsInfoCircle className='header-info-icon' />;
 };
 
 
@@ -37,8 +37,8 @@ const renderTitle = (titleInfo: ITitle) => {
         if (typeof titleInfo === 'object' && titleInfo.toolTip) {
             //@ts-ignore
             const p: IDecoratedTitle = titleInfo;
-            return <div className='info-grid-header'>
-                <span className='grid-header-right-content-text'>{p.title}</span>
+            return <div className='info-header'>
+                <span className='header-content-text'>{p.title}</span>
                 <InfoTooltip placement='right' title={p.toolTip} arrow>
                     <span>
                         <InfoCircle />
@@ -49,7 +49,7 @@ const renderTitle = (titleInfo: ITitle) => {
         }
         //@ts-ignore
         const title: string = typeof titleInfo == 'string' ? titleInfo : titleInfo.title;
-        return <span className='grid-header-right-content-text'>{title}</span>
+        return <span className='header-content-text'>{title}</span>
     }
     else
         return <></>;
