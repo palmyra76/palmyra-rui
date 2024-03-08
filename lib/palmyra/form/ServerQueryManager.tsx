@@ -73,7 +73,7 @@ const useServerQuery = (props: IServerQueryInput) => {
     setData((old: any) => {
       setTimeout(() => {
         if (props.onDataChange) {
-          props.onDataChange(data, old);
+          props.onDataChange(result, old);
         }
       }, 300)
       return result;
