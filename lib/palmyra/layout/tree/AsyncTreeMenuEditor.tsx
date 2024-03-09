@@ -16,7 +16,8 @@ import { StoreFactory } from "../flexiLayout/Types";
 interface IAsyncTreeEditorInput {
     storeFactory: StoreFactory<IChildTreeRequest>
     endPoint: IEndPoint,
-    groupId: number
+    groupId: number,
+    readOnly?: boolean
 }
 
 interface Node {
@@ -81,8 +82,8 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                 parent: d.parent ? d.parent : parentId,
                 children: d.children ? getChildId(d.children) : [],
                 isBranch: childIds.length > 0,
-                loaded: true, 
-                metadata:{menuCode : d.code}
+                loaded: true,
+                metadata: { menuCode: d.code }
             }
         });
 
@@ -166,7 +167,6 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                             handleExpand,
                         }) => {
                             const selected = isHalfSelected ? 1 : isSelected ? 2 : 0;
-                            console.log(element);
                             if (element.metadata) {
                                 element.metadata.selected = selected;
                             } else
@@ -192,16 +192,20 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                                 );
                             };
 
+                            const handleClick = (e: any) => {
+                                if (!props.readOnly) {
+                                    handleSelect(e);
+                                    e.stopPropagation
+                                }
+                            }
+
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
                                 >
                                     <CheckBoxIcon
                                         className="checkbox-icon"
-                                        onClick={(e) => {
-                                            handleSelect(e);
-                                            e.stopPropagation();
-                                        }}
+                                        onClick={handleClick}
                                         variant={
                                             isHalfSelected ? "some" : isSelected ? "all" : "none"
                                         }

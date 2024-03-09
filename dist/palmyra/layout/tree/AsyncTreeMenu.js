@@ -1,13 +1,12 @@
 import { jsx as n, Fragment as v, jsxs as l } from "react/jsx-runtime";
 import { useRef as I, useState as C, useEffect as k } from "react";
-import { A as L } from "../../../chunks/index.esm2.js";
-import { a as B } from "../../../chunks/index.esm3.js";
-import { u as O, c as R } from "../../../chunks/AsyncTreeMenu.js";
+import { u as L, A as B, c as O } from "../../../chunks/AsyncTreeMenu.js";
+import { a as R } from "../../../chunks/index.esm.js";
 import { useNavigate as T } from "react-router-dom";
-function q(u) {
+function U(u) {
   const o = T(), m = I(null);
   let c = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [d, f] = C([c]), g = u.store, N = (e, a, t) => e.map((s) => (s.id === a && !s.loaded && (s.loaded = !0, s.children = t.filter((i) => a == i.parent).map((i) => i.id)), s)).concat(t), y = (e) => e.split(",").map((t) => parseInt(t)), S = (e, a) => e.map((r) => {
+  const [d, g] = C([c]), f = u.store, N = (e, a, t) => e.map((s) => (s.id === a && !s.loaded && (s.loaded = !0, s.children = t.filter((i) => a == i.parent).map((i) => i.id)), s)).concat(t), y = (e) => e.split(",").map((t) => parseInt(t)), S = (e, a) => e.map((r) => {
     const s = r.children || "";
     return {
       id: r.id,
@@ -23,10 +22,10 @@ function q(u) {
     };
   });
   k(() => {
-    g.getRoot().then((e) => {
+    f.getRoot().then((e) => {
       var a = S(e.result, -1);
       const t = N(d, -1, a);
-      f(t);
+      g(t);
     });
   }, []);
   const b = (e) => {
@@ -47,7 +46,7 @@ function q(u) {
       }
     ),
     /* @__PURE__ */ n("div", { className: "checkbox", children: /* @__PURE__ */ n(
-      O,
+      L,
       {
         className: "async-tree-menu-container",
         data: d,
@@ -81,7 +80,7 @@ function q(u) {
               }
             ),
             /* @__PURE__ */ n(
-              L,
+              B,
               {
                 "aria-hidden": !0,
                 className: "loading-icon"
@@ -108,14 +107,14 @@ function q(u) {
   ] }) });
 }
 const j = (u) => {
-  const { isOpen: o, className: m } = u, c = "arrow", d = R(
+  const { isOpen: o, className: m } = u, c = "arrow", d = O(
     c,
     { [`${c}--closed`]: !o },
     { [`${c}--open`]: o },
     m
   );
-  return /* @__PURE__ */ n(B, { className: d });
+  return /* @__PURE__ */ n(R, { className: d });
 };
 export {
-  q as default
+  U as default
 };

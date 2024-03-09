@@ -6,6 +6,7 @@ interface IAsyncTreeEditorInput {
     storeFactory: StoreFactory<IChildTreeRequest>;
     endPoint: IEndPoint;
     groupId: number;
+    readOnly?: boolean;
 }
 interface Node {
     id: number;

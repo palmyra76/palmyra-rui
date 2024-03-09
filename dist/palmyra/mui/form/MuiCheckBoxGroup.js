@@ -4,7 +4,7 @@ import { FormControl as S, FormControlLabel as V, Checkbox as B, FormHelperText 
 import { copyMuiOptions as j, getFieldLabel as q } from "./MuiUtil.js";
 import { FieldManagerContext as w } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import z from "./FieldDecorator.js";
-import { T as G, a as H } from "../../../chunks/index.esm.js";
+import { T as G, a as H } from "../../../chunks/index.esm2.js";
 const K = M(function(t, f) {
   const b = y(w), m = f || C(null), { options: l } = t, n = b(t, "checkbox", m), { mutateOptions: x, setMutateOptions: s } = n, g = n.data ? n.data.split(",") : [], F = t.flexDirection || "row", i = n.error, c = n.eventListeners, p = t.autoFocus || !1, u = C(null);
   L(m, () => ({

@@ -17,14 +17,14 @@ import { renderTitle as Ue } from "../palmyra/mui/widget/InfoTooltip.js";
 import { FieldManagerContext as he, StoreFactoryContext as Le, LayoutParamsContext as Ye } from "../palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { jsx as e, jsxs as s, Fragment as ie } from "react/jsx-runtime";
 import At, { useState as O, useRef as _, useEffect as Y, forwardRef as U, useContext as de, useImperativeHandle as ne, useMemo as et } from "react";
-import { a as Me } from "./index.esm2.js";
+import { a as Me } from "./AsyncTreeMenu.js";
 import { FormControlLabel as Ke, Checkbox as Ze, FormControl as ae, FormHelperText as Ve, Autocomplete as tt, TextField as fe, CircularProgress as nt, Button as te, InputAdornment as Ee, ClickAwayListener as le, Select as Ie, MenuItem as Be, Pagination as Te, Box as Lt, Stack as Mt } from "@mui/material";
 import Vt from "../palmyra/layout/card/CardLayout.js";
 import Et from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
 import { copyMuiOptions as Qe, getFieldLabel as ze } from "../palmyra/mui/form/MuiUtil.js";
 import { hasDot as ue } from "../palmyra/utils/StringUtil.js";
 import { getValueByKey as me, setValueByKey as It } from "../palmyra/form/FormUtil.js";
-import { T as je, a as We, b as Bt, c as qe, d as rt } from "./index.esm.js";
+import { T as je, a as We, b as Bt, c as qe, d as rt } from "./index.esm2.js";
 import { delay as it, delayGenerator as Tt, mergeDeep as Qt } from "../palmyra/utils/index.js";
 import zt from "../palmyra/mui/form/MuiDateRangePicker.js";
 import at from "../palmyra/layout/container/SectionContainer.js";
@@ -41,7 +41,8 @@ import "axios";
 import "react-router-dom";
 /* empty css          */import "@emotion/styled";
 import "@mui/x-tree-view";
-/* empty css              */import { topic as Xe } from "../palmyra/utils/pubsub/topic.js";
+/* empty css              */import "../palmyra/layout/tree/AsyncTreeMenuEditor.js";
+import { topic as Xe } from "../palmyra/utils/pubsub/topic.js";
 import "react-chartjs-2";
 import "../palmyra/chart/chartjs/LineChart.js";
 import "../palmyra/chart/chartjs/BarChart.js";
@@ -137,7 +138,7 @@ const oe = (n) => {
 function _e(n) {
   return n ? Array.isArray(n) ? n : typeof n == "string" ? n.split(",") : [n] : [];
 }
-const Cr = U(function(t, d) {
+const br = U(function(t, d) {
   const a = de(he), o = d || _(null), l = a(t, "checkbox", o), { mutateOptions: y, setMutateOptions: g } = l, [C, f] = O(!1), v = _e(l.data), u = l.error, b = l.eventListeners, p = l.store, E = t.pageSize || -1, A = { store: p, pageSize: E, defaultParams: t.defaultParams }, { data: R } = oe(A), D = R, B = _(null), T = t.lookupOptions || {}, q = T.idAttribute || "id", I = T.displayAttribute || "name", Q = t.showSelectedOnly && t.readonly, P = ue(q) ? (m) => me(q, m) : (m) => m[q], L = ue(I) ? (m) => me(I, m) : (m) => m[I];
   ne(o, () => ({
     focus() {
@@ -927,7 +928,7 @@ const nn = U(function(t, d) {
       ) })
     ] }) }) }) })
   ] }) });
-}), br = U(function(t, d) {
+}), xr = U(function(t, d) {
   const { children: a, EmptyChild: o, onRowClick: l, quickSearch: y } = t, g = t.columns, C = o || st, f = t.customizer || dt, v = t.customButton, u = t.title, [b, p] = O(!1), [E, A] = O(!1), [R, D] = O("standard"), [B, T] = O(!1), [q, I] = O(""), {
     setQueryFilter: Q,
     setQuickSearch: P,
@@ -1142,7 +1143,7 @@ const nn = U(function(t, d) {
       ) })
     ] }) }) }) })
   ] }) });
-}), xr = U(function(t, d) {
+}), Fr = U(function(t, d) {
   const { columns: a, endPoint: o, storeFactory: l, layoutParams: y, pagination: g } = t, C = t.quickSearch || "", f = t.customButton, v = t.customAddButton, u = t.title, b = t.fetchAll, p = t.filterTopic, E = t.initialFetch, A = (D, B) => {
   };
   Y(() => {
@@ -1312,14 +1313,14 @@ const Ct = (n) => {
     default:
       return $e;
   }
-}, Fr = U(function(t, d) {
+}, wr = U(function(t, d) {
   const [a, o] = O(t.layout), l = t.mode ? t.mode : a.type ? a.type : "grid", y = t.layoutParams || {}, g = cn(l), C = _(0);
   return Y(() => {
     o(t.layout), C.current < 999999 ? C.current++ : C.current = 0;
   }, [t.layout]), /* @__PURE__ */ e(mt, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(Le.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(Ye.Provider, { value: y, children: /* @__PURE__ */ e(g, { ...t, ref: (f) => {
     d && (d.current = f);
   } }, C.current) }) }) });
-}), wr = U(function(t, d) {
+}), Nr = U(function(t, d) {
   const { title: a, Child: o, childProps: l, pageSize: y, customButton: g } = t, C = d || _(null), {
     setQueryFilter: f,
     refreshData: v,
@@ -1444,15 +1445,15 @@ const Ct = (n) => {
   ] }) }) });
 });
 export {
-  br as D,
-  Fr as F,
+  xr as D,
+  wr as F,
   vt as G,
   $t as M,
-  xr as P,
-  wr as S,
+  Fr as P,
+  Nr as S,
   Ct as T,
   nn as a,
-  Cr as b,
+  br as b,
   Jt as c,
   Yt as d,
   ft as e,
