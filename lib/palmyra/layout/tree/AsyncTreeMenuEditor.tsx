@@ -55,7 +55,7 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
     const updateTreeData = (list, id, children) => {
         const data = list.map((node) => {
             if (node.id === id && !node.loaded) {
-                node.loaded = true
+                node.loaded = true;
                 node.children = children.filter((e) => id == e.parent).map((el) => {
                     return el.id;
                 });
@@ -81,7 +81,8 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                 parent: d.parent ? d.parent : parentId,
                 children: d.children ? getChildId(d.children) : [],
                 isBranch: childIds.length > 0,
-                loaded: true
+                loaded: true, 
+                metadata:{menuCode : d.code}
             }
         });
 
@@ -111,7 +112,8 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
             //@ts-ignore
             const parent = d.parent > 0 ? d.parent : null;
             mappedData[d.id] = {
-                menuId: d.id, parent, name: d.name, selected: d.metadata?.selected, children: []
+                menuId: d.id, parent, name: d.name, mask: d.metadata?.selected,
+                menuCode: d.metadata?.menuCode, children: []
             }
             //@ts-ignore
             if (null == parent && d.id > 0) {
@@ -164,7 +166,11 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                             handleExpand,
                         }) => {
                             const selected = isHalfSelected ? 1 : isSelected ? 2 : 0;
-                            element.metadata = { selected: selected };
+                            console.log(element);
+                            if (element.metadata) {
+                                element.metadata.selected = selected;
+                            } else
+                                element.metadata = { selected: selected };
 
                             const branchNode = (isExpanded, element) => {
                                 return isExpanded && element.children.length === 0 ? (
