@@ -1,6 +1,6 @@
 import { MutableRefObject, ReactNode, SetStateAction } from "react";
 import { IEndPoint } from "../layout";
-import { LookupStore } from "../store";
+import { DefaultQueryParams, LookupStore } from "../store";
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
 import { IFieldEventListener, IFieldValueListener } from ".";
@@ -106,6 +106,8 @@ interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
         endPoint: IEndPoint;
         endPointOptions?: IEndPointOptions;
     };
+    pageSize?: numbers;
+    defaultParams?: DefaultQueryParams;
 }
 interface IAutoCompleteDefinition extends AttributeDefinition, IDecoration {
     renderOption?: Function;
@@ -138,6 +140,8 @@ interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
     };
     flexDirection?: 'column' | 'row';
     showSelectedOnly?: boolean;
+    pageSize?: numbers;
+    defaultParams?: DefaultQueryParams;
 }
 interface IEventListeners {
     onBlur: (data: any) => void;

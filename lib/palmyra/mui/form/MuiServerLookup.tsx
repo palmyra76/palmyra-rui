@@ -42,11 +42,13 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const idKey = lookupOptions.idAttribute || 'id';
     const labelKey = lookupOptions.displayAttribute || 'name';
     const searchKey = labelKey;
+    const defaultParams = props.defaultParams
 
     const serverQueryOptions: IServerQueryInput = {
         store, endPointOptions: props.storeOptions.endPointOptions, fetchAll: true,
-        pageSize: 15, quickSearch: searchKey, initialFetch: false
+        pageSize: props.pageSize || 15, quickSearch: searchKey, initialFetch: false, defaultParams
     };
+    
     const serverQuery = useServerQuery(serverQueryOptions);
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const error: IFormFieldError = fieldManager.error;

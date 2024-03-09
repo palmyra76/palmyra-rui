@@ -54,5 +54,8 @@ function convertQueryParams(queryParams: QueryParams): any {
 
     const _f = queryParams.filter || {};
 
-    return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [] };
+    const _offset = queryParams.offset || 0;
+    const _limit = queryParams.limit || 15;
+
+    return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [], _offset, _limit };
 }

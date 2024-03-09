@@ -37,8 +37,9 @@ const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckbox
     const error: IFormFieldError = fieldManager.error;
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const store: LookupStore<any> = fieldManager.store;
+    const pageSize = props.pageSize || -1;
 
-    const serverQueryProps: IServerQueryInput = { store, pageSize: -1 }
+    const serverQueryProps: IServerQueryInput = { store, pageSize: pageSize, defaultParams: props.defaultParams }
 
     const { data } = useServerQuery(serverQueryProps);
 

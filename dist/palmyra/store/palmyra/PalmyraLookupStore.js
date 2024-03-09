@@ -1,12 +1,12 @@
-var a = Object.defineProperty;
-var c = (t, o, r) => o in t ? a(t, o, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[o] = r;
-var i = (t, o, r) => (c(t, typeof o != "symbol" ? o + "" : o, r), r);
+var c = Object.defineProperty;
+var f = (t, o, r) => o in t ? c(t, o, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[o] = r;
+var d = (t, o, r) => (f(t, typeof o != "symbol" ? o + "" : o, r), r);
 import h from "axios";
-import { PalmyraAbstractStore as u } from "./AbstractStore.js";
-class m extends u {
+import { PalmyraAbstractStore as a } from "./AbstractStore.js";
+class P extends a {
   constructor(r, n, e) {
     super(r, n);
-    i(this, "idProperty");
+    d(this, "idProperty");
     this.idProperty = e;
   }
   getEndPoint() {
@@ -24,14 +24,14 @@ class m extends u {
   }
   query(r) {
     var n = this.target + this.queryUrl(), e = this.formatUrl(n, r);
-    const l = { params: p(r) };
-    return this.isUrlValid(e) || h.get(e, l).then((d) => d.data);
+    const i = { params: p(r) };
+    return this.isUrlValid(e) || h.get(e, i).then((l) => l.data);
   }
 }
 function p(t) {
-  const o = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((e) => (t.sortOrder[e] === "asc" ? "+" : "-") + e), r = !!t.total;
-  return { ...t.filter || {}, _total: r, _orderBy: o.length ? o.join(",") : [] };
+  const o = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((i) => (t.sortOrder[i] === "asc" ? "+" : "-") + i), r = !!t.total, n = t.filter || {}, e = t.offset || 0, s = t.limit || 15;
+  return { ...n, _total: r, _orderBy: o.length ? o.join(",") : [], _offset: e, _limit: s };
 }
 export {
-  m as PalmyraLookupStore
+  P as PalmyraLookupStore
 };
