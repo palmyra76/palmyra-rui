@@ -92,10 +92,11 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
 
     useEffect(() => {
         store.getRoot().then((d) => {
+            let mask = d.result.filter((item: any) => item.mask == 2).map((item: any) => item.id);
             var nodes: any[] = convert(d.result, -1);
             const sd = updateTreeData(data, -1, nodes);
             setData(sd);
-            setSelectedIds([5, 7]); // TODO   update based on the server side value.
+            setSelectedIds(mask);
         });
     }, [groupId]);
 

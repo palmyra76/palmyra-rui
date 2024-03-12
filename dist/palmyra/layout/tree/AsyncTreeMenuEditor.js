@@ -1,14 +1,14 @@
 import { jsx as r, Fragment as g, jsxs as h } from "react/jsx-runtime";
-import { forwardRef as M, useRef as b, useState as v, useImperativeHandle as q, useEffect as B } from "react";
+import { forwardRef as M, useRef as k, useState as v, useImperativeHandle as q, useEffect as B } from "react";
 import { u as j, A as P, c as V } from "../../../chunks/AsyncTreeMenu.js";
 import { F as $, a as H, b as U, A as z } from "../../../chunks/AsyncTreeCrudDropDown.js";
 import { I as G } from "../../../chunks/index.esm.js";
 import { ClickAwayListener as J } from "@mui/material";
 const te = M(function(o, d) {
-  const l = o.groupId, m = b(null), k = d || b(null);
+  const l = o.groupId, m = k(null), b = d || k(null);
   let I = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
   const [p, y] = v([I]), [w, S] = v([]), A = o.storeFactory.getTreeStore({ groupId: l }, o.endPoint);
-  q(k, () => ({
+  q(b, () => ({
     getValue() {
       return F();
     }
@@ -27,9 +27,10 @@ const te = M(function(o, d) {
   });
   B(() => {
     A.getRoot().then((t) => {
-      var c = E(t.result, -1);
-      const e = x(p, -1, c);
-      y(e), S([5, 7]);
+      let c = t.result.filter((n) => n.mask == 2).map((n) => n.id);
+      var e = E(t.result, -1);
+      const a = x(p, -1, e);
+      y(a), S(c);
     });
   }, [l]);
   const F = () => {

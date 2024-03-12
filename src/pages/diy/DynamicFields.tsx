@@ -6,12 +6,15 @@ import { Button } from "@mui/material";
 import { FieldGroupContainer } from "../../components/form";
 import AsyncTreeMenuEditor, { IAsyncTreeMenuEditor } from "../../../lib/palmyra/layout/tree/AsyncTreeMenuEditor";
 import { PalmyraTreeStore } from "../../../lib/palmyra/store/palmyra/PalmyraTreeStore";
+import AsyncTreeMenu from "../../../lib/palmyra/layout/tree/AsyncTreeMenu";
 
 
 const DynamicFields = () => {
     const formRef = useRef<IPalmyraForm>(null);
     const [isValid, setValid] = useState(false);
     const [data, setData] = useState({});
+    const [readOnly, setReadOnly] = useState<boolean>(true);
+
 
     const onValidityChange = (valid: boolean): void => {
         setValid(valid);
@@ -48,23 +51,31 @@ const DynamicFields = () => {
             return {};
         }
     }
-    const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({baseUrl: '/api'});
+    const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api' });
     const treeRef = useRef<IAsyncTreeMenuEditor>();
 
     const submitValue = () => {
         console.log(treeRef.current.getValue())
-        const formStore = storeFactory.getFormStore({},'/acl/editor/menu/group/{groupId}');
+        const formStore = storeFactory.getFormStore({}, '/acl/editor/menu/group/{groupId}');
         const rootMenu = treeRef.current.getValue();
-        formStore.post(rootMenu, {endPointVars : {groupId:2}});
+        formStore.post(rootMenu, { endPointVars: { groupId: 1 } });
     }
 
-    
-    const endPoint:IEndPoint = '/acl/editor/menu/list';
-    
+    const endPoint: IEndPoint = '/acl/editor/menu/list';
+    const MenuEndPoint: IEndPoint = '/acl/editor/menu/group/1/menuList';
+    const SideMenuEndPoint: IEndPoint = '/acl/editor/menu/group/1/sidemenuList';
+    const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({ target: "/api" }, SideMenuEndPoint);
+
+    const editMenu = () => {
+        setReadOnly(false)
+    }
+
     return (<>
-        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>  
-            <AsyncTreeMenuEditor ref={treeRef} storeFactory={storeFactory} endPoint={endPoint} groupId={1}/>
-            <div> <Button onClick={submitValue}>Submit</Button> </div>
+        <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
+            {readOnly ? <div> <Button className="filled-button" onClick={editMenu}>Edit</Button> </div> :
+                <div> <Button className="filled-button" onClick={submitValue}>Submit</Button></div>}
+            <AsyncTreeMenuEditor ref={treeRef} storeFactory={storeFactory} endPoint={MenuEndPoint} groupId={1} readOnly={readOnly} />
+            <AsyncTreeMenu store={treeStore} />
             {/* <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
