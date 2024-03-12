@@ -56,14 +56,14 @@ const DynamicFields = () => {
 
     const submitValue = () => {
         console.log(treeRef.current.getValue())
-        const formStore = storeFactory.getFormStore({}, '/acl/editor/menu/group/{groupId}');
+        const formStore = storeFactory.getFormStore({}, '/palmyra/acl/editor/menu/group/{groupId}');
         const rootMenu = treeRef.current.getValue();
-        formStore.post(rootMenu, { endPointVars: { groupId: 1 } });
+        formStore.post(rootMenu, { endPointVars: { groupId: 3 } });
     }
 
     const endPoint: IEndPoint = '/acl/editor/menu/list';
-    const MenuEndPoint: IEndPoint = '/acl/editor/menu/group/1/menuList';
-    const SideMenuEndPoint: IEndPoint = '/acl/editor/menu/group/1/sidemenuList';
+    const MenuEndPoint: IEndPoint = '/palmyra/acl/editor/menu/group/3/menuList';
+    const SideMenuEndPoint: IEndPoint = '/palmyra/acl/menu/listAll';
     const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({ target: "/api" }, SideMenuEndPoint);
 
     const editMenu = () => {
