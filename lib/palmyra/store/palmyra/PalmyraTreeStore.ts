@@ -68,4 +68,4 @@ function convertQueryParams(queryParams: QueryParams): any {
     return { ..._f, _total, _orderBy: orderBy.length ? orderBy.join(',') : [], _offset, _limit };
 }
 
-export type {IChildTreeRequest}
+export type { IChildTreeRequest }
