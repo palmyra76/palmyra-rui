@@ -15,7 +15,7 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css                            */import "../../layout/card/CardLayout.js";
 import "../../layout/tree/AsyncTreeMenuEditor.js";
-import { StringFormat as p, hasUnfilledParameter as n } from "../../utils/StringUtil.js";
+/* empty css                             */import { StringFormat as p, hasUnfilledParameter as n } from "../../utils/StringUtil.js";
 import "../../utils/pubsub/topic.js";
 import "react-chartjs-2";
 import "../../chart/chartjs/LineChart.js";
@@ -41,7 +41,7 @@ import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
 import "../../form/PalmyraForm.js";
-class _ {
+class $ {
   constructor(t, r) {
     o(this, "options");
     o(this, "target");
@@ -65,5 +65,5 @@ class _ {
   }
 }
 export {
-  _ as PalmyraAbstractStore
+  $ as PalmyraAbstractStore
 };

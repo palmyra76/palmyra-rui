@@ -10,5 +10,6 @@ export { default as ServerCardLayout } from '../layout/card/ServerCardLayout';
 export {NoopEmptyChildCard} from '../layout/card/EmptyChildCard';
 export type { IEndPoint } from './Types'
 export { default as AsyncTreeMenuEditor } from "./tree/AsyncTreeMenuEditor";
+export { default as AsyncTreeMenu } from "./tree/AsyncTreeMenu";
 
 export { FieldManagerContext } from './flexiLayout/FlexiLayoutContext';

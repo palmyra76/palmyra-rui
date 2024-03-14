@@ -1,5 +1,5 @@
 import "react";
-import { u as R } from "../../chunks/ServerCardLayout.js";
+import { u as S } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
@@ -12,7 +12,7 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css                         */import "../layout/card/CardLayout.js";
 import "../layout/tree/AsyncTreeMenuEditor.js";
-import "../utils/pubsub/topic.js";
+/* empty css                          */import "../utils/pubsub/topic.js";
 import "../utils/pubsub/PubSubHelper.js";
 import "react-chartjs-2";
 import "../chart/chartjs/LineChart.js";
@@ -39,5 +39,5 @@ import "../mui/form/MuiNumberField.js";
 import "../mui/form/MuiIntegerField.js";
 import "./PalmyraForm.js";
 export {
-  R as default
+  S as default
 };

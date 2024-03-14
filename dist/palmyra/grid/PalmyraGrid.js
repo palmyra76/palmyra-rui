@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import { P as Q } from "../../chunks/ServerCardLayout.js";
+import { P as R } from "../../chunks/ServerCardLayout.js";
 import "axios";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
@@ -12,7 +12,7 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css                         */import "../layout/card/CardLayout.js";
 import "../layout/tree/AsyncTreeMenuEditor.js";
-import "../utils/pubsub/topic.js";
+/* empty css                          */import "../utils/pubsub/topic.js";
 import "react-chartjs-2";
 import "../chart/chartjs/LineChart.js";
 import "../chart/chartjs/BarChart.js";
@@ -38,5 +38,5 @@ import "../mui/form/MuiNumberField.js";
 import "../mui/form/MuiIntegerField.js";
 import "../form/PalmyraForm.js";
 export {
-  Q as PalmyraGrid
+  R as PalmyraGrid
 };
