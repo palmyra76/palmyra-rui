@@ -12,6 +12,11 @@
             "icon": "home"
         },
         {
+            "path": "/menu",
+            "name": "Tree Menu",
+            "icon": "layout"
+        },
+        {
             "path": "/deps",
             "name": "Dependant Fields",
             "icon": "home"

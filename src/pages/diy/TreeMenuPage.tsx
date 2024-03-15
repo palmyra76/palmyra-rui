@@ -40,7 +40,7 @@ const TreeMenu = () => {
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             {readOnly ? <div> <Button className="filled-button" onClick={editMenu}>Edit</Button> </div> :
                 <div> <Button className="filled-button" onClick={submitValue}>Submit</Button></div>}
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', backgroundColor: 'white' }}>
                 <div style={{ width: "30%", marginTop: '10px' }}>Menu
                     <AsyncTreeMenuEditor ref={treeRef} storeFactory={storeFactory} endPoint={MenuEndPoint}
                         groupId={groupId} readOnly={readOnly} fineGrained={true} />

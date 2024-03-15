@@ -1,7 +1,7 @@
 import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
-import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
+import { FaRegSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
 import TreeView, { INode } from "react-accessible-treeview";
 import cx from "classnames";
@@ -43,6 +43,7 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
     let rootNode: INode = { name: "", id: -1, parent: null, children: [], isBranch: true };
     const [data, setData] = useState<INode[]>([rootNode]);
     const [selectedIds, setSelectedIds] = useState([]);
+    const [expandedIds, setExpandedIds] = useState([]);
     const store: TreeQueryStore<IChildTreeRequest, any> = props.storeFactory.getTreeStore({ groupId: groupId }, props.endPoint);
 
     useImperativeHandle(currentRef, () => {
@@ -97,7 +98,9 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
             var nodes: any[] = convert(d.result, -1);
             const sd = updateTreeData(data, -1, nodes);
             setData(sd);
+            let expandId = d.result.filter((item: any) => item.mask > 0).map((item: any) => item.id);
             setSelectedIds(mask);
+            setExpandedIds(expandId);
         });
     }, [groupId]);
 
@@ -160,6 +163,8 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                         propagateSelect
                         togglableSelect
                         propagateSelectUpwards
+                        expandedIds={expandedIds}
+                        defaultExpandedIds={expandedIds}
                         nodeRenderer={({
                             element,
                             isBranch,
@@ -264,7 +269,7 @@ const CheckBoxIcon = ({ variant, ...rest }) => {
         case "all":
             return <FaCheckSquare style={{ color: rest.style.color, backgroundColor: rest.style.backgroundColor }} {...rest} />;
         case "none":
-            return <FaSquare style={{ color: 'white', border: '1px solid rgba(128, 128,128, 0.2)' }}
+            return <FaRegSquare style={{ color: "rgba(128, 128,128, 0.2)" }}
                 onClick={rest.onClick} className={rest.className} />;
         case "some":
             return <FaMinusSquare style={{ color: rest.style.color, backgroundColor: rest.style.backgroundColor }} {...rest} />;
