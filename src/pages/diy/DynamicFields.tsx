@@ -1,20 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { IEndPoint, IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect, MuiTextField, PalmyraForm, PalmyraStoreFactory, SectionContainer, StoreFactory, TreeQueryStore, createFormHelper } from "../../../lib/main";
-import { AppStoreFactory } from "../../components/store/AppStoreFactory";
+import { useRef, useState } from "react";
+import {
+    IFieldEventListener, IFormCustomizer, IFormHelper, IPalmyraForm, ISelectField, MuiRadioGroup, MuiSelect,
+    MuiTextField, PalmyraForm, PalmyraStoreFactory, SectionContainer, StoreFactory, createFormHelper
+} from "../../../lib/main";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import { FieldGroupContainer } from "../../components/form";
-import AsyncTreeMenuEditor, { IAsyncTreeMenuEditor } from "../../../lib/palmyra/layout/tree/AsyncTreeMenuEditor";
-import { PalmyraTreeStore } from "../../../lib/palmyra/store/palmyra/PalmyraTreeStore";
-import AsyncTreeMenu from "../../../lib/palmyra/layout/tree/AsyncTreeMenu";
 
 
 const DynamicFields = () => {
     const formRef = useRef<IPalmyraForm>(null);
     const [isValid, setValid] = useState(false);
-    const [data, setData] = useState({});
-    const [readOnly, setReadOnly] = useState<boolean>(true);
-    const groupId = 1;
+    const [data, _setData] = useState({});
 
     const onValidityChange = (valid: boolean): void => {
         setValid(valid);
@@ -52,36 +49,10 @@ const DynamicFields = () => {
         }
     }
     const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api' });
-    const treeRef = useRef<IAsyncTreeMenuEditor>();
-
-    const submitValue = () => {
-        const formStore = storeFactory.getFormStore({}, '/palmyra/admin/acl/group/{groupId}');
-        const rootMenu = treeRef.current.getValue();
-        const record = {
-            rootMenu, 
-            id:groupId,
-            name: 'admin',
-            status:1
-        }
-        formStore.put(record, { endPointVars: { groupId } });
-    }
-
-    const MenuEndPoint: IEndPoint = '/palmyra/admin/acl/group/' + groupId + '/menuList';
-    const SideMenuEndPoint: IEndPoint = '/palmyra/acl/menu/listAll';
-    const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({ target: "/api" }, SideMenuEndPoint);
-
-    const editMenu = () => {
-        setReadOnly(false)
-    }
 
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
-            {readOnly ? <div> <Button className="filled-button" onClick={editMenu}>Edit</Button> </div> :
-                <div> <Button className="filled-button" onClick={submitValue}>Submit</Button></div>}
-            <AsyncTreeMenuEditor ref={treeRef} storeFactory={storeFactory} endPoint={MenuEndPoint} 
-            groupId={groupId} readOnly={readOnly} />
-            <AsyncTreeMenu store={treeStore} />
-            {/* <PalmyraForm storeFactory={storeFactory} customizer={customizer}
+            <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
                 mode="edit" ref={formRef} >
                 <SectionContainer title='Welcome'>
@@ -95,7 +66,7 @@ const DynamicFields = () => {
                         <MuiRadioGroup attribute="ncb" title="No Claim Bonus"
                             required={true}
                             options={{ true: 'Yes', false: 'No' }} />
-                      
+
 
                         <MuiTextField attribute="sfs" title="Server " placeHolder="welcome"
                             length={{ min: 3, message: "Minimum of 3 letters" }} />
@@ -105,7 +76,7 @@ const DynamicFields = () => {
                 <Button disabled={!isValid} onClick={() => { submitData() }}>Test Me</Button>
 
                 <Button onClick={() => { onValidityChange(false) }}>Toggle Me</Button>
-            </PalmyraForm> */}
+            </PalmyraForm>
 
         </ErrorBoundary>
 

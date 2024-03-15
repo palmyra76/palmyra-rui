@@ -7,6 +7,7 @@ interface IAsyncTreeEditorInput {
     endPoint: IEndPoint;
     groupId: number;
     readOnly?: boolean;
+    fineGrained?: boolean;
 }
 interface Node {
     id: number;

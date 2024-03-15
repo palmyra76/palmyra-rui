@@ -20,6 +20,7 @@ import StaticSummaryGrid from './pages/StaticSummaryGrid';
 import DynamicFields from './pages/diy/DynamicFields';
 import DepsFields from './pages/diy/DepsFields';
 import CardPage from './pages/demo/CardPage';
+import TreeMenu from './pages/diy/TreeMenuPage';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/deps" element={<DepsFields />} />
             <Route path="/dynamic" element={<DynamicFields />} />
+            <Route path="/menu" element={<TreeMenu />} />
             <Route path="/grid" element={<StaticSummaryGrid />} />
             <Route path="/edit" element={<EditPage />} />
             <Route path="/demo/:layout/backendgrid/view/:id" element={<BackendViewFormPage />} />

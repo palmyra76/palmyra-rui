@@ -17,7 +17,8 @@ interface IAsyncTreeEditorInput {
     storeFactory: StoreFactory<IChildTreeRequest>
     endPoint: IEndPoint,
     groupId: number,
-    readOnly?: boolean
+    readOnly?: boolean,
+    fineGrained?: boolean
 }
 
 interface Node {
@@ -138,6 +139,9 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
         return result;
     }
 
+    const style = props.readOnly ? { color: "rgb( 230, 230, 230 )", backgroundColor: 'white' } :
+        { color: "rgb(44, 134, 213)", backgroundColor: 'white' };
+
     return (
         <>
             <div>
@@ -207,6 +211,7 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                                     <CheckBoxIcon
                                         className="checkbox-icon"
                                         onClick={handleClick}
+                                        style={style}
                                         variant={
                                             isHalfSelected ? "some" : isSelected ? "all" : "none"
                                         }
@@ -219,8 +224,9 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                                         <div>
                                             {isBranch ? branchNode(isExpanded, element) :
                                                 <>
-                                                    <LeafNode element={element} isSelected={isSelected} />
-
+                                                    {!props.fineGrained ?
+                                                        <LeafNode element={element} isSelected={isSelected} />
+                                                        : ""}
                                                 </>
                                             }
                                         </div>
@@ -253,13 +259,15 @@ const ArrowIcon = (props: IArrowIconInput) => {
 };
 
 const CheckBoxIcon = ({ variant, ...rest }) => {
+
     switch (variant) {
         case "all":
-            return <FaCheckSquare style={{ color: 'rgb(44, 134, 213)', backgroundColor: 'white' }}{...rest} />;
+            return <FaCheckSquare style={{ color: rest.style.color, backgroundColor: rest.style.backgroundColor }} {...rest} />;
         case "none":
-            return <FaSquare style={{ color: 'white', border: '1px solid rgba(128, 128,128, 0.2)' }} {...rest} />;
+            return <FaSquare style={{ color: 'white', border: '1px solid rgba(128, 128,128, 0.2)' }}
+                onClick={rest.onClick} className={rest.className} />;
         case "some":
-            return <FaMinusSquare style={{ color: 'rgb(44, 134, 213)', backgroundColor: 'white' }} {...rest} />;
+            return <FaMinusSquare style={{ color: rest.style.color, backgroundColor: rest.style.backgroundColor }} {...rest} />;
         default:
             return null;
     }

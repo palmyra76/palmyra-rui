@@ -79,6 +79,7 @@
   display: flex;
   gap: 5px;
   align-items: center;
+  cursor: pointer;
 }
 
 .tree {
@@ -210,6 +211,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .sidebar-asyn-menu .async-tree-menu-list-text-container {
