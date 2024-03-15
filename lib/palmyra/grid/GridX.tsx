@@ -9,16 +9,18 @@ import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { IPagination } from "../../palmyra/store/Types"
+import { EXPORT_FORMAT, ExportRequest, IPagination } from "../../palmyra/store/Types"
 import { TbFilterShare, TbTableExport } from "react-icons/tb";
 import { PiFileXls, PiFilePdf } from "react-icons/pi";
 import { renderTitle } from '../mui/widget/InfoTooltip';
 import { ITitle } from '../form/interface';
+import { GridStore } from '../store';
 
 
 //TODO - show errors on data fetching
 
 interface GridXOptions extends IServerQueryInput {
+  store: GridStore<any>,
   columns: ColumnDefinition[],
   children?: any,
   EmptyChild?: React.FC,
@@ -46,7 +48,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const {
     setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
     gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit, getQueryLimit,
-    data, totalRecords, queryLimit, pageSizeOptions, filter } = useServerQuery(props);
+    getQueryRequest, data, totalRecords, queryLimit, pageSizeOptions, filter } = useServerQuery(props);
 
   const currentRef = ref ? ref : useRef<IPageQueryable>(null);
   useImperativeHandle(currentRef, () => {
@@ -167,13 +169,12 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     setExportDropdownOpen(!exportDropdownOpen);
   }
 
-  const handlePdfGen = () => {
-
+  const exportData = (format: EXPORT_FORMAT) => {
+    const p = getQueryRequest();
+    const params: ExportRequest = { ...p, format, limit: -1 };
+    props.store.export(params);
   }
 
-  const handleExcelGen = () => {
-
-  }
   const onNewClick = () => {
     props.onNewClick();
   }
@@ -278,11 +279,11 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                 {exportDropdownOpen && (
                   <div className="density-dropdown-content">
                     <ul>
-                      <li onClick={handlePdfGen}>
+                      <li onClick={() => exportData('csv')}>
                         <PiFilePdf className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Export as PDF</span>
                       </li>
-                      <li onClick={handleExcelGen}>
+                      <li onClick={() => exportData('excel')}>
                         <PiFileXls className='density-icon grid-button-icon' />
                         <span className='drodown-content-text'>Export as Excel</span>
                       </li>
@@ -366,7 +367,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                     }
                   </div>
                   <div style={{}}>
-                    <Pagination count={totalPages} shape="rounded" 
+                    <Pagination count={totalPages} shape="rounded"
                       onChange={nextPage} page={getPageNo() + 1}
                     />
                   </div>

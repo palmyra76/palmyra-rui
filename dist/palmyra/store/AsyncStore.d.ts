@@ -1,5 +1,5 @@
 import { strings } from "../form/interface";
-import { GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest } from "./Types";
+import { ExportRequest, GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest } from "./Types";
 interface LookupStore<T> extends AbstractQueryStore<T> {
 }
 interface AbstractQueryStore<T> {
@@ -10,6 +10,9 @@ interface QueryStore<T> extends AbstractQueryStore<T> {
     get(request: GetRequest): Promise<T>;
     getIdentity(o: T): any;
     getIdProperty(): strings;
+}
+interface GridStore<T> extends QueryStore<T> {
+    export(request: ExportRequest): void;
 }
 interface TreeQueryStore<T, R> {
     getChildren(data: T): Promise<QueryResponse<R>>;
@@ -31,4 +34,4 @@ interface DefaultQueryParams {
     filter?: Record<any, any>;
     sort?: strings;
 }
-export type { DataStore, QueryStore, TreeQueryStore, AbstractQueryStore, ChartStore, AuthDecorator, LookupStore, DefaultQueryParams };
+export type { DataStore, QueryStore, TreeQueryStore, AbstractQueryStore, GridStore, ChartStore, AuthDecorator, LookupStore, DefaultQueryParams };

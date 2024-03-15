@@ -1,10 +1,10 @@
-import { QueryStore, GetRequest, QueryRequest, QueryResponse, QueryParams } from "../../../../lib/main";
+import { GetRequest, QueryRequest, QueryResponse, QueryParams, GridStore, ExportRequest } from "../../../../lib/main";
 import axios, { AxiosInstance } from 'axios';
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
-class PalmyraGridStore extends PalmyraAbstractStore implements QueryStore<any>{
+class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any>{
     idProperty: strings
 
     constructor(options: Record<string, any>, endPoint: IEndPoint, idProperty?: strings) {
@@ -43,6 +43,27 @@ class PalmyraGridStore extends PalmyraAbstractStore implements QueryStore<any>{
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
             .then(response => { return response.data });
+    }
+
+    export(request: ExportRequest): void {
+        var urlFormat = this.target + this.queryUrl();
+        var url: any = this.formatUrl(urlFormat, request);
+        const urlSortParams = (convertQueryParams(request));
+        urlSortParams._format = request.format;
+
+        const queryParams = new URLSearchParams(urlSortParams).toString();
+        console.log(queryParams);
+
+        window.open(url + '?' + queryParams, '_blank');
+
+        // const params: AxiosRequestConfig = {
+        //     params: urlSortParams,            
+        //     responseType: 'blob'
+        // };
+        // return this.isUrlValid(url) || this.getClient().get(url, params)
+        //     .then((response) => {
+        //         window.open(URL.createObjectURL(response.data));
+        //     });
     }
 
     queryLayout(request: QueryRequest): Promise<any> {

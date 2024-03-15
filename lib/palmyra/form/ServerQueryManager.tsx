@@ -91,14 +91,20 @@ const useServerQuery = (props: IServerQueryInput) => {
 
   }, [queryLimit, sortOrder, endPointVars])
 
-  const refreshData = () => {
-
+  const getQueryRequest = (): QueryRequest => {
     const _sort = sortOrder && Object.keys(sortOrder).length > 0 ? sortOrder : defaultSort;
 
     const params: QueryRequest = {
       sortOrder: _sort, total: true, endPointVars,
       ...queryLimit, filter: { ...filter, ...defaultFilter }
     };
+
+    return params;
+  }
+
+  const refreshData = () => {
+    const params: QueryRequest = getQueryRequest();
+
     if (store) {
       try {
         store.query(params).then((d) => {
@@ -161,7 +167,7 @@ const useServerQuery = (props: IServerQueryInput) => {
   return {
     setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
     refreshData, gotoPage, setPageSize, getPageNo, getQueryLimit, setQueryLimit,
-    filter, queryLimit, data, totalRecords, pageSizeOptions
+    getQueryRequest, filter, queryLimit, data, totalRecords, pageSizeOptions
   }
 
 };

@@ -1,11 +1,16 @@
-import { GetRequest, QueryRequest, QueryResponse, QueryStore } from "../../../lib/main";
+import { ExportRequest, GetRequest, GridStore, QueryRequest, QueryResponse } from "../../../lib/main";
 
-class DummyGridStore implements QueryStore<any>{
+class DummyGridStore implements GridStore<any>{
     query(request: QueryRequest): Promise<QueryResponse<any>> {
         console.log(request);
         return fetch( '/simple/gridData.json')
             .then((response) => response.json());            
     }
+
+    export(request: ExportRequest): void {
+        console.log(request);        
+    }
+
     queryLayout(request: QueryRequest): Promise<QueryResponse<any>> {
         throw new Error("Method not implemented.");
     }

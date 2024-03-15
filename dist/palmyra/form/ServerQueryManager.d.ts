@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
 import { numbers } from './interface';
-import { IPagination } from '../../main';
+import { IPagination, QueryRequest } from '../../main';
 import { IEndPointOptions } from '../layout/Types';
 interface IServerQueryInput {
     store: AbstractQueryStore<any>;
@@ -25,6 +25,7 @@ declare const useServerQuery: (props: IServerQueryInput) => {
     getPageNo: () => number;
     getQueryLimit: () => IPagination;
     setQueryLimit: import("react").Dispatch<import("react").SetStateAction<IPagination>>;
+    getQueryRequest: () => QueryRequest;
     filter: any;
     queryLimit: IPagination;
     data: any;

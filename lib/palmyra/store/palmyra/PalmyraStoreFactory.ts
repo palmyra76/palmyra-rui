@@ -1,4 +1,4 @@
-import { ChartStore, QueryStore, DataStore, StoreFactory, LookupStore, TreeQueryStore } from "../../../main";
+import { ChartStore, DataStore, StoreFactory, LookupStore, TreeQueryStore, GridStore } from "../../../main";
 import { strings } from "../../form/interface";
 import { IEndPoint } from "../../layout/Types";
 import { PalmyraDataStore } from "./PalmyraDataStore";
@@ -17,7 +17,7 @@ class PalmyraStoreFactory implements StoreFactory<any>{
         this.baseUrl = props.baseUrl || '/palmyra';
     }
 
-    getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): QueryStore<any> {
+    getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): GridStore<any> {
         var storeOptions = { target: this.baseUrl, ...options }
         return new PalmyraGridStore(storeOptions, endPoint, idProperty);
     }
