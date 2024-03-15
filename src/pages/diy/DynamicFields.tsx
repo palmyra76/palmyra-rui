@@ -14,7 +14,7 @@ const DynamicFields = () => {
     const [isValid, setValid] = useState(false);
     const [data, setData] = useState({});
     const [readOnly, setReadOnly] = useState<boolean>(true);
-
+    const groupId = 1;
 
     const onValidityChange = (valid: boolean): void => {
         setValid(valid);
@@ -55,14 +55,18 @@ const DynamicFields = () => {
     const treeRef = useRef<IAsyncTreeMenuEditor>();
 
     const submitValue = () => {
-        console.log(treeRef.current.getValue())
-        const formStore = storeFactory.getFormStore({}, '/palmyra/acl/editor/menu/group/{groupId}');
+        const formStore = storeFactory.getFormStore({}, '/palmyra/admin/acl/group/{groupId}');
         const rootMenu = treeRef.current.getValue();
-        formStore.post(rootMenu, { endPointVars: { groupId: 3 } });
+        const record = {
+            rootMenu, 
+            id:groupId,
+            name: 'admin',
+            status:1
+        }
+        formStore.put(record, { endPointVars: { groupId } });
     }
 
-    const endPoint: IEndPoint = '/acl/editor/menu/list';
-    const MenuEndPoint: IEndPoint = '/palmyra/acl/editor/menu/group/3/menuList';
+    const MenuEndPoint: IEndPoint = '/palmyra/admin/acl/group/' + groupId + '/menuList';
     const SideMenuEndPoint: IEndPoint = '/palmyra/acl/menu/listAll';
     const treeStore: TreeQueryStore<any, any> = new PalmyraTreeStore({ target: "/api" }, SideMenuEndPoint);
 
@@ -74,7 +78,8 @@ const DynamicFields = () => {
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             {readOnly ? <div> <Button className="filled-button" onClick={editMenu}>Edit</Button> </div> :
                 <div> <Button className="filled-button" onClick={submitValue}>Submit</Button></div>}
-            <AsyncTreeMenuEditor ref={treeRef} storeFactory={storeFactory} endPoint={MenuEndPoint} groupId={1} readOnly={readOnly} />
+            <AsyncTreeMenuEditor ref={treeRef} storeFactory={storeFactory} endPoint={MenuEndPoint} 
+            groupId={groupId} readOnly={readOnly} />
             <AsyncTreeMenu store={treeStore} />
             {/* <PalmyraForm storeFactory={storeFactory} customizer={customizer}
                 formData={data} onValidChange={onValidityChange}
