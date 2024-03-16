@@ -3,7 +3,6 @@ import { KeyboardArrowDown } from "@mui/icons-material";
 import { ClickAwayListener } from "@mui/material";
 import { PiFilePdf, PiFileXls, PiFileCsv, PiFileDoc } from "react-icons/pi";
 import { TbTableExport } from "react-icons/tb";
-import '../base/Grid.css';
 
 interface ExportInputs {
     exportOption?: Record<string, string>,
