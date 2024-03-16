@@ -17,7 +17,7 @@ function i(t) {
 export {
   n as T,
   e as a,
-  o as b,
-  l as c,
-  i as d
+  i as b,
+  o as c,
+  l as d
 };

@@ -17,6 +17,7 @@ interface IPalmyraGridInput {
     customButton?: React.ReactNode[];
     title?: ITitle;
     customAddButton?: any;
+    exportOptions?: Record<string, string>;
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;

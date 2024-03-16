@@ -1,8 +1,7 @@
-import "../../../assets/TableX.css";
 import { jsx as e, jsxs as c, Fragment as d } from "react/jsx-runtime";
 import { useState as R, useEffect as S } from "react";
 import { Box as P, TableContainer as y, Paper as N, Table as F, TableHead as H, TableRow as u, TableBody as M, TableCell as j } from "@mui/material";
-import A from "./ColumnHeader.js";
+/* empty css                    */import A from "./ColumnHeader.js";
 import { useReactTable as B, getCoreRowModel as E, flexRender as s } from "@tanstack/react-table";
 import k from "./LoadingChild.js";
 function K({ columnDefs: g, rowData: t, onRowClick: h, onRowStyle: p, onHeaderStyle: b, onSortColumn: m, EmptyChild: f, customizer: i }) {

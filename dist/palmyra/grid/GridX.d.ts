@@ -9,6 +9,7 @@ interface GridXOptions extends IServerQueryInput {
     columns: ColumnDefinition[];
     children?: any;
     EmptyChild?: React.FC;
+    exportOptions?: Record<string, string>;
     onRowClick?: Function;
     onNewClick?: Function;
     customizer?: GridCustomizer;
