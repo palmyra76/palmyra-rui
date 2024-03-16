@@ -5,6 +5,7 @@ import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { GridColumnsBuilder } from "../../lib/palmyra/grid/utils/GridBuilder";
 import { useEffect } from "react";
+// import { Menu, DensitySmall, DensityLarge, Add, KeyboardArrowDown } from '@mui/icons-material';
 
 const StaticSummaryGrid = () => {
 
@@ -74,8 +75,14 @@ const StaticSummaryGrid = () => {
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
             <PalmyraGrid columns={columns} endPoint="/welcome" actions={actionOptions}
-                customizer={gridCustomizer} customButton={customButtom} 
-                layoutParams={{}} storeFactory={storeFactory}
+                customizer={gridCustomizer} customButton={customButtom} exportOptions={{
+                    "csv": "Export As CSV",
+                    "pdf": "Export As PDF",
+                    "excel": "Export As Excel",
+                    "doc": "Export As Doc"
+
+                }}
+                layoutParams={{}} storeFactory={storeFactory} customAddButton={{ text: 'ss' }}
             />
         </ErrorBoundary>
     </>

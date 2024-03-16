@@ -20,6 +20,7 @@ interface IPalmyraGridInput {
     customButton?: React.ReactNode[],
     title?: ITitle,
     customAddButton?: any,
+    exportOptions?: Record<string, string>,
     fetchAll?: boolean,
     filterTopic?: string,
     initialFetch?: boolean
@@ -67,7 +68,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
                 <GridRenderer layout={layout} context={layoutParams} customAddButton={customAddButton}
                     onDataChange={props.onDataChange} title={title}
                     defaultParams={props.defaultParams} customButton={customButton}
-                    customizer={props.customizer} ref={ref} 
+                    customizer={props.customizer} ref={ref} exportOptions={props.exportOptions}
                     fetchAll={fetchAll} filterTopic={filterTopic} initialFetch={initialFetch}></GridRenderer>
             </StoreFactoryContext.Provider>
         </>);

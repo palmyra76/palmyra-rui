@@ -10,11 +10,11 @@ import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
 import { EXPORT_FORMAT, ExportRequest, IPagination } from "../../palmyra/store/Types"
-import { TbFilterShare, TbTableExport } from "react-icons/tb";
-import { PiFileXls, PiFilePdf } from "react-icons/pi";
+import { TbFilterShare } from "react-icons/tb";
 import { renderTitle } from '../mui/widget/InfoTooltip';
 import { ITitle } from '../form/interface';
 import { GridStore } from '../store';
+import ExportOptions from './base/ExportOptions';
 
 
 //TODO - show errors on data fetching
@@ -24,6 +24,7 @@ interface GridXOptions extends IServerQueryInput {
   columns: ColumnDefinition[],
   children?: any,
   EmptyChild?: React.FC,
+  exportOptions?: Record<string, string>,
   onRowClick?: Function,
   onNewClick?: Function,
   customizer?: GridCustomizer,
@@ -33,7 +34,7 @@ interface GridXOptions extends IServerQueryInput {
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
-  const { columns, children, EmptyChild, onRowClick, quickSearch } = props;
+  const { columns, children, EmptyChild, onRowClick, quickSearch, exportOptions } = props;
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
   const customButton = props.customButton;
@@ -160,7 +161,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
     setPageSize(limit);
   }
 
-
   const onFilterClick = (event: any) => {
     setFilterDropdownOpen(!filterDropdownOpen);
   }
@@ -168,11 +168,14 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const onExportClick = () => {
     setExportDropdownOpen(!exportDropdownOpen);
   }
-
+  const exportDropdownClose = () => {
+    setExportDropdownOpen(false);
+  }
   const exportData = (format: EXPORT_FORMAT) => {
     const p = getQueryRequest();
     const params: ExportRequest = { ...p, format, limit: -1 };
     props.store.export(params);
+    setExportDropdownOpen(!exportDropdownOpen);
   }
 
   const onNewClick = () => {
@@ -269,29 +272,11 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                   )}
                 </div>
               </ClickAwayListener>)}
-            <ClickAwayListener onClickAway={() => { setExportDropdownOpen(false) }}>
-              <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
-                <Button className='grid-btn' disableRipple>
-                  <TbTableExport className='grid-button-icon' />
-                  <span>Export</span>
-                  <KeyboardArrowDown style={exportArrowStyles} className='avathar-arrw-icon' />
-                </Button>
-                {exportDropdownOpen && (
-                  <div className="density-dropdown-content">
-                    <ul>
-                      <li onClick={() => exportData('csv')}>
-                        <PiFilePdf className='density-icon grid-button-icon' />
-                        <span className='drodown-content-text'>Export as PDF</span>
-                      </li>
-                      <li onClick={() => exportData('excel')}>
-                        <PiFileXls className='density-icon grid-button-icon' />
-                        <span className='drodown-content-text'>Export as Excel</span>
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </ClickAwayListener>
+            {exportOptions &&
+              <ExportOptions dropdownOpen={exportDropdownOpen} dropdownClose={exportDropdownClose} onExportClick={onExportClick}
+                arrowStyle={exportArrowStyles} exportOption={exportOptions}
+                exportData={exportData} />
+            }
             {props.onNewClick ? (
               <div className='grid-header-button grid-add-btn'>
                 <div onClick={onNewClick}>
