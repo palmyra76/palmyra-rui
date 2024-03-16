@@ -5,18 +5,20 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
 import { Menu, DensitySmall, DensityLarge, Add, KeyboardArrowDown } from '@mui/icons-material';
-import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
+import { ColumnDefinition, GridCustomizer, IExportOptions, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { IPagination } from "../store/Types";
-import { TbFilterShare, TbTableExport } from "react-icons/tb";
-import { PiFileXls, PiFilePdf } from "react-icons/pi";
+import { EXPORT_FORMAT, ExportRequest, IPagination } from "../store/Types";
+import { TbFilterShare } from "react-icons/tb";
+import ExportOptions from './base/ExportOptions';
+import { GridStore } from '../store';
 
 
 //TODO - show errors on data fetching
 
 interface GridXOptions extends IServerQueryInput {
+  store: GridStore<any>,
   columns: (data: any) => ColumnDefinition[],
   children?: any,
   EmptyChild?: React.FC,
@@ -24,12 +26,13 @@ interface GridXOptions extends IServerQueryInput {
   onNewClick?: Function,
   customizer?: GridCustomizer,
   customButton?: React.ReactNode[],
+  exportOptions?: IExportOptions,
   title?: any,
   customAddButton?: any
 }
 
 const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
-  const { children, EmptyChild, onRowClick, quickSearch } = props;
+  const { children, EmptyChild, onRowClick, quickSearch, exportOptions } = props;
   const colGenerator = props.columns;
 
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
@@ -45,7 +48,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
 
   const {
     setQueryFilter, setQuickSearch, setSortColumns, setEndPointOptions,
-    gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit, getQueryLimit,
+    gotoPage, setPageSize, getPageNo, refreshData, setQueryLimit, getQueryLimit, getQueryRequest,
     data, totalRecords, queryLimit, pageSizeOptions, filter } = useServerQuery(props);
 
   const [columns, setColumns] = useState(colGenerator(data));
@@ -167,15 +170,19 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
   const onExportClick = () => {
     setExportDropdownOpen(!exportDropdownOpen);
   }
+
+  const exportDropdownClose = () => {
+    setExportDropdownOpen(false);
+  }
+  const exportData = (format: EXPORT_FORMAT) => {
+    const p = getQueryRequest();
+    const params: ExportRequest = { ...p, format, limit: -1 };
+    props.store.export(params);
+    setExportDropdownOpen(!exportDropdownOpen);
+  }
+
   const onNewClick = () => {
     props.onNewClick();
-  }
-  const handlePdfGen = () => {
-
-  }
-
-  const handleExcelGen = () => {
-
   }
 
   const width = 200;
@@ -258,29 +265,11 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
                   defaultFilter={filter}
                   isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
               </div>)}
-            <ClickAwayListener onClickAway={() => { setExportDropdownOpen(false) }}>
-              <div className='grid-header-button grid-export-btn' onClick={onExportClick}>
-                <Button className='grid-btn' disableRipple>
-                  <TbTableExport className='grid-button-icon' />
-                  <span>Export</span>
-                  <KeyboardArrowDown style={exportArrowStyles} className='avathar-arrw-icon' />
-                </Button>
-                {exportDropdownOpen && (
-                  <div className="density-dropdown-content">
-                    <ul>
-                      <li onClick={handlePdfGen}>
-                        <PiFilePdf className='density-icon grid-button-icon' />
-                        <span className='drodown-content-text'>Export as PDF</span>
-                      </li>
-                      <li onClick={handleExcelGen}>
-                        <PiFileXls className='density-icon grid-button-icon' />
-                        <span className='drodown-content-text'>Export as Excel</span>
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </ClickAwayListener>
+            {exportOptions &&
+              <ExportOptions dropdownOpen={exportDropdownOpen} dropdownClose={exportDropdownClose} onExportClick={onExportClick}
+                arrowStyle={exportArrowStyles} exportOption={exportOptions}
+                exportData={exportData} />
+            }
             {props.onNewClick ? (
               <div className='grid-header-button grid-add-btn'>
                 {props.customAddButton ? (
@@ -352,7 +341,7 @@ const DynColGridX = forwardRef(function DynColGridX(props: GridXOptions, ref: Mu
                     }
                   </div>
                   <div style={{}}>
-                    <Pagination count={totalPages} shape="rounded" 
+                    <Pagination count={totalPages} shape="rounded"
                       onChange={nextPage} page={getPageNo() + 1}
                     />
                   </div>
