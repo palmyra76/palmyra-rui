@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IPageQueryable, PageContext, StoreFactory } from "../../main";
+import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IExportOptions, IPageQueryable, PageContext, StoreFactory } from "../../main";
 import { ActionOptions } from "../layout/Types";
 import { ITitle } from "../form/interface";
 interface IPalmyraGridInput {
@@ -17,7 +17,7 @@ interface IPalmyraGridInput {
     customButton?: React.ReactNode[];
     title?: ITitle;
     customAddButton?: any;
-    exportOptions?: Record<string, string>;
+    exportOptions?: IExportOptions;
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;

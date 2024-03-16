@@ -13,6 +13,7 @@ interface ColumnDefinition extends AttributeDefinition {
     cellRenderer?: React.FC;
 }
 type CellGetter = ((props: CellContext<RowData, any>) => any);
+type IExportOptions = Record<'csv' | 'excel' | 'pdf' | 'docx', string>;
 interface GridCustomizer {
     formatCell: (column: ColumnDefinition, cellValueGetter: CellGetter) => CellGetter;
     formatHeader: (column: ColumnDefinition, header: Function) => any;
@@ -24,5 +25,5 @@ declare const gridColumnCustomizer: (config: Record<string, (d: CellGetter) => C
     header?: Record<string, Function>;
     footer?: Record<string, Function>;
 }) => GridCustomizer;
-export type { ColumnDefinition, GridCustomizer, CellGetter };
+export type { ColumnDefinition, GridCustomizer, CellGetter, IExportOptions };
 export { NoopCustomizer, gridColumnCustomizer };

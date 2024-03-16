@@ -1,5 +1,5 @@
 import React from 'react';
-import { ColumnDefinition, GridCustomizer } from './Types';
+import { ColumnDefinition, GridCustomizer, IExportOptions } from './Types';
 import { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
 import { ITitle } from '../form/interface';
@@ -9,7 +9,7 @@ interface GridXOptions extends IServerQueryInput {
     columns: ColumnDefinition[];
     children?: any;
     EmptyChild?: React.FC;
-    exportOptions?: Record<string, string>;
+    exportOptions?: IExportOptions;
     onRowClick?: Function;
     onNewClick?: Function;
     customizer?: GridCustomizer;

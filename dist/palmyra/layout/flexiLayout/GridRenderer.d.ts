@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { PageContext } from './Types';
 import { TableLayout } from '.';
-import { GridCustomizer } from '../../grid';
+import { GridCustomizer, IExportOptions } from '../../grid';
 import { IPageQueryable } from '../../form/interfaceFields';
 import { DefaultQueryParams } from '../../store';
 import { ITitle } from '../../form/interface';
@@ -17,7 +17,7 @@ interface GridRendererInput {
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;
-    exportOptions?: Record<string, string>;
+    exportOptions?: IExportOptions;
 }
 declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
 export default GridRenderer;

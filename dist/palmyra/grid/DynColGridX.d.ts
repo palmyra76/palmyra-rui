@@ -1,8 +1,10 @@
 /// <reference types="react" />
-import { ColumnDefinition, GridCustomizer } from './Types';
+import { ColumnDefinition, GridCustomizer, IExportOptions } from './Types';
 import { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
+import { GridStore } from '../store';
 interface GridXOptions extends IServerQueryInput {
+    store: GridStore<any>;
     columns: (data: any) => ColumnDefinition[];
     children?: any;
     EmptyChild?: React.FC;
@@ -10,6 +12,7 @@ interface GridXOptions extends IServerQueryInput {
     onNewClick?: Function;
     customizer?: GridCustomizer;
     customButton?: React.ReactNode[];
+    exportOptions?: IExportOptions;
     title?: any;
     customAddButton?: any;
 }
