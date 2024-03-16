@@ -15,7 +15,11 @@ interface ColumnDefinition extends AttributeDefinition {
 
 type CellGetter = ((props: CellContext<RowData, any>) => any);
 
-type IExportOptions = Record<'csv' | 'excel' | 'pdf' | 'docx', string>
+type PartialRecord<K extends keyof any, T> = {
+    [P in K]?: T;
+};
+
+type IExportOptions = PartialRecord<'csv' | 'excel' | 'pdf' | 'docx', string>
 
 interface GridCustomizer {
     formatCell: (column: ColumnDefinition, cellValueGetter: CellGetter) => CellGetter,
