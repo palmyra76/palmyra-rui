@@ -79,8 +79,7 @@ const StaticSummaryGrid = () => {
                     "csv": "Export As CSV",
                     "pdf": "Export As PDF",
                     "excel": "Export As Excel",
-                    "doc": "Export As Doc"
-
+                    "docx": "Export As Doc"
                 }}
                 layoutParams={{}} storeFactory={storeFactory} customAddButton={{ text: 'ss' }}
             />

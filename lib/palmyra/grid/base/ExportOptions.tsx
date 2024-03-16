@@ -19,15 +19,14 @@ const ExportOptions = (props: ExportInputs) => {
         csv: () => exportData('csv'),
         pdf: () => exportData('pdf'),
         excel: () => exportData('excel'),
-        doc: () => exportData('doc'),
+        docx: () => exportData('docx'),
     };
     const optionIcons = {
         csv: <PiFileCsv className='density-icon grid-button-icon' />,
         pdf: <PiFilePdf className='density-icon grid-button-icon' />,
         excel: <PiFileXls className='density-icon grid-button-icon' />,
-        doc: <PiFileDoc className='density-icon grid-button-icon' />,
+        docx: <PiFileDoc className='density-icon grid-button-icon' />,
     };
-    console.log(dropdownOpen, 'ee');
     return (
         <div>
             <ClickAwayListener onClickAway={dropdownClose}>

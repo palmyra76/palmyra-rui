@@ -5,7 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { default as defaultEmptyChild } from './base/EmptyChildTable';
 import TableX from "./base/TableX";
 import { Menu, DensitySmall, DensityLarge, Add, KeyboardArrowDown } from '@mui/icons-material';
-import { ColumnDefinition, GridCustomizer, NoopCustomizer } from './Types';
+import { ColumnDefinition, GridCustomizer, IExportOptions, NoopCustomizer } from './Types';
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
@@ -24,7 +24,7 @@ interface GridXOptions extends IServerQueryInput {
   columns: ColumnDefinition[],
   children?: any,
   EmptyChild?: React.FC,
-  exportOptions?: Record<string, string>,
+  exportOptions?: IExportOptions,
   onRowClick?: Function,
   onNewClick?: Function,
   customizer?: GridCustomizer,

@@ -15,6 +15,7 @@ interface ColumnDefinition extends AttributeDefinition {
 
 type CellGetter = ((props: CellContext<RowData, any>) => any);
 
+type IExportOptions = Record<'csv' | 'excel' | 'pdf' | 'docx', string>
 
 interface GridCustomizer {
     formatCell: (column: ColumnDefinition, cellValueGetter: CellGetter) => CellGetter,
@@ -62,5 +63,5 @@ const gridColumnCustomizer = (config: Record<string, ((d: CellGetter) => CellGet
     }
 }
 
-export type { ColumnDefinition, GridCustomizer, CellGetter };
+export type { ColumnDefinition, GridCustomizer, CellGetter, IExportOptions };
 export { NoopCustomizer, gridColumnCustomizer }

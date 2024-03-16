@@ -1,7 +1,7 @@
 import { forwardRef, useContext, useState, useEffect, MutableRefObject } from 'react';
 import { PageContext } from './Types';
 import { TableLayout } from '.';
-import { GridCustomizer, GridX } from '../../grid';
+import { GridCustomizer, GridX, IExportOptions } from '../../grid';
 
 import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
 import { getActionPublishers } from '../../utils/pubsub/Publishers';
@@ -22,7 +22,7 @@ interface GridRendererInput {
     fetchAll?: boolean,
     filterTopic?: string,
     initialFetch?: boolean,
-    exportOptions?: Record<string, string>,
+    exportOptions?: IExportOptions,
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IPageQueryable>) {
@@ -47,14 +47,14 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
     }, [])
 
     const { onClick, onNewClick } = getActionPublishers(tableLayout.actionOptions, layoutParams);
-    
+
     return (
         <div>
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick} exportOptions={props.exportOptions}
                 onDataChange={props.onDataChange} title={props.title} customAddButton={props.customAddButton}
                 onNewClick={onNewClick} customizer={props.customizer} customButton={props.customButton}
                 quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
-                fetchAll={props.fetchAll} filterTopic={props.filterTopic} initialFetch={props.initialFetch}                
+                fetchAll={props.fetchAll} filterTopic={props.filterTopic} initialFetch={props.initialFetch}
             ></GridX>
         </div>
     );
