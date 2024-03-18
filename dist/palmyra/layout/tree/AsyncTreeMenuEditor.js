@@ -1,42 +1,40 @@
-import { jsx as n, Fragment as g, jsxs as m } from "react/jsx-runtime";
-import { forwardRef as j, useRef as I, useState as k, useImperativeHandle as P, useEffect as V } from "react";
-import { u as $, A as G, c as H } from "../../../chunks/AsyncTreeMenu.js";
-import { F as U, a as z, b as J, A as K } from "../../../chunks/AsyncTreeCrudDropDown.js";
-import { I as Q } from "../../../chunks/index.esm.js";
-import { ClickAwayListener as W } from "@mui/material";
-const oe = j(function(a, i) {
-  const s = a.groupId, h = I(null), b = i || I(null);
+import { jsx as a, Fragment as g, jsxs as m } from "react/jsx-runtime";
+import { forwardRef as q, useRef as y, useState as C, useImperativeHandle as B, useEffect as j } from "react";
+import { u as P, A as V, c as $ } from "../../../chunks/AsyncTreeMenu.js";
+import { F as G, a as H, b as U, A as z } from "../../../chunks/AsyncTreeCrudDropDown.js";
+import { I as J } from "../../../chunks/index.esm.js";
+import { ClickAwayListener as K } from "@mui/material";
+const ne = q(function(r, d) {
+  const s = r.groupId, h = y(null), b = d || y(null);
   let w = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
-  const [p, x] = k([w]), [C, S] = k([]), [N, A] = k([]), D = a.storeFactory.getTreeStore({ groupId: s }, a.endPoint);
-  P(b, () => ({
+  const [p, I] = C([w]), [k, S] = C([]), A = r.storeFactory.getTreeStore({ groupId: s }, r.endPoint);
+  B(b, () => ({
     getValue() {
-      return R();
+      return E();
     }
-  }), [s, p, C]);
-  const E = (r, c, e) => r.map((o) => (o.id === c && !o.loaded && (o.loaded = !0, o.children = e.filter((l) => c == l.parent).map((l) => l.id)), o)).concat(e), O = (r) => r.split(",").map((e) => parseInt(e)), F = (r, c) => r.map((t) => {
+  }), [s, p, k]);
+  const x = (n, c, e) => n.map((o) => (o.id === c && !o.loaded && (o.loaded = !0, o.children = e.filter((l) => c == l.parent).map((l) => l.id)), o)).concat(e), D = (n) => n.split(",").map((e) => parseInt(e)), O = (n, c) => n.map((t) => {
     const o = t.children || "";
     return {
       id: t.id,
       name: t.name,
       parent: t.parent ? t.parent : c,
-      children: t.children ? O(t.children) : [],
+      children: t.children ? D(t.children) : [],
       isBranch: o.length > 0,
       loaded: !0,
       metadata: { menuCode: t.code }
     };
   });
-  V(() => {
-    D.getRoot().then((r) => {
-      let c = r.result.filter((l) => l.mask == 2).map((l) => l.id);
-      var e = F(r.result, -1);
-      const t = E(p, -1, e);
-      x(t);
-      let o = r.result.filter((l) => l.mask > 0).map((l) => l.id);
-      S(c), A(o);
+  j(() => {
+    A.getRoot().then((n) => {
+      let c = n.result.filter((o) => o.mask == 2).map((o) => o.id);
+      var e = O(n.result, -1);
+      const t = x(p, -1, e);
+      I(t), S(c);
     });
   }, [s]);
-  const R = () => {
-    const r = {}, c = {
+  const E = () => {
+    const n = {}, c = {
       name: "root",
       children: [],
       id: -1
@@ -46,24 +44,24 @@ const oe = j(function(a, i) {
       if (((o = e.metadata) == null ? void 0 : o.selected) == null)
         return;
       const t = e.parent > 0 ? e.parent : null;
-      r[e.id] = {
+      n[e.id] = {
         menuId: e.id,
         parent: t,
         name: e.name,
         mask: (l = e.metadata) == null ? void 0 : l.selected,
         menuCode: (u = e.metadata) == null ? void 0 : u.menuCode,
         children: []
-      }, t == null && e.id > 0 && c.children.push(r[e.id]);
+      }, t == null && e.id > 0 && c.children.push(n[e.id]);
     }), p.forEach((e) => {
-      const t = e.id, o = r[t];
+      const t = e.id, o = n[t];
       o && e.children && e.children.forEach((l) => {
-        const u = r[l];
+        const u = n[l];
         u && o.children.push(u);
       });
     }), c;
-  }, L = a.readOnly ? { color: "rgb( 230, 230, 230 )", backgroundColor: "white" } : { color: "rgb(44, 134, 213)", backgroundColor: "white" };
-  return /* @__PURE__ */ n(g, { children: /* @__PURE__ */ m("div", { children: [
-    /* @__PURE__ */ n(
+  }, F = r.readOnly ? { color: "rgb( 230, 230, 230 )", backgroundColor: "white" } : { color: "rgb(44, 134, 213)", backgroundColor: "white" };
+  return /* @__PURE__ */ a(g, { children: /* @__PURE__ */ m("div", { children: [
+    /* @__PURE__ */ a(
       "div",
       {
         className: "visually-hidden",
@@ -72,32 +70,30 @@ const oe = j(function(a, i) {
         "aria-live": "polite"
       }
     ),
-    /* @__PURE__ */ n("div", { className: "checkbox", children: /* @__PURE__ */ n(
-      $,
+    /* @__PURE__ */ a("div", { className: "checkbox", children: /* @__PURE__ */ a(
+      P,
       {
         data: p,
-        selectedIds: C,
+        selectedIds: k,
         "aria-label": "Checkbox tree",
         multiSelect: !0,
         propagateSelect: !0,
         togglableSelect: !0,
         propagateSelectUpwards: !0,
-        expandedIds: N,
-        defaultExpandedIds: N,
         nodeRenderer: ({
-          element: r,
+          element: n,
           isBranch: c,
           isExpanded: e,
           isSelected: t,
           isHalfSelected: o,
           getNodeProps: l,
           level: u,
-          handleSelect: T,
-          handleExpand: M
+          handleSelect: R,
+          handleExpand: L
         }) => {
-          const v = o ? 1 : t ? 2 : 0;
-          r.metadata ? r.metadata.selected = v : r.metadata = { selected: v };
-          const q = (f, y) => f && y.children.length === 0 ? /* @__PURE__ */ m(g, { children: [
+          const N = o ? 1 : t ? 2 : 0;
+          n.metadata ? n.metadata.selected = N : n.metadata = { selected: N };
+          const T = (f, v) => f && v.children.length === 0 ? /* @__PURE__ */ m(g, { children: [
             /* @__PURE__ */ m(
               "span",
               {
@@ -106,37 +102,37 @@ const oe = j(function(a, i) {
                 className: "visually-hidden",
                 children: [
                   "loading ",
-                  y.name
+                  v.name
                 ]
               }
             ),
-            /* @__PURE__ */ n(
-              G,
+            /* @__PURE__ */ a(
+              V,
               {
                 "aria-hidden": !0,
                 className: "loading-icon"
               }
             )
-          ] }) : /* @__PURE__ */ n(X, { isOpen: f }), B = (f) => {
-            a.readOnly || (T(f), f.stopPropagation);
+          ] }) : /* @__PURE__ */ a(Q, { isOpen: f }), M = (f) => {
+            r.readOnly || (R(f), f.stopPropagation);
           };
           return /* @__PURE__ */ m(
             "div",
             {
-              ...l({ onClick: M }),
+              ...l({ onClick: L }),
               children: [
-                /* @__PURE__ */ n(
-                  Y,
+                /* @__PURE__ */ a(
+                  W,
                   {
                     className: "checkbox-icon",
-                    onClick: B,
-                    style: L,
+                    onClick: M,
+                    style: F,
                     variant: o ? "some" : t ? "all" : "none"
                   }
                 ),
                 /* @__PURE__ */ m("div", { className: "menu-list", children: [
-                  /* @__PURE__ */ n("div", { className: "text-icon", children: /* @__PURE__ */ n("span", { className: "menu-name", children: r.name }) }),
-                  /* @__PURE__ */ n("div", { children: c ? q(e, r) : /* @__PURE__ */ n(g, { children: a.fineGrained ? "" : /* @__PURE__ */ n(Z, { element: r, isSelected: t }) }) })
+                  /* @__PURE__ */ a("div", { className: "text-icon", children: /* @__PURE__ */ a("span", { className: "menu-name", children: n.name }) }),
+                  /* @__PURE__ */ a("div", { children: c ? T(e, n) : /* @__PURE__ */ a(g, { children: r.fineGrained ? "" : /* @__PURE__ */ a(X, { element: n, isSelected: t }) }) })
                 ] })
               ]
             }
@@ -145,51 +141,51 @@ const oe = j(function(a, i) {
       }
     ) })
   ] }) });
-}), X = (d) => {
-  const { isOpen: a, className: i } = d, s = "arrow", h = H(
+}), Q = (i) => {
+  const { isOpen: r, className: d } = i, s = "arrow", h = $(
     s,
-    { [`${s}--closed`]: !a },
-    { [`${s}--open`]: a },
-    i
+    { [`${s}--closed`]: !r },
+    { [`${s}--open`]: r },
+    d
   );
-  return /* @__PURE__ */ n(Q, { className: h });
-}, Y = ({ variant: d, ...a }) => {
-  switch (d) {
+  return /* @__PURE__ */ a(J, { className: h });
+}, W = ({ variant: i, ...r }) => {
+  switch (i) {
     case "all":
-      return /* @__PURE__ */ n(J, { style: { color: a.style.color, backgroundColor: a.style.backgroundColor }, ...a });
+      return /* @__PURE__ */ a(U, { style: { color: r.style.color, backgroundColor: r.style.backgroundColor }, ...r });
     case "none":
-      return /* @__PURE__ */ n(
-        z,
+      return /* @__PURE__ */ a(
+        H,
         {
           style: { color: "rgba(128, 128,128, 0.2)" },
-          onClick: a.onClick,
-          className: a.className
+          onClick: r.onClick,
+          className: r.className
         }
       );
     case "some":
-      return /* @__PURE__ */ n(U, { style: { color: a.style.color, backgroundColor: a.style.backgroundColor }, ...a });
+      return /* @__PURE__ */ a(G, { style: { color: r.style.color, backgroundColor: r.style.backgroundColor }, ...r });
     default:
       return null;
   }
-}, Z = (d) => {
-  const [a, i] = k(!1), s = () => {
-    i(!a);
+}, X = (i) => {
+  const [r, d] = C(!1), s = () => {
+    d(!r);
   }, h = () => {
   };
-  return /* @__PURE__ */ n(g, { children: /* @__PURE__ */ m("div", { className: "crud-dropdown-container", children: [
-    /* @__PURE__ */ n("span", { className: "crud-dropdown-text", onClick: s, children: "crud" }),
-    a && /* @__PURE__ */ n(W, { onClickAway: () => {
-      i(!1);
-    }, children: /* @__PURE__ */ n("div", { children: /* @__PURE__ */ n(
-      K,
+  return /* @__PURE__ */ a(g, { children: /* @__PURE__ */ m("div", { className: "crud-dropdown-container", children: [
+    /* @__PURE__ */ a("span", { className: "crud-dropdown-text", onClick: s, children: "crud" }),
+    r && /* @__PURE__ */ a(K, { onClickAway: () => {
+      d(!1);
+    }, children: /* @__PURE__ */ a("div", { children: /* @__PURE__ */ a(
+      z,
       {
-        isHalfSelected: d.isSelected,
-        isSelected: d.isSelected,
+        isHalfSelected: i.isSelected,
+        isSelected: i.isSelected,
         handleSelect: h
       }
     ) }) })
   ] }) });
 };
 export {
-  oe as default
+  ne as default
 };

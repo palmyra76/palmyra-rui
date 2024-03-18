@@ -109,7 +109,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                 ></div>
                 <div className="checkbox">
                     <TreeView className="async-tree-menu-container"
-                        data={data.data}                        
+                        data={data.data}
                         aria-label="Checkbox tree"
                         onExpand={(p: ITreeViewOnExpandProps) => {
                             const isExpanded = p.isExpanded;

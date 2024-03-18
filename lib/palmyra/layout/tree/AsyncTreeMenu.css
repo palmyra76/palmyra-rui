@@ -50,9 +50,9 @@
 }
 
 /* .tree-leaf-list-item--selected  */
-.tree-node .checkbox-icon {
-  /* color: rgb(47, 126, 176) !important; */
-}
+/* .tree-node .checkbox-icon {
+  color: rgb(47, 126, 176) !important; 
+}*/
 
 /* {
   color: rgb(47, 126, 176) !important;
@@ -127,7 +127,7 @@
   padding: 5px;
 }
 
-.crud-dropdown-container {}
+/* .crud-dropdown-container {} */
 
 .checkbox-icon {
   vertical-align: text-top;
@@ -226,6 +226,14 @@
 
 .sidebar-asyn-menu .async-tree-menu-list-text-container .menu-icon {
   font-size: 16px;
+}
+
+.async-tree-menu-list:hover {
+  background: rgba(194, 194, 194, 0.1);
+}
+
+.async-tree-menu-list:active {
+  background: rgba(102, 102, 102, 0.3);
 }
 
 /* {

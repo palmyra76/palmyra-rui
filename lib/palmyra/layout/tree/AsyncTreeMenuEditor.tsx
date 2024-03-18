@@ -6,12 +6,13 @@ import { IoMdArrowDropright } from "react-icons/io";
 import TreeView, { INode } from "react-accessible-treeview";
 import cx from "classnames";
 
-import "./AsyncTreeMenu.css";
 import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 import AsyncTreeCrudDropDown from "./AsyncTreeCrudDropDown";
 import { ClickAwayListener } from "@mui/material";
 import { IEndPoint } from "..";
 import { StoreFactory } from "../flexiLayout/Types";
+import "./AsyncTreeMenu.css";
+
 
 interface IAsyncTreeEditorInput {
     storeFactory: StoreFactory<IChildTreeRequest>
@@ -43,7 +44,7 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
     let rootNode: INode = { name: "", id: -1, parent: null, children: [], isBranch: true };
     const [data, setData] = useState<INode[]>([rootNode]);
     const [selectedIds, setSelectedIds] = useState([]);
-    const [expandedIds, setExpandedIds] = useState([]);
+    // const [expandedIds, setExpandedIds] = useState([]);
     const store: TreeQueryStore<IChildTreeRequest, any> = props.storeFactory.getTreeStore({ groupId: groupId }, props.endPoint);
 
     useImperativeHandle(currentRef, () => {
@@ -98,9 +99,9 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
             var nodes: any[] = convert(d.result, -1);
             const sd = updateTreeData(data, -1, nodes);
             setData(sd);
-            let expandId = d.result.filter((item: any) => item.mask > 0).map((item: any) => item.id);
             setSelectedIds(mask);
-            setExpandedIds(expandId);
+            // let expandId = d.result.filter((item: any) => item.mask > 0).map((item: any) => item.id);
+            // setExpandedIds(expandId);
         });
     }, [groupId]);
 
@@ -163,8 +164,8 @@ const AsyncTreeMenuEditor = forwardRef(function AsyncTreeMenuEditor(props: IAsyn
                         propagateSelect
                         togglableSelect
                         propagateSelectUpwards
-                        expandedIds={expandedIds}
-                        defaultExpandedIds={expandedIds}
+                        // expandedIds={expandedIds}
+                        // defaultExpandedIds={expandedIds}
                         nodeRenderer={({
                             element,
                             isBranch,
