@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
-import TreeView, { INode } from "react-accessible-treeview";
+import TreeView, { INode, ITreeViewOnExpandProps, NodeId } from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
 import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 import { useNavigate } from "react-router-dom";
+
+const MENU_STORE_KEY_EXPANDED = 'palmyra.rui.sidemenu.expanded';
 
 interface IAsyncTreeMenuInput {
     store: TreeQueryStore<IChildTreeRequest, any>
@@ -17,8 +19,9 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
     const navigate = useNavigate();
     const loadedAlertElement = useRef(null);
     let rootNode = { name: "", id: -1, parent: null, children: [], isBranch: true };
-    const [data, setData] = useState([rootNode]);
+    const [data, setData] = useState({ data: [rootNode], expandedIds: [] });
     const store: TreeQueryStore<IChildTreeRequest, any> = props.store;
+    const expandedIdRef = useRef<NodeId[]>([]);
 
     const updateTreeData = (list, id, children) => {
         const data = list.map((node) => {
@@ -59,13 +62,33 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
         return result;
     };
 
+    function parse(v: NodeId): number {
+        if (typeof v == 'number')
+            return v;
+        else
+            return parseInt(v);
+    }
+
     useEffect(() => {
         store.getRoot().then((d) => {
             var nodes: any[] = convert(d.result, -1);
-            const sd = updateTreeData(data, -1, nodes);
-            setData(sd);
+            const sd = updateTreeData(data.data, -1, nodes);
+            // Load the selected Ids fromt he localStorage;
+            //@ts-ignore
+            const localExpValue = (localStorage.getItem(MENU_STORE_KEY_EXPANDED) || '').split(',');
+            expandedIdRef.current = localExpValue.map((d) => parse(d)).filter((id) => {
+                // @ts-ignore                
+                return nodes.some((d) => {
+                    return d.id == id;
+                })
+            });
+            setData({ data: sd, expandedIds: expandedIdRef.current });
         });
     }, []);
+
+    const persistExpanded = () => {
+        localStorage.setItem(MENU_STORE_KEY_EXPANDED, expandedIdRef.current.join());
+    }
 
     const navigateTo = (element: INode) => {
         if (!element.isBranch && element.metadata?.code) {
@@ -86,11 +109,27 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                 ></div>
                 <div className="checkbox">
                     <TreeView className="async-tree-menu-container"
-                        data={data}
+                        data={data.data}                        
                         aria-label="Checkbox tree"
-                        multiSelect
+                        onExpand={(p: ITreeViewOnExpandProps) => {
+                            const isExpanded = p.isExpanded;
+                            const element = p.element;
+                            if (isExpanded) {
+                                if (element.id != "") {
+                                    if (!expandedIdRef.current.includes(element.id))
+                                        expandedIdRef.current.push(element.id);
+                                }
+                            } else {
+                                const idx: number = expandedIdRef.current.indexOf(element.id)
+                                if (idx > -1) {
+                                    expandedIdRef.current.splice(idx, 1);
+                                }
+                            }
+                            persistExpanded();
+                        }}
                         propagateSelect
                         togglableSelect
+                        expandedIds={data.expandedIds}
                         propagateSelectUpwards
                         nodeRenderer={({
                             element,
@@ -103,6 +142,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                             handleSelect,
                             handleExpand,
                         }) => {
+
                             const branchNode = (isExpanded, element) => {
                                 return isExpanded && element.children.length === 0 ? (
                                     <>
@@ -138,7 +178,8 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                                     </div>
                                 </div>
                             );
-                        }}
+                        }
+                        }
                     />
                 </div>
             </div>
