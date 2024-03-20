@@ -85,8 +85,12 @@ interface ICheckboxGroupDefinition extends AttributeDefinition, IDecoration {
 }
 interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
 }
+type IRadioGroupOptions = Record<any, any> | Record<string, any> | {
+    value: any;
+    label: string;
+}[];
 interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
-    options: Record<any, any> | Record<string, any>;
+    options: IRadioGroupOptions;
     flexDirection?: 'column' | 'row';
 }
 interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
@@ -197,7 +201,7 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };
-export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
+export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration };
 export type { ITitle, IDecoratedTitle };
 export { NoopFormListener };

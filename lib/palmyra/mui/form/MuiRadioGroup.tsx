@@ -71,20 +71,40 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
         onChange: (d: any) => { if (!readOnly) (eventListeners.onValueChange(d.target.value)) }
     }
 
+    const getOptions = (options: any) => {
+        if (options) {
+            if (options instanceof Array) {
+                const o: { value: any, label: string }[] = options;
+                const result = o.map((v: { value: any, label: string }, index: number) => (
+                    <FormControlLabel key={v.value} value={v.value}
+                        control={<Radio
+                            icon={<IoMdRadioButtonOff size={24} />} checkedIcon={<RiRadioButtonFill size={24} />}
+                            inputRef={inputRef} autoFocus={autoFocus} />} label={v.label} />
+                ))
+                console.log(result);
+                return result;
+            }
+
+            if (typeof options == 'object') {
+                return Object.keys(options).map((key, index) => (
+                    <FormControlLabel key={index} value={key}
+                        control={<Radio
+                            icon={<IoMdRadioButtonOff size={24} />} checkedIcon={<RiRadioButtonFill size={24} />}
+                            inputRef={inputRef} autoFocus={autoFocus} />} label={options[key]} />
+                ))
+            }
+        }
+
+        return <div>No options provided</div>
+    }
+
 
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} >
                 <RadioGroup icon row={row} {...callbacks} {...inputProps}>
-                    {options ?
-                        Object.keys(options).map((key, index) => (
-                            <FormControlLabel key={index} value={key}
-                                control={<Radio
-                                    icon={<IoMdRadioButtonOff size={24} />} checkedIcon={<RiRadioButtonFill size={24} />}
-                                    inputRef={inputRef} autoFocus={autoFocus} />} label={options[key]} />
-                        ))
-                        : <div>No options provided</div>}
+                    {getOptions(options)}
                 </RadioGroup>
                 <FormHelperText className='form-error-text'>{error.message}</FormHelperText>
             </FormControl>
