@@ -104,21 +104,21 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
   const handleRowDensityChange = () => {
     if (selectedDensity === 'compact') {
-      return { padding: '3px' };
+      return { padding: '3px', borderRight: '1px solid var(--border-color)' };
     } else if (selectedDensity === 'comfortable') {
-      return { padding: '15px', fontSize: '18px' };
+      return { padding: '15px', fontSize: '18px', borderRight: '1px solid var(--border-color)' };
     } else {
-      return { padding: '7px' };
+      return { padding: '7px', borderRight: '1px solid var(--border-color)' };
     }
   }
 
   const handleHeaderDensityChange = () => {
     if (selectedDensity === 'compact') {
-      return { padding: '3px' };
+      return { padding: '3px', borderRight: '1px solid var(--border-color)' };
     } else if (selectedDensity === 'comfortable') {
-      return { padding: '15px', fontSize: '18px' };
+      return { padding: '15px', fontSize: '18px', borderRight: '1px solid var(--border-color)' };
     } else {
-      return { padding: '7px' };
+      return { padding: '7px', borderRight: '1px solid var(--border-color)' };
     }
   }
 
