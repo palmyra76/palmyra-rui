@@ -10,7 +10,8 @@ interface ColumnDefinition extends AttributeDefinition {
     searchable?: boolean,
     sortable?: boolean,
     quickSearch?: boolean,
-    cellRenderer?: React.FC
+    cellRenderer?: React.FC,
+    columnGroup?:string
 }
 
 type CellGetter = ((props: CellContext<RowData, any>) => any);

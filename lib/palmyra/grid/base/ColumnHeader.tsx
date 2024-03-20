@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TableCell } from '@mui/material';
-import { LuArrowDownUp,LuArrowUpDown } from "react-icons/lu";
+import { LuArrowDownUp, LuArrowUpDown } from "react-icons/lu";
 
 const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
 
@@ -34,26 +34,42 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
 
     const meta: any = header.column.columnDef.meta;
 
-    return (
-        <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
-            <div style={{
-                display: 'flex',
-                fontWeight:'bold',
-                alignItems:'center',
-                gap: '10px',
-                justifyContent: meta.columnDef.type === 'number' ? 'flex-end' : 'flex-start'
-            }} onClick={() => handleSortColumn()}>
-                {children}
-                {sortOrder === 'asc' ? (
-                    <LuArrowUpDown style={{ fontSize: '18px', color: 'rgb(0,0,0,0.5)' }} />
-                ) :
-                    sortOrder === 'desc' ? (
-                        <LuArrowDownUp style={{ fontSize: '18px', color: 'rgb(0,0,0,0.5)'}} />
-                    ) : null}
+    if (header.column.columnDef.columns) {
+        // Render Grouped Columns
+        return (
+            <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
+                <div style={{
+                    display: 'flex',
+                    fontWeight: 'bold',
+                    alignItems: 'center',
+                    gap: '10px',                    
+                    justifyContent: 'center'
+                }} >
+                    {children}
+                </div>
+            </TableCell>
+        )
+    } else
+        return (
+            <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
+                <div style={{
+                    display: 'flex',
+                    fontWeight: 'bold',
+                    alignItems: 'center',
+                    gap: '10px',
+                    justifyContent: meta?.columnDef?.type === 'number' ? 'flex-end' : 'flex-start'
+                }} onClick={() => handleSortColumn()}>
+                    {children}
+                    {sortOrder === 'asc' ? (
+                        <LuArrowUpDown style={{ fontSize: '18px', color: 'rgb(0,0,0,0.5)' }} />
+                    ) :
+                        sortOrder === 'desc' ? (
+                            <LuArrowDownUp style={{ fontSize: '18px', color: 'rgb(0,0,0,0.5)' }} />
+                        ) : null}
 
-            </div>
-        </TableCell>
-    )
+                </div>
+            </TableCell>
+        )
 }
 
 export default ColumnHeader;

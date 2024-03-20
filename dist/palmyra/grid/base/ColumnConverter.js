@@ -1,59 +1,67 @@
-import { jsx as d } from "react/jsx-runtime";
-import { createColumnHelper as m } from "@tanstack/react-table";
-import { formatColumn as g } from "./CellFormatter.js";
-import { getValueByKey as l } from "../../form/FormUtil.js";
-import { hasDot as u } from "../../utils/StringUtil.js";
-import { getFormatConverter as v } from "../../utils/converter/FormatterFactory.js";
-const s = m();
-function A(t, r) {
-  return t.map((e) => C(e, r));
+import { jsx as m } from "react/jsx-runtime";
+import { createColumnHelper as c } from "@tanstack/react-table";
+import { formatColumn as d } from "./CellFormatter.js";
+import { getValueByKey as v } from "../../form/FormUtil.js";
+import { hasDot as b } from "../../utils/StringUtil.js";
+import { getFormatConverter as g } from "../../utils/converter/FormatterFactory.js";
+const u = c();
+function k(r, o) {
+  return r.every((t) => t.columnGroup == null) ? r.map((t) => p(t, o)) : h(r, o);
 }
-function C(t, r) {
-  const e = t.sortable, a = t.searchable;
-  var o = t.cellRenderer;
-  const n = r.formatHeader(t, h(t)), i = r.formatFooter(t, y());
-  if (o)
-    return s.display({
-      id: p(t),
+function h(r, o) {
+  const t = new Array();
+  var e = void 0;
+  return r.map((n) => {
+    const a = p(n, o);
+    n.columnGroup ? ((!e || e.header != n.columnGroup) && (e = {}, e.header = n.columnGroup, e.columns = [], t.push(e)), e.columns.push(a)) : t.push(a);
+  }), t;
+}
+function p(r, o) {
+  const t = r.sortable, e = r.searchable;
+  var n = r.cellRenderer;
+  const a = o.formatHeader(r, y(r)), i = o.formatFooter(r, G());
+  if (n)
+    return u.display({
+      id: s(r),
       meta: {
-        attribute: t.attribute,
-        columnDef: t
+        attribute: r.attribute,
+        columnDef: r
       },
-      enableSorting: e,
-      enableColumnFilter: a,
-      header: n,
+      enableSorting: t,
+      enableColumnFilter: e,
+      header: a,
       footer: i,
-      cell: o
+      cell: n
     });
-  let b = r.formatCell(t, g(t));
-  return s.accessor(c(t), {
-    id: p(t),
+  let l = o.formatCell(r, d(r));
+  return u.accessor(C(r), {
+    id: s(r),
     meta: {
-      attribute: t.attribute,
-      columnDef: t
+      attribute: r.attribute,
+      columnDef: r
     },
-    enableSorting: e,
-    enableColumnFilter: a,
-    header: n,
+    enableSorting: t,
+    enableColumnFilter: e,
+    header: a,
     footer: i,
-    cell: b
+    cell: l
   });
 }
-function c(t) {
-  var r = t.attribute ? t.attribute : t.name;
-  const e = v(t);
-  return u(r) ? (a) => e.convert(l(r, a)) : (a) => e.convert(a[r]);
+function C(r) {
+  var o = r.attribute ? r.attribute : r.name;
+  const t = g(r);
+  return b(o) ? (e) => t.convert(v(o, e)) : (e) => t.convert(e[o]);
 }
-function p(t) {
-  return t.name ? t.name : t.attribute;
+function s(r) {
+  return r.name ? r.name : r.attribute;
 }
-function h(t) {
-  return () => /* @__PURE__ */ d("span", { children: t.title });
+function y(r) {
+  return () => /* @__PURE__ */ m("span", { children: r.title });
 }
-function y(t) {
-  return (r, e) => {
+function G(r) {
+  return (o, t) => {
   };
 }
 export {
-  A as generateColumns
+  k as generateColumns
 };

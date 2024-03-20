@@ -11,6 +11,7 @@ interface ColumnDefinition extends AttributeDefinition {
     sortable?: boolean;
     quickSearch?: boolean;
     cellRenderer?: React.FC;
+    columnGroup?: string;
 }
 type CellGetter = ((props: CellContext<RowData, any>) => any);
 type PartialRecord<K extends keyof any, T> = {

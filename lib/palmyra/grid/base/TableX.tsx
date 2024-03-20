@@ -84,7 +84,7 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
                           return (
                             <TableCell key={cell.id}
                               style={{
-                                ...(meta.columnDef.type === 'number' ? { textAlign: 'end' } : {}),
+                                ...(meta?.columnDef?.type === 'number' ? { textAlign: 'end' } : {}),
                                 ...rowStyle
                               }}
 
