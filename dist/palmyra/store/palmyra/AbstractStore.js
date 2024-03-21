@@ -17,6 +17,7 @@ import "@mui/x-tree-view";
 import "../../layout/tree/AsyncTreeMenuEditor.js";
 /* empty css                             */import { StringFormat as p, hasUnfilledParameter as n } from "../../utils/StringUtil.js";
 import "../../utils/pubsub/topic.js";
+import "@tanstack/react-table";
 import "react-chartjs-2";
 import "../../chart/chartjs/LineChart.js";
 import "../../chart/chartjs/BarChart.js";
@@ -41,7 +42,7 @@ import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
 import "../../form/PalmyraForm.js";
-class $ {
+class q {
   constructor(t, r) {
     o(this, "options");
     o(this, "target");
@@ -65,5 +66,5 @@ class $ {
   }
 }
 export {
-  $ as PalmyraAbstractStore
+  q as PalmyraAbstractStore
 };

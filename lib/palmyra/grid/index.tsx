@@ -1,4 +1,6 @@
 
+
+
 export { default as GridX } from './GridX'
 export { default as DynColGridX } from './DynColGridX'
 
@@ -8,3 +10,6 @@ export * from './Types'
 export * from "./usePalmyraPageGrid"
 export { GridColumnsBuilder } from './utils/GridBuilder'
 export { gridFn } from "./GridFunctions"
+
+export {CheckboxGridEnhancer } from './CheckboxGridEnhancer';
+export type {IGridEnhancer } from './CheckboxGridEnhancer';

@@ -43,6 +43,7 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css              */import "../palmyra/layout/tree/AsyncTreeMenuEditor.js";
 import { topic as Je } from "../palmyra/utils/pubsub/topic.js";
+import "@tanstack/react-table";
 import "react-chartjs-2";
 import "../palmyra/chart/chartjs/LineChart.js";
 import "../palmyra/chart/chartjs/BarChart.js";
@@ -139,7 +140,7 @@ const ie = (o) => {
 function Ue(o) {
   return o ? Array.isArray(o) ? o : typeof o == "string" ? o.split(",") : [o] : [];
 }
-const Cr = U(function(t, c) {
+const br = U(function(t, c) {
   const i = le(ue), a = c || $(null), s = i(t, "checkbox", a), { mutateOptions: y, setMutateOptions: g } = s, [C, p] = N(!1), b = Ue(s.data), d = s.error, F = s.eventListeners, v = s.store, I = t.pageSize || -1, A = { store: v, pageSize: I, defaultParams: t.defaultParams }, { data: D } = ie(A), R = D, M = $(null), T = t.lookupOptions || {}, E = T.idAttribute || "id", Q = T.displayAttribute || "name", X = t.showSelectedOnly && t.readonly, k = ce(E) ? (u) => de(E, u) : (u) => u[E], P = ce(Q) ? (u) => de(Q, u) : (u) => u[Q];
   ne(a, () => ({
     focus() {
@@ -918,7 +919,7 @@ const Zt = (o) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), br = U(function(t, c) {
+}), xr = U(function(t, c) {
   const { children: i, EmptyChild: a, onRowClick: s, quickSearch: y, exportOptions: g } = t, C = t.columns, p = a || lt, b = t.customizer || ut, d = t.customButton, F = t.title, [v, I] = N(!1), [A, D] = N(!1), [R, M] = N("standard"), [T, E] = N(!1), [Q, X] = N(""), {
     setQueryFilter: k,
     setQuickSearch: P,
@@ -1129,7 +1130,7 @@ const Zt = (o) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), xr = U(function(t, c) {
+}), Fr = U(function(t, c) {
   const { columns: i, endPoint: a, storeFactory: s, layoutParams: y, pagination: g } = t, C = t.quickSearch || "", p = t.customButton, b = t.customAddButton, d = t.title, F = t.fetchAll, v = t.filterTopic, I = t.initialFetch, A = (R, M) => {
   };
   Z(() => {
@@ -1301,14 +1302,14 @@ const vt = (o) => {
     default:
       return Ye;
   }
-}, Fr = U(function(t, c) {
+}, Sr = U(function(t, c) {
   const [i, a] = N(t.layout), s = t.mode ? t.mode : i.type ? i.type : "grid", y = t.layoutParams || {}, g = ln(s), C = $(0);
   return Z(() => {
     a(t.layout), C.current < 999999 ? C.current++ : C.current = 0;
   }, [t.layout]), /* @__PURE__ */ e(ht, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(Qe.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(tt.Provider, { value: y, children: /* @__PURE__ */ e(g, { ...t, ref: (p) => {
     c && (c.current = p);
   } }, C.current) }) }) });
-}), Sr = U(function(t, c) {
+}), wr = U(function(t, c) {
   const { title: i, Child: a, childProps: s, pageSize: y, customButton: g } = t, C = c || $(null), {
     setQueryFilter: p,
     refreshData: b,
@@ -1433,15 +1434,15 @@ const vt = (o) => {
   ] }) }) });
 });
 export {
-  br as D,
-  Fr as F,
+  xr as D,
+  Sr as F,
   yt as G,
   $t as M,
-  xr as P,
-  Sr as S,
+  Fr as P,
+  wr as S,
   vt as T,
   tn as a,
-  Cr as b,
+  br as b,
   Jt as c,
   Yt as d,
   gt as e,

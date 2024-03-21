@@ -15,6 +15,7 @@ import "@mui/x-tree-view";
 /* empty css                            */import "../card/CardLayout.js";
 import "./AsyncTreeMenuEditor.js";
 import "../../utils/pubsub/topic.js";
+import "@tanstack/react-table";
 import "react-chartjs-2";
 import "../../chart/chartjs/LineChart.js";
 import "../../chart/chartjs/BarChart.js";
@@ -39,7 +40,7 @@ import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
 import "../../form/PalmyraForm.js";
-const gr = (i) => {
+const vr = (i) => {
   let l = document.body;
   const e = i.width, a = i.mobileOpen, c = i.setMobileOpen, s = i.responsive, h = "/acl/editor/menu/list", b = new N({ baseUrl: "/api" }).getTreeStore({}, h), [t, y] = p(!1), [m, u] = p(!1), x = () => {
     u(!m), y(!t);
@@ -136,5 +137,5 @@ const gr = (i) => {
   );
 };
 export {
-  gr as AsyncMenuSidebar
+  vr as AsyncMenuSidebar
 };
