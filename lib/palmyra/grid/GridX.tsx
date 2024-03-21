@@ -25,6 +25,7 @@ interface GridXOptions extends IServerQueryInput {
   children?: any,
   EmptyChild?: React.FC,
   exportOptions?: IExportOptions,
+  densityOption?: any,
   onRowClick?: Function,
   onNewClick?: Function,
   customizer?: GridCustomizer,
@@ -34,7 +35,7 @@ interface GridXOptions extends IServerQueryInput {
 }
 
 const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObject<IPageQueryable>) {
-  const { columns, children, EmptyChild, onRowClick, quickSearch, exportOptions } = props;
+  const { columns, children, EmptyChild, onRowClick, quickSearch, exportOptions, densityOption } = props;
   const EmptyChildContainer = EmptyChild || defaultEmptyChild;
   const customizer: GridCustomizer = props.customizer || NoopCustomizer;
   const customButton = props.customButton;
@@ -104,11 +105,20 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
 
   const handleRowDensityChange = () => {
     if (selectedDensity === 'compact') {
-      return { padding: '3px', borderRight: '1px solid var(--border-color)' };
+      return {
+        padding: '3px', borderRight: '0.55px solid var(--border-color)',
+        borderBottom: '0.55px solid var(--border-color)'
+      };
     } else if (selectedDensity === 'comfortable') {
-      return { padding: '15px', fontSize: '18px', borderRight: '1px solid var(--border-color)' };
+      return {
+        padding: '15px', fontSize: '18px', borderRight: '0.55px solid var(--border-color)',
+        borderBottom: '0.55px solid var(--border-color)'
+      };
     } else {
-      return { padding: '7px', borderRight: '1px solid var(--border-color)' };
+      return {
+        padding: '7px', borderRight: '0.55px solid var(--border-color)',
+        borderBottom: '0.55px solid var(--border-color)'
+      };
     }
   }
 
@@ -228,33 +238,34 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                 />
               )}
             </div>
-            <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
-              <div className='grid-header-button grid-density-btn' onClick={toggleDropdown}>
-                <Button className='grid-btn' disableRipple>
-                  {densityIcon()}
-                  <span>Density</span>
-                  <KeyboardArrowDown style={arrowStyles} className='avathar-arrw-icon' />
-                </Button>
-                {dropdownOpen && (
-                  <div className="density-dropdown-content">
-                    <ul>
-                      <li onClick={() => handleDensityChange('standard')}>
-                        <Menu className='density-icon grid-button-icon' />
-                        <span className='drodown-content-text'>Standard</span>
-                      </li>
-                      <li onClick={() => handleDensityChange('compact')}>
-                        <DensitySmall className='density-icon grid-button-icon' />
-                        <span className='drodown-content-text'>Compact</span>
-                      </li>
-                      <li onClick={() => handleDensityChange('comfortable')}>
-                        <DensityLarge className='density-icon grid-button-icon' />
-                        <span className='drodown-content-text'>Comfortable</span>
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </ClickAwayListener>
+            {densityOption &&
+              <ClickAwayListener onClickAway={() => { setDropdownOpen(false) }}>
+                <div className='grid-header-button grid-density-btn' onClick={toggleDropdown}>
+                  <Button className='grid-btn' disableRipple>
+                    {densityIcon()}
+                    <span>Density</span>
+                    <KeyboardArrowDown style={arrowStyles} className='avathar-arrw-icon' />
+                  </Button>
+                  {dropdownOpen && (
+                    <div className="density-dropdown-content">
+                      <ul>
+                        <li onClick={() => handleDensityChange('standard')}>
+                          <Menu className='density-icon grid-button-icon' />
+                          <span className='drodown-content-text'>Standard</span>
+                        </li>
+                        <li onClick={() => handleDensityChange('compact')}>
+                          <DensitySmall className='density-icon grid-button-icon' />
+                          <span className='drodown-content-text'>Compact</span>
+                        </li>
+                        <li onClick={() => handleDensityChange('comfortable')}>
+                          <DensityLarge className='density-icon grid-button-icon' />
+                          <span className='drodown-content-text'>Comfortable</span>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </ClickAwayListener>}
             {columns.some(column => column.searchable) && (
               <ClickAwayListener onClickAway={() => { setFilterDropdownOpen(false) }}>
                 <div className='grid-header-button grid-filter-btn' onClick={onFilterClick}>

@@ -23,6 +23,7 @@ interface GridRendererInput {
     filterTopic?: string,
     initialFetch?: boolean,
     exportOptions?: IExportOptions,
+    densityOption?: any
 }
 
 const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, gridRef: MutableRefObject<IPageQueryable>) {
@@ -53,7 +54,7 @@ const GridRenderer = forwardRef(function FormRenderer(props: GridRendererInput, 
             <GridX columns={fields} store={store} pageSize={pageSize} onRowClick={onClick} exportOptions={props.exportOptions}
                 onDataChange={props.onDataChange} title={props.title} customAddButton={props.customAddButton}
                 onNewClick={onNewClick} customizer={props.customizer} customButton={props.customButton}
-                quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams}
+                quickSearch={tableLayout.quickSearch} ref={gridRef} defaultParams={props.defaultParams} densityOption={props.densityOption}
                 fetchAll={props.fetchAll} filterTopic={props.filterTopic} initialFetch={props.initialFetch}
             ></GridX>
         </div>

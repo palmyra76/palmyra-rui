@@ -21,6 +21,7 @@ interface IPalmyraGridInput {
     title?: ITitle,
     customAddButton?: any,
     exportOptions?: IExportOptions,
+    densityOption?: any,
     fetchAll?: boolean,
     filterTopic?: string,
     initialFetch?: boolean
@@ -66,7 +67,7 @@ const PalmyraGrid = forwardRef(function PalmyraGrid(props: IPalmyraGridInput, re
         <>
             <StoreFactoryContext.Provider value={storeFactory}>
                 <GridRenderer layout={layout} context={layoutParams} customAddButton={customAddButton}
-                    onDataChange={props.onDataChange} title={title}
+                    onDataChange={props.onDataChange} title={title} densityOption={props.densityOption}
                     defaultParams={props.defaultParams} customButton={customButton}
                     customizer={props.customizer} ref={ref} exportOptions={props.exportOptions}
                     fetchAll={fetchAll} filterTopic={filterTopic} initialFetch={initialFetch}></GridRenderer>

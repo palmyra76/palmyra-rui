@@ -4,16 +4,31 @@
     --left-menu-fontsize: 1.01em;
 }
 
+/* .backend-grid .MuiTableCell-head,
+.backend-grid .MuiTableCell-body {
+    border: none !important;
+} */
+
 .MuiTableContainer-root {
     max-height: 75vh;
     overflow: scroll;
 }
 
-.MuiTableRow-head .MuiTableCell-root {
+.MuiTableHead-root {
     position: sticky;
     top: 0;
-    /* background-color: rgba(228, 240, 251); */
+    background-color: rgba(248, 248, 248);
 }
+
+.MuiTable-root {
+    border-collapse: unset !important;
+}
+
+/* .MuiTableRow-head .MuiTableCell-root {
+    position: sticky;
+    top: 0;
+    background-color: rgba(248, 248, 248);
+} */
 
 .MuiFormLabel-root-MuiInputLabel-root {
     display: flex;
