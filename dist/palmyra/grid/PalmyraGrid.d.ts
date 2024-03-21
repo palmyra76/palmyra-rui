@@ -18,6 +18,7 @@ interface IPalmyraGridInput {
     title?: ITitle;
     customAddButton?: any;
     exportOptions?: IExportOptions;
+    densityOption?: any;
     fetchAll?: boolean;
     filterTopic?: string;
     initialFetch?: boolean;

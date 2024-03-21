@@ -10,6 +10,7 @@ interface GridXOptions extends IServerQueryInput {
     children?: any;
     EmptyChild?: React.FC;
     exportOptions?: IExportOptions;
+    densityOption?: any;
     onRowClick?: Function;
     onNewClick?: Function;
     customizer?: GridCustomizer;
