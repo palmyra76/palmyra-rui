@@ -1,31 +1,57 @@
 /**
  * Basic structure to draw the table
  */
-import { useEffect, useState } from 'react'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { Paper, Box } from '@mui/material';
 import './Grid.css';
 import ColumnHeader from './ColumnHeader'
 
 import {
+  ColumnDef,
+  RowData,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
 import LoadingChild from './LoadingChild';
+import { GridCustomizer, IReactTanstackTable } from '..';
+
+interface ITableX {
+  columnDefs: ColumnDef<RowData, any>[],
+  rowData: any[],
+  onRowClick: Function,
+  onRowStyle: Function,
+  onHeaderStyle: Function,
+  onSortColumn: Function,
+  EmptyChild: React.FC,
+  customizer: GridCustomizer
+}
 
 
-export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild, customizer }) {
+export default function TableX({ columnDefs, rowData, onRowClick,
+  onRowStyle, onHeaderStyle, onSortColumn, EmptyChild, customizer }: ITableX) {
   const preProcessData = customizer?.preProcessData || ((d: any) => d);
-  const table = useReactTable({
+  const tableRef:MutableRefObject<IReactTanstackTable> = customizer?.getTableRef() || useRef();  
+
+  const tableOptions = customizer?.getTableOptions ? customizer.getTableOptions() : {};
+
+  if(customizer.preProcessColumns){
+    customizer.preProcessColumns(columnDefs);
+  }
+
+  const options = {
     data: preProcessData(rowData),
     manualSorting: true,
     manualFiltering: true,
     manualPagination: true,
     columns: columnDefs,
     getCoreRowModel: getCoreRowModel(),
-  })
+    ...tableOptions
+  }
 
+  const table = useReactTable(options);
+  tableRef.current = table;
   const [sortColumn, setSortColumn] = useState({});
 
   useEffect(() => {
@@ -46,7 +72,7 @@ export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, on
 
   return (
     <Box sx={{ width: '100%' }}>
-      <TableContainer component={Paper} sx={{border:'1px solid var(--border-color)',borderRadius:'5px'}}>
+      <TableContainer component={Paper} sx={{ border: '1px solid var(--border-color)', borderRadius: '5px' }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table" className='table'>
           <TableHead className='table-head'>
             {table.getHeaderGroups().map(headerGroup => (

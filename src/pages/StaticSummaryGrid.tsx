@@ -4,10 +4,14 @@ import { CellGetter, GridCustomizer, PalmyraGrid, gridColumnCustomizer, topic } 
 import { ErrorBoundary } from "../../lib/palmyra/layout/ErrorBoundary";
 import { AppStoreFactory } from "../components/store/AppStoreFactory";
 import { GridColumnsBuilder } from "../../lib/palmyra/grid/utils/GridBuilder";
+
+import { CheckboxGridEnhancer, IGridEnhancer } from "../../lib/palmyra/grid/CheckboxGridEnhancer";
 import { useEffect } from "react";
-// import { Menu, DensitySmall, DensityLarge, Add, KeyboardArrowDown } from '@mui/icons-material';
+
 
 const StaticSummaryGrid = () => {
+
+    const gridEnhancer: IGridEnhancer = CheckboxGridEnhancer();
 
     const customConfig: Record<string, ((d: CellGetter) => CellGetter)> = {
         'gender': enhance
@@ -20,8 +24,8 @@ const StaticSummaryGrid = () => {
         };
     }
 
-    const gridCustomizer: GridCustomizer = gridColumnCustomizer(customConfig);
-
+    const gridCustomizer: GridCustomizer = {...gridColumnCustomizer(customConfig), ...gridEnhancer};
+    
     const storeFactory = new AppStoreFactory();
 
     const columns = new GridColumnsBuilder()
@@ -72,8 +76,17 @@ const StaticSummaryGrid = () => {
     //     </Button>
     // ]
 
+    const showState = () => {
+        console.log(gridEnhancer.getSelectedIds())
+    }
+
     return (<>
         <ErrorBoundary fallback={<p>FlexiLayoutRenderer: Something went wrong</p>}>
+
+            <Button onClick={showState}>
+                shows
+            </Button>
+
             <PalmyraGrid columns={columns} endPoint="/welcome" actions={actionOptions}
                 customizer={gridCustomizer} customButton={customButtom} exportOptions={{
                     "csv": "Export As CSV",
@@ -87,3 +100,5 @@ const StaticSummaryGrid = () => {
 }
 
 export default StaticSummaryGrid;
+
+
