@@ -984,7 +984,20 @@ const en = (r) => {
     I(F);
   }, J = () => {
     V(!v);
-  }, le = () => R === "compact" ? { padding: "3px" } : R === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, be = () => R === "compact" ? { padding: "3px" } : R === "comfortable" ? { padding: "15px", fontSize: "18px" } : { padding: "7px" }, Ce = () => {
+  }, le = () => R === "compact" ? {
+    padding: "3px",
+    borderRight: "0.55px solid var(--border-color)",
+    borderBottom: "0.55px solid var(--border-color)"
+  } : R === "comfortable" ? {
+    padding: "15px",
+    fontSize: "18px",
+    borderRight: "0.55px solid var(--border-color)",
+    borderBottom: "0.55px solid var(--border-color)"
+  } : {
+    padding: "7px",
+    borderRight: "0.55px solid var(--border-color)",
+    borderBottom: "0.55px solid var(--border-color)"
+  }, be = () => R === "compact" ? { padding: "3px", borderRight: "1px solid var(--border-color)" } : R === "comfortable" ? { padding: "15px", fontSize: "18px", borderRight: "1px solid var(--border-color)" } : { padding: "7px", borderRight: "1px solid var(--border-color)" }, Ce = () => {
     var F;
     switch (R) {
       case "compact":
