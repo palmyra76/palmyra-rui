@@ -49,6 +49,14 @@
   border: none
 }
 
+.tree-node--selected:focus-visible,
+.tree-leaf-list-item--selected:focus-visible,
+.tree-branch-wrapper:focus-visible,
+.tree-node:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* .tree-leaf-list-item--selected  */
 /* .tree-node .checkbox-icon {
   color: rgb(47, 126, 176) !important; 
@@ -194,6 +202,7 @@
 
 .sidebar-asyn-menu .async-tree-menu-container {
   width: 250px;
+  outline-style: none;
 }
 
 .sidebar-asyn-menu .async-tree-menu-container ul,
@@ -212,6 +221,11 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  padding: 3px;
+}
+
+.async-tree-menu-selected-branch-list {
+  background-color: aqua !important;
 }
 
 .sidebar-asyn-menu .async-tree-menu-list-text-container {
@@ -229,11 +243,27 @@
 }
 
 .async-tree-menu-list:hover {
-  background: rgba(194, 194, 194, 0.1);
+  background: rgb(246, 246, 246);
+  border-radius: 5px;
+  padding: 3px;
 }
+
+/* .tree-leaf-list-item:hover {
+  background: rgba(194, 194, 194, 0.1);
+} */
 
 .async-tree-menu-list:active {
   background: rgba(102, 102, 102, 0.3);
+}
+
+.async-tree-menu-selected-list {
+  background-color: rgb(228, 227, 227);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 /* {

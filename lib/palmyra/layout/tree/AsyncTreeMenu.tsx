@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { TreeQueryStore } from "../../store";
 import { AiOutlineLoading } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
-import TreeView, { INode, ITreeViewOnExpandProps, NodeId } from "react-accessible-treeview";
+import TreeView, { INode, ITreeViewOnExpandProps, ITreeViewOnSelectProps, NodeId } from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
@@ -10,6 +10,7 @@ import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 import { useNavigate } from "react-router-dom";
 
 const MENU_STORE_KEY_EXPANDED = 'palmyra.rui.sidemenu.expanded';
+const MENU_STORE_KEY_SELECTED = 'palmyra.rui.sidemenu.expanded.selected';
 
 interface IAsyncTreeMenuInput {
     store: TreeQueryStore<IChildTreeRequest, any>
@@ -19,7 +20,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
     const navigate = useNavigate();
     const loadedAlertElement = useRef(null);
     let rootNode = { name: "", id: -1, parent: null, children: [], isBranch: true };
-    const [data, setData] = useState({ data: [rootNode], expandedIds: [] });
+    const [data, setData] = useState({ data: [rootNode], expandedIds: [], selectedId: [] });
     const store: TreeQueryStore<IChildTreeRequest, any> = props.store;
     const expandedIdRef = useRef<NodeId[]>([]);
 
@@ -73,21 +74,34 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
         store.getRoot().then((d) => {
             var nodes: any[] = convert(d.result, -1);
             const sd = updateTreeData(data.data, -1, nodes);
-            // Load the selected Ids fromt he localStorage;
+            // Load the selected Ids from the localStorage;
             //@ts-ignore
             const localExpValue = (localStorage.getItem(MENU_STORE_KEY_EXPANDED) || '').split(',');
             expandedIdRef.current = localExpValue.map((d) => parse(d)).filter((id) => {
-                // @ts-ignore                
+                //@ts-ignore
                 return nodes.some((d) => {
                     return d.id == id;
                 })
             });
-            setData({ data: sd, expandedIds: expandedIdRef.current });
+
+            const localSelVal = (localStorage.getItem(MENU_STORE_KEY_SELECTED) || '').split(',').map(d => parse(d));
+            const selectedId = localSelVal.filter((id) => {
+                return nodes.some((d) => {
+                    return d.id == id;
+                })
+            });
+
+            setData({ data: sd, expandedIds: expandedIdRef.current, selectedId: selectedId });
         });
     }, []);
 
     const persistExpanded = () => {
         localStorage.setItem(MENU_STORE_KEY_EXPANDED, expandedIdRef.current.join());
+    }
+
+    const persistSelected = (element) => {
+        //@ts-ignore
+        localStorage.setItem(MENU_STORE_KEY_SELECTED, element);
     }
 
     const navigateTo = (element: INode) => {
@@ -127,10 +141,21 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                             }
                             persistExpanded();
                         }}
-                        propagateSelect
+                        onSelect={(p: ITreeViewOnSelectProps) => {
+                            const isSelected = p.isSelected;
+                            const element = p.element;
+                            if (isSelected && !p.isHalfSelected) {
+                                if (element.id !== "") {
+                                    persistSelected(element.id);
+                                }
+                            }
+                        }}
+                        propagateSelect={false}
                         togglableSelect
+                        multiSelect={false}
+                        selectedIds={data.selectedId}
                         expandedIds={data.expandedIds}
-                        propagateSelectUpwards
+                        propagateSelectUpwards={true}
                         nodeRenderer={({
                             element,
                             isBranch,
@@ -162,12 +187,20 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                                     <ArrowIcon isOpen={isExpanded} />
                                 );
                             };
+
                             return (
                                 <div
                                     {...getNodeProps({ onClick: handleExpand })}
                                     style={{ marginLeft: 5 * (level - 1) }}
                                 >
-                                    <div className="async-tree-menu-list" onClick={() => navigateTo(element)}>
+                                    <div className={isSelected ?
+                                        "async-tree-menu-selected-list" : "async-tree-menu-list"}
+                                        onClick={(e) => {
+                                            if (!isSelected) {
+                                                handleSelect(e);
+                                                navigateTo(element);
+                                            }
+                                        }}>
                                         <div className="async-tree-menu-list-text-container">
                                             <div className="menu-icon"></div>
                                             <span className="menu-name">{element.name}</span>
@@ -182,7 +215,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                         }
                     />
                 </div>
-            </div>
+            </div >
         </>
     );
 }
