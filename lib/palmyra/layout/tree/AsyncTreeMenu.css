@@ -37,8 +37,6 @@
   vertical-align: text-bottom;
 }
 
-
-
 .tree-leaf-list-item--selected .checkbox-icon,
 .tree-node-group--selected .checkbox-icon,
 .tree-node-group--expanded .tree-node--selected .checkbox-icon,
@@ -92,6 +90,7 @@
 
 .tree {
   list-style: none;
+  padding-left: 3px;
 }
 
 .tree-node {
@@ -104,6 +103,7 @@
 
 .tree-node-group {
   list-style: none;
+  padding-left: 3px;
 }
 
 /* .crud-checkbox-list {
@@ -188,7 +188,7 @@
 /* --Sidebar AsynTreeMenu-- */
 .sidebar-asyn-menu .tree-node {
   display: block;
-  padding: 5px 10px 5px 0px;
+  padding: 5px 5px 0px 0px;
 }
 
 .sidebar-asyn-menu .tree {
@@ -202,13 +202,11 @@
 
 .sidebar-asyn-menu .async-tree-menu-container {
   width: 250px;
-  outline-style: none;
 }
 
 .sidebar-asyn-menu .async-tree-menu-container ul,
 .sidebar-asyn-menu .async-tree-menu-container li {
   list-style: none;
-  margin-left: -15px;
 }
 
 .sidebar-asyn-menu .tree-node--expanded .tree-node-group--expanded {
@@ -244,7 +242,7 @@
 
 .async-tree-menu-list:hover {
   background: rgb(246, 246, 246);
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 3px;
 }
 
@@ -262,7 +260,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 3px;
 }
 

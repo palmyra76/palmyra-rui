@@ -11,7 +11,7 @@
 
 .MuiTableContainer-root {
     max-height: 75vh;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .MuiTableHead-root {

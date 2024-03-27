@@ -25,7 +25,10 @@
     bottom: 0;
 }
 
-.sidebar-middle {}
+.sidebar-middle {
+    height: 80vh;
+    overflow: auto;
+}
 
 .sidebar-title {
     display: flex;
@@ -51,4 +54,21 @@
 .sidebar-header {
     margin-bottom: 0px;
     position: relative;
+
+    .MuiToolbar-root {
+        margin-bottom: 0px;
+    }
+}
+
+.sidebar-middle {
+
+    .async-tree-menu-list:hover {
+        background-color: rgb(198, 198, 198, 0.1);
+        color: white;
+    }
+
+    .async-tree-menu-selected-list {
+        background-color: rgb(198, 198, 198, 0.3);
+        color: white;
+    }
 }
