@@ -2,7 +2,7 @@ import { jsx as r } from "react/jsx-runtime";
 import { Chart as n, ArcElement as a, Tooltip as s, Legend as m } from "chart.js";
 import { useRef as f } from "react";
 import { Pie as l } from "react-chartjs-2";
-import { useListener as c } from "../ChartEventListener.js";
+import { useListener as c } from "./ChartEventListener.js";
 n.register(a, s, m);
 const p = {
   responsive: !0,

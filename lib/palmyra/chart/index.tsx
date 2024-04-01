@@ -1,4 +1,5 @@
-export * from  './Types';
-export * from  './ChartEventListener';
-export * from './DataConverterFactory';
-export * from './ChartFactory';
+
+export * from './chartjs/Types';
+export * from  './chartjs/ChartEventListener';
+export * from './chartjs/DataConverterFactory';
+export * from './chartjs/ChartFactory';

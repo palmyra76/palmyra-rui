@@ -1,4 +1,4 @@
-import { ChartInput } from "../Types";
+import { ChartInput } from "./Types";
 import {
     Chart as ChartJS,
     RadialLinearScale,
@@ -7,7 +7,7 @@ import {
     Legend,
 } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
-import { useListener } from "../ChartEventListener";
+import { useListener } from "./ChartEventListener";
 import { useRef } from "react";
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);

@@ -7,18 +7,18 @@ import { default as PolarAreaConverters } from './converters/PolarConverter';
 import { default as PieConverters } from './converters/PieConverter';
 import { default as DoughnutConverters } from './converters/DoughnutConverter';
 
-import { transformOptions } from '../layout/Types';
 import { getScalePointData } from './converters/ScaleConverter';
 import { InteractionItem } from 'chart.js';
+import { ITransformOptions } from '../Types';
 
 interface ChartDataConverter {
     (data: any, options?: any): any;
 }
 
-type IgetPointData = (data: any, options: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => Record<string, any>;
+type IgetPointData = (data: any, options: ITransformOptions, element: InteractionItem[], elements: InteractionItem[]) => Record<string, any>;
 
 interface DataConverterGen {
-    (options: transformOptions): ChartDataConverter
+    (options: ITransformOptions): ChartDataConverter
 }
 
 const NoopConverter = (data: any): any => {
@@ -46,7 +46,7 @@ var PointConverterMap: Record<string, IgetPointData> = {
     "Bubble": getBubblePointData
 }
 
-const getDataConverter = (chartType: string, sourceType: string, options: transformOptions): ChartDataConverter => {
+const getDataConverter = (chartType: string, sourceType: string, options: ITransformOptions): ChartDataConverter => {
     var converter: DataConverterGen = dataMap[chartType]?.[sourceType];
     return (converter ? converter(options) : NoopConverter);
 }

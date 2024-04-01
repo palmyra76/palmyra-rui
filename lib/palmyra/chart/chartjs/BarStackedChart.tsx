@@ -1,4 +1,4 @@
-import { ChartInput } from "../Types";
+import { ChartInput } from "./Types";
 
 
 const BarStackedChart = (props: ChartInput) => {

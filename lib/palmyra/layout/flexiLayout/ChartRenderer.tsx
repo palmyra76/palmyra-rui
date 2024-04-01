@@ -1,10 +1,10 @@
 import { ChartLayout } from './Definitions';
-import { ChartFactory } from '../../chart/ChartFactory';
+import { ChartFactory } from '../../chart/chartjs/ChartFactory';
 import { useContext, useMemo, useState } from 'react';
-import { getDataConverter } from '../../chart/DataConverterFactory';
+import { getDataConverter } from '../../chart/chartjs/DataConverterFactory';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
-import { transformOptions } from '../Types';
+import { ITransformOptions } from '../../chart/Types';
 
 interface ChartRendererInput {
   layout: ChartLayout
@@ -53,7 +53,7 @@ const ChartRenderer = (props: ChartRendererInput) => {
     return '300px';
   }
 
-  const transformOptions: transformOptions = props.layout.transformOptions || { sourceType: "default" };
+  const transformOptions: ITransformOptions = props.layout.transformOptions || { sourceType: "default" };
 
   return (
     <div className="palmyra-chart-container-wrapper">

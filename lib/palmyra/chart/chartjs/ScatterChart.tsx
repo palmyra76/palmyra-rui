@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 
 import { Scatter } from 'react-chartjs-2';
-import { ChartInput } from '../Types';
+import { ChartInput } from './Types';
 
 ChartJS.register(LinearScale,CategoryScale, PointElement, LineElement,Title, Tooltip, Legend);
 

@@ -1,4 +1,4 @@
-import { ChartInput } from "../Types";
+import { ChartInput } from "./Types";
 import {
     Chart as ChartJS,
     RadialLinearScale,
@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import { useRef } from "react";
 import { Radar } from 'react-chartjs-2';
-import { useListener } from "../ChartEventListener";
+import { useListener } from "./ChartEventListener";
 
 ChartJS.register(
     RadialLinearScale,

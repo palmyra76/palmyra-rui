@@ -1,4 +1,4 @@
-import { ChartInput } from '../Types';
+import { ChartInput } from '..';
 export declare const defaultOptions: {
     responsive: boolean;
     maintainAspectRatio: boolean;

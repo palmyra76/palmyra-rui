@@ -1,8 +1,8 @@
-import { ChartInput } from "../Types";
+import { ChartInput } from "./Types";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useRef } from "react";
 import { Pie } from 'react-chartjs-2';
-import { useListener } from "../ChartEventListener";
+import { useListener } from "./ChartEventListener";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

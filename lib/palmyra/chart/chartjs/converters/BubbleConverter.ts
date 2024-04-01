@@ -1,23 +1,25 @@
 import { InteractionItem } from "chart.js";
-import { transformOptions } from "../../layout/Types";
+
 import { DataConverterGen, ChartDataConverter, IgetPointData } from "../DataConverterFactory";
-import { BubbleDataInput, BubbleDataSet } from "../chartjs/Types";
+import { BubbleDataInput, BubbleDataSet } from "../Types";
 import generateColors, { getRandomNumber } from "./colors/GenerateColors";
+import { ITransformOptions } from "../../Types";
 
 
-const NoopConverter = (options: transformOptions): ChartDataConverter => {
+
+const NoopConverter = (options: ITransformOptions): ChartDataConverter => {
     return (data) => { data };
 }
 
-function assignColors(transformOptions: transformOptions,
+function assignColors(ITransformOptions: ITransformOptions,
     key: string, data: BubbleDataSet) {
     var length = Math.round(getRandomNumber(2, 10));
     var color = generateColors(length);
-    data.backgroundColor = transformOptions?.chart?.[key]?.backgroundColor || color[0];
-    data.borderColor = transformOptions?.chart?.[key]?.borderColor || color[length - 1];
+    data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || color[0];
+    data.borderColor = ITransformOptions?.chart?.[key]?.borderColor || color[length - 1];
 }
 
-function getData(dataMap: Record<string, BubbleDataSet>, key: string, transformOptions: transformOptions): BubbleDataSet {
+function getData(dataMap: Record<string, BubbleDataSet>, key: string, ITransformOptions: ITransformOptions): BubbleDataSet {
     var r: BubbleDataSet = dataMap[key];
     if (r)
         return r;
@@ -26,19 +28,19 @@ function getData(dataMap: Record<string, BubbleDataSet>, key: string, transformO
         label: key,
         data: []
     };
-    assignColors(transformOptions, key, r);
+    assignColors(ITransformOptions, key, r);
     dataMap[key] = r;
     return r;
 }
 
-function getKeys(transformOptions: transformOptions): { x: string, y: string, r: string, label: string } {
-    const xLabel: string = transformOptions?.xLabel || 'name';
-    const xKey: any = transformOptions?.xKey || 'x';
-    const yKey: any = transformOptions?.yKey || 'y';
-    const rKey: string = transformOptions?.rKey || 'r';
+function getKeys(ITransformOptions: ITransformOptions): { x: string, y: string, r: string, label: string } {
+    const xLabel: string = ITransformOptions?.xLabel || 'name';
+    const xKey: any = ITransformOptions?.xKey || 'x';
+    const yKey: any = ITransformOptions?.yKey || 'y';
+    const rKey: string = ITransformOptions?.rKey || 'r';
 
     if (yKey instanceof Array) {
-        console.error("BubbleChart: yKey should be string only, not an array " + transformOptions.yKey);
+        console.error("BubbleChart: yKey should be string only, not an array " + ITransformOptions.yKey);
     }
 
     return {
@@ -49,7 +51,7 @@ function getKeys(transformOptions: transformOptions): { x: string, y: string, r:
     }
 }
 
-const ArrayConverter = (options: transformOptions): ChartDataConverter => {
+const ArrayConverter = (options: ITransformOptions): ChartDataConverter => {
     const { x, y, r, label } = getKeys(options);
     return (records: any[]): BubbleDataInput => {
         var result: BubbleDataInput = {
@@ -76,7 +78,7 @@ const ArrayConverter = (options: transformOptions): ChartDataConverter => {
     }
 }
 
-const ObjectConverter = (options: transformOptions): ChartDataConverter => {
+const ObjectConverter = (options: ITransformOptions): ChartDataConverter => {
 
     const { x, y, r } = getKeys(options);
     return (record: any): BubbleDataInput => {
@@ -104,8 +106,8 @@ const ObjectConverter = (options: transformOptions): ChartDataConverter => {
     }
 }
 
-const getPointData: IgetPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
-    const { x, y, r } = getKeys(transformOptions);
+const getPointData: IgetPointData = (data: any, ITransformOptions: ITransformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
+    const { x, y, r } = getKeys(ITransformOptions);
     var result = {};
 
     element.map((e) => {

@@ -1,7 +1,7 @@
 import { jsx as o } from "react/jsx-runtime";
 import { Chart as i, RadialLinearScale as n, ArcElement as s, Tooltip as l, Legend as m } from "chart.js";
 import { PolarArea as f } from "react-chartjs-2";
-import { useListener as c } from "../ChartEventListener.js";
+import { useListener as c } from "./ChartEventListener.js";
 import { useRef as h } from "react";
 i.register(n, s, l, m);
 const u = {

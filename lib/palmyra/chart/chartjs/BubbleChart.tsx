@@ -7,9 +7,9 @@ import {
 } from 'chart.js';
 
 import { Bubble } from 'react-chartjs-2';
-import { ChartInput } from '../Types';
+import { ChartInput } from './Types';
 import { useRef } from 'react';
-import { useListener } from '../ChartEventListener';
+import { useListener } from './ChartEventListener';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 

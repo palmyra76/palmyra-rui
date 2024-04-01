@@ -10,9 +10,9 @@ import {
 } from 'chart.js';
 
 import { Bar } from 'react-chartjs-2';
-import { ChartInput } from '../Types';
 import { useRef } from 'react';
-import { useListener } from '../ChartEventListener';
+import { useListener } from './ChartEventListener';
+import { ChartInput } from '..';
 
 ChartJS.register(
     CategoryScale,

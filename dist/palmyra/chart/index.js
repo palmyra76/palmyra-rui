@@ -1,6 +1,6 @@
-import { useListener as t } from "./ChartEventListener.js";
-import { addDataConverter as a, getDataConverter as n, getPointConverter as C } from "./DataConverterFactory.js";
-import { ChartFactory as m } from "./ChartFactory.js";
+import { useListener as t } from "./chartjs/ChartEventListener.js";
+import { addDataConverter as a, getDataConverter as n, getPointConverter as C } from "./chartjs/DataConverterFactory.js";
+import { ChartFactory as m } from "./chartjs/ChartFactory.js";
 export {
   m as ChartFactory,
   a as addDataConverter,

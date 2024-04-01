@@ -1,11 +1,24 @@
-import { transformOptions } from "../layout/Types"
+import { strings } from "../form/interface";
 
-interface ChartInput {
-    data: any,
-    height: string | number,
-    onPointClick: Function,
-    transformOptions: transformOptions
-    chartOptions?: any
+
+interface ITransformOptions {
+    sourceType: string,
+    xKey?: strings,
+    yKey?: strings,
+    rKey?: string,
+    xLabel?: string,
+    yLabel?: strings,
+    chart?: Record<string, chartOptions>
 }
 
-export type { ChartInput }
+
+interface chartOptions {
+    backgroundColor: string,
+    borderColor: string
+}
+
+interface transformable {
+    transformOptions?: ITransformOptions;
+}
+
+export type { chartOptions, transformable, ITransformOptions }

@@ -1,4 +1,4 @@
-import { ITitle, strings } from "../form/interface";
+import { ITitle } from "../form/interface";
 
 type measure = string | number;
 
@@ -9,24 +9,6 @@ interface Positionable {
     width?: measure
 }
 
-interface chartOptions {
-    backgroundColor: string,
-    borderColor: string
-}
-
-interface transformOptions {
-    sourceType: string,
-    xKey?: strings,
-    yKey?: strings,
-    rKey?: string,
-    xLabel?: string,
-    yLabel?: strings,
-    chart?: Record<string, chartOptions>
-}
-
-interface transformable {
-    transformOptions?: transformOptions;
-}
 
 interface Titleable {
     name?: string,
@@ -75,6 +57,6 @@ interface storeBacked {
 }
 
 
-export type { Positionable, Titleable, Renderable, storeBacked, transformable, transformOptions };
+export type { Positionable, Titleable, Renderable, storeBacked };
 
 export type { ActionOptions, Actionable, PublishAction, IEndPoint, IEndPointOptions }

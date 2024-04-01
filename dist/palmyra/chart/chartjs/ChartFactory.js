@@ -1,13 +1,13 @@
 import "./ChartEventListener.js";
 import "./DataConverterFactory.js";
-import r from "./chartjs/LineChart.js";
-import a from "./chartjs/BarChart.js";
-import e from "./chartjs/PieChart.js";
-import o from "./chartjs/DoughnutChart.js";
-import m from "./chartjs/PolarAreaChart.js";
-import u from "./chartjs/RadarChart.js";
-import i from "./chartjs/ScatterChart.js";
-import n from "./chartjs/BubbleChart.js";
+import r from "./LineChart.js";
+import a from "./BarChart.js";
+import e from "./PieChart.js";
+import o from "./DoughnutChart.js";
+import m from "./PolarAreaChart.js";
+import u from "./RadarChart.js";
+import i from "./ScatterChart.js";
+import n from "./BubbleChart.js";
 const d = (t) => {
   switch (t) {
     case "Line":

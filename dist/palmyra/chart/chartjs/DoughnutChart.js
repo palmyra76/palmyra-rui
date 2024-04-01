@@ -1,7 +1,7 @@
 import { jsx as n } from "react/jsx-runtime";
 import { Chart as i, ArcElement as a, Tooltip as s, Legend as u } from "chart.js";
 import { Doughnut as m } from "react-chartjs-2";
-import { useListener as f } from "../ChartEventListener.js";
+import { useListener as f } from "./ChartEventListener.js";
 import { useRef as h } from "react";
 i.register(a, s, u);
 const c = {

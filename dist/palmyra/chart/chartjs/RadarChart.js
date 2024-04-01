@@ -2,7 +2,7 @@ import { jsx as r } from "react/jsx-runtime";
 import { Chart as o, RadialLinearScale as n, PointElement as s, LineElement as l, Filler as m, Tooltip as f, Legend as d } from "chart.js";
 import { useRef as c } from "react";
 import { Radar as p } from "react-chartjs-2";
-import { useListener as h } from "../ChartEventListener.js";
+import { useListener as h } from "./ChartEventListener.js";
 o.register(
   n,
   s,

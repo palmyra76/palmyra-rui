@@ -2,7 +2,7 @@ import { jsx as a } from "react/jsx-runtime";
 import { Chart as i, CategoryScale as n, LinearScale as s, BarElement as l, Title as m, Tooltip as f, Legend as c } from "chart.js";
 import { Bar as p } from "react-chartjs-2";
 import { useRef as h } from "react";
-import { useListener as u } from "../ChartEventListener.js";
+import { useListener as u } from "./ChartEventListener.js";
 i.register(
   n,
   s,

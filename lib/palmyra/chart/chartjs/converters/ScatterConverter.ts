@@ -1,10 +1,11 @@
-import { transformOptions } from "../../layout/Types";
+
+import { ITransformOptions } from "../../Types";
 import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
-import { ScatterDataInput, ScatterDataSet } from "../chartjs/Types";
+import { ScatterDataInput, ScatterDataSet } from "../Types";
 import { NoopConverter } from "./ScaleConverter";
 
 
-function getKeys(options: transformOptions): { x: string, y: string, label: string } {
+function getKeys(options: ITransformOptions): { x: string, y: string, label: string } {
     const xLabel: string = options?.xLabel || 'name';
     const xKey: any = options?.xKey || 'x';
     const yKey: any = options?.yKey || 'y';
@@ -21,7 +22,7 @@ function getKeys(options: transformOptions): { x: string, y: string, label: stri
 }
 
 
-const ArrayConverter = (options: transformOptions): ChartDataConverter => {
+const ArrayConverter = (options: ITransformOptions): ChartDataConverter => {
     const { x, y, label } = getKeys(options);
     return (records: any[]): ScatterDataInput => {
         var result: ScatterDataInput = {
@@ -53,12 +54,12 @@ const converters: Record<string, DataConverterGen> = {
 
 export default converters;
 
-function assignColors(transformOptions: transformOptions,
+function assignColors(ITransformOptions: ITransformOptions,
     key: string, data: ScatterDataSet) {
-    data.backgroundColor = transformOptions?.chart?.[key]?.backgroundColor || 'blue';
+    data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || 'blue';
 }
 
-function getData(dataMap: Record<string, ScatterDataSet>, key: string, transformOptions: transformOptions): ScatterDataSet {
+function getData(dataMap: Record<string, ScatterDataSet>, key: string, ITransformOptions: ITransformOptions): ScatterDataSet {
     var r: ScatterDataSet = dataMap[key];
     if (r)
         return r;
@@ -67,7 +68,7 @@ function getData(dataMap: Record<string, ScatterDataSet>, key: string, transform
         label: key,
         data: []
     };
-    assignColors(transformOptions, key, r);
+    assignColors(ITransformOptions, key, r);
     dataMap[key] = r;
     return r;
 }

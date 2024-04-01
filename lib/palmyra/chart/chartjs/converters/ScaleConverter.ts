@@ -1,13 +1,13 @@
 import { InteractionItem } from "chart.js";
-import { transformOptions } from "../../layout/Types";
 import { ChartDataConverter, IgetPointData } from "../DataConverterFactory";
-import { ScaleDataInput, ScaleDataSet } from "../chartjs/Types";
+import { ScaleDataInput, ScaleDataSet } from "../Types";
+import { ITransformOptions } from "../../Types";
 
-const NoopConverter = (options: transformOptions): ChartDataConverter => {
+const NoopConverter = (options: ITransformOptions): ChartDataConverter => {
     return (data) => { data };
 }
 
-function getKeys(options: transformOptions) {
+function getKeys(options: ITransformOptions) {
     const xKey: any = options?.xKey || 'name';
     const yKe = options?.yKey || 'value';
 
@@ -20,7 +20,7 @@ function getKeys(options: transformOptions) {
 }
 
 
-const ArrayScaleConverter = (options: transformOptions): ChartDataConverter => {
+const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter => {
     const { xKey, yKeys } = getKeys(options);
     return (records: any[]): ScaleDataInput => {
         var result: ScaleDataInput = {
@@ -51,7 +51,7 @@ const ArrayScaleConverter = (options: transformOptions): ChartDataConverter => {
     }
 }
 
-const ObjectScaleConverter = (options: transformOptions): ChartDataConverter => {
+const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter => {
     const { yKeys } = getKeys(options);
     return (record: any): ScaleDataInput => {
         var result: ScaleDataInput = {
@@ -81,7 +81,7 @@ const ObjectScaleConverter = (options: transformOptions): ChartDataConverter => 
     }
 }
 
-const KeyValueScaleConverter = (options: transformOptions): ChartDataConverter => {
+const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter => {
     return (record: any): ScaleDataInput => {
         var result: ScaleDataInput = {
             labels: [],
@@ -94,7 +94,6 @@ const KeyValueScaleConverter = (options: transformOptions): ChartDataConverter =
 
         for (var xValue in record) {
             result.labels.push(xValue);
-
             dataset.data.push(record[xValue]);
         }
 
@@ -102,18 +101,18 @@ const KeyValueScaleConverter = (options: transformOptions): ChartDataConverter =
     }
 }
 
-function assignColors(transformOptions: transformOptions,
+function assignColors(ITransformOptions: ITransformOptions,
     key: string, data: ScaleDataSet) {
-    data.backgroundColor = transformOptions?.chart?.[key]?.backgroundColor || 'blue';
-    data.borderColor = transformOptions?.chart?.[key]?.borderColor || 'grey';
+    data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || 'blue';
+    data.borderColor = ITransformOptions?.chart?.[key]?.borderColor || 'grey';
 }
 
-const getScalePointData: IgetPointData = (data: any, transformOptions: transformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
+const getScalePointData: IgetPointData = (data: any, ITransformOptions: ITransformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
 
-    var { xKey } = getKeys(transformOptions);
+    var { xKey } = getKeys(ITransformOptions);
     const xValue = data.labels[element[0].index]
 
-    if (transformOptions.sourceType == 'keyValue') {
+    if (ITransformOptions.sourceType == 'keyValue') {
         var { index, datasetIndex } = element[0];
         var dataSet = data.datasets[datasetIndex];
         var value = dataSet.data[index];
