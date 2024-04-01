@@ -2,26 +2,16 @@ import { InteractionItem } from "chart.js";
 import { IgetPointData } from "../DataConverterFactory";
 import { ChartDataConverter, ScaleDataInput, ScaleDataSet } from "../Types";
 import { ITransformOptions } from "../../Types";
+import { getKeys, getLabel, getLabels } from "../util";
 
 const NoopConverter = (options: ITransformOptions): ChartDataConverter<any> => {
     return (data) => { return data };
 }
 
-function getKeys(options: ITransformOptions) {
-    const xKey: any = options?.xKey || 'name';
-    const yKe = options?.yKey || 'value';
-
-    const yKeys = yKe instanceof Array ? yKe : [yKe];
-
-    return {
-        xKey: xKey,
-        yKeys: yKeys
-    }
-}
-
-
 const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any> => {
     const { xKey, yKeys } = getKeys(options);
+    const { yLabels } = getLabels(options);
+
     return (records: any[]): ScaleDataInput => {
         var result: ScaleDataInput = {
             labels: [],
@@ -31,7 +21,8 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any
         var dataMap: Record<string, ScaleDataSet> = {};
 
         yKeys.map((key, index) => {
-            var data: ScaleDataSet = { label: key, data: [] };
+            const label = getLabel(yLabels, key, index);
+            var data: ScaleDataSet = { key, label: label, data: [] };
             dataMap[key] = data;
             result.datasets[index] = data;
         })
@@ -52,6 +43,8 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any
 
 const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter<number> => {
     const { yKeys } = getKeys(options);
+    const { yLabels } = getLabels(options);
+
     return (record: any): ScaleDataInput => {
         var result: ScaleDataInput = {
             labels: [],
@@ -60,7 +53,8 @@ const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter<nu
 
         // Initialize the dataset array based on the number of yKeys
         yKeys.map((key, index) => {
-            var data: ScaleDataSet = { label: key, data: [] };
+            const label = getLabel(yLabels, key, index);
+            var data: ScaleDataSet = { key, label: label, data: [] };
             result.datasets[index] = data;
         })
 
@@ -80,20 +74,24 @@ const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter<nu
 }
 
 const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter<number> => {
+    const { xKey } = getKeys(options);
+    const { xLabel } = getLabels(options);
+
     return (record: any): ScaleDataInput => {
         var result: ScaleDataInput = {
             labels: [],
             datasets: []
         };
 
-        var dataset: ScaleDataSet = { label: 'value', data: [] };
+        const label = xLabel || 'value';
+        const key = xKey || xLabel || 'value';
+        var dataset: ScaleDataSet = { key, label: label, data: [] };
         result.datasets[0] = dataset;
 
         for (var xValue in record) {
             result.labels.push(xValue);
             dataset.data.push(record[xValue]);
         }
-
         return result;
     }
 }

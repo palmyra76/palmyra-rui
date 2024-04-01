@@ -15,4 +15,4 @@ interface chartStyle {
 interface transformable {
     transformOptions?: ITransformOptions;
 }
-export type { StyleOptions, transformable, ITransformOptions };
+export type { StyleOptions, chartStyle, transformable, ITransformOptions };

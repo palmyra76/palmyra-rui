@@ -6,7 +6,7 @@ import p from "./converters/RadarConverter.js";
 import u from "./converters/PolarConverter.js";
 import P from "./converters/PieConverter.js";
 import l from "./converters/DoughnutConverter.js";
-import { getScalePointData as e } from "./converters/ScaleConverter.js";
+import { getScalePointData as t } from "./converters/ScaleConverter.js";
 const $ = (r) => r;
 var n = {
   Line: i,
@@ -18,26 +18,26 @@ var n = {
   Pie: P,
   Doughnut: l
 }, d = {
-  Line: e,
-  Bar: e,
-  Pie: e,
-  Doughnut: e,
-  PolarArea: e,
-  Radar: e,
+  Line: t,
+  Bar: t,
+  Pie: t,
+  Doughnut: t,
+  PolarArea: t,
+  Radar: t,
   Bubble: f
 };
-const R = (r, t, o) => {
+const R = (r, e, o) => {
   var v;
-  var a = (v = n[r]) == null ? void 0 : v[t];
+  var a = (v = n[r]) == null ? void 0 : v[e];
   return a ? a(o) : $;
-}, S = (r, t, o) => {
-  if (!n[r][t])
-    n[r][t] = o;
+}, S = (r, e, o) => {
+  if (!n[r][e])
+    n[r][e] = o;
   else
-    throw new Error("Converter already set for " + r + "/" + t);
+    throw new Error("Converter already set for " + r + "/" + e);
 }, h = (r) => {
-  var t = d[r];
-  return t || ((o) => o);
+  var e = d[r];
+  return e || ((o) => o);
 };
 export {
   S as addDataConverter,

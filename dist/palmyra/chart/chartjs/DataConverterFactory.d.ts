@@ -6,7 +6,7 @@ interface DataConverterGen {
     (options: ITransformOptions): ChartDataConverter<DataSetType>;
 }
 declare const getDataConverter: (chartType: string, sourceType: string, options: ITransformOptions) => ChartDataConverter<any>;
-declare const addDataConverter: (chartType: string, sourceType: string, converter: DataConverterGen) => void;
+declare const addDataConverter: (chartType: string, sourceType: string, converterGen: DataConverterGen) => void;
 declare const getPointConverter: (chartType: string) => IgetPointData;
 export type { DataConverterGen, IgetPointData };
 export { getPointConverter, addDataConverter, getDataConverter };

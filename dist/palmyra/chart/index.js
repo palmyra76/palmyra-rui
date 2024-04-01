@@ -1,10 +1,16 @@
-import { useListener as t } from "./chartjs/ChartEventListener.js";
-import { addDataConverter as a, getDataConverter as n, getPointConverter as C } from "./chartjs/DataConverterFactory.js";
-import { ChartFactory as m } from "./chartjs/ChartFactory.js";
+import { useListener as r } from "./chartjs/ChartEventListener.js";
+import { addDataConverter as a, getDataConverter as n, getPointConverter as y } from "./chartjs/DataConverterFactory.js";
+import { ChartFactory as v } from "./chartjs/ChartFactory.js";
+import { DatasetStyleConverterFactory as m, LabelStyleConverterFactory as p, NoopStyleConverter as S, RandomStyleConverterFactory as c, getStyleConverter as f } from "./chartjs/colors/StyleConverterFactory.js";
 export {
-  m as ChartFactory,
+  v as ChartFactory,
+  m as DatasetStyleConverterFactory,
+  p as LabelStyleConverterFactory,
+  S as NoopStyleConverter,
+  c as RandomStyleConverterFactory,
   a as addDataConverter,
   n as getDataConverter,
-  C as getPointConverter,
-  t as useListener
+  y as getPointConverter,
+  f as getStyleConverter,
+  r as useListener
 };

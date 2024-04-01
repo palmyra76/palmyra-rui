@@ -60,6 +60,7 @@ function getData(dataMap: Record<string, ScatterDataSet>, key: string, ITransfor
         return r;
 
     r = {
+        key,
         label: key,
         data: []
     };

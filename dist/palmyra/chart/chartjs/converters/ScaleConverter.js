@@ -1,75 +1,73 @@
-const x = (e) => (t) => t;
-function c(e) {
-  const t = (e == null ? void 0 : e.xKey) || "name", a = (e == null ? void 0 : e.yKey) || "value", r = a instanceof Array ? a : [a];
-  return {
-    xKey: t,
-    yKeys: r
+import { getKeys as c, getLabels as p, getLabel as K } from "../util.js";
+const x = (e) => (r) => r, L = (e) => {
+  const { xKey: r, yKeys: l } = c(e), { yLabels: u } = p(e);
+  return (s) => {
+    var n = {
+      labels: [],
+      datasets: []
+    }, b = {};
+    return l.map((a, t) => {
+      const d = K(u, a, t);
+      var v = { key: a, label: d, data: [] };
+      b[a] = v, n.datasets[t] = v;
+    }), s.map((a, t) => {
+      var d = a[r];
+      n.labels.push(d), l.map((v) => {
+        var o = b[v];
+        o.data[t] = a[v];
+      });
+    }), n;
   };
-}
-const h = (e) => {
-  const { xKey: t, yKeys: a } = c(e);
-  return (r) => {
+}, S = (e) => {
+  const { yKeys: r } = c(e), { yLabels: l } = p(e);
+  return (u) => {
     var s = {
       labels: [],
       datasets: []
-    }, v = {};
-    return a.map((l, n) => {
-      var u = { label: l, data: [] };
-      v[l] = u, s.datasets[n] = u;
-    }), r.map((l, n) => {
-      var u = l[t];
-      s.labels.push(u), a.map((d) => {
-        var y = v[d];
-        y.data[n] = l[d];
-      });
-    }), s;
-  };
-}, m = (e) => {
-  const { yKeys: t } = c(e);
-  return (a) => {
-    var r = {
-      labels: [],
-      datasets: []
     };
-    t.map((l, n) => {
-      var u = { label: l, data: [] };
-      r.datasets[n] = u;
+    r.map((a, t) => {
+      const d = K(l, a, t);
+      var v = { key: a, label: d, data: [] };
+      s.datasets[t] = v;
     });
-    for (var s in a) {
-      r.labels.push(s);
-      var v = a[s];
-      t.map((l, n) => {
-        r.datasets[n].data.push(v[l]);
+    for (var n in u) {
+      s.labels.push(n);
+      var b = u[n];
+      r.map((a, t) => {
+        s.datasets[t].data.push(b[a]);
       });
     }
-    return r;
+    return s;
   };
-}, o = (e) => (t) => {
-  var a = {
-    labels: [],
-    datasets: []
-  }, r = { label: "value", data: [] };
-  a.datasets[0] = r;
-  for (var s in t)
-    a.labels.push(s), r.data.push(t[s]);
-  return a;
-}, S = (e, t, a, r) => {
-  var { xKey: s } = c(t);
-  const v = e.labels[a[0].index];
-  if (t.sourceType == "keyValue") {
-    var { index: l, datasetIndex: n } = a[0], u = e.datasets[n], d = u.data[l];
-    return { [v]: d };
+}, g = (e) => {
+  const { xKey: r } = c(e), { xLabel: l } = p(e);
+  return (u) => {
+    var s = {
+      labels: [],
+      datasets: []
+    }, a = { key: r || l || "value", label: l || "value", data: [] };
+    s.datasets[0] = a;
+    for (var t in u)
+      s.labels.push(t), a.data.push(u[t]);
+    return s;
+  };
+}, C = (e, r, l, u) => {
+  var { xKey: s } = c(r);
+  const n = e.labels[l[0].index];
+  if (r.sourceType == "keyValue") {
+    var { index: b, datasetIndex: a } = l[0], t = e.datasets[a], d = t.data[b];
+    return { [n]: d };
   }
-  var y = { [s]: v };
-  return a.map((b) => {
-    var K = e.datasets[b.datasetIndex], p = K.label;
-    y[p] = K.data[b.index];
-  }), y;
+  var v = { [s]: n };
+  return l.map((o) => {
+    var y = e.datasets[o.datasetIndex], m = y.label;
+    v[m] = y.data[o.index];
+  }), v;
 };
 export {
-  h as ArrayScaleConverter,
-  o as KeyValueScaleConverter,
+  L as ArrayScaleConverter,
+  g as KeyValueScaleConverter,
   x as NoopConverter,
-  m as ObjectScaleConverter,
-  S as getScalePointData
+  S as ObjectScaleConverter,
+  C as getScalePointData
 };

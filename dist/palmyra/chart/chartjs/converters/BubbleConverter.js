@@ -1,4 +1,4 @@
-import C, { getRandomNumber as s } from "./colors/GenerateColors.js";
+import C, { getRandomNumber as s } from "../colors/GenerateColors.js";
 const o = (e) => (t) => t;
 function j(e, t, r) {
   var a = Math.round(s(2, 10)), l = C(a);
@@ -7,6 +7,7 @@ function j(e, t, r) {
 function K(e, t, r) {
   var a = e[t];
   return a || (a = {
+    key: t,
     label: t,
     data: []
   }, j(r, t, a), e[t] = a, a);

@@ -45,14 +45,14 @@ var PointConverterMap: Record<string, IgetPointData> = {
 }
 
 const getDataConverter = (chartType: string, sourceType: string, options: ITransformOptions): ChartDataConverter<any> => {
-    var converter: DataConverterGen = dataMap[chartType]?.[sourceType];
-    return (converter ? converter(options) : NoopConverter);
+    var converterGen: DataConverterGen = dataMap[chartType]?.[sourceType];
+    return (converterGen ? converterGen(options) : NoopConverter);
 }
 
 const addDataConverter = (chartType: string, sourceType: string,
-    converter: DataConverterGen): void => {
+    converterGen: DataConverterGen): void => {
     if (!dataMap[chartType][sourceType])
-        dataMap[chartType][sourceType] = converter;
+        dataMap[chartType][sourceType] = converterGen;
     else {
         throw new Error("Converter already set for " + chartType + "/" + sourceType);
     }

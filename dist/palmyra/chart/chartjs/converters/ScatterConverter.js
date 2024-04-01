@@ -30,6 +30,7 @@ const s = (a) => {
 function v(a, r, y) {
   var e = a[r];
   return e || (e = {
+    key: r,
     label: r,
     data: []
   }, a[r] = e, e);

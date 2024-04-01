@@ -14,6 +14,7 @@ interface Bubble extends Point {
 }
 
 interface DataSet<T> extends Colorable {
+    key: string,
     label: string,
     data: T[]
 }
@@ -54,16 +55,16 @@ interface ChartDataConverter<DataSetType> {
     (data: any, options?: any): DataSets<DataSetType>;
 }
 
-interface ChartColorConverter<DataSetType> {
+interface ChartStyleConverter<DataSetType> {
     (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType>;
 }
 
 export type { ChartInput }
 
-export type { ScaleDataInput, DataSets, DataSetType };
+export type { ScaleDataInput, DataSet, DataSets, DataSetType };
 export type { ScatterDataInput, Point };
 export type { BubbleDataInput, Bubble };
 export type { ScaleDataSet, ScatterDataSet, BubbleDataSet }
 
-export type { ChartDataConverter, ChartColorConverter }
+export type { ChartDataConverter, ChartStyleConverter }
 

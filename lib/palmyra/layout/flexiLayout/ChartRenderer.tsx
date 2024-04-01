@@ -5,6 +5,7 @@ import { getDataConverter } from '../../chart/chartjs/DataConverterFactory';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
 import { ITransformOptions } from '../../chart/Types';
+import { getStyleConverter } from '../../chart/chartjs/colors/StyleConverterFactory';
 
 interface ChartRendererInput {
   layout: ChartLayout
@@ -38,8 +39,13 @@ const ChartRenderer = (props: ChartRendererInput) => {
     return getDataConverter(layout.type, sourceType, layout.transformOptions)(data);
   }
 
+  function applyStyle(data: any, layout: ChartLayout): any {
+    const styleConverter = getStyleConverter(layout.type, layout.styleOptions, layout.transformOptions);
+    return styleConverter(data);
+  }
+
   function updateData(data: any) {
-    setData(transform(data, layout));
+    setData(applyStyle(transform(data, layout), layout));
   }
 
   useMemo(() => {

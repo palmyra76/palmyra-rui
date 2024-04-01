@@ -1,4 +1,4 @@
-import { transformable } from "../../chart/Types";
+import { StyleOptions, transformable } from "../../chart/Types";
 import { FieldDefinition } from "../../form/Definitions";
 import { strings } from "../../form/interface";
 import { ColumnDefinition } from "../../grid";
@@ -20,6 +20,7 @@ interface TableLayout extends Renderable, Positionable, storeBacked, Actionable 
 interface ChartLayout extends Titleable, Positionable, Renderable, storeBacked, transformable {
     chartOptions?: any;
     type: ChartType;
+    styleOptions?: StyleOptions;
 }
 interface SectionDefinition extends Positionable, Titleable, Renderable {
     type: SectionType;
