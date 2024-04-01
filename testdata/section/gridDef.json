@@ -16,13 +16,14 @@
                             15,
                             25
                         ],
-                        "fields": [                            
+                        "fields": [
                             {
                                 "attribute": "dob",
                                 "title": "Dob",
                                 "required": true,
                                 "type": "string",
-                                "searchable": true
+                                "searchable": true,
+                                "width": "100px"
                             },
                             {
                                 "attribute": "phoneNumber",
@@ -30,7 +31,8 @@
                                 "required": true,
                                 "type": "string",
                                 "errorMessageType": "Invalid Phone Number",
-                                "searchable": true
+                                "searchable": true,
+                                "width": "100px"
                             },
                             {
                                 "attribute": "email",
@@ -41,7 +43,8 @@
                                 "length": {
                                     "max": 64,
                                     "message": "Maximum of 64 chars"
-                                }
+                                },
+                                "width": "150px"
                             },
                             {
                                 "attribute": "address",
@@ -55,6 +58,8 @@
                                     "max": 256,
                                     "message": "Minimum 3 chars, and maximum of 256 chars"
                                 }
+                                ,
+                                "width": "500px"
                             }
                         ]
                     }

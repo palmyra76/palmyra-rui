@@ -7,6 +7,7 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
     const [sortOrder, setSortOrder] = useState('');
     const columnAttribute = header.column.columnDef.meta?.attribute || header.id;
     const sortDisabled = !header.column.columnDef.enableSorting;
+    const width = header.column.columnDef.meta.columnDef.width;
 
     const handleSortColumn = () => {
         if (onSortChange === undefined || sortDisabled)
@@ -37,12 +38,12 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
     if (header.column.columnDef.columns) {
         // Render Grouped Columns
         return (
-            <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
+            <TableCell key={header.id} colSpan={header.colSpan} style={{ ...headerStyle, width: width }}>
                 <div style={{
                     display: 'flex',
                     fontWeight: 'bold',
                     alignItems: 'center',
-                    gap: '10px',                    
+                    gap: '10px',
                     justifyContent: 'center'
                 }} >
                     {children}
@@ -51,7 +52,7 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
         )
     } else
         return (
-            <TableCell key={header.id} colSpan={header.colSpan} style={headerStyle}>
+            <TableCell key={header.id} colSpan={header.colSpan} style={{ ...headerStyle, width: width }}>
                 <div style={{
                     display: 'flex',
                     fontWeight: 'bold',
