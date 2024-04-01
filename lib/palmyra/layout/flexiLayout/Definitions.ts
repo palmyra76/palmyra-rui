@@ -7,7 +7,7 @@ type SectionType = 'view' | 'form' | 'grid' | 'chart';
 
 type flexiPrimaryType = 'formNew' | 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
 
-type ChartType = 'Bar' | 'Line';
+type ChartType = 'Bar' | 'Line' | 'Pie' | 'Doughnut';
 
 interface FormLayout extends Renderable {
     fields: FieldDefinition[],
