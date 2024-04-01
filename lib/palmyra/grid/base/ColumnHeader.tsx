@@ -7,7 +7,7 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
     const [sortOrder, setSortOrder] = useState('');
     const columnAttribute = header.column.columnDef.meta?.attribute || header.id;
     const sortDisabled = !header.column.columnDef.enableSorting;
-    const width = header.column.columnDef.meta.columnDef.width;
+    const width = header.column.columnDef.meta?.columnDef?.width || 'auto';
 
     const handleSortColumn = () => {
         if (onSortChange === undefined || sortDisabled)
