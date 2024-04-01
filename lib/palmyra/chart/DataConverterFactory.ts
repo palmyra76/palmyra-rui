@@ -66,5 +66,4 @@ const getPointConverter = (chartType: string): IgetPointData => {
 }
 
 export type { DataConverterGen, ChartDataConverter, IgetPointData };
-export { getPointConverter, addDataConverter };
-export default getDataConverter;
+export { getPointConverter, addDataConverter, getDataConverter };

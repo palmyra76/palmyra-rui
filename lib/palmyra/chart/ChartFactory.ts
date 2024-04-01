@@ -31,4 +31,4 @@ const ChartFactory = (chartType: string): React.FunctionComponent<ChartInput> =>
     }
 }
 
-export default ChartFactory;
+export { ChartFactory };

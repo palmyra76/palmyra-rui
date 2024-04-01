@@ -11,5 +11,4 @@ declare const getDataConverter: (chartType: string, sourceType: string, options:
 declare const addDataConverter: (chartType: string, sourceType: string, converter: ChartDataConverter) => void;
 declare const getPointConverter: (chartType: string) => IgetPointData;
 export type { DataConverterGen, ChartDataConverter, IgetPointData };
-export { getPointConverter, addDataConverter };
-export default getDataConverter;
+export { getPointConverter, addDataConverter, getDataConverter };

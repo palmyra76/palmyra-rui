@@ -1,7 +1,7 @@
 import { ChartLayout } from './Definitions';
-import ChartFactory from '../../chart/ChartFactory';
+import { ChartFactory } from '../../chart/ChartFactory';
 import { useContext, useMemo, useState } from 'react';
-import getDataConverter from '../../chart/DataConverterFactory';
+import { getDataConverter } from '../../chart/DataConverterFactory';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
 import { transformOptions } from '../Types';
@@ -20,14 +20,14 @@ const ChartRenderer = (props: ChartRendererInput) => {
   var storeOptions = layout.storeOptions || {};
 
   var storeRequest: any = {};
-    mergeDeep(storeRequest, storeOptions, layoutParams);
-  
+  mergeDeep(storeRequest, storeOptions, layoutParams);
+
   const store = storeFactory.getChartStore(storeRequest);
 
   const [data, setData] = useState(null);
 
   const onPointClick = (_data) => {
-    
+
   }
 
   function transform(data: any, layout: ChartLayout): any {

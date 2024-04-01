@@ -1,7 +1,7 @@
 import { jsx as e } from "react/jsx-runtime";
-import D from "../../chart/ChartFactory.js";
+import { ChartFactory as D } from "../../chart/ChartFactory.js";
 import { useContext as m, useState as T, useMemo as F } from "react";
-import P from "../../chart/DataConverterFactory.js";
+import { getDataConverter as P } from "../../chart/DataConverterFactory.js";
 import { StoreFactoryContext as R, LayoutParamsContext as S } from "./FlexiLayoutContext.js";
 import { mergeDeep as j } from "../../utils/index.js";
 const L = (n) => {

@@ -1,11 +1,13 @@
+import "./ChartEventListener.js";
+import "./DataConverterFactory.js";
 import r from "./chartjs/LineChart.js";
 import a from "./chartjs/BarChart.js";
 import e from "./chartjs/PieChart.js";
 import o from "./chartjs/DoughnutChart.js";
-import u from "./chartjs/PolarAreaChart.js";
-import m from "./chartjs/RadarChart.js";
-import n from "./chartjs/ScatterChart.js";
-import c from "./chartjs/BubbleChart.js";
+import m from "./chartjs/PolarAreaChart.js";
+import u from "./chartjs/RadarChart.js";
+import i from "./chartjs/ScatterChart.js";
+import n from "./chartjs/BubbleChart.js";
 const d = (t) => {
   switch (t) {
     case "Line":
@@ -17,17 +19,17 @@ const d = (t) => {
     case "Doughnut":
       return o;
     case "PolarArea":
-      return u;
-    case "Radar":
       return m;
+    case "Radar":
+      return u;
     case "Scattter":
-      return n;
+      return i;
     case "Bubble":
-      return c;
+      return n;
     default:
       return r;
   }
 };
 export {
-  d as default
+  d as ChartFactory
 };
