@@ -1,75 +1,74 @@
 import j, { getRandomNumber as A } from "./colors/GenerateColors.js";
-const D = (e) => (t) => {
-};
-function L(e, t, u) {
-  var b, d, r, l;
-  var a = Math.round(A(2, 10)), c = j(a);
-  u.backgroundColor = ((d = (b = e == null ? void 0 : e.chart) == null ? void 0 : b[t]) == null ? void 0 : d.backgroundColor) || c[0], u.borderColor = ((l = (r = e == null ? void 0 : e.chart) == null ? void 0 : r[t]) == null ? void 0 : l.borderColor) || c[a - 1];
+const D = (e) => (a) => a;
+function L(e, a, u) {
+  var d, b, c, l;
+  var t = Math.round(A(2, 10)), r = j(t);
+  u.backgroundColor = ((b = (d = e == null ? void 0 : e.chart) == null ? void 0 : d[a]) == null ? void 0 : b.backgroundColor) || r[0], u.borderColor = ((l = (c = e == null ? void 0 : e.chart) == null ? void 0 : c[a]) == null ? void 0 : l.borderColor) || r[t - 1];
 }
-function C(e, t, u) {
-  var a = e[t];
-  return a || (a = {
-    label: t,
+function C(e, a, u) {
+  var t = e[a];
+  return t || (t = {
+    label: a,
     data: []
-  }, L(u, t, a), e[t] = a, a);
+  }, L(u, a, t), e[a] = t, t);
 }
 function g(e) {
-  const t = (e == null ? void 0 : e.xLabel) || "name", u = (e == null ? void 0 : e.xKey) || "x", a = (e == null ? void 0 : e.yKey) || "y", c = (e == null ? void 0 : e.rKey) || "r";
-  return a instanceof Array && console.error("BubbleChart: yKey should be string only, not an array " + e.yKey), {
+  const a = (e == null ? void 0 : e.xLabel) || "name", u = (e == null ? void 0 : e.xKey) || "x", t = (e == null ? void 0 : e.yKey) || "y", r = (e == null ? void 0 : e.rKey) || "r";
+  return t instanceof Array && console.error("BubbleChart: yKey should be string only, not an array " + e.yKey), {
     x: u,
-    y: a,
-    r: c,
-    label: t
+    y: t,
+    r,
+    label: a
   };
 }
 const M = (e) => {
-  const { x: t, y: u, r: a, label: c } = g(e);
-  return (b) => {
-    var d = {
-      labels: [],
-      datasets: []
-    }, r = {};
-    return b.map((l, y) => {
-      var v = C(r, l[c], e);
-      v.data.push({
-        x: l[t],
-        y: l[u],
-        r: l[a]
-      });
-    }), Object.values(r).map((l) => {
-      d.datasets.push(l);
-    }), d;
-  };
-}, N = (e) => {
-  const { x: t, y: u, r: a } = g(e);
-  return (c) => {
+  const { x: a, y: u, r: t, label: r } = g(e);
+  return (d) => {
     var b = {
       labels: [],
       datasets: []
-    }, d = {};
-    for (var r in c) {
-      var l = C(d, r, e), y = c[r];
-      l.data.push({
-        x: y[t],
-        y: y[u],
-        r: y[a]
+    }, c = {};
+    return d.map((l, y) => {
+      var v = C(c, l[r], e);
+      v.data.push({
+        x: l[a],
+        y: l[u],
+        r: l[t]
       });
-    }
-    return Object.values(d).map((v) => {
-      b.datasets.push(v);
+    }), Object.values(c).map((l) => {
+      b.datasets.push(l);
     }), b;
   };
-}, B = (e, t, u, a) => {
-  const { x: c, y: b, r: d } = g(t);
-  var r = {};
+}, N = (e) => {
+  const { x: a, y: u, r: t } = g(e);
+  return (r) => {
+    var d = {
+      labels: [],
+      datasets: []
+    }, b = {};
+    for (var c in r) {
+      var l = C(b, c, e), y = r[c];
+      l.data.push({
+        x: y[a],
+        y: y[u],
+        r: y[t]
+      });
+    }
+    return Object.values(b).map((v) => {
+      d.datasets.push(v);
+    }), d;
+  };
+}, B = (e, a, u, t) => {
+  const { x: r, y: d, r: b } = g(a);
+  var c = {};
   return u.map((l) => {
     var { index: y, datasetIndex: v } = l, h = e.datasets[v], K = h.label, x = h.data[y];
-    r[K] = {
-      [c]: x.x,
-      [b]: x.y,
-      [d]: x.r
+    c[K] = {
+      [r]: x.x,
+      [d]: x.y,
+      [b]: x.r
     };
-  }), r;
+  }), c;
 }, P = {
   default: M,
   object: N,

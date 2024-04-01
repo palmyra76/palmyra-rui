@@ -1,14 +1,14 @@
 import { InteractionItem } from "chart.js";
 
-import { DataConverterGen, ChartDataConverter, IgetPointData } from "../DataConverterFactory";
-import { BubbleDataInput, BubbleDataSet } from "../Types";
+import { DataConverterGen, IgetPointData } from "../DataConverterFactory";
+import { Bubble, BubbleDataInput, BubbleDataSet, ChartDataConverter } from "../Types";
 import generateColors, { getRandomNumber } from "./colors/GenerateColors";
 import { ITransformOptions } from "../../Types";
 
 
 
-const NoopConverter = (options: ITransformOptions): ChartDataConverter => {
-    return (data) => { data };
+const NoopConverter = (options: ITransformOptions): ChartDataConverter<Bubble> => {
+    return (data) => { return data };
 }
 
 function assignColors(ITransformOptions: ITransformOptions,
@@ -51,7 +51,7 @@ function getKeys(ITransformOptions: ITransformOptions): { x: string, y: string, 
     }
 }
 
-const ArrayConverter = (options: ITransformOptions): ChartDataConverter => {
+const ArrayConverter = (options: ITransformOptions): ChartDataConverter<Bubble> => {
     const { x, y, r, label } = getKeys(options);
     return (records: any[]): BubbleDataInput => {
         var result: BubbleDataInput = {
@@ -78,7 +78,7 @@ const ArrayConverter = (options: ITransformOptions): ChartDataConverter => {
     }
 }
 
-const ObjectConverter = (options: ITransformOptions): ChartDataConverter => {
+const ObjectConverter = (options: ITransformOptions): ChartDataConverter<Bubble> => {
 
     const { x, y, r } = getKeys(options);
     return (record: any): BubbleDataInput => {

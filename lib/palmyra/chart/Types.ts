@@ -11,7 +11,6 @@ interface ITransformOptions {
     chart?: Record<string, chartOptions>
 }
 
-
 interface chartOptions {
     backgroundColor: string,
     borderColor: string

@@ -10,15 +10,13 @@ import { default as DoughnutConverters } from './converters/DoughnutConverter';
 import { getScalePointData } from './converters/ScaleConverter';
 import { InteractionItem } from 'chart.js';
 import { ITransformOptions } from '../Types';
+import { ChartDataConverter, DataSetType } from '..';
 
-interface ChartDataConverter {
-    (data: any, options?: any): any;
-}
 
 type IgetPointData = (data: any, options: ITransformOptions, element: InteractionItem[], elements: InteractionItem[]) => Record<string, any>;
 
 interface DataConverterGen {
-    (options: ITransformOptions): ChartDataConverter
+    (options: ITransformOptions): ChartDataConverter<DataSetType>
 }
 
 const NoopConverter = (data: any): any => {
@@ -46,13 +44,13 @@ var PointConverterMap: Record<string, IgetPointData> = {
     "Bubble": getBubblePointData
 }
 
-const getDataConverter = (chartType: string, sourceType: string, options: ITransformOptions): ChartDataConverter => {
+const getDataConverter = (chartType: string, sourceType: string, options: ITransformOptions): ChartDataConverter<any> => {
     var converter: DataConverterGen = dataMap[chartType]?.[sourceType];
     return (converter ? converter(options) : NoopConverter);
 }
 
 const addDataConverter = (chartType: string, sourceType: string,
-    converter: ChartDataConverter): void => {
+    converter: DataConverterGen): void => {
     if (!dataMap[chartType][sourceType])
         dataMap[chartType][sourceType] = converter;
     else {
@@ -65,5 +63,5 @@ const getPointConverter = (chartType: string): IgetPointData => {
     return converter ? converter : (d) => { return d };
 }
 
-export type { DataConverterGen, ChartDataConverter, IgetPointData };
+export type { DataConverterGen, IgetPointData };
 export { getPointConverter, addDataConverter, getDataConverter };

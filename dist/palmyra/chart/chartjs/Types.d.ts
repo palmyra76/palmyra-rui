@@ -3,35 +3,35 @@ interface Colorable {
     borderColor?: any;
     backgroundColor?: any;
 }
-interface ScaleDataSet extends Colorable {
-    label: string;
-    data: number[];
-}
-interface ScatterDataInput {
-    datasets: ScatterDataSet[];
-}
-interface ScatterDataSet extends Colorable {
-    label: string;
-    data: Point[];
-}
 type Point = {
     x: number | string;
     y: number;
 };
-interface BubbleDataInput {
-    labels: string[];
-    datasets: BubbleDataSet[];
-}
-interface BubbleDataSet extends Colorable {
-    label: string;
-    data: Bubble[];
-}
 interface Bubble extends Point {
     r: number;
 }
-interface ScaleDataInput {
+interface DataSet<T> extends Colorable {
+    label: string;
+    data: T[];
+}
+type DataSetType = number | Bubble | Point;
+interface ScaleDataSet extends DataSet<number> {
+}
+interface ScatterDataSet extends DataSet<Point> {
+}
+interface BubbleDataSet extends DataSet<Bubble> {
+}
+interface DataSets<DataSetType> {
+    labels?: string[];
+    datasets: DataSet<DataSetType>[];
+}
+interface ScaleDataInput extends DataSets<number> {
     labels: string[];
-    datasets: ScaleDataSet[];
+}
+interface BubbleDataInput extends DataSets<Bubble> {
+    labels: string[];
+}
+interface ScatterDataInput extends DataSets<Point> {
 }
 interface ChartInput {
     data: any;
@@ -40,7 +40,15 @@ interface ChartInput {
     transformOptions: ITransformOptions;
     chartOptions?: any;
 }
+interface ChartDataConverter<DataSetType> {
+    (data: any, options?: any): DataSets<DataSetType>;
+}
+interface ChartColorConverter<DataSetType> {
+    (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType>;
+}
 export type { ChartInput };
-export type { ScaleDataInput, ScaleDataSet };
-export type { ScatterDataSet, ScatterDataInput, Point };
-export type { BubbleDataInput, BubbleDataSet, Bubble };
+export type { ScaleDataInput, DataSets, DataSetType };
+export type { ScatterDataInput, Point };
+export type { BubbleDataInput, Bubble };
+export type { ScaleDataSet, ScatterDataSet, BubbleDataSet };
+export type { ChartDataConverter, ChartColorConverter };

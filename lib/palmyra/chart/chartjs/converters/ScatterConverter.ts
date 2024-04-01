@@ -1,7 +1,7 @@
 
 import { ITransformOptions } from "../../Types";
-import { DataConverterGen, ChartDataConverter } from "../DataConverterFactory";
-import { ScatterDataInput, ScatterDataSet } from "../Types";
+import { DataConverterGen } from "../DataConverterFactory";
+import { ChartDataConverter, Point, ScatterDataInput, ScatterDataSet } from "../Types";
 import { NoopConverter } from "./ScaleConverter";
 
 
@@ -22,7 +22,7 @@ function getKeys(options: ITransformOptions): { x: string, y: string, label: str
 }
 
 
-const ArrayConverter = (options: ITransformOptions): ChartDataConverter => {
+const ArrayConverter = (options: ITransformOptions): ChartDataConverter<Point> => {
     const { x, y, label } = getKeys(options);
     return (records: any[]): ScatterDataInput => {
         var result: ScatterDataInput = {

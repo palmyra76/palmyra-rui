@@ -1,12 +1,12 @@
-import LineChart from "./LineChart";
-import BarChart from "./BarChart";
+import LineChart from "./chart/LineChart";
+import BarChart from "./chart/BarChart";
 import { ChartInput } from "./Types";
-import PieChart from "./PieChart";
-import DoughnutChart from "./DoughnutChart";
-import PolarAreaChart from "./PolarAreaChart";
-import RadarChart from "./RadarChart";
-import ScatterChart from "./ScatterChart";
-import BubbleChart from "./BubbleChart";
+import PieChart from "./chart/PieChart";
+import DoughnutChart from "./chart/DoughnutChart";
+import PolarAreaChart from "./chart/PolarAreaChart";
+import RadarChart from "./chart/RadarChart";
+import ScatterChart from "./chart/ScatterChart";
+import BubbleChart from "./chart/BubbleChart";
 
 const ChartFactory = (chartType: string): React.FunctionComponent<ChartInput> => {
     switch (chartType) {

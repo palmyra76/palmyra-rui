@@ -1,5 +1,4 @@
-const x = (a) => (t) => {
-};
+const x = (a) => (t) => t;
 function y(a) {
   const t = (a == null ? void 0 : a.xKey) || "name", e = (a == null ? void 0 : a.yKey) || "value", r = e instanceof Array ? e : [e];
   return {
@@ -14,14 +13,14 @@ const g = (a) => {
       labels: [],
       datasets: []
     }, s = {};
-    return e.map((l, v) => {
-      var d = { label: l, data: [] };
-      s[l] = d, u.datasets[v] = d, K(a, l, d);
-    }), r.map((l, v) => {
-      var d = l[t];
-      u.labels.push(d), e.map((c) => {
+    return e.map((l, d) => {
+      var v = { label: l, data: [] };
+      s[l] = v, u.datasets[d] = v, n(a, l, v);
+    }), r.map((l, d) => {
+      var v = l[t];
+      u.labels.push(v), e.map((c) => {
         var b = s[c];
-        b.data[v] = l[c];
+        b.data[d] = l[c];
       });
     }), u;
   };
@@ -32,15 +31,15 @@ const g = (a) => {
       labels: [],
       datasets: []
     };
-    t.map((l, v) => {
-      var d = { label: l, data: [] };
-      r.datasets[v] = d, K(a, l, d);
+    t.map((l, d) => {
+      var v = { label: l, data: [] };
+      r.datasets[d] = v, n(a, l, v);
     });
     for (var u in e) {
       r.labels.push(u);
       var s = e[u];
-      t.map((l, v) => {
-        r.datasets[v].data.push(s[l]);
+      t.map((l, d) => {
+        r.datasets[d].data.push(s[l]);
       });
     }
     return r;
@@ -50,12 +49,12 @@ const g = (a) => {
     labels: [],
     datasets: []
   }, r = { label: "value", data: [] };
-  e.datasets[0] = r, K(a, "value", r);
+  e.datasets[0] = r, n(a, "value", r);
   for (var u in t)
     e.labels.push(u), r.data.push(t[u]);
   return e;
 };
-function K(a, t, e) {
+function n(a, t, e) {
   var r, u, s, l;
   e.backgroundColor = ((u = (r = a == null ? void 0 : a.chart) == null ? void 0 : r[t]) == null ? void 0 : u.backgroundColor) || "blue", e.borderColor = ((l = (s = a == null ? void 0 : a.chart) == null ? void 0 : s[t]) == null ? void 0 : l.borderColor) || "grey";
 }
@@ -63,13 +62,13 @@ const j = (a, t, e, r) => {
   var { xKey: u } = y(t);
   const s = a.labels[e[0].index];
   if (t.sourceType == "keyValue") {
-    var { index: l, datasetIndex: v } = e[0], d = a.datasets[v], c = d.data[l];
+    var { index: l, datasetIndex: d } = e[0], v = a.datasets[d], c = v.data[l];
     return { [s]: c };
   }
   var b = { [u]: s };
-  return e.map((n) => {
-    var C = a.datasets[n.datasetIndex], h = C.label;
-    b[h] = C.data[n.index];
+  return e.map((K) => {
+    var C = a.datasets[K.datasetIndex], h = C.label;
+    b[h] = C.data[K.index];
   }), b;
 };
 export {

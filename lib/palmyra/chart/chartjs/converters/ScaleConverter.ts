@@ -1,10 +1,10 @@
 import { InteractionItem } from "chart.js";
-import { ChartDataConverter, IgetPointData } from "../DataConverterFactory";
-import { ScaleDataInput, ScaleDataSet } from "../Types";
+import { IgetPointData } from "../DataConverterFactory";
+import { ChartDataConverter, ScaleDataInput, ScaleDataSet } from "../Types";
 import { ITransformOptions } from "../../Types";
 
-const NoopConverter = (options: ITransformOptions): ChartDataConverter => {
-    return (data) => { data };
+const NoopConverter = (options: ITransformOptions): ChartDataConverter<any> => {
+    return (data) => { return data };
 }
 
 function getKeys(options: ITransformOptions) {
@@ -20,7 +20,7 @@ function getKeys(options: ITransformOptions) {
 }
 
 
-const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter => {
+const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any> => {
     const { xKey, yKeys } = getKeys(options);
     return (records: any[]): ScaleDataInput => {
         var result: ScaleDataInput = {
@@ -51,7 +51,7 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter => 
     }
 }
 
-const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter => {
+const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter<number> => {
     const { yKeys } = getKeys(options);
     return (record: any): ScaleDataInput => {
         var result: ScaleDataInput = {
@@ -81,7 +81,7 @@ const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter =>
     }
 }
 
-const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter => {
+const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter<number> => {
     return (record: any): ScaleDataInput => {
         var result: ScaleDataInput = {
             labels: [],
