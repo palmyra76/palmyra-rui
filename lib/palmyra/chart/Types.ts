@@ -7,17 +7,18 @@ interface ITransformOptions {
     yKey?: strings,
     rKey?: string,
     xLabel?: string,
-    yLabel?: strings,
-    chart?: Record<string, chartOptions>
+    yLabel?: strings
 }
 
-interface chartOptions {
-    backgroundColor: string,
-    borderColor: string
+type StyleOptions = Record<string, chartStyle> | chartStyle[] | Record<string, chartStyle[]>;
+
+interface chartStyle {
+    backgroundColor?: string,
+    borderColor?: string
 }
 
 interface transformable {
     transformOptions?: ITransformOptions;
 }
 
-export type { chartOptions, transformable, ITransformOptions }
+export type { StyleOptions, transformable, ITransformOptions }

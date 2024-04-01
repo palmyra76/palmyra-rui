@@ -1,43 +1,39 @@
 import { NoopConverter as x } from "./ScaleConverter.js";
-function d(e) {
-  const r = (e == null ? void 0 : e.xLabel) || "name", t = (e == null ? void 0 : e.xKey) || "x", a = (e == null ? void 0 : e.yKey) || "y";
-  return a instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + e.yKey), {
-    x: t,
-    y: a,
+function f(a) {
+  const r = (a == null ? void 0 : a.xLabel) || "name", y = (a == null ? void 0 : a.xKey) || "x", e = (a == null ? void 0 : a.yKey) || "y";
+  return e instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + a.yKey), {
+    x: y,
+    y: e,
     label: r
   };
 }
-const n = (e) => {
-  const { x: r, y: t, label: a } = d(e);
+const s = (a) => {
+  const { x: r, y, label: e } = f(a);
   return (u) => {
-    var y = {
+    var l = {
       datasets: []
-    }, c = {};
-    return u.map((l, g) => {
-      var b = K(c, l[a], e);
-      b.data.push({
-        x: l[r],
-        y: l[t]
+    }, n = {};
+    return u.map((t, b) => {
+      var c = v(n, t[e]);
+      c.data.push({
+        x: t[r],
+        y: t[y]
       });
-    }), Object.values(c).map((l) => {
-      y.datasets.push(l);
-    }), y;
+    }), Object.values(n).map((t) => {
+      l.datasets.push(t);
+    }), l;
   };
-}, f = {
-  default: n,
+}, K = {
+  default: s,
   noop: x
 };
-function v(e, r, t) {
-  var a, u;
-  t.backgroundColor = ((u = (a = e == null ? void 0 : e.chart) == null ? void 0 : a[r]) == null ? void 0 : u.backgroundColor) || "blue";
-}
-function K(e, r, t) {
-  var a = e[r];
-  return a || (a = {
+function v(a, r, y) {
+  var e = a[r];
+  return e || (e = {
     label: r,
     data: []
-  }, v(t, r, a), e[r] = a, a);
+  }, a[r] = e, e);
 }
 export {
-  f as default
+  K as default
 };

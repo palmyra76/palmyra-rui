@@ -34,7 +34,6 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any
             var data: ScaleDataSet = { label: key, data: [] };
             dataMap[key] = data;
             result.datasets[index] = data;
-            assignColors(options, key, data);
         })
 
         records.map((record, index) => {
@@ -63,7 +62,6 @@ const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter<nu
         yKeys.map((key, index) => {
             var data: ScaleDataSet = { label: key, data: [] };
             result.datasets[index] = data;
-            assignColors(options, key, data);
         })
 
         // Populate the record for each entry in the object
@@ -90,7 +88,6 @@ const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter<
 
         var dataset: ScaleDataSet = { label: 'value', data: [] };
         result.datasets[0] = dataset;
-        assignColors(options, 'value', dataset);
 
         for (var xValue in record) {
             result.labels.push(xValue);
@@ -101,11 +98,11 @@ const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter<
     }
 }
 
-function assignColors(ITransformOptions: ITransformOptions,
-    key: string, data: ScaleDataSet) {
-    data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || 'blue';
-    data.borderColor = ITransformOptions?.chart?.[key]?.borderColor || 'grey';
-}
+// function assignColors(ITransformOptions: ITransformOptions,
+//     key: string, data: ScaleDataSet) {
+//     data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || 'blue';
+//     data.borderColor = ITransformOptions?.chart?.[key]?.borderColor || 'grey';
+// }
 
 const getScalePointData: IgetPointData = (data: any, ITransformOptions: ITransformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
 

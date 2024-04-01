@@ -1,80 +1,75 @@
-const x = (a) => (t) => t;
-function y(a) {
-  const t = (a == null ? void 0 : a.xKey) || "name", e = (a == null ? void 0 : a.yKey) || "value", r = e instanceof Array ? e : [e];
+const x = (e) => (t) => t;
+function c(e) {
+  const t = (e == null ? void 0 : e.xKey) || "name", a = (e == null ? void 0 : e.yKey) || "value", r = a instanceof Array ? a : [a];
   return {
     xKey: t,
     yKeys: r
   };
 }
-const g = (a) => {
-  const { xKey: t, yKeys: e } = y(a);
+const h = (e) => {
+  const { xKey: t, yKeys: a } = c(e);
   return (r) => {
-    var u = {
+    var s = {
       labels: [],
       datasets: []
-    }, s = {};
-    return e.map((l, d) => {
-      var v = { label: l, data: [] };
-      s[l] = v, u.datasets[d] = v, n(a, l, v);
-    }), r.map((l, d) => {
-      var v = l[t];
-      u.labels.push(v), e.map((c) => {
-        var b = s[c];
-        b.data[d] = l[c];
+    }, v = {};
+    return a.map((l, n) => {
+      var u = { label: l, data: [] };
+      v[l] = u, s.datasets[n] = u;
+    }), r.map((l, n) => {
+      var u = l[t];
+      s.labels.push(u), a.map((d) => {
+        var y = v[d];
+        y.data[n] = l[d];
       });
-    }), u;
+    }), s;
   };
-}, S = (a) => {
-  const { yKeys: t } = y(a);
-  return (e) => {
+}, m = (e) => {
+  const { yKeys: t } = c(e);
+  return (a) => {
     var r = {
       labels: [],
       datasets: []
     };
-    t.map((l, d) => {
-      var v = { label: l, data: [] };
-      r.datasets[d] = v, n(a, l, v);
+    t.map((l, n) => {
+      var u = { label: l, data: [] };
+      r.datasets[n] = u;
     });
-    for (var u in e) {
-      r.labels.push(u);
-      var s = e[u];
-      t.map((l, d) => {
-        r.datasets[d].data.push(s[l]);
+    for (var s in a) {
+      r.labels.push(s);
+      var v = a[s];
+      t.map((l, n) => {
+        r.datasets[n].data.push(v[l]);
       });
     }
     return r;
   };
-}, A = (a) => (t) => {
-  var e = {
+}, o = (e) => (t) => {
+  var a = {
     labels: [],
     datasets: []
   }, r = { label: "value", data: [] };
-  e.datasets[0] = r, n(a, "value", r);
-  for (var u in t)
-    e.labels.push(u), r.data.push(t[u]);
-  return e;
-};
-function n(a, t, e) {
-  var r, u, s, l;
-  e.backgroundColor = ((u = (r = a == null ? void 0 : a.chart) == null ? void 0 : r[t]) == null ? void 0 : u.backgroundColor) || "blue", e.borderColor = ((l = (s = a == null ? void 0 : a.chart) == null ? void 0 : s[t]) == null ? void 0 : l.borderColor) || "grey";
-}
-const j = (a, t, e, r) => {
-  var { xKey: u } = y(t);
-  const s = a.labels[e[0].index];
+  a.datasets[0] = r;
+  for (var s in t)
+    a.labels.push(s), r.data.push(t[s]);
+  return a;
+}, S = (e, t, a, r) => {
+  var { xKey: s } = c(t);
+  const v = e.labels[a[0].index];
   if (t.sourceType == "keyValue") {
-    var { index: l, datasetIndex: d } = e[0], v = a.datasets[d], c = v.data[l];
-    return { [s]: c };
+    var { index: l, datasetIndex: n } = a[0], u = e.datasets[n], d = u.data[l];
+    return { [v]: d };
   }
-  var b = { [u]: s };
-  return e.map((K) => {
-    var C = a.datasets[K.datasetIndex], h = C.label;
-    b[h] = C.data[K.index];
-  }), b;
+  var y = { [s]: v };
+  return a.map((b) => {
+    var K = e.datasets[b.datasetIndex], p = K.label;
+    y[p] = K.data[b.index];
+  }), y;
 };
 export {
-  g as ArrayScaleConverter,
-  A as KeyValueScaleConverter,
+  h as ArrayScaleConverter,
+  o as KeyValueScaleConverter,
   x as NoopConverter,
-  S as ObjectScaleConverter,
-  j as getScalePointData
+  m as ObjectScaleConverter,
+  S as getScalePointData
 };

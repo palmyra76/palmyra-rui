@@ -15,8 +15,8 @@ function assignColors(ITransformOptions: ITransformOptions,
     key: string, data: BubbleDataSet) {
     var length = Math.round(getRandomNumber(2, 10));
     var color = generateColors(length);
-    data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || color[0];
-    data.borderColor = ITransformOptions?.chart?.[key]?.borderColor || color[length - 1];
+    data.backgroundColor = color[0];
+    data.borderColor = color[length - 1];
 }
 
 function getData(dataMap: Record<string, BubbleDataSet>, key: string, ITransformOptions: ITransformOptions): BubbleDataSet {

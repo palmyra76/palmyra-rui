@@ -54,11 +54,6 @@ const converters: Record<string, DataConverterGen> = {
 
 export default converters;
 
-function assignColors(ITransformOptions: ITransformOptions,
-    key: string, data: ScatterDataSet) {
-    data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || 'blue';
-}
-
 function getData(dataMap: Record<string, ScatterDataSet>, key: string, ITransformOptions: ITransformOptions): ScatterDataSet {
     var r: ScatterDataSet = dataMap[key];
     if (r)
@@ -68,7 +63,7 @@ function getData(dataMap: Record<string, ScatterDataSet>, key: string, ITransfor
         label: key,
         data: []
     };
-    assignColors(ITransformOptions, key, r);
+
     dataMap[key] = r;
     return r;
 }
