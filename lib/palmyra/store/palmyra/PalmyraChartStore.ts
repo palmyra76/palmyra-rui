@@ -39,7 +39,7 @@ class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
         const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
         return axios.get(url, params)
-            .then(response => { return response.data });
+            .then(response => { return response.data?.result });
     }
 }
 

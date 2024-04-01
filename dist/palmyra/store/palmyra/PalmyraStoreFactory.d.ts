@@ -9,7 +9,7 @@ declare class PalmyraStoreFactory implements StoreFactory<any> {
     constructor(props: PalmyraStoreFactoryArg);
     getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): GridStore<any>;
     getFormStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<any>;
-    getChartStore(options: Record<string, string>): ChartStore<any>;
+    getChartStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): ChartStore<any>;
     getLookupStore(options: Record<string, string>, endPoint: IEndPoint, idProperty: strings): LookupStore<any>;
     getTreeStore(options: Record<string, string>, endPoint: IEndPoint): TreeQueryStore<any, any>;
 }
