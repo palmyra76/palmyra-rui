@@ -27,6 +27,8 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any
             result.datasets[index] = data;
         })
 
+        console.log(yKeys);
+
         records.map((record, index) => {
             var label = record[xKey];
             result.labels.push(label);

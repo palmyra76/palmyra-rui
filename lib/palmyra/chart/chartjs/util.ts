@@ -2,6 +2,7 @@ import { ITransformOptions } from "../Types";
 
 
 function getKeys(options: ITransformOptions) {
+    console.log(options);
     const xKey: any = options?.xKey || 'name';
     const yKe = options?.yKey || 'value';
 
