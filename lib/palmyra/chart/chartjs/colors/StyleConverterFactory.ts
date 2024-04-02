@@ -33,15 +33,15 @@ const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: Styl
 
         data.labels.map((label, index) => {
             const style: chartStyle = styleOptions[label];
-            if(style){
-                if(style.backgroundColor)
+            if (style) {
+                if (style.backgroundColor)
                     backgroundColor[index] = style.backgroundColor;
-                if(style.borderColor)
+                if (style.borderColor)
                     borderColor[index] = style.borderColor;
             }
         })
 
-        if(data.datasets[0]){
+        if (data.datasets[0]) {
             data.datasets[0].backgroundColor = backgroundColor;
             data.datasets[0].borderColor = backgroundColor;
         }
@@ -50,10 +50,30 @@ const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: Styl
     }
 }
 
-const ArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions) => {
+const ArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
+    transformOptions?: ITransformOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
-        console.log(styleOptions);
-        console.log(data.labels);
+        if (null == styleOptions)
+            return data;
+
+        const backgroundColor: any[] = [];
+        const borderColor: any[] = [];
+
+        // @ts-ignore
+        const length: number = styleOptions.length;
+
+        data.labels.map((label, index) => {
+            const i = index % length;
+            const style: chartStyle = styleOptions[i];
+            backgroundColor.push(style?.backgroundColor)
+            borderColor.push(style?.borderColor);
+        })
+
+        if (data.datasets[0]) {
+            data.datasets[0].backgroundColor = backgroundColor;
+            data.datasets[0].borderColor = backgroundColor;
+        }
+
         return data;
     }
 }
@@ -85,7 +105,7 @@ const getStyleConverter = (chartType: string, styleOptions: StyleOptions, transf
     } else {
         if (yKeys.length > 1)
             return LabelStyleConverterFactory(styleOptions, transformOptions);
-        else
+        else 
             return DatasetStyleConverterFactory(styleOptions, transformOptions);
     }
     return RandomStyleConverterFactory({});

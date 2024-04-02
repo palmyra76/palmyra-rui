@@ -1,4 +1,4 @@
-import { ITransformOptions } from "../Types"
+import { ITransformOptions, StyleOptions } from "../Types"
 
 interface Colorable {
     borderColor?: any,
@@ -47,6 +47,7 @@ interface ChartInput {
     height: string | number,
     onPointClick: Function,
     transformOptions: ITransformOptions
+    styleOptions?: StyleOptions,
     chartOptions?: any
 }
 
