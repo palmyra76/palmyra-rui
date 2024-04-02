@@ -1,18 +1,18 @@
 import "../../../assets/TableX.css";
-import { jsx as e, jsxs as f, Fragment as s } from "react/jsx-runtime";
+import { jsxs as f, jsx as e, Fragment as s } from "react/jsx-runtime";
 import { useRef as N, useState as F, useEffect as H } from "react";
-import { Box as M, TableContainer as j, Paper as A, Table as B, TableHead as E, TableRow as h, TableBody as O, TableCell as k } from "@mui/material";
-import G from "./ColumnHeader.js";
-import { getCoreRowModel as L, useReactTable as V, flexRender as g } from "@tanstack/react-table";
-import W from "./LoadingChild.js";
-function Z({
+import { TableContainer as M, Paper as j, Table as A, TableHead as E, TableRow as h, TableBody as O, TableCell as k } from "@mui/material";
+import B from "./ColumnHeader.js";
+import { getCoreRowModel as G, useReactTable as L, flexRender as g } from "@tanstack/react-table";
+import V from "./LoadingChild.js";
+function Y({
   columnDefs: p,
   rowData: o,
   onRowClick: m,
   onRowStyle: C,
-  onHeaderStyle: x,
+  onHeaderStyle: u,
   onSortColumn: b,
-  EmptyChild: u,
+  EmptyChild: x,
   customizer: l
 }) {
   const T = (l == null ? void 0 : l.preProcessData) || ((n) => n), R = l != null && l.getTableRef ? l == null ? void 0 : l.getTableRef() : N(), v = l != null && l.getTableOptions ? l.getTableOptions() : {};
@@ -23,26 +23,26 @@ function Z({
     manualFiltering: !0,
     manualPagination: !0,
     columns: p,
-    getCoreRowModel: L(),
+    getCoreRowModel: G(),
     ...v
-  }, d = V(P);
-  R.current = d;
-  const [r, S] = F({});
+  }, r = L(P);
+  R.current = r;
+  const [d, S] = F({});
   H(() => {
-    b(r);
-  }, [r]);
+    b(d);
+  }, [d]);
   const y = b ? (n, t) => {
-    var a = { ...r };
+    var a = { ...d };
     t == "" ? delete a[n] : a[n] = t, S(a);
   } : void 0;
-  return /* @__PURE__ */ e(M, { sx: { width: "100%" }, children: /* @__PURE__ */ f(j, { component: A, sx: { border: "1px solid var(--border-color)", borderRadius: "5px" }, children: [
-    /* @__PURE__ */ f(B, { sx: { minWidth: 650 }, "aria-label": "simple table", className: "table", children: [
-      /* @__PURE__ */ e(E, { className: "table-head", children: d.getHeaderGroups().map((n) => /* @__PURE__ */ e(h, { children: n.headers.map((t) => t.isPlaceholder ? null : /* @__PURE__ */ e(
-        G,
+  return /* @__PURE__ */ f(M, { component: j, sx: { border: "1px solid var(--border-color)", borderRadius: "5px" }, children: [
+    /* @__PURE__ */ f(A, { "aria-label": "simple table", className: "table", children: [
+      /* @__PURE__ */ e(E, { className: "table-head", children: r.getHeaderGroups().map((n) => /* @__PURE__ */ e(h, { children: n.headers.map((t) => t.isPlaceholder ? null : /* @__PURE__ */ e(
+        B,
         {
           header: t,
           onSortChange: y,
-          onHeaderStyle: x,
+          onHeaderStyle: u,
           children: g(
             t.column.columnDef.header,
             t.getContext()
@@ -50,7 +50,7 @@ function Z({
         },
         t.id
       )) }, n.id)) }),
-      o == null || o == null || o.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e(O, { children: d.getRowModel().rows.map((n) => {
+      o == null || o == null || o.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e(O, { children: r.getRowModel().rows.map((n) => {
         const t = C(n.original);
         return /* @__PURE__ */ e(h, { className: "table-row", children: n.getVisibleCells().map((a) => {
           var c;
@@ -72,14 +72,14 @@ function Z({
           );
         }) }, n.id);
       }) }),
-      o == null || o == null || o.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e("tfoot", { className: "table-footer", children: d.getFooterGroups().map((n) => /* @__PURE__ */ e("tr", { style: { textAlign: "end" }, children: n.headers.map((t) => /* @__PURE__ */ e("th", { children: t.isPlaceholder ? null : g(
+      o == null || o == null || o.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e("tfoot", { className: "table-footer", children: r.getFooterGroups().map((n) => /* @__PURE__ */ e("tr", { style: { textAlign: "end" }, children: n.headers.map((t) => /* @__PURE__ */ e("th", { children: t.isPlaceholder ? null : g(
         t.column.columnDef.footer,
         t.getContext()
       ) }, t.id)) }, n.id)) })
     ] }),
-    o == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(W, {}) }) : o == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : o.length == 0 ? /* @__PURE__ */ e(u, {}) : /* @__PURE__ */ e(s, {})
-  ] }) });
+    o == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(V, {}) }) : o == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : o.length == 0 ? /* @__PURE__ */ e(x, {}) : /* @__PURE__ */ e(s, {})
+  ] });
 }
 export {
-  Z as default
+  Y as default
 };

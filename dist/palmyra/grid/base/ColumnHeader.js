@@ -30,17 +30,19 @@ const M = ({ header: t, children: a, onSortChange: c, onHeaderStyle: b }) => {
   var e = b(t.original);
   i || (e.cursor = "pointer");
   const l = t.column.columnDef.meta;
-  return t.column.columnDef.columns ? /* @__PURE__ */ n(f, { colSpan: t.colSpan, style: { ...e, width: s }, children: /* @__PURE__ */ n("div", { style: {
+  return t.column.columnDef.columns ? /* @__PURE__ */ n(f, { colSpan: t.colSpan, style: { ...e }, children: /* @__PURE__ */ n("div", { style: {
     display: "flex",
     fontWeight: "bold",
     alignItems: "center",
     gap: "10px",
+    width: s,
     justifyContent: "center"
-  }, children: a }) }, t.id) : /* @__PURE__ */ n(f, { colSpan: t.colSpan, style: { ...e, width: s }, children: /* @__PURE__ */ v("div", { style: {
+  }, children: a }) }, t.id) : /* @__PURE__ */ n(f, { colSpan: t.colSpan, style: { ...e }, children: /* @__PURE__ */ v("div", { style: {
     display: "flex",
     fontWeight: "bold",
     alignItems: "center",
     gap: "10px",
+    width: s,
     justifyContent: ((p = l == null ? void 0 : l.columnDef) == null ? void 0 : p.type) === "number" ? "flex-end" : "flex-start"
   }, onClick: () => y(), children: [
     a,

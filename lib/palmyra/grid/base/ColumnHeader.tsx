@@ -38,12 +38,13 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
     if (header.column.columnDef.columns) {
         // Render Grouped Columns
         return (
-            <TableCell key={header.id} colSpan={header.colSpan} style={{ ...headerStyle, width: width }}>
+            <TableCell key={header.id} colSpan={header.colSpan} style={{ ...headerStyle }}>
                 <div style={{
                     display: 'flex',
                     fontWeight: 'bold',
                     alignItems: 'center',
                     gap: '10px',
+                    width: width,
                     justifyContent: 'center'
                 }} >
                     {children}
@@ -52,12 +53,13 @@ const ColumnHeader = ({ header, children, onSortChange, onHeaderStyle }) => {
         )
     } else
         return (
-            <TableCell key={header.id} colSpan={header.colSpan} style={{ ...headerStyle, width: width }}>
+            <TableCell key={header.id} colSpan={header.colSpan} style={{ ...headerStyle }}>
                 <div style={{
                     display: 'flex',
                     fontWeight: 'bold',
                     alignItems: 'center',
                     gap: '10px',
+                    width: width,
                     justifyContent: meta?.columnDef?.type === 'number' ? 'flex-end' : 'flex-start'
                 }} onClick={() => handleSortColumn()}>
                     {children}
