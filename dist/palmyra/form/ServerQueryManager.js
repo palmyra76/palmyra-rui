@@ -1,5 +1,5 @@
 import "react";
-import { u as T } from "../../chunks/ServerCardLayout.js";
+import { u as M } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "axios";
 import "react/jsx-runtime";
@@ -16,14 +16,7 @@ import "../layout/tree/AsyncTreeMenuEditor.js";
 import "../utils/pubsub/PubSubHelper.js";
 import "@tanstack/react-table";
 import "react-chartjs-2";
-import "../chart/chartjs/chart/LineChart.js";
-import "../chart/chartjs/chart/BarChart.js";
-import "../chart/chartjs/chart/PieChart.js";
-import "../chart/chartjs/chart/DoughnutChart.js";
-import "../chart/chartjs/chart/PolarAreaChart.js";
-import "../chart/chartjs/chart/RadarChart.js";
-import "../chart/chartjs/chart/ScatterChart.js";
-import "../chart/chartjs/chart/BubbleChart.js";
+import "../chart/chartjs/ChartJS.js";
 import "dayjs";
 import "../mui/form/MuiDatePicker.js";
 import "../mui/form/MuiDateTimePicker.js";
@@ -40,5 +33,5 @@ import "../mui/form/MuiNumberField.js";
 import "../mui/form/MuiIntegerField.js";
 import "./PalmyraForm.js";
 export {
-  T as default
+  M as default
 };

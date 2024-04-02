@@ -1,7 +1,7 @@
 import { ChartInput } from "../Types";
 
 
-const BarHChart = (props: ChartInput) => {
+const BarHChart = (props: ChartInput<'bar'>) => {
     return <div>Chart yet to be Implemented</div>
 };
 

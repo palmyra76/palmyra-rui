@@ -1,11 +1,10 @@
 import { ChartLayout } from './Definitions';
-import { ChartFactory } from '../../chart/chartjs/ChartFactory';
-import { useContext, useMemo, useState } from 'react';
-import { getDataConverter } from '../../chart/chartjs/DataConverterFactory';
+import { useContext, useMemo, useRef, useState } from 'react';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
 import { ITransformOptions } from '../../chart/Types';
 import { getStyleConverter } from '../../chart/chartjs/colors/StyleConverterFactory';
+import { ChartJS, IChartJS } from '../../chart/chartjs/ChartJS';
 
 interface ChartRendererInput {
   layout: ChartLayout
@@ -13,12 +12,11 @@ interface ChartRendererInput {
 
 const ChartRenderer = (props: ChartRendererInput) => {
   const layout = props.layout;
-  const Renderer = ChartFactory(layout.type);
-  //const convertData = getDataConverter(layout.type, layout);
 
   const storeFactory = useContext(StoreFactoryContext);
   const layoutParams = useContext(LayoutParamsContext);
   var storeOptions = layout.storeOptions || {};
+  const chartRef = useRef<IChartJS>(null);
 
   var storeRequest: any = {};
   mergeDeep(storeRequest, storeOptions, layoutParams);
@@ -31,42 +29,37 @@ const ChartRenderer = (props: ChartRendererInput) => {
 
   }
 
-  function transform(data: any, layout: ChartLayout): any {
-    const sourceType = layout.transformOptions?.sourceType ?
-      layout.transformOptions?.sourceType :
-      (data instanceof Array) ? "default" : "object";
-
-    return getDataConverter(layout.type, sourceType, layout.transformOptions)(data);
-  }
-
-  function applyStyle(data: any, layout: ChartLayout): any {
-    const styleConverter = getStyleConverter(layout.type, layout.styleOptions, layout.transformOptions);
-    return styleConverter(data);
+  function getConverter(layout: ChartLayout) {
+    return getStyleConverter(layout.type, layout.styleOptions, layout.transformOptions);
   }
 
   function updateData(data: any) {
-    setData(applyStyle(transform(data, layout), layout));
+    if (chartRef.current)
+      chartRef.current.setData(data);
+    // setData(data);
   }
 
   useMemo(() => {
     store.query({})
       .then(d => updateData(d))
       .catch(() => setData(null));
-  }, []);
+  }, [chartRef.current]);
 
   function getHeight() {
     //TODO calculate based on some logic - TBD
     return '300px';
   }
 
+  const styleConverter = getConverter(layout);
   const transformOptions: ITransformOptions = props.layout.transformOptions || { sourceType: "default" };
 
   return (
     <div className="palmyra-chart-container-wrapper">
-      {(data) ?
-        <Renderer data={data} onPointClick={onPointClick} height={getHeight()}
-          transformOptions={transformOptions}
-          chartOptions={layout.chartOptions} /> : <div>loading...</div>}
+      {/* {(data) ? */}
+      <ChartJS type={layout.type} data={data} onPointClick={onPointClick} height={getHeight()}
+        transformOptions={transformOptions} postProcessors={[styleConverter]}
+        options={layout.chartOptions} ref={chartRef} />
+      {/* : <div>loading...</div>} */}
     </div>
   );
 };

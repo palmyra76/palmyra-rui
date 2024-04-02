@@ -31,7 +31,7 @@ export const defaultOptions = {
     },
 };
 
-const RadarChart = (props: ChartInput) => {
+const RadarChart = (props: ChartInput<'radar'>) => {
     const chartRef = useRef<any>(null);
     var options = props.chartOptions || defaultOptions;
     const { onClick } = useListener("Radar", props, chartRef);

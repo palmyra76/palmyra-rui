@@ -8,5 +8,5 @@ export declare const defaultOptions: {
         };
     };
 };
-declare const BarChart: (props: ChartInput) => import("react/jsx-runtime").JSX.Element;
+declare const BarChart: (props: ChartInput<'bar'>) => import("react/jsx-runtime").JSX.Element;
 export default BarChart;

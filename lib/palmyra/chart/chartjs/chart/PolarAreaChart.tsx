@@ -18,7 +18,7 @@ export const defaultOptions = {
 };
 
 
-const PolarAreaChart = (props: ChartInput) => {
+const PolarAreaChart = (props: ChartInput<'polarArea'>) => {
     const chartRef = useRef<any>(null);
     var options = props.chartOptions || defaultOptions;
     const { onClick } = useListener("PolarArea", props, chartRef);

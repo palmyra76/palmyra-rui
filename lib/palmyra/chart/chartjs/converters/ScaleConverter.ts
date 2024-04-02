@@ -96,12 +96,6 @@ const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter<
     }
 }
 
-// function assignColors(ITransformOptions: ITransformOptions,
-//     key: string, data: ScaleDataSet) {
-//     data.backgroundColor = ITransformOptions?.chart?.[key]?.backgroundColor || 'blue';
-//     data.borderColor = ITransformOptions?.chart?.[key]?.borderColor || 'grey';
-// }
-
 const getScalePointData: IgetPointData = (data: any, ITransformOptions: ITransformOptions, element: InteractionItem[], elements: InteractionItem[]) => {
 
     var { xKey } = getKeys(ITransformOptions);

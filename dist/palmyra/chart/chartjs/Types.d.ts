@@ -1,4 +1,5 @@
-import { ITransformOptions, StyleOptions } from "../Types";
+import { ChartType, Plugin } from "chart.js";
+import { IChartOptions } from "../Types";
 interface Colorable {
     borderColor?: any;
     backgroundColor?: any;
@@ -34,13 +35,9 @@ interface BubbleDataInput extends DataSets<Bubble> {
 }
 interface ScatterDataInput extends DataSets<Point> {
 }
-interface ChartInput {
-    data: any;
-    height: string | number;
-    onPointClick: Function;
-    transformOptions: ITransformOptions;
-    styleOptions?: StyleOptions;
+interface ChartInput<TType extends ChartType> extends IChartOptions {
     chartOptions?: any;
+    plugins?: Plugin<TType>[];
 }
 interface ChartDataConverter<DataSetType> {
     (data: any, options?: any): DataSets<DataSetType>;

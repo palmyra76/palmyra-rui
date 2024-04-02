@@ -1,4 +1,4 @@
-import { jsx as r, jsxs as d, Fragment as f } from "react/jsx-runtime";
+import { jsx as r, jsxs as m, Fragment as f } from "react/jsx-runtime";
 import { List as g, Toolbar as v, Stack as M, Typography as S, IconButton as P, Drawer as n } from "@mui/material";
 import { Menu as k } from "@mui/icons-material";
 import { useState as p } from "react";
@@ -17,14 +17,7 @@ import "./AsyncTreeMenuEditor.js";
 import "../../utils/pubsub/topic.js";
 import "@tanstack/react-table";
 import "react-chartjs-2";
-import "../../chart/chartjs/chart/LineChart.js";
-import "../../chart/chartjs/chart/BarChart.js";
-import "../../chart/chartjs/chart/PieChart.js";
-import "../../chart/chartjs/chart/DoughnutChart.js";
-import "../../chart/chartjs/chart/PolarAreaChart.js";
-import "../../chart/chartjs/chart/RadarChart.js";
-import "../../chart/chartjs/chart/ScatterChart.js";
-import "../../chart/chartjs/chart/BubbleChart.js";
+import "../../chart/chartjs/ChartJS.js";
 import "dayjs";
 import "../../mui/form/MuiDatePicker.js";
 import "../../mui/form/MuiDateTimePicker.js";
@@ -40,14 +33,14 @@ import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
 import "../../form/PalmyraForm.js";
-const vr = (i) => {
+const br = (i) => {
   let l = document.body;
-  const e = i.width, a = i.mobileOpen, c = i.setMobileOpen, s = i.responsive, h = "/acl/editor/menu/list", b = new N({ baseUrl: "/api" }).getTreeStore({}, h), [t, y] = p(!1), [m, u] = p(!1), x = () => {
-    u(!m), y(!t);
+  const e = i.width, a = i.mobileOpen, c = i.setMobileOpen, s = i.responsive, h = "/acl/editor/menu/list", b = new N({ baseUrl: "/api" }).getTreeStore({}, h), [t, y] = p(!1), [d, u] = p(!1), x = () => {
+    u(!d), y(!t);
   }, w = () => {
     c(!a);
   };
-  let o = /* @__PURE__ */ r(g, { disablePadding: !0, children: /* @__PURE__ */ d("div", { className: "sidebar", children: [
+  let o = /* @__PURE__ */ r(g, { disablePadding: !0, children: /* @__PURE__ */ m("div", { className: "sidebar", children: [
     /* @__PURE__ */ r("div", { className: "sidebar-header", children: /* @__PURE__ */ r(v, { sx: { marginBottom: "20px" }, children: /* @__PURE__ */ r(
       M,
       {
@@ -55,7 +48,7 @@ const vr = (i) => {
         direction: "row",
         position: "relative",
         justifyContent: "center",
-        children: /* @__PURE__ */ d(S, { variant: "h6", className: `sidebar-title ${t ? "" : "minimized"}`, children: [
+        children: /* @__PURE__ */ m(S, { variant: "h6", className: `sidebar-title ${t ? "" : "minimized"}`, children: [
           /* @__PURE__ */ r("div", { children: !s && /* @__PURE__ */ r(
             P,
             {
@@ -65,7 +58,7 @@ const vr = (i) => {
               onClick: x,
               sx: { mr: 0 },
               children: /* @__PURE__ */ r(k, { style: {
-                transform: m ? "rotate(180deg)" : "rotate(0deg)",
+                transform: d ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 0.3s ease"
               }, className: "sidebar-title-menu-icon" })
             }
@@ -137,5 +130,5 @@ const vr = (i) => {
   );
 };
 export {
-  vr as AsyncMenuSidebar
+  br as AsyncMenuSidebar
 };

@@ -45,14 +45,7 @@ import "@mui/x-tree-view";
 import { topic as Ue } from "../palmyra/utils/pubsub/topic.js";
 import "@tanstack/react-table";
 import "react-chartjs-2";
-import "../palmyra/chart/chartjs/chart/LineChart.js";
-import "../palmyra/chart/chartjs/chart/BarChart.js";
-import "../palmyra/chart/chartjs/chart/PieChart.js";
-import "../palmyra/chart/chartjs/chart/DoughnutChart.js";
-import "../palmyra/chart/chartjs/chart/PolarAreaChart.js";
-import "../palmyra/chart/chartjs/chart/RadarChart.js";
-import "../palmyra/chart/chartjs/chart/ScatterChart.js";
-import "../palmyra/chart/chartjs/chart/BubbleChart.js";
+import "../palmyra/chart/chartjs/ChartJS.js";
 import "dayjs";
 import "../palmyra/form/PalmyraForm.js";
 import { getActionPublishers as jt } from "../palmyra/utils/pubsub/Publishers.js";
@@ -140,7 +133,7 @@ const ae = (r) => {
 function Ye(r) {
   return r ? Array.isArray(r) ? r : typeof r == "string" ? r.split(",") : [r] : [];
 }
-const xr = U(function(t, c) {
+const fr = U(function(t, c) {
   const i = ce(me), a = c || $(null), s = i(t, "checkbox", a), { mutateOptions: y, setMutateOptions: f } = s, [b, g] = N(!1), C = Ye(s.data), d = s.error, S = s.eventListeners, v = s.store, V = t.pageSize || -1, P = { store: v, pageSize: V, defaultParams: t.defaultParams }, { data: D } = ae(P), R = D, I = $(null), L = t.lookupOptions || {}, T = L.idAttribute || "id", Q = L.displayAttribute || "name", W = t.showSelectedOnly && t.readonly, k = de(T) ? (u) => ue(T, u) : (u) => u[T], M = de(Q) ? (u) => ue(Q, u) : (u) => u[Q];
   re(a, () => ({
     focus() {
@@ -932,7 +925,7 @@ const en = (r) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), Fr = U(function(t, c) {
+}), gr = U(function(t, c) {
   const { children: i, EmptyChild: a, onRowClick: s, quickSearch: y, exportOptions: f } = t, b = t.columns, g = a || ct, C = t.customizer || mt, d = t.customButton, S = t.title, [v, V] = N(!1), [P, D] = N(!1), [R, I] = N("standard"), [L, T] = N(!1), [Q, W] = N(""), {
     setQueryFilter: k,
     setQuickSearch: M,
@@ -1156,7 +1149,7 @@ const en = (r) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), Or = U(function(t, c) {
+}), pr = U(function(t, c) {
   const { columns: i, endPoint: a, storeFactory: s, layoutParams: y, pagination: f } = t, b = t.quickSearch || "", g = t.customButton, C = t.customAddButton, d = t.title, S = t.fetchAll, v = t.filterTopic, V = t.initialFetch, P = (R, I) => {
   };
   ee(() => {
@@ -1330,14 +1323,14 @@ const bt = (r) => {
     default:
       return Ze;
   }
-}, Sr = U(function(t, c) {
+}, yr = U(function(t, c) {
   const [i, a] = N(t.layout), s = t.mode ? t.mode : i.type ? i.type : "grid", y = t.layoutParams || {}, f = cn(s), b = $(0);
   return ee(() => {
     a(t.layout), b.current < 999999 ? b.current++ : b.current = 0;
   }, [t.layout]), /* @__PURE__ */ e(ft, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(Qe.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(nt.Provider, { value: y, children: /* @__PURE__ */ e(f, { ...t, ref: (g) => {
     c && (c.current = g);
   } }, b.current) }) }) });
-}), wr = U(function(t, c) {
+}), vr = U(function(t, c) {
   const { title: i, Child: a, childProps: s, pageSize: y, customButton: f } = t, b = c || $(null), {
     setQueryFilter: g,
     refreshData: C,
@@ -1462,15 +1455,15 @@ const bt = (r) => {
   ] }) }) });
 });
 export {
-  Fr as D,
-  Sr as F,
+  gr as D,
+  yr as F,
   vt as G,
   Jt as M,
-  Or as P,
-  wr as S,
+  pr as P,
+  vr as S,
   bt as T,
   nn as a,
-  xr as b,
+  fr as b,
   Ut as c,
   Zt as d,
   pt as e,

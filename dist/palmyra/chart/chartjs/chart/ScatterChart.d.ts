@@ -8,5 +8,5 @@ export declare const defaultOptions: {
         };
     };
 };
-declare const ScatterChart: (props: ChartInput) => import("react/jsx-runtime").JSX.Element;
+declare const ScatterChart: (props: ChartInput<'scatter'>) => import("react/jsx-runtime").JSX.Element;
 export default ScatterChart;

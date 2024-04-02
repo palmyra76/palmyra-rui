@@ -33,7 +33,7 @@ export const defaultOptions = {
     },
 };
 
-const BarChart = (props: ChartInput) => {    
+const BarChart = (props: ChartInput<'bar'>) => {    
     var options = props.chartOptions || defaultOptions;
     const chartRef = useRef(null);
     const { onClick } = useListener("Bar", props, chartRef);

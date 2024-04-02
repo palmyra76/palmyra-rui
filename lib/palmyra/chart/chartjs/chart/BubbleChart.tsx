@@ -23,7 +23,7 @@ export const defaultOptions = {
     },
 };
 
-const BubbleChart = (props: ChartInput) => {
+const BubbleChart = (props: ChartInput<'bubble'>) => {
     var options = props.chartOptions || defaultOptions;
     const chartRef = useRef(null);
     const { onClick } = useListener("Bubble", props, chartRef);

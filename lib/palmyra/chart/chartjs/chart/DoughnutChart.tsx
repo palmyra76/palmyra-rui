@@ -12,7 +12,7 @@ export const defaultOptions = {
 };
 
 
-const DoughnutChart = (props: ChartInput) => {
+const DoughnutChart = (props: ChartInput<'doughnut'>) => {
     const chartRef = useRef<any>(null);
     var options = props.chartOptions || defaultOptions;
     const { onClick } = useListener("Doughnut", props, chartRef);

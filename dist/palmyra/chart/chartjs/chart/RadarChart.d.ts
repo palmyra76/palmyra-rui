@@ -8,5 +8,5 @@ export declare const defaultOptions: {
         };
     };
 };
-declare const RadarChart: (props: ChartInput) => import("react/jsx-runtime").JSX.Element;
+declare const RadarChart: (props: ChartInput<'radar'>) => import("react/jsx-runtime").JSX.Element;
 export default RadarChart;

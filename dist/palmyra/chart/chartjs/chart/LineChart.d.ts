@@ -8,5 +8,5 @@ export declare const defaultOptions: {
         };
     };
 };
-declare const LineChart: (props: ChartInput) => import("react/jsx-runtime").JSX.Element;
+declare const LineChart: (props: ChartInput<'line'>) => import("react/jsx-runtime").JSX.Element;
 export default LineChart;

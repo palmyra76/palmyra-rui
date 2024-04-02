@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import { P as S } from "../../chunks/ServerCardLayout.js";
+import { P as K } from "../../chunks/ServerCardLayout.js";
 import "axios";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
@@ -15,14 +15,7 @@ import "../layout/tree/AsyncTreeMenuEditor.js";
 /* empty css                          */import "../utils/pubsub/topic.js";
 import "@tanstack/react-table";
 import "react-chartjs-2";
-import "../chart/chartjs/chart/LineChart.js";
-import "../chart/chartjs/chart/BarChart.js";
-import "../chart/chartjs/chart/PieChart.js";
-import "../chart/chartjs/chart/DoughnutChart.js";
-import "../chart/chartjs/chart/PolarAreaChart.js";
-import "../chart/chartjs/chart/RadarChart.js";
-import "../chart/chartjs/chart/ScatterChart.js";
-import "../chart/chartjs/chart/BubbleChart.js";
+import "../chart/chartjs/ChartJS.js";
 import "dayjs";
 import "../mui/form/MuiDatePicker.js";
 import "../mui/form/MuiDateTimePicker.js";
@@ -39,5 +32,5 @@ import "../mui/form/MuiNumberField.js";
 import "../mui/form/MuiIntegerField.js";
 import "../form/PalmyraForm.js";
 export {
-  S as PalmyraGrid
+  K as PalmyraGrid
 };

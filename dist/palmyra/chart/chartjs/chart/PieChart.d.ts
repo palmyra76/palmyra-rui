@@ -8,5 +8,5 @@ export declare const defaultOptions: {
         };
     };
 };
-declare const PieChart: (props: ChartInput) => import("react/jsx-runtime").JSX.Element;
+declare const PieChart: (props: ChartInput<'pie'>) => import("react/jsx-runtime").JSX.Element;
 export default PieChart;

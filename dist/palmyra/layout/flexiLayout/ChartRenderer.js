@@ -1,45 +1,44 @@
-import { jsx as o } from "react/jsx-runtime";
-import { ChartFactory as D } from "../../chart/chartjs/ChartFactory.js";
-import { useContext as u, useState as T, useMemo as F } from "react";
-import { getDataConverter as P } from "../../chart/chartjs/DataConverterFactory.js";
-import { StoreFactoryContext as R, LayoutParamsContext as j } from "./FlexiLayoutContext.js";
-import { mergeDeep as q } from "../../utils/index.js";
-import { getStyleConverter as b } from "../../chart/chartjs/colors/StyleConverterFactory.js";
-const _ = (n) => {
-  const e = n.layout, f = D(e.type), y = u(R), l = u(j);
-  var h = e.storeOptions || {}, s = {};
-  q(s, h, l);
-  const d = y.getChartStore(s), [a, c] = T(null), C = (t) => {
+import { jsx as s } from "react/jsx-runtime";
+import { useContext as a, useRef as O, useState as v, useMemo as x } from "react";
+import { StoreFactoryContext as S, LayoutParamsContext as D } from "./FlexiLayoutContext.js";
+import { mergeDeep as P } from "../../utils/index.js";
+import { getStyleConverter as R } from "../../chart/chartjs/colors/StyleConverterFactory.js";
+import { ChartJS as q } from "../../chart/chartjs/ChartJS.js";
+const L = (o) => {
+  const r = o.layout, c = a(S), i = a(D);
+  var u = r.storeOptions || {};
+  const e = O(null);
+  var n = {};
+  P(n, u, i);
+  const p = c.getChartStore(n), [m, f] = v(null), l = (t) => {
   };
-  function O(t, r) {
-    var p, m;
-    const i = (p = r.transformOptions) != null && p.sourceType ? (m = r.transformOptions) == null ? void 0 : m.sourceType : t instanceof Array ? "default" : "object";
-    return P(r.type, i, r.transformOptions)(t);
+  function y(t) {
+    return R(t.type, t.styleOptions, t.transformOptions);
   }
-  function g(t, r) {
-    return b(r.type, r.styleOptions, r.transformOptions)(t);
+  function h(t) {
+    e.current && e.current.setData(t);
   }
-  function v(t) {
-    c(g(O(t, e), e));
-  }
-  F(() => {
-    d.query({}).then((t) => v(t)).catch(() => c(null));
-  }, []);
-  function x() {
+  x(() => {
+    p.query({}).then((t) => h(t)).catch(() => f(null));
+  }, [e.current]);
+  function C() {
     return "300px";
   }
-  const S = n.layout.transformOptions || { sourceType: "default" };
-  return /* @__PURE__ */ o("div", { className: "palmyra-chart-container-wrapper", children: a ? /* @__PURE__ */ o(
-    f,
+  const d = y(r), g = o.layout.transformOptions || { sourceType: "default" };
+  return /* @__PURE__ */ s("div", { className: "palmyra-chart-container-wrapper", children: /* @__PURE__ */ s(
+    q,
     {
-      data: a,
-      onPointClick: C,
-      height: x(),
-      transformOptions: S,
-      chartOptions: e.chartOptions
+      type: r.type,
+      data: m,
+      onPointClick: l,
+      height: C(),
+      transformOptions: g,
+      postProcessors: [d],
+      options: r.chartOptions,
+      ref: e
     }
-  ) : /* @__PURE__ */ o("div", { children: "loading..." }) });
+  ) });
 };
 export {
-  _ as default
+  L as default
 };

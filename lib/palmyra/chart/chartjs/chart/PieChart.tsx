@@ -16,7 +16,7 @@ export const defaultOptions = {
     },
 };
 
-const PieChart = (props: ChartInput) => {
+const PieChart = (props: ChartInput<'pie'>) => {
     const chartRef = useRef<any>(null);
     var options = props.chartOptions || defaultOptions;
     const { onClick } = useListener("Pie", props, chartRef);

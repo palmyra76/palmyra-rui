@@ -24,7 +24,7 @@ export const defaultOptions = {
     }    
 };
 
-const ScatterChart = (props: ChartInput) => {
+const ScatterChart = (props: ChartInput<'scatter'>) => {
     var options = props.chartOptions || defaultOptions;
     return <Scatter options={options} data={props.data} height={props.height} />;
 };

@@ -8,5 +8,5 @@ export declare const defaultOptions: {
         };
     };
 };
-declare const BubbleChart: (props: ChartInput) => import("react/jsx-runtime").JSX.Element;
+declare const BubbleChart: (props: ChartInput<'bubble'>) => import("react/jsx-runtime").JSX.Element;
 export default BubbleChart;

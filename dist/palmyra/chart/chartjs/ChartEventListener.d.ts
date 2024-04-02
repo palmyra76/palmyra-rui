@@ -1,7 +1,7 @@
 import { MouseEventHandler, MutableRefObject } from "react";
-import { ChartInput } from "./Types";
+import { IChartOptions } from "..";
 interface ListenerResult {
     onClick?: MouseEventHandler<any>;
 }
-declare const useListener: (chartType: string, props: ChartInput, chartRef: MutableRefObject<any>) => ListenerResult;
+declare const useListener: (chartType: string, props: IChartOptions, chartRef: MutableRefObject<any>) => ListenerResult;
 export { useListener };

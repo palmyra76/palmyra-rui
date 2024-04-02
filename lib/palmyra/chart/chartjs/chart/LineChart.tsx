@@ -37,7 +37,7 @@ export const defaultOptions = {
 
 
 
-const LineChart = (props: ChartInput) => {
+const LineChart = (props: ChartInput<'line'>) => {
     const chartRef = useRef<ChartJS>(null);
     var options = props.chartOptions || defaultOptions;
     const { onClick } = useListener("Line", props, chartRef);

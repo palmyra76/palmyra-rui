@@ -1,11 +1,10 @@
-import { StyleOptions, transformable } from "../../chart/Types";
+import { ChartType, StyleOptions, transformable } from "../../chart/Types";
 import { FieldDefinition } from "../../form/Definitions";
 import { strings } from "../../form/interface";
 import { ColumnDefinition } from "../../grid";
 import { Actionable, Positionable, Renderable, Titleable, storeBacked } from "../Types";
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 type flexiPrimaryType = 'formNew' | 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
-type ChartType = 'Bar' | 'Line' | 'Pie' | 'Doughnut';
 interface FormLayout extends Renderable {
     fields: FieldDefinition[];
     options?: {

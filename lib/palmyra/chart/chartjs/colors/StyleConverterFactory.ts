@@ -10,6 +10,9 @@ interface IStyleConverterFactory {
 const LabelStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
     transformOptions?: ITransformOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
+        if(null == data || undefined == data)
+            return data;
+
         data.datasets?.map((dataset: DataSet<DataSetType>) => {
             const key = dataset.key;
             const style: chartStyle = styleOptions[key];
@@ -28,6 +31,9 @@ const LabelStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleO
 const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
     transformOptions?: ITransformOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
+        if(null == data || undefined == data)
+            return data;
+
         const backgroundColor: any[] = generateColors(data.labels.length);
         const borderColor: any[] = generateColors(data.labels.length);
 
@@ -53,7 +59,7 @@ const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: Styl
 const ArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
     transformOptions?: ITransformOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
-        if (null == styleOptions)
+        if (null == styleOptions || null == data || undefined == data)
             return data;
 
         const backgroundColor: any[] = [];
@@ -84,6 +90,9 @@ const NoopStyleConverter: ChartStyleConverter<DataSetType> = (data: DataSets<num
 
 const RandomStyleConverterFactory: IStyleConverterFactory = (o: StyleOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
+        if(null == data || undefined == data)
+            return data;
+
         data.datasets?.map((dataset: DataSet<DataSetType>) => {
             dataset.backgroundColor = generateColors(1);
             dataset.borderColor = generateColors(1);
@@ -105,7 +114,7 @@ const getStyleConverter = (chartType: string, styleOptions: StyleOptions, transf
     } else {
         if (yKeys.length > 1)
             return LabelStyleConverterFactory(styleOptions, transformOptions);
-        else 
+        else
             return DatasetStyleConverterFactory(styleOptions, transformOptions);
     }
     return RandomStyleConverterFactory({});

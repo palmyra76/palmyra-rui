@@ -32,7 +32,7 @@ export const defaultOptions = {
     },
 };
 
-const LineChart = (props: ChartInput) => {
+const LineChart = (props: ChartInput<'line'>) => {
     var options = props.chartOptions || defaultOptions;
     return <Line options={options} data={props.data} />;
 };
