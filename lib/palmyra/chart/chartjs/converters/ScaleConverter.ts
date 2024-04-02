@@ -17,6 +17,9 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any
             labels: [],
             datasets: []
         };
+        if (null == records) {
+            return result;
+        }
 
         var dataMap: Record<string, ScaleDataSet> = {};
 
@@ -26,8 +29,6 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any
             dataMap[key] = data;
             result.datasets[index] = data;
         })
-
-        console.log(yKeys);
 
         records.map((record, index) => {
             var label = record[xKey];
@@ -52,6 +53,10 @@ const ObjectScaleConverter = (options: ITransformOptions): ChartDataConverter<nu
             labels: [],
             datasets: []
         };
+
+        if (null == record) {
+            return result;
+        }
 
         // Initialize the dataset array based on the number of yKeys
         yKeys.map((key, index) => {
@@ -84,6 +89,9 @@ const KeyValueScaleConverter = (options: ITransformOptions): ChartDataConverter<
             labels: [],
             datasets: []
         };
+        if (null == record) {
+            return result;
+        }
 
         const label = xLabel || 'value';
         const key = xKey || xLabel || 'value';

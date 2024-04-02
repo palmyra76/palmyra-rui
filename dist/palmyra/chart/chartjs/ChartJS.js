@@ -36,7 +36,7 @@ D.register(
 );
 const G = C(function(e, n) {
   const c = (r) => {
-    var a = d(r, e.type, e.transformOptions);
+    var a = h(r, e.type, e.transformOptions);
     return e.postProcessors && e.postProcessors.map((t, o) => {
       a = t(a);
     }), a;
@@ -46,11 +46,11 @@ const G = C(function(e, n) {
       m(c(r));
     }
   }), [e, n]);
-  function d(r, a, t) {
-    const o = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : r instanceof Array ? "default" : "object";
+  function h(r, a, t) {
+    const o = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : r && r instanceof Array ? "default" : "object";
     return v(a, o, t)(r);
   }
-  function h() {
+  function d() {
     return e.height || "350px";
   }
   const { onClick: g } = b("Bar", e, s);
@@ -64,7 +64,7 @@ const G = C(function(e, n) {
       plugins: e.plugins,
       options: y,
       data: l,
-      height: h()
+      height: d()
     }
   ) : /* @__PURE__ */ i("div", { children: "loading..." }) });
 });

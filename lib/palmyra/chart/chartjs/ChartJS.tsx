@@ -93,7 +93,7 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
     function transform(data: any, type: ChartType, options: ITransformOptions): any {
         const sourceType = options?.sourceType ?
             options?.sourceType :
-            (data instanceof Array) ? "default" : "object";
+            (data && data instanceof Array) ? "default" : "object";
 
         return getDataConverter(type, sourceType, options)(data);
     }
