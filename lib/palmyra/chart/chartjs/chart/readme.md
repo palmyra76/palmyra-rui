@@ -1,1 +1,0 @@
-components in this package are deprecated and will be removed.

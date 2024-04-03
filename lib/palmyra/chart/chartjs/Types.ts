@@ -3,7 +3,8 @@ import { IChartOptions } from "../Types"
 
 interface Colorable {
     borderColor?: any,
-    backgroundColor?: any
+    backgroundColor?: any,
+    borderWidth?: any,
 }
 
 type Point = {

@@ -55,7 +55,7 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                 isBranch: childIds.length > 0,
                 loaded: true,
                 metadata: {
-                    code: d.code, action: d.action
+                    code: d.code, action: d.action, target: d.target
                 }
             }
         });
@@ -108,6 +108,10 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
         if (!element.isBranch && element.metadata?.code) {
             //@ts-ignore
             const target: string = element.metadata.code;
+            navigate(target);
+        }else if (element.metadata?.target){
+            //@ts-ignore
+            const target: string = element.metadata.target;
             navigate(target);
         }
     }
