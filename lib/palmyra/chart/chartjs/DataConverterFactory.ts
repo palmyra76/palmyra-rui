@@ -44,9 +44,12 @@ var PointConverterMap: Record<string, IgetPointData> = {
     "Bubble": getBubblePointData
 }
 
-const getDataConverter = (chartType: string, sourceType: string, options: ITransformOptions): ChartDataConverter<any> => {
-    console.log(chartType, sourceType);
-    var converterGen: DataConverterGen = dataMap[chartType]?.[sourceType];
+const getDataConverter = (chartType: string, sourceType: string, options: ITransformOptions): ChartDataConverter<any> => {  
+    var srcType = sourceType
+    if(options.xKey instanceof Array && sourceType == 'default')
+        srcType = 'twoXKey';
+    
+    var converterGen: DataConverterGen = dataMap[chartType]?.[srcType];
     return (converterGen ? converterGen(options) : NoopConverter);
 }
 
