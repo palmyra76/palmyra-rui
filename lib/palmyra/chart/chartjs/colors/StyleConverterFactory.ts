@@ -10,7 +10,7 @@ interface IStyleConverterFactory {
 const LabelStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
     transformOptions?: ITransformOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
-        if(null == data || undefined == data)
+        if (null == data || undefined == data)
             return data;
 
         data.datasets?.map((dataset: DataSet<DataSetType>) => {
@@ -28,10 +28,42 @@ const LabelStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleO
     }
 }
 
+const TwoXDatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
+    transformOptions?: ITransformOptions) => {
+    return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
+        if (null == data || undefined == data)
+            return data;
+
+        data.datasets.map((d) => {
+            const style = styleOptions[d.label];
+            d.backgroundColor = style?.backgroundColor;
+            d.borderColor = style?.borderColor;
+        });
+
+        return data;
+    }
+}
+
+const TwoXArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
+    transformOptions?: ITransformOptions) => {
+    return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
+        if (null == data || undefined == data)
+            return data;
+
+        data.datasets.map((d, index) => {
+            const style = styleOptions[index];
+            d.backgroundColor = style?.backgroundColor;
+            d.borderColor = style?.borderColor;
+        });
+
+        return data;
+    }
+}
+
 const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
     transformOptions?: ITransformOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
-        if(null == data || undefined == data)
+        if (null == data || undefined == data)
             return data;
 
         const backgroundColor: any[] = generateColors(data.labels.length);
@@ -51,7 +83,6 @@ const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: Styl
             data.datasets[0].backgroundColor = backgroundColor;
             data.datasets[0].borderColor = backgroundColor;
         }
-
         return data;
     }
 }
@@ -90,7 +121,7 @@ const NoopStyleConverter: ChartStyleConverter<DataSetType> = (data: DataSets<num
 
 const RandomStyleConverterFactory: IStyleConverterFactory = (o: StyleOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
-        if(null == data || undefined == data)
+        if (null == data || undefined == data)
             return data;
 
         data.datasets?.map((dataset: DataSet<DataSetType>) => {
@@ -107,14 +138,19 @@ const getStyleConverter = (chartType: string, styleOptions: StyleOptions, transf
         // return NoopStyleConverter;
         return RandomStyleConverterFactory({});
 
-    const { yKeys } = getKeys(transformOptions);
+    const { xKey, yKeys } = getKeys(transformOptions);
 
     if (styleOptions instanceof Array) {
-        return ArrayStyleConverterFactory(styleOptions, transformOptions);
+        if (xKey instanceof Array) {
+            return TwoXArrayStyleConverterFactory(styleOptions, transformOptions);
+        } else
+            return ArrayStyleConverterFactory(styleOptions, transformOptions);
     } else {
         if (yKeys.length > 1)
             return LabelStyleConverterFactory(styleOptions, transformOptions);
-        else
+        else if (xKey instanceof Array) {
+            return TwoXDatasetStyleConverterFactory(styleOptions, transformOptions);
+        } else
             return DatasetStyleConverterFactory(styleOptions, transformOptions);
     }
     return RandomStyleConverterFactory({});

@@ -1,42 +1,48 @@
 import { getKeys as f } from "../util.js";
-import t from "./GenerateColors.js";
-const g = (n, o) => (r, s) => {
-  var e;
-  return r == null || r == null || (e = r.datasets) == null || e.map((l) => {
-    const b = l.key, u = n[b];
-    u ? (l.backgroundColor = u.backgroundColor || t(1), l.borderColor = u.borderColor || t(1)) : (l.backgroundColor = t(1), l.borderColor = t(1));
+import s from "./GenerateColors.js";
+const g = (l, n) => (r, u) => {
+  var o;
+  return r == null || r == null || (o = r.datasets) == null || o.map((e) => {
+    const t = e.key, c = l[t];
+    c ? (e.backgroundColor = c.backgroundColor || s(1), e.borderColor = c.borderColor || s(1)) : (e.backgroundColor = s(1), e.borderColor = s(1));
   }), r;
-}, k = (n, o) => (r, s) => {
+}, k = (l, n) => (r, u) => (r == null || r == null || r.datasets.map((o) => {
+  const e = l[o.label];
+  o.backgroundColor = e == null ? void 0 : e.backgroundColor, o.borderColor = e == null ? void 0 : e.borderColor;
+}), r), p = (l, n) => (r, u) => (r == null || r == null || r.datasets.map((o, e) => {
+  const t = l[e];
+  o.backgroundColor = t == null ? void 0 : t.backgroundColor, o.borderColor = t == null ? void 0 : t.borderColor;
+}), r), m = (l, n) => (r, u) => {
   if (r == null || r == null)
     return r;
-  const e = t(r.labels.length), l = t(r.labels.length);
-  return r.labels.map((b, u) => {
-    const c = n[b];
-    c && (c.backgroundColor && (e[u] = c.backgroundColor), c.borderColor && (l[u] = c.borderColor));
-  }), r.datasets[0] && (r.datasets[0].backgroundColor = e, r.datasets[0].borderColor = e), r;
-}, p = (n, o) => (r, s) => {
-  if (n == null || r == null || r == null)
+  const o = s(r.labels.length), e = s(r.labels.length);
+  return r.labels.map((t, c) => {
+    const C = l[t];
+    C && (C.backgroundColor && (o[c] = C.backgroundColor), C.borderColor && (e[c] = C.borderColor));
+  }), r.datasets[0] && (r.datasets[0].backgroundColor = o, r.datasets[0].borderColor = o), r;
+}, v = (l, n) => (r, u) => {
+  if (l == null || r == null || r == null)
     return r;
-  const e = [], l = [], b = n.length;
-  return r.labels.map((u, c) => {
-    const i = c % b, C = n[i];
-    e.push(C == null ? void 0 : C.backgroundColor), l.push(C == null ? void 0 : C.borderColor);
-  }), r.datasets[0] && (r.datasets[0].backgroundColor = e, r.datasets[0].borderColor = e), r;
-}, h = (n, o) => n, m = (n) => (o, r) => {
-  var s;
-  return o == null || o == null || (s = o.datasets) == null || s.map((e) => {
-    e.backgroundColor = t(1), e.borderColor = t(1);
-  }), o;
-}, S = (n, o, r) => {
-  if (o == null)
-    return m();
-  const { yKeys: s } = f(r);
-  return o instanceof Array ? p(o) : s.length > 1 ? g(o) : k(o);
+  const o = [], e = [], t = l.length;
+  return r.labels.map((c, C) => {
+    const i = C % t, b = l[i];
+    o.push(b == null ? void 0 : b.backgroundColor), e.push(b == null ? void 0 : b.borderColor);
+  }), r.datasets[0] && (r.datasets[0].backgroundColor = o, r.datasets[0].borderColor = o), r;
+}, d = (l, n) => l, y = (l) => (n, r) => {
+  var u;
+  return n == null || n == null || (u = n.datasets) == null || u.map((o) => {
+    o.backgroundColor = s(1), o.borderColor = s(1);
+  }), n;
+}, F = (l, n, r) => {
+  if (n == null)
+    return y();
+  const { xKey: u, yKeys: o } = f(r);
+  return n instanceof Array ? u instanceof Array ? p(n) : v(n) : o.length > 1 ? g(n) : u instanceof Array ? k(n) : m(n);
 };
 export {
-  k as DatasetStyleConverterFactory,
+  m as DatasetStyleConverterFactory,
   g as LabelStyleConverterFactory,
-  h as NoopStyleConverter,
-  m as RandomStyleConverterFactory,
-  S as getStyleConverter
+  d as NoopStyleConverter,
+  y as RandomStyleConverterFactory,
+  F as getStyleConverter
 };
