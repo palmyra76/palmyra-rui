@@ -80,12 +80,29 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
     const currentRef = ref ? ref : useRef<IChartJS>(null);
     const chartRef = useRef<ChartRef>(null);
 
+    const isEmpty = (data: any) => {
+        if (null == data || undefined == data)
+            return true;
+        if (data instanceof Array) {
+            return data.length == 0;
+        } else {
+            return Object.keys(data).length == 0;
+        }
+        return false;
+    }
+
     useImperativeHandle(currentRef, () => {
         return {
             setData(data: any) {
-                const d = processRawData(data);
-                chartRef.current.data = d;
-                chartRef.current.update();
+                if (isEmpty(data)) {
+                    chartRef.current.clear();
+                    chartRef.current.data = { datasets: [] };
+                    chartRef.current.update();
+                } else {
+                    const d = processRawData(data);
+                    chartRef.current.data = d;
+                    chartRef.current.update();
+                }
             }
         }
     }, [props, ref])

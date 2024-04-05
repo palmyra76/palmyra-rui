@@ -1,9 +1,9 @@
 import { jsx as i } from "react/jsx-runtime";
-import { forwardRef as y, useRef as s, useImperativeHandle as C } from "react";
+import { forwardRef as p, useRef as o, useImperativeHandle as C } from "react";
 import { useListener as R } from "./ChartEventListener.js";
 import { getDataConverter as b } from "./DataConverterFactory.js";
-import { Chart as p } from "react-chartjs-2";
-import { Chart as v, CategoryScale as S, LinearScale as L, RadialLinearScale as T, BarElement as A, PointElement as D, ArcElement as P, LineElement as x, Title as B, Tooltip as E, Legend as w } from "chart.js";
+import { Chart as v } from "react-chartjs-2";
+import { Chart as S, CategoryScale as A, LinearScale as L, RadialLinearScale as T, BarElement as D, PointElement as E, ArcElement as P, LineElement as x, Title as B, Tooltip as j, Legend as w } from "chart.js";
 const J = {
   Line: "line",
   Bar: "bar",
@@ -13,7 +13,7 @@ const J = {
   PolarArea: "polarArea",
   Radar: "radar",
   Scatter: "scatter"
-}, j = {
+}, O = {
   responsive: !0,
   maintainAspectRatio: !1,
   plugins: {
@@ -22,53 +22,57 @@ const J = {
     }
   }
 };
-v.register(
-  S,
+S.register(
+  A,
   L,
   T,
-  A,
   D,
+  E,
   P,
   x,
   B,
-  E,
+  j,
   w
 );
-const z = y(function(e, c) {
-  const l = (r) => {
-    var a = d(r, e.type, e.transformOptions);
-    return e.postProcessors && e.postProcessors.map((t, o) => {
-      a = t(a);
-    }), a;
-  }, u = l(e.data), m = c || s(null), n = s(null);
-  C(m, () => ({
-    setData(r) {
-      const a = l(r);
-      n.current.data = a, n.current.update();
+const F = p(function(r, c) {
+  const l = (e) => {
+    var n = d(e, r.type, r.transformOptions);
+    return r.postProcessors && r.postProcessors.map((t, s) => {
+      n = t(n);
+    }), n;
+  }, u = l(r.data), f = c || o(null), a = o(null), m = (e) => e == null || e == null ? !0 : e instanceof Array ? e.length == 0 : Object.keys(e).length == 0;
+  C(f, () => ({
+    setData(e) {
+      if (m(e))
+        a.current.clear(), a.current.data = { datasets: [] }, a.current.update();
+      else {
+        const n = l(e);
+        a.current.data = n, a.current.update();
+      }
     }
-  }), [e, c]);
-  function d(r, a, t) {
-    const o = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : r && r instanceof Array ? "default" : "object";
-    return b(a, o, t)(r);
+  }), [r, c]);
+  function d(e, n, t) {
+    const s = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : e && e instanceof Array ? "default" : "object";
+    return b(n, s, t)(e);
   }
-  function f() {
-    return e.height || "350px";
+  function h() {
+    return r.height || "350px";
   }
-  const { onClick: h } = R("Bar", e, n);
-  var g = e.options || j;
+  const { onClick: g } = R("Bar", r, a);
+  var y = r.options || O;
   return /* @__PURE__ */ i("div", { className: "palmyra-chart-container-wrapper", children: u ? /* @__PURE__ */ i(
-    p,
+    v,
     {
-      type: J[e.type],
-      ref: n,
-      onClick: h,
-      plugins: e.plugins,
-      options: g,
+      type: J[r.type],
+      ref: a,
+      onClick: g,
+      plugins: r.plugins,
+      options: y,
       data: u,
-      height: f()
+      height: h()
     }
   ) : /* @__PURE__ */ i("div", { children: "loading..." }) });
 });
 export {
-  z as ChartJS
+  F as ChartJS
 };
