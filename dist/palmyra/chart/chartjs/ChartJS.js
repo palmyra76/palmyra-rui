@@ -1,8 +1,8 @@
-import { jsx as i } from "react/jsx-runtime";
-import { forwardRef as p, useRef as o, useImperativeHandle as v } from "react";
-import { useListener as C } from "./ChartEventListener.js";
-import { getDataConverter as R } from "./DataConverterFactory.js";
-import { Chart as b } from "react-chartjs-2";
+import { jsx as l } from "react/jsx-runtime";
+import { forwardRef as p, useRef as o, useImperativeHandle as C } from "react";
+import { useListener as R } from "./ChartEventListener.js";
+import { getDataConverter as b } from "./DataConverterFactory.js";
+import { Chart as v } from "react-chartjs-2";
 import { Chart as S, CategoryScale as A, LinearScale as L, RadialLinearScale as T, BarElement as D, PointElement as E, ArcElement as P, LineElement as x, Title as B, Tooltip as j, Legend as w } from "chart.js";
 const J = {
   Line: "line",
@@ -35,43 +35,46 @@ S.register(
   w
 );
 const F = p(function(r, c) {
-  const l = (e) => {
+  const i = (e) => {
     var n = d(e, r.type, r.transformOptions);
-    return r.postProcessors && r.postProcessors.map((t, u) => {
-      n = t(n);
+    return r.postProcessors && r.postProcessors.map((a, s) => {
+      n = a(n);
     }), n;
-  }, s = l(r.data), f = c || o(null), a = o(null), m = (e) => e == null || e == null ? !0 : e instanceof Array ? e.length == 0 : Object.keys(e).length == 0;
-  v(f, () => ({
+  }, u = i(r.data), f = c || o(null), t = o(null), m = (e) => e == null || e == null ? !0 : e instanceof Array ? e.length == 0 : Object.keys(e).length == 0;
+  C(f, () => ({
     setData(e) {
-      if (m(e))
-        console.log("clearing canvas"), a.current.clear(), a.current.data = { datasets: [] }, a.current.update();
+      if (console.log(e), m(e))
+        t.current.clear(), t.current.data = { datasets: [] }, t.current.update();
       else {
-        const n = l(e);
-        a.current.data = n, a.current.update();
+        const n = i(e);
+        t.current.data = n, t.current.update();
       }
+    },
+    clear() {
+      t.current.clear(), t.current.data = { datasets: [] }, t.current.update();
     }
   }), [r, c]);
-  function d(e, n, t) {
-    const u = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : e && e instanceof Array ? "default" : "object";
-    return R(n, u, t)(e);
+  function d(e, n, a) {
+    const s = a != null && a.sourceType ? a == null ? void 0 : a.sourceType : e && e instanceof Array ? "default" : "object";
+    return b(n, s, a)(e);
   }
-  function g() {
+  function h() {
     return r.height || "350px";
   }
-  const { onClick: h } = C("Bar", r, a);
+  const { onClick: g } = R("Bar", r, t);
   var y = r.options || O;
-  return /* @__PURE__ */ i("div", { className: "palmyra-chart-container-wrapper", children: s ? /* @__PURE__ */ i(
-    b,
+  return /* @__PURE__ */ l("div", { className: "palmyra-chart-container-wrapper", children: u ? /* @__PURE__ */ l(
+    v,
     {
       type: J[r.type],
-      ref: a,
-      onClick: h,
+      ref: t,
+      onClick: g,
       plugins: r.plugins,
       options: y,
-      data: s,
-      height: g()
+      data: u,
+      height: h()
     }
-  ) : /* @__PURE__ */ i("div", { children: "loading..." }) });
+  ) : /* @__PURE__ */ l("div", { children: "loading..." }) });
 });
 export {
   F as ChartJS

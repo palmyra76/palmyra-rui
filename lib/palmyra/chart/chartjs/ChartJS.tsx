@@ -38,7 +38,8 @@ interface IChartJSOptions extends IChartOptions {
 }
 
 interface IChartJS {
-    setData: (data: any) => void
+    setData: (data: any) => void,
+    clear: () => void
 }
 
 const defaultOptions: ChartOptions = {
@@ -94,8 +95,8 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
     useImperativeHandle(currentRef, () => {
         return {
             setData(data: any) {
+                console.log(data);
                 if (isEmpty(data)) {
-                    console.log('clearing canvas');
                     chartRef.current.clear();
                     chartRef.current.data = { datasets: [] };
                     chartRef.current.update();
@@ -104,6 +105,11 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
                     chartRef.current.data = d;
                     chartRef.current.update();
                 }
+            },
+            clear() {
+                chartRef.current.clear();
+                chartRef.current.data = { datasets: [] };
+                chartRef.current.update();
             }
         }
     }, [props, ref])
