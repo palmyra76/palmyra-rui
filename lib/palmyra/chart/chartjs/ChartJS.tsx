@@ -1,6 +1,6 @@
 
 import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions, Plugin } from 'chart.js';
-import { MutableRefObject, forwardRef, useImperativeHandle, useRef } from 'react';
+import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { ChartType, DataSetType, DataSets, IChartOptions, ITransformOptions, getDataConverter, useListener } from '..';
 import { Chart } from 'react-chartjs-2';
 
@@ -79,7 +79,7 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
         return d;
     }
 
-    const chartData = useRef(processRawData(props.data));
+    const [chartData, setChartData] = useState(processRawData(props.data));
     const currentRef = ref ? ref : useRef<IChartJS>(null);
     const chartRef = useRef<ChartRef>(null);
 
@@ -90,39 +90,23 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
                     return;
 
                 const d = processRawData(data);
-                chartData.current = d;
-                chartRef.current.data = d;
-                chartRef.current.update();
+                setChartData(d);
             },
             clearData() {
-                if (null == chartRef.current)
-                    return;
-
-                const chart = chartRef.current;
-                chart.data.labels.forEach(() => {
-                    chart.data.labels.pop();
-                });
-
-                chart.data.datasets.forEach(() => {
-                    chart.data.datasets.pop();
-                });
-                chartData.current = { datasets: [] }
-                chart.update();
+                setChartData({datasets:[]});
             },
             clear() {
                 if (null == chartRef.current)
                     return;
-
                 chartRef.current.clear();
             },
             reset() {
                 if (null == chartRef.current)
                     return;
-
                 chartRef.current.reset();
             }
         }
-    }, [props, ref, chartRef])
+    }, [props, ref, chartRef,props.data]);
 
 
     function transform(data: any, type: ChartType, options: ITransformOptions): any {
@@ -145,7 +129,7 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
             {(chartData) ?
                 <Chart type={ChartJSTypeRegistry[props.type]} ref={chartRef} onClick={onClick}
                     plugins={props.plugins} options={options}
-                    data={chartData.current} height={getHeight()} /> : <div>loading...</div>}
+                    data={chartData} height={getHeight()} /> : <div>loading...</div>}
         </div>
     );
 });

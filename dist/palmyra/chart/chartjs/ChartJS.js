@@ -1,10 +1,10 @@
 import { jsx as l } from "react/jsx-runtime";
-import { forwardRef as p, useRef as i, useImperativeHandle as y } from "react";
+import { forwardRef as C, useState as R, useRef as f, useImperativeHandle as S } from "react";
 import { useListener as b } from "./ChartEventListener.js";
-import { getDataConverter as C } from "./DataConverterFactory.js";
-import { Chart as R } from "react-chartjs-2";
-import { Chart as v, CategoryScale as S, LinearScale as D, RadialLinearScale as E, BarElement as L, PointElement as T, ArcElement as A, LineElement as P, Title as x, Tooltip as B, Legend as w } from "chart.js";
-const J = {
+import { getDataConverter as v } from "./DataConverterFactory.js";
+import { Chart as D } from "react-chartjs-2";
+import { Chart as L, CategoryScale as T, LinearScale as A, RadialLinearScale as P, BarElement as p, PointElement as x, ArcElement as B, LineElement as E, Title as w, Tooltip as J, Legend as j } from "chart.js";
+const H = {
   Line: "line",
   Bar: "bar",
   Bubble: "bubble",
@@ -13,7 +13,7 @@ const J = {
   PolarArea: "polarArea",
   Radar: "radar",
   Scatter: "scatter"
-}, j = {
+}, O = {
   responsive: !0,
   maintainAspectRatio: !1,
   plugins: {
@@ -22,71 +22,64 @@ const J = {
     }
   }
 };
-v.register(
-  S,
-  D,
-  E,
-  L,
+L.register(
   T,
   A,
   P,
+  p,
   x,
   B,
-  w
+  E,
+  w,
+  J,
+  j
 );
-const z = p(function(t, u) {
-  const s = (e) => {
-    var n = f(e, t.type, t.transformOptions);
-    return t.postProcessors && t.postProcessors.map((a, o) => {
-      n = a(n);
+const G = C(function(e, c) {
+  const i = (a) => {
+    var n = d(a, e.type, e.transformOptions);
+    return e.postProcessors && e.postProcessors.map((r, o) => {
+      n = r(n);
     }), n;
-  }, c = i(s(t.data)), d = u || i(null), r = i(null);
-  y(d, () => ({
-    setData(e) {
-      if (r.current == null)
+  }, [u, s] = R(i(e.data)), m = c || f(null), t = f(null);
+  S(m, () => ({
+    setData(a) {
+      if (t.current == null)
         return;
-      const n = s(e);
-      c.current = n, r.current.data = n, r.current.update();
+      const n = i(a);
+      s(n);
     },
     clearData() {
-      if (r.current == null)
-        return;
-      const e = r.current;
-      e.data.labels.forEach(() => {
-        e.data.labels.pop();
-      }), e.data.datasets.forEach(() => {
-        e.data.datasets.pop();
-      }), c.current = { datasets: [] }, e.update();
+      s({ datasets: [] });
     },
     clear() {
-      r.current != null && r.current.clear();
+      t.current != null && t.current.clear();
     },
     reset() {
-      r.current != null && r.current.reset();
+      t.current != null && t.current.reset();
     }
-  }), [t, u, r]);
-  function f(e, n, a) {
-    const o = a != null && a.sourceType ? a == null ? void 0 : a.sourceType : e && e instanceof Array ? "default" : "object";
-    return C(n, o, a)(e);
+  }), [e, c, t, e.data]);
+  function d(a, n, r) {
+    const o = r != null && r.sourceType ? r == null ? void 0 : r.sourceType : a && a instanceof Array ? "default" : "object";
+    return v(n, o, r)(a);
   }
-  function m() {
-    return t.height || "350px";
+  function h() {
+    return e.height || "350px";
   }
-  const { onClick: h } = b("Bar", t, r);
-  var g = t.options || j;
-  return /* @__PURE__ */ l("div", { className: "palmyra-chart-container-wrapper", children: c ? /* @__PURE__ */ l(
-    R,
+  const { onClick: g } = b("Bar", e, t);
+  var y = e.options || O;
+  return /* @__PURE__ */ l("div", { className: "palmyra-chart-container-wrapper", children: u ? /* @__PURE__ */ l(
+    D,
     {
-      type: J[t.type],
-      ref: r,
-      onClick: h,
-      plugins: t.plugins,
-      options: g,
-      data: c.current,
-      height: m()
+      type: H[e.type],
+      ref: t,
+      onClick: g,
+      plugins: e.plugins,
+      options: y,
+      data: u,
+      height: h()
     }
   ) : /* @__PURE__ */ l("div", { children: "loading..." }) });
 });
 export {
-  z as ChartJS
+  G as ChartJS
 };
