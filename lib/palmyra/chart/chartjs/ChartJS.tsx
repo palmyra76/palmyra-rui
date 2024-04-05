@@ -1,6 +1,6 @@
 
 import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions, Plugin } from 'chart.js';
-import { MutableRefObject, forwardRef, useImperativeHandle, useRef } from 'react';
+import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { ChartType, DataSetType, DataSets, IChartOptions, ITransformOptions, getDataConverter, useListener } from '..';
 import { Chart } from 'react-chartjs-2';
 
@@ -39,7 +39,7 @@ interface IChartJSOptions extends IChartOptions {
 
 interface IChartJS {
     setData: (data: any) => void,
-    clear: () => void
+    clearData: () => void
 }
 
 const defaultOptions: ChartOptions = {
@@ -77,39 +77,18 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
         return d;
     }
 
-    const chartData = processRawData(props.data);
+    const [chartData, setChartData] = useState(processRawData(props.data));
     const currentRef = ref ? ref : useRef<IChartJS>(null);
     const chartRef = useRef<ChartRef>(null);
-
-    const isEmpty = (data: any) => {
-        if (null == data || undefined == data)
-            return true;
-        if (data instanceof Array) {
-            return data.length == 0;
-        } else {
-            return Object.keys(data).length == 0;
-        }
-        return false;
-    }
 
     useImperativeHandle(currentRef, () => {
         return {
             setData(data: any) {
-                console.log(data);
-                if (isEmpty(data)) {
-                    chartRef.current.clear();
-                    chartRef.current.data = { datasets: [] };
-                    chartRef.current.update();
-                } else {
-                    const d = processRawData(data);
-                    chartRef.current.data = d;
-                    chartRef.current.update();
-                }
+                const d = processRawData(data);
+                setChartData(d);
             },
-            clear() {
-                chartRef.current.clear();
-                chartRef.current.data = { datasets: [] };
-                chartRef.current.update();
+            clearData() {
+                setChartData({ datasets: [] });
             }
         }
     }, [props, ref])

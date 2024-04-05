@@ -1,10 +1,10 @@
-import { jsx as l } from "react/jsx-runtime";
-import { forwardRef as p, useRef as o, useImperativeHandle as C } from "react";
-import { useListener as R } from "./ChartEventListener.js";
-import { getDataConverter as b } from "./DataConverterFactory.js";
-import { Chart as v } from "react-chartjs-2";
-import { Chart as S, CategoryScale as A, LinearScale as L, RadialLinearScale as T, BarElement as D, PointElement as E, ArcElement as P, LineElement as x, Title as B, Tooltip as j, Legend as w } from "chart.js";
-const J = {
+import { jsx as i } from "react/jsx-runtime";
+import { forwardRef as C, useState as R, useRef as m, useImperativeHandle as S } from "react";
+import { useListener as b } from "./ChartEventListener.js";
+import { getDataConverter as v } from "./DataConverterFactory.js";
+import { Chart as D } from "react-chartjs-2";
+import { Chart as p, CategoryScale as L, LinearScale as T, RadialLinearScale as A, BarElement as P, PointElement as x, ArcElement as B, LineElement as E, Title as w, Tooltip as J, Legend as j } from "chart.js";
+const H = {
   Line: "line",
   Bar: "bar",
   Bubble: "bubble",
@@ -22,60 +22,56 @@ const J = {
     }
   }
 };
-S.register(
-  A,
+p.register(
   L,
   T,
-  D,
-  E,
+  A,
   P,
   x,
   B,
-  j,
-  w
+  E,
+  w,
+  J,
+  j
 );
-const F = p(function(r, c) {
-  const i = (e) => {
-    var n = d(e, r.type, r.transformOptions);
-    return r.postProcessors && r.postProcessors.map((a, s) => {
-      n = a(n);
-    }), n;
-  }, u = i(r.data), f = c || o(null), t = o(null), m = (e) => e == null || e == null ? !0 : e instanceof Array ? e.length == 0 : Object.keys(e).length == 0;
-  C(f, () => ({
-    setData(e) {
-      if (console.log(e), m(e))
-        t.current.clear(), t.current.data = { datasets: [] }, t.current.update();
-      else {
-        const n = i(e);
-        t.current.data = n, t.current.update();
-      }
+const G = C(function(e, n) {
+  const c = (a) => {
+    var r = d(a, e.type, e.transformOptions);
+    return e.postProcessors && e.postProcessors.map((t, u) => {
+      r = t(r);
+    }), r;
+  }, [l, s] = R(c(e.data)), f = n || m(null), o = m(null);
+  S(f, () => ({
+    setData(a) {
+      const r = c(a);
+      s(r);
     },
-    clear() {
-      t.current.clear(), t.current.data = { datasets: [] }, t.current.update();
+    clearData() {
+      s({ datasets: [] });
     }
-  }), [r, c]);
-  function d(e, n, a) {
-    const s = a != null && a.sourceType ? a == null ? void 0 : a.sourceType : e && e instanceof Array ? "default" : "object";
-    return b(n, s, a)(e);
+  }), [e, n]);
+  function d(a, r, t) {
+    const u = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : a && a instanceof Array ? "default" : "object";
+    return v(r, u, t)(a);
   }
   function h() {
-    return r.height || "350px";
+    return e.height || "350px";
   }
-  const { onClick: g } = R("Bar", r, t);
-  var y = r.options || O;
-  return /* @__PURE__ */ l("div", { className: "palmyra-chart-container-wrapper", children: u ? /* @__PURE__ */ l(
-    v,
+  const { onClick: g } = b("Bar", e, o);
+  var y = e.options || O;
+  return /* @__PURE__ */ i("div", { className: "palmyra-chart-container-wrapper", children: l ? /* @__PURE__ */ i(
+    D,
     {
-      type: J[r.type],
-      ref: t,
+      type: H[e.type],
+      ref: o,
       onClick: g,
-      plugins: r.plugins,
+      plugins: e.plugins,
       options: y,
-      data: u,
+      data: l,
       height: h()
     }
-  ) : /* @__PURE__ */ l("div", { children: "loading..." }) });
+  ) : /* @__PURE__ */ i("div", { children: "loading..." }) });
 });
 export {
-  F as ChartJS
+  G as ChartJS
 };
