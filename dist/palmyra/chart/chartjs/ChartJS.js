@@ -1,10 +1,9 @@
-import { jsx as s } from "react/jsx-runtime";
-import { forwardRef as R, useRef as o, useImperativeHandle as b, useEffect as D, useMemo as P } from "react";
-import { useListener as S } from "./ChartEventListener.js";
-import { getDataConverter as v } from "./DataConverterFactory.js";
-import { Chart as L } from "react-chartjs-2";
-import { Chart as T, CategoryScale as A, LinearScale as E, RadialLinearScale as w, BarElement as x, PointElement as B, ArcElement as J, LineElement as O, Title as j, Tooltip as k, Legend as H } from "chart.js";
-const I = {
+import { jsx as p } from "react/jsx-runtime";
+import { forwardRef as b, useRef as o, useImperativeHandle as D, useEffect as P, useMemo as S } from "react";
+import { Chart as v } from "react-chartjs-2";
+import { getDataConverter as T } from "./DataConverterFactory.js";
+import { Chart as A, CategoryScale as E, LinearScale as L, RadialLinearScale as w, BarElement as x, PointElement as B, ArcElement as J, LineElement as O, Title as j, Tooltip as H, Legend as I } from "chart.js";
+const M = {
   Line: "line",
   Bar: "bar",
   Bubble: "bubble",
@@ -13,7 +12,7 @@ const I = {
   PolarArea: "polarArea",
   Radar: "radar",
   Scatter: "scatter"
-}, M = {
+}, N = {
   responsive: !0,
   maintainAspectRatio: !1,
   plugins: {
@@ -21,36 +20,37 @@ const I = {
       display: !1
     }
   }
-}, N = [];
-T.register(
-  A,
+}, $ = [];
+A.register(
   E,
+  L,
   w,
   x,
   B,
   J,
   O,
   j,
-  k,
-  H
+  H,
+  I
 );
-const Q = R(function(e, u) {
-  const f = e.plugins || N, d = e.options || M, l = (t) => {
-    var r = g(t, e.type, e.transformOptions);
-    return e.postProcessors && e.postProcessors.map((n, m) => {
-      r = n(r);
-    }), r;
-  }, c = o(l(e.data)), h = u || o(null), a = o(null), i = (t) => {
+const U = b(function(n, u) {
+  const f = n.plugins || $, h = n.options || N, m = o({ ...n, plugins: f, options: h }), c = () => m.current, l = (e) => {
+    const r = c();
+    var t = y(e, r.type, r.transformOptions);
+    return r.postProcessors && r.postProcessors.map((d, q) => {
+      t = d(t);
+    }), t;
+  }, s = o(l(c().data)), g = u || o(null), a = o(null), i = (e) => {
     if (a.current == null) {
       console.error("Chart Reference is not found, data will not be updated");
       return;
     }
     const r = a.current;
-    c.current = t, r.data = t, r.update();
+    s.current = e, r.data = e, r.update();
   };
-  b(h, () => ({
-    setData(t) {
-      const r = l(t);
+  D(g, () => ({
+    setData(e) {
+      const r = l(e);
       i(r);
     },
     clearData() {
@@ -62,34 +62,33 @@ const Q = R(function(e, u) {
     reset() {
       a.current != null && a.current.reset();
     }
-  }), [u, a, c]), D(() => {
-    const t = l(e.data);
-    i(t);
-  }, [e.data]);
-  function g(t, r, n) {
-    const m = n != null && n.sourceType ? n == null ? void 0 : n.sourceType : t && t instanceof Array ? "default" : "object";
-    return v(r, m, n)(t);
+  }), [u, a, s, m]), P(() => {
+    const e = l(n.data);
+    i(e);
+  }, [n.data]);
+  function y(e, r, t) {
+    const d = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : e && e instanceof Array ? "default" : "object";
+    return T(r, d, t)(e);
   }
-  function y() {
-    return e.height || "350px";
+  function R() {
+    return c().height || "350px";
   }
-  const C = P(() => {
-    const { onClick: t } = S("Bar", e, a);
-    return /* @__PURE__ */ s(
-      L,
+  const C = S(() => {
+    const e = c();
+    return /* @__PURE__ */ p(
+      v,
       {
-        type: I[e.type],
+        type: M[e.type],
         ref: a,
-        onClick: t,
         plugins: f,
-        options: d,
-        data: c.current,
-        height: y()
+        options: h,
+        data: s.current,
+        height: R()
       }
     );
-  }, [e.type, e.onPointClick, e.transformOptions, f, d, e.height]);
-  return /* @__PURE__ */ s("div", { className: "palmyra-chart-container-wrapper", children: c ? C : /* @__PURE__ */ s("div", { children: "loading..." }) });
+  }, []);
+  return /* @__PURE__ */ p("div", { className: "palmyra-chart-container-wrapper", children: s ? C : /* @__PURE__ */ p("div", { children: "loading..." }) });
 });
 export {
-  Q as ChartJS
+  U as ChartJS
 };

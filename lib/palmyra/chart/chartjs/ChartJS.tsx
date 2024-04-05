@@ -1,7 +1,7 @@
 
 import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions, Plugin } from 'chart.js';
 import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
-import { ChartType, DataSetType, DataSets, IChartOptions, ITransformOptions, getDataConverter, useListener } from '..';
+import { ChartType, DataSetType, DataSets, IChartOptions, ITransformOptions, getDataConverter } from '..';
 import { Chart } from 'react-chartjs-2';
 
 import {
@@ -69,12 +69,19 @@ ChartJ.register(
     Legend
 );
 
-const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: MutableRefObject<IChartJS>) {
+const ChartJS = forwardRef(function ChartJS(p: IChartJSOptions, ref: MutableRefObject<IChartJS>) {
 
-    const plugins = props.plugins || defaultPlugins;
-    const options = props.options || defaultOptions;
+    const plugins = p.plugins || defaultPlugins;
+    const options = p.options || defaultOptions;
+
+    const chartOptions = useRef<IChartJSOptions>({ ...p, plugins, options })
+
+    const getProps = () => {
+        return chartOptions.current;
+    }
 
     const processRawData = (data: any) => {
+        const props = getProps();
         var d = transform(data, props.type, props.transformOptions);
         if (props.postProcessors) {
             props.postProcessors.map((p: PostProcessor, index) => {
@@ -84,12 +91,12 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
         return d;
     }
 
-    const chartData = useRef(processRawData(props.data));
+    const chartData = useRef(processRawData(getProps().data));
     const currentRef = ref ? ref : useRef<IChartJS>(null);
     const chartRef = useRef<ChartRef>(null);
 
     const setData = (d: any) => {
-        if (null == chartRef.current){
+        if (null == chartRef.current) {
             console.error('Chart Reference is not found, data will not be updated');
             return;
         }
@@ -119,12 +126,12 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
                 chartRef.current.reset();
             }
         }
-    }, [ref, chartRef, chartData]);
+    }, [ref, chartRef, chartData, chartOptions]);
 
     useEffect(() => {
-        const d = processRawData(props.data);
+        const d = processRawData(p.data);
         setData(d);
-    }, [props.data])
+    }, [p.data])
 
     function transform(data: any, type: ChartType, options: ITransformOptions): any {
         const sourceType = options?.sourceType ?
@@ -135,15 +142,16 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
     }
 
     function getHeight() {
-        return props.height || '350px';
+        return getProps().height || '350px';
     }
 
     const chart = useMemo(() => {
-        const { onClick } = useListener("Bar", props, chartRef);
-        return <Chart type={ChartJSTypeRegistry[props.type]} ref={chartRef} onClick={onClick}
+        const props = getProps();
+        // const { onClick } = useListener("Bar", props, chartRef);
+        return <Chart type={ChartJSTypeRegistry[props.type]} ref={chartRef}
             plugins={plugins} options={options}
             data={chartData.current} height={getHeight()} />
-    }, [props.type, props.onPointClick, props.transformOptions, plugins, options, props.height]);
+    }, []);
 
     return (
         <div className="palmyra-chart-container-wrapper">
