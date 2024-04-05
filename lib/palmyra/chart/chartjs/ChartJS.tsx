@@ -1,6 +1,6 @@
 
-import { ChartType as ChartJSType, ChartOptions, Plugin } from 'chart.js';
-import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions, Plugin } from 'chart.js';
+import { MutableRefObject, forwardRef, useImperativeHandle, useRef } from 'react';
 import { ChartType, DataSetType, DataSets, IChartOptions, ITransformOptions, getDataConverter, useListener } from '..';
 import { Chart } from 'react-chartjs-2';
 
@@ -41,7 +41,6 @@ interface IChartJS {
     setData: (data: any) => void
 }
 
-
 const defaultOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -77,14 +76,16 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
         return d;
     }
 
-    const [chartData, setChartData] = useState(processRawData(props.data));
+    const chartData = processRawData(props.data);
     const currentRef = ref ? ref : useRef<IChartJS>(null);
-    const chartRef = useRef(null);
+    const chartRef = useRef<ChartRef>(null);
 
     useImperativeHandle(currentRef, () => {
         return {
             setData(data: any) {
-                setChartData(processRawData(data));
+                const d = processRawData(data);
+                chartRef.current.data = d;
+                chartRef.current.update();
             }
         }
     }, [props, ref])

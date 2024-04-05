@@ -1,10 +1,10 @@
 import { jsx as i } from "react/jsx-runtime";
-import { forwardRef as C, useState as R, useRef as u, useImperativeHandle as S } from "react";
-import { useListener as b } from "./ChartEventListener.js";
-import { getDataConverter as v } from "./DataConverterFactory.js";
+import { forwardRef as y, useRef as s, useImperativeHandle as C } from "react";
+import { useListener as R } from "./ChartEventListener.js";
+import { getDataConverter as b } from "./DataConverterFactory.js";
 import { Chart as p } from "react-chartjs-2";
-import { Chart as D, CategoryScale as L, LinearScale as T, RadialLinearScale as A, BarElement as P, PointElement as x, ArcElement as B, LineElement as E, Title as w, Tooltip as J, Legend as j } from "chart.js";
-const H = {
+import { Chart as v, CategoryScale as S, LinearScale as L, RadialLinearScale as T, BarElement as A, PointElement as D, ArcElement as P, LineElement as x, Title as B, Tooltip as E, Legend as w } from "chart.js";
+const J = {
   Line: "line",
   Bar: "bar",
   Bubble: "bubble",
@@ -13,7 +13,7 @@ const H = {
   PolarArea: "polarArea",
   Radar: "radar",
   Scatter: "scatter"
-}, O = {
+}, j = {
   responsive: !0,
   maintainAspectRatio: !1,
   plugins: {
@@ -22,52 +22,53 @@ const H = {
     }
   }
 };
-D.register(
+v.register(
+  S,
   L,
   T,
   A,
+  D,
   P,
   x,
   B,
   E,
-  w,
-  J,
-  j
+  w
 );
-const G = C(function(e, n) {
-  const c = (r) => {
-    var a = h(r, e.type, e.transformOptions);
+const z = y(function(e, c) {
+  const l = (r) => {
+    var a = d(r, e.type, e.transformOptions);
     return e.postProcessors && e.postProcessors.map((t, o) => {
       a = t(a);
     }), a;
-  }, [l, m] = R(c(e.data)), f = n || u(null), s = u(null);
-  S(f, () => ({
+  }, u = l(e.data), m = c || s(null), n = s(null);
+  C(m, () => ({
     setData(r) {
-      m(c(r));
+      const a = l(r);
+      n.current.data = a, n.current.update();
     }
-  }), [e, n]);
-  function h(r, a, t) {
+  }), [e, c]);
+  function d(r, a, t) {
     const o = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : r && r instanceof Array ? "default" : "object";
-    return v(a, o, t)(r);
+    return b(a, o, t)(r);
   }
-  function d() {
+  function f() {
     return e.height || "350px";
   }
-  const { onClick: g } = b("Bar", e, s);
-  var y = e.options || O;
-  return /* @__PURE__ */ i("div", { className: "palmyra-chart-container-wrapper", children: l ? /* @__PURE__ */ i(
+  const { onClick: h } = R("Bar", e, n);
+  var g = e.options || j;
+  return /* @__PURE__ */ i("div", { className: "palmyra-chart-container-wrapper", children: u ? /* @__PURE__ */ i(
     p,
     {
-      type: H[e.type],
-      ref: s,
-      onClick: g,
+      type: J[e.type],
+      ref: n,
+      onClick: h,
       plugins: e.plugins,
-      options: y,
-      data: l,
-      height: d()
+      options: g,
+      data: u,
+      height: f()
     }
   ) : /* @__PURE__ */ i("div", { children: "loading..." }) });
 });
 export {
-  G as ChartJS
+  z as ChartJS
 };
