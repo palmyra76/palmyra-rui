@@ -1,4 +1,4 @@
-import { jsx as s } from "react/jsx-runtime";
+import { jsx as l } from "react/jsx-runtime";
 import { forwardRef as p, useRef as i, useImperativeHandle as y } from "react";
 import { useListener as b } from "./ChartEventListener.js";
 import { getDataConverter as C } from "./DataConverterFactory.js";
@@ -34,48 +34,58 @@ v.register(
   B,
   w
 );
-const z = p(function(t, l) {
-  const u = (e) => {
-    var r = f(e, t.type, t.transformOptions);
+const z = p(function(t, u) {
+  const s = (e) => {
+    var n = f(e, t.type, t.transformOptions);
     return t.postProcessors && t.postProcessors.map((a, o) => {
-      r = a(r);
-    }), r;
-  }, c = i(u(t.data)), d = l || i(null), n = i(null);
+      n = a(n);
+    }), n;
+  }, c = i(s(t.data)), d = u || i(null), r = i(null);
   y(d, () => ({
     setData(e) {
-      const r = u(e);
-      c.current = r, n.current.data = r, n.current.update();
+      if (r.current == null)
+        return;
+      const n = s(e);
+      c.current = n, r.current.data = n, r.current.update();
     },
     clearData() {
-      const e = n.current;
+      if (r.current == null)
+        return;
+      const e = r.current;
       e.data.labels.forEach(() => {
         e.data.labels.pop();
       }), e.data.datasets.forEach(() => {
         e.data.datasets.pop();
       }), c.current = { datasets: [] }, e.update();
+    },
+    clear() {
+      r.current != null && r.current.clear();
+    },
+    reset() {
+      r.current != null && r.current.reset();
     }
-  }), [t, l]);
-  function f(e, r, a) {
+  }), [t, u, r]);
+  function f(e, n, a) {
     const o = a != null && a.sourceType ? a == null ? void 0 : a.sourceType : e && e instanceof Array ? "default" : "object";
-    return C(r, o, a)(e);
+    return C(n, o, a)(e);
   }
   function m() {
     return t.height || "350px";
   }
-  const { onClick: h } = b("Bar", t, n);
+  const { onClick: h } = b("Bar", t, r);
   var g = t.options || j;
-  return /* @__PURE__ */ s("div", { className: "palmyra-chart-container-wrapper", children: c ? /* @__PURE__ */ s(
+  return /* @__PURE__ */ l("div", { className: "palmyra-chart-container-wrapper", children: c ? /* @__PURE__ */ l(
     R,
     {
       type: J[t.type],
-      ref: n,
+      ref: r,
       onClick: h,
       plugins: t.plugins,
       options: g,
       data: c.current,
       height: m()
     }
-  ) : /* @__PURE__ */ s("div", { children: "loading..." }) });
+  ) : /* @__PURE__ */ l("div", { children: "loading..." }) });
 });
 export {
   z as ChartJS

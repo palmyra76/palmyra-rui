@@ -39,7 +39,9 @@ interface IChartJSOptions extends IChartOptions {
 
 interface IChartJS {
     setData: (data: any) => void,
-    clearData: () => void
+    clearData: () => void,
+    clear: () => void,
+    reset: () => void
 }
 
 const defaultOptions: ChartOptions = {
@@ -84,12 +86,18 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
     useImperativeHandle(currentRef, () => {
         return {
             setData(data: any) {
+                if (null == chartRef.current)
+                    return;
+
                 const d = processRawData(data);
                 chartData.current = d;
                 chartRef.current.data = d;
                 chartRef.current.update();
             },
             clearData() {
+                if (null == chartRef.current)
+                    return;
+
                 const chart = chartRef.current;
                 chart.data.labels.forEach(() => {
                     chart.data.labels.pop();
@@ -100,9 +108,21 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
                 });
                 chartData.current = { datasets: [] }
                 chart.update();
+            },
+            clear() {
+                if (null == chartRef.current)
+                    return;
+
+                chartRef.current.clear();
+            },
+            reset() {
+                if (null == chartRef.current)
+                    return;
+
+                chartRef.current.reset();
             }
         }
-    }, [props, ref])
+    }, [props, ref, chartRef])
 
 
     function transform(data: any, type: ChartType, options: ITransformOptions): any {

@@ -8,6 +8,8 @@ interface IChartJSOptions extends IChartOptions {
 interface IChartJS {
     setData: (data: any) => void;
     clearData: () => void;
+    clear: () => void;
+    reset: () => void;
 }
 declare const ChartJS: import("react").ForwardRefExoticComponent<IChartJSOptions & import("react").RefAttributes<IChartJS>>;
 export { ChartJS };
