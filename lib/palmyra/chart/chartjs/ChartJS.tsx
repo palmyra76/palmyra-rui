@@ -95,6 +95,7 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
         return {
             setData(data: any) {
                 if (isEmpty(data)) {
+                    console.log('clearing canvas');
                     chartRef.current.clear();
                     chartRef.current.data = { datasets: [] };
                     chartRef.current.update();
