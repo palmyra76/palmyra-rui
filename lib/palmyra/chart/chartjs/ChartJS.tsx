@@ -1,6 +1,6 @@
 
 import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions, Plugin } from 'chart.js';
-import { MutableRefObject, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { MutableRefObject, forwardRef, useImperativeHandle, useRef } from 'react';
 import { ChartType, DataSetType, DataSets, IChartOptions, ITransformOptions, getDataConverter, useListener } from '..';
 import { Chart } from 'react-chartjs-2';
 
@@ -77,7 +77,7 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
         return d;
     }
 
-    const [chartData, setChartData] = useState(processRawData(props.data));
+    const chartData = useRef(processRawData(props.data));
     const currentRef = ref ? ref : useRef<IChartJS>(null);
     const chartRef = useRef<ChartRef>(null);
 
@@ -85,10 +85,21 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
         return {
             setData(data: any) {
                 const d = processRawData(data);
-                setChartData(d);
+                chartData.current = d;
+                chartRef.current.data = d;
+                chartRef.current.update();
             },
             clearData() {
-                setChartData({ datasets: [] });
+                const chart = chartRef.current;
+                chart.data.labels.forEach(() => {
+                    chart.data.labels.pop();
+                });
+
+                chart.data.datasets.forEach(() => {
+                    chart.data.datasets.pop();
+                });
+                chartData.current = { datasets: [] }
+                chart.update();
             }
         }
     }, [props, ref])
@@ -114,7 +125,7 @@ const ChartJS = forwardRef(function ChartJS(props: IChartJSOptions, ref: Mutable
             {(chartData) ?
                 <Chart type={ChartJSTypeRegistry[props.type]} ref={chartRef} onClick={onClick}
                     plugins={props.plugins} options={options}
-                    data={chartData} height={getHeight()} /> : <div>loading...</div>}
+                    data={chartData.current} height={getHeight()} /> : <div>loading...</div>}
         </div>
     );
 });
