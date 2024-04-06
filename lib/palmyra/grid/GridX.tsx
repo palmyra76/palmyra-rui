@@ -209,6 +209,10 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   };
 
   const totalPages = Math.ceil(totalRecords / queryLimit.limit);
+  const currentPage = getPageNo();
+  const rowsPerPage = queryLimit.limit;
+  const startRecord = currentPage * rowsPerPage + 1;
+  const endRecord = Math.min((currentPage + 1) * rowsPerPage, totalRecords);
   return (
     <div>
       <div>
@@ -355,7 +359,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                                 ))}
                               </Select>
                             </div>
-                            <div><span>of {totalRecords} Results</span></div>
+                            <div><span>{startRecord} - {endRecord} of {totalRecords} Results</span></div>
                           </div>
                         </FormControl>
 
