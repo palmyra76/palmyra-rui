@@ -1,13 +1,13 @@
-var c = Object.defineProperty;
-var h = (t, e, r) => e in t ? c(t, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[e] = r;
-var i = (t, e, r) => (h(t, typeof e != "symbol" ? e + "" : e, r), r);
-import u from "axios";
-import { PalmyraAbstractStore as f } from "./AbstractStore.js";
-class y extends f {
-  constructor(r, n, o) {
-    super(r, n);
-    i(this, "idProperty");
-    this.idProperty = o;
+var f = Object.defineProperty;
+var h = (t, o, r) => o in t ? f(t, o, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[o] = r;
+var c = (t, o, r) => (h(t, typeof o != "symbol" ? o + "" : o, r), r);
+import a from "axios";
+import { PalmyraAbstractStore as p } from "./AbstractStore.js";
+class y extends p {
+  constructor(r, e, n) {
+    super(r, e);
+    c(this, "idProperty");
+    this.idProperty = n;
   }
   getEndPoint() {
     return this.endPoint;
@@ -23,17 +23,17 @@ class y extends f {
     this.endPoint.get;
   }
   query(r) {
-    var n = this.target + this.queryUrl(), o = this.formatUrl(n, r);
-    const d = { params: p(r) };
-    return u.get(o, d).then((a) => {
-      var s;
-      return (s = a.data) == null ? void 0 : s.result;
+    var e = this.target + this.queryUrl(), n = this.formatUrl(e, r);
+    const i = { params: u(r) };
+    return a.get(n, i).then((l) => {
+      var d;
+      return (d = l.data) == null ? void 0 : d.result;
     });
   }
 }
-function p(t) {
-  const e = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((o) => (t.sortOrder[o] === "asc" ? "+" : "-") + o), r = !!t.total;
-  return { ...t.filter || {}, _total: r, _orderBy: e.length ? e.join(",") : [] };
+function u(t) {
+  const o = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((i) => (t.sortOrder[i] === "asc" ? "+" : "-") + i), r = !!t.total, e = t.filter || {}, n = t.offset || 0, s = t.limit || 15;
+  return { ...e, _total: r, _offset: n, _limit: s, _orderBy: o.length ? o.join(",") : [] };
 }
 export {
   y as PalmyraChartStore

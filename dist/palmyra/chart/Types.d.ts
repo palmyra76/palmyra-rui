@@ -12,6 +12,7 @@ interface ChartRegistry {
 interface ITransformOptions {
     sourceType: string;
     xKey?: strings;
+    group?: string;
     yKey?: strings;
     rKey?: string;
     xLabel?: string;
@@ -27,13 +28,19 @@ interface transformable {
     transformOptions?: ITransformOptions;
 }
 type PostProcessor<T> = (data: T) => T;
+type DataTransformer<T> = (d: any) => T;
 interface IChartOptions {
-    type: ChartType;
     data?: any;
     height?: string | number;
     transformOptions?: ITransformOptions;
     onPointClick?: Function;
     postProcessors?: PostProcessor<any>[];
 }
+interface IChart {
+    setData: (data: any) => void;
+    clearData: () => void;
+    clear: () => void;
+    reset: () => void;
+}
 export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType };
-export type { IChartOptions };
+export type { IChartOptions, IChart, PostProcessor, DataTransformer };

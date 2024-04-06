@@ -60,6 +60,24 @@ const TwoXArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: St
     }
 }
 
+
+const GroupArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
+    transformOptions?: ITransformOptions) => {
+    return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
+        if (null == data || undefined == data)
+            return data;
+
+        data.datasets.map((d, index) => {
+            console.log(d.key);
+            const style = styleOptions[d.key];
+            d.backgroundColor = style?.backgroundColor;
+            d.borderColor = style?.borderColor;
+        });
+
+        return data;
+    }
+}
+
 const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
     transformOptions?: ITransformOptions) => {
     return (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType> => {
@@ -137,6 +155,10 @@ const getStyleConverter = (chartType: string, styleOptions: StyleOptions, transf
     if (null == styleOptions)
         // return NoopStyleConverter;
         return RandomStyleConverterFactory({});
+
+    if(transformOptions.group){
+        return GroupArrayStyleConverterFactory(styleOptions, transformOptions);
+    }
 
     const { xKey, yKeys } = getKeys(transformOptions);
 

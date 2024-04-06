@@ -1,0 +1,118 @@
+import * as d3 from 'd3';
+import { AxisLeft } from './base/AxisLeft';
+import { AxisBottom } from './base/AxisBottom';
+import { ScatterDataInput } from '../chartjs/Types';
+import { InteractionData, Tooltip } from './base/Tooltip';
+import { Dispatch, SetStateAction, useState } from 'react';
+
+const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
+
+
+type ScatterplotProps = {
+    width: number;
+    height: number;
+    data: ScatterDataInput
+};
+
+const getShapes = (data: ScatterDataInput, xScale, yScale, setHovered: Dispatch<SetStateAction<InteractionData>>) => {
+    if (data?.datasets) {
+        return data.datasets.map((dataset) => {
+            console.log(dataset);
+            const fillColor = dataset.backgroundColor || "#cb1dd1";
+            return dataset.data.map((d, i) => {
+                return (
+                    <circle
+                        key={i}
+                        r={6}
+                        cx={xScale(d.x)}
+                        cy={yScale(d.y)}
+                        opacity={1}
+                        stroke={fillColor}
+                        fill={fillColor}
+                        fillOpacity={0.4}
+                        strokeOpacity={0.2}
+                        strokeWidth={2}
+                        onMouseEnter={() =>
+                            setHovered({
+                                xPos: xScale(d.x),
+                                yPos: yScale(d.y),
+                                name: d.x + '',
+                            })
+                        }
+                        onMouseLeave={() => setHovered(null)}
+                    />
+                );
+            });
+        })
+    }
+    return [];
+}
+
+const getRange = (data, scale: string) => {
+    if (data?.datasets) {
+        const sdf = data?.datasets[0].data || [];
+        const [start, end] = d3.extent(sdf, d => d[scale]);
+        const edgeRange = (end - start) / 10;
+        return [start - edgeRange, end + edgeRange];
+    }
+    return [0, 1];
+}
+
+const ScatterPlot = ({ width, height, data }: ScatterplotProps) => {
+    // Layout. The div size is set by the given props.
+    // The bounds (=area inside the axis) is calculated by substracting the margins
+    const boundsWidth = width - MARGIN.right - MARGIN.left;
+    const boundsHeight = height - MARGIN.top - MARGIN.bottom;
+    const [hovered, setHovered] = useState<InteractionData | null>(null);
+
+    // Scales
+    const yScale = d3.scaleLinear().domain(getRange(data, 'y')).range([boundsHeight, 0]);
+    const xScale = d3.scaleLinear().domain(getRange(data, 'x')).range([0, boundsWidth]);
+
+    // Build the shapes
+    const allShapes = getShapes(data, xScale, yScale, setHovered);
+
+    return (
+        <div>
+            <svg width={width} height={height}>
+                <g
+                    width={boundsWidth}
+                    height={boundsHeight}
+                    transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
+                >
+                    {/* Y axis */}
+                    <AxisLeft yScale={yScale} pixelsPerTick={40} />
+
+                    {/* X axis, use an additional translation to appear at the bottom */}
+                    <g transform={`translate(0, ${boundsHeight})`}>
+                        <AxisBottom
+                            xScale={xScale}
+                            pixelsPerTick={40}
+                        />
+                    </g>
+
+                    {/* Circles */}
+                    {allShapes}
+                </g>
+            </svg>
+
+            <div
+                style={{
+                    width: boundsWidth,
+                    height: boundsHeight,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    pointerEvents: "none",
+                    marginLeft: MARGIN.left * 2,
+                    marginTop: MARGIN.top * 2,
+                }}
+            >
+                <Tooltip interactionData={hovered} />
+            </div>
+        </div>
+    );
+};
+
+
+export { ScatterPlot as D3ScatterPlot }
