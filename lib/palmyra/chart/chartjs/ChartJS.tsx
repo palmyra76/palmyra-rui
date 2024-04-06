@@ -1,7 +1,7 @@
 
-import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions, Plugin } from 'chart.js';
+import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions } from 'chart.js';
 import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
-import { ChartType, DataSetType, DataSets, IChartOptions, ITransformOptions, getDataConverter } from '..';
+import { ChartType, DataSetType, DataSets, IChart, IChartJSOptions, ITransformOptions, getDataConverter } from '..';
 import { Chart } from 'react-chartjs-2';
 
 import {
@@ -32,16 +32,7 @@ const ChartJSTypeRegistry: Partial<Record<ChartType, ChartJSType>> = {
 
 type PostProcessor = (data: DataSets<DataSetType>, options?: any) => DataSets<DataSetType>;
 
-interface IChartJSOptions extends IChartOptions {
-    plugins?: Plugin<ChartJSType>[],
-    options?: ChartOptions<ChartJSType>
-}
-
-interface IChartJS {
-    setData: (data: any) => void,
-    clearData: () => void,
-    clear: () => void,
-    reset: () => void
+interface IChartJS extends IChart {
 }
 
 const defaultOptions: ChartOptions = {
@@ -162,4 +153,4 @@ const ChartJS = forwardRef(function ChartJS(p: IChartJSOptions, ref: MutableRefO
 });
 
 export { ChartJS }
-export type { IChartJS, IChartJSOptions }
+export type { IChartJS }
