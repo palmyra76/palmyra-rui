@@ -48,6 +48,9 @@ const getDataConverter = (chartType: string, sourceType: string, options: ITrans
     var srcType = sourceType
     if(options.xKey instanceof Array && sourceType == 'default')
         srcType = 'twoXKey';
+
+    if(options.group)
+        srcType = 'group';
     
     var converterGen: DataConverterGen = dataMap[chartType]?.[srcType];
     return (converterGen ? converterGen(options) : NoopConverter);

@@ -37,13 +37,36 @@ interface transformable {
 type PostProcessor<T> = (data: T) => T;
 type DataTransformer<T> = (d: any) => T;
 
-interface IChartOptions {
+interface IChartOptions<T extends ChartType> {
     data?: any
     height?: string | number,
-    transformOptions?: ITransformOptions
+    transformOptions?: TransformOptions<T>
     onPointClick?: Function,
     postProcessors?: PostProcessor<any>[]
 }
+
+interface LineTransformOptions extends ITransformOptions { }
+interface BarTransformOptions extends ITransformOptions { }
+interface ScatterTransformOptions extends ITransformOptions { }
+interface BubbleTransformOptions extends ITransformOptions { }
+interface PieTransformOptions extends ITransformOptions { }
+interface DoughnutTransformOptions extends ITransformOptions { }
+interface RadarTransformOptions extends ITransformOptions { }
+interface PolarAreaTransformOptions extends ITransformOptions { }
+
+
+type TransformOptions<T extends ChartType> =
+    T extends 'Bar' ? BarTransformOptions :
+    T extends 'Line' ? LineTransformOptions :
+    T extends 'Scatter' ? ScatterTransformOptions :
+    T extends 'Bubble' ? BubbleTransformOptions :
+    T extends 'Pie' ? PieTransformOptions :
+    T extends 'Doughnut' ? DoughnutTransformOptions :
+    T extends 'Radar' ? RadarTransformOptions :
+    T extends 'PolarArea' ? PolarAreaTransformOptions :
+    never;
+
+
 
 interface IChart {
     setData: (data: any) => void,

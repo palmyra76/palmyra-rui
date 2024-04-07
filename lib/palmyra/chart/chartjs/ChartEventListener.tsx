@@ -13,7 +13,7 @@ interface ListenerResult {
     onClick?: MouseEventHandler<any>;
 }
 
-const useListener = (chartType: string, props: IChartOptions, chartRef: MutableRefObject<any>): ListenerResult => {
+const useListener = (chartType: string, props: IChartOptions<any>, chartRef: MutableRefObject<any>): ListenerResult => {
     if (!props.onPointClick)
         return {};
 

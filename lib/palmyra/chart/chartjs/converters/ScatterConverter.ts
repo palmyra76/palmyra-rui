@@ -47,9 +47,40 @@ const ArrayConverter = (options: ITransformOptions): ChartDataConverter<Point> =
     }
 }
 
+
+const GroupedDataConverter = (options: ITransformOptions): ChartDataConverter<Point> => {
+    const { x, y } = getKeys(options);
+    return (records: any[]): ScatterDataInput => {
+        var result: ScatterDataInput = {
+            datasets: []
+        };
+
+        var dataMap: Record<string, ScatterDataSet> = {};
+        const groupKey = options.group;
+        
+        records.map((record, index) => {
+            const key = record[groupKey]
+            var dataSet: ScatterDataSet = getData(dataMap, key, options);
+            // const v = c;
+            dataSet.data.push({
+                x: record[x],
+                y: record[y]
+            });
+        });
+
+        Object.values(dataMap).map((dataSet) => {
+            result.datasets.push(dataSet);
+        });
+
+        return result;
+    }
+}
+
+
 const converters: Record<string, DataConverterGen> = {
     "default": ArrayConverter,
-    "noop": NoopConverter
+    "noop": NoopConverter,
+    "group": GroupedDataConverter
 }
 
 export default converters;

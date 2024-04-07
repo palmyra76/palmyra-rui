@@ -52,8 +52,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any>{
         urlSortParams._format = request.format;
 
         const queryParams = new URLSearchParams(urlSortParams).toString();
-        console.log(queryParams);
-
+        
         window.open(url + '?' + queryParams, '_blank');
 
         // const params: AxiosRequestConfig = {

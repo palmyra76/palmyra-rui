@@ -1,7 +1,7 @@
 import { IEndPoint, IEndPointOptions, storeBacked } from "../../layout/Types";
 import { IChartOptions } from "../Types";
 
-interface IScatterPlotOptions extends IChartOptions, storeBacked {
+interface IScatterPlotOptions extends IChartOptions<'Scatter'>, storeBacked {
     storeOptions: {
         endPoint: IEndPoint
         endPointOptions?: IEndPointOptions

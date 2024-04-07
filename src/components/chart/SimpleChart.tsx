@@ -8,7 +8,7 @@ interface ISimpleChartOptions extends ChartLayout {
     plugins?: Plugin<ChartType>[];
 }
 
-const SimpleChart = (props: ISimpleChartOptions) => {
+const SimpleChart = <T,>(props: ISimpleChartOptions) => {
     const layout = props;
     const chartRef = useRef<IChartJS>();
     const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api/palmyra" });
@@ -34,13 +34,13 @@ const SimpleChart = (props: ISimpleChartOptions) => {
     }
 
     useMemo(() => {
-        store.query({})
+        store.query({limit:1000, total: true, filter:{}})
             .then(d => updateData(d))
             .catch(() => setData(null));
     }, []);
 
     function getHeight() {
-        return '350px';
+        return props.height || '350px';
     }
 
     const transformOptions = props.transformOptions;
@@ -49,8 +49,8 @@ const SimpleChart = (props: ISimpleChartOptions) => {
     return (
         <div className="palmyra-chart-container-wrapper">
             {(data) ?
-                <ChartJS
-                    type={layout.type} ref={chartRef} data={data} 
+                <ChartJS<'line'>
+                    type={layout.type} chartRef={chartRef} data={data} 
                     onPointClick={onPointClick} height={getHeight()} plugins={props.plugins}
                     transformOptions={transformOptions}  postProcessors={[postProcessor]}
                     options={layout.chartOptions} /> : <div>loading...</div>}

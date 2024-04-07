@@ -58,7 +58,7 @@ const ChartRenderer = (props: ChartRendererInput) => {
       {/* {(data) ? */}
       <ChartJS type={layout.type} data={data} onPointClick={onPointClick} height={getHeight()}
         transformOptions={transformOptions} postProcessors={[styleConverter]}
-        options={layout.chartOptions} ref={chartRef} />
+        options={layout.chartOptions} chartRef={chartRef} />
       {/* : <div>loading...</div>} */}
     </div>
   );

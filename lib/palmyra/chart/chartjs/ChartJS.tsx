@@ -1,6 +1,6 @@
 
 import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions } from 'chart.js';
-import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import { useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import { ChartType, DataSetType, DataSets, IChart, IChartJSOptions, ITransformOptions, getDataConverter } from '..';
 import { Chart } from 'react-chartjs-2';
 
@@ -60,12 +60,12 @@ ChartJ.register(
     Legend
 );
 
-const ChartJS = forwardRef(function ChartJS(p: IChartJSOptions, ref: MutableRefObject<IChartJS>) {
-
+function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
+    const ref = p.chartRef;
     const plugins = p.plugins || defaultPlugins;
     const options = p.options || defaultOptions;
 
-    const chartOptions = useRef<IChartJSOptions>({ ...p, plugins, options })
+    const chartOptions = useRef<IChartJSOptions<ChartType>>({ ...p, plugins, options })
 
     const getProps = () => {
         return chartOptions.current;
@@ -150,7 +150,7 @@ const ChartJS = forwardRef(function ChartJS(p: IChartJSOptions, ref: MutableRefO
                 chart : <div>loading...</div>}
         </div>
     );
-});
+};
 
 export { ChartJS }
 export type { IChartJS }

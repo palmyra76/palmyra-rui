@@ -11,15 +11,14 @@ const type: ChartType = 'Scatter';
 function getConverter(type: ChartType, options: ITransformOptions): DataTransformer<any> {
     const sourceType = options?.sourceType ?
         options?.sourceType : "default";
-    // return getDataConverter(type, sourceType, options);
 
     return getD3DataConverter(type, sourceType, options);
 }
 
 const ScatterPlot = forwardRef(function ScatterPlot(p: IScatterPlotOptions, ref: MutableRefObject<IChart>) {
-    const chartOptions = useRef<IChartOptions>({ ...p })
+    const chartOptions = useRef<IChartOptions<'Scatter'>>({ ...p })
     const filter = p.filter;
-    const [chartData, setChartData] = useState({datasets:null});
+    const [chartData, setChartData] = useState({ datasets: null });
 
     const getProps = () => {
         return chartOptions.current;
@@ -43,7 +42,6 @@ const ScatterPlot = forwardRef(function ScatterPlot(p: IScatterPlotOptions, ref:
         storeOptions: p.storeOptions,
         onData: setData, transformData: transformer
     })
-
 
     useImperativeHandle(currentRef, () => {
         return {

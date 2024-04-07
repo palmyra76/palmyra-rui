@@ -33,7 +33,9 @@ const SelectDrag = {
         // Draw begin
         canvasElement.addEventListener("mousedown", (e) => {
             // Get elements
+
             const axisElements = chart.getElementsAtEventForMode(e, "index", { intersect: false });
+
             if (axisElements.length === 0) { return; }
 
             // Get axis value

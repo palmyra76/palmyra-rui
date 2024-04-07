@@ -1,5 +1,7 @@
 import { ChartOptions, ChartType as ChartJsType, Plugin } from "chart.js"
 import { ChartType, IChartOptions } from "../Types"
+import { MutableRefObject } from "react"
+import { IChartJS } from ".."
 
 interface Colorable {
     borderColor?: any,
@@ -44,15 +46,16 @@ interface BubbleDataInput extends DataSets<Bubble> {
 
 interface ScatterDataInput extends DataSets<Point> { }
 
-interface ChartInput<TType extends ChartJsType> extends IChartOptions {
-    chartOptions?: any,
-    plugins?: Plugin<TType>[];
-}
+// interface ChartInput<TType extends ChartJsType> extends IChartOptions {
+//     chartOptions?: any,
+//     plugins?: Plugin<TType>[];
+// }
 
-interface IChartJSOptions extends IChartOptions {
+interface IChartJSOptions<T extends ChartType> extends IChartOptions<T> {
     type: ChartType
     plugins?: Plugin<ChartJsType>[],
     options?: ChartOptions<ChartJsType>
+    chartRef: MutableRefObject<IChartJS>
 }
 
 interface ChartDataConverter<DataSetType> {
@@ -63,7 +66,7 @@ interface ChartStyleConverter<DataSetType> {
     (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType>;
 }
 
-export type { ChartInput, IChartJSOptions }
+export type { IChartJSOptions }
 
 export type { ScaleDataInput, DataSet, DataSets, DataSetType };
 export type { ScatterDataInput, Point };

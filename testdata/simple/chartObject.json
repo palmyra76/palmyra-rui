@@ -14,11 +14,25 @@
                         "storeOptions": {
                             "urlFormat": "/simple/chartDataObject.json"
                         },
+                        "styleOptions": {
+                            "count": {
+                                "borderColor": "rgb(255, 99, 132)",
+                                "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                            },
+                            "average": {
+                                "borderColor": "rgb(53, 162, 235)",
+                                "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                            }
+                        },
                         "transformOptions": {
                             "yKey": [
                                 "count",
                                 "average"
                             ],
+                            "yLabel": {
+                                "count": "Count",
+                                "average": "Average"
+                            },
                             "chart": {
                                 "count": {
                                     "borderColor": "rgb(255, 99, 132)",
@@ -259,18 +273,24 @@
                         "storeOptions": {
                             "urlFormat": "/simple/chartDataKeyValue.json"
                         },
+                        "styleOptions": [
+                            {
+                                "borderColor": "rgb(255, 99, 132)",
+                                "backgroundColor": "rgba(255, 99, 132, 0.5)"
+                            },
+                            {
+                                "borderColor": "rgb(53, 162, 235)",
+                                "backgroundColor": "rgba(53, 162, 235, 0.5)"
+                            },
+                            {
+                                "borderColor": "rgb(5, 162, 2)",
+                                "backgroundColor": "rgba(5, 162, 5, 0.5)"
+                            }
+                        ],
                         "transformOptions": {
                             "sourceType": "keyValue",
-                            "chart": {
-                                "value": {
-                                    "borderColor": "rgb(255, 99, 132)",
-                                    "backgroundColor": "rgba(255, 99, 132, 0.5)"
-                                },
-                                "average": {
-                                    "borderColor": "rgb(53, 162, 235)",
-                                    "backgroundColor": "rgba(53, 162, 235, 0.5)"
-                                }
-                            }
+                            "xKey": "helo",
+                            "xLabel": "Month"
                         }
                     }
                 },
