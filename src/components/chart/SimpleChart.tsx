@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChartJS, ChartLayout, ChartType, IChartJS, IPalmyraChartOptions, PalmyraStoreFactory, getStyleConverter, mergeDeep } from '../../../lib/main';
 import { Chart, ChartType as ChartJSType, Plugin, registerables } from 'chart.js';
 
@@ -38,6 +38,13 @@ const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     function getHeight() {
         return props.height || '350px';
     }
+
+    useEffect(() => {
+        if (null != chartRef?.current) {
+            chartRef.current.setTransformOptions(props.transformOptions);
+            chartRef.current.setData(data);
+        }
+    }, [props.transformOptions])
 
     const transformOptions = props.transformOptions;
     const postProcessor = getConverter(layout);

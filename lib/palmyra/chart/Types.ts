@@ -111,6 +111,7 @@ interface IPalmyraChartOptions<T extends ChartType> extends IChartOptions<T>, st
 
 interface IChart {
     setData: (data: any) => void,
+    setTransformOptions: (tx: ITransformOptions) => void,
     clearData: () => void,
     clear: () => void,
     reset: () => void

@@ -49,6 +49,9 @@ const ScatterPlot = forwardRef(function ScatterPlot(p: IScatterPlotOptions, ref:
                 const d = transformer(data);
                 setData(d);
             },
+            setTransformOptions(tx: ITransformOptions){
+                getProps().transformOptions = tx;
+            },
             clearData() {
                 setData({ datasets: [] });
             },

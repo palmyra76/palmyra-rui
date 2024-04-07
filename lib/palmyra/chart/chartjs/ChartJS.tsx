@@ -106,6 +106,9 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
                 const d = processRawData(data);
                 setData(d);
             },
+            setTransformOptions(tx: ITransformOptions){
+                getProps().transformOptions = tx;
+            },
             clearData() {
                 setData({ datasets: [] });
             },

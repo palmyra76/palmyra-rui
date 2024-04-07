@@ -1,40 +1,40 @@
 import { jsx as C } from "react/jsx-runtime";
-import { useRef as m, useImperativeHandle as E, useEffect as P, useMemo as S } from "react";
-import { getDatasetAtEvent as D, getElementsAtEvent as R, getElementAtEvent as b, Chart as L } from "react-chartjs-2";
-import { getPointConverter as T, getDataConverter as k } from "../palmyra/chart/chartjs/DataConverterFactory.js";
-import { AreaSelectDrag as O } from "../palmyra/chart/chartjs/plugins/AreaSelectDrag.js";
+import { useRef as g, useImperativeHandle as E, useEffect as P, useMemo as S } from "react";
+import { getDatasetAtEvent as D, getElementsAtEvent as R, getElementAtEvent as b, Chart as T } from "react-chartjs-2";
+import { getPointConverter as L, getDataConverter as O } from "../palmyra/chart/chartjs/DataConverterFactory.js";
+import { AreaSelectDrag as k } from "../palmyra/chart/chartjs/plugins/AreaSelectDrag.js";
 import { Chart as x, CategoryScale as B, LinearScale as w, RadialLinearScale as j, BarElement as H, PointElement as J, ArcElement as G, LineElement as I, Title as M, Tooltip as N, Legend as $ } from "chart.js";
 function q(r) {
   return r.length > 0;
 }
-const z = (r, f, u, s) => {
-  s != null && (u.push(O), f.plugins.selectdrag = {
+const z = (r, p, i, c) => {
+  c != null && (i.push(k), p.plugins.selectdrag = {
     enabled: !0,
-    onSelectComplete: (i) => {
-      s(i);
+    onSelectComplete: (u) => {
+      c(u);
     }
   });
-}, _ = (r, f, u) => {
-  if (!f.onPointClick)
+}, _ = (r, p, i) => {
+  if (!p.onPointClick)
     return {};
-  const { data: s, transformOptions: i, onPointClick: d } = f, p = (c, o, t) => {
-    if (c.length) {
-      var l = T(r);
-      return l(s, i, o, t);
+  const { data: c, transformOptions: u, onPointClick: d } = p, l = (s, o, t) => {
+    if (s.length) {
+      var f = L(r);
+      return f(c, u, o, t);
     }
   };
-  return { onClick: (c) => {
-    const { current: o } = u;
+  return { onClick: (s) => {
+    const { current: o } = i;
     if (!o)
       return;
-    const t = D(o, c);
+    const t = D(o, s);
     if (q(t)) {
-      var l = p(
+      var f = l(
         t,
-        b(o, c),
-        R(o, c)
+        b(o, s),
+        R(o, s)
       );
-      d(l);
+      d(f);
     }
   } };
 }, F = {
@@ -69,27 +69,30 @@ x.register(
   $
 );
 function ee(r) {
-  const f = [], u = r.chartRef, s = r.plugins || f, i = r.options || K, d = m({ ...r, plugins: s, options: i }), p = () => d.current, g = (e) => {
-    const n = p();
+  const p = [], i = r.chartRef, c = r.plugins || p, u = r.options || K, d = g({ ...r, plugins: c, options: u }), l = () => d.current, m = (e) => {
+    const n = l();
     var a = y(e, n.type, n.transformOptions);
     return n.postProcessors && n.postProcessors.map((h, Q) => {
       a = h(a);
     }), a;
-  }, c = m(g(p().data)), o = u || m(null), t = m(null), l = (e) => {
+  }, s = g(m(l().data)), o = i || g(null), t = g(null), f = (e) => {
     if (t.current == null) {
       console.error("Chart Reference is not found, data will not be updated");
       return;
     }
     const n = t.current;
-    c.current = e, n.data = e, n.update();
+    s.current = e, n.data = e, n.update();
   };
   E(o, () => ({
     setData(e) {
-      const n = g(e);
-      l(n);
+      const n = m(e);
+      f(n);
+    },
+    setTransformOptions(e) {
+      l().transformOptions = e;
     },
     clearData() {
-      l({ datasets: [] });
+      f({ datasets: [] });
     },
     clear() {
       t.current != null && t.current.clear();
@@ -97,32 +100,32 @@ function ee(r) {
     reset() {
       t.current != null && t.current.reset();
     }
-  }), [u, t, c, d]), P(() => {
-    const e = g(r.data);
-    l(e);
+  }), [i, t, s, d]), P(() => {
+    const e = m(r.data);
+    f(e);
   }, [r.data]);
   function y(e, n, a) {
     const h = a != null && a.sourceType ? a == null ? void 0 : a.sourceType : e && e instanceof Array ? "Array" : "Object";
-    return k(n, h, a)(e);
+    return O(n, h, a)(e);
   }
   function A() {
-    return p().height || "350px";
+    return l().height || "350px";
   }
   const v = S(() => {
-    const e = p();
-    return e.onAreaSelect && z(e.type, i, s, e.onAreaSelect), /* @__PURE__ */ C(
-      L,
+    const e = l();
+    return e.onAreaSelect && z(e.type, u, c, e.onAreaSelect), /* @__PURE__ */ C(
+      T,
       {
         type: F[e.type],
         ref: t,
-        plugins: s,
-        options: i,
-        data: c.current,
+        plugins: c,
+        options: u,
+        data: s.current,
         height: A()
       }
     );
   }, []);
-  return /* @__PURE__ */ C("div", { className: "palmyra-chart-container-wrapper", children: c ? v : /* @__PURE__ */ C("div", { children: "loading..." }) });
+  return /* @__PURE__ */ C("div", { className: "palmyra-chart-container-wrapper", children: s ? v : /* @__PURE__ */ C("div", { children: "loading..." }) });
 }
 export {
   ee as C,
