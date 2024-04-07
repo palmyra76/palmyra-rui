@@ -32,9 +32,12 @@ export default defineConfig({
       external: [
         'axios',
         'chart.js',
+        'chartjs-plugin-datalabels',
+        'd3',
         'dayjs',
         'react',
         'react-dom',
+        'react-icons',
         'react-router-dom',
         'react/jsx-runtime',
         'react-chartjs-2',        

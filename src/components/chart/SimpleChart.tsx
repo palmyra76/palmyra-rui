@@ -1,12 +1,12 @@
-
-
 import { useMemo, useRef, useState } from 'react';
 import { ChartJS, ChartLayout, ChartType, IChartJS, IPalmyraChartOptions, PalmyraStoreFactory, getStyleConverter, mergeDeep } from '../../../lib/main';
-import { ChartType as ChartJSType, Plugin } from 'chart.js';
+import { Chart, ChartType as ChartJSType, Plugin, registerables } from 'chart.js';
 
 interface ISimpleChartOptions<T extends ChartType> extends IPalmyraChartOptions<T> {
     plugins?: Plugin<ChartJSType>[]
 }
+
+Chart.register(...registerables);
 
 const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     const layout = props;

@@ -1,11 +1,11 @@
 import { jsx as r, Fragment as N, jsxs as p } from "react/jsx-runtime";
 import { useRef as S, useState as L, useEffect as k } from "react";
 import { u as j, A as B, c as M } from "../../../chunks/AsyncTreeMenu.js";
-import { a as U } from "../../../chunks/index.esm.js";
-import { useNavigate as V } from "react-router-dom";
+import { useNavigate as U } from "react-router-dom";
+import { a as V } from "../../../chunks/index.esm.js";
 const E = "palmyra.rui.sidemenu.expanded", v = "palmyra.rui.sidemenu.expanded.selected";
 function X(h) {
-  const o = V(), g = S(null);
+  const o = U(), g = S(null);
   let u = { name: "", id: -1, parent: null, children: [], isBranch: !0 };
   const [d, y] = L({ data: [u], expandedIds: [], selectedId: [] }), b = h.store, l = S([]), A = (e, n, a) => e.map((s) => (s.id === n && !s.loaded && (s.loaded = !0, s.children = a.filter((i) => n == i.parent).map((i) => i.id)), s)).concat(a), w = (e) => e.split(",").map((a) => parseInt(a)), C = (e, n) => e.map((t) => {
     const s = t.children || "";
@@ -152,7 +152,7 @@ const F = (h) => {
     { [`${u}--open`]: o },
     g
   );
-  return /* @__PURE__ */ r(U, { className: d });
+  return /* @__PURE__ */ r(V, { className: d });
 };
 export {
   X as default
