@@ -1,18 +1,19 @@
 import { jsx as p } from "react/jsx-runtime";
-import { forwardRef as b, useRef as o, useImperativeHandle as D, useEffect as P, useMemo as S } from "react";
+import { useRef as o, useImperativeHandle as C, useEffect as D, useMemo as P } from "react";
 import { Chart as v } from "react-chartjs-2";
-import { getDataConverter as T } from "./DataConverterFactory.js";
-import { Chart as A, CategoryScale as E, LinearScale as L, RadialLinearScale as w, BarElement as x, PointElement as B, ArcElement as J, LineElement as O, Title as j, Tooltip as H, Legend as I } from "chart.js";
-const M = {
+import { getDataConverter as A } from "./DataConverterFactory.js";
+import { Chart as S, CategoryScale as T, LinearScale as E, RadialLinearScale as L, BarElement as x, PointElement as B, ArcElement as O, LineElement as w, Title as j, Tooltip as H, Legend as J } from "chart.js";
+const G = {
   Line: "line",
   Bar: "bar",
+  GroupedBar: "bar",
   Bubble: "bubble",
   Doughnut: "doughnut",
   Pie: "pie",
   PolarArea: "polarArea",
   Radar: "radar",
   Scatter: "scatter"
-}, N = {
+}, I = {
   responsive: !0,
   maintainAspectRatio: !1,
   plugins: {
@@ -20,38 +21,38 @@ const M = {
       display: !1
     }
   }
-}, $ = [];
-A.register(
+}, M = [];
+S.register(
+  T,
   E,
   L,
-  w,
   x,
   B,
-  J,
   O,
+  w,
   j,
   H,
-  I
+  J
 );
-const U = b(function(n, u) {
-  const f = n.plugins || $, h = n.options || N, m = o({ ...n, plugins: f, options: h }), c = () => m.current, l = (e) => {
-    const r = c();
-    var t = y(e, r.type, r.transformOptions);
-    return r.postProcessors && r.postProcessors.map((d, q) => {
-      t = d(t);
+function K(n) {
+  const u = n.chartRef, d = n.plugins || M, h = n.options || I, m = o({ ...n, plugins: d, options: h }), c = () => m.current, l = (r) => {
+    const e = c();
+    var t = y(r, e.type, e.transformOptions);
+    return e.postProcessors && e.postProcessors.map((f, N) => {
+      t = f(t);
     }), t;
-  }, s = o(l(c().data)), g = u || o(null), a = o(null), i = (e) => {
+  }, s = o(l(c().data)), g = u || o(null), a = o(null), i = (r) => {
     if (a.current == null) {
       console.error("Chart Reference is not found, data will not be updated");
       return;
     }
-    const r = a.current;
-    s.current = e, r.data = e, r.update();
+    const e = a.current;
+    s.current = r, e.data = r, e.update();
   };
-  D(g, () => ({
-    setData(e) {
-      const r = l(e);
-      i(r);
+  C(g, () => ({
+    setData(r) {
+      const e = l(r);
+      i(e);
     },
     clearData() {
       i({ datasets: [] });
@@ -62,33 +63,33 @@ const U = b(function(n, u) {
     reset() {
       a.current != null && a.current.reset();
     }
-  }), [u, a, s, m]), P(() => {
-    const e = l(n.data);
-    i(e);
+  }), [u, a, s, m]), D(() => {
+    const r = l(n.data);
+    i(r);
   }, [n.data]);
-  function y(e, r, t) {
-    const d = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : e && e instanceof Array ? "default" : "object";
-    return T(r, d, t)(e);
+  function y(r, e, t) {
+    const f = t != null && t.sourceType ? t == null ? void 0 : t.sourceType : r && r instanceof Array ? "Array" : "Object";
+    return A(e, f, t)(r);
   }
   function R() {
     return c().height || "350px";
   }
-  const C = S(() => {
-    const e = c();
+  const b = P(() => {
+    const r = c();
     return /* @__PURE__ */ p(
       v,
       {
-        type: M[e.type],
+        type: G[r.type],
         ref: a,
-        plugins: f,
+        plugins: d,
         options: h,
         data: s.current,
         height: R()
       }
     );
   }, []);
-  return /* @__PURE__ */ p("div", { className: "palmyra-chart-container-wrapper", children: s ? C : /* @__PURE__ */ p("div", { children: "loading..." }) });
-});
+  return /* @__PURE__ */ p("div", { className: "palmyra-chart-container-wrapper", children: s ? b : /* @__PURE__ */ p("div", { children: "loading..." }) });
+}
 export {
-  U as ChartJS
+  K as ChartJS
 };

@@ -5,10 +5,6 @@ function getKeys(options: ITransformOptions): { x: string, y: string, group: str
     const xKey: any = options?.xKey || 'x';
     const yKey: any = options?.yKey || 'y';
     const group: any = options?.group;
-
-    if (yKey instanceof Array) {
-        console.error("ScatterChart: yKey should be string only, not an array " + options.yKey);
-    }
     
     return {
         x: xKey,

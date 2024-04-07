@@ -70,8 +70,8 @@ const A = (e) => {
     };
   }), y;
 }, N = {
-  default: A,
-  object: D,
+  Array: A,
+  Object: D,
   noop: o
 };
 export {

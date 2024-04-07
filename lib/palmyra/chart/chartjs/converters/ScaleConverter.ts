@@ -13,7 +13,7 @@ const getScalePointData: IgetPointData = (data: any, ITransformOptions: ITransfo
     var { xKey } = getKeys(ITransformOptions);
     const xValue = data.labels[element[0].index]
 
-    if (ITransformOptions.sourceType == 'keyValue') {
+    if (ITransformOptions.sourceType == 'KeyValue') {
         var { index, datasetIndex } = element[0];
         var dataSet = data.datasets[datasetIndex];
         var value = dataSet.data[index];

@@ -35,7 +35,7 @@ class y extends g {
     const n = h(t);
     n._format = t.format;
     const s = new URLSearchParams(n).toString();
-    console.log(s), window.open(e + "?" + s, "_blank");
+    window.open(e + "?" + s, "_blank");
   }
   queryLayout(t) {
     var i = this.target + this.queryUrl(), e = this.formatUrl(i, t);

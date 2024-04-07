@@ -1,14 +1,15 @@
 
 
 import { useMemo, useRef, useState } from 'react';
-import { ChartJS, ChartLayout, IChartJS, PalmyraStoreFactory, getStyleConverter, mergeDeep } from '../../../lib/main';
-import { ChartType, Plugin } from 'chart.js';
+import { ChartJS, ChartLayout, ChartType, IChartJS, PalmyraStoreFactory, TypedTransformOptions, getStyleConverter, mergeDeep } from '../../../lib/main';
+import { ChartType as ChartJSType, Plugin } from 'chart.js';
 
-interface ISimpleChartOptions extends ChartLayout {
-    plugins?: Plugin<ChartType>[];
+interface ISimpleChartOptions<T extends ChartType> extends ChartLayout {
+    plugins?: Plugin<ChartJSType>[];
+    transformOptions:TypedTransformOptions<T>
 }
 
-const SimpleChart = <T,>(props: ISimpleChartOptions) => {
+const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     const layout = props;
     const chartRef = useRef<IChartJS>();
     const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api/palmyra" });
@@ -34,7 +35,7 @@ const SimpleChart = <T,>(props: ISimpleChartOptions) => {
     }
 
     useMemo(() => {
-        store.query({limit:1000, total: true, filter:{}})
+        store.query({limit:100, total: true, filter:{}})
             .then(d => updateData(d))
             .catch(() => setData(null));
     }, []);

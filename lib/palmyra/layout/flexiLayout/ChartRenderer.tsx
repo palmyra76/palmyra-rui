@@ -51,7 +51,7 @@ const ChartRenderer = (props: ChartRendererInput) => {
   }
 
   const styleConverter = getConverter(layout);
-  const transformOptions: ITransformOptions = props.layout.transformOptions || { sourceType: "default" };
+  const transformOptions: ITransformOptions = props.layout.transformOptions || { sourceType: "Array" };
 
   return (
     <div className="palmyra-chart-container-wrapper">

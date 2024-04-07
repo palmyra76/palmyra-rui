@@ -2,7 +2,11 @@ import { strings } from "../form/interface";
 
 interface ChartRegistry {
     Line: {},
+    MultiLine: {},
+    AreaChart: {},
     Bar: {},
+    GroupedBar: {},
+    StackedBar: {},
     Scatter: {},
     Bubble: {},
     Pie: {},
@@ -11,9 +15,11 @@ interface ChartRegistry {
     PolarArea: {}
 }
 
+type RawDataType = 'Array' | 'Object' | 'KeyValue' | 'Custom' | 'noop';
+
 interface ITransformOptions {
-    sourceType: string,
-    xKey?: strings,
+    sourceType?: RawDataType,
+    xKey?: string,
     group?: string,
     yKey?: strings,
     rKey?: string,
@@ -37,16 +43,27 @@ interface transformable {
 type PostProcessor<T> = (data: T) => T;
 type DataTransformer<T> = (d: any) => T;
 
-interface IChartOptions<T extends ChartType> {
-    data?: any
-    height?: string | number,
-    transformOptions?: TransformOptions<T>
-    onPointClick?: Function,
-    postProcessors?: PostProcessor<any>[]
+interface LineTransformOptions extends ITransformOptions {
+    xKey?: string,
+    group?: never,
+    yKey?: string,
+    rKey?: never,
 }
 
-interface LineTransformOptions extends ITransformOptions { }
-interface BarTransformOptions extends ITransformOptions { }
+interface BarTransformOptions extends ITransformOptions {
+    xKey?: string,
+    group?: never,
+    yKey?: string,
+    rKey?: never,
+}
+
+interface GroupedBarTransformOptions extends ITransformOptions {
+    xKey?: string,
+    group?: string,
+    yKey?: string,
+    rKey?: never,
+}
+
 interface ScatterTransformOptions extends ITransformOptions { }
 interface BubbleTransformOptions extends ITransformOptions { }
 interface PieTransformOptions extends ITransformOptions { }
@@ -55,8 +72,9 @@ interface RadarTransformOptions extends ITransformOptions { }
 interface PolarAreaTransformOptions extends ITransformOptions { }
 
 
-type TransformOptions<T extends ChartType> =
+type TypedTransformOptions<T extends ChartType> =
     T extends 'Bar' ? BarTransformOptions :
+    T extends 'GroupedBar' ? GroupedBarTransformOptions :
     T extends 'Line' ? LineTransformOptions :
     T extends 'Scatter' ? ScatterTransformOptions :
     T extends 'Bubble' ? BubbleTransformOptions :
@@ -67,6 +85,15 @@ type TransformOptions<T extends ChartType> =
     never;
 
 
+interface IChartOptions<T extends ChartType> {
+    data?: any
+    height?: string | number,
+    transformOptions?: TypedTransformOptions<T>
+    onPointClick?: Function,
+    postProcessors?: PostProcessor<any>[]
+}
+
+
 
 interface IChart {
     setData: (data: any) => void,
@@ -75,5 +102,5 @@ interface IChart {
     reset: () => void
 }
 
-export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType }
-export type { IChartOptions, IChart, PostProcessor, DataTransformer }
+export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType, RawDataType }
+export type { IChartOptions, IChart, PostProcessor, DataTransformer, TypedTransformOptions }

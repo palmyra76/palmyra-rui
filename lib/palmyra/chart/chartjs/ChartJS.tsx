@@ -1,7 +1,7 @@
 
 import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions } from 'chart.js';
 import { useEffect, useImperativeHandle, useMemo, useRef } from 'react';
-import { ChartType, DataSetType, DataSets, IChart, IChartJSOptions, ITransformOptions, getDataConverter } from '..';
+import { ChartType, DataSetType, DataSets, IChart, IChartJSOptions, ITransformOptions, RawDataType, getDataConverter } from '..';
 import { Chart } from 'react-chartjs-2';
 
 import {
@@ -20,8 +20,9 @@ import {
 
 
 const ChartJSTypeRegistry: Partial<Record<ChartType, ChartJSType>> = {
-    Line: 'line',
+    Line: 'line',    
     Bar: 'bar',
+    GroupedBar: 'bar',
     Bubble: 'bubble',
     Doughnut: 'doughnut',
     Pie: 'pie',
@@ -125,9 +126,9 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
     }, [p.data])
 
     function transform(data: any, type: ChartType, options: ITransformOptions): any {
-        const sourceType = options?.sourceType ?
+        const sourceType:RawDataType = options?.sourceType ?
             options?.sourceType :
-            (data && data instanceof Array) ? "default" : "object";
+            (data && data instanceof Array) ? "Array" : "Object";
 
         return getDataConverter(type, sourceType, options)(data);
     }

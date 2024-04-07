@@ -33,7 +33,6 @@ const ArrayScaleConverter = (options: ITransformOptions): ChartDataConverter<any
                 dataset.data[index] = record[key];
             })
         });
-
         return result;
     }
 }

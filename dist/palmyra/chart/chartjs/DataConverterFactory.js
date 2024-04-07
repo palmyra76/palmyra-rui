@@ -1,48 +1,48 @@
-import m from "./converters/LineConverter.js";
-import f from "./converters/BarConverter.js";
-import c from "./converters/ScatterConverter.js";
-import s, { getPointData as l } from "./converters/BubbleConverter.js";
-import p from "./converters/RadarConverter.js";
-import u from "./converters/PolarConverter.js";
-import P from "./converters/PieConverter.js";
-import d from "./converters/DoughnutConverter.js";
+import i from "./converters/LineConverter.js";
+import c from "./converters/BarConverter.js";
+import s from "./converters/GroupedBarConverter.js";
+import f from "./converters/ScatterConverter.js";
+import p, { getPointData as u } from "./converters/BubbleConverter.js";
+import P from "./converters/RadarConverter.js";
+import $ from "./converters/PolarConverter.js";
+import d from "./converters/PieConverter.js";
+import l from "./converters/DoughnutConverter.js";
 import { getScalePointData as o } from "./converters/ScaleConverter.js";
-const $ = (r) => r;
+const g = (r) => r;
 var n = {
-  Line: m,
-  Bar: f,
-  Scatter: c,
-  Bubble: s,
-  Radar: p,
-  PolarArea: u,
-  Pie: P,
-  Doughnut: d
-}, g = {
+  Line: i,
+  Bar: c,
+  Scatter: f,
+  Bubble: p,
+  Radar: P,
+  PolarArea: $,
+  Pie: d,
+  Doughnut: l,
+  GroupedBar: s
+}, C = {
   Line: o,
   Bar: o,
   Pie: o,
   Doughnut: o,
   PolarArea: o,
   Radar: o,
-  Bubble: l
+  Bubble: u
 };
-const M = (r, e, t) => {
-  var i;
-  var a = e;
-  t.xKey instanceof Array && e == "default" && (a = "twoXKey");
-  var v = (i = n[r]) == null ? void 0 : i[a];
-  return v ? v(t) : $;
-}, R = (r, e, t) => {
+const h = (r, e, t) => {
+  var v;
+  var m = e || "Array", a = (v = n[r]) == null ? void 0 : v[m];
+  return a ? a(t) : g;
+}, x = (r, e, t) => {
   if (!n[r][e])
     n[r][e] = t;
   else
     throw new Error("Converter already set for " + r + "/" + e);
-}, S = (r) => {
-  var e = g[r];
+}, E = (r) => {
+  var e = C[r];
   return e || ((t) => t);
 };
 export {
-  R as addDataConverter,
-  M as getDataConverter,
-  S as getPointConverter
+  x as addDataConverter,
+  h as getDataConverter,
+  E as getPointConverter
 };

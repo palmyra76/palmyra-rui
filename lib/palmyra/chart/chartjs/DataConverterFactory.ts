@@ -1,5 +1,6 @@
 import { default as LineConverters } from './converters/LineConverter';
 import { default as BarConverters } from './converters/BarConverter';
+import { default as GroupedBarConverters } from './converters/GroupedBarConverter'
 import { default as ScatterConverters } from './converters/ScatterConverter';
 import { default as BubbleConverters, getPointData as getBubblePointData } from './converters/BubbleConverter';
 import { default as RadarConverters } from './converters/RadarConverter';
@@ -9,7 +10,7 @@ import { default as DoughnutConverters } from './converters/DoughnutConverter';
 
 import { getScalePointData } from './converters/ScaleConverter';
 import { InteractionItem } from 'chart.js';
-import { ITransformOptions } from '../Types';
+import { ITransformOptions, RawDataType } from '../Types';
 import { ChartDataConverter, DataSetType } from '..';
 
 
@@ -23,7 +24,7 @@ const NoopConverter = (data: any): any => {
     return data;
 }
 
-var dataMap: Record<string, Record<string, DataConverterGen>> = {
+var dataMap: Record<string, Partial<Record<RawDataType, DataConverterGen>>> = {
     "Line": LineConverters,
     "Bar": BarConverters,
     "Scatter": ScatterConverters,
@@ -31,7 +32,8 @@ var dataMap: Record<string, Record<string, DataConverterGen>> = {
     "Radar": RadarConverters,
     "PolarArea": PolarAreaConverters,
     "Pie": PieConverters,
-    "Doughnut": DoughnutConverters
+    "Doughnut": DoughnutConverters,
+    "GroupedBar": GroupedBarConverters
 }
 
 var PointConverterMap: Record<string, IgetPointData> = {
@@ -44,14 +46,8 @@ var PointConverterMap: Record<string, IgetPointData> = {
     "Bubble": getBubblePointData
 }
 
-const getDataConverter = (chartType: string, sourceType: string, options: ITransformOptions): ChartDataConverter<any> => {  
-    var srcType = sourceType
-    if(options.xKey instanceof Array && sourceType == 'default')
-        srcType = 'twoXKey';
-
-    if(options.group)
-        srcType = 'group';
-    
+const getDataConverter = (chartType: string, sourceType: RawDataType, options: ITransformOptions): ChartDataConverter<any> => {
+    var srcType = sourceType || 'Array';
     var converterGen: DataConverterGen = dataMap[chartType]?.[srcType];
     return (converterGen ? converterGen(options) : NoopConverter);
 }

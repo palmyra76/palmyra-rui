@@ -1,40 +1,41 @@
 import { NoopConverter as x } from "./ScaleConverter.js";
 function f(a) {
-  const r = (a == null ? void 0 : a.xLabel) || "name", y = (a == null ? void 0 : a.xKey) || "x", e = (a == null ? void 0 : a.yKey) || "y";
-  return e instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + a.yKey), {
+  const e = (a == null ? void 0 : a.xLabel) || "name", y = (a == null ? void 0 : a.xKey) || "x", r = (a == null ? void 0 : a.yKey) || "y";
+  return r instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + a.yKey), {
     x: y,
-    y: e,
-    label: r
+    y: r,
+    label: e
   };
 }
 const s = (a) => {
-  const { x: r, y, label: e } = f(a);
+  const { x: e, y, label: r } = f(a);
   return (u) => {
-    var l = {
+    var n = {
       datasets: []
-    }, n = {};
+    }, l = {};
     return u.map((t, b) => {
-      var c = v(n, t[e]);
+      var c = v(l, t[r]);
       c.data.push({
-        x: t[r],
+        x: t[e],
         y: t[y]
       });
-    }), Object.values(n).map((t) => {
-      l.datasets.push(t);
-    }), l;
+    }), Object.values(l).map((t) => {
+      n.datasets.push(t);
+    }), n;
   };
-}, K = {
-  default: s,
+}, d = {
+  Array: s,
   noop: x
+  // "group": GroupedDataConverter
 };
-function v(a, r, y) {
-  var e = a[r];
-  return e || (e = {
-    key: r,
-    label: r,
+function v(a, e, y) {
+  var r = a[e];
+  return r || (r = {
+    key: e,
+    label: e,
     data: []
-  }, a[r] = e, e);
+  }, a[e] = r, r);
 }
 export {
-  K as default
+  d as default
 };

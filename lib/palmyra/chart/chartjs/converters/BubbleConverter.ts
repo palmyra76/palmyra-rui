@@ -3,7 +3,7 @@ import { InteractionItem } from "chart.js";
 import { DataConverterGen, IgetPointData } from "../DataConverterFactory";
 import { Bubble, BubbleDataInput, BubbleDataSet, ChartDataConverter } from "../Types";
 import generateColors, { getRandomNumber } from "../colors/GenerateColors";
-import { ITransformOptions } from "../../Types";
+import { ITransformOptions, RawDataType } from "../../Types";
 
 
 
@@ -127,9 +127,9 @@ const getPointData: IgetPointData = (data: any, ITransformOptions: ITransformOpt
     return result;
 }
 
-const converters: Record<string, DataConverterGen> = {
-    "default": ArrayConverter,
-    "object": ObjectConverter,
+const converters: Partial<Record<RawDataType, DataConverterGen>> = {
+    "Array": ArrayConverter,
+    "Object": ObjectConverter,
     "noop": NoopConverter
 }
 

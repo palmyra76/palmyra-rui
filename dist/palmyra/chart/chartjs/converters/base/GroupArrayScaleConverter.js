@@ -1,39 +1,39 @@
 function K(a) {
-  const e = (a == null ? void 0 : a.xLabel) || "name", u = (a == null ? void 0 : a.xKey) || "x", r = (a == null ? void 0 : a.yKey) || "y", l = a == null ? void 0 : a.group;
-  return r instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + a.yKey), {
-    x: u,
-    y: r,
+  const r = (a == null ? void 0 : a.xLabel) || "name", t = (a == null ? void 0 : a.xKey) || "x", e = (a == null ? void 0 : a.yKey) || "y", l = a == null ? void 0 : a.group;
+  return {
+    x: t,
+    y: e,
     group: l,
-    label: e
+    label: r
   };
 }
-function f(a, e, u) {
-  var r = a[e];
-  return r || (r = {
-    key: e,
-    label: e,
+function d(a, r, t) {
+  var e = a[r];
+  return e || (e = {
+    key: r,
+    label: r,
     data: []
-  }, a[e] = r, r);
+  }, a[r] = e, e);
 }
-const d = (a) => {
-  const { x: e, y: u, group: r, label: l } = K(a);
-  return (n) => {
-    var y = {
+const m = (a) => {
+  const { x: r, y: t, group: e, label: l } = K(a);
+  return (y) => {
+    var c = {
       datasets: []
-    }, c = {};
-    const x = r ? (t) => t[r] : () => l;
-    return n.map((t, v) => {
-      const b = x(t);
-      var g = f(c, b);
-      g.data.push({
-        x: t[e],
-        y: t[u]
+    }, x = {};
+    const b = e ? (u) => u[e] : () => l;
+    return y.map((u, f) => {
+      const g = b(u);
+      var v = d(x, g);
+      v.data.push({
+        x: u[r],
+        y: u[t]
       });
-    }), Object.values(c).map((t) => {
-      y.datasets.push(t);
-    }), y;
+    }), Object.values(x).map((u) => {
+      c.datasets.push(u);
+    }), c;
   };
 };
 export {
-  d as GroupArrayScaleConverter
+  m as GroupArrayScaleConverter
 };

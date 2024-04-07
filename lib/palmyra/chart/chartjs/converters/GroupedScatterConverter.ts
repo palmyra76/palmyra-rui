@@ -22,17 +22,20 @@ function getKeys(options: ITransformOptions): { x: string, y: string, label: str
 }
 
 
-const ArrayConverter = (options: ITransformOptions): ChartDataConverter<Point> => {
-    const { x, y, label } = getKeys(options);
+const GroupedDataConverter = (options: ITransformOptions): ChartDataConverter<Point> => {
+    const { x, y } = getKeys(options);
     return (records: any[]): ScatterDataInput => {
         var result: ScatterDataInput = {
             datasets: []
         };
 
         var dataMap: Record<string, ScatterDataSet> = {};
-
+        const groupKey = options.group;
+        
         records.map((record, index) => {
-            var dataSet: ScatterDataSet = getData(dataMap, record[label], options);
+            const key = record[groupKey]
+            var dataSet: ScatterDataSet = getData(dataMap, key, options);
+            // const v = c;
             dataSet.data.push({
                 x: record[x],
                 y: record[y]
@@ -49,9 +52,8 @@ const ArrayConverter = (options: ITransformOptions): ChartDataConverter<Point> =
 
 
 const converters: Partial<Record<RawDataType, DataConverterGen>> = {
-    "Array": ArrayConverter,
+    "Array": GroupedDataConverter,
     "noop": NoopConverter,
-    // "group": GroupedDataConverter
 }
 
 export default converters;

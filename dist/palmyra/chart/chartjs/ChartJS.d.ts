@@ -1,7 +1,6 @@
-/// <reference types="react" />
-import { IChart, IChartJSOptions } from '..';
+import { ChartType, IChart, IChartJSOptions } from '..';
 interface IChartJS extends IChart {
 }
-declare const ChartJS: import("react").ForwardRefExoticComponent<IChartJSOptions & import("react").RefAttributes<IChartJS>>;
+declare function ChartJS<T>(p: IChartJSOptions<ChartType>): import("react/jsx-runtime").JSX.Element;
 export { ChartJS };
 export type { IChartJS };

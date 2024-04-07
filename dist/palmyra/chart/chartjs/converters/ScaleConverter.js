@@ -1,8 +1,8 @@
 import { getKeys as i } from "../util.js";
-const b = (e) => (a) => a, g = (e, a, t, p) => {
+const b = (e) => (a) => a, K = (e, a, t, p) => {
   var { xKey: l } = i(a);
   const r = e.labels[t[0].index];
-  if (a.sourceType == "keyValue") {
+  if (a.sourceType == "KeyValue") {
     var { index: u, datasetIndex: v } = t[0], d = e.datasets[v], x = d.data[u];
     return { [r]: x };
   }
@@ -14,5 +14,5 @@ const b = (e) => (a) => a, g = (e, a, t, p) => {
 };
 export {
   b as NoopConverter,
-  g as getScalePointData
+  K as getScalePointData
 };

@@ -4,13 +4,13 @@ import { StoreFactoryContext as S, LayoutParamsContext as D } from "./FlexiLayou
 import { mergeDeep as P } from "../../utils/index.js";
 import { getStyleConverter as R } from "../../chart/chartjs/colors/StyleConverterFactory.js";
 import { ChartJS as q } from "../../chart/chartjs/ChartJS.js";
-const L = (o) => {
+const J = (o) => {
   const r = o.layout, c = a(S), i = a(D);
-  var u = r.storeOptions || {};
+  var p = r.storeOptions || {};
   const e = O(null);
   var n = {};
-  P(n, u, i);
-  const p = c.getChartStore(n), [m, f] = v(null), l = (t) => {
+  P(n, p, i);
+  const u = c.getChartStore(n), [m, f] = v(null), l = (t) => {
   };
   function y(t) {
     return R(t.type, t.styleOptions, t.transformOptions);
@@ -19,12 +19,12 @@ const L = (o) => {
     e.current && e.current.setData(t);
   }
   x(() => {
-    p.query({}).then((t) => h(t)).catch(() => f(null));
+    u.query({}).then((t) => h(t)).catch(() => f(null));
   }, [e.current]);
   function C() {
     return "300px";
   }
-  const d = y(r), g = o.layout.transformOptions || { sourceType: "default" };
+  const d = y(r), g = o.layout.transformOptions || { sourceType: "Array" };
   return /* @__PURE__ */ s("div", { className: "palmyra-chart-container-wrapper", children: /* @__PURE__ */ s(
     q,
     {
@@ -35,10 +35,10 @@ const L = (o) => {
       transformOptions: g,
       postProcessors: [d],
       options: r.chartOptions,
-      ref: e
+      chartRef: e
     }
   ) });
 };
 export {
-  L as default
+  J as default
 };
