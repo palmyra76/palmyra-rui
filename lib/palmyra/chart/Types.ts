@@ -1,4 +1,5 @@
 import { strings } from "../form/interface";
+import { Positionable, Titleable, storeBacked } from "../layout/Types";
 
 interface ChartRegistry {
     Line: {},
@@ -85,14 +86,23 @@ type TypedTransformOptions<T extends ChartType> =
     never;
 
 
-interface IChartOptions<T extends ChartType> {
-    data?: any
-    height?: string | number,
-    transformOptions?: TypedTransformOptions<T>
+interface chartEventListeners {
     onPointClick?: Function,
+    onAreaSelect?: Function,
+}
+
+interface IChartOptions<T extends ChartType> extends Titleable, Positionable, chartEventListeners {
+    data?: any
+    transformOptions?: TypedTransformOptions<T>
     postProcessors?: PostProcessor<any>[]
 }
 
+interface IPalmyraChartOptions<T extends ChartType> extends IChartOptions<T>, storeBacked {
+    data?: never,
+    chartOptions?: any,
+    type: ChartType,
+    styleOptions?: StyleOptions
+}
 
 
 interface IChart {
@@ -103,4 +113,4 @@ interface IChart {
 }
 
 export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType, RawDataType }
-export type { IChartOptions, IChart, PostProcessor, DataTransformer, TypedTransformOptions }
+export type { IChartOptions, IChart, PostProcessor, DataTransformer, TypedTransformOptions, IPalmyraChartOptions }

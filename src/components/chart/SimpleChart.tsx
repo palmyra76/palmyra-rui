@@ -1,12 +1,11 @@
 
 
 import { useMemo, useRef, useState } from 'react';
-import { ChartJS, ChartLayout, ChartType, IChartJS, PalmyraStoreFactory, TypedTransformOptions, getStyleConverter, mergeDeep } from '../../../lib/main';
+import { ChartJS, ChartLayout, ChartType, IChartJS, IPalmyraChartOptions, PalmyraStoreFactory, getStyleConverter, mergeDeep } from '../../../lib/main';
 import { ChartType as ChartJSType, Plugin } from 'chart.js';
 
-interface ISimpleChartOptions<T extends ChartType> extends ChartLayout {
-    plugins?: Plugin<ChartJSType>[];
-    transformOptions:TypedTransformOptions<T>
+interface ISimpleChartOptions<T extends ChartType> extends IPalmyraChartOptions<T> {
+    plugins?: Plugin<ChartJSType>[]
 }
 
 const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
@@ -22,11 +21,7 @@ const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
 
     const [data, setData] = useState(null);
 
-    const onPointClick = (_data) => {
-
-    }
-
-    function getConverter(layout:ChartLayout) {
+    function getConverter(layout: ChartLayout) {
         return getStyleConverter(layout.type, layout.styleOptions, layout.transformOptions);
     }
 
@@ -35,7 +30,7 @@ const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     }
 
     useMemo(() => {
-        store.query({limit:100, total: true, filter:{}})
+        store.query({ limit: 100, total: true, filter: {} })
             .then(d => updateData(d))
             .catch(() => setData(null));
     }, []);
@@ -51,9 +46,11 @@ const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
         <div className="palmyra-chart-container-wrapper">
             {(data) ?
                 <ChartJS<'line'>
-                    type={layout.type} chartRef={chartRef} data={data} 
-                    onPointClick={onPointClick} height={getHeight()} plugins={props.plugins}
-                    transformOptions={transformOptions}  postProcessors={[postProcessor]}
+                    type={layout.type} chartRef={chartRef} data={data}
+                    title={props.title} hideTitle={props.hideTitle} onAreaSelect={props.onAreaSelect}
+                    onPointClick={props.onPointClick} height={getHeight()} plugins={props.plugins}
+                    name={props.name} width={props.width}
+                    transformOptions={transformOptions} postProcessors={[postProcessor]}
                     options={layout.chartOptions} /> : <div>loading...</div>}
         </div>
     );

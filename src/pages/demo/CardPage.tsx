@@ -127,8 +127,9 @@ const CardPage = () => {
     />;
 
 
-    const scatterplot = <SimpleChart type="Scatter"
+    const scatterPlot = <SimpleChart type="Scatter"
         chartOptions={defaultOptions}
+        height={800}
         storeOptions={{ endPoint: '/dashboard/raw/booth' }}
         transformOptions={transformOptions}
     />
@@ -175,9 +176,9 @@ const CardPage = () => {
             transformOptions={transformOptions} postProcessors={[procesor]}
         /> */}
 
-        {/* {multiBarChart} */}
+        {scatterPlot}
 
-        {criticalChart}
+        {/* {criticalChart} */}
 
 
 
