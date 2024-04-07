@@ -1,8 +1,8 @@
-import { InteractionItem } from "chart.js";
+import { InteractionItem, Plugin, ChartType as ChartJsType } from "chart.js";
 import { MouseEventHandler, MutableRefObject } from "react";
 import { getDatasetAtEvent, getElementAtEvent, getElementsAtEvent } from "react-chartjs-2";
 import { getPointConverter } from "./DataConverterFactory";
-import { IChartOptions } from "..";
+import { AreaSelectDrag, ChartType, IChartOptions } from "..";
 
 
 function isPointClicked(dataset: InteractionItem[]): boolean {
@@ -13,7 +13,20 @@ interface ListenerResult {
     onClick?: MouseEventHandler<any>;
 }
 
-const useListener = (chartType: string, props: IChartOptions<any>, chartRef: MutableRefObject<any>): ListenerResult => {
+const useAreaSelectListener = (chartType: ChartType, chartOptions: any, plugins: Plugin<ChartJsType>[], callback: any) => {
+
+    if (null != callback) {
+        plugins.push(AreaSelectDrag);
+        chartOptions.plugins.selectdrag = {
+            enabled: true,
+            onSelectComplete: (event) => {
+                callback(event)
+            }
+        }
+    }
+}
+
+const useClickListener = (chartType: string, props: IChartOptions<any>, chartRef: MutableRefObject<any>): ListenerResult => {
     if (!props.onPointClick)
         return {};
 
@@ -43,4 +56,4 @@ const useListener = (chartType: string, props: IChartOptions<any>, chartRef: Mut
     return { onClick };
 }
 
-export { useListener };
+export { useClickListener, useAreaSelectListener };

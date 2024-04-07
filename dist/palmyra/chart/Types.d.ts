@@ -66,9 +66,19 @@ interface RadarTransformOptions extends ITransformOptions {
 interface PolarAreaTransformOptions extends ITransformOptions {
 }
 type TypedTransformOptions<T extends ChartType> = T extends 'Bar' ? BarTransformOptions : T extends 'GroupedBar' ? GroupedBarTransformOptions : T extends 'Line' ? LineTransformOptions : T extends 'Scatter' ? ScatterTransformOptions : T extends 'Bubble' ? BubbleTransformOptions : T extends 'Pie' ? PieTransformOptions : T extends 'Doughnut' ? DoughnutTransformOptions : T extends 'Radar' ? RadarTransformOptions : T extends 'PolarArea' ? PolarAreaTransformOptions : never;
+interface SelectedArea {
+    start: {
+        x: number;
+        y: number;
+    };
+    end: {
+        x: number;
+        y: number;
+    };
+}
 interface chartEventListeners {
     onPointClick?: Function;
-    onAreaSelect?: Function;
+    onAreaSelect?: (SelectedArea: any) => void;
 }
 interface IChartOptions<T extends ChartType> extends Titleable, Positionable, chartEventListeners {
     data?: any;
@@ -76,7 +86,7 @@ interface IChartOptions<T extends ChartType> extends Titleable, Positionable, ch
     postProcessors?: PostProcessor<any>[];
 }
 interface IPalmyraChartOptions<T extends ChartType> extends IChartOptions<T>, storeBacked {
-    data: never;
+    data?: never;
     chartOptions?: any;
     type: ChartType;
     styleOptions?: StyleOptions;
@@ -87,5 +97,5 @@ interface IChart {
     clear: () => void;
     reset: () => void;
 }
-export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType, RawDataType };
+export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType, RawDataType, SelectedArea };
 export type { IChartOptions, IChart, PostProcessor, DataTransformer, TypedTransformOptions, IPalmyraChartOptions };

@@ -1,7 +1,7 @@
 
 import { Chart as ChartRef, ChartType as ChartJSType, ChartOptions } from 'chart.js';
 import { useEffect, useImperativeHandle, useMemo, useRef } from 'react';
-import { ChartType, DataSetType, DataSets, IChart, IChartJSOptions, ITransformOptions, RawDataType, getDataConverter } from '..';
+import { ChartType, DataSetType, DataSets, IChart, IChartJSOptions, ITransformOptions, RawDataType, getDataConverter, useAreaSelectListener } from '..';
 import { Chart } from 'react-chartjs-2';
 
 import {
@@ -20,7 +20,7 @@ import {
 
 
 const ChartJSTypeRegistry: Partial<Record<ChartType, ChartJSType>> = {
-    Line: 'line',    
+    Line: 'line',
     Bar: 'bar',
     GroupedBar: 'bar',
     Bubble: 'bubble',
@@ -46,7 +46,7 @@ const defaultOptions: ChartOptions = {
     },
 };
 
-const defaultPlugins = [];
+
 
 ChartJ.register(
     CategoryScale,
@@ -62,6 +62,8 @@ ChartJ.register(
 );
 
 function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
+    const defaultPlugins = [];
+
     const ref = p.chartRef;
     const plugins = p.plugins || defaultPlugins;
     const options = p.options || defaultOptions;
@@ -126,7 +128,7 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
     }, [p.data])
 
     function transform(data: any, type: ChartType, options: ITransformOptions): any {
-        const sourceType:RawDataType = options?.sourceType ?
+        const sourceType: RawDataType = options?.sourceType ?
             options?.sourceType :
             (data && data instanceof Array) ? "Array" : "Object";
 
@@ -139,6 +141,9 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
 
     const chart = useMemo(() => {
         const props = getProps();
+        if (props.onAreaSelect) {
+            useAreaSelectListener(props.type, options, plugins, props.onAreaSelect);
+        }
         // const { onClick } = useListener("Bar", props, chartRef);
         return <Chart type={ChartJSTypeRegistry[props.type]} ref={chartRef}
             plugins={plugins} options={options}

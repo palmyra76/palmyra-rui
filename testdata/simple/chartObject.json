@@ -288,7 +288,7 @@
                             }
                         ],
                         "transformOptions": {
-                            "sourceType": "keyValue",
+                            "sourceType": "KeyValue",
                             "xKey": "helo",
                             "xLabel": "Month"
                         }
@@ -305,7 +305,7 @@
                             "urlFormat": "/simple/chartDataKeyValue.json"
                         },
                         "transformOptions": {
-                            "sourceType": "keyValue",
+                            "sourceType": "KeyValue",
                             "yKey": [
                                 "count",
                                 "average"
@@ -330,7 +330,7 @@
                             "urlFormat": "/simple/chartDataKeyValue.json"
                         },
                         "transformOptions": {
-                            "sourceType": "keyValue",
+                            "sourceType": "KeyValue",
                             "yKey": [
                                 "count",
                                 "average"
@@ -363,7 +363,7 @@
                             "urlFormat": "/simple/chartDataKeyValue.json"
                         },
                         "transformOptions": {
-                            "sourceType": "keyValue",
+                            "sourceType": "KeyValue",
                             "yKey": [
                                 "count",
                                 "average"
@@ -396,7 +396,7 @@
                             "urlFormat": "/simple/chartDataKeyValue.json"
                         },
                         "transformOptions": {
-                            "sourceType": "keyValue",
+                            "sourceType": "KeyValue",
                             "yKey": [
                                 "count",
                                 "average"
@@ -429,7 +429,7 @@
                             "urlFormat": "/simple/chartDataKeyValue.json"
                         },
                         "transformOptions": {
-                            "sourceType": "keyValue",
+                            "sourceType": "KeyValue",
                             "yKey": [
                                 "count",
                                 "average"

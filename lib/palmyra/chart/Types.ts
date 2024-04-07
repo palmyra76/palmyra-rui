@@ -86,9 +86,13 @@ type TypedTransformOptions<T extends ChartType> =
     never;
 
 
+interface SelectedArea {
+    start: { x: number, y: number }, end: { x: number, y: number }
+}
+
 interface chartEventListeners {
     onPointClick?: Function,
-    onAreaSelect?: Function,
+    onAreaSelect?: (SelectedArea: any) => void,
 }
 
 interface IChartOptions<T extends ChartType> extends Titleable, Positionable, chartEventListeners {
@@ -112,5 +116,5 @@ interface IChart {
     reset: () => void
 }
 
-export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType, RawDataType }
+export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType, RawDataType, SelectedArea }
 export type { IChartOptions, IChart, PostProcessor, DataTransformer, TypedTransformOptions, IPalmyraChartOptions }

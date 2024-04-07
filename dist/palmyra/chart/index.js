@@ -1,16 +1,18 @@
-import { useListener as r } from "./chartjs/ChartEventListener.js";
-import { addDataConverter as a, getDataConverter as n, getPointConverter as C } from "./chartjs/DataConverterFactory.js";
-import { DatasetStyleConverterFactory as y, LabelStyleConverterFactory as l, NoopStyleConverter as S, RandomStyleConverterFactory as m, getStyleConverter as p } from "./chartjs/colors/StyleConverterFactory.js";
-import { ChartJS as x } from "./chartjs/ChartJS.js";
+import { C as t, a as o, u as a } from "../../chunks/ChartJS.js";
+import { AreaSelectDrag as C } from "./chartjs/plugins/AreaSelectDrag.js";
+import { addDataConverter as s, getDataConverter as v, getPointConverter as y } from "./chartjs/DataConverterFactory.js";
+import { DatasetStyleConverterFactory as c, LabelStyleConverterFactory as m, NoopStyleConverter as p, RandomStyleConverterFactory as f, getStyleConverter as g } from "./chartjs/colors/StyleConverterFactory.js";
 export {
-  x as ChartJS,
-  y as DatasetStyleConverterFactory,
-  l as LabelStyleConverterFactory,
-  S as NoopStyleConverter,
-  m as RandomStyleConverterFactory,
-  a as addDataConverter,
-  n as getDataConverter,
-  C as getPointConverter,
-  p as getStyleConverter,
-  r as useListener
+  C as AreaSelectDrag,
+  t as ChartJS,
+  c as DatasetStyleConverterFactory,
+  m as LabelStyleConverterFactory,
+  p as NoopStyleConverter,
+  f as RandomStyleConverterFactory,
+  s as addDataConverter,
+  v as getDataConverter,
+  y as getPointConverter,
+  g as getStyleConverter,
+  o as useAreaSelectListener,
+  a as useClickListener
 };

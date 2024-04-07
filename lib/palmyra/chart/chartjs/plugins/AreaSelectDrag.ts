@@ -60,15 +60,12 @@ const getPoints = (chart: ChartRef, evt) => {
         newx = Math.abs((evt.offsetX - xtop) / (xbottom - xtop));
         newx = newx * (Math.abs(xmax - xmin)) + xmin;
     }
-    if (newy != -1 && newx != -1) {
-        console.log(newx + ',' + newy);
-    }
     return { x: newx, y: newy };
 }
 
 // Export main plugin
-const SelectDrag = {
-    id: "selectdrag",
+const AreaSelectDrag = {
+    id: "areaSelectdrag",
 
     start: (chart: ChartRef, _args, options) => {
         // Check if enabled
@@ -161,7 +158,16 @@ const SelectDrag = {
             // Emit event
             //@ts-ignore
             const selectCompleteCallback = chart?.config?.options?.plugins?.selectdrag?.onSelectComplete;
-            if (selectCompleteCallback) {
+            if (selectCompleteCallback) {                
+                const {start, end} = state.selectionXY;
+                const xDiff = Math.abs(start.x - end.x)
+                const yDiff = Math.abs(start.y - end.y);
+                //@ts-ignore
+                const MIN_DIFF = chart?.config?.options?.plugins?.selectdrag?.threshold || 10;
+                if(xDiff < MIN_DIFF || yDiff < MIN_DIFF)
+                    return; // Area too small, do not callback.
+
+
                 selectCompleteCallback({
                     range: [
                         state.selectionXY.start.axisValue,
@@ -178,7 +184,16 @@ const SelectDrag = {
                             state.selectionXY.start.x,
                             state.selectionXY.end.y,
                         ]
-                    ]
+                    ],
+                    coordinates: {
+                        start: {
+                            x: state.selectionXY.start.xValue,
+                            y: state.selectionXY.start.yValue
+                        }, end: {
+                            x: state.selectionXY.end.xValue,
+                            y: state.selectionXY.end.yValue
+                        }
+                    }
                 });
             }
         });
@@ -194,7 +209,6 @@ const SelectDrag = {
             if (state.selectionXY.state == 'mousedown') {
                 const axisElements = getAxisElements(e);
                 if (null != axisElements) {
-                    console.log(axisElements);
                     state.selectionXY.state = 'drag';
                 }
             }
@@ -253,7 +267,7 @@ const SelectDrag = {
         ctx.fillRect(
             (state.selectionXY.start?.x || 0), (state.selectionXY.start?.y || chart.chartArea.top),
             (state.selectionXY.end?.x || 0) - (state.selectionXY.start?.x || 0),
-            ((state.selectionXY.end?.y - state.selectionXY.start?.y) ||  0)
+            ((state.selectionXY.end?.y - state.selectionXY.start?.y) || 0)
         );
 
         // Restore canvas
@@ -309,4 +323,4 @@ const SelectDrag = {
     }
 }
 
-export { SelectDrag }
+export { AreaSelectDrag }

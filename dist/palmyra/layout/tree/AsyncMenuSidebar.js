@@ -17,7 +17,7 @@ import "./AsyncTreeMenuEditor.js";
 import "../../utils/pubsub/topic.js";
 import "@tanstack/react-table";
 import "react-chartjs-2";
-import "../../chart/chartjs/ChartJS.js";
+import "../../../chunks/ChartJS.js";
 import "dayjs";
 import "../../mui/form/MuiDatePicker.js";
 import "../../mui/form/MuiDateTimePicker.js";

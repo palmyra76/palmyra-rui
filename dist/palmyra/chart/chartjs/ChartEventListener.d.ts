@@ -1,7 +1,9 @@
+import { Plugin, ChartType as ChartJsType } from "chart.js";
 import { MouseEventHandler, MutableRefObject } from "react";
-import { IChartOptions } from "..";
+import { ChartType, IChartOptions } from "..";
 interface ListenerResult {
     onClick?: MouseEventHandler<any>;
 }
-declare const useListener: (chartType: string, props: IChartOptions<any>, chartRef: MutableRefObject<any>) => ListenerResult;
-export { useListener };
+declare const useAreaSelectListener: (chartType: ChartType, chartOptions: any, plugins: Plugin<ChartJsType>[], callback: any) => void;
+declare const useClickListener: (chartType: string, props: IChartOptions<any>, chartRef: MutableRefObject<any>) => ListenerResult;
+export { useClickListener, useAreaSelectListener };

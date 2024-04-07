@@ -1,13 +1,5 @@
 import { PalmyraStoreFactory, ServerCardLayout, StoreFactory, getStyleConverter } from "../../../lib/main";
-import { ScatterPlot } from "../../../lib/palmyra/chart/palmyra/ScatterPlot";
 import SimpleChart from "../../components/chart/SimpleChart";
-import { SelectDrag } from "../../../lib/palmyra/chart/chartjs/plugins/SelectDrag";
-import { Chart, registerables } from "chart.js";
-
-
-// import { Pagination } from '@mui/material';
-
-Chart.register(...registerables, SelectDrag)
 
 const card = (props: any) => {
 
@@ -56,22 +48,25 @@ const transformOptions = {
     xLabel: 'Total Voters', yLabel: 'Percent', group: 'criticality'
 };
 
+// , selectdrag: {
+//     enabled: true,
+//     onSelectComplete: (event) => {
+
+//         // Get selected range
+//         console.log(event.range);
+
+//         // Get selection coordinates
+//         console.log(event.boundingBox);
+//     }
+// }
+
+
 const defaultOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
         legend: {
             display: false
-        }, selectdrag: {
-            enabled: true,
-            onSelectComplete: (event) => {
-
-                // Get selected range
-                console.log(event.range);
-
-                // Get selection coordinates
-                console.log(event.boundingBox);
-            }
         }
     },
 };
@@ -130,6 +125,7 @@ const CardPage = () => {
     const scatterPlot = <SimpleChart type="Scatter"
         chartOptions={defaultOptions}
         height={800}
+        onAreaSelect={(d) => { console.log(d) }}
         storeOptions={{ endPoint: '/dashboard/raw/booth' }}
         transformOptions={transformOptions}
     />
@@ -156,7 +152,7 @@ const CardPage = () => {
                 }
             }
         }}
-
+        onAreaSelect={(d) => { showValue(d) }}
         storeOptions={{ endPoint: '/booth/chart/byCriticality' }}
         styleOptions={boothStateStyleOptions}
         transformOptions={{
@@ -166,6 +162,10 @@ const CardPage = () => {
         }}
         hideTitle={true}
     />
+
+    const showValue = (d) => {
+        console.log(d);
+    }
 
     return <><div className="param-list-servercard-layout">
         {/* <ServerCardLayout Child={card} store={store} EmptyChild={card} children='sss'

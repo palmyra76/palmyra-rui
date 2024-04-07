@@ -45,7 +45,7 @@ import "@mui/x-tree-view";
 import { topic as tt } from "../palmyra/utils/pubsub/topic.js";
 import "@tanstack/react-table";
 import "react-chartjs-2";
-import "../palmyra/chart/chartjs/ChartJS.js";
+import "./ChartJS.js";
 import "dayjs";
 import "../palmyra/form/PalmyraForm.js";
 import { getActionPublishers as _t } from "../palmyra/utils/pubsub/Publishers.js";
