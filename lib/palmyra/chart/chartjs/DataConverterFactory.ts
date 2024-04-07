@@ -2,6 +2,7 @@ import { default as LineConverters } from './converters/LineConverter';
 import { default as BarConverters } from './converters/BarConverter';
 import { default as GroupedBarConverters } from './converters/GroupedBarConverter'
 import { default as ScatterConverters } from './converters/ScatterConverter';
+import { default as GroupedScatterConverters } from './converters/GroupedScatterConverter';
 import { default as BubbleConverters, getPointData as getBubblePointData } from './converters/BubbleConverter';
 import { default as RadarConverters } from './converters/RadarConverter';
 import { default as PolarAreaConverters } from './converters/PolarConverter';
@@ -10,7 +11,7 @@ import { default as DoughnutConverters } from './converters/DoughnutConverter';
 
 import { getScalePointData } from './converters/ScaleConverter';
 import { InteractionItem } from 'chart.js';
-import { ITransformOptions, RawDataType } from '../Types';
+import { ChartType, ITransformOptions, RawDataType } from '../Types';
 import { ChartDataConverter, DataSetType } from '..';
 
 
@@ -24,10 +25,17 @@ const NoopConverter = (data: any): any => {
     return data;
 }
 
-var dataMap: Record<string, Partial<Record<RawDataType, DataConverterGen>>> = {
+var dataMap: Record<ChartType, Partial<Record<RawDataType, DataConverterGen>>> = {
     "Line": LineConverters,
+    "MultiLine": LineConverters,
+    "AreaChart": LineConverters,
+
     "Bar": BarConverters,
+    "StackedBar": BarConverters,
+
     "Scatter": ScatterConverters,
+    "GroupedScatter": GroupedScatterConverters,
+
     "Bubble": BubbleConverters,
     "Radar": RadarConverters,
     "PolarArea": PolarAreaConverters,

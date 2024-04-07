@@ -68,12 +68,10 @@ const GroupArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: S
             return data;
 
         data.datasets.map((d, index) => {
-            console.log(d.key);
             const style = styleOptions[d.key];
             d.backgroundColor = style?.backgroundColor;
             d.borderColor = style?.borderColor;
         });
-
         return data;
     }
 }

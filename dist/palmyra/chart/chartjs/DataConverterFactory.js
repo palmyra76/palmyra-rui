@@ -1,48 +1,53 @@
-import i from "./converters/LineConverter.js";
-import c from "./converters/BarConverter.js";
+import a from "./converters/LineConverter.js";
+import m from "./converters/BarConverter.js";
 import s from "./converters/GroupedBarConverter.js";
-import f from "./converters/ScatterConverter.js";
-import p, { getPointData as u } from "./converters/BubbleConverter.js";
-import P from "./converters/RadarConverter.js";
-import $ from "./converters/PolarConverter.js";
-import d from "./converters/PieConverter.js";
-import l from "./converters/DoughnutConverter.js";
-import { getScalePointData as o } from "./converters/ScaleConverter.js";
+import p from "./converters/ScatterConverter.js";
+import f from "./converters/GroupedScatterConverter.js";
+import u, { getPointData as d } from "./converters/BubbleConverter.js";
+import $ from "./converters/RadarConverter.js";
+import l from "./converters/PolarConverter.js";
+import P from "./converters/PieConverter.js";
+import C from "./converters/DoughnutConverter.js";
+import { getScalePointData as t } from "./converters/ScaleConverter.js";
 const g = (r) => r;
 var n = {
-  Line: i,
-  Bar: c,
-  Scatter: f,
-  Bubble: p,
-  Radar: P,
-  PolarArea: $,
-  Pie: d,
-  Doughnut: l,
+  Line: a,
+  MultiLine: a,
+  AreaChart: a,
+  Bar: m,
+  StackedBar: m,
+  Scatter: p,
+  GroupedScatter: f,
+  Bubble: u,
+  Radar: $,
+  PolarArea: l,
+  Pie: P,
+  Doughnut: C,
   GroupedBar: s
-}, C = {
-  Line: o,
-  Bar: o,
-  Pie: o,
-  Doughnut: o,
-  PolarArea: o,
-  Radar: o,
-  Bubble: u
+}, B = {
+  Line: t,
+  Bar: t,
+  Pie: t,
+  Doughnut: t,
+  PolarArea: t,
+  Radar: t,
+  Bubble: d
 };
-const h = (r, e, t) => {
-  var v;
-  var m = e || "Array", a = (v = n[r]) == null ? void 0 : v[m];
-  return a ? a(t) : g;
-}, x = (r, e, t) => {
+const x = (r, e, o) => {
+  var i;
+  var c = e || "Array", v = (i = n[r]) == null ? void 0 : i[c];
+  return v ? v(o) : g;
+}, E = (r, e, o) => {
   if (!n[r][e])
-    n[r][e] = t;
+    n[r][e] = o;
   else
     throw new Error("Converter already set for " + r + "/" + e);
-}, E = (r) => {
-  var e = C[r];
-  return e || ((t) => t);
+}, N = (r) => {
+  var e = B[r];
+  return e || ((o) => o);
 };
 export {
-  x as addDataConverter,
-  h as getDataConverter,
-  E as getPointConverter
+  E as addDataConverter,
+  x as getDataConverter,
+  N as getPointConverter
 };

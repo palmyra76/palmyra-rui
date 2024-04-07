@@ -21,14 +21,18 @@ import {
 
 const ChartJSTypeRegistry: Partial<Record<ChartType, ChartJSType>> = {
     Line: 'line',
+    MultiLine: 'line',
+    AreaChart: 'line',
     Bar: 'bar',
     GroupedBar: 'bar',
+    StackedBar: 'bar',
     Bubble: 'bubble',
     Doughnut: 'doughnut',
     Pie: 'pie',
     PolarArea: 'polarArea',
     Radar: 'radar',
-    Scatter: 'scatter'
+    Scatter: 'scatter',
+    GroupedScatter: 'scatter'
 }
 
 type PostProcessor = (data: DataSets<DataSetType>, options?: any) => DataSets<DataSetType>;
@@ -76,16 +80,17 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
 
     const processRawData = (data: any) => {
         const props = getProps();
-        var d = transform(data, props.type, props.transformOptions);
+        var d = transform(data, props.type, props.transformOptions);        
         if (props.postProcessors) {
             props.postProcessors.map((p: PostProcessor, index) => {
                 d = p(d);
             })
         }
+        
         return d;
     }
 
-    const chartData = useRef(processRawData(getProps().data));
+    const chartData = useRef(processRawData(p.data));
     const currentRef = ref ? ref : useRef<IChartJS>(null);
     const chartRef = useRef<ChartRef>(null);
 
@@ -97,6 +102,7 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
         const chart = chartRef.current;
         chartData.current = d;
         chart.data = d;
+        // console.log(chartData.current.datasets[0].backgroundColor);
         chart.update();
     }
 
@@ -106,7 +112,7 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
                 const d = processRawData(data);
                 setData(d);
             },
-            setTransformOptions(tx: ITransformOptions){
+            setTransformOptions(tx: ITransformOptions) {
                 getProps().transformOptions = tx;
             },
             clearData() {

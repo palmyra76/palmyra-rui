@@ -13,7 +13,6 @@ const g = (t, n) => (r, u) => {
   const l = t[e];
   o.backgroundColor = l == null ? void 0 : l.backgroundColor, o.borderColor = l == null ? void 0 : l.borderColor;
 }), r), m = (t, n) => (r, u) => (r == null || r == null || r.datasets.map((o, e) => {
-  console.log(o.key);
   const l = t[o.key];
   o.backgroundColor = l == null ? void 0 : l.backgroundColor, o.borderColor = l == null ? void 0 : l.borderColor;
 }), r), v = (t, n) => (r, u) => {
@@ -32,7 +31,7 @@ const g = (t, n) => (r, u) => {
     const i = C % l, b = t[i];
     o.push(b == null ? void 0 : b.backgroundColor), e.push(b == null ? void 0 : b.borderColor);
   }), r.datasets[0] && (r.datasets[0].backgroundColor = o, r.datasets[0].borderColor = o), r;
-}, d = (t, n) => t, S = (t) => (n, r) => {
+}, F = (t, n) => t, S = (t) => (n, r) => {
   var u;
   return n == null || n == null || (u = n.datasets) == null || u.map((o) => {
     o.backgroundColor = c(1), o.borderColor = c(1);
@@ -48,7 +47,7 @@ const g = (t, n) => (r, u) => {
 export {
   v as DatasetStyleConverterFactory,
   g as LabelStyleConverterFactory,
-  d as NoopStyleConverter,
+  F as NoopStyleConverter,
   S as RandomStyleConverterFactory,
   A as getStyleConverter
 };

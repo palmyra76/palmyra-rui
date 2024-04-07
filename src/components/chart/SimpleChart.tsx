@@ -52,7 +52,7 @@ const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     return (
         <div className="palmyra-chart-container-wrapper">
             {(data) ?
-                <ChartJS<'line'>
+                <ChartJS
                     type={layout.type} chartRef={chartRef} data={data}
                     title={props.title} hideTitle={props.hideTitle} onAreaSelect={props.onAreaSelect}
                     onPointClick={props.onPointClick} height={getHeight()} plugins={props.plugins}

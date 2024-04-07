@@ -1,52 +1,56 @@
 import { jsx as C } from "react/jsx-runtime";
-import { useRef as g, useImperativeHandle as E, useEffect as P, useMemo as S } from "react";
-import { getDatasetAtEvent as D, getElementsAtEvent as R, getElementAtEvent as b, Chart as T } from "react-chartjs-2";
-import { getPointConverter as L, getDataConverter as O } from "../palmyra/chart/chartjs/DataConverterFactory.js";
+import { useRef as g, useImperativeHandle as v, useEffect as E, useMemo as P } from "react";
+import { getDatasetAtEvent as b, getElementsAtEvent as D, getElementAtEvent as R, Chart as L } from "react-chartjs-2";
+import { getPointConverter as T, getDataConverter as O } from "../palmyra/chart/chartjs/DataConverterFactory.js";
 import { AreaSelectDrag as k } from "../palmyra/chart/chartjs/plugins/AreaSelectDrag.js";
-import { Chart as x, CategoryScale as B, LinearScale as w, RadialLinearScale as j, BarElement as H, PointElement as J, ArcElement as G, LineElement as I, Title as M, Tooltip as N, Legend as $ } from "chart.js";
+import { Chart as B, CategoryScale as x, LinearScale as w, RadialLinearScale as j, BarElement as G, PointElement as H, ArcElement as J, LineElement as M, Title as I, Tooltip as N, Legend as $ } from "chart.js";
 function q(r) {
   return r.length > 0;
 }
-const z = (r, p, i, c) => {
-  c != null && (i.push(k), p.plugins.selectdrag = {
+const z = (r, f, i, c) => {
+  c != null && (i.push(k), f.plugins.selectdrag = {
     enabled: !0,
-    onSelectComplete: (u) => {
-      c(u);
+    onSelectComplete: (l) => {
+      c(l);
     }
   });
-}, _ = (r, p, i) => {
-  if (!p.onPointClick)
+}, _ = (r, f, i) => {
+  if (!f.onPointClick)
     return {};
-  const { data: c, transformOptions: u, onPointClick: d } = p, l = (s, o, t) => {
+  const { data: c, transformOptions: l, onPointClick: d } = f, p = (s, o, t) => {
     if (s.length) {
-      var f = L(r);
-      return f(c, u, o, t);
+      var u = T(r);
+      return u(c, l, o, t);
     }
   };
   return { onClick: (s) => {
     const { current: o } = i;
     if (!o)
       return;
-    const t = D(o, s);
+    const t = b(o, s);
     if (q(t)) {
-      var f = l(
+      var u = p(
         t,
-        b(o, s),
-        R(o, s)
+        R(o, s),
+        D(o, s)
       );
-      d(f);
+      d(u);
     }
   } };
 }, F = {
   Line: "line",
+  MultiLine: "line",
+  AreaChart: "line",
   Bar: "bar",
   GroupedBar: "bar",
+  StackedBar: "bar",
   Bubble: "bubble",
   Doughnut: "doughnut",
   Pie: "pie",
   PolarArea: "polarArea",
   Radar: "radar",
-  Scatter: "scatter"
+  Scatter: "scatter",
+  GroupedScatter: "scatter"
 }, K = {
   responsive: !0,
   maintainAspectRatio: !1,
@@ -56,26 +60,26 @@ const z = (r, p, i, c) => {
     }
   }
 };
-x.register(
-  B,
+B.register(
+  x,
   w,
   j,
+  G,
   H,
   J,
-  G,
-  I,
   M,
+  I,
   N,
   $
 );
 function ee(r) {
-  const p = [], i = r.chartRef, c = r.plugins || p, u = r.options || K, d = g({ ...r, plugins: c, options: u }), l = () => d.current, m = (e) => {
-    const n = l();
+  const f = [], i = r.chartRef, c = r.plugins || f, l = r.options || K, d = g({ ...r, plugins: c, options: l }), p = () => d.current, m = (e) => {
+    const n = p();
     var a = y(e, n.type, n.transformOptions);
     return n.postProcessors && n.postProcessors.map((h, Q) => {
       a = h(a);
     }), a;
-  }, s = g(m(l().data)), o = i || g(null), t = g(null), f = (e) => {
+  }, s = g(m(r.data)), o = i || g(null), t = g(null), u = (e) => {
     if (t.current == null) {
       console.error("Chart Reference is not found, data will not be updated");
       return;
@@ -83,16 +87,16 @@ function ee(r) {
     const n = t.current;
     s.current = e, n.data = e, n.update();
   };
-  E(o, () => ({
+  v(o, () => ({
     setData(e) {
       const n = m(e);
-      f(n);
+      u(n);
     },
     setTransformOptions(e) {
-      l().transformOptions = e;
+      p().transformOptions = e;
     },
     clearData() {
-      f({ datasets: [] });
+      u({ datasets: [] });
     },
     clear() {
       t.current != null && t.current.clear();
@@ -100,32 +104,32 @@ function ee(r) {
     reset() {
       t.current != null && t.current.reset();
     }
-  }), [i, t, s, d]), P(() => {
+  }), [i, t, s, d]), E(() => {
     const e = m(r.data);
-    f(e);
+    u(e);
   }, [r.data]);
   function y(e, n, a) {
     const h = a != null && a.sourceType ? a == null ? void 0 : a.sourceType : e && e instanceof Array ? "Array" : "Object";
     return O(n, h, a)(e);
   }
   function A() {
-    return l().height || "350px";
+    return p().height || "350px";
   }
-  const v = S(() => {
-    const e = l();
-    return e.onAreaSelect && z(e.type, u, c, e.onAreaSelect), /* @__PURE__ */ C(
-      T,
+  const S = P(() => {
+    const e = p();
+    return e.onAreaSelect && z(e.type, l, c, e.onAreaSelect), /* @__PURE__ */ C(
+      L,
       {
         type: F[e.type],
         ref: t,
         plugins: c,
-        options: u,
+        options: l,
         data: s.current,
         height: A()
       }
     );
   }, []);
-  return /* @__PURE__ */ C("div", { className: "palmyra-chart-container-wrapper", children: s ? v : /* @__PURE__ */ C("div", { children: "loading..." }) });
+  return /* @__PURE__ */ C("div", { className: "palmyra-chart-container-wrapper", children: s ? S : /* @__PURE__ */ C("div", { children: "loading..." }) });
 }
 export {
   ee as C,

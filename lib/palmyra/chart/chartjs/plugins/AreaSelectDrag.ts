@@ -227,25 +227,25 @@ const AreaSelectDrag = {
         }
 
         // Check drawing status
-        const state = getState(chart);
+        // const state = getState(chart);
 
         // Set highlighted
-        chart.data.datasets = chart.data.datasets.map((dataset) => {
-            dataset.backgroundColor = chart.data.labels.map((value, index) => {
-                if (!state || !state?.selectionXY?.start?.x || !state?.selectionXY?.end?.x) {
-                    // Show default
-                    return pluginOptions.colors.selectedElements;
-                } else {
-                    // Show selected/unselected
-                    if (index >= state.selectionXY.start?.axisIndex && index <= state.selectionXY.end?.axisIndex) {
-                        return pluginOptions.colors.selectedElements;
-                    } else {
-                        return pluginOptions.colors.unselectedElements;
-                    }
-                }
-            });
-            return dataset;
-        });
+        // chart.data.datasets = chart.data.datasets.map((dataset) => {
+        //     dataset.backgroundColor = chart.data.labels.map((value, index) => {
+        //         if (!state || !state?.selectionXY?.start?.x || !state?.selectionXY?.end?.x) {
+        //             // Show default
+        //             return pluginOptions.colors.selectedElements;
+        //         } else {
+        //             // Show selected/unselected
+        //             if (index >= state.selectionXY.start?.axisIndex && index <= state.selectionXY.end?.axisIndex) {
+        //                 return pluginOptions.colors.selectedElements;
+        //             } else {
+        //                 return pluginOptions.colors.unselectedElements;
+        //             }
+        //         }
+        //     });
+        //     return dataset;
+        // });
     },
 
     afterDraw: (chart, args, options) => {

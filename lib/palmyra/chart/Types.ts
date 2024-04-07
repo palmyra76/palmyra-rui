@@ -9,6 +9,7 @@ interface ChartRegistry {
     GroupedBar: {},
     StackedBar: {},
     Scatter: {},
+    GroupedScatter: {},
     Bubble: {},
     Pie: {},
     Doughnut: {},
@@ -65,6 +66,11 @@ interface GroupedBarTransformOptions extends ITransformOptions {
     rKey?: never,
 }
 
+interface GroupedScatterTransformOptions extends ITransformOptions {
+    group: string,
+    xKey: string,
+    yKey: string
+}
 interface ScatterTransformOptions extends ITransformOptions { }
 interface BubbleTransformOptions extends ITransformOptions { }
 interface PieTransformOptions extends ITransformOptions { }
@@ -76,6 +82,7 @@ interface PolarAreaTransformOptions extends ITransformOptions { }
 type TypedTransformOptions<T extends ChartType> =
     T extends 'Bar' ? BarTransformOptions :
     T extends 'GroupedBar' ? GroupedBarTransformOptions :
+    T extends 'GroupedScatter' ? GroupedScatterTransformOptions :
     T extends 'Line' ? LineTransformOptions :
     T extends 'Scatter' ? ScatterTransformOptions :
     T extends 'Bubble' ? BubbleTransformOptions :
@@ -119,3 +126,4 @@ interface IChart {
 
 export type { ChartRegistry, StyleOptions, chartStyle, transformable, ITransformOptions, ChartType, RawDataType, SelectedArea }
 export type { IChartOptions, IChart, PostProcessor, DataTransformer, TypedTransformOptions, IPalmyraChartOptions }
+export type { GroupedScatterTransformOptions }
