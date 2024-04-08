@@ -86,7 +86,6 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
                 d = p(d);
             })
         }
-        
         return d;
     }
 

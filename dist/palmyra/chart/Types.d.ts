@@ -25,6 +25,7 @@ interface ITransformOptions {
     rKey?: string;
     xLabel?: string;
     yLabel?: strings;
+    metadata?: string[];
 }
 type ChartType = keyof ChartRegistry;
 type StyleOptions = Record<string, chartStyle> | chartStyle[] | Record<string, chartStyle[]>;

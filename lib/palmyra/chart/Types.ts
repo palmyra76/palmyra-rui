@@ -26,7 +26,8 @@ interface ITransformOptions {
     yKey?: strings,
     rKey?: string,
     xLabel?: string,
-    yLabel?: strings
+    yLabel?: strings,
+    metadata?: string[]
 }
 
 type ChartType = keyof ChartRegistry;

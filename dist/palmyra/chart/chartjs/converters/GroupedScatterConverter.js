@@ -1,42 +1,48 @@
-import { NoopConverter as s } from "./ScaleConverter.js";
-function f(r) {
-  const e = (r == null ? void 0 : r.xLabel) || "name", y = (r == null ? void 0 : r.xKey) || "x", a = (r == null ? void 0 : r.yKey) || "y";
-  return a instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + r.yKey), {
-    x: y,
-    y: a,
-    label: e
+import { NoopConverter as v } from "./ScaleConverter.js";
+function K(a) {
+  const t = (a == null ? void 0 : a.xLabel) || "name", n = (a == null ? void 0 : a.xKey) || "x", e = (a == null ? void 0 : a.yKey) || "y";
+  return e instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + a.yKey), {
+    x: n,
+    y: e,
+    label: t
   };
 }
-const v = (r) => {
-  const { x: e, y } = f(r);
-  return (a) => {
-    var n = {
+const b = (a) => {
+  const { x: t, y: n } = K(a);
+  return (e) => {
+    var c = {
       datasets: []
-    }, u = {};
-    const c = r.group;
-    return a.map((t, d) => {
-      const l = t[c];
-      var x = K(u, l);
-      x.data.push({
-        x: t[e],
-        y: t[y]
+    }, s = {};
+    const x = a.group, l = a.metadata, f = l ? (r, u) => {
+      l.map((y) => {
+        r[y] = u[y];
       });
-    }), Object.values(u).map((t) => {
-      n.datasets.push(t);
-    }), n;
+    } : (r, u) => {
+    };
+    return e.map((r, u) => {
+      const y = r[x];
+      var m = g(s, y);
+      const d = {
+        x: r[t],
+        y: r[n]
+      };
+      f(d, r), m.data.push(d);
+    }), Object.values(s).map((r) => {
+      c.datasets.push(r);
+    }), c;
   };
-}, m = {
-  Array: v,
-  noop: s
+}, C = {
+  Array: b,
+  noop: v
 };
-function K(r, e, y) {
-  var a = r[e];
-  return a || (a = {
-    key: e,
-    label: e,
+function g(a, t, n) {
+  var e = a[t];
+  return e || (e = {
+    key: t,
+    label: t,
     data: []
-  }, r[e] = a, a);
+  }, a[t] = e, e);
 }
 export {
-  m as default
+  C as default
 };

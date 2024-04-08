@@ -31,15 +31,24 @@ const GroupedDataConverter = (options: ITransformOptions): ChartDataConverter<Po
 
         var dataMap: Record<string, ScatterDataSet> = {};
         const groupKey = options.group;
-        
+
+        const metadata = options.metadata;        
+        const assignMetadata = metadata ? (data:any, record:any) => {
+            metadata.map((m) => {
+                data[m] = record[m];
+            });
+        } : (_d:any, _r:any) => { };
+
         records.map((record, index) => {
             const key = record[groupKey]
             var dataSet: ScatterDataSet = getData(dataMap, key, options);
             // const v = c;
-            dataSet.data.push({
+            const d = {
                 x: record[x],
                 y: record[y]
-            });
+            };
+            assignMetadata(d, record);
+            dataSet.data.push(d);
         });
 
         Object.values(dataMap).map((dataSet) => {
