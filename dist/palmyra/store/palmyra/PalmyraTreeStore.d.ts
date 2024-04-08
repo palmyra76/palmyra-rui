@@ -1,8 +1,9 @@
-import { QueryRequest, QueryResponse, TreeQueryStore } from "../../../main";
+import { PalmyraAbstractStore } from './AbstractStore';
+import { strings } from '../../form/interface';
+import { IEndPoint } from '../../layout/Types';
 import { AxiosInstance } from 'axios';
-import { IEndPoint } from "../../layout/Types";
-import { strings } from "../../form/interface";
-import { PalmyraAbstractStore } from "./AbstractStore";
+import { QueryRequest, QueryResponse, TreeQueryStore } from '../../../main';
+
 interface IChildTreeRequest {
     parent?: number;
 }

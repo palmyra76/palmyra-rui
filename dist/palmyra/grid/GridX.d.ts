@@ -1,9 +1,10 @@
-import React from 'react';
-import { ColumnDefinition, GridCustomizer, IExportOptions } from './Types';
-import { IServerQueryInput } from '../form/ServerQueryManager';
-import { IPageQueryable } from '../form/interfaceFields';
-import { ITitle } from '../form/interface';
 import { GridStore } from '../store';
+import { ITitle } from '../form/interface';
+import { IPageQueryable } from '../form/interfaceFields';
+import { IServerQueryInput } from '../form/ServerQueryManager';
+import { ColumnDefinition, GridCustomizer, IExportOptions } from './Types';
+import { default as React } from 'react';
+
 interface GridXOptions extends IServerQueryInput {
     store: GridStore<any>;
     columns: ColumnDefinition[];

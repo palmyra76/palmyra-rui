@@ -1,4 +1,5 @@
-import { ScaleLinear } from "d3";
+import { ScaleLinear } from 'd3';
+
 type AxisLeftProps = {
     yScale: ScaleLinear<number, number>;
     pixelsPerTick: number;

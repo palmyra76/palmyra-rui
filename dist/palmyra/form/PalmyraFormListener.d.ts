@@ -1,4 +1,5 @@
-import { IFieldEventListener } from ".";
+import { IFieldEventListener } from '.';
+
 declare const getDataListener: (fieldList: string[], getFieldRef?: <T>(field: string) => T) => {
     eventListener: IFieldEventListener;
     data: any;

@@ -1,4 +1,5 @@
-import { IEndPoint, AbstractRequest } from "../../../main";
+import { IEndPoint, AbstractRequest } from '../../../main';
+
 declare class PalmyraAbstractStore {
     options: Record<string, any>;
     target: string;

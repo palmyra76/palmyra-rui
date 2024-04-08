@@ -1,6 +1,6 @@
-/// <reference types="react" />
-import { IServerQueryInput } from '../../form/ServerQueryManager';
 import { ITitle } from '../../form';
+import { IServerQueryInput } from '../../form/ServerQueryManager';
+
 interface ServerCardLayoutInput extends IServerQueryInput {
     Child: React.FC;
     childProps?: any;
@@ -10,6 +10,6 @@ interface ServerCardLayoutInput extends IServerQueryInput {
     customButton?: React.ReactNode[];
     preProcess?: (data: any) => any;
 }
-declare const ServerCardLayout: import("react").ForwardRefExoticComponent<ServerCardLayoutInput & import("react").RefAttributes<any>>;
+declare const ServerCardLayout: import('react').ForwardRefExoticComponent<ServerCardLayoutInput & import("react").RefAttributes<any>>;
 export default ServerCardLayout;
 export type { ServerCardLayoutInput };

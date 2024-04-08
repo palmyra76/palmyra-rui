@@ -1,6 +1,7 @@
-import { CellContext, ColumnDef, OnChangeFn, Row, RowData, RowModel, RowSelectionState, Table } from "@tanstack/react-table";
-import { AttributeDefinition } from "../form/Definitions";
-import { MutableRefObject } from "react";
+import { MutableRefObject } from 'react';
+import { AttributeDefinition } from '../form/Definitions';
+import { CellContext, ColumnDef, OnChangeFn, Row, RowData, RowModel, RowSelectionState, Table } from '@tanstack/react-table';
+
 interface ColumnDefinition extends AttributeDefinition {
     name: string;
     title: string;
@@ -18,7 +19,7 @@ type PartialRecord<K extends keyof any, T> = {
     [P in K]?: T;
 };
 type IExportOptions = PartialRecord<'csv' | 'excel' | 'pdf' | 'docx', string>;
-type IReactTanstackTable = import("@tanstack/table-core").Table<RowData>;
+type IReactTanstackTable = import('@tanstack/table-core').Table<RowData>;
 interface ITableOptions {
     state?: any;
     enableRowSelection?: boolean | ((row: Row<unknown>) => boolean);
@@ -37,7 +38,7 @@ interface GridCustomizer {
     getTableRef?: () => MutableRefObject<IReactTanstackTable>;
 }
 declare const NoopCustomizer: GridCustomizer;
-declare const gridColumnCustomizer: (config: Record<string, (d: CellGetter) => CellGetter>, factory?: {
+declare const gridColumnCustomizer: (config: Record<string, ((d: CellGetter) => CellGetter)>, factory?: {
     header?: Record<string, Function>;
     footer?: Record<string, Function>;
 }) => GridCustomizer;

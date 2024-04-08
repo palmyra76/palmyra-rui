@@ -1,6 +1,6 @@
-/// <reference types="react" />
-import { ColumnDef, RowData } from '@tanstack/react-table';
 import { GridCustomizer } from '..';
+import { ColumnDef, RowData } from '@tanstack/react-table';
+
 interface ITableX {
     columnDefs: ColumnDef<RowData, any>[];
     rowData: any[];

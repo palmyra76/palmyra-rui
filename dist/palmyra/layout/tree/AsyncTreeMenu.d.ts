@@ -1,5 +1,6 @@
-import { TreeQueryStore } from "../../store";
-import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
+import { IChildTreeRequest } from '../../store/palmyra/PalmyraTreeStore';
+import { TreeQueryStore } from '../../store';
+
 interface IAsyncTreeMenuInput {
     store: TreeQueryStore<IChildTreeRequest, any>;
 }

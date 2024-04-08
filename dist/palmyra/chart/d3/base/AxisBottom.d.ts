@@ -1,4 +1,5 @@
-import { ScaleLinear } from "d3";
+import { ScaleLinear } from 'd3';
+
 type AxisBottomProps = {
     xScale: ScaleLinear<number, number>;
     pixelsPerTick: number;

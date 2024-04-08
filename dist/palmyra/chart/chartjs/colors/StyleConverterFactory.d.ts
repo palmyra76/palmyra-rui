@@ -1,5 +1,6 @@
-import { ITransformOptions, StyleOptions } from "../../Types";
-import { ChartStyleConverter, DataSetType } from "../Types";
+import { ChartStyleConverter, DataSetType } from '../Types';
+import { ITransformOptions, StyleOptions } from '../../Types';
+
 interface IStyleConverterFactory {
     (styleOptions: StyleOptions, transformOptions?: ITransformOptions): ChartStyleConverter<DataSetType>;
 }
