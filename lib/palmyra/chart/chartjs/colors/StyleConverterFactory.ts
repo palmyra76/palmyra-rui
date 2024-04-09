@@ -60,9 +60,12 @@ const TwoXArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: St
     }
 }
 
-const assignStyles = (d, style: ChartStyle) => {
+const assignStyles = (d, style: ChartStyle) => {    
     d.backgroundColor = style?.backgroundColor || generateColors(1)[0];
     d.borderColor = style?.borderColor || generateColors(1)[0];
+    if(!style)
+        return;
+    
     assign(style, d, 'radius');
     assign(style, d, 'borderWidth');
     assign(style, d, 'hoverRadius');

@@ -13,8 +13,8 @@ const p = (n, o) => (r, t) => {
   const l = n[u];
   e.backgroundColor = l == null ? void 0 : l.backgroundColor, e.borderColor = l == null ? void 0 : l.borderColor;
 }), r), v = (n, o) => {
-  n.backgroundColor = (o == null ? void 0 : o.backgroundColor) || c(1)[0], n.borderColor = (o == null ? void 0 : o.borderColor) || c(1)[0], i(o, n, "radius"), i(o, n, "borderWidth"), i(o, n, "hoverRadius");
-}, i = (n, o, r) => {
+  n.backgroundColor = (o == null ? void 0 : o.backgroundColor) || c(1)[0], n.borderColor = (o == null ? void 0 : o.borderColor) || c(1)[0], o && (b(o, n, "radius"), b(o, n, "borderWidth"), b(o, n, "hoverRadius"));
+}, b = (n, o, r) => {
   n[r] && (o[r] = n[r]);
 }, h = (n, o) => (r, t) => (r == null || r == null || r.datasets.map((e, u) => {
   const l = n[e.key];
@@ -32,8 +32,8 @@ const p = (n, o) => (r, t) => {
     return r;
   const e = [], u = [], l = n.length;
   return r.labels.map((s, C) => {
-    const f = C % l, b = n[f];
-    e.push(b == null ? void 0 : b.backgroundColor), u.push(b == null ? void 0 : b.borderColor);
+    const f = C % l, i = n[f];
+    e.push(i == null ? void 0 : i.backgroundColor), u.push(i == null ? void 0 : i.borderColor);
   }), r.datasets[0] && (r.datasets[0].backgroundColor = e, r.datasets[0].borderColor = e), r;
 }, K = (n, o) => n, F = (n) => (o, r) => {
   var t;
