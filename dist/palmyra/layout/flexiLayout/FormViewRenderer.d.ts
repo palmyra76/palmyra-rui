@@ -1,6 +1,6 @@
-import { PageContext } from './Types';
+/// <reference types="react" />
 import { FormLayout } from './Definitions';
-
+import { PageContext } from './Types';
 interface ViewFormRendererInput {
     formLayout: FormLayout;
     context: PageContext;

@@ -56,6 +56,10 @@ interface ISwitchField extends IInputField, IOptionsField {
 
 }
 
+interface ISliderField extends IInputField {
+
+}
+
 interface IQueryable {
     setFilter: (d: any) => void
     resetFilter: () => void,
@@ -77,4 +81,7 @@ interface IServerLookupField extends IInputField, IQueryable {
 
 export type { IMutateOptions, IQueryable, IInputField, IPageQueryable }
 
-export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField }
+export type {
+    ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField,
+    ISelectField, IServerLookupField, ITimeField, ISwitchField, ISliderField
+}

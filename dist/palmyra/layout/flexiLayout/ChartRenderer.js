@@ -2,7 +2,7 @@ import { jsx as s } from "react/jsx-runtime";
 import { useContext as a, useRef as O, useState as v, useMemo as x } from "react";
 import { StoreFactoryContext as S, LayoutParamsContext as D } from "./FlexiLayoutContext.js";
 import { mergeDeep as P } from "../../utils/index.js";
-import { getStyleConverter as R } from "../../chart/chartjs/colors/StyleConverterFactory.js";
+import { getStyleConverter as R } from "../../chart/chartjs/style/StyleConverterFactory.js";
 import { C as q } from "../../../chunks/ChartJS.js";
 const J = (o) => {
   const r = o.layout, c = a(S), i = a(D);

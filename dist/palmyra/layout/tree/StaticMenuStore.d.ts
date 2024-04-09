@@ -1,8 +1,7 @@
-import { QueryResponse, QueryRequest, GetRequest } from '../../store/Types';
-import { TreeQueryStore } from '../../store/AsyncStore';
-import { strings } from '../../form/interface';
-import { MenuDef } from '..';
-
+import { MenuDef } from "..";
+import { strings } from "../../form/interface";
+import { TreeQueryStore } from "../../store/AsyncStore";
+import { QueryResponse, QueryRequest, GetRequest } from "../../store/Types";
 declare class StaticMenuStore implements TreeQueryStore<MenuDef, MenuDef> {
     data: MenuDef;
     constructor(menuList: MenuDef[]);

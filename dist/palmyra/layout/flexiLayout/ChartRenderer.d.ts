@@ -1,5 +1,4 @@
 import { ChartLayout } from './Definitions';
-
 interface ChartRendererInput {
     layout: ChartLayout;
 }

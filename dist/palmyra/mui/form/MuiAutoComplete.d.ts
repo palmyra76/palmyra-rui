@@ -1,5 +1,5 @@
-import { IServerLookupField } from '../../form/interfaceFields';
+/// <reference types="react" />
 import { IAutoCompleteDefinition } from '../../form/interface';
-
-declare const MuiAutoComplete: import('react').ForwardRefExoticComponent<IAutoCompleteDefinition & import("react").RefAttributes<IServerLookupField>>;
+import { IServerLookupField } from '../../form/interfaceFields';
+declare const MuiAutoComplete: import("react").ForwardRefExoticComponent<IAutoCompleteDefinition & import("react").RefAttributes<IServerLookupField>>;
 export default MuiAutoComplete;

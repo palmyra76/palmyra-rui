@@ -1,5 +1,4 @@
-import { AuthDecorator } from '..';
-
+import { AuthDecorator } from "..";
 declare class BasicAuthProvider implements AuthDecorator {
     username: string;
     password: string;

@@ -22,7 +22,7 @@ import { CheckboxGridEnhancer as $ } from "./palmyra/grid/CheckboxGridEnhancer.j
 import { C as re, a as oe, u as te } from "./chunks/ChartJS.js";
 import { AreaSelectDrag as me } from "./palmyra/chart/chartjs/plugins/AreaSelectDrag.js";
 import { addDataConverter as fe, getDataConverter as se, getPointConverter as le } from "./palmyra/chart/chartjs/DataConverterFactory.js";
-import { DatasetStyleConverterFactory as ie, LabelStyleConverterFactory as xe, NoopStyleConverter as de, RandomStyleConverterFactory as ne, getStyleConverter as ce } from "./palmyra/chart/chartjs/colors/StyleConverterFactory.js";
+import { DatasetStyleConverterFactory as ie, LabelStyleConverterFactory as xe, NoopStyleConverter as de, RandomStyleConverterFactory as ne, getStyleConverter as ce } from "./palmyra/chart/chartjs/style/StyleConverterFactory.js";
 import { N as ye, c as Fe, b as Me, a as Se, d as Pe, u as he } from "./chunks/PalmyraFieldManager.js";
 import { getFieldType as De } from "./palmyra/form/Definitions.js";
 import { StringFormat as Ge, concatValues as Le, hasChar as Ne, hasDot as Te, hasUnfilledParameter as ke } from "./palmyra/utils/StringUtil.js";

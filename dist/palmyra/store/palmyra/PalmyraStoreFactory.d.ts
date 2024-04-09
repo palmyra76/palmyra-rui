@@ -1,7 +1,6 @@
-import { IEndPoint } from '../../layout/Types';
-import { strings } from '../../form/interface';
-import { ChartStore, DataStore, StoreFactory, LookupStore, TreeQueryStore, GridStore, APIErrorHandlerFactory } from '../../../main';
-
+import { ChartStore, DataStore, StoreFactory, LookupStore, TreeQueryStore, GridStore, APIErrorHandlerFactory } from "../../../main";
+import { strings } from "../../form/interface";
+import { IEndPoint } from "../../layout/Types";
 interface PalmyraStoreFactoryArg {
     baseUrl?: string;
     errorHandlerFactory?: APIErrorHandlerFactory;

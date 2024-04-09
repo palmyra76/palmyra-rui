@@ -1,4 +1,4 @@
-import C, { getRandomNumber as s } from "../colors/GenerateColors.js";
+import C, { getRandomNumber as s } from "../style/GenerateColors.js";
 const o = (e) => (t) => t;
 function j(e, t, r) {
   var a = Math.round(s(2, 10)), l = C(a);

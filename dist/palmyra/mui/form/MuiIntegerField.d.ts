@@ -1,5 +1,5 @@
-import { ITextField } from '../../form/interfaceFields';
+/// <reference types="react" />
 import { IIntegerFieldDefinition } from '../../form/interface';
-
-declare const MuiIntegerField: import('react').ForwardRefExoticComponent<IIntegerFieldDefinition & import("react").RefAttributes<ITextField>>;
+import { ITextField } from '../../form/interfaceFields';
+declare const MuiIntegerField: import("react").ForwardRefExoticComponent<IIntegerFieldDefinition & import("react").RefAttributes<ITextField>>;
 export default MuiIntegerField;

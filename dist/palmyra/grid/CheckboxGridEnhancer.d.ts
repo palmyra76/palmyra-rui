@@ -1,7 +1,6 @@
-import { ColumnDef, RowData } from '@tanstack/react-table';
-import { IReactTanstackTable, ITableOptions } from '.';
-import { MutableRefObject } from 'react';
-
+import { MutableRefObject } from "react";
+import { IReactTanstackTable, ITableOptions } from ".";
+import { ColumnDef, RowData } from "@tanstack/react-table";
 interface IGridEnhancer {
     getTableOptions: () => ITableOptions;
     getTableRef: () => MutableRefObject<IReactTanstackTable>;

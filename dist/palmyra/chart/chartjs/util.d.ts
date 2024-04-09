@@ -1,5 +1,4 @@
-import { ITransformOptions } from '../Types';
-
+import { ITransformOptions } from "../Types";
 declare function getKeys(options: ITransformOptions): {
     xKey: any;
     yKeys: string[];

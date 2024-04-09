@@ -1,6 +1,5 @@
-import { default as GridRenderer, GridRendererInput } from './GridRenderer';
-import { default as FlexiLayoutRenderer } from './FlexiLayoutRenderer';
-
+import FlexiLayoutRenderer from "./FlexiLayoutRenderer";
+import GridRenderer, { GridRendererInput } from "./GridRenderer";
 export { StoreFactoryContext } from './FlexiLayoutContext';
 export * from './Definitions';
 export { FlexiLayoutRenderer, GridRenderer };

@@ -11,7 +11,8 @@ import { IFieldEventListener, IFieldValueListener } from ".";
  */
 type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch"
     | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete"
-    | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer";
+    | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer"
+    | "slider" | "sliderRange";
 
 type InputType = string | number | Date;
 
@@ -87,6 +88,25 @@ interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDec
 
 }
 
+interface ValueLabel {
+    value: number,
+    label: string
+}
+
+interface IRangeSliderDefinition extends AttributeDefinition, TextValidation, IDecoration {
+    minDistance?: number,
+    range?: boolean,
+    fieldProps?: {
+        disableSwap?: boolean,
+        size?: 'small',
+        valueLabelDisplay?: 'auto' | 'on' | 'off',
+        min?: number,
+        max?: number,
+        step?: number,
+        marks?: boolean | ValueLabel[]
+    }
+}
+
 interface INumberFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
 
 }
@@ -112,7 +132,7 @@ interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
 
 }
 
-type IRadioGroupOptions = Record<any, any> | Record<string, any> | {value:any, label:string}[];
+type IRadioGroupOptions = Record<any, any> | Record<string, any> | { value: any, label: string }[];
 
 interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
     options: IRadioGroupOptions,
@@ -250,8 +270,9 @@ const NoopFormListener: IFormListener = {
 
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition }
 export type {
-    IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition,IRadioGroupOptions,
-    IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers
+    IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions,
+    IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition,
+    IRangeSliderDefinition, strings, numbers
 }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration }
 

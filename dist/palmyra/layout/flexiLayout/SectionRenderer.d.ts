@@ -1,5 +1,4 @@
 import { SectionRendererInput } from './Types';
-
 /**
  * This renderer will redirect to corresponding SectionRenderer based on the type.
  *

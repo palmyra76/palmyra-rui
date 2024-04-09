@@ -1,5 +1,4 @@
-import { FieldDefinition } from './Definitions';
-import { LookupStore } from '../store';
-
+import { LookupStore } from "../store";
+import { FieldDefinition } from "./Definitions";
 declare const getLookupStore: (fieldDef: FieldDefinition) => LookupStore<any>;
 export { getLookupStore };

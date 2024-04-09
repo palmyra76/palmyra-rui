@@ -1,15 +1,14 @@
-import { IFieldEventListener, IFieldValueListener } from '.';
-import { IEndPointOptions } from '../layout/Types';
-import { IMutateOptions } from './interfaceFields';
-import { DefaultQueryParams, LookupStore } from '../store';
-import { IEndPoint } from '../layout';
-import { MutableRefObject, ReactNode, SetStateAction } from 'react';
-
+import { MutableRefObject, ReactNode, SetStateAction } from "react";
+import { IEndPoint } from "../layout";
+import { DefaultQueryParams, LookupStore } from "../store";
+import { IMutateOptions } from "./interfaceFields";
+import { IEndPointOptions } from "../layout/Types";
+import { IFieldEventListener, IFieldValueListener } from ".";
 /**
  * This definitions will cater to the Form Definition format
  *
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer";
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer" | "slider" | "sliderRange";
 type InputType = string | number | Date;
 type strings = string | string[];
 type numbers = number | number[];
@@ -69,6 +68,23 @@ interface IDecoration {
     title?: string;
 }
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
+}
+interface ValueLabel {
+    value: number;
+    label: string;
+}
+interface IRangeSliderDefinition extends AttributeDefinition, TextValidation, IDecoration {
+    minDistance?: number;
+    range?: boolean;
+    fieldProps?: {
+        disableSwap?: boolean;
+        size?: 'small';
+        valueLabelDisplay?: 'auto' | 'on' | 'off';
+        min?: number;
+        max?: number;
+        step?: number;
+        marks?: boolean | ValueLabel[];
+    };
 }
 interface INumberFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
 }
@@ -202,7 +218,7 @@ interface IFormListener {
 }
 declare const NoopFormListener: IFormListener;
 export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };
-export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, strings, numbers };
+export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, IRangeSliderDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration };
 export type { ITitle, IDecoratedTitle };
 export { NoopFormListener };

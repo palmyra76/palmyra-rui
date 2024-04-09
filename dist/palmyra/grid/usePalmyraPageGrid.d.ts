@@ -1,7 +1,6 @@
-import { TableLayout } from '../layout/flexiLayout';
-import { ColumnDefinition } from '.';
-import { IEndPoint } from '../layout/Types';
-
+import { IEndPoint } from "../layout/Types";
+import { ColumnDefinition } from ".";
+import { TableLayout } from "../layout/flexiLayout";
 interface IPalmyraGridInput {
     pageName: string;
     fields: ColumnDefinition[];

@@ -1,5 +1,5 @@
-import { ITextField } from '../../form/interfaceFields';
+/// <reference types="react" />
 import { ITextFieldDefinition } from '../../form/interface';
-
-declare const MuiPassword: import('react').ForwardRefExoticComponent<ITextFieldDefinition & import("react").RefAttributes<ITextField>>;
+import { ITextField } from '../../form/interfaceFields';
+declare const MuiPassword: import("react").ForwardRefExoticComponent<ITextFieldDefinition & import("react").RefAttributes<ITextField>>;
 export default MuiPassword;

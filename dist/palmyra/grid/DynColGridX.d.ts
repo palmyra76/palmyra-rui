@@ -1,8 +1,8 @@
-import { GridStore } from '../store';
-import { IPageQueryable } from '../form/interfaceFields';
-import { IServerQueryInput } from '../form/ServerQueryManager';
+/// <reference types="react" />
 import { ColumnDefinition, GridCustomizer, IExportOptions } from './Types';
-
+import { IServerQueryInput } from '../form/ServerQueryManager';
+import { IPageQueryable } from '../form/interfaceFields';
+import { GridStore } from '../store';
 interface GridXOptions extends IServerQueryInput {
     store: GridStore<any>;
     columns: (data: any) => ColumnDefinition[];
@@ -16,5 +16,5 @@ interface GridXOptions extends IServerQueryInput {
     title?: any;
     customAddButton?: any;
 }
-declare const DynColGridX: import('react').ForwardRefExoticComponent<GridXOptions & import("react").RefAttributes<IPageQueryable>>;
+declare const DynColGridX: import("react").ForwardRefExoticComponent<GridXOptions & import("react").RefAttributes<IPageQueryable>>;
 export default DynColGridX;

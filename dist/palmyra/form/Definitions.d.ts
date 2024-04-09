@@ -1,6 +1,5 @@
-import { FieldType, strings } from './interface';
-import { storeBacked } from '../layout/Types';
-
+import { storeBacked } from "../layout/Types";
+import { FieldType, strings } from "./interface";
 /**
  * This definitions will cater to the Form Definition format
  *

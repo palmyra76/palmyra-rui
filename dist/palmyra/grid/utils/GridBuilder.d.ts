@@ -1,5 +1,4 @@
-import { IGridDateDefinition, IGridDateTimeDefinition, IGridSelectDefinition, IGridTextFieldDefinition, IGridTimeDefinition } from './types';
-
+import { IGridDateDefinition, IGridDateTimeDefinition, IGridSelectDefinition, IGridTextFieldDefinition, IGridTimeDefinition } from "./types";
 declare class GridColumnsBuilder {
     columns: any;
     addTextField(d: IGridTextFieldDefinition): this;

@@ -1,6 +1,5 @@
-import { FormData, StoreFactory } from '../../main';
-import { IEndPoint } from '../layout/Types';
-
+import { IEndPoint } from "../layout/Types";
+import { FormData, StoreFactory } from "../../main";
 interface IPalmyraViewFormInput {
     storeFactory: StoreFactory<any>;
     id: string;

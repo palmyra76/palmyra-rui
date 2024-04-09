@@ -1,8 +1,7 @@
-import { IChartJS } from '..';
-import { MutableRefObject } from 'react';
-import { ChartType, IChartOptions } from '../Types';
-import { ChartOptions, ChartType as ChartJsType, Plugin } from 'chart.js';
-
+import { ChartOptions, ChartType as ChartJsType, Plugin } from "chart.js";
+import { ChartType, IChartOptions } from "../Types";
+import { MutableRefObject } from "react";
+import { IChartJS } from "..";
 interface Colorable {
     borderColor?: any;
     backgroundColor?: any;

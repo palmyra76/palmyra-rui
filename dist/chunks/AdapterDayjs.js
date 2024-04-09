@@ -298,7 +298,7 @@ const pt = Mt(["Your locale has not been found.", "Either the locale key is not 
   monthShort: "MMM",
   dayOfMonth: "D",
   weekday: "dddd",
-  weekdayShort: "dd",
+  weekdayShort: "ddd",
   hours24h: "HH",
   hours12h: "hh",
   meridiem: "A",

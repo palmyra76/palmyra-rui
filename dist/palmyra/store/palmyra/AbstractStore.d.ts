@@ -1,6 +1,5 @@
-import { IEndPoint, AbstractRequest, APIErrorHandlerFactory } from '../../../main';
 import { AxiosInstance } from 'axios';
-
+import { IEndPoint, AbstractRequest, APIErrorHandlerFactory } from "../../../main";
 declare class PalmyraAbstractStore {
     options: Record<string, any>;
     target: string;

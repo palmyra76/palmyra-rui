@@ -1,9 +1,9 @@
-import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from './Definitions';
-import { IEndPoint, Titleable } from '../Types';
-import { ChartStore, DataStore, LookupStore, TreeQueryStore, GridStore } from '../../store';
-import { strings } from '../../form/interface';
-import { FormData } from '../../form/Definitions';
-
+/// <reference types="react" />
+import { FormData } from "../../form/Definitions";
+import { strings } from "../../form/interface";
+import { ChartStore, DataStore, LookupStore, TreeQueryStore, GridStore } from "../../store";
+import { IEndPoint, Titleable } from "../Types";
+import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 interface Parent {
     children?: any;
 }

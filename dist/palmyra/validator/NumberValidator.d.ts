@@ -1,5 +1,4 @@
-import { FieldDefinition } from '../form/Definitions';
-
+import { FieldDefinition } from "../form/Definitions";
 declare class NumberValidator {
     validate: (format: FieldDefinition) => void;
 }

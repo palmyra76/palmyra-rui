@@ -1,6 +1,8 @@
-import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from './Types';
-import { IGetFieldManager } from './interface';
-
+/**
+ * Custom Hook for form validation
+ */
+import { IGetFieldManager } from "./interface";
+import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
 declare function createFormHelper(): IFormHelper;
 interface IListeners {
     eventListeners: Record<string, IFieldEventListener>;

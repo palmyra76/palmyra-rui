@@ -2,7 +2,7 @@ import { InteractionItem } from "chart.js";
 
 import { DataConverterGen, IgetPointData } from "../DataConverterFactory";
 import { Bubble, BubbleDataInput, BubbleDataSet, ChartDataConverter } from "../Types";
-import generateColors, { getRandomNumber } from "../colors/GenerateColors";
+import generateColors, { getRandomNumber } from "../style/GenerateColors";
 import { ITransformOptions, RawDataType } from "../../Types";
 
 

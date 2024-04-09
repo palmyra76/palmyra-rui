@@ -1,8 +1,7 @@
-import { PalmyraAbstractStore } from './AbstractStore';
-import { strings } from '../../form/interface';
-import { IEndPoint } from '../../layout/Types';
-import { QueryRequest, QueryResponse, TreeQueryStore, APIErrorHandlerFactory } from '../../../main';
-
+import { QueryRequest, QueryResponse, TreeQueryStore, APIErrorHandlerFactory } from "../../../main";
+import { IEndPoint } from "../../layout/Types";
+import { strings } from "../../form/interface";
+import { PalmyraAbstractStore } from "./AbstractStore";
 interface IChildTreeRequest {
     parent?: number;
 }

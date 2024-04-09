@@ -1,5 +1,4 @@
-import { IPagination } from '../../palmyra/store/Types';
-
+import { IPagination } from "../../palmyra/store/Types";
 interface IInputField {
     focus: () => void;
     isValid: () => void;
@@ -40,6 +39,8 @@ interface ICheckBoxField extends IInputField, IOptionsField {
 }
 interface ISwitchField extends IInputField, IOptionsField {
 }
+interface ISliderField extends IInputField {
+}
 interface IQueryable {
     setFilter: (d: any) => void;
     resetFilter: () => void;
@@ -57,4 +58,4 @@ interface IServerLookupField extends IInputField, IQueryable {
     setDefaultFilter: (d: any) => void;
 }
 export type { IMutateOptions, IQueryable, IInputField, IPageQueryable };
-export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField };
+export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField, ISliderField };

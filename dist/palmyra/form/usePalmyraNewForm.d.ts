@@ -1,8 +1,7 @@
-import { IFormListener } from './interface';
-import { FormData, StoreFactory } from '../../main';
-import { IEndPoint } from '../layout/Types';
-import { MutableRefObject } from 'react';
-
+import { MutableRefObject } from "react";
+import { IEndPoint } from "../layout/Types";
+import { FormData, StoreFactory } from "../../main";
+import { IFormListener } from "./interface";
 interface IPalmyraNewFormInput {
     storeFactory: StoreFactory<any>;
     endPoint: IEndPoint;

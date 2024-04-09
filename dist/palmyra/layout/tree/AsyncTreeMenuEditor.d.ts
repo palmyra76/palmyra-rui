@@ -1,7 +1,7 @@
-import { StoreFactory } from '../flexiLayout/Types';
-import { IEndPoint } from '..';
-import { IChildTreeRequest } from '../../store/palmyra/PalmyraTreeStore';
-
+/// <reference types="react" />
+import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
+import { IEndPoint } from "..";
+import { StoreFactory } from "../flexiLayout/Types";
 interface IAsyncTreeEditorInput {
     storeFactory: StoreFactory<IChildTreeRequest>;
     endPoint: IEndPoint;
@@ -21,6 +21,6 @@ interface Node {
 interface IAsyncTreeMenuEditor {
     getValue: () => Node;
 }
-declare const AsyncTreeMenuEditor: import('react').ForwardRefExoticComponent<IAsyncTreeEditorInput & import("react").RefAttributes<IAsyncTreeMenuEditor>>;
+declare const AsyncTreeMenuEditor: import("react").ForwardRefExoticComponent<IAsyncTreeEditorInput & import("react").RefAttributes<IAsyncTreeMenuEditor>>;
 export default AsyncTreeMenuEditor;
 export type { IAsyncTreeEditorInput, IAsyncTreeMenuEditor };

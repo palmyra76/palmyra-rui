@@ -5,10 +5,12 @@ import { DateTimeConverter } from "./DateConverter";
 import { DateRangeConverter } from "./DateRangeConverter";
 import { noopConverter } from "./NoopConverter";
 import { ServerlookupTransformer } from "./ServerlookupTransformer";
+import { SliderRangeConverter } from "./SliderRangeConverter";
 
 const getFormatConverter = (props: FieldDefinition, formDataRef?: MutableRefObject<any>): Converter<any, any> => {
 
     const type: FieldType = props.type;
+    
     switch (type) {
         case 'date':
             return new DateTimeConverter(props, 'YYYY-MM-DD');
@@ -18,6 +20,9 @@ const getFormatConverter = (props: FieldDefinition, formDataRef?: MutableRefObje
             return new DateRangeConverter(props, 'YYYY-MM-DD');
         case 'serverlookup':
             return new ServerlookupTransformer(props, formDataRef);
+        case 'sliderRange':
+            //@ts-ignore
+            return new SliderRangeConverter(props);
         default:
             return noopConverter;
     }

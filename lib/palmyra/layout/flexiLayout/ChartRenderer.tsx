@@ -3,7 +3,7 @@ import { useContext, useMemo, useRef, useState } from 'react';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
 import { ITransformOptions } from '../../chart/Types';
-import { getStyleConverter } from '../../chart/chartjs/colors/StyleConverterFactory';
+import { getStyleConverter } from '../../chart/chartjs/style/StyleConverterFactory';
 import { ChartJS, IChartJS } from '../../chart/chartjs/ChartJS';
 
 interface ChartRendererInput {

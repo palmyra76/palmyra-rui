@@ -1,6 +1,5 @@
-import { getFormatConverter } from './FormatterFactory';
 import { FieldDefinition } from '../../form/Definitions';
-
+import { getFormatConverter } from './FormatterFactory';
 interface Converter<TEXT, DATA> {
     /**
      * Format and Parse functions will be used in  form data entry

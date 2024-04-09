@@ -1,5 +1,4 @@
-import { AuthDecorator } from '..';
-
+import { AuthDecorator } from "..";
 declare class NoAuthDecorator implements AuthDecorator {
     decorate(_request: any): void;
 }

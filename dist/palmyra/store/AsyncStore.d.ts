@@ -1,6 +1,5 @@
-import { ExportRequest, GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest } from './Types';
-import { strings } from '../form/interface';
-
+import { strings } from "../form/interface";
+import { ExportRequest, GetRequest, PostRequest, PutRequest, QueryRequest, QueryResponse, RemoveRequest } from "./Types";
 interface LookupStore<T> extends AbstractQueryStore<T> {
 }
 interface AbstractQueryStore<T> {

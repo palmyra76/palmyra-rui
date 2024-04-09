@@ -1,10 +1,10 @@
-import { ITitle } from '../../form/interface';
-import { DefaultQueryParams } from '../../store';
-import { IPageQueryable } from '../../form/interfaceFields';
-import { GridCustomizer, IExportOptions } from '../../grid';
-import { TableLayout } from '.';
+/// <reference types="react" />
 import { PageContext } from './Types';
-
+import { TableLayout } from '.';
+import { GridCustomizer, IExportOptions } from '../../grid';
+import { IPageQueryable } from '../../form/interfaceFields';
+import { DefaultQueryParams } from '../../store';
+import { ITitle } from '../../form/interface';
 interface GridRendererInput {
     layout: TableLayout;
     context: PageContext;
@@ -20,6 +20,6 @@ interface GridRendererInput {
     exportOptions?: IExportOptions;
     densityOption?: any;
 }
-declare const GridRenderer: import('react').ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
+declare const GridRenderer: import("react").ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
 export default GridRenderer;
 export type { GridRendererInput };
