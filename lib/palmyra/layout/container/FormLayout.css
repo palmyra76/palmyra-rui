@@ -133,6 +133,51 @@
     width: 95%;
 }
 
+
+jhfytfvjb 
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container {
+    width: calc(20% - 5px);
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-2colspan {
+    width: 50%;
+    padding: 10px 20px 10px 20px;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-2colspan .palmyra-form-field-label {
+    width: 19%;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-2colspan .palmyra-form-field-data {
+    width: 81%;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-3colspan {
+    width: 80%;
+    padding: 10px 95px 10px 20px;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-3colspan .palmyra-form-field-label {
+    width: 13%;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-3colspan .palmyra-form-field-data {
+    width: 90%;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-4colspan {
+    width: 100%;
+    padding: 10px 30px 10px 20px;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-4colspan .palmyra-form-field-label {
+    width: 10%;
+}
+
+.palmyra-field-group-container-5columns .palmyra-form-field-container-4colspan .palmyra-form-field-data {
+    width: 95%;
+}
 /* -- Palmyra Form Field Group Columns & Colspan Alignment -- */
 
 .palmyra-form-field-container-2column {
@@ -145,6 +190,10 @@
 
 .palmyra-form-field-container-4column {
     width: calc(25% - 30px) !important;
+}
+
+.palmyra-form-field-container-5column {
+    width: calc(20% - 30px) !important;
 }
 
 .form-error-text {
