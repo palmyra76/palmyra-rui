@@ -1,13 +1,12 @@
-var f = Object.defineProperty;
-var h = (t, o, r) => o in t ? f(t, o, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[o] = r;
-var c = (t, o, r) => (h(t, typeof o != "symbol" ? o + "" : o, r), r);
-import a from "axios";
-import { PalmyraAbstractStore as p } from "./AbstractStore.js";
-class y extends p {
-  constructor(r, e, n) {
-    super(r, e);
-    c(this, "idProperty");
-    this.idProperty = n;
+var h = Object.defineProperty;
+var a = (t, o, r) => o in t ? h(t, o, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[o] = r;
+var d = (t, o, r) => (a(t, typeof o != "symbol" ? o + "" : o, r), r);
+import { PalmyraAbstractStore as f } from "./AbstractStore.js";
+class P extends f {
+  constructor(r, e, n, i) {
+    super(r, e, n);
+    d(this, "idProperty");
+    this.idProperty = i;
   }
   getEndPoint() {
     return this.endPoint;
@@ -24,17 +23,19 @@ class y extends p {
   }
   query(r) {
     var e = this.target + this.queryUrl(), n = this.formatUrl(e, r);
-    const i = { params: u(r) };
-    return a.get(n, i).then((l) => {
-      var d;
-      return (d = l.data) == null ? void 0 : d.result;
+    const s = { params: p(r) };
+    return this.getClient().get(n, s).then((l) => {
+      var c;
+      return (c = l.data) == null ? void 0 : c.result;
+    }).catch((l) => {
+      this.handleError(r, l);
     });
   }
 }
-function u(t) {
-  const o = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((i) => (t.sortOrder[i] === "asc" ? "+" : "-") + i), r = !!t.total, e = t.filter || {}, n = t.offset || 0, s = t.limit || 15;
-  return { ...e, _total: r, _offset: n, _limit: s, _orderBy: o.length ? o.join(",") : [] };
+function p(t) {
+  const o = Object.keys((t == null ? void 0 : t.sortOrder) || {}).map((s) => (t.sortOrder[s] === "asc" ? "+" : "-") + s), r = !!t.total, e = t.filter || {}, n = t.offset || 0, i = t.limit || 15;
+  return { ...e, _total: r, _offset: n, _limit: i, _orderBy: o.length ? o.join(",") : [] };
 }
 export {
-  y as PalmyraChartStore
+  P as PalmyraChartStore
 };

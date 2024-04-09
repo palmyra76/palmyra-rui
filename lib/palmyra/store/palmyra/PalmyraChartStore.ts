@@ -1,5 +1,4 @@
-import { QueryRequest, QueryParams, ChartStore } from "../../../main";
-import axios from 'axios';
+import { QueryRequest, QueryParams, ChartStore, APIErrorHandlerFactory } from "../../../main";
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
 import { PalmyraAbstractStore } from "./AbstractStore";
@@ -8,8 +7,8 @@ class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
         
     idProperty: strings
 
-    constructor(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings) {
-        super(request, endPoint);
+    constructor(request: Record<string, string>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings) {
+        super(request, endPoint, factory);
         this.idProperty = idProperty;
     }
 
@@ -38,8 +37,9 @@ class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any>{
         var url: any = this.formatUrl(urlFormat, request);
         const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
-        return axios.get(url, params)
-            .then(response => { return response.data?.result });
+        return this.getClient().get(url, params)
+            .then(response => { return response.data?.result })
+            .catch(error => {this.handleError(request, error)});
     }
 }
 

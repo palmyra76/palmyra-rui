@@ -1,5 +1,5 @@
-import { QueryRequest, QueryResponse, QueryParams, TreeQueryStore } from "../../../main";
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { QueryRequest, QueryResponse, QueryParams, TreeQueryStore, APIErrorHandlerFactory } from "../../../main";
+import { AxiosRequestConfig } from 'axios';
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
 import { PalmyraAbstractStore } from "./AbstractStore";
@@ -8,11 +8,11 @@ interface IChildTreeRequest {
     parent?: number
 }
 
-class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IChildTreeRequest, any>{
+class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IChildTreeRequest, any> {
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, idProperty?: strings) {
-        super(options, endPoint);
+    constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings) {
+        super(options, endPoint, factory);
         this.idProperty = idProperty;
     }
     getChildren(data: IChildTreeRequest): Promise<QueryResponse<any>> {
@@ -24,19 +24,12 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
         return this.query(request);
     }
 
-    getClient(): AxiosInstance {
-        return axios;
-    }
-
-    getEndPoint(): IEndPoint {
-        return this.endPoint;
-    }
-
     queryUrl(): string {
-        if (typeof this.endPoint == 'string') {
-            return this.endPoint;
+        const endPoint = this.getEndPoint();
+        if (typeof endPoint == 'string') {
+            return endPoint;
         } else {
-            this.endPoint.query;
+            endPoint.query;
         }
     }
 
@@ -45,8 +38,9 @@ class PalmyraTreeStore extends PalmyraAbstractStore implements TreeQueryStore<IC
         var url: any = this.formatUrl(urlFormat, request);
         const urlSortParams = (convertQueryParams(request));
         const params: AxiosRequestConfig = { params: urlSortParams, headers: { action: 'nativeQuery' } };
-        return axios.get(url, params)
-            .then(response => { return response.data });
+        return this.getClient().get(url, params)
+            .then(response => { return response.data })
+            .catch(error => {this.handleError(request, error)});
     }
 }
 
