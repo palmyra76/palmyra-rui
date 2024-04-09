@@ -250,4 +250,3 @@ function isRequiredSupported(format: FieldDefinition) {
     }
     return true;
 }
-

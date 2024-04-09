@@ -1,4 +1,4 @@
-import { ITransformOptions, StyleOptions, chartStyle } from "../../Types";
+import { ITransformOptions, StyleOptions, ChartStyle } from "../../Types";
 import { ChartStyleConverter, DataSet, DataSetType, DataSets } from "../Types"
 import { getKeys } from "../util";
 import generateColors from "./GenerateColors";
@@ -15,7 +15,7 @@ const LabelStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleO
 
         data.datasets?.map((dataset: DataSet<DataSetType>) => {
             const key = dataset.key;
-            const style: chartStyle = styleOptions[key];
+            const style: ChartStyle = styleOptions[key];
             if (style) {
                 dataset.backgroundColor = style.backgroundColor || generateColors(1);
                 dataset.borderColor = style.borderColor || generateColors(1);
@@ -60,6 +60,19 @@ const TwoXArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: St
     }
 }
 
+const assignStyles = (d, style: ChartStyle) => {
+    d.backgroundColor = style?.backgroundColor || generateColors(1)[0];
+    d.borderColor = style?.borderColor || generateColors(1)[0];
+    assign(style, d, 'radius');
+    assign(style, d, 'borderWidth');
+    assign(style, d, 'hoverRadius');
+}
+
+const assign = (src, tgt, key: keyof ChartStyle) => {
+    if (src[key])
+        tgt[key] = src[key];
+}
+
 
 const GroupArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleOptions,
     transformOptions?: ITransformOptions) => {
@@ -69,8 +82,7 @@ const GroupArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: S
 
         data.datasets.map((d, index) => {
             const style = styleOptions[d.key];
-            d.backgroundColor = style?.backgroundColor;
-            d.borderColor = style?.borderColor;
+            assignStyles(d, style);
         });
         return data;
     }
@@ -86,7 +98,7 @@ const DatasetStyleConverterFactory: IStyleConverterFactory = (styleOptions: Styl
         const borderColor: any[] = generateColors(data.labels.length);
 
         data.labels.map((label, index) => {
-            const style: chartStyle = styleOptions[label];
+            const style: ChartStyle = styleOptions[label];
             if (style) {
                 if (style.backgroundColor)
                     backgroundColor[index] = style.backgroundColor;
@@ -117,7 +129,7 @@ const ArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: StyleO
 
         data.labels.map((label, index) => {
             const i = index % length;
-            const style: chartStyle = styleOptions[i];
+            const style: ChartStyle = styleOptions[i];
             backgroundColor.push(style?.backgroundColor)
             borderColor.push(style?.borderColor);
         })
@@ -154,7 +166,7 @@ const getStyleConverter = (chartType: string, styleOptions: StyleOptions, transf
         // return NoopStyleConverter;
         return RandomStyleConverterFactory({});
 
-    if(transformOptions.group){
+    if (transformOptions.group) {
         return GroupArrayStyleConverterFactory(styleOptions, transformOptions);
     }
 
