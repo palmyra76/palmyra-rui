@@ -1,12 +1,12 @@
 import { IStyleConverterFactory, StyleType } from "../..";
 import { ArrayStyleConverterFactory } from "./base/ArrayStyleConverterFactory";
-import { NamedStyleConverterFactory } from "./base/NamedStyleConverterFactory";
+import { BarNamedStyleConverterFactory } from "./base/BarNamedStyleConverterFactory";
 import { NoopStyleConverterFactory, RandomStyleConverterFactory } from "./base/RandomStyleConverterFactory";
 
 
 const converters: Partial<Record<StyleType, IStyleConverterFactory>> = {
     "Array": ArrayStyleConverterFactory,
-    "Named": NamedStyleConverterFactory,
+    "Named": BarNamedStyleConverterFactory,
     "Random": RandomStyleConverterFactory,
     "Noop": NoopStyleConverterFactory
 }
