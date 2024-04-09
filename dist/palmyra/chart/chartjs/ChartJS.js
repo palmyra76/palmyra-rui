@@ -1,9 +1,10 @@
 import "react/jsx-runtime";
 import "react";
-import { C } from "../../../chunks/ChartJS.js";
+import { C as e } from "../../../chunks/ChartJS.js";
 import "./DataConverterFactory.js";
 import "react-chartjs-2";
 import "chart.js";
+import "./converters/ScaleConverter.js";
 export {
-  C as ChartJS
+  e as ChartJS
 };

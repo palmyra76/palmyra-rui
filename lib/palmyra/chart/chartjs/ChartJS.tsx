@@ -17,6 +17,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { NoopConverter } from './converters/ScaleConverter';
 
 
 const ChartJSTypeRegistry: Partial<Record<ChartType, ChartJSType>> = {
@@ -79,14 +80,17 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
     }
 
     const processRawData = (data: any) => {
-        const props = getProps();
-        var d = transform(data, props.type, props.transformOptions);        
-        if (props.postProcessors) {
-            props.postProcessors.map((p: PostProcessor, index) => {
-                d = p(d);
-            })
+        if (data) {
+            const props = getProps();
+            var d = transform(data, props.type, props.transformOptions);
+            if (props.postProcessors) {
+                props.postProcessors.map((p: PostProcessor, index) => {
+                    d = p(d);
+                })
+            }
+            return d;
         }
-        return d;
+        return { datasets: [] }
     }
 
     const chartData = useRef(processRawData(p.data));
@@ -135,6 +139,10 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
     }, [p.data])
 
     function transform(data: any, type: ChartType, options: ITransformOptions): any {
+        if (!data) {
+            console.info('empty data received')
+            return NoopConverter;
+        }
         const sourceType: RawDataType = options?.sourceType ?
             options?.sourceType :
             (data && data instanceof Array) ? "Array" : "Object";

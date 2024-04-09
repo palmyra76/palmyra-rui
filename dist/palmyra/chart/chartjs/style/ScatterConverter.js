@@ -1,11 +1,11 @@
-import { ArrayStyleConverterFactory as r } from "./base/ArrayStyleConverterFactory.js";
-import { DatasetStyleConverterFactory as o } from "./base/DatasetStyleConverterFactory.js";
-import { RandomStyleConverterFactory as t, NoopStyleConverterFactory as e } from "./base/RandomStyleConverterFactory.js";
+import { NamedStyleConverterFactory as r } from "./base/NamedStyleConverterFactory.js";
+import { RandomStyleConverterFactory as o, NoopStyleConverterFactory as t } from "./base/RandomStyleConverterFactory.js";
+import { ScatterArrayStyleConverterFactory as e } from "./base/ScatterArrayStyleConverterFactory.js";
 const n = {
-  Array: r,
-  Named: o,
-  Random: t,
-  Noop: e
+  Array: e,
+  Named: r,
+  Random: o,
+  Noop: t
 };
 export {
   n as default

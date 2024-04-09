@@ -57,7 +57,10 @@ var PointConverterMap: Record<string, IgetPointData> = {
 const getDataConverter = (chartType: string, sourceType: RawDataType, options: ITransformOptions): ChartDataConverter<any> => {
     var srcType = sourceType || 'Array';
     var converterGen: DataConverterGen = dataMap[chartType]?.[srcType];
-    return (converterGen ? converterGen(options) : NoopConverter);
+    if (converterGen)
+        return converterGen(options);
+    console.info('Data Converter not found ' + chartType + ':' + srcType);
+    return NoopConverter;
 }
 
 const addDataConverter = (chartType: string, sourceType: string,
