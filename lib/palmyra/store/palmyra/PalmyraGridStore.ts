@@ -1,19 +1,14 @@
-import { GetRequest, QueryRequest, QueryResponse, QueryParams, GridStore, ExportRequest } from "../../../../lib/main";
-import axios, { AxiosInstance } from 'axios';
+import { GetRequest, QueryRequest, QueryResponse, QueryParams, GridStore, ExportRequest, APIErrorHandlerFactory } from "../../../../lib/main";
 import { IEndPoint } from "../../layout/Types";
 import { strings } from "../../form/interface";
 import { PalmyraAbstractStore } from "./AbstractStore";
 
-class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any>{
+class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any> {
     idProperty: strings
 
-    constructor(options: Record<string, any>, endPoint: IEndPoint, idProperty?: strings) {
-        super(options, endPoint);
+    constructor(options: Record<string, any>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings) {
+        super(options, endPoint, factory);
         this.idProperty = idProperty;
-    }
-
-    getClient(): AxiosInstance {
-        return axios;
     }
 
     getEndPoint(): IEndPoint {
@@ -42,7 +37,8 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any>{
         const urlSortParams = (convertQueryParams(request));
         const params = { params: urlSortParams };
         return this.isUrlValid(url) || this.getClient().get(url, params)
-            .then(response => { return response.data });
+            .then(response => { return response.data })
+            .catch(error => { this.handleError(request, error) });
     }
 
     export(request: ExportRequest): void {
@@ -52,7 +48,7 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any>{
         urlSortParams._format = request.format;
 
         const queryParams = new URLSearchParams(urlSortParams).toString();
-        
+
         window.open(url + '?' + queryParams, '_blank');
 
         // const params: AxiosRequestConfig = {
@@ -73,14 +69,16 @@ class PalmyraGridStore extends PalmyraAbstractStore implements GridStore<any>{
                 action: 'schema'
             }
         })
-            .then((response) => response.data);
+            .then((response) => response.data)
+            .catch(error => { this.handleError(request, error) });
     }
 
     get(request: GetRequest, idProperty?: string): Promise<any> {
         var urlFormat = this.target + this.queryUrl();
         var url: any = this.formatUrl(urlFormat, request);
         return this.isUrlValid(url) || this.getClient().get(url)
-            .then(response => { return response.data?.result });
+            .then(response => { return response.data?.result })
+            .catch(error => { this.handleError(request, error) });
     }
 
     getIdentity(o: any) {

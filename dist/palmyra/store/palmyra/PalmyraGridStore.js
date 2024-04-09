@@ -1,16 +1,12 @@
 var d = Object.defineProperty;
-var u = (r, o, t) => o in r ? d(r, o, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[o] = t;
-var l = (r, o, t) => (u(r, typeof o != "symbol" ? o + "" : o, t), t);
-import c from "axios";
-import { PalmyraAbstractStore as g } from "./AbstractStore.js";
-class y extends g {
-  constructor(t, i, e) {
-    super(t, i);
+var c = (r, i, t) => i in r ? d(r, i, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[i] = t;
+var l = (r, i, t) => (c(r, typeof i != "symbol" ? i + "" : i, t), t);
+import { PalmyraAbstractStore as u } from "./AbstractStore.js";
+class f extends u {
+  constructor(t, n, o, e) {
+    super(t, n, o);
     l(this, "idProperty");
     this.idProperty = e;
-  }
-  getClient() {
-    return c;
   }
   getEndPoint() {
     return this.endPoint;
@@ -26,30 +22,36 @@ class y extends g {
     this.endPoint.get;
   }
   query(t) {
-    var i = this.target + this.queryUrl(), e = this.formatUrl(i, t);
+    var n = this.target + this.queryUrl(), o = this.formatUrl(n, t);
     const s = { params: h(t) };
-    return this.isUrlValid(e) || this.getClient().get(e, s).then((a) => a.data);
+    return this.isUrlValid(o) || this.getClient().get(o, s).then((a) => a.data).catch((a) => {
+      this.handleError(t, a);
+    });
   }
   export(t) {
-    var i = this.target + this.queryUrl(), e = this.formatUrl(i, t);
-    const n = h(t);
-    n._format = t.format;
-    const s = new URLSearchParams(n).toString();
-    window.open(e + "?" + s, "_blank");
+    var n = this.target + this.queryUrl(), o = this.formatUrl(n, t);
+    const e = h(t);
+    e._format = t.format;
+    const s = new URLSearchParams(e).toString();
+    window.open(o + "?" + s, "_blank");
   }
   queryLayout(t) {
-    var i = this.target + this.queryUrl(), e = this.formatUrl(i, t);
-    return this.isUrlValid(e) || this.getClient().get(e, {
+    var n = this.target + this.queryUrl(), o = this.formatUrl(n, t);
+    return this.isUrlValid(o) || this.getClient().get(o, {
       headers: {
         action: "schema"
       }
-    }).then((n) => n.data);
+    }).then((e) => e.data).catch((e) => {
+      this.handleError(t, e);
+    });
   }
-  get(t, i) {
-    var e = this.target + this.queryUrl(), n = this.formatUrl(e, t);
-    return this.isUrlValid(n) || this.getClient().get(n).then((s) => {
+  get(t, n) {
+    var o = this.target + this.queryUrl(), e = this.formatUrl(o, t);
+    return this.isUrlValid(e) || this.getClient().get(e).then((s) => {
       var a;
       return (a = s.data) == null ? void 0 : a.result;
+    }).catch((s) => {
+      this.handleError(t, s);
     });
   }
   getIdentity(t) {
@@ -60,9 +62,9 @@ class y extends g {
   }
 }
 function h(r) {
-  const o = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((s) => (r.sortOrder[s] === "asc" ? "+" : "-") + s), t = !!r.total, i = r.filter || {}, e = r.offset || 0, n = r.limit || 15;
-  return { ...i, _total: t, _orderBy: o.length ? o.join(",") : [], _offset: e, _limit: n };
+  const i = Object.keys((r == null ? void 0 : r.sortOrder) || {}).map((s) => (r.sortOrder[s] === "asc" ? "+" : "-") + s), t = !!r.total, n = r.filter || {}, o = r.offset || 0, e = r.limit || 15;
+  return { ...n, _total: t, _orderBy: i.length ? i.join(",") : [], _offset: o, _limit: e };
 }
 export {
-  y as PalmyraGridStore
+  f as PalmyraGridStore
 };

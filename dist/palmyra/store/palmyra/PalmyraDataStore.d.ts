@@ -1,10 +1,10 @@
 import { PalmyraGridStore } from './PalmyraGridStore';
 import { IEndPoint } from '../../layout/Types';
 import { strings } from '../../form/interface';
-import { DataStore, PostRequest, PutRequest, RemoveRequest } from '../../../main';
+import { APIErrorHandlerFactory, DataStore, PostRequest, PutRequest, RemoveRequest } from '../../../main';
 
 declare class PalmyraDataStore<T> extends PalmyraGridStore implements DataStore<T> {
-    constructor(request: Record<string, string>, endPoint: IEndPoint, idProperty?: strings);
+    constructor(request: Record<string, string>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings);
     save(data: any, request?: PostRequest): Promise<T>;
     post(data: any, request?: PostRequest): Promise<T>;
     put(data: any, request?: PutRequest): Promise<T>;

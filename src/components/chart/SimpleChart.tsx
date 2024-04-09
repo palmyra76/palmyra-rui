@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChartJS, ChartLayout, ChartType, IChartJS, IPalmyraChartOptions, PalmyraStoreFactory, getStyleConverter, mergeDeep } from '../../../lib/main';
+import { APIErrorHandlerFactory, ChartJS, ChartLayout, ChartType, IChartJS, IPalmyraChartOptions, PalmyraStoreFactory, getStyleConverter, mergeDeep } from '../../../lib/main';
 import { Chart, ChartType as ChartJSType, Plugin, registerables } from 'chart.js';
 
 interface ISimpleChartOptions<T extends ChartType> extends IPalmyraChartOptions<T> {
@@ -7,6 +7,17 @@ interface ISimpleChartOptions<T extends ChartType> extends IPalmyraChartOptions<
 }
 
 Chart.register(...registerables);
+
+const errorHandlerFactory: APIErrorHandlerFactory = () => {
+    return (error: any) => {
+        const status: number = error.response.status;
+        if (status >= 500)
+            return false;
+
+        console.log(error);
+        return true;
+    }
+}
 
 const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     const layout = props;
@@ -30,7 +41,7 @@ const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     }
 
     useMemo(() => {
-        store.query({ limit: 100, total: true, filter: {} })
+        store.query({ limit: 100, total: true, filter: {}, errorHandler: errorHandlerFactory({}) })
             .then(d => updateData(d))
             .catch(() => setData(null));
     }, []);

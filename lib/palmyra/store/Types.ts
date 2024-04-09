@@ -6,9 +6,13 @@ interface IPagination {
     total?: boolean
 }
 
+type ErrorHandler = (error: any) => boolean;
+type APIErrorHandlerFactory = (config?: any) => ErrorHandler
+
 interface AbstractRequest {
     options?: QueryOptions,
-    endPointVars?: IEndPointOptions
+    endPointVars?: IEndPointOptions,
+    errorHandler?: ErrorHandler
 }
 
 interface CriteriaOptions {
@@ -77,4 +81,5 @@ interface Tree<T extends Tree<T>> {
 
 export type { IPagination, CriteriaOptions, QueryRequest, QueryResponse, QueryOptions, Tree, QueryParams, AbstractRequest }
 export type { GetRequest, PostRequest, PutRequest, RemoveRequest, ExportRequest }
-export type { QueryResponseHandler, ResponseHandler, ErrorResponse,  EXPORT_FORMAT}
+export type { QueryResponseHandler, ResponseHandler, ErrorResponse, EXPORT_FORMAT }
+export type { ErrorHandler, APIErrorHandlerFactory }

@@ -1,9 +1,9 @@
-var m = Object.defineProperty;
-var e = (i, t, r) => t in i ? m(i, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : i[t] = r;
-var o = (i, t, r) => (e(i, typeof t != "symbol" ? t + "" : t, r), r);
+var l = Object.defineProperty;
+var c = (r, t, o) => t in r ? l(r, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : r[t] = o;
+var e = (r, t, o) => (c(r, typeof t != "symbol" ? t + "" : t, o), o);
+import n from "axios";
 import "../../../chunks/ServerCardLayout.js";
 import "../../layout/flexiLayout/FlexiLayoutContext.js";
-import "axios";
 import "react/jsx-runtime";
 import "@mui/material";
 import "../../layout/container/SectionContainer.js";
@@ -15,7 +15,7 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css                            */import "../../layout/card/CardLayout.js";
 import "../../layout/tree/AsyncTreeMenuEditor.js";
-/* empty css                             */import { StringFormat as p, hasUnfilledParameter as n } from "../../utils/StringUtil.js";
+/* empty css                             */import { StringFormat as p, hasUnfilledParameter as d } from "../../utils/StringUtil.js";
 import "../../utils/pubsub/topic.js";
 import "@tanstack/react-table";
 import "react-chartjs-2";
@@ -35,12 +35,25 @@ import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
 import "../../form/PalmyraForm.js";
-class R {
-  constructor(t, r) {
-    o(this, "options");
-    o(this, "target");
-    o(this, "endPoint");
-    this.options = t, this.target = t.target, this.endPoint = r;
+class _ {
+  constructor(t, o, s) {
+    e(this, "options");
+    e(this, "target");
+    e(this, "endPoint");
+    e(this, "axiosInstance");
+    this.axiosInstance = n.create({
+      timeout: 5e3
+    });
+    const m = s || (() => (i) => {
+      const a = i.request.responseURL || i.config.url;
+      console.log(i.response.status + ":" + i.code + "-requestUrl:" + a), console.log(i.message + " -- response data:'" + i.response.data + "'");
+    });
+    n.interceptors.response.use(void 0, function(i) {
+      return i.handleGlobally = m(i), Promise.reject(i);
+    }), this.options = t, this.target = t.target, this.endPoint = o;
+  }
+  getClient() {
+    return n;
   }
   getEndPoint() {
     return this.endPoint;
@@ -51,13 +64,16 @@ class R {
   getTarget() {
     return this.target;
   }
-  formatUrl(t, r) {
-    return r ? p(p(t, r.options), r.endPointVars) : t;
+  formatUrl(t, o) {
+    return o ? p(p(t, o.options), o.endPointVars) : t;
   }
   isUrlValid(t) {
-    return n(t) ? Promise.reject("endPoint options yet to be populated " + t) : !1;
+    return d(t) ? Promise.reject("endPoint options yet to be populated " + t) : !1;
+  }
+  handleError(t, o) {
+    t.errorHandler && t.errorHandler(o) || o.handleGlobally(o);
   }
 }
 export {
-  R as PalmyraAbstractStore
+  _ as PalmyraAbstractStore
 };

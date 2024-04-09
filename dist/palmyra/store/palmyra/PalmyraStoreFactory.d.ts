@@ -1,12 +1,14 @@
 import { IEndPoint } from '../../layout/Types';
 import { strings } from '../../form/interface';
-import { ChartStore, DataStore, StoreFactory, LookupStore, TreeQueryStore, GridStore } from '../../../main';
+import { ChartStore, DataStore, StoreFactory, LookupStore, TreeQueryStore, GridStore, APIErrorHandlerFactory } from '../../../main';
 
 interface PalmyraStoreFactoryArg {
     baseUrl?: string;
+    errorHandlerFactory?: APIErrorHandlerFactory;
 }
 declare class PalmyraStoreFactory implements StoreFactory<any> {
     baseUrl: string;
+    errorHandlerFactory: APIErrorHandlerFactory;
     constructor(props: PalmyraStoreFactoryArg);
     getGridStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): GridStore<any>;
     getFormStore(options: Record<string, string>, endPoint: IEndPoint, idProperty?: strings): DataStore<any>;
