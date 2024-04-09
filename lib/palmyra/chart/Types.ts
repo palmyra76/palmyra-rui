@@ -32,15 +32,24 @@ interface ITransformOptions {
 
 type ChartType = keyof ChartRegistry;
 
-type StyleOptions = Record<string, ChartStyle> | ChartStyle[] | Record<string, ChartStyle[]>;
+type NamedStyle = Record<string, ChartStyle>;
+
+type IStyleOptions = {
+    type?: StyleType,
+    style?: NamedStyle | ChartStyle[] | Record<string, ChartStyle[]> | Record<string, NamedStyle>;
+}
+
+type StyleOptions = IStyleOptions | Record<string, ChartStyle> | ChartStyle[] | Record<string, ChartStyle[]>;
 
 interface ChartStyle {
     backgroundColor?: string,
     borderColor?: string,
     borderWidth?: number,
-    radius?:number,
-    hoverRadius?:number
+    radius?: number,
+    hoverRadius?: number
 }
+
+type StyleType = 'Array' | 'Named' | 'Nested' | 'Random' | 'Noop';
 
 interface transformable {
     transformOptions?: ITransformOptions;
@@ -119,7 +128,6 @@ interface IPalmyraChartOptions<T extends ChartType> extends IChartOptions<T>, st
     styleOptions?: StyleOptions
 }
 
-
 interface IChart {
     setData: (data: any) => void,
     setTransformOptions: (tx: ITransformOptions) => void,
@@ -130,4 +138,4 @@ interface IChart {
 
 export type { ChartRegistry, StyleOptions, ChartStyle, transformable, ITransformOptions, ChartType, RawDataType, SelectedArea }
 export type { IChartOptions, IChart, PostProcessor, DataTransformer, TypedTransformOptions, IPalmyraChartOptions }
-export type { GroupedScatterTransformOptions }
+export type { GroupedScatterTransformOptions, StyleType }

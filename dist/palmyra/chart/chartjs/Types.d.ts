@@ -1,5 +1,5 @@
 import { ChartOptions, ChartType as ChartJsType, Plugin } from "chart.js";
-import { ChartType, IChartOptions } from "../Types";
+import { ChartType, IChartOptions, ITransformOptions, StyleOptions } from "../Types";
 import { MutableRefObject } from "react";
 import { IChartJS } from "..";
 interface Colorable {
@@ -50,9 +50,12 @@ interface ChartDataConverter<DataSetType> {
 interface ChartStyleConverter<DataSetType> {
     (data: DataSets<DataSetType>, options?: any): DataSets<DataSetType>;
 }
+interface IStyleConverterFactory {
+    (styleOptions: StyleOptions, transformOptions?: ITransformOptions): ChartStyleConverter<DataSetType>;
+}
 export type { IChartJSOptions };
 export type { ScaleDataInput, DataSet, DataSets, DataSetType };
 export type { ScatterDataInput, Point };
 export type { BubbleDataInput, Bubble };
 export type { ScaleDataSet, ScatterDataSet, BubbleDataSet };
-export type { ChartDataConverter, ChartStyleConverter };
+export type { ChartDataConverter, ChartStyleConverter, IStyleConverterFactory };

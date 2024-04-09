@@ -3,8 +3,8 @@ import { useContext, useMemo, useRef, useState } from 'react';
 import { LayoutParamsContext, StoreFactoryContext } from './FlexiLayoutContext';
 import { mergeDeep } from '../../utils';
 import { ITransformOptions } from '../../chart/Types';
-import { getStyleConverter } from '../../chart/chartjs/style/StyleConverterFactory';
 import { ChartJS, IChartJS } from '../../chart/chartjs/ChartJS';
+import { getStyleConverter } from '../../chart';
 
 interface ChartRendererInput {
   layout: ChartLayout

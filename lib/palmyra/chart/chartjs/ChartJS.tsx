@@ -101,7 +101,6 @@ function ChartJS<T,>(p: IChartJSOptions<ChartType>) {
         const chart = chartRef.current;
         chartData.current = d;
         chart.data = d;
-        // console.log(chartData.current.datasets[0].backgroundColor);
         chart.update();
     }
 
