@@ -32,8 +32,9 @@ import "../../mui/form/MuiIOSSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
+import "../../mui/form/MuiSlider.js";
 import "../../form/PalmyraForm.js";
-const br = (i) => {
+const yr = (i) => {
   let l = document.body;
   const e = i.width, a = i.mobileOpen, c = i.setMobileOpen, s = i.responsive, h = "/acl/editor/menu/list", b = new N({ baseUrl: "/api" }).getTreeStore({}, h), [t, y] = p(!1), [d, u] = p(!1), x = () => {
     u(!d), y(!t);
@@ -130,5 +131,5 @@ const br = (i) => {
   );
 };
 export {
-  br as AsyncMenuSidebar
+  yr as AsyncMenuSidebar
 };

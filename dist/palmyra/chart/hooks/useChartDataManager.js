@@ -32,8 +32,9 @@ import "../../mui/form/MuiIOSSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
+import "../../mui/form/MuiSlider.js";
 import "../../form/PalmyraForm.js";
-const Z = (t) => {
+const _ = (t) => {
   const a = new f({ baseUrl: "/api/palmyra" });
   var i = {};
   u(i, t.storeOptions);
@@ -55,5 +56,5 @@ const Z = (t) => {
   return { fetchData: e, transform: m };
 };
 export {
-  Z as useChartDataManager
+  _ as useChartDataManager
 };

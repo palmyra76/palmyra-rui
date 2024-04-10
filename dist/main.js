@@ -1,7 +1,7 @@
 import { D as o, F as t, G as a, a as m, c as u, b as f, M as s, P as p, S as i } from "./chunks/ServerCardLayout.js";
 import { FieldManagerContext as x, StoreFactoryContext as d } from "./palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { default as c } from "./palmyra/store/memory/MemoryMenuStore.js";
-import { default as y } from "./palmyra/store/memory/MemoryTreeStore.js";
+import { default as M } from "./palmyra/store/memory/MemoryTreeStore.js";
 import { PalmyraStoreFactory as F } from "./palmyra/store/palmyra/PalmyraStoreFactory.js";
 import { PalmyraTreeStore as P } from "./palmyra/store/palmyra/PalmyraTreeStore.js";
 import { NOOPDecorator as D } from "./palmyra/store/auth/NoopDecorator.js";
@@ -23,7 +23,7 @@ import { C as re, a as oe, u as te } from "./chunks/ChartJS.js";
 import { AreaSelectDrag as me } from "./palmyra/chart/chartjs/plugins/AreaSelectDrag.js";
 import { addDataConverter as fe, getDataConverter as se, getPointConverter as pe } from "./palmyra/chart/chartjs/DataConverterFactory.js";
 import { getStyleConverter as le } from "./palmyra/chart/chartjs/StyleConverterFactory.js";
-import { N as de, c as ne, b as ce, a as Ce, d as ye, u as Me } from "./chunks/PalmyraFieldManager.js";
+import { N as de, c as ne, b as ce, a as Ce, d as Me, u as ye } from "./chunks/PalmyraFieldManager.js";
 import { getFieldType as Se } from "./palmyra/form/Definitions.js";
 import { StringFormat as he, concatValues as De, hasChar as ge, hasDot as Ge, hasUnfilledParameter as ve } from "./palmyra/utils/StringUtil.js";
 import { topic as Le } from "./palmyra/utils/pubsub/topic.js";
@@ -43,14 +43,15 @@ import { default as fr } from "./palmyra/mui/form/MuiPassword.js";
 import { default as pr } from "./palmyra/mui/form/MuiNumberField.js";
 import { default as lr } from "./palmyra/mui/form/MuiIntegerField.js";
 import { default as dr } from "./palmyra/mui/form/FieldDecorator.js";
-import { InfoCircle as cr, InfoTooltip as Cr } from "./palmyra/mui/widget/InfoTooltip.js";
-import { camelCase as Mr, camelLowerCase as Fr } from "./palmyra/form/TextUtil.js";
-import { PalmyraForm as Pr } from "./palmyra/form/PalmyraForm.js";
-import { getDataListener as Dr } from "./palmyra/form/PalmyraFormListener.js";
-import { usePalmyraEditForm as Gr } from "./palmyra/form/usePalmyraEditForm.js";
-import { usePalmyraSaveForm as Tr } from "./palmyra/form/usePalmyraSaveForm.js";
-import { usePalmyraViewForm as Nr } from "./palmyra/form/usePalmyraViewForm.js";
-import { usePalmyraNewForm as Ar } from "./palmyra/form/usePalmyraNewForm.js";
+import { default as cr } from "./palmyra/mui/form/MuiSlider.js";
+import { InfoCircle as Mr, InfoTooltip as yr } from "./palmyra/mui/widget/InfoTooltip.js";
+import { camelCase as Sr, camelLowerCase as Pr } from "./palmyra/form/TextUtil.js";
+import { PalmyraForm as Dr } from "./palmyra/form/PalmyraForm.js";
+import { getDataListener as Gr } from "./palmyra/form/PalmyraFormListener.js";
+import { usePalmyraEditForm as Tr } from "./palmyra/form/usePalmyraEditForm.js";
+import { usePalmyraSaveForm as Nr } from "./palmyra/form/usePalmyraSaveForm.js";
+import { usePalmyraViewForm as Ar } from "./palmyra/form/usePalmyraViewForm.js";
+import { usePalmyraNewForm as Er } from "./palmyra/form/usePalmyraNewForm.js";
 export {
   me as AreaSelectDrag,
   K as AsyncTreeMenu,
@@ -67,10 +68,10 @@ export {
   W as GridColumnsBuilder,
   a as GridRenderer,
   m as GridX,
-  cr as InfoCircle,
-  Cr as InfoTooltip,
+  Mr as InfoCircle,
+  yr as InfoTooltip,
   c as MemoryMenuStore,
-  y as MemoryTreeStore,
+  M as MemoryTreeStore,
   u as MuiAutoComplete,
   rr as MuiCheckBox,
   $e as MuiCheckBoxGroup,
@@ -84,6 +85,7 @@ export {
   qe as MuiSelect,
   f as MuiServerCheckBox,
   s as MuiServerLookup,
+  cr as MuiSlider,
   tr as MuiSwitch,
   We as MuiTextArea,
   Ze as MuiTextField,
@@ -96,7 +98,7 @@ export {
   ce as NoopFormCustomizer,
   Ce as NoopFormHelper,
   v as OauthProvider,
-  Pr as PalmyraForm,
+  Dr as PalmyraForm,
   p as PalmyraGrid,
   F as PalmyraStoreFactory,
   P as PalmyraTreeStore,
@@ -106,16 +108,16 @@ export {
   d as StoreFactoryContext,
   he as StringFormat,
   fe as addDataConverter,
-  Mr as camelCase,
-  Fr as camelLowerCase,
+  Sr as camelCase,
+  Pr as camelLowerCase,
   Be as cloneDeep,
   De as concatValues,
-  ye as createFormHelper,
+  Me as createFormHelper,
   Oe as delay,
   Ve as delayGenerator,
   ke as execute,
   se as getDataConverter,
-  Dr as getDataListener,
+  Gr as getDataListener,
   Se as getFieldType,
   pe as getPointConverter,
   le as getStyleConverter,
@@ -131,11 +133,11 @@ export {
   oe as useAreaSelectListener,
   te as useClickListener,
   we as useExecute,
-  Me as useFormData,
+  ye as useFormData,
   Ee as useKeyValue,
-  Gr as usePalmyraEditForm,
-  Ar as usePalmyraNewForm,
+  Tr as usePalmyraEditForm,
+  Er as usePalmyraNewForm,
   q as usePalmyraPageGrid,
-  Tr as usePalmyraSaveForm,
-  Nr as usePalmyraViewForm
+  Nr as usePalmyraSaveForm,
+  Ar as usePalmyraViewForm
 };

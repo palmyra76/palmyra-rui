@@ -34,9 +34,10 @@ import "../../mui/form/MuiIOSSwitch.js";
 import "../../mui/form/MuiPassword.js";
 import "../../mui/form/MuiNumberField.js";
 import "../../mui/form/MuiIntegerField.js";
+import "../../mui/form/MuiSlider.js";
 import "../../form/PalmyraForm.js";
-class _ {
-  constructor(t, o, s) {
+class $ {
+  constructor(t, o, m) {
     e(this, "options");
     e(this, "target");
     e(this, "endPoint");
@@ -44,12 +45,12 @@ class _ {
     this.axiosInstance = n.create({
       timeout: 5e3
     });
-    const m = s || (() => (i) => {
+    const s = m || (() => (i) => {
       const a = i.request.responseURL || i.config.url;
       console.log(i.response.status + ":" + i.code + "-requestUrl:" + a), console.log(i.message + " -- response data:'" + i.response.data + "'");
     });
     n.interceptors.response.use(void 0, function(i) {
-      return i.handleGlobally = m(i), Promise.reject(i);
+      return i.handleGlobally = s(i), Promise.reject(i);
     }), this.options = t, this.target = t.target, this.endPoint = o;
   }
   getClient() {
@@ -75,5 +76,5 @@ class _ {
   }
 }
 export {
-  _ as PalmyraAbstractStore
+  $ as PalmyraAbstractStore
 };
