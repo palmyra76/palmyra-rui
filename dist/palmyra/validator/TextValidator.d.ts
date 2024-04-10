@@ -1,5 +1,6 @@
-import { FieldDefinition } from "../form/Definitions";
-import { BaseValidator } from "./BaseValidator";
+import { BaseValidator } from './BaseValidator';
+import { FieldDefinition } from '../form/Definitions';
+
 declare class TextValidator {
     validator: BaseValidator;
     validate: (format: FieldDefinition) => void;

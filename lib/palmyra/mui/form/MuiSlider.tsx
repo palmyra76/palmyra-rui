@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
-import { Slider, Typography } from '@mui/material';
+import { Slider } from '@mui/material';
 import {
     FieldType,
     IEventListeners, IFormFieldError, IFormFieldManager,

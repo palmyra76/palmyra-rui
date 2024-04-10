@@ -1,3 +1,4 @@
-import { IStyleConverterFactory } from "../../Types";
+import { IStyleConverterFactory } from '../../Types';
+
 declare const LabelStyleConverterFactory: IStyleConverterFactory;
 export { LabelStyleConverterFactory };

@@ -1,5 +1,6 @@
-import { TreeQueryStore } from "../AsyncStore";
-import { QueryRequest, GetRequest, Tree, QueryResponse } from "../Types";
+import { QueryRequest, GetRequest, Tree, QueryResponse } from '../Types';
+import { TreeQueryStore } from '../AsyncStore';
+
 declare abstract class MemoryTreeStore<T extends Tree<T>> implements TreeQueryStore<T, T> {
     root: T;
     constructor(data: T);

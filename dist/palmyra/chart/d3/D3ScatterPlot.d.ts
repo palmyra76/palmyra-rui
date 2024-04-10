@@ -1,4 +1,5 @@
 import { ScatterDataInput } from '../chartjs/Types';
+
 type ScatterplotProps = {
     width: number;
     height: number;

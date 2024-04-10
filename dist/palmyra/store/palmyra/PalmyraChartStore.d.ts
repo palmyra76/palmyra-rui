@@ -1,7 +1,8 @@
-import { QueryRequest, ChartStore, APIErrorHandlerFactory } from "../../../main";
-import { IEndPoint } from "../../layout/Types";
-import { strings } from "../../form/interface";
-import { PalmyraAbstractStore } from "./AbstractStore";
+import { PalmyraAbstractStore } from './AbstractStore';
+import { strings } from '../../form/interface';
+import { IEndPoint } from '../../layout/Types';
+import { QueryRequest, ChartStore, APIErrorHandlerFactory } from '../../../main';
+
 declare class PalmyraChartStore extends PalmyraAbstractStore implements ChartStore<any> {
     idProperty: strings;
     constructor(request: Record<string, string>, endPoint: IEndPoint, factory: APIErrorHandlerFactory, idProperty?: strings);

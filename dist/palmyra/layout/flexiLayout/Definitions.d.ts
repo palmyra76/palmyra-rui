@@ -1,8 +1,9 @@
-import { ChartType, StyleOptions, transformable } from "../../chart/Types";
-import { FieldDefinition } from "../../form/Definitions";
-import { strings } from "../../form/interface";
-import { ColumnDefinition } from "../../grid";
-import { Actionable, Positionable, Renderable, Titleable, storeBacked } from "../Types";
+import { Actionable, Positionable, Renderable, Titleable, storeBacked } from '../Types';
+import { ColumnDefinition } from '../../grid';
+import { strings } from '../../form/interface';
+import { FieldDefinition } from '../../form/Definitions';
+import { ChartType, StyleOptions, transformable } from '../../chart/Types';
+
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 type flexiPrimaryType = 'formNew' | 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';
 interface FormLayout extends Renderable {

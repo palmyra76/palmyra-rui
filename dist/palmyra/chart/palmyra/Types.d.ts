@@ -1,5 +1,6 @@
-import { IEndPoint, IEndPointOptions, storeBacked } from "../../layout/Types";
-import { IChartOptions, RawDataType } from "../Types";
+import { IChartOptions, RawDataType } from '../Types';
+import { IEndPoint, IEndPointOptions, storeBacked } from '../../layout/Types';
+
 interface IScatterPlotOptions extends IChartOptions<'Scatter'>, storeBacked {
     storeOptions: {
         endPoint: IEndPoint;

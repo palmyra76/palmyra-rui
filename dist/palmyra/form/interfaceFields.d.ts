@@ -1,4 +1,5 @@
-import { IPagination } from "../../palmyra/store/Types";
+import { IPagination } from '../../palmyra/store/Types';
+
 interface IInputField {
     focus: () => void;
     isValid: () => void;

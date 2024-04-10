@@ -1,2 +1,3 @@
-import { AreaSelectDrag } from "./AreaSelectDrag";
+import { AreaSelectDrag } from './AreaSelectDrag';
+
 export { AreaSelectDrag };

@@ -1,4 +1,5 @@
-import { FieldDefinition } from "../form/Definitions";
+import { FieldDefinition } from '../form/Definitions';
+
 declare class DateValidator {
     validate: (format: FieldDefinition) => void;
 }

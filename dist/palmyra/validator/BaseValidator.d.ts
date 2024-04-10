@@ -1,6 +1,7 @@
-import { FC } from "react";
-import { FieldDefinition, FieldValidStatus } from "../form/Definitions";
-import validator from 'validator';
+import { default as validator } from 'validator';
+import { FieldDefinition, FieldValidStatus } from '../form/Definitions';
+import { FC } from 'react';
+
 interface validator {
     validate: FC;
 }

@@ -1,5 +1,5 @@
-/// <reference types="react" />
-import { ITitle } from "../form/interface";
+import { ITitle } from '../form/interface';
+
 type measure = string | number;
 interface Positionable {
     height?: measure;

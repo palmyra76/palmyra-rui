@@ -1,6 +1,7 @@
-import { InteractionItem } from 'chart.js';
-import { ITransformOptions, RawDataType } from '../Types';
 import { ChartDataConverter, DataSetType } from '..';
+import { ITransformOptions, RawDataType } from '../Types';
+import { InteractionItem } from 'chart.js';
+
 type IgetPointData = (data: any, options: ITransformOptions, element: InteractionItem[], elements: InteractionItem[]) => Record<string, any>;
 interface DataConverterGen {
     (options: ITransformOptions): ChartDataConverter<DataSetType>;

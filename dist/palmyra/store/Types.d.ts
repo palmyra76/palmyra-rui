@@ -1,4 +1,5 @@
-import { IEndPointOptions } from "../layout/Types";
+import { IEndPointOptions } from '../layout/Types';
+
 interface IPagination {
     offset?: number;
     limit?: number;

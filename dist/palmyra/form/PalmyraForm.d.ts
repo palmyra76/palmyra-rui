@@ -1,6 +1,6 @@
-/// <reference types="react" />
-import { IFormCustomizer, FormMode } from "./Types";
-import { StoreFactory } from "../../main";
+import { StoreFactory } from '../../main';
+import { IFormCustomizer, FormMode } from './Types';
+
 interface IPalmyraFormInput {
     children?: any;
     formData: any;
@@ -13,6 +13,6 @@ interface IPalmyraForm {
     getData: () => any;
     isValid: () => boolean;
 }
-declare const PalmyraForm: import("react").ForwardRefExoticComponent<IPalmyraFormInput & import("react").RefAttributes<unknown>>;
+declare const PalmyraForm: import('react').ForwardRefExoticComponent<IPalmyraFormInput & import("react").RefAttributes<unknown>>;
 export { PalmyraForm };
 export type { IPalmyraForm };

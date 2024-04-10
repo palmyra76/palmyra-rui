@@ -1,4 +1,5 @@
-import axios from 'axios';
+import { default as axios } from 'axios';
+
 declare class AbstractDataStore {
     baseUrl: string;
     instance: ReturnType<typeof axios.create>;
