@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
-import { Slider } from '@mui/material';
+import { Slider, Typography } from '@mui/material';
 import {
     FieldType,
     IEventListeners, IFormFieldError, IFormFieldManager,
@@ -23,6 +23,7 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
     const variant = props.variant || 'standard';
     const autoFocus = props.autoFocus || false;
     const minDistance = props.minDistance || 5;
+    const label = props.label || '';
 
     const min = props.fieldProps?.min || 0;
     const max = props.fieldProps?.max || 100;
@@ -100,15 +101,18 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass}
             colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-            <Slider {...inputProps}
-                variant={variant}
-                fullWidth={true}
-                inputRef={inputRef}
-                {...callbacks}
-                error={error.status}
-                helperText={error.message}
-                autoFocus={autoFocus}
-            />
+            <div style={{width:'100%',textAlign:'center'}}>
+                {label}
+                <Slider {...inputProps}
+                    variant={variant}
+                    fullWidth={true}
+                    inputRef={inputRef}
+                    {...callbacks}
+                    error={error.status}
+                    helperText={error.message}
+                    autoFocus={autoFocus}
+                />
+            </div>
         </FieldDecorator>}
     </>
     );
