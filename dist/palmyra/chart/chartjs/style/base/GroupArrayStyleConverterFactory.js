@@ -1,8 +1,8 @@
-import { assignStyles as n } from "../util.js";
-const l = (t, s) => (r, i) => (r == null || r == null || r.datasets.map((o, p) => {
-  const e = t[o.key];
-  n(o, e);
+import { assignStyles as s } from "../util.js";
+const y = (o, i) => (r, p) => (r == null || r == null || r.datasets.map((t, e) => {
+  const n = o[t.key] || o[e];
+  s(t, n);
 }), r);
 export {
-  l as GroupArrayStyleConverterFactory
+  y as GroupArrayStyleConverterFactory
 };

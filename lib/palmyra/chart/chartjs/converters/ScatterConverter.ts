@@ -31,12 +31,21 @@ const ArrayConverter = (options: ITransformOptions): ChartDataConverter<Point> =
 
         var dataMap: Record<string, ScatterDataSet> = {};
 
+        const metadata = options.metadata;
+        const assignMetadata = metadata ? (data: any, record: any) => {
+            metadata.map((m) => {
+                data[m] = record[m];
+            });
+        } : (_d: any, _r: any) => { };
+
         records.map((record, index) => {
-            var dataSet: ScatterDataSet = getData(dataMap, record[label], options);
-            dataSet.data.push({
+            var dataSet: ScatterDataSet = getData(dataMap, record[label], options);            
+            const d = {
                 x: record[x],
                 y: record[y]
-            });
+            };
+            assignMetadata(d, record);
+            dataSet.data.push(d);
         });
 
         Object.values(dataMap).map((dataSet) => {

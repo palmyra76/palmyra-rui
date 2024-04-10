@@ -1,41 +1,48 @@
-import { NoopConverter as x } from "./ScaleConverter.js";
-function f(a) {
-  const e = (a == null ? void 0 : a.xLabel) || "name", y = (a == null ? void 0 : a.xKey) || "x", r = (a == null ? void 0 : a.yKey) || "y";
-  return r instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + a.yKey), {
-    x: y,
-    y: r,
-    label: e
+import { NoopConverter as m } from "./ScaleConverter.js";
+function v(a) {
+  const t = (a == null ? void 0 : a.xLabel) || "name", n = (a == null ? void 0 : a.xKey) || "x", e = (a == null ? void 0 : a.yKey) || "y";
+  return e instanceof Array && console.error("ScatterChart: yKey should be string only, not an array " + a.yKey), {
+    x: n,
+    y: e,
+    label: t
   };
 }
-const s = (a) => {
-  const { x: e, y, label: r } = f(a);
-  return (u) => {
-    var n = {
+const b = (a) => {
+  const { x: t, y: n, label: e } = v(a);
+  return (x) => {
+    var c = {
       datasets: []
-    }, l = {};
-    return u.map((t, b) => {
-      var c = v(l, t[r]);
-      c.data.push({
-        x: t[e],
-        y: t[y]
+    }, u = {};
+    const s = a.metadata, f = s ? (r, l) => {
+      s.map((y) => {
+        r[y] = l[y];
       });
-    }), Object.values(l).map((t) => {
-      n.datasets.push(t);
-    }), n;
+    } : (r, l) => {
+    };
+    return x.map((r, l) => {
+      var y = K(u, r[e]);
+      const d = {
+        x: r[t],
+        y: r[n]
+      };
+      f(d, r), y.data.push(d);
+    }), Object.values(u).map((r) => {
+      c.datasets.push(r);
+    }), c;
   };
-}, d = {
-  Array: s,
-  noop: x
+}, h = {
+  Array: b,
+  noop: m
   // "group": GroupedDataConverter
 };
-function v(a, e, y) {
-  var r = a[e];
-  return r || (r = {
-    key: e,
-    label: e,
+function K(a, t, n) {
+  var e = a[t];
+  return e || (e = {
+    key: t,
+    label: t,
     data: []
-  }, a[e] = r, r);
+  }, a[t] = e, e);
 }
 export {
-  d as default
+  h as default
 };

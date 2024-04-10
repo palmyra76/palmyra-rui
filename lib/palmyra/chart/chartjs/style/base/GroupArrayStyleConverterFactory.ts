@@ -9,7 +9,7 @@ const GroupArrayStyleConverterFactory: IStyleConverterFactory = (styleOptions: S
             return data;
 
         data.datasets.map((d, index) => {
-            const style = styleOptions[d.key];
+            const style = styleOptions[d.key] || styleOptions[index];
             assignStyles(d, style);
         });
         return data;
