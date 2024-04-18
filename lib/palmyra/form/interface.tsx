@@ -61,7 +61,7 @@ interface AttributeDefinition {
 }
 
 interface IFieldProps {
-    size?: 'small'
+    size?: 'small' | 'medium' | 'large'
 }
 
 interface abstractValidation {

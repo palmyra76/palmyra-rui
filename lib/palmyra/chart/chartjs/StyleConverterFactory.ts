@@ -59,7 +59,6 @@ const getStyleType = (styleOptions: StyleOptions): StyleType => {
 
 const getStyleConverter = (chartType: ChartType, styleOptions: StyleOptions, options: ITransformOptions): ChartDataConverter<any> => {
     const styleType = getStyleType(styleOptions);
-    console.log(chartType, styleType);
     var converterGen: IStyleConverterFactory = dataMap[chartType]?.[styleType] || NoopStyleConverterFactory;
     return converterGen(styleOptions, options);
 }

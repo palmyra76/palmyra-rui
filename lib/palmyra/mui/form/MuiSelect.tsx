@@ -71,14 +71,16 @@ const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: M
         onFocus: eventListeners.onFocus,
         onChange: (d: any) => (eventListeners.onValueChange(d.target.value))
     }
-
+    const fieldMargin: any = props?.fieldProps?.size == 'small' ? 1 : 0;
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl variant={variant} fullWidth error={error.status}>
                 {props.label ?
                     <InputLabel required={required}>{props.label}</InputLabel> : <></>}
-                <Select {...inputProps} {...callbacks} inputRef={(i) => { inputRef.current = i; }} autoFocus={autoFocus}>
+                <Select sx={{
+                    m: fieldMargin
+                }} {...inputProps} {...callbacks} inputRef={(i) => { inputRef.current = i; }} autoFocus={autoFocus}>
                     {options ?
                         Object.keys(options).map((key, index) => (
                             <MenuItem key={index} value={key}>{options[key]}</MenuItem>
