@@ -1,80 +1,50 @@
-import { jsx as r, jsxs as m, Fragment as f } from "react/jsx-runtime";
-import { List as g, Toolbar as v, Stack as M, Typography as S, IconButton as P, Drawer as n } from "@mui/material";
-import { Menu as k } from "@mui/icons-material";
-import { useState as p } from "react";
-/* empty css                       */import D from "./AsyncTreeMenu.js";
-import { PalmyraStoreFactory as N } from "../../store/palmyra/PalmyraStoreFactory.js";
-import "axios";
-import "../../../chunks/ServerCardLayout.js";
-import "../flexiLayout/FlexiLayoutContext.js";
-import "../container/SectionContainer.js";
-import "../../mui/widget/InfoTooltip.js";
-import "react-router-dom";
-/* empty css                        */import "@emotion/styled";
-import "@mui/x-tree-view";
-/* empty css                            */import "../card/CardLayout.js";
-import "./AsyncTreeMenuEditor.js";
-import "../../utils/pubsub/topic.js";
-import "@tanstack/react-table";
-import "react-chartjs-2";
-import "../../../chunks/ChartJS.js";
-import "dayjs";
-import "../../mui/form/MuiDatePicker.js";
-import "../../mui/form/MuiDateTimePicker.js";
-import "../../mui/form/MuiRadioGroup.js";
-import "../../mui/form/MuiSelect.js";
-import "../../mui/form/MuiTextArea.js";
-import "../../mui/form/MuiTextField.js";
-import "../../mui/form/MuiCheckBoxGroup.js";
-import "../../mui/form/MuiCheckBox.js";
-import "../../mui/form/MuiSwitch.js";
-import "../../mui/form/MuiIOSSwitch.js";
-import "../../mui/form/MuiPassword.js";
-import "../../mui/form/MuiNumberField.js";
-import "../../mui/form/MuiIntegerField.js";
-import "../../mui/form/MuiSlider.js";
-import "../../form/PalmyraForm.js";
-const yr = (i) => {
-  let l = document.body;
-  const e = i.width, a = i.mobileOpen, c = i.setMobileOpen, s = i.responsive, h = "/acl/editor/menu/list", b = new N({ baseUrl: "/api" }).getTreeStore({}, h), [t, y] = p(!1), [d, u] = p(!1), x = () => {
-    u(!d), y(!t);
+import { jsx as e, jsxs as l, Fragment as f } from "react/jsx-runtime";
+import { List as g, Toolbar as v, Stack as M, Typography as S, IconButton as k, Drawer as o } from "@mui/material";
+import { Menu as D } from "@mui/icons-material";
+import { useState as c } from "react";
+/* empty css                       */import P from "./AsyncTreeMenu.js";
+import { u as N } from "../../../chunks/PalmyraStoreFactory.js";
+const L = (i) => {
+  let m = document.body;
+  const t = i.width, a = i.mobileOpen, p = i.setMobileOpen, s = i.responsive, h = "/acl/editor/menu/list", b = new N({ baseUrl: "/api" }).getTreeStore({}, h), [r, u] = c(!1), [d, x] = c(!1), y = () => {
+    x(!d), u(!r);
   }, w = () => {
-    c(!a);
+    p(!a);
   };
-  let o = /* @__PURE__ */ r(g, { disablePadding: !0, children: /* @__PURE__ */ m("div", { className: "sidebar", children: [
-    /* @__PURE__ */ r("div", { className: "sidebar-header", children: /* @__PURE__ */ r(v, { sx: { marginBottom: "20px" }, children: /* @__PURE__ */ r(
+  let n = /* @__PURE__ */ e(g, { disablePadding: !0, children: /* @__PURE__ */ l("div", { className: "sidebar", children: [
+    /* @__PURE__ */ e("div", { className: "sidebar-header", children: /* @__PURE__ */ e(v, { sx: { marginBottom: "20px" }, children: /* @__PURE__ */ e(
       M,
       {
         sx: { width: "100%" },
         direction: "row",
         position: "relative",
         justifyContent: "center",
-        children: /* @__PURE__ */ m(S, { variant: "h6", className: `sidebar-title ${t ? "" : "minimized"}`, children: [
-          /* @__PURE__ */ r("div", { children: !s && /* @__PURE__ */ r(
-            P,
+        children: /* @__PURE__ */ l(S, { variant: "h6", className: `sidebar-title ${r ? "" : "minimized"}`, children: [
+          /* @__PURE__ */ e("div", { children: !s && /* @__PURE__ */ e(
+            k,
             {
               color: "default",
               "aria-label": "open drawer",
               edge: "start",
-              onClick: x,
+              onClick: y,
               sx: { mr: 0 },
-              children: /* @__PURE__ */ r(k, { style: {
+              children: /* @__PURE__ */ e(D, { style: {
                 transform: d ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 0.3s ease"
               }, className: "sidebar-title-menu-icon" })
             }
           ) }),
-          /* @__PURE__ */ r("div", { children: !t && /* @__PURE__ */ r(f, { children: i.appTitle }) })
+          /* @__PURE__ */ e("div", { children: !r && /* @__PURE__ */ e(f, { children: i.appTitle }) })
         ] })
       }
     ) }) }),
-    /* @__PURE__ */ r("div", { className: "sidebar-middle", style: { display: "block" }, children: /* @__PURE__ */ r(D, { store: b }) }),
-    /* @__PURE__ */ r("div", { className: "sidebar-footer", style: { display: t ? "none" : "block" }, children: /* @__PURE__ */ r("p", { className: "sidebar-footer-text", children: "Powered by Palmyra" }) })
+    /* @__PURE__ */ e("div", { className: "sidebar-middle", style: { display: "block" }, children: /* @__PURE__ */ e(P, { store: b }) }),
+    /* @__PURE__ */ e("div", { className: "sidebar-footer", style: { display: r ? "none" : "block" }, children: /* @__PURE__ */ e("p", { className: "sidebar-footer-text", children: "Powered by Palmyra" }) })
   ] }) });
-  return s ? /* @__PURE__ */ r(
-    n,
+  return s ? /* @__PURE__ */ e(
+    o,
     {
-      container: l,
+      container: m,
       variant: "temporary",
       open: a,
       onClose: w,
@@ -85,13 +55,13 @@ const yr = (i) => {
         display: "block",
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: e
+          width: t
         }
       },
-      children: o
+      children: n
     }
-  ) : t ? /* @__PURE__ */ r(
-    n,
+  ) : r ? /* @__PURE__ */ e(
+    o,
     {
       variant: "permanent",
       sx: {
@@ -107,29 +77,29 @@ const yr = (i) => {
           transitionDuration: " 0.3s"
         }
       },
-      children: o
+      children: n
     }
-  ) : /* @__PURE__ */ r(
-    n,
+  ) : /* @__PURE__ */ e(
+    o,
     {
       variant: "permanent",
       sx: {
-        width: e,
+        width: t,
         flexShrink: 0,
         transitionProperty: " width",
         transitionDuration: "0.3s",
         "& .MuiDrawer-paper": {
-          width: e,
+          width: t,
           boxSizing: "border-box",
           borderRight: "0px",
           transitionProperty: " width",
           transitionDuration: "0.3s"
         }
       },
-      children: o
+      children: n
     }
   );
 };
 export {
-  yr as AsyncMenuSidebar
+  L as AsyncMenuSidebar
 };

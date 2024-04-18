@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import { IEndPoint, PalmyraStoreFactory, StoreFactory, TreeQueryStore } from "../../../lib/main";
+import { IEndPoint, PalmyraStoreFactory, PalmyraTreeStore, StoreFactory, TreeQueryStore } from "../../../lib/main";
 import { ErrorBoundary } from "../../../lib/palmyra/layout/ErrorBoundary";
 import { Button } from "@mui/material";
 import AsyncTreeMenuEditor, { IAsyncTreeMenuEditor } from "../../../lib/palmyra/layout/tree/AsyncTreeMenuEditor";
-import { PalmyraTreeStore } from "../../../lib/palmyra/store/palmyra/PalmyraTreeStore";
+
 import AsyncTreeMenu from "../../../lib/palmyra/layout/tree/AsyncTreeMenu";
 
 

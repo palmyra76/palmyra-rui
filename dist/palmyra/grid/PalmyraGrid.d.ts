@@ -1,6 +1,7 @@
+import { DefaultQueryParams } from 'palmyra-wire';
 import { ITitle } from '../form/interface';
 import { ActionOptions } from '../layout/Types';
-import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IExportOptions, IPageQueryable, PageContext, StoreFactory } from '../../main';
+import { ColumnDefinition, GridCustomizer, IEndPoint, IExportOptions, IPageQueryable, PageContext, StoreFactory } from '../../main';
 
 interface IPalmyraGridInput {
     columns: ColumnDefinition[];

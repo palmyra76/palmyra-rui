@@ -5,7 +5,7 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
-import { LookupStore } from '../../store';
+import { LookupStore } from 'palmyra-wire';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 import { ICheckBoxField, IMutateOptions } from '../../form/interfaceFields';

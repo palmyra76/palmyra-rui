@@ -1,5 +1,5 @@
 import { ITitle } from '../../form/interface';
-import { DefaultQueryParams } from '../../store';
+import { DefaultQueryParams } from 'palmyra-wire';
 import { IPageQueryable } from '../../form/interfaceFields';
 import { GridCustomizer, IExportOptions } from '../../grid';
 import { TableLayout } from '.';

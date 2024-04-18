@@ -1,7 +1,6 @@
 import { IEndPointOptions } from '../layout/Types';
-import { IPagination, QueryRequest } from '../../main';
 import { numbers } from './interface';
-import { DefaultQueryParams, AbstractQueryStore } from '../store/AsyncStore';
+import { DefaultQueryParams, AbstractQueryStore, IPagination, QueryRequest } from 'palmyra-wire';
 
 interface IServerQueryInput {
     store: AbstractQueryStore<any>;

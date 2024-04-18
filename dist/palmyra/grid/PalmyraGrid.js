@@ -1,8 +1,7 @@
 import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import { P as L } from "../../chunks/ServerCardLayout.js";
-import "axios";
+import { P as K } from "../../chunks/ServerCardLayout.js";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
 import "@mui/icons-material";
@@ -33,5 +32,5 @@ import "../mui/form/MuiIntegerField.js";
 import "../mui/form/MuiSlider.js";
 import "../form/PalmyraForm.js";
 export {
-  L as PalmyraGrid
+  K as PalmyraGrid
 };

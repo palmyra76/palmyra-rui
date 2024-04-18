@@ -1,8 +1,7 @@
+import { Titleable } from '../Types';
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from './Definitions';
-import { IEndPoint, Titleable } from '../Types';
-import { ChartStore, DataStore, LookupStore, TreeQueryStore, GridStore } from '../../store';
-import { strings } from '../../form/interface';
 import { FormData } from '../../form/Definitions';
+import { StoreFactory } from 'palmyra-wire';
 
 interface Parent {
     children?: any;
@@ -19,13 +18,6 @@ interface FlexiEventHandlers {
     onFormValidChange?: Function;
 }
 interface LayoutParams extends Record<string, string> {
-}
-interface StoreFactory<T> {
-    getGridStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): GridStore<T>;
-    getFormStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty?: strings): DataStore<T>;
-    getChartStore(options: Record<string, string | number>, endPoint?: IEndPoint): ChartStore<T>;
-    getLookupStore(options: Record<string, string | number>, endPoint: IEndPoint, idProperty: strings): LookupStore<T>;
-    getTreeStore(options: Record<string, string | number>, endPoint: IEndPoint): TreeQueryStore<any, any>;
 }
 interface FlexiLayoutRendererInput<T> {
     layoutParams: LayoutParams;

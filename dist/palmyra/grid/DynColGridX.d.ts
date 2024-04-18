@@ -1,4 +1,4 @@
-import { GridStore } from '../store';
+import { GridStore } from 'palmyra-wire';
 import { IPageQueryable } from '../form/interfaceFields';
 import { IServerQueryInput } from '../form/ServerQueryManager';
 import { ColumnDefinition, GridCustomizer, IExportOptions } from './Types';

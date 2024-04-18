@@ -1,17 +1,17 @@
 import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-import { TreeQueryStore } from "../../store";
+import { TreeQueryStore } from 'palmyra-wire';
 import { AiOutlineLoading } from "react-icons/ai";
 import { FaRegSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
 import TreeView, { INode } from "react-accessible-treeview";
 import cx from "classnames";
 
-import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 import AsyncTreeCrudDropDown from "./AsyncTreeCrudDropDown";
 import { ClickAwayListener } from "@mui/material";
 import { IEndPoint } from "..";
 import { StoreFactory } from "../flexiLayout/Types";
 import "./AsyncTreeMenu.css";
+import { IChildTreeRequest } from "./types";
 
 
 interface IAsyncTreeEditorInput {

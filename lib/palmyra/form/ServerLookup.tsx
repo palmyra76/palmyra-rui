@@ -5,11 +5,11 @@ import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
 import { FieldProperties } from './Types';
-import { QueryRequest } from '../store/Types';
+import { QueryRequest } from 'palmyra-wire';
 
 import { getValueByKey, setValueByKey } from './FormUtil';
 import { delay, hasDot } from '../utils';
-import { QueryStore } from '../store';
+import { QueryStore } from 'palmyra-wire';
 import { Search } from '@mui/icons-material';
 
 interface LookupFieldProperties extends FieldProperties {

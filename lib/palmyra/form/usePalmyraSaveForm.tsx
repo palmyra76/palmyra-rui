@@ -1,7 +1,7 @@
 
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { IEndPoint } from "../layout/Types";
-import { GetRequest, PutRequest } from "../store/Types";
+import { GetRequest, PutRequest } from 'palmyra-wire';
 import { FormData, StoreFactory } from "../../main";
 import { IFormListener, NoopFormListener } from "./interface";
 

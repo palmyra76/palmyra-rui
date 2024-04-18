@@ -1,60 +1,27 @@
-import { PalmyraStoreFactory as f } from "../../store/palmyra/PalmyraStoreFactory.js";
-import "axios";
-import "../../../chunks/ServerCardLayout.js";
-import "../../layout/flexiLayout/FlexiLayoutContext.js";
-import "react/jsx-runtime";
-import "@mui/material";
-import "../../layout/container/SectionContainer.js";
-import "@mui/icons-material";
-import { useEffect as s } from "react";
-import "../../mui/widget/InfoTooltip.js";
-import "react-router-dom";
-/* empty css                        */import "@emotion/styled";
-import "@mui/x-tree-view";
-/* empty css                            */import "../../layout/card/CardLayout.js";
-import "../../layout/tree/AsyncTreeMenuEditor.js";
-/* empty css                             */import { mergeDeep as u } from "../../utils/index.js";
-import "../../utils/pubsub/topic.js";
-import "@tanstack/react-table";
-import "react-chartjs-2";
-import "../../../chunks/ChartJS.js";
-import "dayjs";
-import "../../mui/form/MuiDatePicker.js";
-import "../../mui/form/MuiDateTimePicker.js";
-import "../../mui/form/MuiRadioGroup.js";
-import "../../mui/form/MuiSelect.js";
-import "../../mui/form/MuiTextArea.js";
-import "../../mui/form/MuiTextField.js";
-import "../../mui/form/MuiCheckBoxGroup.js";
-import "../../mui/form/MuiCheckBox.js";
-import "../../mui/form/MuiSwitch.js";
-import "../../mui/form/MuiIOSSwitch.js";
-import "../../mui/form/MuiPassword.js";
-import "../../mui/form/MuiNumberField.js";
-import "../../mui/form/MuiIntegerField.js";
-import "../../mui/form/MuiSlider.js";
-import "../../form/PalmyraForm.js";
-const _ = (t) => {
-  const a = new f({ baseUrl: "/api/palmyra" });
-  var i = {};
-  u(i, t.storeOptions);
-  const n = a.getChartStore(i, t.storeOptions.endPoint);
-  s(() => {
-    e(t.filter);
+import { u as m } from "../../../chunks/PalmyraStoreFactory.js";
+import { mergeDeep as u } from "../../utils/index.js";
+import { useEffect as h } from "react";
+const g = (t) => {
+  const c = new m({ baseUrl: "/api/palmyra" });
+  var n = {};
+  u(n, t.storeOptions);
+  const f = c.getChartStore(n, t.storeOptions.endPoint);
+  h(() => {
+    a(t.filter);
   }, [t.filter]);
-  const m = (r) => t.transformData ? t.transformData(r) : r, p = (r) => {
-    t.onData(m(r));
-  }, c = (r) => {
+  const o = (r) => t.transformData ? t.transformData(r) : r, i = (r) => {
+    t.onData(o(r));
+  }, s = (r) => {
     if (t.onError) {
       t.onError(r);
       return;
     }
     t.onData(null);
-  }, e = (r) => {
-    n.query({ filter: r, limit: 2e3 }).then((o) => p(o)).catch((o) => c(o));
+  }, a = (r) => {
+    f.query({ filter: r, limit: 2e3 }).then((e) => i(e)).catch((e) => s(e));
   };
-  return { fetchData: e, transform: m };
+  return { fetchData: a, transform: o };
 };
 export {
-  _ as useChartDataManager
+  g as useChartDataManager
 };

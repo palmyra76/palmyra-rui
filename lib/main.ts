@@ -7,7 +7,6 @@ export * from "./palmyra/chart"
 
 // Export Types from the project
 export * from "./palmyra/layout/flexiLayout/Types"
-export * from "./palmyra/store/Types"
 export * from './palmyra/form/Types'
 export * from './palmyra/form/Definitions'
 

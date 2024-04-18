@@ -2,7 +2,7 @@ import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, 
 import { IAutoCompleteDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
-import { LookupStore } from '../../store';
+import { LookupStore } from 'palmyra-wire';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 import { delay, hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';

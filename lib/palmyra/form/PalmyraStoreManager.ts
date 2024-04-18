@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LookupStore } from "../store";
+import { LookupStore } from "palmyra-wire";
 import { FieldDefinition } from "./Definitions";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { mergeDeep } from "../utils";

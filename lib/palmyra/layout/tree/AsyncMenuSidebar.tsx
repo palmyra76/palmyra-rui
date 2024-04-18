@@ -5,7 +5,7 @@ import { FC, useState } from "react";
 import '../standard/Sidebar.scss';
 import AsyncTreeMenu from "../tree/AsyncTreeMenu";
 import { IEndPoint } from "..";
-import { PalmyraStoreFactory } from "../../store";
+import { PalmyraStoreFactory } from 'palmyra-wire';
 
 
 interface ISideMenuInput {

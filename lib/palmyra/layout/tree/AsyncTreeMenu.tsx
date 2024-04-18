@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { TreeQueryStore } from "../../store";
+import { TreeQueryStore } from 'palmyra-wire';
 import TreeView, { INode, ITreeViewOnExpandProps, ITreeViewOnSelectProps, NodeId } from "react-accessible-treeview";
 import cx from "classnames";
 
 import "./AsyncTreeMenu.css";
-import { IChildTreeRequest } from "../../store/palmyra/PalmyraTreeStore";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
+import { IChildTreeRequest } from "./types";
 
 const MENU_STORE_KEY_EXPANDED = 'palmyra.rui.sidemenu.expanded';
 const MENU_STORE_KEY_SELECTED = 'palmyra.rui.sidemenu.expanded.selected';

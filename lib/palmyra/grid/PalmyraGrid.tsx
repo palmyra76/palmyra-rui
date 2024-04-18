@@ -1,9 +1,10 @@
 import { MutableRefObject, forwardRef, useEffect } from "react";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { GridRenderer, TableLayout } from "../layout/flexiLayout";
-import { ColumnDefinition, DefaultQueryParams, GridCustomizer, IEndPoint, IExportOptions, IPageQueryable, PageContext, StoreFactory, TopicListener, topic } from "../../main";
+import { ColumnDefinition, GridCustomizer, IEndPoint, IExportOptions, IPageQueryable, PageContext, StoreFactory, TopicListener, topic } from "../../main";
 import { ActionOptions } from "../layout/Types";
 import { ITitle } from "../form/interface";
+import { DefaultQueryParams } from "palmyra-wire";
 
 interface IPalmyraGridInput {
     columns: ColumnDefinition[],

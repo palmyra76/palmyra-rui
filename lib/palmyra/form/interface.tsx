@@ -1,6 +1,6 @@
 import { MutableRefObject, ReactNode, SetStateAction } from "react";
 import { IEndPoint } from "../layout";
-import { DefaultQueryParams, LookupStore } from "../store"
+import { DefaultQueryParams, LookupStore } from "palmyra-wire"
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
 import { IFieldEventListener, IFieldValueListener } from ".";

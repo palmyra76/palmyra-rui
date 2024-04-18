@@ -1,5 +1,9 @@
-import { Tree } from "../../store/Types";
+import { Tree } from "palmyra-wire";
 import { IconProvider } from "../flexiLayout/IconProvider";
+
+interface IChildTreeRequest {
+    parent?: number
+}
 
 interface TreeListener<T> {
     onClick: (id: string, e: T) => void
@@ -22,4 +26,4 @@ interface TreeMenuInput {
     sidebarWidth?: boolean
 }
 
-export type { TreeListener, MenuDef, TreeMenuInput }
+export type { TreeListener, MenuDef, TreeMenuInput, IChildTreeRequest }

@@ -1,4 +1,5 @@
 import { ITitle } from '../form/interface';
+import { IEndPoint, IEndPointOptions } from 'palmyra-wire';
 
 type measure = string | number;
 interface Positionable {
@@ -25,15 +26,6 @@ interface PublishAction {
 interface Actionable {
     actionOptions?: ActionOptions;
 }
-interface MultiEndPoint {
-    query: string;
-    get: string;
-    post?: string;
-    put: string;
-    delete?: string;
-}
-type IEndPoint = string | MultiEndPoint;
-type IEndPointOptions = Record<string, any>;
 interface storeBacked {
     storeOptions?: {
         endPoint?: IEndPoint;

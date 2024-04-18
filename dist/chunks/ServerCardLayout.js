@@ -38,7 +38,6 @@ import { NoopCustomizer as pt } from "../palmyra/grid/Types.js";
 import { convertToField as Wt } from "../palmyra/grid/base/GridFieldConverter.js";
 import { createFilterData as Xt } from "../palmyra/form/PalmyraFilterManager.js";
 import yt from "../palmyra/grid/base/ExportOptions.js";
-import "axios";
 import "react-router-dom";
 /* empty css          */import "@emotion/styled";
 import "@mui/x-tree-view";
@@ -134,7 +133,7 @@ const ae = (r) => {
 function nt(r) {
   return r ? Array.isArray(r) ? r : typeof r == "string" ? r.split(",") : [r] : [];
 }
-const br = Y(function(t, c) {
+const vr = Y(function(t, c) {
   const i = de(he), a = c || _(null), s = i(t, "checkbox", a), { mutateOptions: y, setMutateOptions: f } = s, [b, g] = N(!1), C = nt(s.data), d = s.error, O = s.eventListeners, v = s.store, V = t.pageSize || -1, k = { store: v, pageSize: V, defaultParams: t.defaultParams }, { data: D } = ae(k), R = D, I = _(null), L = t.lookupOptions || {}, T = L.idAttribute || "id", Q = L.displayAttribute || "name", X = t.showSelectedOnly && t.readonly, P = ue(T) ? (u) => me(T, u) : (u) => u[T], M = ue(Q) ? (u) => me(Q, u) : (u) => u[Q];
   re(a, () => ({
     focus() {
@@ -929,7 +928,7 @@ const on = (r) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), Cr = Y(function(t, c) {
+}), br = Y(function(t, c) {
   const { children: i, EmptyChild: a, onRowClick: s, quickSearch: y, exportOptions: f } = t, b = t.columns, g = a || ht, C = t.customizer || pt, d = t.customButton, O = t.title, [v, V] = N(!1), [k, D] = N(!1), [R, I] = N("standard"), [L, T] = N(!1), [Q, X] = N(""), {
     setQueryFilter: P,
     setQuickSearch: M,
@@ -1156,7 +1155,7 @@ const on = (r) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), xr = Y(function(t, c) {
+}), Cr = Y(function(t, c) {
   const { columns: i, endPoint: a, storeFactory: s, layoutParams: y, pagination: f } = t, b = t.quickSearch || "", g = t.customButton, C = t.customAddButton, d = t.title, O = t.fetchAll, v = t.filterTopic, V = t.initialFetch, k = (R, I) => {
   };
   ee(() => {
@@ -1330,14 +1329,14 @@ const wt = (r) => {
     default:
       return rt;
   }
-}, Fr = Y(function(t, c) {
+}, xr = Y(function(t, c) {
   const [i, a] = N(t.layout), s = t.mode ? t.mode : i.type ? i.type : "grid", y = t.layoutParams || {}, f = hn(s), b = _(0);
   return ee(() => {
     a(t.layout), b.current < 999999 ? b.current++ : b.current = 0;
   }, [t.layout]), /* @__PURE__ */ e(vt, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(ze.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(at.Provider, { value: y, children: /* @__PURE__ */ e(f, { ...t, ref: (g) => {
     c && (c.current = g);
   } }, b.current) }) }) });
-}), wr = Y(function(t, c) {
+}), Fr = Y(function(t, c) {
   const { title: i, Child: a, childProps: s, pageSize: y, customButton: f } = t, b = c || _(null), {
     setQueryFilter: g,
     refreshData: C,
@@ -1462,15 +1461,15 @@ const wt = (r) => {
   ] }) }) });
 });
 export {
-  Cr as D,
-  Fr as F,
+  br as D,
+  xr as F,
   Ft as G,
   en as M,
-  xr as P,
-  wr as S,
+  Cr as P,
+  Fr as S,
   wt as T,
   sn as a,
-  br as b,
+  vr as b,
   tn as c,
   rn as d,
   Ct as e,

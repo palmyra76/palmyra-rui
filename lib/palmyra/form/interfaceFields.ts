@@ -1,4 +1,4 @@
-import { IPagination } from "../../palmyra/store/Types"
+import { IPagination } from 'palmyra-wire'
 
 interface IInputField {
     focus: () => void

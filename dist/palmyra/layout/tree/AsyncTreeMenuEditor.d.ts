@@ -1,6 +1,6 @@
+import { IChildTreeRequest } from './types';
 import { StoreFactory } from '../flexiLayout/Types';
 import { IEndPoint } from '..';
-import { IChildTreeRequest } from '../../store/palmyra/PalmyraTreeStore';
 
 interface IAsyncTreeEditorInput {
     storeFactory: StoreFactory<IChildTreeRequest>;

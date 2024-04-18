@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
-import { CellGetter, ColumnDefinition, FlexiLayoutDefinition, FlexiLayoutRenderer, GridCustomizer, IPalmyraGrid, Pagination, PalmyraGrid, ServerCardLayout, StoreFactory, StringFormat, gridColumnCustomizer, topic } from '../../../lib/main';
-import { PalmyraStoreFactory } from '../../../lib/palmyra/store/palmyra/PalmyraStoreFactory';
+import { CellGetter, ColumnDefinition, FlexiLayoutDefinition, FlexiLayoutRenderer, GridCustomizer, IPalmyraGrid, Pagination, PalmyraGrid, PalmyraStoreFactory, ServerCardLayout, StoreFactory, StringFormat, gridColumnCustomizer, topic } from '../../../lib/main';
 import './BackEndGridPage.css';
 import { UserCard } from '../../components/usermgmt/UserCard';
 import { NoopEmptyChildCard } from '../../../lib/palmyra/layout/card/EmptyChildCard';
@@ -39,7 +38,8 @@ const BackEndGridPage = () => {
             title: "Description",
             searchable: true,
             quickSearch: true,
-            type: "string"
+            type: "string",
+            columnGroup:'helo'
         },
         {
             attribute: "projectValue",
@@ -47,7 +47,8 @@ const BackEndGridPage = () => {
             title: "Project Value",
             searchable: true,
             quickSearch: true,
-            type: "number"
+            type: "number",
+            columnGroup:'hello'
         }
     ]
 

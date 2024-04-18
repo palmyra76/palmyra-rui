@@ -1,4 +1,4 @@
-import { QueryStore } from '../store';
+import { QueryStore } from 'palmyra-wire';
 import { FieldProperties } from './Types';
 
 interface LookupFieldProperties extends FieldProperties {

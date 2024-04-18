@@ -1,5 +1,4 @@
-import { QueryResponse, QueryRequest, GetRequest } from '../../store/Types';
-import { TreeQueryStore } from '../../store/AsyncStore';
+import { TreeQueryStore, QueryResponse, QueryRequest, GetRequest } from 'palmyra-wire';
 import { strings } from '../../form/interface';
 import { MenuDef } from '..';
 

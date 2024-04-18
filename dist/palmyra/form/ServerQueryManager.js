@@ -1,7 +1,6 @@
 import "react";
-import { u as N } from "../../chunks/ServerCardLayout.js";
+import { u as M } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import "axios";
 import "react/jsx-runtime";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
@@ -34,5 +33,5 @@ import "../mui/form/MuiIntegerField.js";
 import "../mui/form/MuiSlider.js";
 import "./PalmyraForm.js";
 export {
-  N as default
+  M as default
 };
