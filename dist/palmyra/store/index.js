@@ -1,4 +1,4 @@
-import { u as v, g as P } from "../../chunks/PalmyraStoreFactory.js";
+import { u as v, p as P } from "../../chunks/PalmyraStoreFactory.js";
 var a = Object.defineProperty, s = (r, e, t) => e in r ? a(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t, i = (r, e, t) => (s(r, typeof e != "symbol" ? e + "" : e, t), t);
 class u {
   constructor(e) {
