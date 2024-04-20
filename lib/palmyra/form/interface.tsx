@@ -1,9 +1,9 @@
 import { MutableRefObject, ReactNode, SetStateAction } from "react";
 import { IEndPoint } from "../layout";
-import { DefaultQueryParams, LookupStore } from "palmyra-wire"
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
 import { IFieldEventListener, IFieldValueListener } from ".";
+import { LookupStore, DefaultQueryParams } from 'palmyra-wire';
 
 /**
  * This definitions will cater to the Form Definition format
@@ -12,7 +12,7 @@ import { IFieldEventListener, IFieldValueListener } from ".";
 type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch"
     | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete"
     | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer"
-    | "slider" | "sliderRange";
+    | "slider" | "sliderRange" | "rating";
 
 type InputType = string | number | Date;
 
@@ -47,7 +47,6 @@ interface AttributeDefinition {
     value?: InputType,
     required?: boolean,
     readonly?: boolean,
-    disableFuture?: boolean,
     hideSelectAll?: boolean,
     mutant?: boolean,
     visible?: boolean,
@@ -86,6 +85,14 @@ interface IDecoration {
 
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
 
+}
+interface IRatingFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
+    precision?: number,
+    size?: 'small' | 'large',
+    max?: number,
+    disabled?: boolean,
+    icon?: any,
+    emptyIcon?: any
 }
 
 interface ValueLabel {
@@ -129,7 +136,8 @@ interface ICheckboxGroupDefinition extends AttributeDefinition, IDecoration {
 }
 
 interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
-
+    icon?: any,
+    checkedIcon?: any
 }
 
 type IRadioGroupOptions = Record<any, any> | Record<string, any> | { value: any, label: string }[];
@@ -142,7 +150,8 @@ interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
 interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
     range?: RangeValidation<string>,
     serverPattern?: string,
-    displayPattern?: string
+    displayPattern?: string,
+    disableFuture?: boolean
 }
 
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
@@ -268,7 +277,7 @@ const NoopFormListener: IFormListener = {
 };
 
 
-export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition }
+export type { ITextFieldDefinition, IRatingFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition }
 export type {
     IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions,
     IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition,

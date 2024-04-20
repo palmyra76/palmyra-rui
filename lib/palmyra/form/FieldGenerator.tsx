@@ -13,6 +13,7 @@ import MuiIOSSwitch from '../mui/form/MuiIOSSwitch';
 import MuiDateRangePicker from '../mui/form/MuiDateRangePicker';
 import MuiNumberField from '../mui/form/MuiNumberField';
 import MuiIntegerField from '../mui/form/MuiIntegerField';
+import MuiRating from '../mui/form/MuiRating';
 
 
 const getInvalidField = (props: FieldRequest) => {
@@ -60,6 +61,8 @@ const getField = (fieldDef: FieldDefinition, fieldRefs: any, title?: any) => {
             return getReactField(props, MuiIOSSwitch);
         case 'password':
             return getReactField(props, MuiPassword);
+        case 'rating':
+            return getReactField(props, MuiRating);
         case 'float':
         case 'number':
         case 'numbersOnly':

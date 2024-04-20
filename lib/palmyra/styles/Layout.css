@@ -9,6 +9,24 @@
     border: none !important;
 } */
 
+/* styles.css */
+.customCheckbox {
+    background-color: transparent !important; /* Ensure overrides by using !important */
+}
+
+.customCheckbox:hover {
+    background-color: transparent !important;  /* Ensure the hover does not change the background */
+}
+
+.customCheckbox:focus {
+    outline: none !important;  /* Remove focus outline */
+}
+
+.customCheckbox:checked {
+    background-color: transparent !important;
+}
+
+
 .MuiTableContainer-root {
     max-height: 75vh;
     overflow: auto;
