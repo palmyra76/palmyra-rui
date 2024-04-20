@@ -23,6 +23,8 @@ interface IMutateOptions {
 }
 interface ITextField extends IInputField {
 }
+interface IRatingField extends IInputField {
+}
 interface IDateField extends IInputField {
     setCurrent: () => void;
 }
@@ -59,4 +61,4 @@ interface IServerLookupField extends IInputField, IQueryable {
     setDefaultFilter: (d: any) => void;
 }
 export type { IMutateOptions, IQueryable, IInputField, IPageQueryable };
-export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField, ISliderField };
+export type { ITextField, ICheckBoxField, IDateField, IDateTimeField, IRadioGroupField, ISelectField, IServerLookupField, ITimeField, ISwitchField, ISliderField, IRatingField };

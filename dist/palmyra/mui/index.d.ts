@@ -1,4 +1,5 @@
 import { InfoTooltip, InfoCircle } from './widget/InfoTooltip';
+import { default as MuiRating } from './form/MuiRating';
 import { default as MuiSlider } from './form/MuiSlider';
 import { default as MuiAutoComplete } from './form/MuiAutoComplete';
 import { default as FieldDecorator } from './form/FieldDecorator';
@@ -18,5 +19,5 @@ import { default as MuiRadioGroup } from './form/MuiRadioGroup';
 import { default as MuiDateTimePicker } from './form/MuiDateTimePicker';
 import { default as MuiDatePicker } from './form/MuiDatePicker';
 
-export { MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword, MuiServerCheckBox, MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator };
+export { MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword, MuiServerCheckBox, MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator, MuiRating };
 export { InfoCircle, InfoTooltip };

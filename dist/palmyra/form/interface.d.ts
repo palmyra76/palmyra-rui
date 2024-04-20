@@ -1,7 +1,7 @@
+import { LookupStore, DefaultQueryParams } from 'palmyra-wire';
 import { IFieldEventListener, IFieldValueListener } from '.';
 import { IEndPointOptions } from '../layout/Types';
 import { IMutateOptions } from './interfaceFields';
-import { DefaultQueryParams, LookupStore } from 'palmyra-wire';
 import { IEndPoint } from '../layout';
 import { MutableRefObject, ReactNode, SetStateAction } from 'react';
 
@@ -9,7 +9,7 @@ import { MutableRefObject, ReactNode, SetStateAction } from 'react';
  * This definitions will cater to the Form Definition format
  *
  */
-type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer" | "slider" | "sliderRange";
+type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer" | "slider" | "sliderRange" | "rating";
 type InputType = string | number | Date;
 type strings = string | string[];
 type numbers = number | number[];
@@ -36,7 +36,6 @@ interface AttributeDefinition {
     value?: InputType;
     required?: boolean;
     readonly?: boolean;
-    disableFuture?: boolean;
     hideSelectAll?: boolean;
     mutant?: boolean;
     visible?: boolean;
@@ -70,6 +69,14 @@ interface IDecoration {
 }
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
 }
+interface IRatingFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
+    precision?: number;
+    size?: 'small' | 'large';
+    max?: number;
+    disabled?: boolean;
+    icon?: any;
+    emptyIcon?: any;
+}
 interface ValueLabel {
     value: number;
     label: string;
@@ -102,6 +109,8 @@ interface ICheckboxGroupDefinition extends AttributeDefinition, IDecoration {
     flexDirection?: 'column' | 'row';
 }
 interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
+    icon?: any;
+    checkedIcon?: any;
 }
 type IRadioGroupOptions = Record<any, any> | Record<string, any> | {
     value: any;
@@ -115,6 +124,7 @@ interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
     range?: RangeValidation<string>;
     serverPattern?: string;
     displayPattern?: string;
+    disableFuture?: boolean;
 }
 interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
     displayAttribute?: string;
@@ -218,7 +228,7 @@ interface IFormListener {
     preProcessSaveData?: (data: FormData) => FormData;
 }
 declare const NoopFormListener: IFormListener;
-export type { ITextFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };
+export type { ITextFieldDefinition, IRatingFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };
 export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, IRangeSliderDefinition, strings, numbers };
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration };
 export type { ITitle, IDecoratedTitle };
