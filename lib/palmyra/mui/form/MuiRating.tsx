@@ -5,8 +5,7 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ITextField, IMutateOptions, IRatingField } from '../../form/interfaceFields';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import StarIcon from '@mui/icons-material/Star';
+import {StarOutline, Star} from '@mui/icons-material';
 
 const MuiRating = forwardRef(function MuiTextField(props: IRatingFieldDefinition, ref: MutableRefObject<IRatingField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -20,8 +19,8 @@ const MuiRating = forwardRef(function MuiTextField(props: IRatingFieldDefinition
     const autoFocus = props.autoFocus || false;
     const precision = props.precision || 1;
     const max = props.max || 5;
-    const Icon = props.icon || StarIcon;
-    const EmptyIcon = props.emptyIcon || StarOutlineIcon;
+    const Icon = props.icon || Star;
+    const EmptyIcon = props.emptyIcon || StarOutline;
 
     useImperativeHandle(currentRef, () => {
         return {

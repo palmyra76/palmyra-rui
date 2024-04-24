@@ -1,11 +1,11 @@
 import { jsxs as K, jsx as I, Fragment as ut } from "react/jsx-runtime";
 import { useNavigate as Mn } from "react-router-dom";
-import Ce, { createContext as de, useContext as fe, useRef as re, useEffect as $, memo as lt, createElement as Me, PureComponent as Ln, forwardRef as ct, isValidElement as $n, cloneElement as wt, useLayoutEffect as jn, useMemo as N, useState as dt, useCallback as Ar, useImperativeHandle as Hn } from "react";
+import Ce, { createContext as de, useContext as fe, useRef as re, useEffect as L, memo as lt, createElement as Me, PureComponent as $n, forwardRef as ct, isValidElement as Ln, cloneElement as wt, useLayoutEffect as jn, useMemo as N, useState as dt, useCallback as Ar, useImperativeHandle as Hn } from "react";
 import { ArrowDropDown as Fn, ArrowRight as Vn } from "@mui/icons-material";
 import { SimpleIconProvider as Un } from "../flexiLayout/IconProvider.js";
 /* empty css                        */import { _ as zn } from "../../../chunks/extends.js";
 import { g as Wn } from "../../../chunks/_commonjsHelpers.js";
-var Ze = { exports: {} }, Le = {};
+var Ze = { exports: {} }, $e = {};
 /**
  * @license React
  * use-sync-external-store-shim.production.min.js
@@ -18,7 +18,7 @@ var Ze = { exports: {} }, Le = {};
 var Tt;
 function Bn() {
   if (Tt)
-    return Le;
+    return $e;
   Tt = 1;
   var t = Ce;
   function e(h, y) {
@@ -49,9 +49,9 @@ function Bn() {
     return y();
   }
   var d = typeof window > "u" || typeof window.document > "u" || typeof window.document.createElement > "u" ? c : s;
-  return Le.useSyncExternalStore = t.useSyncExternalStore !== void 0 ? t.useSyncExternalStore : d, Le;
+  return $e.useSyncExternalStore = t.useSyncExternalStore !== void 0 ? t.useSyncExternalStore : d, $e;
 }
-var $e = {};
+var Le = {};
 /**
  * @license React
  * use-sync-external-store-shim.development.js
@@ -129,8 +129,8 @@ function Kn() {
       return m();
     }
     var l = typeof window < "u" && typeof window.document < "u" && typeof window.document.createElement < "u", f = !l, g = f ? D : y, p = t.useSyncExternalStore !== void 0 ? t.useSyncExternalStore : g;
-    $e.useSyncExternalStore = p, typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
-  }()), $e;
+    Le.useSyncExternalStore = p, typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
+  }()), Le;
 }
 process.env.NODE_ENV === "production" ? Ze.exports = Bn() : Ze.exports = Kn();
 var qn = Ze.exports;
@@ -141,16 +141,16 @@ function k() {
     throw new Error("No Tree Api Provided");
   return t;
 }
-const Lr = de(null);
+const $r = de(null);
 function Gn() {
-  const t = fe(Lr);
+  const t = fe($r);
   if (t === null)
     throw new Error("Provide a NodesContext");
   return t;
 }
-const $r = de(null);
+const Lr = de(null);
 function Yn() {
-  const t = fe($r);
+  const t = fe(Lr);
   if (t === null)
     throw new Error("Provide a DnDContext");
   return t;
@@ -330,7 +330,7 @@ function si(t) {
 }
 function ui({ node: t }) {
   const e = re();
-  return $(() => {
+  return L(() => {
     var r, n;
     (r = e.current) === null || r === void 0 || r.focus(), (n = e.current) === null || n === void 0 || n.select();
   }, []), I("input", {
@@ -963,7 +963,7 @@ function Ni(t) {
       var S = a(this.props, O, this._instanceProps), E = s(this.props, S, O, this._instanceProps), C = !v || m === "backward" ? Math.max(1, g) : 1, _ = !v || m === "forward" ? Math.max(1, g) : 1;
       return [Math.max(0, S - C), Math.max(0, Math.min(f - 1, E + _)), S, E];
     }, y;
-  }(Ln), e.defaultProps = {
+  }($n), e.defaultProps = {
     direction: "ltr",
     itemData: void 0,
     layout: "vertical",
@@ -1086,7 +1086,7 @@ const Ai = ct(function(e, r) {
     right: "0"
   }, children: I(Ri, {}) });
 };
-var Li = globalThis && globalThis.__rest || function(t, e) {
+var $i = globalThis && globalThis.__rest || function(t, e) {
   var r = {};
   for (var n in t)
     Object.prototype.hasOwnProperty.call(t, n) && e.indexOf(n) < 0 && (r[n] = t[n]);
@@ -1095,17 +1095,17 @@ var Li = globalThis && globalThis.__rest || function(t, e) {
       e.indexOf(n[i]) < 0 && Object.prototype.propertyIsEnumerable.call(t, n[i]) && (r[n[i]] = t[n[i]]);
   return r;
 };
-const $i = ct(function(e, r) {
-  var n, i, o, a, { style: s } = e, u = Li(e, ["style"]);
+const Li = ct(function(e, r) {
+  var n, i, o, a, { style: s } = e, u = $i(e, ["style"]);
   const c = k(), d = (i = (n = c.props.padding) !== null && n !== void 0 ? n : c.props.paddingTop) !== null && i !== void 0 ? i : 0, h = (a = (o = c.props.padding) !== null && o !== void 0 ? o : c.props.paddingBottom) !== null && a !== void 0 ? a : 0;
   return I("div", Object.assign({ ref: r, style: Object.assign(Object.assign({}, s), { height: `${parseFloat(s.height) + d + h}px` }) }, u));
 });
 var en = de({
   dragDropManager: void 0
-}), L;
+}), $;
 (function(t) {
   t.SOURCE = "SOURCE", t.TARGET = "TARGET";
-})(L || (L = {}));
+})($ || ($ = {}));
 function w(t, e) {
   for (var r = arguments.length, n = new Array(r > 2 ? r - 2 : 0), i = 2; i < r; i++)
     n[i - 2] = arguments[i];
@@ -1286,7 +1286,7 @@ function Zi(t, e, r) {
     i.hover(e, n);
   });
 }
-function Lt(t, e) {
+function $t(t, e) {
   var r = Object.keys(t);
   if (Object.getOwnPropertySymbols) {
     var n = Object.getOwnPropertySymbols(t);
@@ -1296,12 +1296,12 @@ function Lt(t, e) {
   }
   return r;
 }
-function $t(t) {
+function Lt(t) {
   for (var e = 1; e < arguments.length; e++) {
     var r = arguments[e] != null ? arguments[e] : {};
-    e % 2 ? Lt(Object(r), !0).forEach(function(n) {
+    e % 2 ? $t(Object(r), !0).forEach(function(n) {
       eo(t, n, r[n]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(r)) : Lt(Object(r)).forEach(function(n) {
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(r)) : $t(Object(r)).forEach(function(n) {
       Object.defineProperty(t, n, Object.getOwnPropertyDescriptor(r, n));
     });
   }
@@ -1319,7 +1319,7 @@ function to(t) {
       var u = no(a, s, i, n), c = {
         type: Pe,
         payload: {
-          dropResult: $t($t({}, r), u)
+          dropResult: Lt(Lt({}, r), u)
         }
       };
       t.dispatch(c);
@@ -1863,7 +1863,7 @@ function Mo() {
     stateId: ko(t.stateId)
   };
 }
-function Lo(t, e) {
+function $o(t, e) {
   return {
     x: t.x + e.x,
     y: t.y + e.y
@@ -1875,9 +1875,9 @@ function nn(t, e) {
     y: t.y - e.y
   };
 }
-function $o(t) {
+function Lo(t) {
   var e = t.clientOffset, r = t.initialClientOffset, n = t.initialSourceClientOffset;
-  return !e || !r || !n ? null : nn(Lo(e, n), r);
+  return !e || !r || !n ? null : nn($o(e, n), r);
 }
 function jo(t) {
   var e = t.clientOffset, r = t.initialClientOffset;
@@ -2040,7 +2040,7 @@ var Vo = /* @__PURE__ */ function() {
   }, {
     key: "getSourceClientOffset",
     value: function() {
-      return $o(this.store.getState().dragOffset);
+      return Lo(this.store.getState().dragOffset);
     }
   }, {
     key: "getDifferenceFromInitialOffset",
@@ -2264,9 +2264,9 @@ function oa(t) {
 function aa(t) {
   var e = zo().toString();
   switch (t) {
-    case L.SOURCE:
+    case $.SOURCE:
       return "S".concat(e);
-    case L.TARGET:
+    case $.TARGET:
       return "T".concat(e);
     default:
       throw new Error("Unknown Handler Role: ".concat(t));
@@ -2275,9 +2275,9 @@ function aa(t) {
 function Jt(t) {
   switch (t[0]) {
     case "S":
-      return L.SOURCE;
+      return $.SOURCE;
     case "T":
-      return L.TARGET;
+      return $.TARGET;
     default:
       w(!1, "Cannot parse handler ID: ".concat(t));
   }
@@ -2300,14 +2300,14 @@ var sa = /* @__PURE__ */ function() {
     key: "addSource",
     value: function(r, n) {
       nt(r), Wo(n);
-      var i = this.addHandler(L.SOURCE, r, n);
+      var i = this.addHandler($.SOURCE, r, n);
       return this.store.dispatch(Io(i)), i;
     }
   }, {
     key: "addTarget",
     value: function(r, n) {
       nt(r, !0), Bo(n);
-      var i = this.addHandler(L.TARGET, r, n);
+      var i = this.addHandler($.TARGET, r, n);
       return this.store.dispatch(wo(i)), i;
     }
   }, {
@@ -2342,13 +2342,13 @@ var sa = /* @__PURE__ */ function() {
     key: "isSourceId",
     value: function(r) {
       var n = Jt(r);
-      return n === L.SOURCE;
+      return n === $.SOURCE;
     }
   }, {
     key: "isTargetId",
     value: function(r) {
       var n = Jt(r);
-      return n === L.TARGET;
+      return n === $.TARGET;
     }
   }, {
     key: "removeSource",
@@ -2378,7 +2378,7 @@ var sa = /* @__PURE__ */ function() {
     key: "addHandler",
     value: function(r, n, i) {
       var o = aa(r);
-      return this.types.set(o, n), r === L.SOURCE ? this.dragSources.set(o, i) : r === L.TARGET && this.dropTargets.set(o, i), o;
+      return this.types.set(o, n), r === $.SOURCE ? this.dragSources.set(o, i) : r === $.TARGET && this.dropTargets.set(o, i), o;
     }
   }]), t;
 }();
@@ -2463,7 +2463,7 @@ function ya(t, e) {
 }
 var tr = 0, De = Symbol.for("__REACT_DND_CONTEXT_INSTANCE__"), ma = lt(function(e) {
   var r = e.children, n = va(e, ca), i = ba(n), o = da(i, 2), a = o[0], s = o[1];
-  return $(function() {
+  return L(function() {
     if (s) {
       var u = un();
       return ++tr, function() {
@@ -2747,7 +2747,7 @@ function _a(t) {
 function Ca(t) {
   return function() {
     var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null, r = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
-    if (!$n(e)) {
+    if (!Ln(e)) {
       var n = e;
       return t(n, r), n;
     }
@@ -3050,19 +3050,19 @@ var Ma = /* @__PURE__ */ function() {
     }
   }]), t;
 }();
-function La(t, e, r) {
+function $a(t, e, r) {
   var n = r.getRegistry(), i = n.addTarget(t, e);
   return [i, function() {
     return n.removeTarget(i);
   }];
 }
-function $a(t, e, r) {
+function La(t, e, r) {
   var n = r.getRegistry(), i = n.addSource(t, e);
   return [i, function() {
     return n.removeSource(i);
   }];
 }
-var q = typeof window < "u" ? jn : $;
+var q = typeof window < "u" ? jn : L;
 function we(t) {
   "@babel/helpers - typeof";
   return typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? we = function(r) {
@@ -3121,7 +3121,7 @@ function Va(t, e, r) {
   var n = N(function() {
     return new Fa(t, e, r);
   }, [e, r]);
-  return $(function() {
+  return L(function() {
     n.spec = t;
   }, [t]), n;
 }
@@ -3187,7 +3187,7 @@ function Ga(t, e, r) {
   var n = G(), i = Va(t, e, r), o = Ua(t);
   q(function() {
     if (o != null) {
-      var s = $a(o, i, n), u = za(s, 2), c = u[0], d = u[1];
+      var s = La(o, i, n), u = za(s, 2), c = u[0], d = u[1];
       return e.receiveHandlerId(c), r.receiveHandlerId(c), d;
     }
   }, [n, e, r, i, o]);
@@ -3475,7 +3475,7 @@ function Ds(t, e) {
   var r = N(function() {
     return new Ss(t, e);
   }, [e]);
-  return $(function() {
+  return L(function() {
     r.spec = t;
   }, [t]), r;
 }
@@ -3530,7 +3530,7 @@ function _s(t) {
 function Cs(t, e, r) {
   var n = G(), i = Ds(t, e), o = ms(t);
   q(function() {
-    var s = La(o, i, n), u = Is(s, 2), c = u[0], d = u[1];
+    var s = $a(o, i, n), u = Is(s, 2), c = u[0], d = u[1];
     return e.receiveHandlerId(c), r.receiveHandlerId(c), d;
   }, [n, e, i, r, o.map(function(a) {
     return a.toString();
@@ -3562,7 +3562,7 @@ function hn(t, e) {
   return Cs(r, n, i), [fn(r.collect, n, i), Ps(i)];
 }
 function Rs(t, e) {
-  return Ls(t) || Ms(t, e) || As(t, e) || ks();
+  return $s(t) || Ms(t, e) || As(t, e) || ks();
 }
 function ks() {
   throw new TypeError(`Invalid attempt to destructure non-iterable instance.
@@ -3605,15 +3605,15 @@ function Ms(t, e) {
     return n;
   }
 }
-function Ls(t) {
+function $s(t) {
   if (Array.isArray(t))
     return t;
 }
-function $s(t) {
+function Ls(t) {
   var e = G(), r = e.getMonitor(), n = dn(r, t), i = Rs(n, 2), o = i[0], a = i[1];
-  return $(function() {
+  return L(function() {
     return r.subscribeToOffsetChange(a);
-  }), $(function() {
+  }), L(function() {
     return r.subscribeToStateChange(a);
   }), o;
 }
@@ -4359,7 +4359,7 @@ function uu(t) {
       }), e.open(a)), e.dispatch(ie.dragEnd());
     }
   }), [r, t]);
-  return $(() => {
+  return L(() => {
     o(au());
   }, [o]), i;
 }
@@ -4485,7 +4485,7 @@ const gu = Ce.memo(function({ index: e, style: r }) {
     tabIndex: -1,
     className: n.props.rowClassName
   };
-  $(() => {
+  L(() => {
     var l;
     !i.isEditing && i.isFocused && ((l = o.current) === null || l === void 0 || l.focus({ preventScroll: !0 }));
   }, [i.isEditing, i.isFocused, o.current]);
@@ -4641,7 +4641,7 @@ function Dn() {
   }, children: I(Pi, { className: t.props.className, outerRef: t.listEl, itemCount: t.visibleNodes.length, height: t.height, width: t.width, itemSize: t.rowHeight, overscanCount: t.overscanCount, itemKey: (e) => {
     var r;
     return ((r = t.visibleNodes[e]) === null || r === void 0 ? void 0 : r.id) || e;
-  }, outerElementType: Ai, innerElementType: $i, onScroll: t.props.onScroll, onItemsRendered: t.onItemsRendered.bind(t), ref: t.list, children: gu }) });
+  }, outerElementType: Ai, innerElementType: Li, onScroll: t.props.onScroll, onItemsRendered: t.onItemsRendered.bind(t), ref: t.list, children: gu }) });
 }
 function Nr(t) {
   return t.isFiltered ? vu(t.root, t.isMatch.bind(t)) : pu(t.root);
@@ -5380,11 +5380,11 @@ function Cu({ treeProps: t, imperativeHandle: e, children: r }) {
   ), a = qn.useSyncExternalStore(o.current.subscribe, o.current.getState, () => _u), s = N(() => new le(o.current, t, n, i), []), u = re(0);
   return N(() => {
     u.current += 1, s.update(t);
-  }, [...Object.values(t), a.nodes.open]), Hn(e, () => s), $(() => {
+  }, [...Object.values(t), a.nodes.open]), Hn(e, () => s), L(() => {
     s.props.selection ? s.select(s.props.selection, { focus: !1 }) : s.deselectAll();
-  }, [s.props.selection]), $(() => {
+  }, [s.props.selection]), L(() => {
     s.props.searchTerm || o.current.dispatch(et.clear(!0));
-  }, [s.props.searchTerm]), I(Mr.Provider, { value: s, children: I(jr.Provider, { value: u.current, children: I(Lr.Provider, { value: a.nodes, children: I($r.Provider, { value: a.dnd, children: I(ma, Object.assign({ backend: su, options: { rootElement: s.props.dndRootElement || void 0 } }, t.dndManager && { manager: t.dndManager }, { children: r })) }) }) }) });
+  }, [s.props.searchTerm]), I(Mr.Provider, { value: s, children: I(jr.Provider, { value: u.current, children: I($r.Provider, { value: a.nodes, children: I(Lr.Provider, { value: a.dnd, children: I(ma, Object.assign({ backend: su, options: { rootElement: s.props.dndRootElement || void 0 } }, t.dndManager && { manager: t.dndManager }, { children: r })) }) }) }) });
 }
 function Nu() {
   const t = k(), [, e] = hn(() => ({
@@ -5417,7 +5417,7 @@ function Pu() {
   return I(ut, { children: I(e, {}) });
 }
 function Ru() {
-  const t = k(), { offset: e, mouse: r, item: n, isDragging: i } = $s((a) => ({
+  const t = k(), { offset: e, mouse: r, item: n, isDragging: i } = Ls((a) => ({
     offset: a.getSourceClientOffset(),
     mouse: a.getClientOffset(),
     item: a.getItem(),
@@ -5505,7 +5505,7 @@ class En {
   }
 }
 let Mu = 0;
-function Lu(t) {
+function $u(t) {
   const [e, r] = dt(t), n = N(() => new ku(e), [e]);
   return [e, { onMove: (c) => {
     for (const d of c.dragIds)
@@ -5520,20 +5520,20 @@ function Lu(t) {
     c.ids.forEach((d) => n.drop({ id: d })), r(n.data);
   } }];
 }
-function $u(t) {
+function Lu(t) {
   if (t.initialData && t.data)
     throw new Error("React Arborist Tree => Provide either a data or initialData prop, but not both.");
   if (t.initialData && (t.onCreate || t.onDelete || t.onMove || t.onRename))
     throw new Error(`React Arborist Tree => You passed the initialData prop along with a data handler.
 Use the data prop if you want to provide your own handlers.`);
   if (t.initialData) {
-    const [e, r] = Lu(t.initialData);
+    const [e, r] = $u(t.initialData);
     return Object.assign(Object.assign(Object.assign({}, t), r), { data: e });
   } else
     return t;
 }
 function ju(t, e) {
-  const r = $u(t);
+  const r = Lu(t);
   return K(Cu, { treeProps: r, imperativeHandle: e, children: [I(xu, { children: I(Pu, {}) }), I(Ru, {})] });
 }
 const Hu = ct(ju), Fu = (t) => {
@@ -5542,7 +5542,7 @@ const Hu = ct(ju), Fu = (t) => {
 };
 function Yu(t) {
   const e = Mn(), [r, n] = dt(t.data), i = t.iconProvider || Un;
-  $(() => {
+  L(() => {
     n(t.data);
   }, [t.data]);
   const o = (s) => {
