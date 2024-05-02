@@ -15,6 +15,10 @@ import Bt from "../palmyra/mui/form/MuiIntegerField.js";
 import Te from "../palmyra/mui/form/FieldDecorator.js";
 import "../palmyra/mui/form/MuiSlider.js";
 import It from "../palmyra/mui/form/MuiRating.js";
+import "../palmyra/mui/textView/TextView.js";
+import "../palmyra/mui/textView/DateView.js";
+import "../palmyra/mui/textView/OptionsView.js";
+import "../palmyra/mui/textView/LookupView.js";
 import { renderTitle as it } from "../palmyra/mui/widget/InfoTooltip.js";
 import { FieldManagerContext as he, StoreFactoryContext as ze, LayoutParamsContext as at } from "../palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { jsx as e, jsxs as h, Fragment as oe } from "react/jsx-runtime";
@@ -49,6 +53,8 @@ import "react-chartjs-2";
 import "./ChartJS.js";
 import "dayjs";
 import "../palmyra/form/PalmyraForm.js";
+import "./jspdf.es.min.js";
+import "react-dom";
 import { getActionPublishers as $t } from "../palmyra/utils/pubsub/Publishers.js";
 import { ErrorBoundary as vt } from "../palmyra/layout/ErrorBoundary.js";
 import Jt from "../palmyra/layout/flexiLayout/SectionRendererInvalid.js";
@@ -134,7 +140,7 @@ const ae = (r) => {
 function nt(r) {
   return r ? Array.isArray(r) ? r : typeof r == "string" ? r.split(",") : [r] : [];
 }
-const Cr = Y(function(t, c) {
+const Rr = Y(function(t, c) {
   const i = de(he), a = c || _(null), s = i(t, "checkbox", a), { mutateOptions: y, setMutateOptions: f } = s, [b, g] = N(!1), C = nt(s.data), d = s.error, O = s.eventListeners, v = s.store, V = t.pageSize || -1, k = { store: v, pageSize: V, defaultParams: t.defaultParams }, { data: D } = ae(k), R = D, I = _(null), L = t.lookupOptions || {}, T = L.idAttribute || "id", Q = L.displayAttribute || "name", X = t.showSelectedOnly && t.readonly, P = ue(T) ? (u) => me(T, u) : (u) => u[T], M = ue(Q) ? (u) => me(Q, u) : (u) => u[Q];
   re(a, () => ({
     focus() {
@@ -931,7 +937,7 @@ const an = (r) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), xr = Y(function(t, c) {
+}), Nr = Y(function(t, c) {
   const { children: i, EmptyChild: a, onRowClick: s, quickSearch: y, exportOptions: f } = t, b = t.columns, g = a || ht, C = t.customizer || pt, d = t.customButton, O = t.title, [v, V] = N(!1), [k, D] = N(!1), [R, I] = N("standard"), [L, T] = N(!1), [Q, X] = N(""), {
     setQueryFilter: P,
     setQuickSearch: M,
@@ -1158,7 +1164,7 @@ const an = (r) => {
       ) })
     ] }) }) }) })
   ] }) });
-}), Fr = Y(function(t, c) {
+}), Pr = Y(function(t, c) {
   const { columns: i, endPoint: a, storeFactory: s, layoutParams: y, pagination: f } = t, b = t.quickSearch || "", g = t.customButton, C = t.customAddButton, d = t.title, O = t.fetchAll, v = t.filterTopic, V = t.initialFetch, k = (R, I) => {
   };
   ee(() => {
@@ -1332,14 +1338,14 @@ const wt = (r) => {
     default:
       return rt;
   }
-}, wr = Y(function(t, c) {
+}, kr = Y(function(t, c) {
   const [i, a] = N(t.layout), s = t.mode ? t.mode : i.type ? i.type : "grid", y = t.layoutParams || {}, f = fn(s), b = _(0);
   return ee(() => {
     a(t.layout), b.current < 999999 ? b.current++ : b.current = 0;
   }, [t.layout]), /* @__PURE__ */ e(vt, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(ze.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(at.Provider, { value: y, children: /* @__PURE__ */ e(f, { ...t, ref: (g) => {
     c && (c.current = g);
   } }, b.current) }) }) });
-}), Or = Y(function(t, c) {
+}), Dr = Y(function(t, c) {
   const { title: i, Child: a, childProps: s, pageSize: y, customButton: f } = t, b = c || _(null), {
     setQueryFilter: g,
     refreshData: C,
@@ -1464,15 +1470,15 @@ const wt = (r) => {
   ] }) }) });
 });
 export {
-  xr as D,
-  wr as F,
+  Nr as D,
+  kr as F,
   Ft as G,
   tn as M,
-  Fr as P,
-  Or as S,
+  Pr as P,
+  Dr as S,
   wt as T,
   ln as a,
-  Cr as b,
+  Rr as b,
   nn as c,
   on as d,
   Ct as e,

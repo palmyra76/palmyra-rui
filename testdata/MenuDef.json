@@ -17,6 +17,11 @@
             "icon": "layout"
         },
         {
+            "path": "/export",
+            "name": "Export Component",
+            "icon": "layout"
+        },
+        {
             "path": "/deps",
             "name": "Dependant Fields",
             "icon": "home"
