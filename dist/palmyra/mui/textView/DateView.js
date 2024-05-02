@@ -1,8 +1,8 @@
-import { jsx as P, Fragment as J, jsxs as z } from "react/jsx-runtime";
-import { forwardRef as Z, useContext as K, useRef as tt } from "react";
-import { FieldManagerContext as et } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import nt from "../form/FieldDecorator.js";
-import { copyMuiOptions as rt, getFieldLabel as at } from "../form/MuiUtil.js";
+import { jsx as P, Fragment as z, jsxs as Z } from "react/jsx-runtime";
+import { forwardRef as K, useContext as tt, useRef as et } from "react";
+import { FieldManagerContext as nt } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import rt from "../form/FieldDecorator.js";
+import { copyMuiOptions as at, getFieldLabel as it } from "../form/MuiUtil.js";
 function g(e) {
   const t = Object.prototype.toString.call(e);
   return e instanceof Date || typeof e == "object" && t === "[object Date]" ? new e.constructor(+e) : typeof e == "number" || t === "[object Number]" || typeof e == "string" || t === "[object String]" ? new Date(e) : /* @__PURE__ */ new Date(NaN);
@@ -10,10 +10,10 @@ function g(e) {
 function D(e, t) {
   return e instanceof Date ? new e.constructor(t) : new Date(t);
 }
-const X = 6048e5, it = 864e5, A = 6e4, G = 36e5;
-let st = {};
+const X = 6048e5, st = 864e5, A = 6e4, G = 36e5;
+let ot = {};
 function S() {
-  return st;
+  return ot;
 }
 function T(e, t) {
   var o, u, d, f;
@@ -49,19 +49,19 @@ function R(e) {
   );
   return n.setUTCFullYear(t.getFullYear()), +e - +n;
 }
-function ot(e, t) {
+function ut(e, t) {
   const n = L(e), r = L(t), a = +n - R(n), i = +r - R(r);
-  return Math.round((a - i) / it);
+  return Math.round((a - i) / st);
 }
-function ut(e) {
+function ct(e) {
   const t = U(e), n = D(e, 0);
   return n.setFullYear(t, 0, 4), n.setHours(0, 0, 0, 0), Y(n);
 }
-function ct(e) {
+function dt(e) {
   return e instanceof Date || typeof e == "object" && Object.prototype.toString.call(e) === "[object Date]";
 }
-function dt(e) {
-  if (!ct(e) && typeof e != "number")
+function B(e) {
+  if (!dt(e) && typeof e != "number")
     return !1;
   const t = g(e);
   return !isNaN(Number(t));
@@ -245,7 +245,7 @@ const Mt = {
     "Friday",
     "Saturday"
   ]
-}, kt = {
+}, vt = {
   narrow: {
     am: "a",
     pm: "p",
@@ -276,7 +276,7 @@ const Mt = {
     evening: "evening",
     night: "night"
   }
-}, vt = {
+}, kt = {
   narrow: {
     am: "a",
     pm: "p",
@@ -339,13 +339,13 @@ const Mt = {
     defaultWidth: "wide"
   }),
   dayPeriod: x({
-    values: kt,
+    values: vt,
     defaultWidth: "wide",
-    formattingValues: vt,
+    formattingValues: kt,
     defaultFormattingWidth: "wide"
   })
 };
-function k(e) {
+function v(e) {
   return (t, n = {}) => {
     const r = n.width, a = r && e.matchPatterns[r] || e.matchPatterns[e.defaultMatchWidth], i = t.match(a);
     if (!i)
@@ -387,7 +387,7 @@ function Nt(e) {
     return { value: s, rest: o };
   };
 }
-const Ct = /^(\d+)(th|st|nd|rd)?/i, Ft = /\d+/i, pt = {
+const Ct = /^(\d+)(th|st|nd|rd)?/i, pt = /\d+/i, Ft = {
   narrow: /^(b|a)/i,
   abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   wide: /^(before christ|before common era|anno domini|common era)/i
@@ -432,12 +432,12 @@ const Ct = /^(\d+)(th|st|nd|rd)?/i, Ft = /\d+/i, pt = {
     /^n/i,
     /^d/i
   ]
-}, jt = {
+}, It = {
   narrow: /^[smtwf]/i,
   short: /^(su|mo|tu|we|th|fr|sa)/i,
   abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
   wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-}, It = {
+}, jt = {
   narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
   any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
 }, Qt = {
@@ -457,35 +457,35 @@ const Ct = /^(\d+)(th|st|nd|rd)?/i, Ft = /\d+/i, pt = {
 }, Xt = {
   ordinalNumber: Nt({
     matchPattern: Ct,
-    parsePattern: Ft,
+    parsePattern: pt,
     valueCallback: (e) => parseInt(e, 10)
   }),
-  era: k({
-    matchPatterns: pt,
+  era: v({
+    matchPatterns: Ft,
     defaultMatchWidth: "wide",
     parsePatterns: Et,
     defaultParseWidth: "any"
   }),
-  quarter: k({
+  quarter: v({
     matchPatterns: qt,
     defaultMatchWidth: "wide",
     parsePatterns: Ht,
     defaultParseWidth: "any",
     valueCallback: (e) => e + 1
   }),
-  month: k({
+  month: v({
     matchPatterns: Lt,
     defaultMatchWidth: "wide",
     parsePatterns: Rt,
     defaultParseWidth: "any"
   }),
-  day: k({
-    matchPatterns: jt,
+  day: v({
+    matchPatterns: It,
     defaultMatchWidth: "wide",
-    parsePatterns: It,
+    parsePatterns: jt,
     defaultParseWidth: "any"
   }),
-  dayPeriod: k({
+  dayPeriod: v({
     matchPatterns: Qt,
     defaultMatchWidth: "any",
     parsePatterns: _t,
@@ -505,15 +505,15 @@ const Ct = /^(\d+)(th|st|nd|rd)?/i, Ft = /\d+/i, pt = {
 };
 function Gt(e) {
   const t = g(e);
-  return ot(t, ft(t)) + 1;
+  return ut(t, ft(t)) + 1;
 }
 function Ut(e) {
-  const t = g(e), n = +Y(t) - +ut(t);
+  const t = g(e), n = +Y(t) - +ct(t);
   return Math.round(n / X) + 1;
 }
-function B(e, t) {
-  var f, m, y, O;
-  const n = g(e), r = n.getFullYear(), a = S(), i = (t == null ? void 0 : t.firstWeekContainsDate) ?? ((m = (f = t == null ? void 0 : t.locale) == null ? void 0 : f.options) == null ? void 0 : m.firstWeekContainsDate) ?? a.firstWeekContainsDate ?? ((O = (y = a.locale) == null ? void 0 : y.options) == null ? void 0 : O.firstWeekContainsDate) ?? 1, s = D(e, 0);
+function V(e, t) {
+  var f, m, w, O;
+  const n = g(e), r = n.getFullYear(), a = S(), i = (t == null ? void 0 : t.firstWeekContainsDate) ?? ((m = (f = t == null ? void 0 : t.locale) == null ? void 0 : f.options) == null ? void 0 : m.firstWeekContainsDate) ?? a.firstWeekContainsDate ?? ((O = (w = a.locale) == null ? void 0 : w.options) == null ? void 0 : O.firstWeekContainsDate) ?? 1, s = D(e, 0);
   s.setFullYear(r + 1, 0, i), s.setHours(0, 0, 0, 0);
   const o = T(s, t), u = D(e, 0);
   u.setFullYear(r, 0, i), u.setHours(0, 0, 0, 0);
@@ -522,7 +522,7 @@ function B(e, t) {
 }
 function Bt(e, t) {
   var o, u, d, f;
-  const n = S(), r = (t == null ? void 0 : t.firstWeekContainsDate) ?? ((u = (o = t == null ? void 0 : t.locale) == null ? void 0 : o.options) == null ? void 0 : u.firstWeekContainsDate) ?? n.firstWeekContainsDate ?? ((f = (d = n.locale) == null ? void 0 : d.options) == null ? void 0 : f.firstWeekContainsDate) ?? 1, a = B(e, t), i = D(e, 0);
+  const n = S(), r = (t == null ? void 0 : t.firstWeekContainsDate) ?? ((u = (o = t == null ? void 0 : t.locale) == null ? void 0 : o.options) == null ? void 0 : u.firstWeekContainsDate) ?? n.firstWeekContainsDate ?? ((f = (d = n.locale) == null ? void 0 : d.options) == null ? void 0 : f.firstWeekContainsDate) ?? 1, a = V(e, t), i = D(e, 0);
   return i.setFullYear(a, 0, r), i.setHours(0, 0, 0, 0), T(i, t);
 }
 function Vt(e, t) {
@@ -533,7 +533,7 @@ function c(e, t) {
   const n = e < 0 ? "-" : "", r = Math.abs(e).toString().padStart(t, "0");
   return n + r;
 }
-const w = {
+const y = {
   // Year
   y(e, t) {
     const n = e.getFullYear(), r = n > 0 ? n : 1 - n;
@@ -596,7 +596,7 @@ const w = {
   afternoon: "afternoon",
   evening: "evening",
   night: "night"
-}, j = {
+}, I = {
   // Era
   G: function(e, t, n) {
     const r = e.getFullYear() > 0 ? 1 : 0;
@@ -618,11 +618,11 @@ const w = {
       const r = e.getFullYear(), a = r > 0 ? r : 1 - r;
       return n.ordinalNumber(a, { unit: "year" });
     }
-    return w.y(e, t);
+    return y.y(e, t);
   },
   // Local week-numbering year
   Y: function(e, t, n, r) {
-    const a = B(e, r), i = a > 0 ? a : 1 - a;
+    const a = V(e, r), i = a > 0 ? a : 1 - a;
     if (t === "YY") {
       const s = i % 100;
       return c(s, 2);
@@ -709,7 +709,7 @@ const w = {
     switch (t) {
       case "M":
       case "MM":
-        return w.M(e, t);
+        return y.M(e, t);
       case "Mo":
         return n.ordinalNumber(r + 1, { unit: "month" });
       case "MMM":
@@ -764,7 +764,7 @@ const w = {
   },
   // Day of the month
   d: function(e, t, n) {
-    return t === "do" ? n.ordinalNumber(e.getDate(), { unit: "date" }) : w.d(e, t);
+    return t === "do" ? n.ordinalNumber(e.getDate(), { unit: "date" }) : y.d(e, t);
   },
   // Day of year
   D: function(e, t, n) {
@@ -987,11 +987,11 @@ const w = {
       let r = e.getHours() % 12;
       return r === 0 && (r = 12), n.ordinalNumber(r, { unit: "hour" });
     }
-    return w.h(e, t);
+    return y.h(e, t);
   },
   // Hour [0-23]
   H: function(e, t, n) {
-    return t === "Ho" ? n.ordinalNumber(e.getHours(), { unit: "hour" }) : w.H(e, t);
+    return t === "Ho" ? n.ordinalNumber(e.getHours(), { unit: "hour" }) : y.H(e, t);
   },
   // Hour [0-11]
   K: function(e, t, n) {
@@ -1005,15 +1005,15 @@ const w = {
   },
   // Minute
   m: function(e, t, n) {
-    return t === "mo" ? n.ordinalNumber(e.getMinutes(), { unit: "minute" }) : w.m(e, t);
+    return t === "mo" ? n.ordinalNumber(e.getMinutes(), { unit: "minute" }) : y.m(e, t);
   },
   // Second
   s: function(e, t, n) {
-    return t === "so" ? n.ordinalNumber(e.getSeconds(), { unit: "second" }) : w.s(e, t);
+    return t === "so" ? n.ordinalNumber(e.getSeconds(), { unit: "second" }) : y.s(e, t);
   },
   // Fraction of second
   S: function(e, t) {
-    return w.S(e, t);
+    return y.S(e, t);
   },
   // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
   X: function(e, t, n) {
@@ -1054,7 +1054,7 @@ const w = {
       case "O":
       case "OO":
       case "OOO":
-        return "GMT" + I(r, ":");
+        return "GMT" + j(r, ":");
       case "OOOO":
       default:
         return "GMT" + b(r, ":");
@@ -1067,7 +1067,7 @@ const w = {
       case "z":
       case "zz":
       case "zzz":
-        return "GMT" + I(r, ":");
+        return "GMT" + j(r, ":");
       case "zzzz":
       default:
         return "GMT" + b(r, ":");
@@ -1084,7 +1084,7 @@ const w = {
     return c(r, t.length);
   }
 };
-function I(e, t = "") {
+function j(e, t = "") {
   const n = e > 0 ? "-" : "+", r = Math.abs(e), a = Math.trunc(r / 60), i = r % 60;
   return i === 0 ? n + String(a) : n + String(a) + t + c(i, 2);
 }
@@ -1107,7 +1107,7 @@ const _ = (e, t) => {
     default:
       return t.date({ width: "full" });
   }
-}, V = (e, t) => {
+}, $ = (e, t) => {
   switch (e) {
     case "p":
       return t.time({ width: "short" });
@@ -1139,9 +1139,9 @@ const _ = (e, t) => {
       i = t.dateTime({ width: "full" });
       break;
   }
-  return i.replace("{{date}}", _(r, t)).replace("{{time}}", V(a, t));
+  return i.replace("{{date}}", _(r, t)).replace("{{time}}", $(a, t));
 }, Jt = {
-  p: V,
+  p: $,
   P: $t
 }, zt = /^D+$/, Zt = /^Y+$/, Kt = ["D", "DD", "YY", "YYYY"];
 function te(e) {
@@ -1161,9 +1161,9 @@ function re(e, t, n) {
 }
 const ae = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g, ie = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g, se = /^'([^]*?)'?$/, oe = /''/g, ue = /[a-zA-Z]/;
 function ce(e, t, n) {
-  var f, m, y, O, p, E, q, H;
-  const r = S(), a = (n == null ? void 0 : n.locale) ?? r.locale ?? At, i = (n == null ? void 0 : n.firstWeekContainsDate) ?? ((m = (f = n == null ? void 0 : n.locale) == null ? void 0 : f.options) == null ? void 0 : m.firstWeekContainsDate) ?? r.firstWeekContainsDate ?? ((O = (y = r.locale) == null ? void 0 : y.options) == null ? void 0 : O.firstWeekContainsDate) ?? 1, s = (n == null ? void 0 : n.weekStartsOn) ?? ((E = (p = n == null ? void 0 : n.locale) == null ? void 0 : p.options) == null ? void 0 : E.weekStartsOn) ?? r.weekStartsOn ?? ((H = (q = r.locale) == null ? void 0 : q.options) == null ? void 0 : H.weekStartsOn) ?? 0, o = g(e);
-  if (!dt(o))
+  var f, m, w, O, F, E, q, H;
+  const r = S(), a = (n == null ? void 0 : n.locale) ?? r.locale ?? At, i = (n == null ? void 0 : n.firstWeekContainsDate) ?? ((m = (f = n == null ? void 0 : n.locale) == null ? void 0 : f.options) == null ? void 0 : m.firstWeekContainsDate) ?? r.firstWeekContainsDate ?? ((O = (w = r.locale) == null ? void 0 : w.options) == null ? void 0 : O.firstWeekContainsDate) ?? 1, s = (n == null ? void 0 : n.weekStartsOn) ?? ((E = (F = n == null ? void 0 : n.locale) == null ? void 0 : F.options) == null ? void 0 : E.weekStartsOn) ?? r.weekStartsOn ?? ((H = (q = r.locale) == null ? void 0 : q.options) == null ? void 0 : H.weekStartsOn) ?? 0, o = g(e);
+  if (!B(o))
     throw new RangeError("Invalid time value");
   let u = t.match(ie).map((h) => {
     const l = h[0];
@@ -1178,7 +1178,7 @@ function ce(e, t, n) {
     const l = h[0];
     if (l === "'")
       return { isToken: !1, value: de(h) };
-    if (j[l])
+    if (I[l])
       return { isToken: !0, value: h };
     if (l.match(ue))
       throw new RangeError(
@@ -1197,7 +1197,7 @@ function ce(e, t, n) {
       return h.value;
     const l = h.value;
     (!(n != null && n.useAdditionalWeekYearTokens) && ee(l) || !(n != null && n.useAdditionalDayOfYearTokens) && te(l)) && ne(l, t, String(e));
-    const N = j[l[0]];
+    const N = I[l[0]];
     return N(o, l, a.localize, d);
   }).join("");
 }
@@ -1273,25 +1273,25 @@ function ye(e, t) {
   const n = e.match(le);
   if (!n)
     return /* @__PURE__ */ new Date(NaN);
-  const r = !!n[4], a = v(n[1]), i = v(n[2]) - 1, s = v(n[3]), o = v(n[4]), u = v(n[5]) - 1;
+  const r = !!n[4], a = k(n[1]), i = k(n[2]) - 1, s = k(n[3]), o = k(n[4]), u = k(n[5]) - 1;
   if (r)
-    return ke(t, o, u) ? Me(t, o, u) : /* @__PURE__ */ new Date(NaN);
+    return ve(t, o, u) ? Me(t, o, u) : /* @__PURE__ */ new Date(NaN);
   {
     const d = /* @__PURE__ */ new Date(0);
     return !Pe(t, i, s) || !xe(t, a) ? /* @__PURE__ */ new Date(NaN) : (d.setUTCFullYear(t, i, Math.max(a, s)), d);
   }
 }
-function v(e) {
+function k(e) {
   return e ? parseInt(e) : 1;
 }
 function be(e) {
   const t = e.match(me);
   if (!t)
     return NaN;
-  const n = F(t[1]), r = F(t[2]), a = F(t[3]);
-  return ve(n, r, a) ? n * G + r * A + a * 1e3 : NaN;
+  const n = p(t[1]), r = p(t[2]), a = p(t[3]);
+  return ke(n, r, a) ? n * G + r * A + a * 1e3 : NaN;
 }
-function F(e) {
+function p(e) {
   return e && parseFloat(e.replace(",", ".")) || 0;
 }
 function De(e) {
@@ -1310,43 +1310,42 @@ function Me(e, t, n) {
   return r.setUTCDate(r.getUTCDate() + i), r;
 }
 const Oe = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-function $(e) {
+function J(e) {
   return e % 400 === 0 || e % 4 === 0 && e % 100 !== 0;
 }
 function Pe(e, t, n) {
-  return t >= 0 && t <= 11 && n >= 1 && n <= (Oe[t] || ($(e) ? 29 : 28));
+  return t >= 0 && t <= 11 && n >= 1 && n <= (Oe[t] || (J(e) ? 29 : 28));
 }
 function xe(e, t) {
-  return t >= 1 && t <= ($(e) ? 366 : 365);
-}
-function ke(e, t, n) {
-  return t >= 1 && t <= 53 && n >= 0 && n <= 6;
+  return t >= 1 && t <= (J(e) ? 366 : 365);
 }
 function ve(e, t, n) {
+  return t >= 1 && t <= 53 && n >= 0 && n <= 6;
+}
+function ke(e, t, n) {
   return e === 24 ? t === 0 && n === 0 : n >= 0 && n < 60 && t >= 0 && t < 60 && e >= 0 && e < 25;
 }
 function Te(e, t) {
   return t >= 0 && t <= 59;
 }
-const Fe = Z(function(t, n) {
-  const r = K(et), a = n || tt(null), i = r(t, "string", a), { mutateOptions: s } = i, o = i.getData(), u = t.textAlign || "left";
-  var d = rt(t, o, t.label);
+const pe = K(function(t, n) {
+  const r = tt(nt), a = n || et(null), i = r(t, "string", a), { mutateOptions: s } = i, o = i.getData(), u = t.textAlign || "left";
+  var d = at(t, o, t.label);
   const f = (m) => {
-    if (m) {
-      const y = fe(m);
-      return ce(y, t.displayPattern);
-    }
-    return m;
+    if (!m)
+      return "";
+    const w = fe(m);
+    return B(w) ? ce(w, t.displayPattern) : (console.error("Invalid date provided:", m), "");
   };
-  return /* @__PURE__ */ P(J, { children: s.visible && /* @__PURE__ */ P(
-    nt,
+  return /* @__PURE__ */ P(z, { children: s.visible && /* @__PURE__ */ P(
+    rt,
     {
-      label: at(t),
+      label: it(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: t.label ? /* @__PURE__ */ z("div", { ...d, children: [
+      children: t.label ? /* @__PURE__ */ Z("div", { ...d, children: [
         /* @__PURE__ */ P("div", { className: "text-view-label", children: t.label }),
         /* @__PURE__ */ P("div", { className: "text-view-value", children: f(o) })
       ] }) : /* @__PURE__ */ P("div", { ...d, style: { textAlign: u }, className: "text-view-value", children: f(o) })
@@ -1354,5 +1353,5 @@ const Fe = Z(function(t, n) {
   ) });
 });
 export {
-  Fe as default
+  pe as default
 };
