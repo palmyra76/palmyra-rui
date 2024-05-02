@@ -86,6 +86,7 @@ interface IDecoration {
 interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
 
 }
+
 interface IRatingFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
     precision?: number,
     size?: 'small' | 'large',
@@ -267,6 +268,23 @@ interface IFormListener {
     onSaveFailure?: (e: any) => void,
     preProcessSaveData?: (data: FormData) => FormData
 }
+interface TextViewAttributeDefinition {
+    attribute: string,
+    textAlign?: 'left' | 'right' | 'center'
+}
+interface ITextViewDefinition extends TextViewAttributeDefinition, IDecoration {
+}
+interface IDateViewDefinition extends TextViewAttributeDefinition, IDecoration {
+    displayPattern?: string
+}
+interface ILookupViewDefinition extends TextViewAttributeDefinition, IDecoration {
+    displayAttribute: string,
+    lookupOptions?: IFormFieldServerLookup
+}
+
+interface IOptionsViewDefinition extends TextViewAttributeDefinition, IDecoration {
+    options: Record<any, any> | Record<string, any>
+}
 
 const NoopFormListener: IFormListener = {
     onSaveSuccess: function (data: any): void {
@@ -281,7 +299,7 @@ export type { ITextFieldDefinition, IRatingFieldDefinition, ISelectDefinition, I
 export type {
     IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions,
     IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition,
-    IRangeSliderDefinition, strings, numbers
+    IRangeSliderDefinition, strings, numbers, ITextViewDefinition, ILookupViewDefinition, IOptionsViewDefinition, IDateViewDefinition
 }
 export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration }
 

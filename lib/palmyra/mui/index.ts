@@ -17,13 +17,18 @@ import FieldDecorator from "./form/FieldDecorator";
 import MuiAutoComplete from "./form/MuiAutoComplete";
 import MuiSlider from './form/MuiSlider';
 import MuiRating from "./form/MuiRating";
+import TextView from "./textView/TextView";
+import DateView from "./textView/DateView";
+import OptionsView from "./textView/OptionsView";
+import LookupView from "./textView/LookupView";
 
 import { InfoTooltip, InfoCircle } from "./widget/InfoTooltip";
 
 export {
     MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup,
     MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword, MuiServerCheckBox,
-    MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator, MuiRating
+    MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator, MuiRating, TextView,
+    DateView, OptionsView, LookupView
 };
 
 export {

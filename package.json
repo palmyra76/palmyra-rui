@@ -79,6 +79,7 @@
     "clsx": "^2.0.0",
     "d3": "^7.9.0",
     "d3-scale-chromatic": "^3.0.0",
+    "date-fns": "^3.6.0",
     "palmyra-wire": "github:palmyra76/palmyra-wire",
     "pubsub-js": "^1.9.4",
     "react-accessible-treeview": "^2.8.1",

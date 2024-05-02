@@ -4,6 +4,20 @@
     --left-menu-fontsize: 1.01em;
 }
 
+.text-view-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-view-label {
+    text-align: left;
+    color: rgba(0, 0, 0, 0.538);
+}
+
+.text-view-value {
+    margin-top: 3px;
+}
+
 /* .backend-grid .MuiTableCell-head,
 .backend-grid .MuiTableCell-body {
     border: none !important;
@@ -11,15 +25,18 @@
 
 /* styles.css */
 .customCheckbox {
-    background-color: transparent !important; /* Ensure overrides by using !important */
+    background-color: transparent !important;
+    /* Ensure overrides by using !important */
 }
 
 .customCheckbox:hover {
-    background-color: transparent !important;  /* Ensure the hover does not change the background */
+    background-color: transparent !important;
+    /* Ensure the hover does not change the background */
 }
 
 .customCheckbox:focus {
-    outline: none !important;  /* Remove focus outline */
+    outline: none !important;
+    /* Remove focus outline */
 }
 
 .customCheckbox:checked {
