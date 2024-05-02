@@ -1,4 +1,4 @@
-import { format as formatDate, parseISO } from 'date-fns';
+import { format as formatDate, isValid, parseISO } from 'date-fns';
 import { forwardRef, useRef, useContext } from 'react';
 import { IDateViewDefinition, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
@@ -16,13 +16,17 @@ const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition,
     var inputProps: any = copyMuiOptions(props, value, props.label);
 
     const formatValue = (value: any) => {
-        if (value) {
-            const date: any = parseISO(value);
-            return formatDate(date, props.displayPattern);
+        if (!value) {
+            return "";
         }
-        return value;
+        const date = parseISO(value);
+        if (isValid(date)) {
+            return formatDate(date, props.displayPattern);
+        } else {
+            console.error("Invalid date provided:", value);
+            return "";
+        }
     };
-
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
