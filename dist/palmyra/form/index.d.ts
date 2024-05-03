@@ -13,4 +13,5 @@ export * from './usePalmyraEditForm';
 export * from './usePalmyraSaveForm';
 export * from './usePalmyraViewForm';
 export * from './usePalmyraNewForm';
+export * from './filter/useQueryFilter';
 export { camelCase, camelLowerCase };
