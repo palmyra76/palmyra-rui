@@ -12,6 +12,7 @@ const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition,
     const { mutateOptions } = fieldManager;
     const value = fieldManager.getData();
     const textAlign: any = props.textAlign || 'left';
+    const variant: string = props.variant || 'standard';
     const displayFormat: string = props.displayPattern || "dd-MM-yyyy";
 
     var inputProps: any = copyMuiOptions(props, value, props.label);
@@ -46,11 +47,11 @@ const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition,
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             {(props.label) ?
-                <div {...inputProps} >
+                <div {...inputProps} className='text-view-field-container'>
                     <div className="text-view-label">{props.label}</div>
-                    <div className="text-view-value">{formatValue(value)}</div>
+                    <div className={ (variant == 'standard') ? "text-view-value" : "text-view-value-outlined"}>{formatValue(value)}</div>
                 </div> :
-                <div {...inputProps} style={{ textAlign: textAlign }} className="text-view-value">
+                <div {...inputProps} style={{ textAlign: textAlign }}>
                     {formatValue(value)}
                 </div>
             }

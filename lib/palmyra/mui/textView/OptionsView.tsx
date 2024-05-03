@@ -9,6 +9,7 @@ const OptionsView = forwardRef(function MuiSelect(props: IOptionsViewDefinition,
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ISelectField>(null);
     const textAlign: any = props.textAlign || 'left';
+    const variant: string = props.variant || 'standard';
 
     // @ts-ignore
     const fieldManager: IFormFieldManager = getFieldManager(props, 'select', currentRef);
@@ -24,9 +25,12 @@ const OptionsView = forwardRef(function MuiSelect(props: IOptionsViewDefinition,
         <>{fieldManager.mutateOptions.visible &&
             <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
                 customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-                <div>
+                <div className='text-view-field-container'>
                     <div className="text-view-label">{props.label}</div>
-                    <div style={{ textAlign: textAlign }} className={props.label ? "text-view-value" : ""}> {props.options[data]}</div>
+                    <div style={{ textAlign: textAlign }}
+                       className={props.label ? (variant === 'outlined' ? "text-view-value-outlined" : "text-view-value") : ''}>
+                        {props.options[data]}
+                    </div>
                 </div>
             </FieldDecorator>}
         </>

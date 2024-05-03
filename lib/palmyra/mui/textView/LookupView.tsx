@@ -15,6 +15,7 @@ const LookupView = forwardRef(function MuiLabelDisplay(props: ILookupViewDefinit
     const lookupOptions = props.lookupOptions || {};
     const labelKey = lookupOptions?.displayAttribute || 'name';
     const textAlign: any = props.textAlign || 'left';
+    const variant: string = props.variant || 'standard';
 
     var inputProps: any = copyMuiOptions(props, data, props.label);
 
@@ -26,11 +27,11 @@ const LookupView = forwardRef(function MuiLabelDisplay(props: ILookupViewDefinit
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             {(props.label) ?
-                <div {...inputProps} >
+                <div {...inputProps} className='text-view-field-container'>
                     <div className="text-view-label">{props.label}</div>
-                    <div className="text-view-value">{labelAccessor(data) || 'N/A'}</div>
+                    <div className={(variant == 'standard') ? "text-view-value" : "text-view-value-outlined"}>{labelAccessor(data) || 'N/A'}</div>
                 </div> :
-                <div {...inputProps} style={{ textAlign: textAlign }} className="text-view-value">
+                <div {...inputProps} style={{ textAlign: textAlign }}>
                     {labelAccessor(data) || 'N/A'}
                 </div>
             }

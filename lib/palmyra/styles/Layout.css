@@ -14,8 +14,20 @@
     color: rgba(0, 0, 0, 0.538);
 }
 
+.text-view-field-container {
+    width: 100%;
+}
+
 .text-view-value {
-    margin-top: 3px;
+    margin-top: 5px;
+}
+
+.text-view-value-outlined {
+    margin-top: 10px;
+    border: 1px solid gray;
+    width: 100%;
+    margin-left: 10px;
+    padding: 5px;
 }
 
 /* .backend-grid .MuiTableCell-head,

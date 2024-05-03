@@ -11,6 +11,7 @@ const TextView = forwardRef(function MuiLabelDisplay(props: ITextViewDefinition,
     const { mutateOptions } = fieldManager;
     const value = fieldManager.getData();
     const textAlign: any = props.textAlign || 'left';
+    const variant: string = props.variant || 'standard';
 
     var inputProps: any = copyMuiOptions(props, value, props.label);
 
@@ -18,11 +19,11 @@ const TextView = forwardRef(function MuiLabelDisplay(props: ITextViewDefinition,
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             {(props.label) ?
-                <div {...inputProps} >
+                <div {...inputProps} className='text-view-field-container'>
                     <div className="text-view-label">{props.label}</div>
-                    <div className="text-view-value">{value}</div>
+                    <div className={props.label ? (variant === 'outlined' ? "text-view-value-outlined" : "text-view-value") : ''}>{value}</div>
                 </div> :
-                <div {...inputProps} style={{ textAlign: textAlign }} className="text-view-value">
+                <div {...inputProps} style={{ textAlign: textAlign }}>
                     {value}
                 </div>
             }
