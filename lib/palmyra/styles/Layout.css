@@ -4,32 +4,6 @@
     --left-menu-fontsize: 1.01em;
 }
 
-.text-view-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.text-view-label {
-    text-align: left;
-    color: rgba(0, 0, 0, 0.538);
-}
-
-.text-view-field-container {
-    width: 100%;
-}
-
-.text-view-value {
-    margin-top: 5px;
-}
-
-.text-view-value-outlined {
-    margin-top: 10px;
-    border: 1px solid gray;
-    width: 100%;
-    margin-left: 10px;
-    padding: 5px;
-}
-
 /* .backend-grid .MuiTableCell-head,
 .backend-grid .MuiTableCell-body {
     border: none !important;

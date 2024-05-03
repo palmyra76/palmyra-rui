@@ -3,6 +3,7 @@ import { IFormFieldManager, IGetFieldManager, ITextViewDefinition } from '../../
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';
+import './TextView.css';
 
 const TextView = forwardRef(function MuiLabelDisplay(props: ITextViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);

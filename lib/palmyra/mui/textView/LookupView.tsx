@@ -5,6 +5,7 @@ import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
+import './TextView.css';
 
 const LookupView = forwardRef(function MuiLabelDisplay(props: ILookupViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);

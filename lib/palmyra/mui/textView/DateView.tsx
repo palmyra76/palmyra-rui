@@ -4,6 +4,7 @@ import { IDateViewDefinition, IFormFieldManager, IGetFieldManager } from '../../
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';
+import './TextView.css';
 
 const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
