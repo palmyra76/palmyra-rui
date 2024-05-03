@@ -230,6 +230,7 @@ interface IFormListener {
 interface TextViewAttributeDefinition {
     attribute: string;
     textAlign?: 'left' | 'right' | 'center';
+    variant?: 'standard' | 'outlined';
 }
 interface ITextViewDefinition extends TextViewAttributeDefinition, IDecoration {
 }

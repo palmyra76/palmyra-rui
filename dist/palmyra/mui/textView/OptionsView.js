@@ -1,32 +1,36 @@
-import { jsx as l, Fragment as r, jsxs as n } from "react/jsx-runtime";
-import { forwardRef as m, useContext as d, useRef as u, useImperativeHandle as f } from "react";
+import { jsx as a, Fragment as r, jsxs as d } from "react/jsx-runtime";
+import { forwardRef as m, useContext as u, useRef as f, useImperativeHandle as v } from "react";
 import { FieldManagerContext as g } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import { getFieldLabel as C } from "../form/MuiUtil.js";
-import x from "../form/FieldDecorator.js";
-const D = m(function(e, a) {
-  const s = d(g), i = a || u(null), o = e.textAlign || "left", t = s(e, "select", i), c = t.getData();
-  return f(i, () => ({
+import { getFieldLabel as x } from "../form/MuiUtil.js";
+import C from "../form/FieldDecorator.js";
+const L = m(function(e, l) {
+  const n = u(g), i = l || f(null), s = e.textAlign || "left", o = e.variant || "standard", t = n(e, "select", i), c = t.getData();
+  return v(i, () => ({
     getValue() {
       return t.getData();
     }
-  }), [t]), /* @__PURE__ */ l(r, { children: t.mutateOptions.visible && /* @__PURE__ */ l(
-    x,
+  }), [t]), /* @__PURE__ */ a(r, { children: t.mutateOptions.visible && /* @__PURE__ */ a(
+    C,
     {
-      label: C(e),
+      label: x(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ l("div", { className: "text-view-label", children: e.label }),
-        /* @__PURE__ */ n("div", { style: { textAlign: o }, className: e.label ? "text-view-value" : "", children: [
-          " ",
-          e.options[c]
-        ] })
+      children: /* @__PURE__ */ d("div", { className: "text-view-field-container", children: [
+        /* @__PURE__ */ a("div", { className: "text-view-label", children: e.label }),
+        /* @__PURE__ */ a(
+          "div",
+          {
+            style: { textAlign: s },
+            className: e.label ? o === "outlined" ? "text-view-value-outlined" : "text-view-value" : "",
+            children: e.options[c]
+          }
+        )
       ] })
     }
   ) });
 });
 export {
-  D as default
+  L as default
 };
