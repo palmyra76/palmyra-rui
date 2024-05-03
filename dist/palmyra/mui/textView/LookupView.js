@@ -5,7 +5,7 @@ import F from "../form/FieldDecorator.js";
 import { copyMuiOptions as w, getFieldLabel as A } from "../form/MuiUtil.js";
 import { hasDot as L } from "../../utils/StringUtil.js";
 import { getValueByKey as M } from "../../form/FormUtil.js";
-const B = C(function(e, s) {
+/* empty css                        */const P = C(function(e, s) {
   const m = g(y), d = s || h(null), o = m(e, "serverlookup", d), { mutateOptions: u } = o, l = o.data, i = e.lookupOptions || {}, n = (i == null ? void 0 : i.displayAttribute) || "name", f = e.textAlign || "left", v = e.variant || "standard";
   var c = w(e, l, e.label);
   const r = L(n) ? (t) => M(n, t) : (t) => t == null ? void 0 : t[n];
@@ -25,5 +25,5 @@ const B = C(function(e, s) {
   ) });
 });
 export {
-  B as default
+  P as default
 };
