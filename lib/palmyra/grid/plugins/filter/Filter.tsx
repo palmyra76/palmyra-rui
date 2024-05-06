@@ -32,7 +32,8 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
     var { getFieldManager, getFilterData } = createFilterData(formattedFilterValue);
 
     const reset = () => {
-        setFilter({})
+        setFilter({});
+        onClose();
     }
 
     const assignFilter = () => {
@@ -40,6 +41,7 @@ const Filter = ({ columns, isOpen, onClose, setFilter, defaultFilter = {} }) => 
         if (setFilter) {
             setFilter(data);
         }
+        onClose();
     };
 
     // const onFilterClose = () => {

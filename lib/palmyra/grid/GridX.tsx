@@ -44,7 +44,6 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [selectedDensity, setSelectedDensity] = useState('standard');
-  const [filterDialogOpen, setFilterDialogOpen] = useState(false);
   const [querySearchText, setQuickSearchText] = useState("");
 
   const {
@@ -282,7 +281,7 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                     <div className="filter-dropdown-content" onClick={(e) => e.stopPropagation()}>
                       <Filter columns={columns} setFilter={setQueryFilter}
                         defaultFilter={filter}
-                        isOpen={filterDialogOpen} onClose={() => setFilterDialogOpen(false)} />
+                        isOpen={filterDropdownOpen} onClose={() => setFilterDropdownOpen(false)} />
                     </div>
                   )}
                 </div>
