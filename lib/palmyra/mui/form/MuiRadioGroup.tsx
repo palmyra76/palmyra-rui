@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
-import { FormControl, FormControlLabel, FormHelperText, Radio, RadioGroup } from '@mui/material';
+import { FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IRadioGroupDefinition } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
@@ -103,6 +103,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} >
+                <FormLabel >{props.label}</FormLabel>
                 <RadioGroup icon row={row} {...callbacks} {...inputProps}>
                     {getOptions(options)}
                 </RadioGroup>
