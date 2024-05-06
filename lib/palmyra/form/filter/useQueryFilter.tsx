@@ -38,7 +38,7 @@ const useQueryFilter = (props: IQueryFilterInput): IQueryFilterOutput => {
 
     const textFilter: IFieldEventListener = {
         onChange: function (key: string, value: any): void {
-            applyFilter(key, value + '*');
+            applyFilter(key, '*' + value + '*');
         }
     }
 

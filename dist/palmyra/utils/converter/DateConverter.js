@@ -3,7 +3,7 @@ var u = (e, t, r) => t in e ? s(e, t, { enumerable: !0, configurable: !0, writab
 var a = (e, t, r) => (u(e, typeof t != "symbol" ? t + "" : t, r), r);
 import n from "dayjs";
 import { getValueByKey as i } from "../../form/FormUtil.js";
-class P {
+class m {
   constructor(t, r) {
     a(this, "serverPattern");
     a(this, "displayPattern");
@@ -16,7 +16,10 @@ class P {
     return t && n(t).format(this.serverPattern);
   }
   parse(t) {
-    return t instanceof Date ? t : t && n(t, this.serverPattern).toDate();
+    if (t instanceof Date)
+      return t;
+    const r = Number(t);
+    return !isNaN(r) && r.toString() === t.toString() ? new Date(r) : t && n(t, this.serverPattern).toDate();
   }
   convert(t) {
     const r = this.parse(t);
@@ -24,5 +27,5 @@ class P {
   }
 }
 export {
-  P as DateTimeConverter
+  m as DateTimeConverter
 };

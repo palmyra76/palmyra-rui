@@ -9,7 +9,7 @@ const f = (i) => {
     }
   }, textFilter: {
     onChange: function(e, t) {
-      n(e, t + "*");
+      n(e, "*" + t + "*");
     }
   }, optionFilter: {
     onChange: function(e, t) {
