@@ -103,7 +103,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl fullWidth error={error.status} >
-                <FormLabel >{props.label}</FormLabel>
+                <div>{props.label}</div>
                 <RadioGroup icon row={row} {...callbacks} {...inputProps}>
                     {getOptions(options)}
                 </RadioGroup>
