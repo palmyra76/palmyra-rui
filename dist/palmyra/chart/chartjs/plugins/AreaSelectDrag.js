@@ -1,18 +1,18 @@
-const O = /* @__PURE__ */ new WeakMap(), Y = (e) => O.get(e) || null, r = (e, o) => {
+const L = /* @__PURE__ */ new WeakMap(), Y = (e) => L.get(e) || null, r = (e, o) => {
   const f = Y(e);
-  return O.set(e, Object.assign({}, f, o)), o;
-}, N = {
+  return L.set(e, Object.assign({}, f, o)), o;
+}, k = {
   colors: {
     selection: "#e8eff6",
     selectedElements: "#1f77b4",
     unselectedElements: "#cccccc"
   }
-}, D = (e, o) => {
+}, C = (e, o) => {
   var f = e.chartArea.top, n = e.chartArea.bottom, l = e.scales.y.min, a = e.scales.y.max, i = -1, u = 0;
   o.offsetY <= n && o.offsetY >= f && (i = Math.abs((o.offsetY - f) / (n - f)), i = (i - 1) * -1, i = i * Math.abs(a - l) + l, u = 1);
   var c = e.chartArea.left, t = e.chartArea.right, s = e.scales.x.min, d = e.scales.x.max, x = -1;
   return o.offsetX <= t && o.offsetX >= c && u == 1 && (x = Math.abs((o.offsetX - c) / (t - c)), x = x * Math.abs(d - s) + s), { x, y: i };
-}, P = {
+}, J = {
   id: "areaSelectdrag",
   start: (e, o, f) => {
     var a, i, u, c;
@@ -29,7 +29,7 @@ const O = /* @__PURE__ */ new WeakMap(), Y = (e) => O.get(e) || null, r = (e, o)
         });
         return;
       }
-      const d = e.getElementsAtEventForMode(t, "nearest", { intersect: !1 }, !1)[0].index, x = e.data.labels[d], X = D(e, t);
+      const d = e.getElementsAtEventForMode(t, "nearest", { intersect: !1 }, !1)[0].index, x = e.data.labels[d], X = C(e, t);
       r(e, {
         selectionXY: {
           state: "drag",
@@ -51,7 +51,7 @@ const O = /* @__PURE__ */ new WeakMap(), Y = (e) => O.get(e) || null, r = (e, o)
       }
     };
     window.addEventListener("mouseup", (t) => {
-      var p, m, b, v, V, E, A, w, I;
+      var p, m, b, v, V, E, A, w, I, M, S;
       const s = Y(e);
       if (!s || ((p = s == null ? void 0 : s.selectionXY) == null ? void 0 : p.state) == "none")
         return;
@@ -59,13 +59,13 @@ const O = /* @__PURE__ */ new WeakMap(), Y = (e) => O.get(e) || null, r = (e, o)
       if (d == null)
         return;
       const x = d.length > 0 ? d[0].index : e.data.labels.length - 1, X = e.data.labels[x];
-      s.selectionXY.start.axisValue > X ? (s.selectionXY.end = JSON.parse(JSON.stringify(s.selectionXY.start)), s.selectionXY.start = { axisValue: X, axisIndex: x, x: t.offsetX, y: t.offsetY }) : s.selectionXY.end = { axisValue: X, axisIndex: x, x: t.offsetX, y: t.offsetY }, s.selectionXY.state = "none", r(e, s);
-      const g = D(e, t);
+      ((b = (m = s == null ? void 0 : s.selectionXY) == null ? void 0 : m.start) == null ? void 0 : b.axisValue) > X ? (s.selectionXY.end = JSON.parse(JSON.stringify(s.selectionXY.start)), s.selectionXY.start = { axisValue: X, axisIndex: x, x: t.offsetX, y: t.offsetY }) : s.selectionXY.end = { axisValue: X, axisIndex: x, x: t.offsetX, y: t.offsetY }, s.selectionXY.state = "none", r(e, s);
+      const g = C(e, t);
       s.selectionXY.end.xValue = g.x, s.selectionXY.end.yValue = g.y, e.update();
-      const y = (V = (v = (b = (m = e == null ? void 0 : e.config) == null ? void 0 : m.options) == null ? void 0 : b.plugins) == null ? void 0 : v.selectdrag) == null ? void 0 : V.onSelectComplete;
+      const y = (A = (E = (V = (v = e == null ? void 0 : e.config) == null ? void 0 : v.options) == null ? void 0 : V.plugins) == null ? void 0 : E.selectdrag) == null ? void 0 : A.onSelectComplete;
       if (y) {
-        const { start: M, end: S } = s.selectionXY, C = Math.abs(M.x - S.x), L = Math.abs(M.y - S.y), F = ((I = (w = (A = (E = e == null ? void 0 : e.config) == null ? void 0 : E.options) == null ? void 0 : A.plugins) == null ? void 0 : w.selectdrag) == null ? void 0 : I.threshold) || 10;
-        if (C < F || L < F)
+        const { start: F, end: D } = s.selectionXY, N = Math.abs(F.x - D.x), P = Math.abs(F.y - D.y), O = ((S = (M = (I = (w = e == null ? void 0 : e.config) == null ? void 0 : w.options) == null ? void 0 : I.plugins) == null ? void 0 : M.selectdrag) == null ? void 0 : S.threshold) || 10;
+        if (N < O || P < O)
           return;
         y({
           range: [
@@ -112,7 +112,7 @@ const O = /* @__PURE__ */ new WeakMap(), Y = (e) => O.get(e) || null, r = (e, o)
     if (!n || ((a = n == null ? void 0 : n.selectionXY) == null ? void 0 : a.state) == "none" && !((i = n.selectionXY.end) != null && i.x))
       return;
     const { ctx: l } = e;
-    l.save(), l.globalCompositeOperation = "destination-over", l.fillStyle = N.colors.selection, l.fillRect(
+    l.save(), l.globalCompositeOperation = "destination-over", l.fillStyle = k.colors.selection, l.fillRect(
       ((u = n.selectionXY.start) == null ? void 0 : u.x) || 0,
       ((c = n.selectionXY.start) == null ? void 0 : c.y) || e.chartArea.top,
       (((t = n.selectionXY.end) == null ? void 0 : t.x) || 0) - (((s = n.selectionXY.start) == null ? void 0 : s.x) || 0),
@@ -147,5 +147,5 @@ const O = /* @__PURE__ */ new WeakMap(), Y = (e) => O.get(e) || null, r = (e, o)
   }
 };
 export {
-  P as AreaSelectDrag
+  J as AreaSelectDrag
 };

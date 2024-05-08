@@ -136,7 +136,7 @@ const AreaSelectDrag = {
             const axisValue = chart.data.labels[axisIndex];
 
             // Check values & set end origin
-            if (state.selectionXY.start.axisValue > axisValue) {
+            if (state?.selectionXY?.start?.axisValue > axisValue) {
                 // Switch values - user has selected opposite way
                 state.selectionXY.end = JSON.parse(JSON.stringify(state.selectionXY.start));
                 state.selectionXY.start = { axisValue, axisIndex, x: e.offsetX, y: e.offsetY }

@@ -40,6 +40,7 @@ interface ChartStyle {
     borderWidth?: number;
     radius?: number;
     hoverRadius?: number;
+    hidden?: boolean;
 }
 type StyleType = 'Array' | 'Named' | 'Nested' | 'Random' | 'Noop';
 interface transformable {
