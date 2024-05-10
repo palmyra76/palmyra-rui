@@ -5,7 +5,7 @@ import { Sidebar } from "../../lib/palmyra/layout/standard/Sidebar";
 import Topbar from "./Topbar";
 import { useEffect, useState } from "react";
 import { useWindowSize } from "usehooks-ts";
-import ApplicationMenu from "../components/ApplicationMenu";
+import DynamicMenu from "../components/DynamicMenu";
 
 interface MainLayoutInput {
   sideBarWidth?: string,
@@ -36,7 +36,7 @@ const MainLayout = (props: MainLayoutInput) => {
       <CssBaseline />
       <Topbar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} display={display} />
       <Sidebar
-        SideMenu={ApplicationMenu}
+        SideMenu={DynamicMenu}
         appTitle={props.appTitle} width={sideWidth} mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen} responsive={responsive} />
       <Box

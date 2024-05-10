@@ -127,7 +127,7 @@ function X(h) {
                 {
                   className: t ? "async-tree-menu-selected-list" : "async-tree-menu-list",
                   onClick: (f) => {
-                    t || (m(f), T(e));
+                    t || m(f), T(e);
                   },
                   children: [
                     /* @__PURE__ */ p("div", { className: "async-tree-menu-list-text-container", children: [

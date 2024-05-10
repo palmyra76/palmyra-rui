@@ -202,8 +202,8 @@ export default function AsyncTreeMenu(props: IAsyncTreeMenuInput) {
                                         onClick={(e) => {
                                             if (!isSelected) {
                                                 handleSelect(e);
-                                                navigateTo(element);
                                             }
+                                            navigateTo(element);
                                         }}>
                                         <div className="async-tree-menu-list-text-container">
                                             <div className="menu-icon"></div>
