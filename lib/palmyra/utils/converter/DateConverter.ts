@@ -29,15 +29,15 @@ class DateTimeConverter implements Converter<any, Date> {
     };
 
     parse(text: any): Date {
-        if (text instanceof Date)
-            return text;
-
-        const timestamp = Number(text);
-        if (!isNaN(timestamp) && timestamp.toString() === text.toString()) {
-            return new Date(timestamp);
-        }
-
         if (text) {
+            if (text instanceof Date)
+                return text;
+    
+            const timestamp = Number(text);
+            if (!isNaN(timestamp) && timestamp.toString() === text.toString()) {
+                return new Date(timestamp);
+            }
+
             return dayjs(text, this.serverPattern)
                 .toDate()
         }

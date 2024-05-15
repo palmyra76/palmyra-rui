@@ -16,10 +16,13 @@ class m {
     return t && n(t).format(this.serverPattern);
   }
   parse(t) {
-    if (t instanceof Date)
-      return t;
-    const r = Number(t);
-    return !isNaN(r) && r.toString() === t.toString() ? new Date(r) : t && n(t, this.serverPattern).toDate();
+    if (t) {
+      if (t instanceof Date)
+        return t;
+      const r = Number(t);
+      return !isNaN(r) && r.toString() === t.toString() ? new Date(r) : n(t, this.serverPattern).toDate();
+    }
+    return t;
   }
   convert(t) {
     const r = this.parse(t);
