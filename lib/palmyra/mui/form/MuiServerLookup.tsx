@@ -48,7 +48,7 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         store, endPointOptions: props.storeOptions.endPointOptions, fetchAll: true,
         pageSize: props.pageSize || 15, quickSearch: searchKey, initialFetch: false, defaultParams
     };
-    
+
     const serverQuery = useServerQuery(serverQueryOptions);
     const eventListeners: IEventListeners = fieldManager.eventListeners;
     const error: IFormFieldError = fieldManager.error;
@@ -56,7 +56,8 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
     const data = fieldManager.data;
     const loading = open && options.length < (data ? 2 : 1);
 
-    const { setQueryFilter, setEndPointOptions, setQuickSearch, totalRecords, refreshData } = serverQuery;
+    const { setQueryFilter, setEndPointOptions, setQuickSearch,
+        totalRecords, refreshData, getQueryRequest } = serverQuery;
 
     const serverResult = serverQuery.data;
 
@@ -94,6 +95,19 @@ const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookup
         delay100(refreshOptions);
     }, [open]);
 
+    useEffect(() => {
+        if (undefined != props.fetchDefault && null != props.fetchDefault) {
+            const index = props.fetchDefault;
+            const params = getQueryRequest();
+            store.query(params).then((d) => {
+                const result = d.result;
+                const idx = result.length > index ? index : 0;
+                fieldManager.setData(result[idx], false);
+            }).catch((e) => {
+                console.error(e);
+            });
+        }
+    }, [])
 
     function refreshOptions() {
         if (open) {

@@ -167,6 +167,7 @@ interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
         endPoint: IEndPoint,
         endPointOptions?: IEndPointOptions
     }
+    fetchDefault?:number,
     pageSize?: numbers,
     defaultParams?: DefaultQueryParams,
 }
