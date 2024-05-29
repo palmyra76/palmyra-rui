@@ -23,7 +23,8 @@
   },
   "include": [
     "src",
-    "lib"
+    "lib",
+    "demo"
   ],
   "references": [
     {
