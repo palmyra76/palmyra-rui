@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { FieldGroupContainer, MuiTextArea, MuiTextField, PalmyraForm, usePalmyraNewForm } from "../../../../lib/main";
-import AppStoreFactory from "../../../components/wire/Storefactory";
+import { FieldGroupContainer, MuiTextArea, MuiTextField, PalmyraForm, PalmyraStoreFactory, StoreFactory, usePalmyraNewForm } from "../../../../lib/main";
 import CodeHighlighter from "../../../components/syntextHighlighter/CodeHighlighter";
 import { Button } from "@mui/material";
 
 const BasicForm = () => {
   const [isValid, setValid] = useState(false);
-  const storeFactory = AppStoreFactory;
+  const storeFactory :StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/testdata/form' });
 
   const onValidityChange = (valid: boolean): void => {
     setValid(valid);
-    console.log("validity changed to " + formRef.current.isValid(), formRef.current.getData());
   }
 
-  const { data, formRef } = usePalmyraNewForm({
+  const { formRef } = usePalmyraNewForm({
     storeFactory,
     endPoint: ""
   })
@@ -26,16 +24,18 @@ const BasicForm = () => {
   return (
     <div>
       <PalmyraForm storeFactory={storeFactory}
-        formData={data} onValidChange={onValidityChange}
+        formData={{}} onValidChange={onValidityChange}
         mode="new" ref={formRef} >
         <FieldGroupContainer columns={1}>
           <MuiTextField attribute="name"
             title="Name"
+            variant="outlined"
             required={true}
             placeHolder="surya"
             length={{ min: 3, message: "Minimum of 3 letters" }} />
           <MuiTextField attribute="email"
             title="Email"
+            variant="outlined"
             required={true}
             placeHolder="surya@gmail.com"
             validationRule={"email"} />
@@ -60,19 +60,20 @@ export { BasicForm, BasicFormSetup }
 
 
 const FormSetup = `import { useState } from "react";
-import { FieldGroupContainer, MuiTextArea, MuiTextField, PalmyraForm, 
-         usePalmyraNewForm } from "../../../../lib/main";
+import { FieldGroupContainer, MuiTextArea, MuiTextField, PalmyraForm, PalmyraStoreFactory, StoreFactory, usePalmyraNewForm } from "../../../../lib/main";
 import AppStoreFactory from "../../../components/wire/Storefactory";
+import CodeHighlighter from "../../../components/syntextHighlighter/CodeHighlighter";
+import { Button } from "@mui/material";
 
 const BasicForm = () => {
     const [isValid, setValid] = useState(false);
-    const storeFactory = AppStoreFactory;
+    const storeFactory :StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/testdata/form' });
   
     const onValidityChange = (valid: boolean): void => {
       setValid(valid);
     }
   
-    const { data, formRef } = usePalmyraNewForm({
+    const { formRef } = usePalmyraNewForm({
       storeFactory,
       endPoint: ""
     })
@@ -88,17 +89,19 @@ const BasicForm = () => {
     return (
       <div>
         <PalmyraForm storeFactory={storeFactory}
-          formData={data} onValidChange={onValidityChange}
+          formData={{}} onValidChange={onValidityChange}
           mode="new" ref={formRef} >
           <FieldGroupContainer columns={1}>
             <MuiTextField attribute="name"
               title="Name"
+              variant="outlined"
               required={true}
               placeHolder="surya"
               length={{ min: 3, message: "Minimum of 3 letters" }} 
             />
-            <MuiTextField attribute="name"
+            <MuiTextField attribute="email"
               title="Email"
+              variant="outlined"
               required={true}
               placeHolder="surya@gmail.com"
               validationRule={"email"} 

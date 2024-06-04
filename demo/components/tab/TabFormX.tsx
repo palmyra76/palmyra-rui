@@ -44,7 +44,7 @@ const TabFormX = (props: TabInput) => {
         <>
             <div className="h1-container">
                 <span className="h1">
-                    {title}
+                    # {title}
                 </span>
             </div>
             <div className="form-container">

@@ -1,0 +1,20 @@
+{
+    "result": [
+        {
+            "id":1,
+            "name": "Tamil Nadu"
+        },
+        {
+            "id":2,
+            "name": "Kerala"
+        },
+        {
+            "id":3,
+            "name": "Maharastra"
+        },
+        {
+            "id":4,
+            "name": "karnataka"
+        }
+    ]
+}

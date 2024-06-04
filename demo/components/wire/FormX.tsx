@@ -1,6 +1,5 @@
 import { useState } from "react";
-import AppStoreFactory from "./Storefactory";
-import { FieldGroupContainer, PalmyraForm, usePalmyraNewForm } from "../../../lib/main";
+import { FieldGroupContainer, PalmyraForm, PalmyraStoreFactory, StoreFactory, usePalmyraNewForm } from "../../../lib/main";
 
 interface IFormInput {
     children: React.ReactNode
@@ -9,14 +8,14 @@ const FormX = (props: IFormInput) => {
     const { children } = props;
     const [_isValid, setValid] = useState<boolean>(false);
 
-    const storeFactory = AppStoreFactory;
+    const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({baseUrl: '/testdata/form' });
 
-    const { data } = usePalmyraNewForm({
-        storeFactory,
-        endPoint: ""
+        const {data} = usePalmyraNewForm({
+            storeFactory,
+            endPoint: ""
     })
 
-    return (
+        return (
         <PalmyraForm formData={data} mode="new" onValidChange={setValid}
             storeFactory={storeFactory}>
             <FieldGroupContainer>
@@ -25,7 +24,7 @@ const FormX = (props: IFormInput) => {
                 </div>
             </FieldGroupContainer>
         </PalmyraForm>
-    )
+        )
 }
 
-export default FormX;
+        export default FormX;

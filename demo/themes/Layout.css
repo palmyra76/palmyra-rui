@@ -158,10 +158,6 @@ pre {
 /* --pages -- */
 
 /* --example page-- */
-.form-box-container {
-    padding: 20px;
-}
-
 .form-box-container .user-form-container {
     height: 800px !important;
 }
