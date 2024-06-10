@@ -19,49 +19,49 @@
         },
         {
             "id": 4,
-            "name": "AutoComplete",
+            "name": "Auto Complete",
             "code": "palmyra-ui/autoComplete",
             "parent": 2
         },
         {
             "id": 5,
-            "name": "CheckBox",
+            "name": "Check Box",
             "code": "palmyra-ui/checkbox",
             "parent": 2
         },
         {
             "id": 6,
-            "name": "CheckBox Group",
+            "name": "Check Box Group",
             "code": "palmyra-ui/checkBoxGroup",
             "parent": 2
         },
         {
             "id": 7,
-            "name": "DateView",
+            "name": "Date View",
             "code": "palmyra-ui/dateView",
             "parent": 2
         },
         {
             "id": 8,
-            "name": "DatePicker",
+            "name": "Date Picker",
             "code": "palmyra-ui/datePicker",
             "parent": 2
         },
         {
             "id": 9,
-            "name": "DateRangePicker",
+            "name": "Date Range Picker",
             "code": "palmyra-ui/dateRangePicker",
             "parent": 2
         },
         {
             "id": 10,
-            "name": "DateTimePicker",
+            "name": "Date Time Picker",
             "code": "palmyra-ui/dateTimePicker",
             "parent": 2
         },
         {
             "id": 11,
-            "name": "IntegerField",
+            "name": "Integer Field",
             "code": "palmyra-ui/integerField",
             "parent": 2
         },
@@ -73,19 +73,19 @@
         },
         {
             "id": 13,
-            "name": "LookupView",
+            "name": "Lookup View",
             "code": "palmyra-ui/lookupView",
             "parent": 2
         },
         {
             "id": 14,
-            "name": "NumberField",
+            "name": "Number Field",
             "code": "palmyra-ui/numberField",
             "parent": 2
         },
         {
             "id": 15,
-            "name": "OptionsView",
+            "name": "Options View",
             "code": "palmyra-ui/optionsView",
             "parent": 2
         },
@@ -97,7 +97,7 @@
         },
         {
             "id": 17,
-            "name": "RadioGroup",
+            "name": "Radio Group",
             "code": "palmyra-ui/radioGroup",
             "parent": 2
         },
@@ -109,7 +109,7 @@
         },
         {
             "id": 19,
-            "name": "ServerCheckBox",
+            "name": "Server Check Box",
             "code": "palmyra-ui/serverCheckBox",
             "parent": 2
         },
@@ -133,73 +133,73 @@
         },
         {
             "id": 23,
-            "name": "ServerLookup",
+            "name": "Server Lookup",
             "code": "palmyra-ui/servreLookup",
             "parent": 2
         },
         {
             "id": 24,
-            "name": "TextField",
+            "name": "Text Field",
             "code": "palmyra-ui/textField",
             "parent": 2
         },
         {
             "id": 25,
-            "name": "TextView",
+            "name": "Text View",
             "code": "palmyra-ui/textView",
             "parent": 2
         },
         {
             "id": 26,
-            "name": "TextArea",
+            "name": "Text Area",
             "code": "palmyra-ui/textArea",
             "parent": 2
         },
         {
             "id": 27,
-            "name": "AutoComplete",
+            "name": "Auto Complete",
             "code": "palmyra-ui/api/autoComplete",
             "parent": 2
         },
         {
             "id": 28,
-            "name": "CheckBox",
+            "name": "Check Box",
             "code": "palmyra-ui/api/checkBox",
             "parent": 2
         },
         {
             "id": 29,
-            "name": "CheckBox Group",
+            "name": "Check Box Group",
             "code": "palmyra-ui/api/checkBoxGroup",
             "parent": 2
         },
         {
             "id": 30,
-            "name": "DateView",
+            "name": "Date View",
             "code": "palmyra-ui/api/dateView",
             "parent": 2
         },
         {
             "id": 31,
-            "name": "DatePicker",
+            "name": "Date Picker",
             "code": "palmyra-ui/api/datePicker",
             "parent": 2
         },
         {
             "id": 32,
-            "name": "DateRangePicker",
+            "name": "Date Range Picker",
             "code": "palmyra-ui/api/dateRangePicker",
             "parent": 2
         },
         {
             "id": 33,
-            "name": "DateTimePicker",
+            "name": "Date Time Picker",
             "code": "palmyra-ui/api/dateTimePicker",
             "parent": 2
         },
         {
             "id": 34,
-            "name": "IntegerField",
+            "name": "Integer Field",
             "code": "palmyra-ui/api/integerField",
             "parent": 2
         },
@@ -211,19 +211,19 @@
         },
         {
             "id": 36,
-            "name": "LookupView",
+            "name": "Lookup View",
             "code": "palmyra-ui/api/lookupView",
             "parent": 2
         },
         {
             "id": 37,
-            "name": "NumberField",
+            "name": "Number Field",
             "code": "palmyra-ui/api/numberField",
             "parent": 2
         },
         {
             "id": 38,
-            "name": "OptionsView",
+            "name": "Options View",
             "code": "palmyra-ui/api/optionsView",
             "parent": 2
         },
@@ -235,7 +235,7 @@
         },
         {
             "id": 40,
-            "name": "RadioGroup",
+            "name": "Radio Group",
             "code": "palmyra-ui/api/radioGroup",
             "parent": 2
         },
@@ -247,7 +247,7 @@
         },
         {
             "id": 42,
-            "name": "ServerCheckBox",
+            "name": "Server Check Box",
             "code": "palmyra-ui/api/serverCheckBox",
             "parent": 2
         },
@@ -271,25 +271,25 @@
         },
         {
             "id": 46,
-            "name": "ServerLookup",
+            "name": "Server Lookup",
             "code": "palmyra-ui/api/servreLookup",
             "parent": 2
         },
         {
             "id": 47,
-            "name": "TextField",
+            "name": "Text Field",
             "code": "palmyra-ui/api/textField",
             "parent": 2
         },
         {
             "id": 48,
-            "name": "TextView",
+            "name": "Text View",
             "code": "palmyra-ui/api/textView",
             "parent": 2
         },
         {
             "id": 49,
-            "name": "TextArea",
+            "name": "Text Area",
             "code": "palmyra-ui/api/textArea",
             "parent": 2
         },
@@ -307,7 +307,7 @@
         },
         {
             "id": 52,
-            "name": "ServerLookup",
+            "name": "Server Lookup",
             "code": "palmyra-ui/example/serverlookup",
             "parent": 2
         }

@@ -10,7 +10,7 @@ interface codeHighlightInput {
 
 const customStyle: any = {
     lineHeight: '1.5',
-    fontSize: '1.1rem',
+    fontSize: '0.9rem',
     borderRadius: '5px',
     backgroundColor: '#282c34',
     padding: '20px'
