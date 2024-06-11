@@ -4,7 +4,7 @@ import {
     LengthValidationSetup, LengthValidationTextField, RegexValidationSetup,
     RegexValidationTextField, TypeValidationSetup, TypeValidationTextField
 } from "../../components/muiComponents/TextField";
-import { BasicSetup, BasicTextField } from "../../components/muiComponents/TextField1";
+import { BasicSetup, BasicTextField } from "../../components/muiComponents/TextField";
 
 
 const TextFieldPage = () => {

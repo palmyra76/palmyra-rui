@@ -2,6 +2,35 @@ import { MuiTextField } from "../../../lib/main";
 import FormX from "../wire/FormX";
 
 
+
+const BasicSetup = `<MuiTextField attribute="name" placeHolder="Enter Name" variant="outlined" autoFocus={true} label="Name" />
+<MuiTextField attribute="name" placeHolder="Enter Name" variant="filled" label="Name" />
+<MuiTextField attribute="name" placeHolder="Enter Name" variant="standard" label="Name" />
+`;
+
+const BasicTextField = () => {
+    return (
+        <FormX>
+            <MuiTextField attribute="name"
+                placeHolder="Enter Name"
+                variant="outlined"
+                autoFocus={true}
+                label="Name"
+            />
+            <MuiTextField attribute="name"
+                placeHolder="Enter Name"
+                variant="filled"
+                label="Name"
+            />
+            <MuiTextField attribute="name"
+                placeHolder="Enter Name"
+                variant="standard"
+                label="Name"
+            />
+        </FormX>
+    )
+}
+
 const TypeValidationSetup = `<MuiTextField
     attribute="email"
     placeHolder="example@email.com"
@@ -104,6 +133,7 @@ const FunctionValidationTextField = () => {
 }
 
 export {
+    BasicSetup, BasicTextField,
     TypeValidationSetup, TypeValidationTextField,
     LengthValidationSetup, LengthValidationTextField,
     RegexValidationSetup, RegexValidationTextField,
