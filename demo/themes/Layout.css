@@ -18,6 +18,17 @@
     font-weight: bold;
 }
 
+.h3 {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.h3-container {
+    padding: 0 0 20px 0;
+    margin-top: 15px;
+    /* margin-bottom: 2px; */
+}
+
 /* --buttons-- */
 .filled-button {
     border-radius: 5px !important;
@@ -170,4 +181,27 @@ pre {
     width: 100%;
     text-align: end;
     padding: 20px 10px 0;
+}
+
+
+/* definition table head */
+
+.defn-table-head {
+    font-size: 20px !important;
+}
+
+.defn-import {
+    padding: 0px 20px;
+    margin-bottom: 20px;
+}
+
+.defn-table-column:hover {
+    background-color: rgb(252, 252, 252);
+}
+
+
+/* Para */
+
+.doc-para {
+    font-size: 15px;
 }

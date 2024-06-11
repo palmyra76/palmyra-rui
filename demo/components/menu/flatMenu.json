@@ -260,7 +260,7 @@
         {
             "id": 44,
             "name": "Switch",
-            "code": "palmyra-ui/api/Switch",
+            "code": "palmyra-ui/api/switch",
             "parent": 2
         },
         {

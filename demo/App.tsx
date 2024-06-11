@@ -6,6 +6,7 @@ import CheckboxPage from "./pages/components/CheckboxPage";
 import BasicPage from "./pages/examples/basic/BasicPage";
 import ServerLookupPage from "./pages/examples/lookup/ServerLookupPage";
 import TextFieldPage from "./pages/components/TextFieldPage";
+import TextFieldDefnPage from "./pages/api/TextFieldDefnPage";
 // import TextAreaPage from "./pages/components/TextAreaPage";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainLayout appTitle='Palmyra UI' />} >
             <Route path="/home" element={<HomePage />} />
+            {/* Component */}
             <Route path="/palmyra-ui/autoComplete" element={<AutoCompletePage />} />
             <Route path="/palmyra-ui/checkbox" element={<CheckboxPage />} />
             <Route path="/palmyra-ui/autoComplete" element={<AutoCompletePage />} />
@@ -22,9 +24,13 @@ const App = () => {
             <Route path="/palmyra-ui/textField" element={<TextFieldPage />} />
             {/* <Route path="/palmyra-ui/textArea" element={<TextAreaPage />} /> */}
 
+            {/* Api */}
+            <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
+
+
+            {/* Example */}
             <Route path="/palmyra-ui/example/basic" element={<BasicPage />} />
             <Route path="/palmyra-ui/example/serverlookup" element={<ServerLookupPage />} />
-            
 
             <Route path="*" element={<h1>Under Construction</h1>} />
           </Route>
