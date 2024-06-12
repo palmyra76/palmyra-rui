@@ -205,3 +205,22 @@ pre {
 .doc-para {
     font-size: 15px;
 }
+
+.tab-icon {
+    color: rgb(153, 153, 153);
+    cursor: pointer;
+}
+
+.tab-icon:hover {
+    color: white;
+}
+
+.copy-icon-container {
+    position: relative;
+}
+
+.copy-icon {
+    position: absolute;
+    top: -60px;
+    right: 0px;
+}

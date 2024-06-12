@@ -1,5 +1,7 @@
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Table, TableBody, TableCell, TableHead, TableRow, Tooltip } from "@mui/material";
 import CodeHighlighter from "../syntextHighlighter/CodeHighlighter";
+import { TbCopy } from "react-icons/tb";
+import { useRef, useState } from "react";
 
 interface IGridInput {
     data: any,
@@ -8,14 +10,41 @@ interface IGridInput {
 }
 
 const Grid = (props: IGridInput) => {
+    const contentRef = useRef(null);
+    const [title, setTitle] = useState<string>("copy")
+
+    const copyToClipboard = () => {
+        const text = contentRef?.current?.textContent;
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                setTitle("copied")
+                setTimeout(() => {
+                    setTitle("copy")
+                }, 1000)
+            })
+            .catch((err) => {
+                console.error('Failed to copy: ', err);
+            });
+    };
 
     return (
         <div>
             <div className="h1-container"><span className="h1">{props.header}</span></div>
             <div className="defn-import">
-                <CodeHighlighter code={props.import} />
+                <div ref={contentRef}>
+                    <CodeHighlighter code={props.import} />
+                </div>
+                <div className="copy-icon-container">
+                    <div className="copy-icon">
+                        <Tooltip placement="left" title={title}>
+                            <div>
+                                <TbCopy className="tab-icon" onClick={copyToClipboard} />
+                            </div>
+                        </Tooltip>
+                    </div>
+                </div>
             </div>
-            <Table className="">
+            <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell className="defn-table-head">Property</TableCell>

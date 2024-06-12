@@ -7,7 +7,9 @@ import BasicPage from "./pages/examples/basic/BasicPage";
 import ServerLookupPage from "./pages/examples/lookup/ServerLookupPage";
 import TextFieldPage from "./pages/components/TextFieldPage";
 import TextFieldDefnPage from "./pages/api/TextFieldDefnPage";
-// import TextAreaPage from "./pages/components/TextAreaPage";
+import TextAreaPage from "./pages/components/TextAreaPage";
+import NumberFieldPage from "./pages/components/NumberFieldPage";
+import NumberFieldDefnPage from "./pages/api/NumberFieldDefnPage";
 
 const App = () => {
   return (
@@ -22,11 +24,12 @@ const App = () => {
             <Route path="/palmyra-ui/autoComplete" element={<AutoCompletePage />} />
             <Route path="/palmyra-ui/autoComplete" element={<AutoCompletePage />} />
             <Route path="/palmyra-ui/textField" element={<TextFieldPage />} />
-            {/* <Route path="/palmyra-ui/textArea" element={<TextAreaPage />} /> */}
+            <Route path="/palmyra-ui/textArea" element={<TextAreaPage />} />
+            <Route path="/palmyra-ui/numberField" element={<NumberFieldPage />} />
 
             {/* Api */}
             <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
-
+            <Route path="/palmyra-ui/api/numberField" element={<NumberFieldDefnPage />} />
 
             {/* Example */}
             <Route path="/palmyra-ui/example/basic" element={<BasicPage />} />
