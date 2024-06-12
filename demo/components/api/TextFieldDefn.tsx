@@ -1,5 +1,6 @@
 import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
+import { length, lengthDes, type, typeDes } from "./Validation";
 
 const TextFieldDefn = () => {
 
@@ -15,7 +16,10 @@ const TextFieldDefn = () => {
         { property: 'autoFocus', type: 'boolean', description: `if autoFocus is true the input element is focused during the first mount.` },
         { property: 'variant', type: `'standard' | 'outlined' | 'filled'`, description: `The variant to use. Default 'standard'` },
         { property: 'title', type: 'string', description: `The title of the Text Field` },
+        { property: 'label', type: 'string', description: `The label of the Text Field` },
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
+        { property: 'length', type: length(), description: lengthDes() },
+        { property: 'validation', type: type(), description: typeDes() },
         { property: 'eventListener', type: '', description: `` },
         { property: 'valueListener', type: '', description: `` },
 
