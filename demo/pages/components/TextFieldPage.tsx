@@ -2,7 +2,11 @@ import InfoBox from "../../components/boxLayout/InfoBox";
 import {
     FunctionValidationSetup, FunctionValidationTextField,
     LengthValidationSetup, LengthValidationTextField, RegexValidationSetup,
-    RegexValidationTextField, TypeValidationSetup, TypeValidationTextField
+    RegexValidationTextField, TypeValidationSetup, TypeValidationTextField,
+    EventListenerSetup,
+    EventListenerTextField,
+    ValueListenerSetup,
+    ValueListenerTextField
 } from "../../components/muiComponents/TextField";
 import { BasicSetup, BasicTextField } from "../../components/muiComponents/TextField";
 
@@ -67,6 +71,30 @@ const TextFieldPage = () => {
             </div>
             <div className="info-container">
                 <InfoBox setup={FunctionValidationSetup} Components={[FunctionValidationTextField]} />
+            </div>
+
+            <div className="h2-container">
+                <span className="h2">
+                    Listener
+                </span>
+            </div>
+            <div className="h3-container">
+                <span className="h3">
+                    Event Listener
+                </span>
+            </div>
+            <div className="doc-para">Two event listener: onChange, onBlur.</div>
+            <div className="info-container">
+                <InfoBox setup={EventListenerSetup} Components={[EventListenerTextField]} />
+            </div>
+            <div className="h3-container">
+                <span className="h3">
+                    Value Listener
+                </span>
+            </div>
+            <div className="doc-para">Value listener: onValue.</div>
+            <div className="info-container">
+                <InfoBox setup={ValueListenerSetup} Components={[ValueListenerTextField]} />
             </div>
         </div>
     )
