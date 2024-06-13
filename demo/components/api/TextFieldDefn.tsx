@@ -1,6 +1,7 @@
 import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
 import { length, lengthDes, type, typeDes } from "./Validation";
+import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./listener";
 
 const TextFieldDefn = () => {
 
@@ -20,8 +21,8 @@ const TextFieldDefn = () => {
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
         { property: 'length', type: length(), description: lengthDes() },
         { property: 'validation', type: type(), description: typeDes() },
-        { property: 'eventListener', type: '', description: `` },
-        { property: 'valueListener', type: '', description: `` },
+        { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
+        { property: 'valueListener', type: valueListener(), description: valueListenerDes() },
 
     ]
 

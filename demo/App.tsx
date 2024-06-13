@@ -10,6 +10,8 @@ import TextFieldDefnPage from "./pages/api/TextFieldDefnPage";
 import TextAreaPage from "./pages/components/TextAreaPage";
 import NumberFieldPage from "./pages/components/NumberFieldPage";
 import NumberFieldDefnPage from "./pages/api/NumberFieldDefnPage";
+import IntegerFieldPage from "./pages/components/IntegerFieldPage";
+import PasswordPage from "./pages/components/PasswordPage";
 
 const App = () => {
   return (
@@ -26,6 +28,8 @@ const App = () => {
             <Route path="/palmyra-ui/textField" element={<TextFieldPage />} />
             <Route path="/palmyra-ui/textArea" element={<TextAreaPage />} />
             <Route path="/palmyra-ui/numberField" element={<NumberFieldPage />} />
+            <Route path="/palmyra-ui/integerField" element={<IntegerFieldPage />} />
+            {/* <Route path="/palmyra-ui/password" element={<PasswordPage />} /> */}
 
             {/* Api */}
             <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
