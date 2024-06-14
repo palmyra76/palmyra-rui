@@ -1,10 +1,11 @@
 import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
-import { range, rangeDes, type, typeDes } from "./options/Validation";
+import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./options/listener";
+import { lookupOptions, lookupOptionsDes, storeOptions, storeOptionsDes } from "./options/lookup";
 
-const NumberFieldDefn = () => {
+const ServerLookupDefn = () => {
 
-    const NumberFieldImport = `import { MuiNumberField } from "palmyra/MuiNumberField"`
+    const ServerLookupImport = `import { MuiServerLookup } from "palmyra/MuiServerLookup"`
 
     const data: GridProperties = [
         { property: 'attribute *', type: 'string', description: 'The attribute is connected to a database table column name' },
@@ -15,20 +16,22 @@ const NumberFieldDefn = () => {
         { property: 'disabled', type: 'boolean', description: `if disabled is true the users can't click on it or type anything.` },
         { property: 'autoFocus', type: 'boolean', description: `if autoFocus is true the input element is focused during the first mount.` },
         { property: 'variant', type: `'standard' | 'outlined' | 'filled'`, description: `The variant to use. Default 'standard'` },
-        { property: 'title', type: 'string', description: `The title of the Number Field` },
-        { property: 'label', type: 'string', description: `The label of the Number Field` },
+        { property: 'title', type: 'string', description: `The title of the Server Lookup` },
+        { property: 'label', type: 'string', description: `The label of the Server Lookup` },
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
-        { property: 'range', type: range(), description: rangeDes() },
-        { property: 'validation', type: type(), description: typeDes() },
-        { property: 'eventListener', type: '', description: `` },
-        { property: 'valueListener', type: '', description: `` },
+        { property: 'store', type: `LookupStore<any>`, description: `Store configuration for lookup.` },
+        { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
+        { property: 'valueListener', type: valueListener(), description: valueListenerDes() },
+        { property: 'lookupOptions', type: lookupOptions(), description: lookupOptionsDes() },
+        { property: 'storeOptions', type: storeOptions(), description: storeOptionsDes() }
     ]
 
     return (
         <div>
-            <Grid data={data} header="Number Field API" import={NumberFieldImport} />
+            <Grid data={data} header="Server Lookup API" import={ServerLookupImport} />
         </div>
     )
+
 }
 
-export default NumberFieldDefn;
+export default ServerLookupDefn;

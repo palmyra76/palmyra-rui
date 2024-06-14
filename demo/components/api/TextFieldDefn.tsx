@@ -1,7 +1,7 @@
 import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
-import { length, lengthDes, type, typeDes } from "./Validation";
-import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./listener";
+import { length, lengthDes, type, typeDes } from "./options/Validation";
+import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./options/listener";
 
 const TextFieldDefn = () => {
 

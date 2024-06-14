@@ -134,7 +134,7 @@
         {
             "id": 23,
             "name": "Server Lookup",
-            "code": "palmyra-ui/servreLookup",
+            "code": "palmyra-ui/serverLookup",
             "parent": 2
         },
         {
@@ -272,7 +272,7 @@
         {
             "id": 46,
             "name": "Server Lookup",
-            "code": "palmyra-ui/api/servreLookup",
+            "code": "palmyra-ui/api/serverLookup",
             "parent": 2
         },
         {
