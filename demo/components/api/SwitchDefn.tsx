@@ -27,7 +27,8 @@ import { MuiIOSSwitch } from "palmyra/MuiIOSSwitch"`
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
         { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
         { property: 'valueListener', type: valueListener(), description: valueListenerDes() },
-        { property: 'options', type: `Record<string | number, string | number>`, description: `Options defines two options for a switch component.` }
+        { property: 'options', type: `Record<string | number, string | number>`, description: `Options defines two options for a switch component.` },
+        { property: 'switch', type: `'MaterialUISwitch' | 'Android12Switch' | 'IOSSwitch' | 'Switch'`, description: `Switch Component types.` }
     ]
 
     return (

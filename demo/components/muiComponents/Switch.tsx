@@ -1,4 +1,4 @@
-import { MuiIOSSwitch, MuiSwitch } from "../../../lib/main";
+import { MuiSwitch } from "../../../lib/main";
 import FormX from "../wire/FormX";
 
 
@@ -18,8 +18,9 @@ const BasicSwitch = () => {
     )
 }
 
-const IosSwitchSetup = `<MuiIOSSwitch
+const IosSwitchSetup = `<MuiSwitch
     attribute="switch"
+    switch="IOSSwitch"
     options={{ 'On': 'true', 'Off': 'false' }}
 />
 `;
@@ -27,7 +28,41 @@ const IosSwitchSetup = `<MuiIOSSwitch
 const IosSwitch = () => {
     return (
         <FormX>
-            <MuiIOSSwitch attribute="switch"
+            <MuiSwitch attribute="switch" switch="IOSSwitch"
+                options={{ 'On': 'true', 'Off': 'false' }}
+            />
+        </FormX>
+    )
+}
+
+const Android12SwitchSetup = `<MuiSwitch
+    attribute="switch"
+    switch="Android12Switch"
+    options={{ 'On': 'true', 'Off': 'false' }}
+/>
+`;
+
+const Android12Switch = () => {
+    return (
+        <FormX>
+            <MuiSwitch attribute="switch" switch="Android12Switch"
+                options={{ 'On': 'true', 'Off': 'false' }}
+            />
+
+        </FormX>
+    )
+}
+const MaterialUISwitchSetup = `<MuiSwitch
+    attribute="switch"
+    switch="MaterialUISwitch"
+    options={{ 'On': 'true', 'Off': 'false' }}
+/>
+`;
+
+const MaterialUISwitch = () => {
+    return (
+        <FormX>
+            <MuiSwitch attribute="switch" switch="MaterialUISwitch"
                 options={{ 'On': 'true', 'Off': 'false' }}
             />
         </FormX>
@@ -35,5 +70,5 @@ const IosSwitch = () => {
 }
 
 export {
-    BasicSetup, BasicSwitch, IosSwitchSetup, IosSwitch
+    BasicSetup, BasicSwitch, IosSwitchSetup, IosSwitch, Android12SwitchSetup, Android12Switch, MaterialUISwitchSetup, MaterialUISwitch
 }
