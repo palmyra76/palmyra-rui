@@ -14,6 +14,8 @@ import IntegerFieldPage from "./pages/components/IntegerFieldPage";
 // import PasswordPage from "./pages/components/PasswordPage";
 import ServerLookupFieldPage from "./pages/components/ServerLookupFieldPage";
 import ServerLookupDefnPage from "./pages/api/ServerLookupDefnPage";
+import SwitchPage from "./pages/components/SwitchPage";
+import SwitchDefnPage from "./pages/api/SwitchDefnPage";
 
 const App = () => {
   return (
@@ -33,11 +35,13 @@ const App = () => {
             <Route path="/palmyra-ui/integerField" element={<IntegerFieldPage />} />
             {/* <Route path="/palmyra-ui/password" element={<PasswordPage />} /> */}
             <Route path="/palmyra-ui/serverlookup" element={<ServerLookupFieldPage />} />
+            <Route path="/palmyra-ui/switch" element={<SwitchPage />} />
 
             {/* Api */}
             <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
             <Route path="/palmyra-ui/api/numberField" element={<NumberFieldDefnPage />} />
             <Route path="/palmyra-ui/api/serverlookup" element={<ServerLookupDefnPage />} />
+            <Route path="/palmyra-ui/api/switch" element={<SwitchDefnPage />} />
 
             {/* Example */}
             <Route path="/palmyra-ui/example/basic" element={<BasicPage />} />

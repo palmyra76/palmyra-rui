@@ -67,8 +67,8 @@
         },
         {
             "id": 12,
-            "name": "IOS Switch",
-            "code": "palmyra-ui/iosSwitch",
+            "name": "Switch",
+            "code": "palmyra-ui/switch",
             "parent": 2
         },
         {
@@ -205,8 +205,8 @@
         },
         {
             "id": 35,
-            "name": "IOS Switch",
-            "code": "palmyra-ui/api/iosSwitch",
+            "name": "Switch",
+            "code": "palmyra-ui/api/switch",
             "parent": 2
         },
         {

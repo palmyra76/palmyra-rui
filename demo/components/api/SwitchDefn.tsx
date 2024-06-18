@@ -1,11 +1,12 @@
 import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
-import { length, lengthDes, type, typeDes } from "./options/Validation";
 import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./options/listener";
 
-const TextFieldDefn = () => {
+const SwitchDefn = () => {
 
-    const TextFieldImport = `import { MuiTextField } from "palmyra/MuiTextField"`
+    const SwitchImport = `import { MuiSwitch } from "palmyra/MuiSwitch"
+import { MuiIOSSwitch } from "palmyra/MuiIOSSwitch"`
+
 
     const data: GridProperties = [
         { property: 'attribute *', type: 'string', description: 'The attribute is connected to a database table column name.' },
@@ -24,19 +25,17 @@ const TextFieldDefn = () => {
         { property: 'className', type: 'string', description: `Customize the text field style.` },
         { property: 'colspan', type: 'number', description: `Colspan specifies the number of columns a cell should span.` },
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
-        { property: 'length', type: length(), description: lengthDes() },
-        { property: 'validation', type: type(), description: typeDes() },
         { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
         { property: 'valueListener', type: valueListener(), description: valueListenerDes() },
-
+        { property: 'options', type: `Record<string | number, string | number>`, description: `Options defines two options for a switch component.` }
     ]
 
     return (
         <div>
-            <Grid data={data} header="Text Field API" import={TextFieldImport} />
+            <Grid data={data} header="Switch API" import={SwitchImport} />
         </div>
     )
 
 }
 
-export default TextFieldDefn;
+export default SwitchDefn;
