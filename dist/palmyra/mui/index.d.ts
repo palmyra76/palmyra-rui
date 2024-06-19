@@ -23,5 +23,5 @@ import { default as MuiRadioGroup } from './form/MuiRadioGroup';
 import { default as MuiDateTimePicker } from './form/MuiDateTimePicker';
 import { default as MuiDatePicker } from './form/MuiDatePicker';
 
-export { MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword, MuiServerCheckBox, MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator, MuiRating, TextView, DateView, OptionsView, LookupView };
+export { MuiDatePicker, MuiDateTimePicker, MuiDateRangePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword, MuiServerCheckBox, MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator, MuiRating, TextView, DateView, OptionsView, LookupView };
 export { InfoCircle, InfoTooltip };

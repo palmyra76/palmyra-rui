@@ -1,5 +1,6 @@
 import MuiDatePicker from "./form/MuiDatePicker";
 import MuiDateTimePicker from "./form/MuiDateTimePicker";
+import MuiDateRangePicker from "./form/MuiDateTimePicker";
 import MuiRadioGroup from "./form/MuiRadioGroup";
 import MuiSelect from "./form/MuiSelect";
 import MuiTextArea from "./form/MuiTextArea";
@@ -25,10 +26,10 @@ import LookupView from "./textView/LookupView";
 import { InfoTooltip, InfoCircle } from "./widget/InfoTooltip";
 
 export {
-    MuiDatePicker, MuiDateTimePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup, MuiServerLookup,
-    MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword, MuiServerCheckBox,
-    MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator, MuiRating, TextView,
-    DateView, OptionsView, LookupView
+    MuiDatePicker, MuiDateTimePicker, MuiDateRangePicker, MuiRadioGroup, MuiSelect, MuiCheckBoxGroup,
+    MuiServerLookup, MuiTextArea, MuiTextField, MuiCheckBox, MuiSwitch, MuiIOSSwitch, MuiPassword,
+    MuiServerCheckBox, MuiNumberField, MuiIntegerField, MuiAutoComplete, MuiSlider, FieldDecorator, MuiRating,
+    TextView, DateView, OptionsView, LookupView
 };
 
 export {
