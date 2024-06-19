@@ -4,8 +4,7 @@ import { eventListener, eventListenerDes, valueListener, valueListenerDes } from
 
 const SwitchDefn = () => {
 
-    const SwitchImport = `import { MuiSwitch } from "palmyra/MuiSwitch"
-import { MuiIOSSwitch } from "palmyra/MuiIOSSwitch"`
+    const SwitchImport = `import { MuiSwitch } from "palmyra/MuiSwitch"`
 
 
     const data: GridProperties = [

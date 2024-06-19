@@ -21,7 +21,7 @@ const ServerLookupDefn = () => {
         { property: 'customContainerClass', type: 'string', description: `Override or extend the container style.` },
         { property: 'customFieldClass', type: 'string', description: `Override or extend the field style.` },
         { property: 'customLabelClass', type: 'string', description: `Override or extend the label style.` },
-        { property: 'className', type: 'string', description: `Customize the text field style.` },
+        { property: 'className', type: 'string', description: `Customize the server lookup style.` },
         { property: 'colspan', type: 'number', description: `Colspan specifies the number of columns a cell should span.` },
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
         { property: 'store', type: `LookupStore<any>`, description: `Store configuration for lookup.` },

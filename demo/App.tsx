@@ -16,6 +16,7 @@ import ServerLookupFieldPage from "./pages/components/ServerLookupFieldPage";
 import ServerLookupDefnPage from "./pages/api/ServerLookupDefnPage";
 import SwitchPage from "./pages/components/SwitchPage";
 import SwitchDefnPage from "./pages/api/SwitchDefnPage";
+import RadioGroupPage from "./pages/components/RadioPage";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
             {/* <Route path="/palmyra-ui/password" element={<PasswordPage />} /> */}
             <Route path="/palmyra-ui/serverlookup" element={<ServerLookupFieldPage />} />
             <Route path="/palmyra-ui/switch" element={<SwitchPage />} />
+            <Route path="/palmyra-ui/radioGroup" element={<RadioGroupPage />} />
 
             {/* Api */}
             <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
