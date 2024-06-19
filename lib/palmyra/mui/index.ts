@@ -1,6 +1,6 @@
 import MuiDatePicker from "./form/MuiDatePicker";
 import MuiDateTimePicker from "./form/MuiDateTimePicker";
-import MuiDateRangePicker from "./form/MuiDateTimePicker";
+import MuiDateRangePicker from "./form/MuiDateRangePicker";
 import MuiRadioGroup from "./form/MuiRadioGroup";
 import MuiSelect from "./form/MuiSelect";
 import MuiTextArea from "./form/MuiTextArea";

@@ -5,6 +5,7 @@ import "../mui/form/MuiRadioGroup.js";
 import "../mui/form/MuiSelect.js";
 import "../mui/form/MuiDatePicker.js";
 import "../mui/form/MuiDateTimePicker.js";
+import "../mui/form/MuiDateRangePicker.js";
 import "../mui/form/MuiCheckBoxGroup.js";
 import "../mui/form/MuiCheckBox.js";
 import "../mui/form/MuiSwitch.js";
@@ -19,7 +20,6 @@ import "../mui/form/MuiRating.js";
 import "../mui/textView/OptionsView.js";
 import "../mui/textView/LookupView.js";
 import "../mui/widget/InfoTooltip.js";
-import "../mui/form/MuiDateRangePicker.js";
 export {
   y as default
 };

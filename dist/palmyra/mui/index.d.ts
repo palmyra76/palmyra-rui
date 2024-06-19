@@ -20,6 +20,7 @@ import { default as MuiTextField } from './form/MuiTextField';
 import { default as MuiTextArea } from './form/MuiTextArea';
 import { default as MuiSelect } from './form/MuiSelect';
 import { default as MuiRadioGroup } from './form/MuiRadioGroup';
+import { default as MuiDateRangePicker } from './form/MuiDateRangePicker';
 import { default as MuiDateTimePicker } from './form/MuiDateTimePicker';
 import { default as MuiDatePicker } from './form/MuiDatePicker';
 
