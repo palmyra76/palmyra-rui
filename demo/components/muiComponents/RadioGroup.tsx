@@ -3,7 +3,8 @@ import FormX from "../wire/FormX";
 
 const BasicSetup = `<MuiRadioGroup
     attribute="radio"
-    options={{ 'true': 'On', 'false': 'Off' }}
+    options={{ true: 'On', false: 'Off' }}
+    flexDirection="column"
 />
 `;
 
@@ -12,7 +13,8 @@ const BasicRadioGroup = () => {
         <FormX>
             <MuiRadioGroup
                 attribute="radio"
-                options={{ 'true': 'On', 'false': 'Off' }}
+                options={{ true: 'On', false: 'Off' }}
+                flexDirection="column"
             />
         </FormX>
     )

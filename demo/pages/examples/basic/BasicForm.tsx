@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 
 const BasicForm = () => {
   const [isValid, setValid] = useState(false);
-  const storeFactory :StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/testdata/form' });
+  const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/testdata/form' });
 
   const onValidityChange = (valid: boolean): void => {
     setValid(valid);
@@ -81,8 +81,9 @@ const BasicForm = () => {
     const handleSaveClick = () => {
       if (formRef.current) {
         const formData = formRef.current.getData();
-        alert("Name: $"{formData.name}
-              Address:$"{formData.address}");
+        alert(Name: $"{formData.name}
+          Email:$"{formData.email}
+          Address: $"{formData.address});
       }
     };
     

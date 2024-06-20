@@ -4,7 +4,7 @@ import FormX from "../wire/FormX";
 
 const BasicSetup = `<MuiSwitch
     attribute="switch"
-    options={{ 'On': 'true', 'Off': 'false' }}
+    options={{ true: 'On', false: 'Off' }}
 />
 `;
 
@@ -12,7 +12,7 @@ const BasicSwitch = () => {
     return (
         <FormX>
             <MuiSwitch attribute="switch"
-                options={{ 'On': 'true', 'Off': 'false' }}
+                options={{ true: 'On', false: 'Off' }}
             />
         </FormX>
     )
@@ -21,7 +21,7 @@ const BasicSwitch = () => {
 const IosSwitchSetup = `<MuiSwitch
     attribute="switch"
     switch="IOSSwitch"
-    options={{ 'On': 'true', 'Off': 'false' }}
+    options={{ true: 'On', false: 'Off' }}
 />
 `;
 
@@ -29,7 +29,7 @@ const IosSwitch = () => {
     return (
         <FormX>
             <MuiSwitch attribute="switch" switch="IOSSwitch"
-                options={{ 'On': 'true', 'Off': 'false' }}
+                options={{ true: 'On', false: 'Off' }}
             />
         </FormX>
     )
@@ -38,7 +38,7 @@ const IosSwitch = () => {
 const Android12SwitchSetup = `<MuiSwitch
     attribute="switch"
     switch="Android12Switch"
-    options={{ 'On': 'true', 'Off': 'false' }}
+    options={{ true: 'On', false: 'Off' }}
 />
 `;
 
@@ -46,7 +46,7 @@ const Android12Switch = () => {
     return (
         <FormX>
             <MuiSwitch attribute="switch" switch="Android12Switch"
-                options={{ 'On': 'true', 'Off': 'false' }}
+               options={{ true: 'On', false: 'Off' }}
             />
 
         </FormX>
@@ -55,7 +55,7 @@ const Android12Switch = () => {
 const MaterialUISwitchSetup = `<MuiSwitch
     attribute="switch"
     switch="MaterialUISwitch"
-    options={{ 'On': 'true', 'Off': 'false' }}
+    options={{ true: 'On', false: 'Off' }}
 />
 `;
 
@@ -63,7 +63,7 @@ const MaterialUISwitch = () => {
     return (
         <FormX>
             <MuiSwitch attribute="switch" switch="MaterialUISwitch"
-                options={{ 'On': 'true', 'Off': 'false' }}
+               options={{ true: 'On', false: 'Off' }}
             />
         </FormX>
     )

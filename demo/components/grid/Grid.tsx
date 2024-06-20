@@ -32,16 +32,16 @@ const Grid = (props: IGridInput) => {
             <div className="h1-container"><span className="h1">{props.header}</span></div>
             <div className="defn-import">
                 <div ref={contentRef}>
-                    <CodeHighlighter code={props.import} />
-                </div>
-                <div className="copy-icon-container">
-                    <div className="copy-icon">
-                        <Tooltip placement="left" title={title}>
-                            <div>
-                                <TbCopy className="tab-icon" onClick={copyToClipboard} />
-                            </div>
-                        </Tooltip>
+                    <div className="copy-icon-container">
+                        <div className="copy-icon">
+                            <Tooltip placement="left" title={title}>
+                                <div>
+                                    <TbCopy className="tab-icon" onClick={copyToClipboard} />
+                                </div>
+                            </Tooltip>
+                        </div>
                     </div>
+                    <CodeHighlighter code={props.import} />
                 </div>
             </div>
             <Table>

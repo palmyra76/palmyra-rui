@@ -27,13 +27,13 @@ const CheckboxPage = () => {
             </div>
             <div className="h3-container">
                 <span className="h3">
-                    Checkbox allow the user to select one item from a set.
+                    Checkbox allow the user to select multiple items from a set.
                 </span>
             </div>
             <div className="info-container info-checkbox-container">
                 <div className="h2-container">
                     <span className="h2">
-                        Basic CheckBoxs
+                        Basic CheckBox
                     </span>
                 </div>
                 <InfoBox setup={Setup} Components={[Checkbox]} />
