@@ -72,8 +72,8 @@
 }
 
 .info-box-detail-container {
-    background-color: black;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 5px;
+    background-color: #282c34;
 }
 
 .info-container {
@@ -191,7 +191,6 @@ pre {
 }
 
 .defn-import {
-    padding: 0px 20px;
     margin-bottom: 20px;
 }
 
@@ -221,6 +220,6 @@ pre {
 
 .copy-icon {
     position: absolute;
-    top: -60px;
+    margin-top: 10px;
     right: 0px;
 }

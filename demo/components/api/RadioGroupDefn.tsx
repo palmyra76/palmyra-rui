@@ -2,7 +2,7 @@ import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
 import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./options/listener";
 
-const RadioDefn = () => {
+const RadioGroupDefn = () => {
 
     const RadioImport = `import { MuiRadio } from "palmyra/MuiRadio"`
 
@@ -15,7 +15,7 @@ const RadioDefn = () => {
         { property: 'readonly', type: 'boolean', description: `if readonly is true the input field makes it so that users can see the content but can't change it.` },
         { property: 'disabled', type: 'boolean', description: `if disabled is true the users can't click on it or type anything.` },
         { property: 'autoFocus', type: 'boolean', description: `if autoFocus is true the input element is focused during the first mount.` },
-        { property: 'variant', type: `'standard' | 'outlined' | 'filled'`, description: `The variant to use. Default 'standard.'` },
+        { property: 'variant', type: `'standard' | 'outlined' | 'filled'`, description: `The variant to use. Default 'standard'.` },
         { property: 'title', type: 'string', description: `The title of the radio group.` },
         { property: 'label', type: 'string', description: `The label of the radio group.` },
         { property: 'customContainerClass', type: 'string', description: `Override or extend the container style.` },
@@ -27,7 +27,7 @@ const RadioDefn = () => {
         { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
         { property: 'valueListener', type: valueListener(), description: valueListenerDes() },
         { property: 'options', type: `Record<any, any> | Record<string, any> | { value: any, label: string }[]`, description: `Options defines two options for a Radio component.` },
-        { property: 'flexDirection', type: `'column' | 'row'`, description: `Set the direction of the flex container's main axis.` }
+        { property: 'flexDirection', type: `'column' | 'row'`, description: `Set the direction of the flex container's main axis. Default 'row'.` }
     ]
 
     return (
@@ -38,4 +38,4 @@ const RadioDefn = () => {
 
 }
 
-export default RadioDefn;
+export default RadioGroupDefn;

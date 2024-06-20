@@ -16,7 +16,9 @@ import ServerLookupFieldPage from "./pages/components/ServerLookupFieldPage";
 import ServerLookupDefnPage from "./pages/api/ServerLookupDefnPage";
 import SwitchPage from "./pages/components/SwitchPage";
 import SwitchDefnPage from "./pages/api/SwitchDefnPage";
-import RadioGroupPage from "./pages/components/RadioPage";
+import RadioGroupPage from "./pages/components/RadioGroupPage";
+import RadioGroupDefnPage from "./pages/api/RadioGroupDefnPage";
+import SelectFieldPage from "./pages/components/SelectFieldPage";
 
 const App = () => {
   return (
@@ -38,12 +40,15 @@ const App = () => {
             <Route path="/palmyra-ui/serverlookup" element={<ServerLookupFieldPage />} />
             <Route path="/palmyra-ui/switch" element={<SwitchPage />} />
             <Route path="/palmyra-ui/radioGroup" element={<RadioGroupPage />} />
+            <Route path="/palmyra-ui/select" element={<SelectFieldPage />} />
 
             {/* Api */}
             <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
             <Route path="/palmyra-ui/api/numberField" element={<NumberFieldDefnPage />} />
             <Route path="/palmyra-ui/api/serverlookup" element={<ServerLookupDefnPage />} />
             <Route path="/palmyra-ui/api/switch" element={<SwitchDefnPage />} />
+            <Route path="/palmyra-ui/api/radioGroup" element={<RadioGroupDefnPage />} />
+
 
             {/* Example */}
             <Route path="/palmyra-ui/example/basic" element={<BasicPage />} />
