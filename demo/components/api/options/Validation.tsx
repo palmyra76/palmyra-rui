@@ -72,4 +72,26 @@ const rangeDes = () => {
     )
 }
 
-export { type, typeDes, length, lengthDes, range, rangeDes }
+const dateRange = () => {
+    return (
+        <ul>
+            <li>minDate: object</li>
+            <li>maxDate: object</li>
+        </ul>
+    )
+}
+
+const dateRangeDes = () => {
+    return (<>
+        <ul>
+            <li>Minimal selectable date.</li>
+            <li>Maximal selectable date.</li>
+        </ul>
+    </>
+    )
+}
+
+export {
+    type, typeDes, length, lengthDes,
+    range, rangeDes, dateRange, dateRangeDes
+}
