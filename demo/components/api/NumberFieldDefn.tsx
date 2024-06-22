@@ -1,6 +1,7 @@
 import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
 import { range, rangeDes, type, typeDes } from "./options/Validation";
+import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./options/listener";
 
 const NumberFieldDefn = () => {
 
@@ -25,8 +26,8 @@ const NumberFieldDefn = () => {
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
         { property: 'range', type: range(), description: rangeDes() },
         { property: 'validation', type: type(), description: typeDes() },
-        { property: 'eventListener', type: '', description: `` },
-        { property: 'valueListener', type: '', description: `` },
+        { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
+        { property: 'valueListener', type: valueListener(), description: valueListenerDes() }
     ]
 
     return (

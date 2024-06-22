@@ -24,6 +24,7 @@ import TextAreaDefnPage from "./pages/api/TextAreaDefnPage";
 import DatePickerPage from "./pages/components/DatePickerPage";
 import DatePickerDefnPage from "./pages/api/DatePickerDefnPage";
 import DateTimePickerPage from "./pages/components/DateTimePickerPage";
+import IntegerFieldDefnPage from "./pages/api/IntegerFieldDefnPage";
 
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
             {/* Api */}
             <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
             <Route path="/palmyra-ui/api/numberField" element={<NumberFieldDefnPage />} />
+            <Route path="/palmyra-ui/api/integerField" element={<IntegerFieldDefnPage />} />
             <Route path="/palmyra-ui/api/serverlookup" element={<ServerLookupDefnPage />} />
             <Route path="/palmyra-ui/api/switch" element={<SwitchDefnPage />} />
             <Route path="/palmyra-ui/api/radioGroup" element={<RadioGroupDefnPage />} />
