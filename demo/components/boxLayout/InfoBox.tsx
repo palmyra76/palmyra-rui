@@ -25,8 +25,7 @@ const InfoBox = (props: IBoxInput) => {
                 console.error('Failed to copy: ', err);
             });
     };
-    console.log(title)
-
+    
     return (
         <>
             <div className="info-box-container">

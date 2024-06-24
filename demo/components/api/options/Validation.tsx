@@ -50,7 +50,6 @@ const lengthDes = () => {
     )
 }
 
-
 const range = () => {
     return (
         <ul>
@@ -91,7 +90,40 @@ const dateRangeDes = () => {
     )
 }
 
+const sliderProps = () => {
+    return (
+        <ul>
+            <li>disableSwap: boolean</li>
+            <li>valueLabelDisplay: 'auto' | 'on' | 'off'</li>
+            <li>min: number</li>
+            <li>max: number</li>
+            <li>step: number</li>
+            <li>marks: boolean | ValueLabel[]</li>
+        </ul>
+    )
+}
+
+const sliderPropsDes = () => {
+    return (<>
+        <ul>
+            <li>When you're dragging one slider, passing the pointer over another slider won't change the one you're currently dragging.</li>
+            <li>Controls when the value label is displayed: Default 'auto'
+                <ul>
+                    <li>'auto' the value label will display when the thumb is hovered or focused.</li>
+                    <li>'on' will display persistently.</li>
+                    <li>'off' will never display.</li>
+                </ul>
+            </li>
+            <li>The minimum allowed value of the slider. Should not be equal to max.</li>
+            <li>The maximum allowed value of the slider. Should not be equal to min.</li>
+            <li>The step defines how the slider increments between its minimum and maximum values, ensuring it stops at specific intervals.</li>
+            <li>Slider marks guide where to position the handle accurately and conveniently.</li>
+        </ul>
+    </>
+    )
+}
+
 export {
-    type, typeDes, length, lengthDes,
-    range, rangeDes, dateRange, dateRangeDes
+    type, typeDes, length, lengthDes, range, rangeDes,
+    dateRange, dateRangeDes, sliderProps, sliderPropsDes
 }

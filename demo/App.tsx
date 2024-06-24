@@ -25,6 +25,8 @@ import DatePickerPage from "./pages/components/DatePickerPage";
 import DatePickerDefnPage from "./pages/api/DatePickerDefnPage";
 import DateTimePickerPage from "./pages/components/DateTimePickerPage";
 import IntegerFieldDefnPage from "./pages/api/IntegerFieldDefnPage";
+import SliderPage from "./pages/components/SliderPage.tsx";
+import SliderDefnPage from "./pages/api/SliderDefnPage.tsx";
 
 
 const App = () => {
@@ -50,6 +52,7 @@ const App = () => {
             <Route path="/palmyra-ui/select" element={<SelectFieldPage />} />
             <Route path="/palmyra-ui/datePicker" element={<DatePickerPage />} />
             <Route path="/palmyra-ui/dateTimePicker" element={<DateTimePickerPage />} />
+            <Route path="/palmyra-ui/slider" element={<SliderPage />} />
 
             {/* Api */}
             <Route path="/palmyra-ui/api/textField" element={<TextFieldDefnPage />} />
@@ -62,6 +65,7 @@ const App = () => {
             <Route path="/palmyra-ui/api/textArea" element={<TextAreaDefnPage />} />
             <Route path="/palmyra-ui/api/datePicker" element={<DatePickerDefnPage />} />
             <Route path="/palmyra-ui/api/dateTimePicker" element={<DatePickerDefnPage />} />
+            <Route path="/palmyra-ui/api/slider" element={<SliderDefnPage />} />
             
             {/* Example */}
             <Route path="/palmyra-ui/example/basic" element={<BasicPage />} />
