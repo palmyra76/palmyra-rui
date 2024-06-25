@@ -26,7 +26,7 @@ const SelectFieldDefn = () => {
         { property: 'fieldProps', type: `'small' | 'medium' | 'large'`, description: `The size of the input element.` },
         { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
         { property: 'valueListener', type: valueListener(), description: valueListenerDes() },
-        { property: 'options', type: `Record<any, any> | Record<string, any> | { value: any, label: string }[]`, description: `Options defines two options for a Select component.` }
+        { property: 'options', type: `Record<any, any> | Record<string, any> | { value: any, label: string }[]`, description: `Options defines two or more options for a Select component.` }
     ]
 
     return (

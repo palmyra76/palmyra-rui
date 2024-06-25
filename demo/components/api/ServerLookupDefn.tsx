@@ -1,7 +1,7 @@
 import Grid from "../grid/Grid";
 import { GridProperties } from "../grid/Types";
 import { eventListener, eventListenerDes, valueListener, valueListenerDes } from "./options/listener";
-import { lookupOptions, lookupOptionsDes, storeOptions, storeOptionsDes } from "./options/lookup";
+import { defaultQueryParams, defaultQueryParamsDes, lookupOptions, lookupOptionsDes, storeOptions, storeOptionsDes } from "./options/lookup";
 
 const ServerLookupDefn = () => {
 
@@ -28,7 +28,10 @@ const ServerLookupDefn = () => {
         { property: 'eventListener', type: eventListener(), description: eventListenerDes() },
         { property: 'valueListener', type: valueListener(), description: valueListenerDes() },
         { property: 'lookupOptions', type: lookupOptions(), description: lookupOptionsDes() },
-        { property: 'storeOptions', type: storeOptions(), description: storeOptionsDes() }
+        { property: 'storeOptions', type: storeOptions(), description: storeOptionsDes() },
+        { property: 'fetchDefault', type: `number`, description: `Fetch default used to retrieve a default value or option.` },
+        { property: 'pageSize', type: `numbers`, description: `Page size defines the amount of content displayed or stored on one page or screen.` },
+        { property: 'defaultParams', type: defaultQueryParams(), description: defaultQueryParamsDes() }
     ]
 
     return (

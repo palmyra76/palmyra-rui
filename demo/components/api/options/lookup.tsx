@@ -41,4 +41,25 @@ const storeOptionsDes = () => {
 }
 
 
-export { lookupOptions, lookupOptionsDes, storeOptions, storeOptionsDes }
+const defaultQueryParams = () => {
+    return (
+        <ul>
+            <li>filter: Record&lt;any, any&gt;</li>
+            <br />
+            <li>sort: strings</li>
+        </ul>
+    )
+}
+
+const defaultQueryParamsDes = () => {
+    return (<>
+        <ul>
+            <li>A lookup filter is used to restrict or limit the data that can be retrieved or displayed based on specified conditions.</li>
+            <br />
+            <li>Lookup sort organizes data into a specified order, like alphabetical or numerical</li>
+        </ul>
+    </>
+    )
+}
+
+export { lookupOptions, lookupOptionsDes, storeOptions, storeOptionsDes, defaultQueryParams, defaultQueryParamsDes }
