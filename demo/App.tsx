@@ -29,8 +29,8 @@ import SliderPage from "./pages/components/SliderPage";
 import SliderDefnPage from "./pages/api/SliderDefnPage";
 import ViewPage from "./pages/components/viewComponent/ViewPage";
 import ViewDefnPage from "./pages/api/ViewDefnPage";
-// import RatingFieldPage from "./pages/components/RatingFieldPage";
-
+import RatingFieldPage from "./pages/components/RatingFieldPage";
+import RatingFieldDefnPage from "./pages/api/RatingFieldDefnPage";
 
 const App = () => {
   return (
@@ -56,7 +56,7 @@ const App = () => {
             <Route path="/palmyra-ui/datePicker" element={<DatePickerPage />} />
             <Route path="/palmyra-ui/dateTimePicker" element={<DateTimePickerPage />} />
             <Route path="/palmyra-ui/slider" element={<SliderPage />} />
-            {/* <Route path="/palmyra-ui/rating" element={<RatingFieldPage />} /> */}
+            <Route path="/palmyra-ui/rating" element={<RatingFieldPage />} />
             <Route path="/palmyra-ui/view" element={<ViewPage />} />
 
             {/* Api */}
@@ -71,6 +71,7 @@ const App = () => {
             <Route path="/palmyra-ui/api/datePicker" element={<DatePickerDefnPage />} />
             <Route path="/palmyra-ui/api/dateTimePicker" element={<DatePickerDefnPage />} />
             <Route path="/palmyra-ui/api/slider" element={<SliderDefnPage />} />
+            <Route path="/palmyra-ui/api/rating" element={<RatingFieldDefnPage />} />
             <Route path="/palmyra-ui/api/view" element={<ViewDefnPage />} />
 
             {/* Example */}
