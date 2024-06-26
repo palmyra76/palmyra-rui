@@ -1,42 +1,27 @@
-import { MuiCheckBox } from "../../../lib/main";
 import InfoBox from "../../components/boxLayout/InfoBox";
-import FormX from "../../components/wire/FormX";
+import { BasicSetup, BasicCheckBox, CustomIconSetup, CustomIconCheckBox } from "../../components/muiComponents/CheckBox";
 
-const Setup = `<MuiCheckBox attribute="checkBox" defaultValue={1} readonly/>
-<MuiCheckBox attribute="checkBox" />
-<MuiCheckBox attribute="checkBox" disabled/>
-<MuiCheckBox attribute="checkBox" defaultValue={1} disabled/>
-`;
-const Checkbox = () => {
-    return (
-        <FormX>
-            <MuiCheckBox attribute="checkBox" defaultValue={1} readonly />
-            <MuiCheckBox attribute="checkBox" />
-            <MuiCheckBox attribute="checkBox" disabled />
-            <MuiCheckBox attribute="checkBox" defaultValue={1} disabled />
-        </FormX>
-    )
-}
 const CheckboxPage = () => {
     return (
         <div>
             <div className="h1-container">
                 <span className="h1">
-                    CheckBox
+                    Check Box
                 </span>
-            </div>
-            <div className="h3-container">
-                <span className="h3">
+                <div className="h3">
                     Checkbox allow the user to select multiple items from a set.
+                </div>
+            </div>
+            <div className="info-container">
+                <InfoBox setup={BasicSetup} Components={[BasicCheckBox]} />
+            </div>
+            <div className="h2-container">
+                <span className="h2">
+                    Customize Icon
                 </span>
             </div>
-            <div className="info-container info-checkbox-container">
-                <div className="h2-container">
-                    <span className="h2">
-                        Basic CheckBox
-                    </span>
-                </div>
-                <InfoBox setup={Setup} Components={[Checkbox]} />
+            <div className="info-container">
+                <InfoBox setup={CustomIconSetup} Components={[CustomIconCheckBox]} />
             </div>
         </div>
     )

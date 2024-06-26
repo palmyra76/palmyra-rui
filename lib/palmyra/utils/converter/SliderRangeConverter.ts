@@ -1,7 +1,7 @@
 import { Converter } from "."
+import { IRangeSliderDefinition } from "../../PalmyraForm/interface";
 import { AttributeDefinition } from "../../form/Definitions"
 import { getValueByKey } from "../../form/FormUtil";
-import { IRangeSliderDefinition } from "../../form/interface";
 
 type ISliderRange = [number, number];
 
@@ -10,8 +10,8 @@ class SliderRangeConverter implements Converter<any, ISliderRange> {
     max = 100
 
     constructor(props: IRangeSliderDefinition) {
-        this.min = props.fieldProps?.min || this.min;
-        this.max = props.fieldProps?.max || this.max;
+        this.min = props.sliderProps?.min || this.min;
+        this.max = props.sliderProps?.max || this.max;
         console.log(this.min);
     }
 
@@ -54,5 +54,3 @@ class SliderRangeConverter implements Converter<any, ISliderRange> {
 }
 
 export { SliderRangeConverter }
-
-

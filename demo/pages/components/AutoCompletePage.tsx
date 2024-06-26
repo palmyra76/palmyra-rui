@@ -14,10 +14,10 @@ const Autocomplete = () => {
     return (
         <FormX>
             <MuiAutoComplete attribute="name"
-                placeHolder="Select Country"
+                placeHolder="Select"
                 variant="outlined"
                 lookupOptions={{ attribute: "name" }}
-                storeOptions={{ endPoint: '' }}
+                storeOptions={{ endPoint: "/multiServerlookupData.json" }}
             />
         </FormX>
     )

@@ -1,6 +1,7 @@
 
+import { ILength, IRange, IRegex, IType, IValidateFn } from "../PalmyraForm/interface";
 import { storeBacked } from "../layout/Types";
-import { FieldType, strings } from "./interface";
+import { FieldType } from "./interface";
 
 /**
  * This definitions will cater to the Form Definition format
@@ -13,12 +14,12 @@ type FormData = { [key: string]: InputType | FormData }; // Record<string, Input
 
 type MuiVariant = "outlined" | "standard" | "filled";
 
-interface RangeValidation<T> {
-    is?: T,
-    min?: T,
-    max?: T,
-    message: string
-}
+// interface RangeValidation<T> {
+//     is?: T,
+//     min?: T,
+//     max?: T,
+//     message: string
+// }
 
 interface LookupOptions {
     idAttribute?: string,
@@ -52,10 +53,9 @@ interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
     mutant?: boolean,
     variant?: MuiVariant,
     placeHolder?: string,
-    validationRule?: strings,
-    errorMessage?: Record<string, string>,
-    length?: RangeValidation<number>,
-    range?: RangeValidation<any>,
+    validation?: IType | IRegex | IValidateFn,
+    length?: ILength,
+    range?: IRange,
     lookupOptions?: LookupOptions // To be used by server lookup
 }
 
