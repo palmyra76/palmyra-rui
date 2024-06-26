@@ -26,7 +26,7 @@
         {
             "id": 5,
             "name": "Check Box",
-            "code": "palmyra-ui/checkbox",
+            "code": "palmyra-ui/checkBox",
             "parent": 2
         },
         {
