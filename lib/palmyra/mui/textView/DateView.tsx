@@ -1,10 +1,11 @@
 import { format as formatDate, isValid, parse } from 'date-fns';
 import { forwardRef, useRef, useContext } from 'react';
-import { IDateViewDefinition, IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';
 import './TextView.css';
+import { IDateViewDefinition } from '../../PalmyraForm/interface';
 
 const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -50,7 +51,7 @@ const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition,
             {(props.label) ?
                 <div {...inputProps} className='text-view-field-container'>
                     <div className="text-view-label">{props.label}</div>
-                    <div className={ (variant == 'standard') ? "text-view-value" : "text-view-value-outlined"}>{formatValue(value)}</div>
+                    <div className={(variant == 'standard') ? "text-view-value" : "text-view-value-outlined"}>{formatValue(value)}</div>
                 </div> :
                 <div {...inputProps} style={{ textAlign: textAlign }}>
                     {formatValue(value)}

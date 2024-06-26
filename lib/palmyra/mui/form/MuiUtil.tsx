@@ -1,4 +1,5 @@
-import { AttributeDefinition, IDecoration } from "../../form/interface";
+import { AttributeDefinition, IDecoration } from "../../PalmyraForm/interface";
+
 
 const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string) => {
     const fieldProps = props.fieldProps || {};
@@ -20,7 +21,7 @@ const getFieldLabel = (props: AttributeDefinition & IDecoration) => {
     if (props.required && props.title)
         return (
             <>
-                <div style={{display:'flex',alignItems:'center',gap:'3px'}}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
                     {props.title}
                     <span style={{ color: 'red' }}>*</span>
                 </div>

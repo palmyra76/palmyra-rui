@@ -1,10 +1,12 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ITextField, IMutateOptions } from '../../form/interfaceFields';
+import { ITextFieldDefinition } from '../../PalmyraForm/interface';
+
 
 const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
@@ -17,6 +19,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     const variant = props.variant || 'standard';
     const autoFocus = props.autoFocus || false;
 
+    
     useImperativeHandle(currentRef, () => {
         return {
             focus() {

@@ -1,11 +1,12 @@
 import { forwardRef, useRef, useContext } from 'react';
-import { IFormFieldManager, IGetFieldManager, ILookupViewDefinition } from '../../form/interface';
+import { IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';
 import { hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
 import './TextView.css';
+import { ILookupViewDefinition } from '../../PalmyraForm/interface';
 
 const LookupView = forwardRef(function MuiLabelDisplay(props: ILookupViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);

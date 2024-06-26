@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, useState, useEffect } from 'react';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
 import { LookupStore } from 'palmyra-wire';
@@ -9,6 +9,7 @@ import { getValueByKey } from '../../form/FormUtil';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
 import { Autocomplete, CircularProgress, FormControl, FormHelperText, TextField } from '@mui/material';
+import { IServerLookupDefinition } from '../../PalmyraForm/interface';
 
 /**
  * The server lookup would take either Object or Array Elements as input attribute

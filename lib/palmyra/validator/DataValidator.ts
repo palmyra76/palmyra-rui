@@ -18,24 +18,43 @@ const validate = (format: FieldDefinition) => {
     let required = format.required;
 
     if (format.required == true && isRequiredSupported(format)) {
-        var message = format.errorMessage?.required || 'This field is mandatory';
+        var message = format.errorMsg?.required || 'This field is mandatory';
         validators.push(constructMethod(isNotEmpty, message));
     }
 
     if (format.length) {
-        var lengthMessage = format.length.message || 'Invalid size';
+        var lengthMessage = format.length.errorMsg || 'Invalid size';
         validators.push(constructMethod(getLengthValidator(format), lengthMessage));
     }
 
-    if (format.validationRule) {
-        var rules = format.validationRule;
+    if (format.validation) {
+        //@ts-ignore
+        var rules = format?.validation?.type || format?.validation?.regex || format?.validation?.validateFn;
+        //@ts-ignore
+        if (format?.validation?.regex) {
+            //@ts-ignore
+            const regex: RegExp = format?.validation?.regex;
+            //@ts-ignore
+            const error: string = format?.validation?.errorMsg;
+            return (value: any): FieldValidStatus => { return { status: regex.test(value), message: error } }
+        }
+
+        //@ts-ignore
+        if (format?.validation?.validateFn) {
+            //@ts-ignore
+            const validateFn = format?.validation?.validateFn;
+            //@ts-ignore
+            const error: string = format?.validation?.errorMsg;
+            return (value: any): FieldValidStatus => { return { status: validateFn(value), message: error } }
+        }
+
         if (rules instanceof Array && rules.length > 0) {
             const clause = rules[0];
             validators.push(getRuleValidators(format, clause == 'OR'));
         } else {
             const rule: any = rules;
             var typeValidator = getRuleValidator(format, rule);
-            var typeMessage = format.errorMessage?.rule || "Invalid";
+            var typeMessage = format.errorMsg?.rule || format.validation?.errorMsg || "Invalid";
             validators.push(constructMethod(typeValidator, typeMessage));
         }
     }
@@ -55,13 +74,13 @@ const validate = (format: FieldDefinition) => {
 
 const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
     var validators = [];
-    var rules = format.validationRule;
+    var rules = format.validation;
     if (rules instanceof Array) {
         rules.map((rule, index) => {
             if (anyMatch && 0 == index)
                 return;
             var typeValidator = getRuleValidator(format, rule);
-            var typeMessage = format.errorMessage?.[rule] || "Invalid";
+            var typeMessage = format.validation.errorMsg?.[rule] || "Invalid";
             validators.push(constructMethod(typeValidator, typeMessage));
         })
     }
@@ -94,7 +113,7 @@ const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
 
 const getLengthValidator = (format: FieldDefinition) => {
     if (format.length) {
-        const length = format.length.is;
+        // const length = format.length.is;
         const minLength = format.length.min;
         const maxLength = format.length.max;
 

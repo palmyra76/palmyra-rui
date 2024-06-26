@@ -13,7 +13,7 @@ class TextValidator {
         this.validator.validate;
 
         if (format.length) {
-            var lengthMessage = format.length.message || 'Invalid size';
+            var lengthMessage = format.length.errorMsg || 'Invalid size';
             validators.push(constructMethod(getLengthValidator(format), lengthMessage));
         }
     }
@@ -21,7 +21,7 @@ class TextValidator {
 
 const getLengthValidator = (format: FieldDefinition) => {
     if (format.length) {
-        const length = format.length.is;
+        // const length = format.length.is;
         const minLength = format.length.min;
         const maxLength = format.length.max;
 

@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
-import { IDateTimeDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
@@ -7,8 +7,9 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IDateField, IMutateOptions } from '../../form/interfaceFields';
+import { IDatePickerDefinition } from '../../PalmyraForm/interface';
 
-const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition, ref: MutableRefObject<IDateField>) {
+const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDatePickerDefinition, ref: MutableRefObject<IDateField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<IDateField>(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD";
@@ -82,10 +83,12 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker {...inputProps}
                     readOnly={props.readonly}
-                    disableFuture = {props.disableFuture}
+                    disableFuture={props.disableFuture}
                     format={displayFormat}
                     {...callbacks}
                     autoFocus={autoFocus}
+                    maxDate={props?.range?.maxDate}
+                    minDate={props?.range?.minDate}
                     slotProps={{
                         textField: {
                             error: error.status,

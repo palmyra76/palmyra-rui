@@ -1,10 +1,12 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IMutateOptions, ITextField } from '../../form/interfaceFields';
+import { ITextFieldDefinition } from '../../PalmyraForm/interface';
+
 
 const MuiTextArea = forwardRef(function MuiTextArea(props: ITextFieldDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
