@@ -1,5 +1,5 @@
 
-import { ILength, IRange, IRegex, IType, IValidateFn } from "../PalmyraForm/interface";
+import { ILength, IRange, IRegex, IType, IValidateFn } from "./interface";
 import { storeBacked } from "../layout/Types";
 import { FieldType } from "./interface";
 
