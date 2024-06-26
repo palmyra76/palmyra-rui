@@ -1,13 +1,14 @@
 import { useRef, useImperativeHandle, forwardRef, useState, useMemo, useEffect, useContext, MutableRefObject } from 'react';
 import { FormControl, FormControlLabel, FormHelperText, Switch, SwitchProps, styled } from '@mui/material';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISwitchDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import parseOptions from './OptionsParser';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IMutateOptions, ISwitchField } from '../../form/interfaceFields';
+import { IMuiSwitchDefinition } from './MuiTypes';
 
-const MuiSwitch = forwardRef(function MuiSwitch(props: ISwitchDefinition, ref: MutableRefObject<ISwitchField>) {
+const MuiSwitch = forwardRef(function MuiSwitch(props: IMuiSwitchDefinition, ref: MutableRefObject<ISwitchField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ISwitchField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'switch', currentRef);

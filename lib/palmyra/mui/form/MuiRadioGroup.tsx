@@ -1,14 +1,15 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { FormControl, FormControlLabel, FormHelperText, Radio, RadioGroup } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IRadioGroupDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IMutateOptions, IRadioGroupField } from '../../form/interfaceFields';
 import { RiRadioButtonFill } from "react-icons/ri";
 import { IoMdRadioButtonOff } from "react-icons/io";
+import { IMuiRadioGroupDefinition } from './MuiTypes';
 
-const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefinition, ref: MutableRefObject<IRadioGroupField>) {
+const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IMuiRadioGroupDefinition, ref: MutableRefObject<IRadioGroupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<IRadioGroupField>(null);
     const { options } = props;

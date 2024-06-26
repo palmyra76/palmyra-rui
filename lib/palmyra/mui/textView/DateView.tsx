@@ -1,11 +1,10 @@
 import { format as formatDate, isValid, parse } from 'date-fns';
 import { forwardRef, useRef, useContext } from 'react';
-import { IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IDateViewDefinition, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';
 import './TextView.css';
-import { IDateViewDefinition } from '../../PalmyraForm/interface';
 
 const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);

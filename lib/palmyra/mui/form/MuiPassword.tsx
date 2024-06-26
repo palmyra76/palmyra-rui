@@ -6,10 +6,10 @@ import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext
 import FieldDecorator from './FieldDecorator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { IMutateOptions, ITextField } from '../../form/interfaceFields';
-import { IPasswordDefinition } from '../../PalmyraForm/interface';
+import { IMuiPasswordDefinition } from './MuiTypes';
 
 
-const MuiPassword = forwardRef(function MuiTextField(props: IPasswordDefinition, ref: MutableRefObject<ITextField>) {
+const MuiPassword = forwardRef(function MuiTextField(props: IMuiPasswordDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const [showPassword, setShowPassword] = useState(false);

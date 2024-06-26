@@ -1,10 +1,9 @@
 import { forwardRef, useRef, useContext } from 'react';
-import { IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { ITextViewDefinition, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';
 import './TextView.css';
-import { ITextViewDefinition } from '../../PalmyraForm/interface';
 
 const TextView = forwardRef(function MuiLabelDisplay(props: ITextViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);

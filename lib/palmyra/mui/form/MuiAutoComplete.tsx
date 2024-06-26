@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, useState, useEffect } from 'react';
-import { IAutoCompleteDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
 import { LookupStore } from 'palmyra-wire';
@@ -9,8 +9,9 @@ import { getValueByKey } from '../../form/FormUtil';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
 import { Autocomplete, CircularProgress, FormControl, FormHelperText, TextField } from '@mui/material';
+import { IMuiAutoCompleteDefinition } from './MuiTypes';
 
-const MuiAutoComplete = forwardRef(function MuiAutoComplete(props: IAutoCompleteDefinition, ref: MutableRefObject<IServerLookupField>) {
+const MuiAutoComplete = forwardRef(function MuiAutoComplete(props: IMuiAutoCompleteDefinition, ref: MutableRefObject<IServerLookupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef: MutableRefObject<IServerLookupField | null> = ref ? ref : useRef(null);
     const inputRef: any = useRef(null);
@@ -187,7 +188,7 @@ const MuiAutoComplete = forwardRef(function MuiAutoComplete(props: IAutoComplete
                     freeSolo
                     autoSelect
                     readOnly={props.readonly}
-                    renderOption={props.renderOption}                    
+                    renderOption={props.renderOption}
                     filterOptions={(x) => x}
                     renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }}
                         variant={props.variant || 'standard'} label={props.label}

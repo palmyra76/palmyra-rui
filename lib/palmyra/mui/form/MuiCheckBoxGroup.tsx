@@ -7,10 +7,10 @@ import FieldDecorator from './FieldDecorator';
 import { ICheckBoxField, IMutateOptions } from '../../form/interfaceFields';
 import { TbSquareRounded } from "react-icons/tb";
 import { TbSquareRoundedCheckFilled } from "react-icons/tb";
-import { ICheckboxGroupDefinition } from '../../PalmyraForm/interface';
+import { IMuiCheckBoxGroupDefinition } from './MuiTypes';
 
 
-const MuiCheckBoxGroup = forwardRef(function MuiCheckBoxGroup(props: ICheckboxGroupDefinition, ref: MutableRefObject<ICheckBoxField>) {
+const MuiCheckBoxGroup = forwardRef(function MuiCheckBoxGroup(props: IMuiCheckBoxGroupDefinition, ref: MutableRefObject<ICheckBoxField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ICheckBoxField>(null);
     const { options } = props;

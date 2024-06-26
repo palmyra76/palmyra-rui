@@ -7,9 +7,9 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IDateField, IMutateOptions } from '../../form/interfaceFields';
-import { IDatePickerDefinition } from '../../PalmyraForm/interface';
+import { IMuiDatePickerDefinition } from './MuiTypes';
 
-const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDatePickerDefinition, ref: MutableRefObject<IDateField>) {
+const MuiDatePicker = forwardRef(function MuiDatePicker(props: IMuiDatePickerDefinition, ref: MutableRefObject<IDateField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<IDateField>(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD";
@@ -84,11 +84,15 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDatePickerDefini
                 <DatePicker {...inputProps}
                     readOnly={props.readonly}
                     disableFuture={props.disableFuture}
+                    disablePast={props.disablePast}
+                    disableHighlightToday={props.disableHighlightToday}
+                    displayWeekNumber={props.displayWeekNumber}
+                    disableOpenPicker={props.disableOpenPicker}
                     format={displayFormat}
                     {...callbacks}
                     autoFocus={autoFocus}
-                    maxDate={props?.range?.maxDate}
-                    minDate={props?.range?.minDate}
+                    maxDate={props.maxDate}
+                    minDate={props.minDate}
                     slotProps={{
                         textField: {
                             error: error.status,

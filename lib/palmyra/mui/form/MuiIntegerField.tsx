@@ -1,12 +1,14 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IIntegerFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IMutateOptions, ITextField } from '../../form/interfaceFields';
+import { IMuiIntegerFieldDefinition } from './MuiTypes';
 
-const MuiIntegerField = forwardRef(function MuiIntegerField(props: IIntegerFieldDefinition, ref: MutableRefObject<ITextField>) {
+
+const MuiIntegerField = forwardRef(function MuiIntegerField(props: IMuiIntegerFieldDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'integer', currentRef);

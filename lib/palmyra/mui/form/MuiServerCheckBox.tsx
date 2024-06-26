@@ -1,6 +1,6 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, useState } from 'react';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerCheckboxDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
@@ -11,6 +11,7 @@ import { getValueByKey } from '../../form/FormUtil';
 import { ICheckBoxField, IMutateOptions } from '../../form/interfaceFields';
 import { TbSquareRounded } from "react-icons/tb";
 import { TbSquareRoundedCheckFilled } from "react-icons/tb";
+import { IMuiServerCheckBoxGroupDefinition } from './MuiTypes';
 
 
 function getArrayData(d) {
@@ -26,7 +27,7 @@ function getArrayData(d) {
     return [];
 }
 
-const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IServerCheckboxDefinition, ref: MutableRefObject<ICheckBoxField>) {
+const MuiServerCheckBox = forwardRef(function MuiCheckBox(props: IMuiServerCheckBoxGroupDefinition, ref: MutableRefObject<ICheckBoxField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ICheckBoxField>(null);
 

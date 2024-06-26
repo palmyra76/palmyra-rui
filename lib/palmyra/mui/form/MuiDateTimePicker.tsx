@@ -7,9 +7,9 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IDateTimeField, IMutateOptions } from '../../form/interfaceFields';
-import { IDateTimePickerDefinition } from '../../PalmyraForm/interface';
+import { IMuiDateTimePickerDefinition } from './MuiTypes';
 
-const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTimePickerDefinition, ref: MutableRefObject<IDateTimeField>) {
+const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IMuiDateTimePickerDefinition, ref: MutableRefObject<IDateTimeField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<IDateTimeField>(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD HH:mm:ss";
@@ -80,14 +80,19 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker {...inputProps}
                     readOnly={props.readonly}
+                    disableFuture={props.disableFuture}
+                    disablePast={props.disablePast}
+                    disableHighlightToday={props.disableHighlightToday}
+                    displayWeekNumber={props.displayWeekNumber}
+                    disableOpenPicker={props.disableOpenPicker}
                     format={displayFormat}
                     autoFocus={autoFocus}
-                    maxDate={props?.range?.maxDate}
-                    minDate={props?.range?.minDate}
-                    maxDateTime={props?.range?.maxDateTime}
-                    minDateTime={props?.range?.minDateTime}
-                    maxTime={props?.range?.maxTime}
-                    minTime={props?.range?.minTime}
+                    maxDate={props.maxDate}
+                    minDate={props.minDate}
+                    maxDateTime={props.maxDateTime}
+                    minDateTime={props.minDateTime}
+                    maxTime={props.maxTime}
+                    minTime={props.minTime}
                     {...callbacks}
                     views={['year', 'day', 'hours', 'minutes', 'seconds']}
                     slotProps={{

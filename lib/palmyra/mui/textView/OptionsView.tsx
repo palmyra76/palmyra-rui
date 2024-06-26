@@ -1,11 +1,11 @@
 import { useRef, useImperativeHandle, forwardRef, useContext } from 'react';
-import { IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IFormFieldManager, IGetFieldManager, IOptionsViewDefinition } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { ISelectField } from '../../form/interfaceFields';
 import { getFieldLabel } from '../form/MuiUtil';
 import FieldDecorator from '../form/FieldDecorator';
 import './TextView.css';
-import { IOptionsViewDefinition } from '../../PalmyraForm/interface';
+
 
 const OptionsView = forwardRef(function MuiSelect(props: IOptionsViewDefinition, ref) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);

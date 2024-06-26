@@ -8,9 +8,9 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ISliderField, IMutateOptions } from '../../form/interfaceFields';
-import { IRangeSliderDefinition } from '../../PalmyraForm/interface';
+import { IMuiRangeSliderDefinition } from './MuiTypes';
 
-const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, ref: MutableRefObject<ISliderField>) {
+const MuiSlider = forwardRef(function MuiSlider(props: IMuiRangeSliderDefinition, ref: MutableRefObject<ISliderField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ISliderField>(null);
     const fieldType: FieldType = props.range ? 'sliderRange' : 'slider';
@@ -24,8 +24,8 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
     const minDistance = props.minDistance || 5;
     const label = props.label || '';
 
-    const min = props.sliderProps?.min || 0;
-    const max = props.sliderProps?.max || 100;
+    const min = props.min || 0;
+    const max = props.max || 100;
 
     useImperativeHandle(currentRef, () => {
         return {
@@ -95,7 +95,7 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
         onFocus: eventListeners.onFocus,
         onChange: onSliderChange
     }
-    
+
     return (<>{mutateOptions.visible &&
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass}
             colspan={props.colspan}
@@ -107,13 +107,13 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
                     fullWidth={true}
                     inputRef={inputRef}
                     {...callbacks}
-                    marks={props.sliderProps.marks}
-                    size={props?.fieldProps?.size}
-                    disableSwap={props.sliderProps.disableSwap}
-                    valueLabelDisplay={props.sliderProps.valueLabelDisplay}
-                    min={props.sliderProps.min}
-                    step={props.sliderProps.step}
-                    max={props.sliderProps.max}
+                    marks={props.marks}
+                    size={props.fieldProps?.size}
+                    disableSwap={props.disableSwap}
+                    valueLabelDisplay={props.valueLabelDisplay}
+                    min={min}
+                    step={props.step}
+                    max={max}
                     error={error.status}
                     helperText={error.message}
                     autoFocus={autoFocus}

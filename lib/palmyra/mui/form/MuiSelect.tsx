@@ -1,13 +1,14 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ISelectDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IMutateOptions, ISelectField } from '../../form/interfaceFields';
+import { IMuiSelectFieldDefinition } from './MuiTypes';
 
 
-const MuiSelect = forwardRef(function MuiSelect(props: ISelectDefinition, ref: MutableRefObject<ISelectField>) {
+const MuiSelect = forwardRef(function MuiSelect(props: IMuiSelectFieldDefinition, ref: MutableRefObject<ISelectField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ISelectField>(null);
     const { options } = props;

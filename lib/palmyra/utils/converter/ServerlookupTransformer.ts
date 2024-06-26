@@ -2,13 +2,13 @@ import { MutableRefObject } from "react";
 import { Converter } from ".";
 import { AttributeDefinition } from "../../form/Definitions";
 import { getValueByKey, setValueByKey } from "../../form/FormUtil";
-import { IServerLookupDefinition } from "../../form/interface";
+import { IMuiServerLookupDefinition } from "../../mui/form/MuiTypes";
 
 
 // TODO - idKey and labelKey to be calculated based on props.attribute/idAttribute/displayAttribute.
 
 class ServerlookupTransformer implements Converter<any, any> {
-    props: IServerLookupDefinition;
+    props: IMuiServerLookupDefinition;
     formDataRef: MutableRefObject<any>
     constructor(props: AttributeDefinition, formDataRef: MutableRefObject<any>) {
         //@ts-ignore
@@ -28,7 +28,7 @@ class ServerlookupTransformer implements Converter<any, any> {
     };
 
     getFieldData = (data: any, p: AttributeDefinition) => {
-        const props: IServerLookupDefinition = this.props;
+        const props: IMuiServerLookupDefinition = this.props;
         if (props.multiple) {
             return getValueByKey(props.attribute, data);
         }
@@ -60,7 +60,7 @@ class ServerlookupTransformer implements Converter<any, any> {
 
     format = (data: any): any => {
 
-        const props: IServerLookupDefinition = this.props;
+        const props: IMuiServerLookupDefinition = this.props;
         // return the data as it is for Array and Objects - where displayAttribute is not specified
         if (props.multiple || undefined == props.displayAttribute || null == props.displayAttribute) {
             return data;

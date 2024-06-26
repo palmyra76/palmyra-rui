@@ -5,11 +5,10 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IMutateOptions, ITextField } from '../../form/interfaceFields';
-import { INumberFieldDefinition } from '../../PalmyraForm/interface';
+import { IMuiNumberFieldDefinition } from './MuiTypes';
 
 
-
-const MuiNumberField = forwardRef(function MuiNumberField(props: INumberFieldDefinition, ref: MutableRefObject<ITextField>) {
+const MuiNumberField = forwardRef(function MuiNumberField(props: IMuiNumberFieldDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'numbersOnly', currentRef);

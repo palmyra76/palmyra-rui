@@ -9,7 +9,7 @@ import { getValueByKey } from '../../form/FormUtil';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
 import { Autocomplete, CircularProgress, FormControl, FormHelperText, TextField } from '@mui/material';
-import { IServerLookupDefinition } from '../../PalmyraForm/interface';
+import { IMuiServerLookupDefinition } from './MuiTypes';
 
 /**
  * The server lookup would take either Object or Array Elements as input attribute
@@ -27,7 +27,7 @@ import { IServerLookupDefinition } from '../../PalmyraForm/interface';
 
 const delay100 = delayGenerator(100);
 
-const MuiServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
+const MuiServerLookup = forwardRef(function MuiServerLookup(props: IMuiServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef: MutableRefObject<IServerLookupField | null> = ref ? ref : useRef(null);
     const inputRef: any = useRef(null);

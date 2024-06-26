@@ -6,9 +6,9 @@ import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext
 import FieldDecorator from './FieldDecorator';
 import { ITextField, IMutateOptions, IRatingField } from '../../form/interfaceFields';
 import { StarOutline, Star } from '@mui/icons-material';
-import { IRatingFieldDefinition } from '../../PalmyraForm/interface';
+import { IMuiRatingFieldDefinition } from './MuiTypes';
 
-const MuiRating = forwardRef(function MuiTextField(props: IRatingFieldDefinition, ref: MutableRefObject<IRatingField>) {
+const MuiRating = forwardRef(function MuiTextField(props: IMuiRatingFieldDefinition, ref: MutableRefObject<IRatingField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
