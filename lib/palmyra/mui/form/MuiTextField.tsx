@@ -5,10 +5,10 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ITextField, IMutateOptions } from '../../form/interfaceFields';
-import { ITextFieldDefinition } from '../../PalmyraForm/interface';
+import { IMuiTextFieldDefinition } from './MuiTypes';
 
 
-const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref: MutableRefObject<ITextField>) {
+const MuiTextField = forwardRef(function MuiTextField(props: IMuiTextFieldDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);

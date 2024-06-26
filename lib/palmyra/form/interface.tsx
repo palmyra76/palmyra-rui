@@ -52,8 +52,7 @@ interface AttributeDefinition {
     visible?: boolean,
     disabled?: boolean,
     placeHolder?: string,
-    autoFocus?: boolean,
-    variant?: 'standard' | 'outlined' | 'filled',
+    autoFocus?: boolean,    
     eventListener?: IFieldEventListener,
     valueListener?: IFieldValueListener,
     fieldProps?: IFieldProps
