@@ -1,29 +1,52 @@
 
-import { ILength, IRange, IRegex, IType, IValidateFn } from "./interface";
 import { storeBacked } from "../layout/Types";
 import { FieldType } from "./interface";
 
-/**
- * This definitions will cater to the Form Definition format
- * 
- */
+type validators = "email" | "password" 
+type validationOptions = validators | "regExp" | "validFn" | string;
+
+interface ILength {
+    min?: number,
+    max?: number,
+    errorMsg?: string
+}
+
+interface IRange {
+    start?: number,
+    end?: number,
+    errorMsg?: string
+}
+
+interface IType {
+    type?: string | string[],
+    errorMsg?: string | Record<string, string>,
+}
+
+interface IRegex {
+    regex?: RegExp,
+    errorMsg?: string
+}
+
+interface IValidateFn {
+    validateFn?: (data: any) => boolean,
+    errorMsg?: string
+}
+
+interface IValidation {
+    regExp?: RegExp
+    validRule?: String
+    validFn?: (data: any) => boolean | string
+    errorMessage?: string | Partial<Record<validationOptions, string>>
+}
 
 type InputType = string | number | Date;
-
-type FormData = { [key: string]: InputType | FormData }; // Record<string, InputType | FormData>;
-
+type FormData = { [key: string]: InputType | FormData };
 type MuiVariant = "outlined" | "standard" | "filled";
-
-// interface RangeValidation<T> {
-//     is?: T,
-//     min?: T,
-//     max?: T,
-//     message: string
-// }
 
 interface LookupOptions {
     idAttribute?: string,
-    titleAttribute?: string
+    titleAttribute?: string,
+    attribute?: string
 }
 
 interface AttributeDefinition extends storeBacked {
@@ -32,14 +55,15 @@ interface AttributeDefinition extends storeBacked {
     type: FieldType,
     serverPattern?: string,
     displayPattern?: string, // To be used for Date, DateTime etc.,
-    options?: Record<string, string>
+    options?: any
 }
 
 interface DisplayDefinition {
     width?: string
 }
 
-interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
+interface FieldDefinition extends
+    AttributeDefinition, DisplayDefinition, IValidation {
     title?: string,
     label?: string,
     name?: string,
@@ -51,11 +75,11 @@ interface FieldDefinition extends AttributeDefinition, DisplayDefinition {
     readonly?: boolean,
     visible?: boolean,
     mutant?: boolean,
-    variant?: MuiVariant,
     placeHolder?: string,
-    validation?: IType | IRegex | IValidateFn,
     length?: ILength,
     range?: IRange,
+    missingMessage?: string,
+    invalidMessage?: string,
     lookupOptions?: LookupOptions // To be used by server lookup
 }
 
@@ -88,5 +112,7 @@ const getFieldType = (type: string): FieldType => {
 }
 
 export type { AttributeDefinition, FieldDefinition, FieldValidStatus, FormData, InputType, FieldType, MuiFieldDef };
-export type { DisplayDefinition }
+export type { DisplayDefinition, LookupOptions }
+
+export type { IType, IRegex, IValidateFn }
 export { getFieldType }

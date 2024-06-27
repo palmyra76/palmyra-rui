@@ -1,6 +1,6 @@
-import { AttributeDefinition, IDecoration } from "../../form/interface";
+import { IAbstractField, IDecoration } from "../../form/interface";
 
-const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string) => {
+const copyMuiOptions = (props: IAbstractField, value: any, label?: string) => {
     // const fieldProps = props.fieldProps || {};
 
     var result: any = {
@@ -15,7 +15,7 @@ const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string) 
     return result;
 }
 
-const getFieldLabel = (props: AttributeDefinition & IDecoration) => {
+const getFieldLabel = (props: IAbstractField & IDecoration) => {
     const title = props.labelMode == 'title' ? props.label : ''
     if (props.required && title)
         return (

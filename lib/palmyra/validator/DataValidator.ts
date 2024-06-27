@@ -28,14 +28,17 @@ const validate = (format: FieldDefinition) => {
     }
 
     if (format.validation) {
-        var rules = format?.validation?.type || format?.validation?.regex || format?.validation?.validateFn;
+        //@ts-ignore
         if (format?.validation?.regex) {
+            //@ts-ignore
             const regex: RegExp = format?.validation?.regex;
             const error: string = format?.validation?.errorMsg;
             return (value: any): FieldValidStatus => { return { status: regex.test(value), message: error } }
         }
 
+        //@ts-ignore
         if (format?.validation?.validateFn) {
+            //@ts-ignore
             const validateFn = format?.validation?.validateFn;
             const error: string = format?.validation?.errorMsg;
             return (value: any): FieldValidStatus => { return { status: validateFn(value), message: error } }

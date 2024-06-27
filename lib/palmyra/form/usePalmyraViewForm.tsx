@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { IEndPoint } from "../layout/Types";
 import { GetRequest } from 'palmyra-wire';
-import { FormData, StoreFactory } from "../../main";
+import { StoreFactory } from "../../main";
+import { FormData } from "./Definitions";
 
 interface IPalmyraViewFormInput {
     storeFactory: StoreFactory<any>,

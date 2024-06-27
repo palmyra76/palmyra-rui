@@ -1,8 +1,9 @@
 
 import { MutableRefObject, useRef, useState } from "react";
 import { IEndPoint } from "../layout/Types";
-import { FormData, StoreFactory } from "../../main";
+import { StoreFactory } from "../../main";
 import { IFormListener, NoopFormListener } from "./interface";
+import { FormData } from "./Definitions";
 
 interface IPalmyraNewFormInput {
     storeFactory: StoreFactory<any>,

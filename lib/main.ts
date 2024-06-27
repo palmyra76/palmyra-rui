@@ -1,6 +1,6 @@
 
 export * from "./palmyra/layout/flexiLayout"
-export * from "./palmyra/store"
+//export * from "./palmyra/store"
 export * from "./palmyra/layout"
 export * from "./palmyra/grid"
 export * from "./palmyra/chart"

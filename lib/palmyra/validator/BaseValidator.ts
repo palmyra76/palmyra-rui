@@ -15,7 +15,7 @@ class BaseValidator {
         let required = format.required;
 
         if (required == true && isRequiredSupported(format)) {
-            var message = format.errorMessage?.required || 'This field is mandatory';
+            var message = format.missingMessage || 'This field is mandatory';
             validators.push(constructMethod(isNotEmpty, message));
         }
     }

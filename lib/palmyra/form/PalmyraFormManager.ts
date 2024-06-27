@@ -6,7 +6,7 @@ import { FieldDefinition } from "./Definitions";
 import { default as getValidator } from "../validator/DataValidator";
 import { useEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
-import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
+import { IAbstractField, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
 import { MutableRefObject, useEffect, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
@@ -90,7 +90,7 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
 
     const getFieldManager = useMemo((): IGetFieldManager => {
 
-        const generator = (field: AttributeDefinition, type: FieldType, ref: any): IFormFieldManager => {
+        const generator = (field: IAbstractField, type: FieldType, ref: any): IFormFieldManager => {
             formDataRef.current = mergeDeep({}, data);
 
             var fieldAttrib = field.name || field.attribute;

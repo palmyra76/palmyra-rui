@@ -15,7 +15,7 @@ const _convertField = (column: ColumnDefinition): FieldDefinition => {
         attribute: column.attribute,
         label: column.title,
         required: false,
-        variant: "standard",
+        // variant: "standard",  TODO - REF 
         type: _getType(column.type)
     }
 

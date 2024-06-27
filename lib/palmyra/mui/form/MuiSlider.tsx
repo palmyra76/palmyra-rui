@@ -2,13 +2,14 @@ import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject }
 import { Slider } from '@mui/material';
 import {
     FieldType, IEventListeners, IFormFieldError,
-    IFormFieldManager, IGetFieldManager, numbers
+    IFormFieldManager, IGetFieldManager
 } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ISliderField, IMutateOptions } from '../../form/interfaceFields';
 import { IMuiRangeSliderDefinition } from './MuiTypes';
+import { numbers } from '../../utils/CommonTypes';
 
 const MuiSlider = forwardRef(function MuiSlider(props: IMuiRangeSliderDefinition, ref: MutableRefObject<ISliderField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
