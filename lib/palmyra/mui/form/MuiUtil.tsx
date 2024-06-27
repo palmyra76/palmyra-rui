@@ -16,17 +16,19 @@ const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string) 
 }
 
 const getFieldLabel = (props: AttributeDefinition & IDecoration) => {
-    if (props.required && props.title)
+    const title = props.labelMode == 'title' ? props.label : ''
+    if (props.required && title)
         return (
             <>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                    {props.title}
+                    {title}
                     <span style={{ color: 'red' }}>*</span>
                 </div>
             </>
         );
     else
-        return props.title;
+        return title;
 }
+
 
 export { copyMuiOptions, getFieldLabel }

@@ -19,7 +19,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: IMuiTextFieldDefini
     const variant = props.variant || 'standard';
     const autoFocus = props.autoFocus || false;
 
-    
+
     useImperativeHandle(currentRef, () => {
         return {
             focus() {
@@ -52,7 +52,9 @@ const MuiTextField = forwardRef(function MuiTextField(props: IMuiTextFieldDefini
         };
     }, [fieldManager]);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
+    const label = props.labelMode != 'title' ? props.label : ''
+
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, label);
 
     if (props.readonly) {
         inputProps.inputProps = { readOnly: true };
@@ -72,7 +74,9 @@ const MuiTextField = forwardRef(function MuiTextField(props: IMuiTextFieldDefini
                 fullWidth={true}
                 inputRef={inputRef}
                 {...callbacks}
+                label={label}
                 error={error.status}
+                size={props.fieldProps?.size}
                 helperText={error.message}
                 autoFocus={autoFocus}
             />

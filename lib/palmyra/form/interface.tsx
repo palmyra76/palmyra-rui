@@ -97,7 +97,7 @@ interface IDecoration {
     className?: string,
     colspan?: number,
     label?: string,
-    title?: string
+    labelMode?: 'header' | 'title'
 }
 
 type IRadioGroupOptions = Record<any, any> | Record<string, any> | { value: any, label: string }[];
