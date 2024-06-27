@@ -33,10 +33,8 @@ const ValidationSetup = `<MuiDatePicker
     serverPattern="YYYY-MM-DD"
     displayPattern="DD-MM-YYYY"
     defaultValue={"2024-06-20"}
-    range={{
-        minDate: dayjs("2024-06-01")
-        maxDate: dayjs("2024-06-22")
-    }}
+    minDate={dayjs("2024-06-01")}
+    maxDate={dayjs("2024-06-22")}
 />
 `;
 
@@ -48,7 +46,8 @@ const ValidationDatePicker = () => {
                 serverPattern="YYYY-MM-DD"
                 displayPattern="DD-MM-YYYY"
                 defaultValue={"2024-06-20"}
-                range={{ minDate: dayjs("2024-06-01"), maxDate: dayjs("2024-06-22") }}
+                minDate={dayjs("2024-06-01")}
+                maxDate={dayjs("2024-06-22")}
             />
         </FormX>
     )

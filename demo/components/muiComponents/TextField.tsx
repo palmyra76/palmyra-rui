@@ -15,6 +15,7 @@ const BasicTextField = () => {
                 variant="outlined"
                 autoFocus={true}
                 label="Name"
+                fieldProps={{size: 'small'}}
             />
             <MuiTextField attribute="name"
                 placeHolder="Enter Name"

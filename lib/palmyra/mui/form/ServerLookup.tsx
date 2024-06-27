@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, useState, useEffect } from 'react';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IServerLookupDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
 import { LookupStore } from 'palmyra-wire';
@@ -9,8 +9,9 @@ import { getValueByKey } from '../../form/FormUtil';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import FieldDecorator from './FieldDecorator';
 import { Autocomplete, CircularProgress, FormControl, FormHelperText, TextField } from '@mui/material';
+import { IMuiServerLookupDefinition } from './MuiTypes';
 
-const ServerLookup = forwardRef(function MuiServerLookup(props: IServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
+const ServerLookup = forwardRef(function MuiServerLookup(props: IMuiServerLookupDefinition, ref: MutableRefObject<IServerLookupField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef: MutableRefObject<IServerLookupField | null> = ref ? ref : useRef(null);
     const inputRef: any = useRef(null);
