@@ -2,8 +2,8 @@ import { IFieldEventListener, IFieldValueListener, MuiTextField } from "../../..
 import FormX from "../wire/FormX";
 
 
-const BasicSetup = `<MuiTextField attribute="name" placeHolder="Enter Name" variant="outlined" autoFocus={true} label="Name" />
-<MuiTextField attribute="name" placeHolder="Enter Name" variant="filled" label="Name" />
+const BasicSetup = `<MuiTextField attribute="name" placeHolder="Enter Name" variant="outlined" autoFocus={true} label="Name" labelMode="header" />
+<MuiTextField attribute="name" placeHolder="Enter Name" variant="filled" label="Name" labelMode="title"/>
 <MuiTextField attribute="name" placeHolder="Enter Name" variant="standard" label="Name" />
 `;
 
@@ -15,12 +15,13 @@ const BasicTextField = () => {
                 variant="outlined"
                 autoFocus={true}
                 label="Name"
-                fieldProps={{size: 'small'}}
+                labelMode="header"
             />
             <MuiTextField attribute="name"
                 placeHolder="Enter Name"
                 variant="filled"
                 label="Name"
+                labelMode="title"
             />
             <MuiTextField attribute="name"
                 placeHolder="Enter Name"
@@ -131,32 +132,6 @@ const FunctionValidationTextField = () => {
     )
 }
 
-const Setup = ''
-// `<MuiTextField
-//     attribute="alphabet"
-//     placeHolder="Alphabet"
-//     label="Alphabet"
-//     validation={{ regex: /^[a-zA-Z]+$/, errorMsg: "Alphabets only allowed" }}
-// />`;
-
-const AllTextField = () => {
-    return (
-        <FormX>
-            <MuiTextField
-                attribute="alphabet"
-                placeHolder="Alphabet"
-                label="Alphabet"
-                autoFocus
-                defaultValue="Name"
-                fieldProps={{ size: 'small' }}
-                title="Alphabet"
-                variant="outlined"
-                validation={{ regex: /^[a-zA-Z]+$/, errorMsg: "Alphabets only allowed" }}
-            />
-        </FormX>
-    )
-}
-
 const EventListenerSetup = `const onChangeEventListener: IFieldEventListener = {
     onChange: function(key, value): void {
         console.log(key, value)
@@ -249,7 +224,6 @@ export {
     LengthValidationSetup, LengthValidationTextField,
     RegexValidationSetup, RegexValidationTextField,
     FunctionValidationSetup, FunctionValidationTextField,
-    Setup, AllTextField,
     EventListenerSetup, EventListenerTextField,
     ValueListenerSetup, ValueListenerTextField
 }
