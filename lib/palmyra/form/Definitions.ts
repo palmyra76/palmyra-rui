@@ -2,8 +2,11 @@
 import { storeBacked } from "../layout/Types";
 import { FieldType } from "./interface";
 
-type validators = "email" | "password" 
-type validationOptions = validators | "regExp" | "validFn" | string;
+type inbuiltValidators = "email" | "password" | 'string' | 'alphabets' | 'number' | 'mobilePhone' | 'port' |
+    'ip' | 'fqdn' | 'folder' | 'portrange' | 'password' | 'oneLowerCase' | 'oneUpperCase' | 'oneSpecialChar'
+    | 'float' | 'lowercase' | 'uppercase'
+
+type validationOptions = inbuiltValidators | "regExp" | "validFn" | string;
 
 interface ILength {
     min?: number,
@@ -52,7 +55,7 @@ interface LookupOptions {
 interface AttributeDefinition extends storeBacked {
     attribute: string,
     displayAttribute?: string, // To be used for links etc
-    type: FieldType,
+    type?: FieldType,
     serverPattern?: string,
     displayPattern?: string, // To be used for Date, DateTime etc.,
     options?: any

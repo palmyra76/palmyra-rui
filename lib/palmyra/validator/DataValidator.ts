@@ -18,7 +18,7 @@ const validate = (format: FieldDefinition) => {
     let required = format.required;
 
     if (format.required == true && isRequiredSupported(format)) {
-        var message = format.errorMsg?.required || 'This field is mandatory';
+        var message = format.missingMessage || 'This field is mandatory';
         validators.push(constructMethod(isNotEmpty, message));
     }
 
@@ -27,32 +27,27 @@ const validate = (format: FieldDefinition) => {
         validators.push(constructMethod(getLengthValidator(format), lengthMessage));
     }
 
-    if (format.validation) {
-        //@ts-ignore
-        if (format?.validation?.regex) {
-            //@ts-ignore
-            const regex: RegExp = format?.validation?.regex;
-            const error: string = format?.validation?.errorMsg;
-            return (value: any): FieldValidStatus => { return { status: regex.test(value), message: error } }
-        }
+    if (format.regExp) {
+        const regex: RegExp = format.regExp;
+        const error: any = format.errorMessage;
+        return (value: any): FieldValidStatus => { return { status: regex.test(value), message: error } }
+    }
 
-        //@ts-ignore
-        if (format?.validation?.validateFn) {
-            //@ts-ignore
-            const validateFn = format?.validation?.validateFn;
-            const error: string = format?.validation?.errorMsg;
-            return (value: any): FieldValidStatus => { return { status: validateFn(value), message: error } }
-        }
+    if (format.validFn) {
+        const validFn: any = format?.validFn;
+        const error: any = format?.errorMessage;
+        return (value: any): FieldValidStatus => { return { status: validFn(value), message: error } }
+    }
 
-        if (rules instanceof Array && rules.length > 0) {
-            const clause = rules[0];
-            validators.push(getRuleValidators(format, clause == 'OR'));
-        } else {
-            const rule: any = rules;
-            var typeValidator = getRuleValidator(format, rule);
-            var typeMessage = format.errorMsg?.rule || format.validation?.errorMsg || "Invalid";
-            validators.push(constructMethod(typeValidator, typeMessage));
-        }
+    const rules = format.validRule || format.regExp || format.validFn
+    if (rules instanceof Array && rules.length > 0) {
+        const clause = rules[0];
+        validators.push(getRuleValidators(format, clause == 'OR'));
+    } else {
+        const rule: any = rules;
+        var typeValidator = getRuleValidator(format, rule);
+        var typeMessage = format.errorMessage || "Invalid";
+        validators.push(constructMethod(typeValidator, typeMessage));
     }
 
     return (value: any): FieldValidStatus => {
@@ -70,13 +65,13 @@ const validate = (format: FieldDefinition) => {
 
 const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
     var validators = [];
-    var rules = format.validation;
+    var rules = format;
     if (rules instanceof Array) {
         rules.map((rule, index) => {
             if (anyMatch && 0 == index)
                 return;
             var typeValidator = getRuleValidator(format, rule);
-            var typeMessage = format.validation.errorMsg?.[rule] || "Invalid";
+            var typeMessage = format.errorMessage || "Invalid";
             validators.push(constructMethod(typeValidator, typeMessage));
         })
     }
@@ -177,6 +172,10 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
                 return isPortRange;
             case 'password':
                 return validator.isStrongPassword;
+            case 'lowercase':
+                return validator.isLowercase;
+            case 'uppercase':
+                return validator.isUppercase;
             case 'oneLowerCase':
                 return oneLowerCase;
             case 'oneUpperCase':

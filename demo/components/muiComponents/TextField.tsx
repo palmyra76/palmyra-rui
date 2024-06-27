@@ -10,12 +10,14 @@ const BasicSetup = `<MuiTextField attribute="name" placeHolder="Enter Name" vari
 const BasicTextField = () => {
     return (
         <FormX>
-            <MuiTextField attribute="name"
+            <MuiTextField
+                attribute="name"
                 placeHolder="Enter Name"
                 variant="outlined"
                 autoFocus={true}
                 label="Name"
                 labelMode="header"
+
             />
             <MuiTextField attribute="name"
                 placeHolder="Enter Name"
@@ -36,8 +38,9 @@ const TypeValidationSetup = `<MuiTextField
     attribute="email"
     placeHolder="example@email.com"
     required={true}
-    validation={{ type: "email", errorMsg: "Invalid Email" }}
     label="Email"
+    validRule={"email"}
+    errorMessage={"Invalid Email"}
 />`;
 
 const TypeValidationTextField = () => {
@@ -47,7 +50,8 @@ const TypeValidationTextField = () => {
                 attribute="email"
                 placeHolder="example@email.com"
                 required={true}
-                validation={{ type: "email", errorMsg: "Invalid Email" }}
+                validRule={"email"}
+                errorMessage={"Invalid Email"}
                 label="Email"
             />
         </FormX>
@@ -79,7 +83,8 @@ const RegexValidationSetup = `<MuiTextField
     attribute="alphabet"
     placeHolder="Alphabet"
     label="Alphabet"
-    validation={{ regex: /^[a-zA-Z]+$/, errorMsg: "Alphabets only allowed" }}
+    regExp={/^[a-zA-Z]+$/}
+    errorMessage={"Alphabets only allowed"}
 />`;
 
 const RegexValidationTextField = () => {
@@ -89,7 +94,8 @@ const RegexValidationTextField = () => {
                 attribute="alphabet"
                 placeHolder="Alphabet"
                 label="Alphabet"
-                validation={{ regex: /^[a-zA-Z]+$/, errorMsg: "Alphabets only allowed" }}
+                regExp={/^[a-zA-Z]+$/}
+                errorMessage={"Alphabets only allowed"}
             />
         </FormX>
     )
@@ -107,7 +113,8 @@ const FunctionValidationSetup = `const customFn = (n: any): boolean => {
     attribute="number"
     placeHolder="Number"
     label="Number"
-    validation={{ validateFn: customFn, errorMsg: "Numbers only allowed" }}
+    validFn={customFn}
+    errorMessage="Numbers only allowed"
 />`;
 
 const FunctionValidationTextField = () => {
@@ -126,7 +133,8 @@ const FunctionValidationTextField = () => {
                 attribute="number"
                 placeHolder="Number"
                 label="Number"
-                validation={{ validateFn: customFn, errorMsg: "Numbers only allowed" }}
+                validFn={customFn}
+                errorMessage="Numbers only allowed"
             />
         </FormX>
     )

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FieldGroupContainer, PalmyraForm, PalmyraStoreFactory, StoreFactory, usePalmyraNewForm } from "../../../lib/main";
+import { FieldGroupContainer, PalmyraForm, StoreFactory, usePalmyraNewForm } from "../../../lib/main";
+import { PalmyraStoreFactory } from "palmyra-wire";
 
 interface IFormInput {
     children: React.ReactNode
