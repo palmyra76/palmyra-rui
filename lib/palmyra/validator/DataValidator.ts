@@ -27,6 +27,11 @@ const validate = (format: FieldDefinition) => {
         validators.push(constructMethod(getLengthValidator(format), lengthMessage));
     }
 
+    if (format.range) {
+        var rangeMessage = format.range.errorMsg || 'Invalid range';
+        validators.push(constructMethod(getRangeValidator(format), rangeMessage));
+    }
+
     if (format.regExp) {
         const regex: RegExp = format.regExp;
         const error: any = format.errorMessage;
@@ -139,9 +144,31 @@ const getLengthValidator = (format: FieldDefinition) => {
 
 // }
 
-// const getRangeValidator = (format) => {
+const getRangeValidator = (format) => {
+    if (format.range) {
+        const start = format.range.start;
+        const end = format.range.end;
 
-// }
+        if (start) {
+            if (end) {
+                return (val) => {
+                    const r = val;
+                    return start <= r && r <= end;
+                }
+            } else {
+                return (val) => {
+                    return start <= val;
+                }
+            }
+        } else {
+            if (end) {
+                return (val) => {
+                    return val <= end;
+                }
+            }
+        }
+    }
+}
 
 const getRuleValidator = (format: FieldDefinition, rule: string) => {
     if (rule) {
