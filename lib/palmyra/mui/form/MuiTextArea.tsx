@@ -68,6 +68,8 @@ const MuiTextArea = forwardRef(function MuiTextArea(props: IMuiTextAreaDefinitio
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass} colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <TextField
+                {...inputProps}
+                variant={props.variant || 'standard'}
                 minRows={2}
                 maxRows={5}
                 fullWidth={true}

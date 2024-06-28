@@ -3,8 +3,8 @@ import FormX from "../wire/FormX";
 
 
 const BasicSetup = `<MuiTextField attribute="name" placeHolder="Enter Name" variant="outlined" autoFocus={true} label="Name" labelMode="header" />
-<MuiTextField attribute="name" placeHolder="Enter Name" variant="filled" label="Name" labelMode="title"/>
-<MuiTextField attribute="name" placeHolder="Enter Name" variant="standard" label="Name" />
+<MuiTextField attribute="name" placeHolder="Enter Name" variant="filled" label="Name" labelMode="title" fieldProps={{ size: 'small' }} />
+<MuiTextField attribute="name" placeHolder="Enter Name" variant="standard" label="Name" required missingMessage="Required" />
 `;
 
 const BasicTextField = () => {
@@ -24,11 +24,14 @@ const BasicTextField = () => {
                 variant="filled"
                 label="Name"
                 labelMode="title"
+                fieldProps={{ size: 'small' }}
             />
             <MuiTextField attribute="name"
                 placeHolder="Enter Name"
                 variant="standard"
                 label="Name"
+                required
+                missingMessage="Required"
             />
         </FormX>
     )
@@ -64,6 +67,20 @@ const LengthValidationSetup = `<MuiTextField
     placeHolder="Enter Name"
     label="Name"
     length={{ min: 3, max: 6, errorMsg: "Minimum 3 & Maximum 6 letters only allowed" }}
+/>
+
+<MuiTextField
+    attribute="name"
+    placeHolder="Enter Name"
+    label="Name"
+    length={{ min: 2, errorMsg: "Minimum 2 letters only allowed" }}
+/>
+
+<MuiTextField
+    attribute="name"
+    placeHolder="Enter Name"
+    label="Name"
+    length={{ max: 4, errorMsg: "Maximum 4 letters only allowed" }}
 />`;
 
 const LengthValidationTextField = () => {
@@ -74,6 +91,18 @@ const LengthValidationTextField = () => {
                 placeHolder="Enter Name"
                 label="Name"
                 length={{ min: 3, max: 6, errorMsg: "Minimum 3 & Maximum 6 letters only allowed" }}
+            />
+            <MuiTextField
+                attribute="name"
+                placeHolder="Enter Name"
+                label="Name"
+                length={{ min: 2, errorMsg: "Minimum 2 letters only allowed" }}
+            />
+            <MuiTextField
+                attribute="name"
+                placeHolder="Enter Name"
+                label="Name"
+                length={{ max: 4, errorMsg: "Maximum 4 letters only allowed" }}
             />
         </FormX>
     )

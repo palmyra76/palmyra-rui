@@ -65,7 +65,7 @@ type IRadioGroupOptions = Record<any, any> | Record<string, any> | { value: any,
 
 
 interface ITextFieldDefinition extends IAbstractField, IDecoration {    
-    range: never
+    range?: never
 }
 
 interface INumberFieldDefinition extends IAbstractField, IDecoration {
