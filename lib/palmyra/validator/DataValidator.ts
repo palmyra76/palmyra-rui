@@ -1,19 +1,19 @@
 import validator from 'validator';
 
 import { isFolder, isPortRange } from './Validation';
-import { FieldDefinition, FieldValidStatus } from '../form/Definitions';
+import { FieldDefinition, FieldValidStatus, IValidatableField } from '../form/Definitions';
 
 const getValidators = (fieldDefs: Record<string, FieldDefinition>) => {
     let fieldValidators = {};
     for (var key in fieldDefs) {
-        var fieldDef = fieldDefs[key];
+        const fieldDef:FieldDefinition = fieldDefs[key];
         const validator = validate(fieldDef);
         fieldValidators[key] = validator;
     }
     return fieldValidators;
 }
 
-const validate = (format: FieldDefinition) => {
+const validate = (format: IValidatableField) => {
     let validators = [];
     let required = format.required;
 
@@ -23,12 +23,12 @@ const validate = (format: FieldDefinition) => {
     }
 
     if (format.length) {
-        var lengthMessage = format.length.errorMsg || 'Invalid size';
+        var lengthMessage = format.length.errorMessage || 'Invalid size';
         validators.push(constructMethod(getLengthValidator(format), lengthMessage));
     }
 
     if (format.range) {
-        var rangeMessage = format.range.errorMsg || 'Invalid range';
+        var rangeMessage = format.range.errorMessage || 'Invalid range';
         validators.push(constructMethod(getRangeValidator(format), rangeMessage));
     }
 
@@ -68,7 +68,7 @@ const validate = (format: FieldDefinition) => {
     }
 }
 
-const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
+const getRuleValidators = (format: IValidatableField, anyMatch: boolean) => {
     var validators = [];
     var rules = format;
     if (rules instanceof Array) {
@@ -107,7 +107,7 @@ const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
     }
 }
 
-const getLengthValidator = (format: FieldDefinition) => {
+const getLengthValidator = (format: IValidatableField) => {
     if (format.length) {
         // const length = format.length.is;
         const minLength = format.length.min;
@@ -136,14 +136,6 @@ const getLengthValidator = (format: FieldDefinition) => {
     }
 }
 
-// const getFormatValidator = (format) => {
-
-// }
-
-// const getConstraintValidator = (format) => {
-
-// }
-
 const getRangeValidator = (format) => {
     if (format.range) {
         const start = format.range.start;
@@ -170,7 +162,7 @@ const getRangeValidator = (format) => {
     }
 }
 
-const getRuleValidator = (format: FieldDefinition, rule: string) => {
+const getRuleValidator = (format: IValidatableField, rule: string) => {
     if (rule) {
         switch (rule) {
             case 'string':
@@ -281,7 +273,7 @@ export default validate;
 
 export { getValidators };
 
-function isRequiredSupported(format: FieldDefinition) {
+function isRequiredSupported(format: IValidatableField) {
     switch (format.type) {
         case 'switch':
             return false;

@@ -3,7 +3,7 @@ import { IEndPoint } from "../layout";
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
 import { LookupStore, DefaultQueryParams } from 'palmyra-wire';
-import { FieldDefinition } from "./Definitions";
+import { FieldDefinition, IFunctionValidation, ILengthValidation, IRangeValidation, IRegexValidation, IRuleValidation } from "./Definitions";
 import { IFieldEventListener, IFieldValueListener } from "./Types";
 import { numbers } from "../utils/CommonTypes";
 
@@ -40,7 +40,7 @@ type ITitle = string | IDecoratedTitle | widgetFn;
 //     valueListener?: IFieldValueListener
 // }
 
-interface IAbstractField extends FieldDefinition{
+interface IAbstractField extends FieldDefinition {
     autoFocus?: boolean,
     eventListener?: IFieldEventListener,
     valueListener?: IFieldValueListener
@@ -64,16 +64,19 @@ interface IDecoration {
 type IRadioGroupOptions = Record<any, any> | Record<string, any> | { value: any, label: string }[];
 
 
-interface ITextFieldDefinition extends IAbstractField, IDecoration {    
-    range?: never
+interface ITextFieldDefinition extends IAbstractField, IDecoration,
+    ILengthValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
+
 }
 
-interface INumberFieldDefinition extends IAbstractField, IDecoration {
-    length?: never
+interface INumberFieldDefinition extends IAbstractField, IDecoration,
+    IRangeValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
+
 }
 
-interface IIntegerFieldDefinition extends IAbstractField, IDecoration {
-    length?: never
+interface IIntegerFieldDefinition extends IAbstractField, IDecoration,
+    IRangeValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
+
 }
 
 interface ISwitchDefinition extends IAbstractField, IDecoration {
@@ -143,8 +146,8 @@ interface IServerLookupDefinition extends IAbstractField, IDecoration {
 }
 
 
-interface IPasswordDefinition extends IAbstractField, IDecoration {
-    errorMsg?: Record<string, string>
+interface IPasswordDefinition extends IAbstractField, IDecoration,
+    ILengthValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
 }
 
 interface IAutoCompleteDefinition extends IAbstractField, IDecoration {
@@ -219,7 +222,7 @@ interface IFormListener {
     onSaveFailure?: (e: any) => void,
     preProcessSaveData?: (data: FormData) => FormData
 }
-interface TextViewAttributeDefinition extends IAbstractField{
+interface TextViewAttributeDefinition extends IAbstractField {
     attribute: string,
     textAlign?: 'left' | 'right' | 'center',
     variant?: 'standard' | 'outlined'
@@ -250,7 +253,7 @@ export type {
     ITextFieldDefinition, INumberFieldDefinition, IIntegerFieldDefinition, ISwitchDefinition, IAutoCompleteDefinition,
     ISelectDefinition, IRatingFieldDefinition, IDatePickerDefinition, IDateTimePickerDefinition,
     IRangeSliderDefinition, ICheckboxDefinition, ICheckboxGroupDefinition, IServerCheckboxDefinition,
-    IRadioGroupDefinition, IServerLookupDefinition, IPasswordDefinition, 
+    IRadioGroupDefinition, IServerLookupDefinition, IPasswordDefinition,
     ITextViewDefinition, ILookupViewDefinition, IOptionsViewDefinition, IDateViewDefinition
 }
 export type {

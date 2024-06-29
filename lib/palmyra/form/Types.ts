@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react";
-import { FieldDefinition, FormData, MuiFieldDef } from "./Definitions";
+import { FieldDefinition, FormData } from "./Definitions";
 import { createFormHelper } from "./PalmyraFormManager";
 
 type EventHandler = Record<FieldEvents, Function>;
@@ -21,13 +21,22 @@ interface FormContext {
     eventHandlers?: Record<string, EventHandler>
 }
 
+// type MuiVariant = "outlined" | "standard" | "filled";
+
+// interface MuiFieldDef {
+//     value: any,
+//     required?: boolean,
+//     disabled?: boolean,
+//     variant: MuiVariant,
+//     options?: any
+// }
 
 /**
  * Field Renderer Input
  */
 interface FieldProperties {
     fieldDef: FieldDefinition,
-    muiFieldDef: MuiFieldDef,
+    // muiFieldDef: MuiFieldDef,
     runtime?: FieldContext,
     value: any,
     displayValue?: any
