@@ -9,13 +9,13 @@
             "id": 2,
             "name": "Components",
             "code": "Components",
-            "children": "4, 5, 6, 8, 9, 10, 11, 12, 13, 14,15,16,17,18,19,20,21,22,23,24"
+            "children": "4, 5, 6, 8, 9, 10, 11, 12, 13, 14,15,16,17,18,19,20"
         },
         {
             "id": 3,
             "name": "Component API",
             "code": "Component API",
-            "children": "25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47"
+            "children": "21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45"
         },
         {
             "id": 4,
@@ -61,216 +61,204 @@
         },
         {
             "id": 12,
-            "name": "Switch",
-            "code": "palmyra-ui/switch",
-            "parent": 2
-        },
-        {
-            "id": 13,
             "name": "Number Field",
             "code": "palmyra-ui/numberField",
             "parent": 2
         },
         {
-            "id": 14,
+            "id": 13,
             "name": "Password",
             "code": "palmyra-ui/password",
             "parent": 2
         },
         {
-            "id": 15,
+            "id": 14,
             "name": "Radio Group",
             "code": "palmyra-ui/radioGroup",
             "parent": 2
         },
         {
-            "id": 16,
+            "id": 15,
             "name": "Rating",
             "code": "palmyra-ui/rating",
             "parent": 2
         },
         {
-            "id": 17,
+            "id": 16,
             "name": "Server Check Box",
             "code": "palmyra-ui/serverCheckBox",
             "parent": 2
         },
         {
-            "id": 18,
+            "id": 17,
             "name": "Select",
             "code": "palmyra-ui/select",
             "parent": 2
         },
         {
-            "id": 19,
+            "id": 18,
             "name": "Switch",
             "code": "palmyra-ui/switch",
             "parent": 2
         },
         {
-            "id": 20,
+            "id": 19,
             "name": "Slider",
             "code": "palmyra-ui/slider",
             "parent": 2
         },
         {
-            "id": 21,
+            "id": 20,
             "name": "Server Lookup",
             "code": "palmyra-ui/serverLookup",
             "parent": 2
         },
         {
-            "id": 22,
+            "id": 21,
             "name": "Text Field",
             "code": "palmyra-ui/textField",
             "parent": 2
         },
         {
-            "id": 23,
+            "id": 22,
             "name": "Text Area",
             "code": "palmyra-ui/textArea",
             "parent": 2
         },
         {
-            "id": 24,
+            "id": 23,
             "name": "View",
             "code": "palmyra-ui/view",
             "parent": 2
         },
         {
-            "id": 25,
+            "id": 24,
             "name": "Auto Complete",
             "code": "palmyra-ui/api/autoComplete",
             "parent": 2
         },
         {
-            "id": 26,
+            "id": 25,
             "name": "Check Box",
             "code": "palmyra-ui/api/checkBox",
             "parent": 2
         },
         {
-            "id": 27,
+            "id": 26,
             "name": "Check Box Group",
             "code": "palmyra-ui/api/checkBoxGroup",
             "parent": 2
         },
         {
-            "id": 28,
+            "id": 27,
             "name": "Date Picker",
             "code": "palmyra-ui/api/datePicker",
             "parent": 2
         },
         {
-            "id": 29,
+            "id": 28,
             "name": "Date Range Picker",
             "code": "palmyra-ui/api/dateRangePicker",
             "parent": 2
         },
         {
-            "id": 30,
+            "id": 29,
             "name": "Date Time Picker",
             "code": "palmyra-ui/api/dateTimePicker",
             "parent": 2
         },
         {
-            "id": 31,
+            "id": 30,
             "name": "Integer Field",
             "code": "palmyra-ui/api/integerField",
             "parent": 2
         },
         {
-            "id": 32,
-            "name": "Switch",
-            "code": "palmyra-ui/api/switch",
-            "parent": 2
-        },
-        {
-            "id": 33,
+            "id": 31,
             "name": "Number Field",
             "code": "palmyra-ui/api/numberField",
             "parent": 2
         },
         {
-            "id": 34,
+            "id": 32,
             "name": "Password",
             "code": "palmyra-ui/api/password",
             "parent": 2
         },
         {
-            "id": 35,
+            "id": 33,
             "name": "Radio Group",
             "code": "palmyra-ui/api/radioGroup",
             "parent": 2
         },
         {
-            "id": 36,
+            "id": 34,
             "name": "Rating",
             "code": "palmyra-ui/api/rating",
             "parent": 2
         },
         {
-            "id": 37,
+            "id": 35,
             "name": "Server Check Box",
             "code": "palmyra-ui/api/serverCheckBox",
             "parent": 2
         },
         {
-            "id": 38,
+            "id": 36,
             "name": "Select",
             "code": "palmyra-ui/api/select",
             "parent": 2
         },
         {
-            "id": 39,
+            "id": 37,
             "name": "Switch",
             "code": "palmyra-ui/api/switch",
             "parent": 2
         },
         {
-            "id": 40,
+            "id": 38,
             "name": "Slider",
             "code": "palmyra-ui/api/slider",
             "parent": 2
         },
         {
-            "id": 41,
+            "id": 39,
             "name": "Server Lookup",
             "code": "palmyra-ui/api/serverLookup",
             "parent": 2
         },
         {
-            "id": 42,
+            "id": 40,
             "name": "Text Field",
             "code": "palmyra-ui/api/textField",
             "parent": 2
         },
         {
-            "id": 43,
+            "id": 41,
             "name": "Text Area",
             "code": "palmyra-ui/api/textArea",
             "parent": 2
         },
         {
-            "id": 44,
+            "id": 42,
             "name": "View",
             "code": "palmyra-ui/api/view",
             "parent": 2
         },
         {
-            "id": 45,
+            "id": 43,
             "name": "Examples",
             "code": "palmyra-ui/examples",
             "children": "51,52"
         },
         {
-            "id": 46,
+            "id": 44,
             "name": "Basics",
             "code": "palmyra-ui/example/basic",
             "parent": 2
         },
         {
-            "id": 47,
+            "id": 45,
             "name": "Server Lookup",
             "code": "palmyra-ui/example/serverlookup",
             "parent": 2

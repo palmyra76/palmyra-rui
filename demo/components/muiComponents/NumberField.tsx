@@ -34,21 +34,21 @@ const RangeValidationSetup = `<MuiNumberField
     attribute="number"
     placeHolder="Enter Number"
     label="Number"
-    range={{ start: 3, end: 6, errorMsg: "3-6 range" }}
+    range={{ start: 3, end: 6, errorMessage: "3-6 range" }}
 />
 
 <MuiNumberField
     attribute="number"
     placeHolder="Enter Number"
     label="Number"
-    range={{ end: 10, errorMsg: "10 is end range" }}
+    range={{ end: 10, errorMessage: "10 is end range" }}
 />
              
 <MuiNumberField
     attribute="number"
     placeHolder="Enter Number"
     label="Number"
-    range={{ start: 30, errorMsg: "Start from 30 " }}
+    range={{ start: 30, errorMessage: "Start from 30 " }}
 />`;
 
 const RangeValidationNumberField = () => {
@@ -58,19 +58,19 @@ const RangeValidationNumberField = () => {
                 attribute="number"
                 placeHolder="Enter Number"
                 label="Number"
-                range={{ start: 3, end: 6, errorMsg: "3-6 range" }}
+                range={{ start: 3, end: 6, errorMessage: "3-6 range" }}
             />
              <MuiNumberField
                 attribute="number"
                 placeHolder="Enter Number"
                 label="Number"
-                range={{ end: 10, errorMsg: "10 is end range" }}
+                range={{ end: 10, errorMessage: "10 is end range" }}
             />
              <MuiNumberField
                 attribute="number"
                 placeHolder="Enter Number"
                 label="Number"
-                range={{ start: 30, errorMsg: "Start from 30 " }}
+                range={{ start: 30, errorMessage: "Start from 30 " }}
             />
         </FormX>
     )
@@ -111,7 +111,7 @@ const customFn = (n: any): boolean => {
     attribute="number"
     placeHolder="Number"
     label="Number"
-    validation={{ validateFn: customFn, errorMsg: "Enter a number between 11 and 99" }}
+    validation={{ validateFn: customFn, errorMessage: "Enter a number between 11 and 99" }}
 />`;
 
 const FunctionValidationNumberField = () => {

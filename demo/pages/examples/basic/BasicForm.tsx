@@ -33,7 +33,7 @@ const BasicForm = () => {
             variant="outlined"
             required={true}
             placeHolder="surya"
-            length={{ min: 3, errorMsg: "Minimum of 3 letters" }} />
+            length={{ min: 3, errorMessage: "Minimum of 3 letters" }} />
           <MuiTextField attribute="email"
             title="Email"
             variant="outlined"
@@ -43,7 +43,7 @@ const BasicForm = () => {
           <MuiTextArea attribute="address"
             title="Address"
             placeHolder="22/123, xxx nagar,chennai"
-            length={{ min: 3, errorMsg: "Minimum of 3 letters" }} />
+            length={{ min: 3, errorMessage: "Minimum of 3 letters" }} />
         </FieldGroupContainer>
       </PalmyraForm>
       <div className="form-btn-container">

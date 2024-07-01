@@ -21,7 +21,7 @@ const BasicSwitch = () => {
 const IosSwitchSetup = `<MuiSwitch
     attribute="switch"
     switch="IOSSwitch"
-    options={{  'On': true,  'Off': false }}
+    options={{ 'On': true, 'Off': false }}
 />
 `;
 
@@ -38,7 +38,7 @@ const IosSwitch = () => {
 const Android12SwitchSetup = `<MuiSwitch
     attribute="switch"
     switch="Android12Switch"
-    options={{  'On': true,  'Off': false }}
+    options={{ 'On': true, 'Off': false }}
 />
 `;
 
@@ -55,7 +55,7 @@ const Android12Switch = () => {
 const MaterialUISwitchSetup = `<MuiSwitch
     attribute="switch"
     switch="MaterialUISwitch"
-    options={{  'On': true,  'Off': false }}
+    options={{ 'On': true, 'Off': false }}
 />
 `;
 
@@ -70,5 +70,6 @@ const MaterialUISwitch = () => {
 }
 
 export {
-    BasicSetup, BasicSwitch, IosSwitchSetup, IosSwitch, Android12SwitchSetup, Android12Switch, MaterialUISwitchSetup, MaterialUISwitch
+    BasicSetup, BasicSwitch, IosSwitchSetup, IosSwitch, Android12SwitchSetup,
+    Android12Switch, MaterialUISwitchSetup, MaterialUISwitch
 }
