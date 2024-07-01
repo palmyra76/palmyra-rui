@@ -23,7 +23,30 @@ const BasicServerLookup = () => {
     )
 }
 
+const MultiServerLookupSetup = `<MuiServerLookup
+    attribute="country"
+    displayAttribute="country.name"
+    label="Select Country"
+    multiple
+    lookupOptions={{ idAttribute: "id", displayAttribute: "name" }}
+    storeOptions={{ endPoint: "/serverlookupData.json" }}
+/>
+`;
+
+const MultiServerLookup = () => {
+    return (
+        <FormX>
+            <MuiServerLookup attribute="country"
+                displayAttribute="country.name"
+                label="Select Country"
+                multiple
+                lookupOptions={{ idAttribute: "id", displayAttribute: "name" }}
+                storeOptions={{ endPoint: "/serverlookupData.json" }}
+            />
+        </FormX>
+    )
+}
 
 export {
-    BasicSetup, BasicServerLookup
+    BasicSetup, BasicServerLookup, MultiServerLookupSetup, MultiServerLookup
 }
