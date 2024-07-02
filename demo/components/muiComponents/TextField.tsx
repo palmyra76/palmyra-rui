@@ -1,6 +1,13 @@
 import { IFieldEventListener, IFieldValueListener, MuiTextField } from "../../../lib/main";
 import FormX from "../wire/FormX";
 
+const customFn = (n: any): boolean => {
+    if (isNaN(n)) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 const BasicSetup = `<MuiTextField attribute="name" placeHolder="Enter Name" variant="outlined" autoFocus={true} label="Name" labelMode="header" />
 <MuiTextField attribute="name" placeHolder="Enter Name" variant="filled" label="Name" labelMode="title" fieldProps={{ size: 'small' }} />
@@ -147,14 +154,6 @@ const FunctionValidationSetup = `const customFn = (n: any): boolean => {
 
 const FunctionValidationTextField = () => {
 
-    const customFn = (n: any): boolean => {
-        if (isNaN(n)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     return (
         <FormX>
             <MuiTextField
@@ -254,6 +253,56 @@ const ValueListenerTextField = () => {
     )
 }
 
+const CombinationValidationSetup = `
+/>`;
+
+const CombinationValidationTextField = () => {
+    return (
+        <FormX>
+            {/* <MuiTextField
+                attribute="data"
+                label="Rule & Length"
+                validRule={"oneLowerCase"}
+                length={{ min: 5 }}
+                errorMessage={{ "oneLowerCase": "One lower case", "length": "Minimum 5" }}
+            /> */}
+             <MuiTextField
+                attribute="data"
+                label="Rule & Regular Expression"
+                validRule={"mobilePhone"}
+                regExp={/^([1-5])$/}
+                errorMessage={{ "mobilePhone": "Invalid Phone Number", "regExp": "Range 1-5" }}
+            />
+            <MuiTextField
+                attribute="data"
+                label="Regular Expression & Length"
+                regExp={/^[a-zA-Z]+$/}
+                length={{ max: 5 }}
+                errorMessage={{ "regExp": "Alphabets only allowed", "length": "Maximum 5" }}
+            />
+
+            <MuiTextField
+                attribute="data"
+                label="Function & Regular expression"
+                validFn={customFn}
+                regExp={/^([1-9]|1[012])$/}
+                errorMessage={{ "validFn": "Numbers only allowed", "regExp": "Range 1-12" }}
+            />
+
+            <MuiTextField
+                attribute="data"
+                label="Function & Length"
+                validFn={customFn}
+                length={{ min: 4 }}
+                errorMessage={{ "validFn": "Numbers only allowed", "length": "Minimum 4" }}
+            />
+
+        </FormX>
+    )
+}
+
+
+
 export {
     BasicSetup, BasicTextField,
     TypeValidationSetup, TypeValidationTextField,
@@ -261,5 +310,6 @@ export {
     RegexValidationSetup, RegexValidationTextField,
     FunctionValidationSetup, FunctionValidationTextField,
     EventListenerSetup, EventListenerTextField,
-    ValueListenerSetup, ValueListenerTextField
+    ValueListenerSetup, ValueListenerTextField,
+    CombinationValidationSetup, CombinationValidationTextField
 }

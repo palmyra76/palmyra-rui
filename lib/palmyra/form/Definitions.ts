@@ -2,9 +2,9 @@
 import { storeBacked } from "../layout/Types";
 import { FieldType } from "./interface";
 
-// type inbuiltValidators = "email" | "password" | 'string' | 'alphabets' | 'number' | 'mobilePhone' | 'port' |
-//     'ip' | 'fqdn' | 'folder' | 'portrange' | 'password' | 'oneLowerCase' | 'oneUpperCase' | 'oneSpecialChar'
-//     | 'float' | 'lowercase' | 'uppercase'
+type inbuiltValidators = "email" | "password" | 'string' | 'alphabets' | 'number' | 'mobilePhone' | 'port' |
+    'ip' | 'fqdn' | 'folder' | 'portrange' | 'password' | 'oneLowerCase' | 'oneUpperCase' | 'oneSpecialChar'
+    | 'float' | 'lowercase' | 'uppercase'
 
 // type validationOptions = inbuiltValidators | "regExp" | "validFn" | string;
 
@@ -30,7 +30,7 @@ interface IRangeValidation {
 }
 
 interface IRuleValidation extends IValidationMessage {
-    validRule?: string | string[]
+    validRule?: inbuiltValidators | string[]
 }
 
 interface IRegexValidation extends IValidationMessage {

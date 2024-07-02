@@ -147,8 +147,6 @@ interface IAutoCompleteDefinition extends IAbstractField, IDecoration {
     }
 }
 
-
-
 interface IEventListeners {
     onBlur: (data: any) => void,
     onFocus: (data: any) => void,

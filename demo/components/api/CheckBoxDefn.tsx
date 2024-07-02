@@ -32,7 +32,7 @@ const CheckBoxDefn = () => {
 
     return (
         <div>
-            <Grid data={data} header="CheckBox API" import={CheckBoxImport} />
+            <Grid data={data} header="Check Box API" import={CheckBoxImport} />
         </div>
     )
 
