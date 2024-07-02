@@ -2,7 +2,7 @@
  * Custom Hook for form validation
  */
 
-import { FieldDefinition } from "./Definitions";
+import { FieldDefinition, ILookupOptions } from "./Definitions";
 import { setValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
 import { useEventListeners } from "./PalmyraFieldManager";
@@ -52,7 +52,7 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
         const generate = (field: IAbstractField, type: FieldType, ref: any): IFormFieldManager => {
             var fieldAttrib = field.name || field.attribute;
             // @ts-ignore
-            var fieldDef: FieldDefinition = { ...field, type }
+            var fieldDef: IPalmyraFilter = { ...field, type }
             if (ref) {
                 _formHelper.addFieldRef(fieldAttrib, ref);
                 fieldRefs[fieldAttrib] = ref;
@@ -102,6 +102,6 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
 
 export { createFilterData, createFilterFormHelper };
 
-function requireStore(fieldDef: FieldDefinition) {
+function requireStore(fieldDef: ILookupOptions) {
     return (fieldDef.storeOptions?.endPoint) ? true : false;
 }

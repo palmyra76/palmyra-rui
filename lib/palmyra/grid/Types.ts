@@ -1,8 +1,9 @@
 import { CellContext, ColumnDef, OnChangeFn, Row, RowData, RowModel, RowSelectionState, Table } from "@tanstack/react-table";
 import { AttributeDefinition } from "../form/Definitions";
 import { MutableRefObject } from "react";
+import { IPattern } from "../form/interface";
 
-interface ColumnDefinition extends AttributeDefinition {
+interface ColumnDefinition extends AttributeDefinition, IPattern {
     name: string,
     title: string,
     width?: string, // either in px  or percentage
@@ -30,7 +31,7 @@ interface ITableOptions {
     enableRowSelection?: boolean | ((row: Row<unknown>) => boolean),
     onRowSelectionChange?: OnChangeFn<RowSelectionState>,
     getFilteredRowModel?: (table: Table<any>) => () => RowModel<any>,
-    getCoreRowModel?: (table: Table<any>) => () => RowModel<any>, 
+    getCoreRowModel?: (table: Table<any>) => () => RowModel<any>,
     debug: boolean
 }
 
@@ -42,7 +43,7 @@ interface GridCustomizer {
     preProcessColumns?: (columnDefs: ColumnDef<RowData, any>[]) => any,
     preProcessData?: (data: any) => any,
     getTableOptions?: () => ITableOptions,
-    getTableRef? : () => MutableRefObject<IReactTanstackTable>
+    getTableRef?: () => MutableRefObject<IReactTanstackTable>
 }
 
 const NoopCustomizer: GridCustomizer = {

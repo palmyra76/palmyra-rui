@@ -64,21 +64,22 @@ type FormData = { [key: string]: InputType | FormData };
 
 interface LookupOptions {
     idAttribute?: string,
-    titleAttribute?: string,
-    attribute?: string
+    displayAttribute?: string
 }
 
-interface AttributeDefinition extends storeBacked {
+interface AttributeDefinition {
     attribute: string,
     displayAttribute?: string, // To be used for links etc
     type?: FieldType,
-    serverPattern?: string,
-    displayPattern?: string, // To be used for Date, DateTime etc.,
     options?: any
 }
 
 interface DisplayDefinition {
     width?: string
+}
+
+interface ILookupOptions extends storeBacked {
+    lookupOptions?: LookupOptions // To be used by server lookup
 }
 
 interface FieldDefinition extends
@@ -93,8 +94,7 @@ interface FieldDefinition extends
     readonly?: boolean,
     visible?: boolean,
     mutant?: boolean,
-    placeHolder?: string,
-    lookupOptions?: LookupOptions // To be used by server lookup
+    placeHolder?: string
 }
 
 interface FieldValidStatus {
@@ -118,10 +118,10 @@ const getFieldType = (type: string): FieldType => {
 }
 
 export type { AttributeDefinition, FieldDefinition, FieldValidStatus, FormData, InputType, FieldType };
-export type { DisplayDefinition, LookupOptions }
+export type { DisplayDefinition, LookupOptions, ILookupOptions }
 
 export type {
-    ILengthValidation, IFunctionValidation, IRangeValidation,
+    ILengthValidation, IFunctionValidation, IRangeValidation, IRequiredValidation,
     IRegexValidation, IRuleValidation, IValidatableField
 }
 

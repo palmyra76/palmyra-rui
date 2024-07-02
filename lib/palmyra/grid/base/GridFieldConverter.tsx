@@ -1,5 +1,10 @@
 import { ColumnDefinition } from "..";
 import { FieldDefinition, FieldType } from "../../form/Definitions";
+import { IPattern } from "../../form/interface";
+
+interface GridField extends FieldDefinition, IPattern {
+
+}
 
 const convertToField = (columns: ColumnDefinition[]): FieldDefinition[] => {
     var result: FieldDefinition[] = [];
@@ -10,8 +15,8 @@ const convertToField = (columns: ColumnDefinition[]): FieldDefinition[] => {
     return result;
 }
 
-const _convertField = (column: ColumnDefinition): FieldDefinition => {
-    var result: FieldDefinition = {
+const _convertField = (column: ColumnDefinition): GridField => {
+    var result: GridField = {
         attribute: column.attribute,
         label: column.title,
         required: false,

@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { LookupStore } from "palmyra-wire";
-import { FieldDefinition } from "./Definitions";
+import { ILookupOptions } from "./Definitions";
 import { StoreFactoryContext } from "../layout/flexiLayout/FlexiLayoutContext";
 import { mergeDeep } from "../utils";
 
-const getLookupStore = (fieldDef: FieldDefinition): LookupStore<any> => {
+const getLookupStore = (fieldDef: ILookupOptions): LookupStore<any> => {
     const storeFactory = useContext(StoreFactoryContext);
     const idAttribute = fieldDef.lookupOptions?.idAttribute || "name";
     var options: any = {};

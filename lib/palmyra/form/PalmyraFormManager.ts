@@ -7,7 +7,7 @@ import { default as getValidator } from "../validator/DataValidator";
 import { useEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
 import { IAbstractField, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
-import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode } from "./Types";
+import { IFieldEventListener, IFieldValueListener, IFormHelper, FormMode, IPalmyraFilter } from "./Types";
 import { MutableRefObject, useEffect, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
 import { setValueByKey } from "./FormUtil";
@@ -95,7 +95,7 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
 
             var fieldAttrib = field.name || field.attribute;
             // @ts-ignore
-            var fieldDef: FieldDefinition = { ...field, type }
+            var fieldDef: IPalmyraFilter = { ...field, type }
             if (ref) {
                 _formHelper.addFieldRef(fieldAttrib, ref);
                 fieldRefs[fieldAttrib] = ref;
@@ -149,6 +149,6 @@ function useFormData(data, onValidityChange, mode: FormMode, formHelper?: IFormH
 
 export { useFormData, createFormHelper };
 
-function requireStore(fieldDef: FieldDefinition) {
+function requireStore(fieldDef: IPalmyraFilter) {
     return (fieldDef.storeOptions?.endPoint) ? true : false;
 }

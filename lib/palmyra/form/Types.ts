@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react";
-import { FieldDefinition, FormData } from "./Definitions";
+import { AttributeDefinition, FormData, ILookupOptions, IRequiredValidation } from "./Definitions";
 import { createFormHelper } from "./PalmyraFormManager";
 
 type EventHandler = Record<FieldEvents, Function>;
@@ -34,14 +34,21 @@ interface FormContext {
 /**
  * Field Renderer Input
  */
+
+interface iField extends ILookupOptions, IRequiredValidation{
+
+}
 interface FieldProperties {
-    fieldDef: FieldDefinition,
+    fieldDef: iField,
     // muiFieldDef: MuiFieldDef,
     runtime?: FieldContext,
     value: any,
     displayValue?: any
 }
 
+interface IPalmyraFilter extends ILookupOptions, AttributeDefinition {
+
+}
 
 interface IFormCustomizer {
     getFormHelper: () => IFormHelper,
@@ -99,6 +106,6 @@ interface FormEventHandler {
     onDataChange(key: string, listener: onDataChangeCallback)
 }
 
-export type { FieldContext, FieldProperties, FormContext, IFormCustomizer, IFormHelper };
+export type { FieldContext, FieldProperties, FormContext, IFormCustomizer, IFormHelper, IPalmyraFilter };
 export type { EventHandler, FormMode, IFieldEventListener, IFieldValueListener, FormEventHandler, onDataChangeCallback };
 export { NoopFieldEventListener, NoopFormHelper, NoopFormCustomizer, NoopFieldValueListener }

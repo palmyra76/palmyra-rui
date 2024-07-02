@@ -6,11 +6,16 @@ import { DateRangeConverter } from "./DateRangeConverter";
 import { noopConverter } from "./NoopConverter";
 import { ServerlookupTransformer } from "./ServerlookupTransformer";
 import { SliderRangeConverter } from "./SliderRangeConverter";
+import { IPattern } from "../../form/interface";
 
-const getFormatConverter = (props: FieldDefinition, formDataRef?: MutableRefObject<any>): Converter<any, any> => {
+interface IFormat extends FieldDefinition, IPattern {
+
+}
+
+const getFormatConverter = (props: IFormat, formDataRef?: MutableRefObject<any>): Converter<any, any> => {
 
     const type: FieldType = props.type;
-    
+
     switch (type) {
         case 'date':
             return new DateTimeConverter(props, 'YYYY-MM-DD');

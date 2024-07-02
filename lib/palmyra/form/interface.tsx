@@ -3,7 +3,7 @@ import { IEndPoint } from "../layout";
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
 import { LookupStore, DefaultQueryParams } from 'palmyra-wire';
-import { FieldDefinition, IFunctionValidation, ILengthValidation, IRangeValidation, IRegexValidation, IRuleValidation } from "./Definitions";
+import { FieldDefinition, IFunctionValidation, ILengthValidation, IRangeValidation, IRegexValidation, IRuleValidation, LookupOptions } from "./Definitions";
 import { IFieldEventListener, IFieldValueListener } from "./Types";
 import { numbers } from "../utils/CommonTypes";
 
@@ -22,23 +22,14 @@ interface IDecoratedTitle {
     toolTip?: string
 }
 
+interface IPattern {
+    serverPattern?: string,
+    displayPattern?: string,
+}
+
 type widgetFn = () => ReactNode;
 type ITitle = string | IDecoratedTitle | widgetFn;
 
-
-// interface AttributeDefinition {
-//     attribute: string,
-//     name?: string,
-//     defaultValue?: InputType,
-//     value?: InputType,
-//     required?: boolean,
-//     readonly?: boolean,
-//     disabled?: boolean,
-//     placeHolder?: string,
-//     autoFocus?: boolean,
-//     eventListener?: IFieldEventListener,
-//     valueListener?: IFieldValueListener
-// }
 
 interface IAbstractField extends FieldDefinition {
     autoFocus?: boolean,
@@ -46,10 +37,10 @@ interface IAbstractField extends FieldDefinition {
     valueListener?: IFieldValueListener
 }
 
-interface IFormFieldServerLookup {
-    idAttribute?: string,
-    displayAttribute?: string
-}
+// interface IFormFieldServerLookup {
+//     idAttribute?: string,
+//     displayAttribute?: string
+// }
 
 interface IDecoration {
     customContainerClass?: string,
@@ -92,14 +83,11 @@ interface IRatingFieldDefinition extends IAbstractField, IDecoration {
 
 }
 
-interface IDatePickerDefinition extends IAbstractField, IDecoration {
-    serverPattern?: string,
-    displayPattern?: string,
+interface IDatePickerDefinition extends IAbstractField, IDecoration, IPattern {
+
 }
 
-interface IDateTimePickerDefinition extends IAbstractField, IDecoration {
-    serverPattern?: string,
-    displayPattern?: string,
+interface IDateTimePickerDefinition extends IAbstractField, IDecoration, IPattern {
 }
 
 interface IRangeSliderDefinition extends IAbstractField, IDecoration {
@@ -117,7 +105,7 @@ interface ICheckboxGroupDefinition extends IAbstractField, IDecoration {
 
 interface IServerCheckboxDefinition extends IAbstractField, IDecoration {
     hideSelectAll?: boolean,
-    lookupOptions: IFormFieldServerLookup,
+    lookupOptions: LookupOptions,
     storeOptions: {
         endPoint: IEndPoint,
         endPointOptions?: IEndPointOptions
@@ -134,7 +122,7 @@ interface IRadioGroupDefinition extends IAbstractField, IDecoration {
 interface IServerLookupDefinition extends IAbstractField, IDecoration {
     displayAttribute?: string,
     idAttribute?: string,
-    lookupOptions: IFormFieldServerLookup,
+    lookupOptions: LookupOptions,
     store?: LookupStore<any>,
     storeOptions: {
         endPoint: IEndPoint,
@@ -173,10 +161,10 @@ interface IFormFieldSelect {
     defaultSelected: any
 }
 
-interface IFormFieldServerLookup {
-    idAttribute?: string,
-    displayAttribute?: string
-}
+// interface IFormFieldServerLookup {
+//     idAttribute?: string,
+//     displayAttribute?: string
+// }
 
 interface IFormFieldError {
     status: boolean,
@@ -191,7 +179,7 @@ interface IFormFieldInput {
     displayValue?: any,
     toolkitOptions?: Record<string, any>,
     select?: IFormFieldSelect,
-    lookup?: IFormFieldServerLookup  // TBD- use onSearch and hide the complexity of serverLookup
+    lookup?: LookupOptions  // TBD- use onSearch and hide the complexity of serverLookup
 }
 
 interface IFormFieldManager {
@@ -234,7 +222,7 @@ interface IDateViewDefinition extends TextViewAttributeDefinition, IDecoration {
 }
 interface ILookupViewDefinition extends TextViewAttributeDefinition, IDecoration {
     displayAttribute: string,
-    lookupOptions?: IFormFieldServerLookup
+    lookupOptions?: LookupOptions
 }
 
 interface IOptionsViewDefinition extends TextViewAttributeDefinition, IDecoration {
@@ -266,7 +254,7 @@ export type {
 }
 
 export type {
-    ITitle, IDecoratedTitle
+    IPattern, ITitle, IDecoratedTitle,
 }
 
 export { NoopFormListener }

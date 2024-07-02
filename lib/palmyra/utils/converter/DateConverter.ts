@@ -1,13 +1,14 @@
 import dayjs from "dayjs";
 import { Converter } from "."
-import { AttributeDefinition, FieldDefinition } from "../../form/Definitions"
+import { AttributeDefinition } from "../../form/Definitions"
 import { getValueByKey } from "../../form/FormUtil";
+import { IPattern } from "../../form/interface";
 
 class DateTimeConverter implements Converter<any, Date> {
     serverPattern: string;
     displayPattern: string;
 
-    constructor(props: FieldDefinition, defaultFormat: string) {
+    constructor(props: IPattern, defaultFormat: string) {
         this.serverPattern = props.serverPattern || props.displayPattern || defaultFormat;
         this.displayPattern = props.displayPattern;
     }
