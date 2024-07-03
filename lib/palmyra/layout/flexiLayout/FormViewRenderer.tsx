@@ -28,8 +28,8 @@ const FormViewRenderer = (props: ViewFormRendererInput) => {
     return (
         <form className="palmyra-form-field-container-wrapper" noValidate>
             {
-                formLayout.fields.map((field, index) => (
-                    <FieldContainer label={field.title} field={field}
+                formLayout.fields.map((field: any, index: any) => (
+                    <FieldContainer label={field.label} field={field}
                         key={field.attribute}
                         options={options} index={index}>
                         {getField(field)}

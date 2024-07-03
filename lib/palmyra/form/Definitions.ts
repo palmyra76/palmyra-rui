@@ -84,10 +84,7 @@ interface ILookupOptions extends storeBacked {
 
 interface FieldDefinition extends
     AttributeDefinition, DisplayDefinition, IRequiredValidation {
-    title?: string,
-    label?: string,
     name?: string,
-    hideTitle?: boolean,
     defaultValue?: InputType,
     value?: InputType,
     disabled?: boolean,

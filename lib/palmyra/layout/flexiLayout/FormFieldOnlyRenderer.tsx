@@ -5,10 +5,15 @@ import { FieldDefinition } from '../../form/Definitions';
 import { FormLayout } from './Definitions';
 import { PageContext } from './Types';
 import '../container/FormFieldOnlyLayout.css';
+import { IDecoration } from '../../form/interface';
 
 interface EditFormRendererInput {
     formLayout: FormLayout,
     context: PageContext
+}
+
+interface GenerateField extends FieldDefinition, IDecoration {
+
 }
 
 const calcContainerClass = (props: EditFormRendererInput) => {
@@ -37,7 +42,7 @@ const FormFieldOnlyRenderer = forwardRef(function FormFieldOnlyRenderer(props: E
     const containerClass = calcContainerClass(props);
     const fieldClass = 'palmyra-form-field-data';
 
-    const generateField = useMemo(() => (field: FieldDefinition) => {
+    const generateField = useMemo(() => (field: GenerateField) => {
         return getField(field, fieldRefs, field.label);
     }, [formData.data]);
 

@@ -29,19 +29,19 @@ const BasicForm = () => {
         mode="new" ref={formRef} >
         <FieldGroupContainer columns={1}>
           <MuiTextField attribute="name"
-            title="Name"
+            label="Name"
             variant="outlined"
             required={true}
             placeHolder="surya"
             length={{ min: 3, errorMessage: "Minimum of 3 letters" }} />
           <MuiTextField attribute="email"
-            title="Email"
+            label="Email"
             variant="outlined"
             required={true}
             placeHolder="surya@gmail.com"
             validRule={"email"} />
           <MuiTextArea attribute="address"
-            title="Address"
+            label="Address"
             placeHolder="22/123, xxx nagar,chennai"
             length={{ min: 3, errorMessage: "Minimum of 3 letters" }} />
         </FieldGroupContainer>
@@ -95,21 +95,21 @@ const BasicForm = () => {
           mode="new" ref={formRef} >
           <FieldGroupContainer columns={1}>
             <MuiTextField attribute="name"
-              title="Name"
+              label="Name"
               variant="outlined"
               required={true}
               placeHolder="surya"
               length={{ min: 3, message: "Minimum of 3 letters" }} 
             />
             <MuiTextField attribute="email"
-              title="Email"
+              label="Email"
               variant="outlined"
               required={true}
               placeHolder="surya@gmail.com"
               validationRule={"email"} 
             />
             <MuiTextArea attribute="address" 
-              title="Address"
+              label="Address"
               placeHolder="22/123, xxx nagar,chennai"
               length={{ min: 3, message: "Minimum of 3 letters" }} 
             />

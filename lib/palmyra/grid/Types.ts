@@ -5,7 +5,7 @@ import { IPattern } from "../form/interface";
 
 interface ColumnDefinition extends AttributeDefinition, IPattern {
     name: string,
-    title: string,
+    label: string,
     width?: string, // either in px  or percentage
     hideTitle?: boolean,
     hideColumn?: boolean,
