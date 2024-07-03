@@ -3,7 +3,7 @@ import { IEndPoint } from "../layout";
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
 import { LookupStore, DefaultQueryParams } from 'palmyra-wire';
-import { FieldDefinition, IFunctionValidation, ILengthValidation, IRangeValidation, IRegexValidation, IRuleValidation, LookupOptions } from "./Definitions";
+import { FieldDefinition, IFunctionValidation, ILengthValidation, ILookupOptions, IRangeValidation, IRegexValidation, IRuleValidation, LookupOptions } from "./Definitions";
 import { IFieldEventListener, IFieldValueListener } from "./Types";
 import { numbers } from "../utils/CommonTypes";
 
@@ -103,13 +103,8 @@ interface ICheckboxGroupDefinition extends IAbstractField, IDecoration {
     options: Record<any, any> | Record<string, any>
 }
 
-interface IServerCheckboxDefinition extends IAbstractField, IDecoration {
+interface IServerCheckboxDefinition extends IAbstractField, IDecoration, ILookupOptions {
     hideSelectAll?: boolean,
-    lookupOptions: LookupOptions,
-    storeOptions: {
-        endPoint: IEndPoint,
-        endPointOptions?: IEndPointOptions
-    }
     showSelectedOnly?: boolean
     pageSize?: numbers,
     defaultParams?: DefaultQueryParams,
@@ -119,15 +114,9 @@ interface IRadioGroupDefinition extends IAbstractField, IDecoration {
     options: IRadioGroupOptions
 }
 
-interface IServerLookupDefinition extends IAbstractField, IDecoration {
+interface IServerLookupDefinition extends IAbstractField, IDecoration, ILookupOptions {
     displayAttribute?: string,
-    idAttribute?: string,
-    lookupOptions: LookupOptions,
     store?: LookupStore<any>,
-    storeOptions: {
-        endPoint: IEndPoint,
-        endPointOptions?: IEndPointOptions
-    }
     fetchDefault?: number,
     pageSize?: numbers,
     defaultParams?: DefaultQueryParams,
