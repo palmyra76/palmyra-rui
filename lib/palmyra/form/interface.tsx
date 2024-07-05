@@ -50,7 +50,7 @@ interface IDecoration {
     colspan?: number,
     label?: string,
     labelMode?: 'header' | 'title'
-    hideTitle?: boolean
+    hideLabel?: boolean
 }
 
 type IRadioGroupOptions = Record<any, any> | Record<string, any> | { value: any, label: string }[];
