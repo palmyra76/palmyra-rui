@@ -49,7 +49,7 @@ const validate = (format: IValidatableField) => {
         const rule: any = rules;
         var typeValidator = getRuleValidator(format, rule);
         var validRule: any = format?.validRule;
-        var typeMessage = format?.errorMessage || format.errorMessage[validRule] || "Invalid";
+        var typeMessage = getErrorMessage(format, validRule, "Invalid");
         validators.push(constructMethod(typeValidator, typeMessage));
     }
 
@@ -64,6 +64,18 @@ const validate = (format: IValidatableField) => {
         }
         return { status: true, message: '' };
     }
+}
+
+const getErrorMessage = (format: IValidatableField, messageKey: string, defValue: string) => {
+    if (format?.errorMessage) {
+        if (typeof format.errorMessage == 'string')
+            return format.errorMessage;
+
+        const errorMessage:string = format.errorMessage[messageKey];
+        if(errorMessage)
+            return errorMessage
+    }
+    return defValue;
 }
 
 const getRuleValidators = (format: IValidatableField, anyMatch: boolean) => {
