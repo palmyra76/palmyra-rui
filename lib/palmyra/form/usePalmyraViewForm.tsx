@@ -23,7 +23,7 @@ const usePalmyraViewForm: IusePalmyraViewForm = (props: IPalmyraViewFormInput): 
     const idKey = props.idKey || 'id';
 
     const getEndPoint = (endPoint: IEndPoint, idProperty: string): IEndPoint => {
-        if (typeof endPoint == 'string') {
+        if (typeof endPoint == 'string' && props.idKey != null) {
             return endPoint + '/{' + idProperty + '}';
         } else {
             return endPoint;
