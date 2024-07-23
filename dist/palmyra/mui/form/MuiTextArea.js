@@ -1,17 +1,17 @@
-import { jsx as l, Fragment as b } from "react/jsx-runtime";
-import { forwardRef as x, useContext as R, useRef as d, useImperativeHandle as v } from "react";
+import { jsx as u, Fragment as b } from "react/jsx-runtime";
+import { forwardRef as v, useContext as x, useRef as d, useImperativeHandle as R } from "react";
 import { TextField as M } from "@mui/material";
 import { copyMuiOptions as h, getFieldLabel as L } from "./MuiUtil.js";
 import { FieldManagerContext as O } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import V from "./FieldDecorator.js";
-const P = x(function(t, u) {
-  const f = R(O), i = u || d(null), s = f(t, "string", i), { mutateOptions: g, setMutateOptions: r } = s, n = s.error, o = s.eventListeners, C = t.autoFocus || !1, c = d(null);
-  v(i, () => ({
+const j = v(function(e, i) {
+  const f = x(O), c = i || d(null), s = f(e, "string", c), { mutateOptions: g, setMutateOptions: n } = s, r = s.error, o = s.eventListeners, C = e.autoFocus || !1, m = d(null);
+  R(c, () => ({
     focus() {
-      c.current.focus();
+      m.current.focus();
     },
     isValid() {
-      return !n.status;
+      return !r.status;
     },
     getValue() {
       return s.getData();
@@ -19,55 +19,57 @@ const P = x(function(t, u) {
     clear() {
       s.setData("", !0);
     },
-    setValue(e, a = !1) {
-      s.setData(e, a);
+    setValue(t, a = !1) {
+      s.setData(t, a);
     },
-    setVisible(e) {
-      r((a) => ({ ...a, visible: e }));
+    setVisible(t) {
+      n((a) => ({ ...a, visible: t }));
     },
-    setRequired(e) {
-      r((a) => ({ ...a, required: e }));
+    setRequired(t) {
+      n((a) => ({ ...a, required: t }));
     },
-    setReadOnly(e) {
-      r((a) => ({ ...a, readonly: e }));
+    setReadOnly(t) {
+      n((a) => ({ ...a, readonly: t }));
     },
-    setAttribute(e) {
-      r((a) => ({ ...a, ...e }));
+    setAttribute(t) {
+      n((a) => ({ ...a, ...t }));
     }
   }), [s]);
-  var m = h(t, s.data, t.label);
-  t.readonly && (m.inputProps = { readOnly: !0 });
+  var l = h(e, s.data, e.label);
+  e.readonly && (l.inputProps = { readOnly: !0 });
   var F = {
     onBlur: o.onBlur,
     onFocus: o.onFocus,
-    onChange: (e) => o.onValueChange(e.target.value)
+    onChange: (t) => o.onValueChange(t.target.value)
   };
-  return /* @__PURE__ */ l(b, { children: g.visible && /* @__PURE__ */ l(
+  return /* @__PURE__ */ u(b, { children: g.visible && /* @__PURE__ */ u(
     V,
     {
-      label: L(t),
-      customContainerClass: t.customContainerClass,
-      colspan: t.colspan,
-      customFieldClass: t.customFieldClass,
-      customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ l(
+      label: L(e),
+      customContainerClass: e.customContainerClass,
+      colspan: e.colspan,
+      customFieldClass: e.customFieldClass,
+      customLabelClass: e.customLabelClass,
+      children: /* @__PURE__ */ u(
         M,
         {
+          ...l,
+          variant: e.variant || "standard",
           minRows: 2,
           maxRows: 5,
           fullWidth: !0,
           multiline: !0,
           autoFocus: C,
-          ...m,
-          inputRef: c,
+          ...l,
+          inputRef: m,
           ...F,
-          error: n.status,
-          helperText: n.message
+          error: r.status,
+          helperText: r.message
         }
       )
     }
   ) });
 });
 export {
-  P as default
+  j as default
 };

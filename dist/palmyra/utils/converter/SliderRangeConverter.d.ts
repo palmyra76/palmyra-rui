@@ -1,12 +1,12 @@
-import { IRangeSliderDefinition } from '../../form/interface';
-import { AttributeDefinition } from '../../form/Definitions';
 import { Converter } from '.';
+import { AttributeDefinition } from '../../form/Definitions';
+import { IMuiRangeSliderDefinition } from '../../mui/form/MuiTypes';
 
 type ISliderRange = [number, number];
 declare class SliderRangeConverter implements Converter<any, ISliderRange> {
     min: number;
     max: number;
-    constructor(props: IRangeSliderDefinition);
+    constructor(props: IMuiRangeSliderDefinition);
     getFieldData: (data: any, props: AttributeDefinition) => import('../../form/Definitions').InputType;
     getRawdata: (data: any, props: AttributeDefinition) => import('../../form/Definitions').InputType;
     format(data: ISliderRange): any;

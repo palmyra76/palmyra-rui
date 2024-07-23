@@ -1,5 +1,5 @@
 import { ISelectField } from '../../form/interfaceFields';
-import { ISelectDefinition } from '../../form/interface';
+import { IMuiSelectFieldDefinition } from './MuiTypes';
 
-declare const MuiSelect: import('react').ForwardRefExoticComponent<ISelectDefinition & import("react").RefAttributes<ISelectField>>;
+declare const MuiSelect: import('react').ForwardRefExoticComponent<IMuiSelectFieldDefinition & import('react').RefAttributes<ISelectField>>;
 export default MuiSelect;

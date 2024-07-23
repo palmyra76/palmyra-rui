@@ -1,83 +1,90 @@
-import { jsx as o, Fragment as V, jsxs as j } from "react/jsx-runtime";
-import { forwardRef as B, useContext as T, useRef as v, useImperativeHandle as k } from "react";
-import { Slider as q } from "@mui/material";
-import { copyMuiOptions as H, getFieldLabel as I } from "./MuiUtil.js";
-import { FieldManagerContext as W } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import _ from "./FieldDecorator.js";
-const U = B(function(e, u) {
-  var C, h;
-  const b = T(W), c = u || v(null), F = e.range ? "sliderRange" : "slider", a = b(e, F, c), { mutateOptions: x, setMutateOptions: s } = a, l = a.error, r = a.eventListeners, d = v(null), M = e.variant || "standard", y = e.autoFocus || !1, m = e.minDistance || 5, D = e.label || "", R = ((C = e.fieldProps) == null ? void 0 : C.min) || 0, L = ((h = e.fieldProps) == null ? void 0 : h.max) || 100;
-  k(c, () => ({
+import { jsx as o, Fragment as k, jsxs as P } from "react/jsx-runtime";
+import { forwardRef as V, useContext as j, useRef as h, useImperativeHandle as z } from "react";
+import { Slider as B } from "@mui/material";
+import { copyMuiOptions as T, getFieldLabel as q } from "./MuiUtil.js";
+import { FieldManagerContext as w } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import H from "./FieldDecorator.js";
+const N = V(function(e, u) {
+  var C;
+  const F = j(w), c = u || h(null), x = e.range ? "sliderRange" : "slider", n = F(e, x, c), { mutateOptions: y, setMutateOptions: s } = n, r = n.error, i = n.eventListeners, d = h(null), D = e.variant || "standard", M = e.autoFocus || !1, m = e.minDistance || 5, L = e.label || "", f = e.min || 0, g = e.max || 100;
+  z(c, () => ({
     focus() {
       d.current.focus();
     },
     isValid() {
-      return !l.status;
+      return !r.status;
     },
     getValue() {
-      return a.getData();
+      return n.getData();
     },
     clear() {
-      a.setData("", !0);
+      n.setData("", !0);
     },
-    setValue(n, t = !1) {
-      a.setData(n, t);
+    setValue(a, t = !1) {
+      n.setData(a, t);
     },
-    setVisible(n) {
-      s((t) => ({ ...t, visible: n }));
+    setVisible(a) {
+      s((t) => ({ ...t, visible: a }));
     },
-    setRequired(n) {
-      s((t) => ({ ...t, required: n }));
+    setRequired(a) {
+      s((t) => ({ ...t, required: a }));
     },
-    setReadOnly(n) {
-      s((t) => ({ ...t, readonly: n }));
+    setReadOnly(a) {
+      s((t) => ({ ...t, readonly: a }));
     },
-    setAttribute(n) {
-      s((t) => ({ ...t, ...n }));
+    setAttribute(a) {
+      s((t) => ({ ...t, ...a }));
     }
-  }), [a]);
-  const f = (n) => {
-    if (n)
-      return n;
+  }), [n]);
+  const b = (a) => {
+    if (a)
+      return a;
     if (e.range)
-      return e.range ? [R, L] : 0;
+      return e.range ? [f, g] : 0;
   };
-  var g = H(e, f(a.data), e.label);
-  e.readonly && (g.inputProps = { readOnly: !0 });
-  const O = (n, t, P) => {
+  var v = T(e, b(n.data), e.label);
+  e.readonly && (v.inputProps = { readOnly: !0 });
+  const R = (a, t, O) => {
     if (!Array.isArray(t)) {
-      r.onValueChange(t);
+      i.onValueChange(t);
       return;
     }
-    const i = f(a.data), S = P === 0 ? [Math.min(t[0], i[1] - m), i[1]] : [i[0], Math.max(t[1], i[0] + m)];
-    r.onValueChange(S);
+    const l = b(n.data), A = O === 0 ? [Math.min(t[0], l[1] - m), l[1]] : [l[0], Math.max(t[1], l[0] + m)];
+    i.onValueChange(A);
   };
-  var A = {
-    onBlur: r.onBlur,
-    onFocus: r.onFocus,
-    onChange: O
+  var S = {
+    onBlur: i.onBlur,
+    onFocus: i.onFocus,
+    onChange: R
   };
-  return /* @__PURE__ */ o(V, { children: x.visible && /* @__PURE__ */ o(
-    _,
+  return /* @__PURE__ */ o(k, { children: y.visible && /* @__PURE__ */ o(
+    H,
     {
-      label: I(e),
+      label: q(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
-      children: /* @__PURE__ */ j("div", { style: { width: "100%", textAlign: "center" }, children: [
-        D,
+      children: /* @__PURE__ */ P("div", { style: { width: "100%", textAlign: "center" }, children: [
+        L,
         /* @__PURE__ */ o(
-          q,
+          B,
           {
-            ...g,
-            variant: M,
+            ...v,
+            variant: D,
             fullWidth: !0,
             inputRef: d,
-            ...A,
-            error: l.status,
-            helperText: l.message,
-            autoFocus: y
+            ...S,
+            marks: e.marks,
+            size: (C = e.fieldProps) == null ? void 0 : C.size,
+            disableSwap: e.disableSwap,
+            valueLabelDisplay: e.valueLabelDisplay,
+            min: f,
+            step: e.step,
+            max: g,
+            error: r.status,
+            helperText: r.message,
+            autoFocus: M
           }
         )
       ] })
@@ -85,5 +92,5 @@ const U = B(function(e, u) {
   ) });
 });
 export {
-  U as default
+  N as default
 };

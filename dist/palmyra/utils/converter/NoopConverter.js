@@ -1,6 +1,6 @@
 var o = Object.defineProperty;
 var u = (a, t, e) => t in a ? o(a, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : a[t] = e;
-var r = (a, t, e) => (u(a, typeof t != "symbol" ? t + "" : t, e), e);
+var r = (a, t, e) => u(a, typeof t != "symbol" ? t + "" : t, e);
 import { getValueByKey as n } from "../../form/FormUtil.js";
 class l {
   constructor() {

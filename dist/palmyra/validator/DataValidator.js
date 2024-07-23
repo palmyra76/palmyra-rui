@@ -1,88 +1,121 @@
 import { v as a } from "../../chunks/index.js";
-const y = (e) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(e), P = (e) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(e), M = (e) => {
-  let t = {};
-  for (var s in e) {
-    var u = e[s];
-    const r = R(u);
-    t[s] = r;
+const R = (e) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(e), F = (e) => /^(102[4-9]|10[3-9]\d|1[1-9]\d{2}|[2-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/.test(e), D = (e) => {
+  let r = {};
+  for (var t in e) {
+    const s = e[t], n = P(s);
+    r[t] = n;
   }
-  return t;
-}, R = (e) => {
-  var l, g;
-  let t = [], s = e.required;
-  if (e.required == !0 && F(e)) {
-    var u = ((l = e.errorMessage) == null ? void 0 : l.required) || "This field is mandatory";
-    t.push(d(V, u));
+  return r;
+}, P = (e) => {
+  let r = [], t = e.required;
+  if (e.required == !0 && z(e)) {
+    var s = e.missingMessage || "This field is mandatory";
+    r.push(o(q, s));
   }
   if (e.length) {
-    var r = e.length.message || "Invalid size";
-    t.push(d(S(e), r));
+    var n = e.length.errorMessage || e.errorMessage.length || "Invalid size";
+    r.push(o(E(e), n));
   }
-  if (e.validationRule) {
-    var n = e.validationRule;
-    if (n instanceof Array && n.length > 0) {
-      const c = n[0];
-      t.push(w(e, c == "OR"));
-    } else {
-      var i = h(e, n), o = ((g = e.errorMessage) == null ? void 0 : g.rule) || "Invalid";
-      t.push(d(i, o));
-    }
+  if (e.range) {
+    var u = e.range.errorMessage || e.errorMessage.range || "Invalid range";
+    r.push(o(S(e), u));
   }
-  return (c) => {
-    if (!s && v(c))
+  if (e.regExp) {
+    var i = e.errorMessage.regExp || e.errorMessage || "Invalid data";
+    r.push(o(C(e), i));
+  }
+  if (e.validFn) {
+    var l = e.errorMessage.validFn || e.errorMessage || "Invalid data";
+    r.push(o(b(e), l));
+  }
+  const c = e.validRule || e.regExp || e.validFn;
+  if (c instanceof Array && c.length > 0) {
+    const g = c[0];
+    r.push(V(e, g == "OR"));
+  } else {
+    var M = h(e, c), f = e == null ? void 0 : e.validRule, x = w(e, f, "Invalid");
+    r.push(o(M, x));
+  }
+  return (g) => {
+    if (!t && v(g))
       return { status: !0, message: "" };
-    for (var m of t) {
-      const p = m.call(null, c);
-      if (!p.status)
-        return p;
+    for (var y of r) {
+      const d = y.call(null, g);
+      if (!d.status)
+        return d;
     }
     return { status: !0, message: "" };
   };
-}, w = (e, t) => {
-  var s = [], u = e.validationRule;
-  return u instanceof Array && u.map((r, n) => {
-    var l;
-    if (!(t && n == 0)) {
-      var i = h(e, r), o = ((l = e.errorMessage) == null ? void 0 : l[r]) || "Invalid";
-      s.push(d(i, o));
+}, w = (e, r, t) => {
+  if (e != null && e.errorMessage) {
+    if (typeof e.errorMessage == "string")
+      return e.errorMessage;
+    const s = e.errorMessage[r];
+    if (s)
+      return s;
+  }
+  return t;
+}, V = (e, r) => {
+  var t = [], s = e;
+  return s instanceof Array && s.map((n, u) => {
+    if (!(r && u == 0)) {
+      var i = h(e, n), l = e.validRule, c = e.errorMessage || e.errorMessage[l] || "Invalid";
+      t.push(o(i, c));
     }
-  }), t ? (r) => {
-    if (s.length > 0) {
-      var n = "";
-      for (var i of s) {
-        const o = i.call(null, r);
-        if (o.status)
-          return o;
-        n = o.message;
+  }), r ? (n) => {
+    if (t.length > 0) {
+      var u = "";
+      for (var i of t) {
+        const l = i.call(null, n);
+        if (l.status)
+          return l;
+        u = l.message;
       }
-      return { status: !1, message: n };
+      return { status: !1, message: u };
     }
-  } : (r) => {
-    for (var n of s) {
-      const i = n.call(null, r);
+  } : (n) => {
+    for (var u of t) {
+      const i = u.call(null, n);
       if (!i.status)
         return i;
     }
     return { status: !0, message: "" };
   };
-}, S = (e) => {
+}, E = (e) => {
   if (e.length) {
-    const t = e.length.is, s = e.length.min, u = e.length.max;
+    const r = e.length.min, t = e.length.max;
+    if (length)
+      return (s) => s.length == length;
+    if (r)
+      return t ? (s) => {
+        const n = s.length;
+        return r <= n && n <= t;
+      } : (s) => r <= s.length;
     if (t)
-      return (r) => r.length == t;
-    if (s)
-      return u ? (r) => {
-        const n = r.length;
-        return s <= n && n <= u;
-      } : (r) => s <= r.length;
-    if (u)
-      return (r) => r.length <= u;
+      return (s) => s.length <= t;
   }
-}, h = (e, t) => {
-  if (t)
-    switch (t) {
+}, S = (e) => {
+  if (e.range) {
+    const r = e.range.start, t = e.range.end;
+    if (r)
+      return t ? (s) => {
+        const n = s;
+        return r <= n && n <= t;
+      } : (s) => r <= s;
+    if (t)
+      return (s) => s <= t;
+  }
+}, C = (e) => {
+  const r = e.regExp;
+  return (t) => r.test(t);
+}, b = (e) => {
+  const r = e.validFn;
+  return (t) => r(t);
+}, h = (e, r) => {
+  if (r)
+    switch (r) {
       case "string":
-        return f;
+        return p;
       case "alphabets":
         return a.isAlpha;
       case "date":
@@ -90,7 +123,7 @@ const y = (e) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(e), P = (e) => /^(102[4-9]|
       case "time":
         return a.isTime;
       case "number":
-        return q;
+        return $;
       case "email":
         return a.isEmail;
       case "mobilePhone":
@@ -102,33 +135,37 @@ const y = (e) => /^(?:[A-Za-z]:\/)?[\w\/]+\w+$/.test(e), P = (e) => /^(102[4-9]|
       case "fqdn":
         return a.isFQDN;
       case "folder":
-        return y;
+        return R;
       case "portrange":
-        return P;
+        return F;
       case "password":
         return a.isStrongPassword;
+      case "lowercase":
+        return a.isLowercase;
+      case "uppercase":
+        return a.isUppercase;
       case "oneLowerCase":
-        return C;
+        return I;
       case "oneUpperCase":
-        return b;
-      case "oneSpecialChar":
-        return x;
-      case "float":
         return A;
+      case "oneSpecialChar":
+        return L;
+      case "float":
+        return N;
     }
-  return f;
-}, f = () => !0, C = (e) => /^(.*[a-z].*)$/.test(e), b = (e) => /^(.*[A-Z].*)$/.test(e), x = (e) => /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(e), v = (e) => e == null || e == null ? !0 : typeof e == "number" ? !1 : typeof e == "string" ? a.isEmpty(e) : e instanceof Array ? e.length == 0 : !e, V = (e) => !v(e);
-function d(e, t) {
-  return (s) => e.call(null, s) ? { status: !0, message: "" } : { status: !1, message: t };
+  return p;
+}, p = () => !0, I = (e) => /^(.*[a-z].*)$/.test(e), A = (e) => /^(.*[A-Z].*)$/.test(e), L = (e) => /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(e), v = (e) => e == null || e == null ? !0 : typeof e == "number" ? !1 : typeof e == "string" ? a.isEmpty(e) : e instanceof Array ? e.length == 0 : !e, q = (e) => !v(e);
+function o(e, r) {
+  return (t) => e.call(null, t) ? { status: !0, message: "" } : { status: !1, message: r };
 }
-const q = (e) => {
-  const t = typeof e == "number" ? e.toString() : e;
-  return a.isNumeric(t);
-}, A = (e) => {
-  const t = typeof e == "number" ? e.toString() : e;
-  return a.isFloat(t);
+const $ = (e) => {
+  const r = typeof e == "number" ? e.toString() : e;
+  return a.isNumeric(r);
+}, N = (e) => {
+  const r = typeof e == "number" ? e.toString() : e;
+  return a.isFloat(r);
 };
-function F(e) {
+function z(e) {
   switch (e.type) {
     case "switch":
       return !1;
@@ -137,6 +174,6 @@ function F(e) {
   }
 }
 export {
-  R as default,
-  M as getValidators
+  P as default,
+  D as getValidators
 };

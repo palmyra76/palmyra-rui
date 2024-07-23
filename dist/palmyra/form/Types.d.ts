@@ -1,5 +1,5 @@
-import { FieldDefinition, FormData, MuiFieldDef } from './Definitions';
 import { MutableRefObject } from 'react';
+import { AttributeDefinition, FormData, ILookupOptions, IRequiredValidation } from './Definitions';
 
 type EventHandler = Record<FieldEvents, Function>;
 type FieldEvents = "onEntryComplete" | "onEntryClear" | "asyncValid";
@@ -19,12 +19,15 @@ interface FormContext {
 /**
  * Field Renderer Input
  */
+interface iField extends ILookupOptions, IRequiredValidation {
+}
 interface FieldProperties {
-    fieldDef: FieldDefinition;
-    muiFieldDef: MuiFieldDef;
+    fieldDef: iField;
     runtime?: FieldContext;
     value: any;
     displayValue?: any;
+}
+interface IPalmyraFilter extends ILookupOptions, AttributeDefinition {
 }
 interface IFormCustomizer {
     getFormHelper: () => IFormHelper;
@@ -50,6 +53,6 @@ type onDataChangeCallback = (data: any, valid: boolean) => void;
 interface FormEventHandler {
     onDataChange(key: string, listener: onDataChangeCallback): any;
 }
-export type { FieldContext, FieldProperties, FormContext, IFormCustomizer, IFormHelper };
+export type { FieldContext, FieldProperties, FormContext, IFormCustomizer, IFormHelper, IPalmyraFilter };
 export type { EventHandler, FormMode, IFieldEventListener, IFieldValueListener, FormEventHandler, onDataChangeCallback };
 export { NoopFieldEventListener, NoopFormHelper, NoopFormCustomizer, NoopFieldValueListener };

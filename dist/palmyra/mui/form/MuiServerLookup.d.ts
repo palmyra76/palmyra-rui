@@ -1,5 +1,5 @@
 import { IServerLookupField } from '../../form/interfaceFields';
-import { IServerLookupDefinition } from '../../form/interface';
+import { IMuiServerLookupDefinition } from './MuiTypes';
 
-declare const MuiServerLookup: import('react').ForwardRefExoticComponent<IServerLookupDefinition & import("react").RefAttributes<IServerLookupField>>;
+declare const MuiServerLookup: import('react').ForwardRefExoticComponent<IMuiServerLookupDefinition & import('react').RefAttributes<IServerLookupField>>;
 export default MuiServerLookup;

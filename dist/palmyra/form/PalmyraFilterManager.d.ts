@@ -1,5 +1,5 @@
-import { IFieldEventListener, IFieldValueListener, IFormHelper } from './Types';
 import { IGetFieldManager } from './interface';
+import { IFieldEventListener, IFieldValueListener, IFormHelper } from './Types';
 
 declare function createFilterFormHelper(): IFormHelper;
 interface IListeners {

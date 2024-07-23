@@ -1,5 +1,5 @@
 import { ISwitchField } from '../../form/interfaceFields';
-import { ISwitchDefinition } from '../../form/interface';
+import { IMuiSwitchDefinition } from './MuiTypes';
 
-declare const MuiSwitch: import('react').ForwardRefExoticComponent<ISwitchDefinition & import("react").RefAttributes<ISwitchField>>;
+declare const MuiSwitch: import('react').ForwardRefExoticComponent<IMuiSwitchDefinition & import('react').RefAttributes<ISwitchField>>;
 export default MuiSwitch;

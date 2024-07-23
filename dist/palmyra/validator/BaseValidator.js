@@ -1,20 +1,19 @@
 var i = Object.defineProperty;
-var n = (e, r, t) => r in e ? i(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
-var u = (e, r, t) => (n(e, typeof r != "symbol" ? r + "" : r, t), t);
-import { v as o } from "../../chunks/index.js";
-class l {
+var u = (e, t, r) => t in e ? i(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r;
+var s = (e, t, r) => u(e, typeof t != "symbol" ? t + "" : t, r);
+import { v as n } from "../../chunks/index.js";
+class c {
   constructor() {
-    u(this, "validate", (r) => {
-      var s;
-      r.required == !0 && a(r) && (s = r.errorMessage) != null && s.required;
+    s(this, "validate", (t) => {
+      t.required == !0 && f(t) && t.missingMessage;
     });
   }
 }
-const f = (e) => e == null || e == null ? !0 : typeof e == "number" ? !1 : typeof e == "string" ? o.isEmpty(e) : e instanceof Array ? e.length == 0 : !e, p = (e) => !f(e);
-function y(e, r) {
-  return (t) => e.call(null, t) ? { status: !0, message: "" } : { status: !1, message: r };
+const o = (e) => e == null || e == null ? !0 : typeof e == "number" ? !1 : typeof e == "string" ? n.isEmpty(e) : e instanceof Array ? e.length == 0 : !e, l = (e) => !o(e);
+function p(e, t) {
+  return (r) => e.call(null, r) ? { status: !0, message: "" } : { status: !1, message: t };
 }
-function a(e) {
+function f(e) {
   switch (e.type) {
     case "switch":
       return !1;
@@ -23,10 +22,10 @@ function a(e) {
   }
 }
 export {
-  l as BaseValidator,
-  y as constructMethod,
-  f as isEmpty,
-  p as isNotEmpty,
-  a as isRequiredSupported,
-  o as validator
+  c as BaseValidator,
+  p as constructMethod,
+  o as isEmpty,
+  l as isNotEmpty,
+  f as isRequiredSupported,
+  n as validator
 };

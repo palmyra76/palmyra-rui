@@ -1,5 +1,5 @@
 import { IDateTimeField } from '../../form/interfaceFields';
-import { IDateTimeDefinition } from '../../form/interface';
+import { IMuiDateTimePickerDefinition } from './MuiTypes';
 
-declare const MuiDateTimePicker: import('react').ForwardRefExoticComponent<IDateTimeDefinition & import("react").RefAttributes<IDateTimeField>>;
+declare const MuiDateTimePicker: import('react').ForwardRefExoticComponent<IMuiDateTimePickerDefinition & import('react').RefAttributes<IDateTimeField>>;
 export default MuiDateTimePicker;

@@ -3,8 +3,7 @@ function t(e) {
   return e && typeof e == "object" && !Array.isArray(e);
 }
 function i(e, ...n) {
-  if (!n.length)
-    return e;
+  if (!n.length) return e;
   const r = n.shift();
   if (t(e) && t(r))
     for (const o in r)

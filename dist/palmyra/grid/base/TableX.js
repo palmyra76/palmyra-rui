@@ -1,11 +1,10 @@
-import "../../../assets/TableX.css";
 import { jsxs as f, jsx as e, Fragment as s } from "react/jsx-runtime";
 import { useRef as N, useState as F, useEffect as H } from "react";
 import { TableContainer as M, Paper as j, Table as A, TableHead as E, TableRow as h, TableBody as O, TableCell as k } from "@mui/material";
 import B from "./ColumnHeader.js";
-import { getCoreRowModel as G, useReactTable as L, flexRender as g } from "@tanstack/react-table";
-import V from "./LoadingChild.js";
-function Y({
+import { getCoreRowModel as L, useReactTable as V, flexRender as g } from "@tanstack/react-table";
+import X from "./LoadingChild.js";
+import '../../../assets/TableX.css';function W({
   columnDefs: p,
   rowData: o,
   onRowClick: m,
@@ -23,9 +22,9 @@ function Y({
     manualFiltering: !0,
     manualPagination: !0,
     columns: p,
-    getCoreRowModel: G(),
+    getCoreRowModel: L(),
     ...v
-  }, r = L(P);
+  }, r = V(P);
   R.current = r;
   const [d, S] = F({});
   H(() => {
@@ -77,9 +76,9 @@ function Y({
         t.getContext()
       ) }, t.id)) }, n.id)) })
     ] }),
-    o == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(V, {}) }) : o == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : o.length == 0 ? /* @__PURE__ */ e(x, {}) : /* @__PURE__ */ e(s, {})
+    o == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(X, {}) }) : o == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : o.length == 0 ? /* @__PURE__ */ e(x, {}) : /* @__PURE__ */ e(s, {})
   ] });
 }
 export {
-  Y as default
+  W as default
 };

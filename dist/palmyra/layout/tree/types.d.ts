@@ -1,5 +1,5 @@
-import { IconProvider } from '../flexiLayout/IconProvider';
 import { Tree } from 'palmyra-wire';
+import { IconProvider } from '../flexiLayout/IconProvider';
 
 interface IChildTreeRequest {
     parent?: number;

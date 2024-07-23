@@ -1,33 +1,33 @@
-var s = Object.defineProperty;
-var h = (t, e, n) => e in t ? s(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n;
-var i = (t, e, n) => (h(t, typeof e != "symbol" ? e + "" : e, n), n);
-import { BaseValidator as g, constructMethod as d } from "./BaseValidator.js";
-class v {
+var i = Object.defineProperty;
+var s = (n, e, t) => e in n ? i(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t;
+var r = (n, e, t) => s(n, typeof e != "symbol" ? e + "" : e, t);
+import { BaseValidator as h, constructMethod as g } from "./BaseValidator.js";
+class c {
   constructor() {
-    i(this, "validator", new g());
-    i(this, "validate", (e) => {
-      let n = [];
+    r(this, "validator", new h());
+    r(this, "validate", (e) => {
+      let t = [];
       if (this.validator.validate, e.length) {
-        var r = e.length.message || "Invalid size";
-        n.push(d(o(e), r));
+        var l = e.length.errorMessage || "Invalid size";
+        t.push(g(o(e), l));
       }
     });
   }
 }
-const o = (t) => {
-  if (t.length) {
-    const e = t.length.is, n = t.length.min, r = t.length.max;
+const o = (n) => {
+  if (n.length) {
+    const e = n.length.min, t = n.length.max;
+    if (length)
+      return (l) => l.length == length;
     if (e)
-      return (l) => l.length == e;
-    if (n)
-      return r ? (l) => {
+      return t ? (l) => {
         const a = l.length;
-        return n <= a && a <= r;
-      } : (l) => n <= l.length;
-    if (r)
-      return (l) => l.length <= r;
+        return e <= a && a <= t;
+      } : (l) => e <= l.length;
+    if (t)
+      return (l) => l.length <= t;
   }
 };
 export {
-  v as default
+  c as default
 };

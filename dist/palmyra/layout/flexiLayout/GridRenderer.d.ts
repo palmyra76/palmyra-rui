@@ -1,9 +1,9 @@
-import { ITitle } from '../../form/interface';
-import { DefaultQueryParams } from 'palmyra-wire';
-import { IPageQueryable } from '../../form/interfaceFields';
-import { GridCustomizer, IExportOptions } from '../../grid';
-import { TableLayout } from '.';
 import { PageContext } from './Types';
+import { TableLayout } from '.';
+import { GridCustomizer, IExportOptions } from '../../grid';
+import { IPageQueryable } from '../../form/interfaceFields';
+import { DefaultQueryParams } from 'palmyra-wire';
+import { ITitle } from '../../form/interface';
 
 interface GridRendererInput {
     layout: TableLayout;
@@ -20,6 +20,6 @@ interface GridRendererInput {
     exportOptions?: IExportOptions;
     densityOption?: any;
 }
-declare const GridRenderer: import('react').ForwardRefExoticComponent<GridRendererInput & import("react").RefAttributes<IPageQueryable>>;
+declare const GridRenderer: import('react').ForwardRefExoticComponent<GridRendererInput & import('react').RefAttributes<IPageQueryable>>;
 export default GridRenderer;
 export type { GridRendererInput };

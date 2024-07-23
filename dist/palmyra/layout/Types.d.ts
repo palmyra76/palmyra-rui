@@ -1,5 +1,5 @@
-import { ITitle } from '../form/interface';
 import { IEndPoint, IEndPointOptions } from 'palmyra-wire';
+import { ITitle } from '../form/interface';
 
 type measure = string | number;
 interface Positionable {

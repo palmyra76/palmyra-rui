@@ -1,5 +1,5 @@
-import { StoreFactory } from '../../main';
 import { IFormCustomizer, FormMode } from './Types';
+import { StoreFactory } from '../../main';
 
 interface IPalmyraFilterFormInput {
     children?: any;
@@ -11,6 +11,6 @@ interface IPalmyraFilterFormInput {
 interface IPalmyraFilterForm {
     getFilterData: () => any;
 }
-declare const PalmyraFilterForm: import('react').ForwardRefExoticComponent<IPalmyraFilterFormInput & import("react").RefAttributes<unknown>>;
+declare const PalmyraFilterForm: import('react').ForwardRefExoticComponent<IPalmyraFilterFormInput & import('react').RefAttributes<unknown>>;
 export { PalmyraFilterForm };
 export type { IPalmyraFilterForm };

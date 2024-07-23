@@ -1,6 +1,6 @@
 var n = Object.defineProperty;
-var d = (r, e, t) => e in r ? n(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t;
-var o = (r, e, t) => (d(r, typeof e != "symbol" ? e + "" : e, t), t);
+var d = (t, e, r) => e in t ? n(t, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[e] = r;
+var o = (t, e, r) => d(t, typeof e != "symbol" ? e + "" : e, r);
 class i {
   constructor(e) {
     o(this, "data");
@@ -10,10 +10,10 @@ class i {
     };
   }
   getChildren(e) {
-    var t = {
+    var r = {
       result: e.children
     };
-    return Promise.resolve(t);
+    return Promise.resolve(r);
   }
   getRoot() {
     return Promise.resolve(this.data);

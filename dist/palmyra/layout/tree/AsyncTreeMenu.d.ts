@@ -1,5 +1,5 @@
-import { IChildTreeRequest } from './types';
 import { TreeQueryStore } from 'palmyra-wire';
+import { IChildTreeRequest } from './types';
 
 interface IAsyncTreeMenuInput {
     store: TreeQueryStore<IChildTreeRequest, any>;

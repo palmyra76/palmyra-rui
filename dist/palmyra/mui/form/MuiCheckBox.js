@@ -4,7 +4,7 @@ import { FormControl as L, FormControlLabel as q, Checkbox as y } from "@mui/mat
 import { copyMuiOptions as I, getFieldLabel as V } from "./MuiUtil.js";
 import { FieldManagerContext as B } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import D from "./FieldDecorator.js";
-import { T, a as S } from "../../../chunks/index.esm2.js";
+import { T, a as S } from "../../../chunks/index3.js";
 const E = v(function(e, l) {
   const d = M(B), u = l || i(null);
   var m = { ...e, required: !1 };

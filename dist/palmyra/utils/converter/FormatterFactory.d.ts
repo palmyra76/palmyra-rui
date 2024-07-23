@@ -1,6 +1,9 @@
-import { FieldDefinition } from '../../form/Definitions';
-import { Converter } from '.';
 import { MutableRefObject } from 'react';
+import { Converter } from '.';
+import { FieldDefinition } from '../../form/Definitions';
+import { IPattern } from '../../form/interface';
 
-declare const getFormatConverter: (props: FieldDefinition, formDataRef?: MutableRefObject<any>) => Converter<any, any>;
+interface IFormat extends FieldDefinition, IPattern {
+}
+declare const getFormatConverter: (props: IFormat, formDataRef?: MutableRefObject<any>) => Converter<any, any>;
 export { getFormatConverter };
