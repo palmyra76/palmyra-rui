@@ -92,7 +92,7 @@ function getColumnId(columnDef: ColumnDefinition) {
 }
 
 function getHeader(columnDef: ColumnDefinition) {
-    return () => <span>{columnDef.title}</span>
+    return () => <span>{columnDef.label}</span>
 }
 
 function getFooter(columnDef: ColumnDefinition) {

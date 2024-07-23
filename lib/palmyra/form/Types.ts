@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react";
-import { FieldDefinition, FormData, MuiFieldDef } from "./Definitions";
+import { AttributeDefinition, FormData, ILookupOptions, IRequiredValidation } from "./Definitions";
 import { createFormHelper } from "./PalmyraFormManager";
 
 type EventHandler = Record<FieldEvents, Function>;
@@ -21,18 +21,34 @@ interface FormContext {
     eventHandlers?: Record<string, EventHandler>
 }
 
+// type MuiVariant = "outlined" | "standard" | "filled";
+
+// interface MuiFieldDef {
+//     value: any,
+//     required?: boolean,
+//     disabled?: boolean,
+//     variant: MuiVariant,
+//     options?: any
+// }
 
 /**
  * Field Renderer Input
  */
+
+interface iField extends ILookupOptions, IRequiredValidation{
+
+}
 interface FieldProperties {
-    fieldDef: FieldDefinition,
-    muiFieldDef: MuiFieldDef,
+    fieldDef: iField,
+    // muiFieldDef: MuiFieldDef,
     runtime?: FieldContext,
     value: any,
     displayValue?: any
 }
 
+interface IPalmyraFilter extends ILookupOptions, AttributeDefinition {
+
+}
 
 interface IFormCustomizer {
     getFormHelper: () => IFormHelper,
@@ -90,6 +106,6 @@ interface FormEventHandler {
     onDataChange(key: string, listener: onDataChangeCallback)
 }
 
-export type { FieldContext, FieldProperties, FormContext, IFormCustomizer, IFormHelper };
+export type { FieldContext, FieldProperties, FormContext, IFormCustomizer, IFormHelper, IPalmyraFilter };
 export type { EventHandler, FormMode, IFieldEventListener, IFieldValueListener, FormEventHandler, onDataChangeCallback };
 export { NoopFieldEventListener, NoopFormHelper, NoopFormCustomizer, NoopFieldValueListener }

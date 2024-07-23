@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
-import { IDateTimeDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
@@ -7,8 +7,9 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IDateTimeField, IMutateOptions } from '../../form/interfaceFields';
+import { IMuiDateTimePickerDefinition } from './MuiTypes';
 
-const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTimeDefinition, ref: MutableRefObject<IDateTimeField>) {
+const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IMuiDateTimePickerDefinition, ref: MutableRefObject<IDateTimeField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<IDateTimeField>(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD HH:mm:ss";
@@ -79,9 +80,21 @@ const MuiDateTimePicker = forwardRef(function MuiDateTimePicker(props: IDateTime
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker {...inputProps}
                     readOnly={props.readonly}
+                    disableFuture={props.disableFuture}
+                    disablePast={props.disablePast}
+                    disableHighlightToday={props.disableHighlightToday}
+                    displayWeekNumber={props.displayWeekNumber}
+                    disableOpenPicker={props.disableOpenPicker}
                     format={displayFormat}
                     autoFocus={autoFocus}
+                    maxDate={props.maxDate}
+                    minDate={props.minDate}
+                    maxDateTime={props.maxDateTime}
+                    minDateTime={props.minDateTime}
+                    maxTime={props.maxTime}
+                    minTime={props.minTime}
                     {...callbacks}
+                    views={['year', 'day', 'hours', 'minutes', 'seconds']}
                     slotProps={{
                         textField: {
                             error: error.status,

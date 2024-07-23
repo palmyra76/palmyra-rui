@@ -1,43 +1,56 @@
 import validator from 'validator';
-
 import { isFolder, isPortRange } from './Validation';
-import { FieldDefinition, FieldValidStatus } from '../form/Definitions';
+import { FieldDefinition, FieldValidStatus, IValidatableField } from '../form/Definitions';
 
 const getValidators = (fieldDefs: Record<string, FieldDefinition>) => {
     let fieldValidators = {};
     for (var key in fieldDefs) {
-        var fieldDef = fieldDefs[key];
+        const fieldDef: FieldDefinition = fieldDefs[key];
         const validator = validate(fieldDef);
         fieldValidators[key] = validator;
     }
     return fieldValidators;
 }
 
-const validate = (format: FieldDefinition) => {
+const validate = (format: IValidatableField) => {
     let validators = [];
     let required = format.required;
 
     if (format.required == true && isRequiredSupported(format)) {
-        var message = format.errorMessage?.required || 'This field is mandatory';
+        var message = format.missingMessage || 'This field is mandatory';
         validators.push(constructMethod(isNotEmpty, message));
     }
 
     if (format.length) {
-        var lengthMessage = format.length.message || 'Invalid size';
+        var lengthMessage = format.length.errorMessage || format.errorMessage["length"] || 'Invalid size';
         validators.push(constructMethod(getLengthValidator(format), lengthMessage));
     }
 
-    if (format.validationRule) {
-        var rules = format.validationRule;
-        if (rules instanceof Array && rules.length > 0) {
-            const clause = rules[0];
-            validators.push(getRuleValidators(format, clause == 'OR'));
-        } else {
-            const rule: any = rules;
-            var typeValidator = getRuleValidator(format, rule);
-            var typeMessage = format.errorMessage?.rule || "Invalid";
-            validators.push(constructMethod(typeValidator, typeMessage));
-        }
+    if (format.range) {
+        var rangeMessage = format.range.errorMessage || format.errorMessage["range"] || 'Invalid range';
+        validators.push(constructMethod(getRangeValidator(format), rangeMessage));
+    }
+
+    if (format.regExp) {
+        var regexMessage = format.errorMessage["regExp"] || format.errorMessage || "Invalid data";
+        validators.push(constructMethod(getRegexValidator(format), regexMessage))
+    }
+
+    if (format.validFn) {
+        var validFnMessage = format.errorMessage["validFn"] || format.errorMessage || "Invalid data";
+        validators.push(constructMethod(getValidFnValidator(format), validFnMessage))
+    }
+
+    const rules = format.validRule || format.regExp || format.validFn
+    if (rules instanceof Array && rules.length > 0) {
+        const clause = rules[0];
+        validators.push(getRuleValidators(format, clause == 'OR'));
+    } else {
+        const rule: any = rules;
+        var typeValidator = getRuleValidator(format, rule);
+        var validRule: any = format?.validRule;
+        var typeMessage = getErrorMessage(format, validRule, "Invalid");
+        validators.push(constructMethod(typeValidator, typeMessage));
     }
 
     return (value: any): FieldValidStatus => {
@@ -53,15 +66,28 @@ const validate = (format: FieldDefinition) => {
     }
 }
 
-const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
+const getErrorMessage = (format: IValidatableField, messageKey: string, defValue: string) => {
+    if (format?.errorMessage) {
+        if (typeof format.errorMessage == 'string')
+            return format.errorMessage;
+
+        const errorMessage:string = format.errorMessage[messageKey];
+        if(errorMessage)
+            return errorMessage
+    }
+    return defValue;
+}
+
+const getRuleValidators = (format: IValidatableField, anyMatch: boolean) => {
     var validators = [];
-    var rules = format.validationRule;
+    var rules = format;
     if (rules instanceof Array) {
         rules.map((rule, index) => {
             if (anyMatch && 0 == index)
                 return;
             var typeValidator = getRuleValidator(format, rule);
-            var typeMessage = format.errorMessage?.[rule] || "Invalid";
+            var validRule: any = format.validRule;
+            var typeMessage = format.errorMessage || format.errorMessage[validRule] || "Invalid";
             validators.push(constructMethod(typeValidator, typeMessage));
         })
     }
@@ -92,9 +118,9 @@ const getRuleValidators = (format: FieldDefinition, anyMatch: boolean) => {
     }
 }
 
-const getLengthValidator = (format: FieldDefinition) => {
+const getLengthValidator = (format: IValidatableField) => {
     if (format.length) {
-        const length = format.length.is;
+        // const length = format.length.is;
         const minLength = format.length.min;
         const maxLength = format.length.max;
 
@@ -121,19 +147,43 @@ const getLengthValidator = (format: FieldDefinition) => {
     }
 }
 
-// const getFormatValidator = (format) => {
+const getRangeValidator = (format) => {
+    if (format.range) {
+        const start = format.range.start;
+        const end = format.range.end;
 
-// }
+        if (start) {
+            if (end) {
+                return (val) => {
+                    const r = val;
+                    return start <= r && r <= end;
+                }
+            } else {
+                return (val) => {
+                    return start <= val;
+                }
+            }
+        } else {
+            if (end) {
+                return (val) => {
+                    return val <= end;
+                }
+            }
+        }
+    }
+}
 
-// const getConstraintValidator = (format) => {
+const getRegexValidator = (format) => {
+    const regExp = format.regExp;
+    return (value: any) => { return regExp.test(value) }
+}
 
-// }
+const getValidFnValidator = (format) => {
+    const validFn = format.validFn;
+    return (value: any) => { return validFn(value) }
+}
 
-// const getRangeValidator = (format) => {
-
-// }
-
-const getRuleValidator = (format: FieldDefinition, rule: string) => {
+const getRuleValidator = (format: IValidatableField, rule: string) => {
     if (rule) {
         switch (rule) {
             case 'string':
@@ -162,6 +212,10 @@ const getRuleValidator = (format: FieldDefinition, rule: string) => {
                 return isPortRange;
             case 'password':
                 return validator.isStrongPassword;
+            case 'lowercase':
+                return validator.isLowercase;
+            case 'uppercase':
+                return validator.isUppercase;
             case 'oneLowerCase':
                 return oneLowerCase;
             case 'oneUpperCase':
@@ -240,7 +294,7 @@ export default validate;
 
 export { getValidators };
 
-function isRequiredSupported(format: FieldDefinition) {
+function isRequiredSupported(format: IValidatableField) {
     switch (format.type) {
         case 'switch':
             return false;

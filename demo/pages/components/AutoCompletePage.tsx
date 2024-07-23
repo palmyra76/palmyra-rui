@@ -2,22 +2,22 @@ import { MuiAutoComplete } from "../../../lib/main";
 import InfoBox from "../../components/boxLayout/InfoBox";
 import FormX from "../../components/wire/FormX";
 
-const Setup = `<MuiAutoComplete attribute="name" 
-    placeHolder="Select Country" 
+const Setup = `<MuiAutoComplete
+    attribute="name"
+    placeHolder="Select"
     variant="outlined"
-    lookupOptions={{ attribute: "name" }} 
-    eventListener={nameEventListener} 
-    storeOptions={{ endPoint: inputLookupEndPoint, endPointOptions }}
+    lookupOptions={{ attribute: "name" }}
+    storeOptions={{ endPoint: "/multiServerlookupData.json" }}
 />
 `;
 const Autocomplete = () => {
     return (
         <FormX>
             <MuiAutoComplete attribute="name"
-                placeHolder="Select Country"
+                placeHolder="Select"
                 variant="outlined"
                 lookupOptions={{ attribute: "name" }}
-                storeOptions={{ endPoint: '' }}
+                storeOptions={{ endPoint: "/multiServerlookupData.json" }}
             />
         </FormX>
     )

@@ -1,5 +1,5 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
-import { IDateTimeDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
@@ -7,8 +7,9 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { IDateField, IMutateOptions } from '../../form/interfaceFields';
+import { IMuiDatePickerDefinition } from './MuiTypes';
 
-const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefinition, ref: MutableRefObject<IDateField>) {
+const MuiDatePicker = forwardRef(function MuiDatePicker(props: IMuiDatePickerDefinition, ref: MutableRefObject<IDateField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<IDateField>(null);
     const displayFormat: string = props.displayPattern || props.serverPattern || "YYYY-MM-DD";
@@ -82,10 +83,16 @@ const MuiDatePicker = forwardRef(function MuiDatePicker(props: IDateTimeDefiniti
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker {...inputProps}
                     readOnly={props.readonly}
-                    disableFuture = {props.disableFuture}
+                    disableFuture={props.disableFuture}
+                    disablePast={props.disablePast}
+                    disableHighlightToday={props.disableHighlightToday}
+                    displayWeekNumber={props.displayWeekNumber}
+                    disableOpenPicker={props.disableOpenPicker}
                     format={displayFormat}
                     {...callbacks}
                     autoFocus={autoFocus}
+                    maxDate={props.maxDate}
+                    minDate={props.minDate}
                     slotProps={{
                         textField: {
                             error: error.status,

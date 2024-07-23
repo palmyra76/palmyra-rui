@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { DefaultQueryParams, AbstractQueryStore, IPagination, QueryRequest } from 'palmyra-wire';
-import { numbers } from './interface';
+
 import { useKeyValue } from '../../main';
 import { IEndPointOptions } from '../layout/Types';
+import { numbers } from '../utils/CommonTypes';
 
 interface IServerQueryInput {
   store: AbstractQueryStore<any>,

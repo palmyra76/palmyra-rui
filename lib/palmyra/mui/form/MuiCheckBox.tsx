@@ -1,14 +1,16 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { Checkbox, FormControl, FormControlLabel } from '@mui/material';
-import { ICheckboxDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ICheckBoxField, IMutateOptions } from '../../form/interfaceFields';
 import { TbSquareRounded } from "react-icons/tb";
 import { TbSquareRoundedCheckFilled } from "react-icons/tb";
+import { IMuiCheckBoxDefinition } from './MuiTypes';
 
-const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, ref: MutableRefObject<ICheckBoxField>) {
+
+const MuiCheckBox = forwardRef(function MuiCheckBox(props: IMuiCheckBoxDefinition, ref: MutableRefObject<ICheckBoxField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ICheckBoxField>(null);
     var p = { ...props, required: false };
@@ -72,7 +74,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
             <FormControl {...inputProps}>
                 <FormControlLabel
-                    control={<Checkbox  className="customCheckbox" icon={<Icon />} checkedIcon={<CheckedIcon />}
+                    control={<Checkbox className="customCheckbox" icon={<Icon />} checkedIcon={<CheckedIcon />}
                         {...callbacks} checked={value} autoFocus={autoFocus}
                         disabled={props.disabled} readOnly={props.readonly}
                         inputRef={(r) => { inputRef.current = r }}

@@ -1,6 +1,6 @@
 
-import { StringFormat } from "palmyra-rui";
 import { ChartStore, GetRequest, QueryRequest } from "palmyra-wire";
+import { StringFormat } from "../../../lib/main";
 
 class DummyChartStore implements ChartStore<any>{
     request: Record<string, string>

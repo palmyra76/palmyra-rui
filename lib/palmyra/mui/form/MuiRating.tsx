@@ -1,13 +1,14 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { Rating } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, IRatingFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ITextField, IMutateOptions, IRatingField } from '../../form/interfaceFields';
-import {StarOutline, Star} from '@mui/icons-material';
+import { StarOutline, Star } from '@mui/icons-material';
+import { IMuiRatingFieldDefinition } from './MuiTypes';
 
-const MuiRating = forwardRef(function MuiTextField(props: IRatingFieldDefinition, ref: MutableRefObject<IRatingField>) {
+const MuiRating = forwardRef(function MuiTextField(props: IMuiRatingFieldDefinition, ref: MutableRefObject<IRatingField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
@@ -75,7 +76,7 @@ const MuiRating = forwardRef(function MuiTextField(props: IRatingFieldDefinition
                 readOnly={props.readonly}
                 disabled={props.disabled}
                 inputRef={inputRef}
-                size={props.size}
+                size={props?.fieldProps?.size}
                 icon={<Icon />}
                 emptyIcon={<EmptyIcon />}
                 max={max}

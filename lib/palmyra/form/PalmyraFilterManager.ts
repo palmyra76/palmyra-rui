@@ -2,12 +2,12 @@
  * Custom Hook for form validation
  */
 
-import { FieldDefinition } from "./Definitions";
+import { FieldDefinition, ILookupOptions } from "./Definitions";
 import { setValueByKey } from "./FormUtil";
 import { default as getValidator } from "../validator/DataValidator";
 import { useEventListeners } from "./PalmyraFieldManager";
 import { mergeDeep } from "../utils";
-import { AttributeDefinition, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
+import { IAbstractField, FieldType, IFormFieldManager, IGetFieldManager } from "./interface";
 import { IFieldEventListener, IFieldValueListener, IFormHelper } from "./Types";
 import { MutableRefObject, useMemo, useRef } from "react";
 import { getLookupStore } from "./PalmyraStoreManager";
@@ -49,10 +49,10 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
 
     const getFieldManager = useMemo((): IGetFieldManager => {
         formDataRef.current = mergeDeep({}, data);
-        const generate = (field: AttributeDefinition, type: FieldType, ref: any): IFormFieldManager => {
+        const generate = (field: IAbstractField, type: FieldType, ref: any): IFormFieldManager => {
             var fieldAttrib = field.name || field.attribute;
             // @ts-ignore
-            var fieldDef: FieldDefinition = { ...field, type }
+            var fieldDef: IPalmyraFilter = { ...field, type }
             if (ref) {
                 _formHelper.addFieldRef(fieldAttrib, ref);
                 fieldRefs[fieldAttrib] = ref;
@@ -102,6 +102,6 @@ function createFilterData(data, formHelper?: IFormHelper, listeners?: IListeners
 
 export { createFilterData, createFilterFormHelper };
 
-function requireStore(fieldDef: FieldDefinition) {
+function requireStore(fieldDef: ILookupOptions) {
     return (fieldDef.storeOptions?.endPoint) ? true : false;
 }

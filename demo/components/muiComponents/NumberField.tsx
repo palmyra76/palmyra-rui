@@ -2,29 +2,29 @@ import { MuiNumberField } from "../../../lib/main";
 import FormX from "../wire/FormX";
 
 
-const BasicSetup = `<MuiNumberField attribute="name" placeHolder="Enter Name" variant="outlined" autoFocus={true} label="Name" />
-<MuiNumberField attribute="name" placeHolder="Enter Name" variant="filled" label="Name" />
-<MuiNumberField attribute="name" placeHolder="Enter Name" variant="standard" label="Name" />
+const BasicSetup = `<MuiNumberField attribute="number" placeHolder="Enter Numbers only" variant="outlined" autoFocus={true} label="Number" />
+<MuiNumberField attribute="number" placeHolder="Enter Numbers only" variant="filled" label="Number" />
+<MuiNumberField attribute="number" placeHolder="Enter Numbers only" variant="standard" label="Number" />
 `;
 
 const BasicNumberField = () => {
     return (
         <FormX>
-            <MuiNumberField attribute="name"
-                placeHolder="Enter Name"
+            <MuiNumberField attribute="number"
+                placeHolder="Enter Numbers only"
                 variant="outlined"
                 autoFocus={true}
-                label="Name"
+                label="Number"
             />
-            <MuiNumberField attribute="name"
-                placeHolder="Enter Name"
+            <MuiNumberField attribute="number"
+                placeHolder="Enter Numbers only"
                 variant="filled"
-                label="Name"
+                label="Number"
             />
-            <MuiNumberField attribute="name"
-                placeHolder="Enter Name"
+            <MuiNumberField attribute="number"
+                placeHolder="Enter Numbers only"
                 variant="standard"
-                label="Name"
+                label="Number"
             />
         </FormX>
     )
@@ -34,7 +34,21 @@ const RangeValidationSetup = `<MuiNumberField
     attribute="number"
     placeHolder="Enter Number"
     label="Number"
-    range={{ start: 3, end: 6, errorMsg: "3-6 range" }}
+    range={{ start: 3, end: 6, errorMessage: "3-6 range" }}
+/>
+
+<MuiNumberField
+    attribute="number"
+    placeHolder="Enter Number"
+    label="Number"
+    range={{ end: 10, errorMessage: "10 is end range" }}
+/>
+             
+<MuiNumberField
+    attribute="number"
+    placeHolder="Enter Number"
+    label="Number"
+    range={{ start: 30, errorMessage: "Start from 30 " }}
 />`;
 
 const RangeValidationNumberField = () => {
@@ -44,7 +58,19 @@ const RangeValidationNumberField = () => {
                 attribute="number"
                 placeHolder="Enter Number"
                 label="Number"
-                range={{ start: 3, end: 6, errorMsg: "3-6 range" }}
+                range={{ start: 3, end: 6, errorMessage: "3-6 range" }}
+            />
+             <MuiNumberField
+                attribute="number"
+                placeHolder="Enter Number"
+                label="Number"
+                range={{ end: 10, errorMessage: "10 is end range" }}
+            />
+             <MuiNumberField
+                attribute="number"
+                placeHolder="Enter Number"
+                label="Number"
+                range={{ start: 30, errorMessage: "Start from 30 " }}
             />
         </FormX>
     )
@@ -54,7 +80,8 @@ const RegexValidationSetup = `<MuiNumberField
     attribute="number"
     placeHolder="Number"
     label="Number"
-    validation={{ regex: /^\d{3}$/, errorMsg: "3 digits only allowed" }}
+    regExp={/^\d{3}$/}
+    errorMessage="3 digits only allowed"
 />`;
 
 const RegexValidationNumberField = () => {
@@ -64,7 +91,8 @@ const RegexValidationNumberField = () => {
                 attribute="number"
                 placeHolder="Number"
                 label="Number"
-                validation={{ regex: /^\d{3}$/, errorMsg: "3 digits only allowed" }}
+                regExp={/^\d{3}$/}
+                errorMessage="3 digits only allowed"
             />
         </FormX>
     )
@@ -83,7 +111,7 @@ const customFn = (n: any): boolean => {
     attribute="number"
     placeHolder="Number"
     label="Number"
-    validation={{ validateFn: customFn, errorMsg: "Enter a number between 11 and 99" }}
+    validation={{ validateFn: customFn, errorMessage: "Enter a number between 11 and 99" }}
 />`;
 
 const FunctionValidationNumberField = () => {
@@ -102,7 +130,8 @@ const FunctionValidationNumberField = () => {
                 attribute="number"
                 placeHolder="Number"
                 label="Number"
-                validation={{ validateFn: customFn, errorMsg: "Enter a number between 11 and 99" }}
+                validFn={customFn}
+                errorMessage="Enter a number between 11 and 99"
             />
         </FormX>
     )

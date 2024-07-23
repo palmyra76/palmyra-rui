@@ -1,5 +1,5 @@
 import { forwardRef, useRef, useContext } from 'react';
-import { IFormFieldManager, IGetFieldManager, ITextViewDefinition } from '../../form/interface';
+import { ITextViewDefinition, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from '../form/FieldDecorator';
 import { copyMuiOptions, getFieldLabel } from '../form/MuiUtil';

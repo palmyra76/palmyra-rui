@@ -1,4 +1,4 @@
-import { FieldDefinition } from "../form/Definitions";
+import { IValidatableField } from "../form/Definitions";
 import { BaseValidator, constructMethod } from "./BaseValidator";
 
 
@@ -6,22 +6,22 @@ class TextValidator {
 
     validator = new BaseValidator();
 
-    validate = (format: FieldDefinition) => {
+    validate = (format: IValidatableField) => {
         // Mandatory, Length,
         // Typed Validator: string, alphabets, email, mobilePhone
         let validators = [];
         this.validator.validate;
 
         if (format.length) {
-            var lengthMessage = format.length.message || 'Invalid size';
+            var lengthMessage = format.length.errorMessage || 'Invalid size';
             validators.push(constructMethod(getLengthValidator(format), lengthMessage));
         }
     }
 }
 
-const getLengthValidator = (format: FieldDefinition) => {
+const getLengthValidator = (format: IValidatableField) => {
     if (format.length) {
-        const length = format.length.is;
+        // const length = format.length.is;
         const minLength = format.length.min;
         const maxLength = format.length.max;
 

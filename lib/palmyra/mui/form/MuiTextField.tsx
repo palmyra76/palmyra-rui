@@ -1,12 +1,14 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ITextField, IMutateOptions } from '../../form/interfaceFields';
+import { IMuiTextFieldDefinition } from './MuiTypes';
 
-const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref: MutableRefObject<ITextField>) {
+
+const MuiTextField = forwardRef(function MuiTextField(props: IMuiTextFieldDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const fieldManager: IFormFieldManager = getFieldManager(props, 'string', currentRef);
@@ -16,6 +18,7 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
     const inputRef: any = useRef(null);
     const variant = props.variant || 'standard';
     const autoFocus = props.autoFocus || false;
+
 
     useImperativeHandle(currentRef, () => {
         return {
@@ -49,7 +52,9 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
         };
     }, [fieldManager]);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
+    const label = props.labelMode != 'title' ? props.label : ''
+
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, label);
 
     if (props.readonly) {
         inputProps.inputProps = { readOnly: true };
@@ -69,7 +74,9 @@ const MuiTextField = forwardRef(function MuiTextField(props: ITextFieldDefinitio
                 fullWidth={true}
                 inputRef={inputRef}
                 {...callbacks}
+                label={label}
                 error={error.status}
+                size={props.fieldProps?.size}
                 helperText={error.message}
                 autoFocus={autoFocus}
             />

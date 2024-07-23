@@ -1,13 +1,15 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, useState, MutableRefObject } from 'react';
 import { IconButton, TextField } from '@mui/material';
-import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager, ITextFieldDefinition } from '../../form/interface';
+import { IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { IMutateOptions, ITextField } from '../../form/interfaceFields';
+import { IMuiPasswordDefinition } from './MuiTypes';
 
-const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition, ref: MutableRefObject<ITextField>) {
+
+const MuiPassword = forwardRef(function MuiTextField(props: IMuiPasswordDefinition, ref: MutableRefObject<ITextField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ITextField>(null);
     const [showPassword, setShowPassword] = useState(false);

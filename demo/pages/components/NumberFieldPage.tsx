@@ -2,7 +2,9 @@ import InfoBox from "../../components/boxLayout/InfoBox";
 import {
     FunctionValidationSetup, FunctionValidationNumberField,
     RangeValidationSetup, RangeValidationNumberField,
-    RegexValidationSetup, RegexValidationNumberField
+    RegexValidationSetup, RegexValidationNumberField,
+    BasicSetup,
+    BasicNumberField
 } from "../../components/muiComponents/NumberField";
 
 
@@ -16,6 +18,15 @@ const NumberFieldPage = () => {
                 <div className="h3">
                     Users can input and edit number within Number Fields.
                 </div>
+            </div>
+            <div className="h2-container">
+                <span className="h2">
+                    Basic Number Field
+                </span>
+            </div>
+            <div className="doc-para">Three variants: outlined, filled, and standard(default).</div>
+            <div className="info-container">
+                <InfoBox setup={BasicSetup} Components={[BasicNumberField]} />
             </div>
             <div className="h2-container">
                 <span className="h2">

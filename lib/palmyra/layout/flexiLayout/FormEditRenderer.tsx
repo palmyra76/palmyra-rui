@@ -21,16 +21,16 @@ const FormRenderer = forwardRef(function FormRenderer(props: EditFormRendererInp
         return getField(field, fieldRefs);
     }, [formData.data]);
 
-    
+
     var columns = formLayout.options?.columns || 1;
     var options = { columns };
     if (FieldContainer) {
         return (
             <form className="palmyra-form-field-container-wrapper" noValidate>
                 {
-                    formLayout.fields.map((field, index) => (
+                    formLayout.fields.map((field: any, index: any) => (
                         <FieldContainer key={field.attribute + field.name + field.type} index={index}
-                            field={field} label={field.title} options={options}>
+                            field={field} label={field.label} options={options}>
                             {generateField(field)}
                         </FieldContainer>
                     ))

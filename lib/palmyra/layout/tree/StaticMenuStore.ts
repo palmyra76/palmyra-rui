@@ -1,6 +1,6 @@
 import { MenuDef } from "..";
-import { strings } from "../../form/interface";
 import { TreeQueryStore, QueryResponse, QueryRequest, GetRequest } from "palmyra-wire";
+import { strings } from "../../utils/CommonTypes";
 
 class StaticMenuStore implements TreeQueryStore<MenuDef, MenuDef> {
     data: MenuDef

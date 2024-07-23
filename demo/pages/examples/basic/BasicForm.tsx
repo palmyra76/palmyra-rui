@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { FieldGroupContainer, MuiTextArea, MuiTextField, PalmyraForm, PalmyraStoreFactory, StoreFactory, usePalmyraNewForm } from "../../../../lib/main";
+import { FieldGroupContainer, MuiTextArea, MuiTextField, PalmyraForm, StoreFactory, usePalmyraNewForm } from "../../../../lib/main";
 import CodeHighlighter from "../../../components/syntextHighlighter/CodeHighlighter";
 import { Button } from "@mui/material";
+import { PalmyraStoreFactory } from "palmyra-wire";
 
 const BasicForm = () => {
   const [isValid, setValid] = useState(false);
@@ -28,21 +29,21 @@ const BasicForm = () => {
         mode="new" ref={formRef} >
         <FieldGroupContainer columns={1}>
           <MuiTextField attribute="name"
-            title="Name"
+            label="Name"
             variant="outlined"
             required={true}
             placeHolder="surya"
-            length={{ min: 3, message: "Minimum of 3 letters" }} />
+            length={{ min: 3, errorMessage: "Minimum of 3 letters" }} />
           <MuiTextField attribute="email"
-            title="Email"
+            label="Email"
             variant="outlined"
             required={true}
             placeHolder="surya@gmail.com"
-            validationRule={"email"} />
+            validRule={"email"} />
           <MuiTextArea attribute="address"
-            title="Address"
+            label="Address"
             placeHolder="22/123, xxx nagar,chennai"
-            length={{ min: 3, message: "Minimum of 3 letters" }} />
+            length={{ min: 3, errorMessage: "Minimum of 3 letters" }} />
         </FieldGroupContainer>
       </PalmyraForm>
       <div className="form-btn-container">
@@ -94,21 +95,21 @@ const BasicForm = () => {
           mode="new" ref={formRef} >
           <FieldGroupContainer columns={1}>
             <MuiTextField attribute="name"
-              title="Name"
+              label="Name"
               variant="outlined"
               required={true}
               placeHolder="surya"
               length={{ min: 3, message: "Minimum of 3 letters" }} 
             />
             <MuiTextField attribute="email"
-              title="Email"
+              label="Email"
               variant="outlined"
               required={true}
               placeHolder="surya@gmail.com"
               validationRule={"email"} 
             />
             <MuiTextArea attribute="address" 
-              title="Address"
+              label="Address"
               placeHolder="22/123, xxx nagar,chennai"
               length={{ min: 3, message: "Minimum of 3 letters" }} 
             />

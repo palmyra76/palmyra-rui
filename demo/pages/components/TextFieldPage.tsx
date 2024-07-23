@@ -6,7 +6,9 @@ import {
     EventListenerSetup,
     EventListenerTextField,
     ValueListenerSetup,
-    ValueListenerTextField
+    ValueListenerTextField,
+    CombinationValidationSetup,
+    CombinationValidationTextField
 } from "../../components/muiComponents/TextField";
 import { BasicSetup, BasicTextField } from "../../components/muiComponents/TextField";
 
@@ -71,6 +73,15 @@ const TextFieldPage = () => {
             </div>
             <div className="info-container">
                 <InfoBox setup={FunctionValidationSetup} Components={[FunctionValidationTextField]} />
+            </div>
+
+            <div className="h3-container">
+                <span className="h3">
+                    Combination of Validation
+                </span>
+            </div>
+            <div className="info-container">
+                <InfoBox setup={CombinationValidationSetup} Components={[CombinationValidationTextField]} />
             </div>
 
             <div className="h2-container">

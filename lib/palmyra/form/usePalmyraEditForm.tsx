@@ -2,8 +2,9 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { IEndPoint } from "../layout/Types";
 import { GetRequest, PutRequest } from "palmyra-wire";
-import { FormData, StoreFactory } from "../../main";
+import { StoreFactory } from "../../main";
 import { IFormListener, NoopFormListener } from "./interface";
+import { FormData } from "./Definitions";
 
 interface IPalmyraEditFormInput {
     storeFactory: StoreFactory<any>,

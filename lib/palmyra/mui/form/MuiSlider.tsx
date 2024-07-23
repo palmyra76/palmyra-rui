@@ -1,17 +1,17 @@
 import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject } from 'react';
 import { Slider } from '@mui/material';
 import {
-    FieldType,
-    IEventListeners, IFormFieldError, IFormFieldManager,
-    IGetFieldManager, IRangeSliderDefinition,
-    numbers
+    FieldType, IEventListeners, IFormFieldError,
+    IFormFieldManager, IGetFieldManager
 } from '../../form/interface';
 import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ISliderField, IMutateOptions } from '../../form/interfaceFields';
+import { IMuiRangeSliderDefinition } from './MuiTypes';
+import { numbers } from '../../utils/CommonTypes';
 
-const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, ref: MutableRefObject<ISliderField>) {
+const MuiSlider = forwardRef(function MuiSlider(props: IMuiRangeSliderDefinition, ref: MutableRefObject<ISliderField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);
     const currentRef = ref ? ref : useRef<ISliderField>(null);
     const fieldType: FieldType = props.range ? 'sliderRange' : 'slider';
@@ -25,8 +25,8 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
     const minDistance = props.minDistance || 5;
     const label = props.label || '';
 
-    const min = props.fieldProps?.min || 0;
-    const max = props.fieldProps?.max || 100;
+    const min = props.min || 0;
+    const max = props.max || 100;
 
     useImperativeHandle(currentRef, () => {
         return {
@@ -101,13 +101,20 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
         <FieldDecorator label={getFieldLabel(props)} customContainerClass={props.customContainerClass}
             colspan={props.colspan}
             customFieldClass={props.customFieldClass} customLabelClass={props.customLabelClass}>
-            <div style={{width:'100%',textAlign:'center'}}>
+            <div style={{ width: '100%', textAlign: 'center' }}>
                 {label}
                 <Slider {...inputProps}
                     variant={variant}
                     fullWidth={true}
                     inputRef={inputRef}
                     {...callbacks}
+                    marks={props.marks}
+                    size={props.fieldProps?.size}
+                    disableSwap={props.disableSwap}
+                    valueLabelDisplay={props.valueLabelDisplay}
+                    min={min}
+                    step={props.step}
+                    max={max}
                     error={error.status}
                     helperText={error.message}
                     autoFocus={autoFocus}

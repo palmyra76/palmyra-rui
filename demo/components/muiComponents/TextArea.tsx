@@ -19,6 +19,10 @@ const BasicTextArea = () => {
                 variant="filled"
                 label="Address"
             />
+             <MuiTextArea attribute="address"
+                placeHolder="Address"
+                label="Address"
+            />
         </FormX>
     )
 }

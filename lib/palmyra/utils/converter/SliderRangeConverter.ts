@@ -1,7 +1,7 @@
 import { Converter } from "."
 import { AttributeDefinition } from "../../form/Definitions"
 import { getValueByKey } from "../../form/FormUtil";
-import { IRangeSliderDefinition } from "../../form/interface";
+import { IMuiRangeSliderDefinition } from "../../mui/form/MuiTypes";
 
 type ISliderRange = [number, number];
 
@@ -9,9 +9,9 @@ class SliderRangeConverter implements Converter<any, ISliderRange> {
     min = 0;
     max = 100
 
-    constructor(props: IRangeSliderDefinition) {
-        this.min = props.fieldProps?.min || this.min;
-        this.max = props.fieldProps?.max || this.max;
+    constructor(props: IMuiRangeSliderDefinition) {
+        this.min = props.min || this.min;
+        this.max = props.max || this.max;
         console.log(this.min);
     }
 
@@ -54,5 +54,3 @@ class SliderRangeConverter implements Converter<any, ISliderRange> {
 }
 
 export { SliderRangeConverter }
-
-
