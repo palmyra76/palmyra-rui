@@ -1,20 +1,25 @@
-import { jsx as t, Fragment as n, jsxs as a } from "react/jsx-runtime";
-const s = (e, r, i) => {
-  const d = e.fieldProps || {};
-  var l = {
-    disabled: e.disabled,
-    required: e.required,
-    placeholder: e.placeHolder,
-    value: r,
-    variant: e.variant,
-    ...d
+import { jsx as t, Fragment as s, jsxs as u } from "react/jsx-runtime";
+const o = (e, d, l, a) => {
+  const n = e.fieldProps || {}, i = a || {
+    required: e.required == !0,
+    readonly: e.readonly == !0,
+    visible: e.visible != !1,
+    disabled: e.disabled == !0
   };
-  return i && (l.label = i), l;
-}, u = (e) => e.required && e.title ? /* @__PURE__ */ t(n, { children: /* @__PURE__ */ a("div", { style: { display: "flex", alignItems: "center", gap: "3px" }, children: [
+  var r = {
+    placeholder: e.placeHolder,
+    value: d,
+    variant: e.variant,
+    ...n,
+    disabled: i.disabled,
+    required: i.required
+  };
+  return i.readonly && (r.inputProps = { readOnly: !0 }), l && (r.label = l), r;
+}, f = (e) => e.required && e.title ? /* @__PURE__ */ t(s, { children: /* @__PURE__ */ u("div", { style: { display: "flex", alignItems: "center", gap: "3px" }, children: [
   e.title,
   /* @__PURE__ */ t("span", { style: { color: "red" }, children: "*" })
 ] }) }) : e.title;
 export {
-  s as copyMuiOptions,
-  u as getFieldLabel
+  o as copyMuiOptions,
+  f as getFieldLabel
 };

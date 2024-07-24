@@ -1,8 +1,8 @@
-import { useState as f, useEffect as m } from "react";
-const l = (t) => {
-  const r = t.storeFactory, [n, s] = f(null), i = t.idKey || "id", a = (e, o) => typeof e == "string" ? e + "/{" + o + "}" : e;
-  return m(() => {
-    const e = t.id, o = i;
+import { useState as f, useEffect as l } from "react";
+const g = (t) => {
+  const r = t.storeFactory, [n, i] = f(null), s = t.idKey || "id", a = (e, o) => typeof e == "string" && t.idKey != null ? e + "/{" + o + "}" : e;
+  return l(() => {
+    const e = t.id, o = s;
     var c = a(t.endPoint, o);
     const d = r.getFormStore({}, c, o);
     var u = {
@@ -11,10 +11,10 @@ const l = (t) => {
       }
     };
     d.get(u).then((y) => {
-      s(y);
+      i(y);
     });
   }, [t.id]), { data: n };
 };
 export {
-  l as usePalmyraViewForm
+  g as usePalmyraViewForm
 };
