@@ -9,6 +9,7 @@ interface IInputField {
     setRequired: (required: boolean) => void
     setReadOnly: (readonly: boolean) => void
     setVisible: (visible: boolean) => void
+    setDisabled?: (visible: boolean) => void
     setAttribute: (options: IMutateOptions) => void
 }
 
@@ -21,6 +22,7 @@ interface IMutateOptions {
     required?: boolean
     readonly?: boolean
     visible?: boolean
+    disabled? : boolean
     disableFuture?: boolean
 }
 

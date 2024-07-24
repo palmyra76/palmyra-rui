@@ -38,6 +38,7 @@ function useEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
         const [opt, setOpt] = useState<IMutateOptions>({
             required: fieldDef.required == true,
             readonly: fieldDef.readonly == true,
+            disabled: fieldDef.disabled == true,
             visible: fieldDef.visible == false ? false : true
         });
         mutateOptions = opt;
@@ -46,6 +47,7 @@ function useEventListeners<T>(fieldDef: FieldDefinition, formDataRef: MutableRef
         mutateOptions = {
             required: fieldDef.required == true,
             readonly: fieldDef.readonly == true,
+            disabled: fieldDef.disabled == true,
             visible: fieldDef.visible == false ? false : true
         };
         setMutateOptions = (d: SetStateAction<IMutateOptions>) => {
