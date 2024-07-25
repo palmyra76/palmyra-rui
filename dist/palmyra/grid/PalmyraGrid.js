@@ -1,7 +1,7 @@
 import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
-import { P as T } from "../../chunks/ServerCardLayout.js";
+import { P as U } from "../../chunks/ServerCardLayout.js";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
 import "@mui/icons-material";
@@ -11,8 +11,9 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css                         */import "../layout/card/CardLayout.js";
 import "../layout/tree/AsyncTreeMenuEditor.js";
-/* empty css                          */import "../utils/pubsub/topic.js";
+/* empty css                          */import "./base/TableX.js";
 import "@tanstack/react-table";
+import "../utils/pubsub/topic.js";
 import "react-chartjs-2";
 import "../../chunks/ChartJS.js";
 import "dayjs";
@@ -39,5 +40,5 @@ import "../form/PalmyraForm.js";
 import "../../chunks/jspdf.es.min.js";
 import "react-dom";
 export {
-  T as PalmyraGrid
+  U as PalmyraGrid
 };

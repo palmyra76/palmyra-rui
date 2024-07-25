@@ -1,4 +1,5 @@
 export { default as GridX } from './GridX';
+export { default as TableX } from './base/TableX';
 export { default as DynColGridX } from './DynColGridX';
 export type { IPalmyraGrid } from './PalmyraGrid';
 export { PalmyraGrid } from './PalmyraGrid';

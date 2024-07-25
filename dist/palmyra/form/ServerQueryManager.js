@@ -1,5 +1,5 @@
 import "react";
-import { u as U } from "../../chunks/ServerCardLayout.js";
+import { u as V } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import "react/jsx-runtime";
 import "@mui/material";
@@ -11,9 +11,10 @@ import "react-router-dom";
 import "@mui/x-tree-view";
 /* empty css                         */import "../layout/card/CardLayout.js";
 import "../layout/tree/AsyncTreeMenuEditor.js";
-/* empty css                          */import "../utils/pubsub/topic.js";
-import "../utils/pubsub/PubSubHelper.js";
+/* empty css                          */import "../grid/base/TableX.js";
 import "@tanstack/react-table";
+import "../utils/pubsub/topic.js";
+import "../utils/pubsub/PubSubHelper.js";
 import "react-chartjs-2";
 import "../../chunks/ChartJS.js";
 import "dayjs";
@@ -40,5 +41,5 @@ import "./PalmyraForm.js";
 import "../../chunks/jspdf.es.min.js";
 import "react-dom";
 export {
-  U as default
+  V as default
 };
