@@ -1,4 +1,4 @@
-import { IEndPoint, IEndPointOptions } from "palmyra-wire";
+import { IEndPoint, IEndPointOptions } from "@palmyralabs/palmyra-wire";
 import { ITitle } from "../form/interface";
 
 type measure = string | number;

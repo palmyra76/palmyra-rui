@@ -1,19 +1,19 @@
-const n = (t) => {
-  var e = [];
-  return t.filter((r) => r.searchable).map((r, s) => {
-    e.push(a(r));
-  }), e;
-}, a = (t) => {
-  var e = {
-    attribute: t.attribute,
-    label: t.title,
+const n = (e) => {
+  var t = [];
+  return e.filter((r) => r.searchable).map((r, s) => {
+    t.push(a(r));
+  }), t;
+}, a = (e) => {
+  var t = {
+    attribute: e.attribute,
+    label: e.label,
     required: !1,
-    variant: "standard",
-    type: i(t.type)
+    // variant: "standard",  TODO - REF 
+    type: i(e.type)
   };
-  return t.displayPattern && (e.displayPattern = t.displayPattern), t.serverPattern && (e.serverPattern = t.serverPattern), t.displayAttribute && (e.displayAttribute = t.displayAttribute), t.options && (e.options = t.options), e;
-}, i = (t) => {
-  switch (t) {
+  return e.displayPattern && (t.displayPattern = e.displayPattern), e.serverPattern && (t.serverPattern = e.serverPattern), e.displayAttribute && (t.displayAttribute = e.displayAttribute), e.options && (t.options = e.options), t;
+}, i = (e) => {
+  switch (e) {
     case "select":
       return "multiSelect";
     case "radio":
@@ -23,7 +23,7 @@ const n = (t) => {
     case "number":
       return "string";
     default:
-      return t;
+      return e;
   }
 };
 export {

@@ -1,5 +1,5 @@
 
-import { PalmyraStoreFactory } from "palmyra-wire";
+import { PalmyraStoreFactory } from "@palmyralabs/palmyra-wire";
 import { mergeDeep } from "../../utils";
 import { IEndPoint, IEndPointOptions, storeBacked } from "../../layout/Types";
 import { useEffect } from "react";

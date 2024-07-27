@@ -9,10 +9,10 @@ import { ColumnDefinition, GridCustomizer, IExportOptions, NoopCustomizer } from
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { EXPORT_FORMAT, ExportRequest, IPagination } from 'palmyra-wire';
+import { EXPORT_FORMAT, ExportRequest, IPagination } from "@palmyralabs/palmyra-wire";
 import { TbFilterShare } from "react-icons/tb";
 import ExportOptions from './base/ExportOptions';
-import { GridStore } from 'palmyra-wire';
+import { GridStore } from "@palmyralabs/palmyra-wire";
 
 
 //TODO - show errors on data fetching

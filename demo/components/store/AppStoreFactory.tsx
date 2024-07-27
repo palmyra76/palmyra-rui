@@ -1,4 +1,4 @@
-import { ChartStore, QueryRequest } from "palmyra-wire";
+import { ChartStore, QueryRequest } from "@palmyralabs/palmyra-wire";
 import { DummyChartStore } from "./DummyChartStore";
 
 

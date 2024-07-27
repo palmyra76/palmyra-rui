@@ -1,62 +1,30 @@
-import { LookupStore, DefaultQueryParams } from 'palmyra-wire';
-import { IFieldEventListener, IFieldValueListener } from '.';
-import { IEndPointOptions } from '../layout/Types';
-import { IMutateOptions } from './interfaceFields';
-import { IEndPoint } from '../layout';
 import { MutableRefObject, ReactNode, SetStateAction } from 'react';
+import { IEndPoint } from '../layout';
+import { IMutateOptions } from './interfaceFields';
+import { IEndPointOptions } from '../layout/Types';
+import { LookupStore, DefaultQueryParams } from '@palmyralabs/palmyra-wire';
+import { FieldDefinition, IFunctionValidation, ILengthValidation, ILookupOptions, IRangeValidation, IRegexValidation, IRuleValidation, LookupOptions } from './Definitions';
+import { IFieldEventListener, IFieldValueListener } from './Types';
+import { numbers } from '../utils/CommonTypes';
 
 /**
  * This definitions will cater to the Form Definition format
- *
  */
 type FieldType = "string" | "number" | "date" | "radio" | "select" | "iosswitch" | "datetime" | "textarea" | "checkbox" | "serverlookup" | "switch" | "autoComplete" | "password" | "multiSelect" | "dateRange" | "float" | "numbersOnly" | "integer" | "slider" | "sliderRange" | "rating";
-type InputType = string | number | Date;
-type strings = string | string[];
-type numbers = number | number[];
 interface IDecoratedTitle {
     title: string;
     toolTip?: string;
 }
+interface IPattern {
+    serverPattern?: string;
+    displayPattern?: string;
+}
 type widgetFn = () => ReactNode;
 type ITitle = string | IDecoratedTitle | widgetFn;
-interface RangeValidation<T> {
-    is?: T;
-    min?: T;
-    max?: T;
-    message: string;
-}
-interface LookupOptions {
-    idAttribute?: string;
-    titleAttribute?: string;
-}
-interface AttributeDefinition {
-    attribute: string;
-    name?: string;
-    defaultValue?: InputType;
-    value?: InputType;
-    required?: boolean;
-    readonly?: boolean;
-    hideSelectAll?: boolean;
-    mutant?: boolean;
-    visible?: boolean;
-    disabled?: boolean;
-    placeHolder?: string;
+interface IAbstractField extends FieldDefinition {
     autoFocus?: boolean;
-    variant?: 'standard' | 'outlined' | 'filled';
     eventListener?: IFieldEventListener;
     valueListener?: IFieldValueListener;
-    fieldProps?: IFieldProps;
-}
-interface IFieldProps {
-    size?: 'small' | 'medium' | 'large';
-}
-interface abstractValidation {
-    validationRule?: strings;
-    errorMessage?: Record<string, string>;
-}
-interface TextValidation extends abstractValidation {
-    length?: RangeValidation<number>;
-    regex?: string;
 }
 interface IDecoration {
     customContainerClass?: string;
@@ -65,85 +33,60 @@ interface IDecoration {
     className?: string;
     colspan?: number;
     label?: string;
-    title?: string;
-}
-interface ITextFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
-}
-interface IRatingFieldDefinition extends AttributeDefinition, TextValidation, IDecoration {
-    precision?: number;
-    size?: 'small' | 'large';
-    max?: number;
-    disabled?: boolean;
-    icon?: any;
-    emptyIcon?: any;
-}
-interface ValueLabel {
-    value: number;
-    label: string;
-}
-interface IRangeSliderDefinition extends AttributeDefinition, TextValidation, IDecoration {
-    minDistance?: number;
-    range?: boolean;
-    fieldProps?: {
-        disableSwap?: boolean;
-        size?: 'small';
-        valueLabelDisplay?: 'auto' | 'on' | 'off';
-        min?: number;
-        max?: number;
-        step?: number;
-        marks?: boolean | ValueLabel[];
-    };
-}
-interface INumberFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
-}
-interface IIntegerFieldDefinition extends AttributeDefinition, IDecoration, abstractValidation {
-}
-interface ISwitchDefinition extends AttributeDefinition, IDecoration {
-    options: Record<string | number, string | number>;
-}
-interface ISelectDefinition extends AttributeDefinition, IDecoration {
-    options: Record<any, any> | Record<string, any>;
-}
-interface ICheckboxGroupDefinition extends AttributeDefinition, IDecoration {
-    options: Record<any, any> | Record<string, any>;
-    flexDirection?: 'column' | 'row';
-}
-interface ICheckboxDefinition extends AttributeDefinition, IDecoration {
-    icon?: any;
-    checkedIcon?: any;
+    labelMode?: 'header' | 'title';
+    hideLabel?: boolean;
 }
 type IRadioGroupOptions = Record<any, any> | Record<string, any> | {
     value: any;
     label: string;
 }[];
-interface IRadioGroupDefinition extends AttributeDefinition, IDecoration {
+interface ITextFieldDefinition extends IAbstractField, IDecoration, ILengthValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
+}
+interface INumberFieldDefinition extends IAbstractField, IDecoration, IRangeValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
+}
+interface IIntegerFieldDefinition extends IAbstractField, IDecoration, IRangeValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
+}
+interface ISwitchDefinition extends IAbstractField, IDecoration {
+    options: Record<string | number | any, string | number | boolean>;
+    switch?: 'MaterialUISwitch' | 'Android12Switch' | 'IOSSwitch' | 'Switch';
+}
+interface ISelectDefinition extends IAbstractField, IDecoration {
+    options: Record<any, any> | Record<string, any>;
+}
+interface IRatingFieldDefinition extends IAbstractField, IDecoration {
+}
+interface IDatePickerDefinition extends IAbstractField, IDecoration, IPattern {
+}
+interface IDateTimePickerDefinition extends IAbstractField, IDecoration, IPattern {
+}
+interface IRangeSliderDefinition extends IAbstractField, IDecoration {
+    minDistance?: number;
+    range?: never;
+}
+interface ICheckboxDefinition extends IAbstractField, IDecoration {
+}
+interface ICheckboxGroupDefinition extends IAbstractField, IDecoration {
+    options: Record<any, any> | Record<string, any>;
+}
+interface IServerCheckboxDefinition extends IAbstractField, IDecoration, ILookupOptions {
+    hideSelectAll?: boolean;
+    showSelectedOnly?: boolean;
+    pageSize?: numbers;
+    defaultParams?: DefaultQueryParams;
+}
+interface IRadioGroupDefinition extends IAbstractField, IDecoration {
     options: IRadioGroupOptions;
-    flexDirection?: 'column' | 'row';
 }
-interface IDateTimeDefinition extends AttributeDefinition, IDecoration {
-    range?: RangeValidation<string>;
-    serverPattern?: string;
-    displayPattern?: string;
-    disableFuture?: boolean;
-}
-interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
+interface IServerLookupDefinition extends IAbstractField, IDecoration, ILookupOptions {
     displayAttribute?: string;
-    defaultValue?: InputType | any;
-    idAttribute?: string;
-    multiple?: boolean;
-    renderOption?: Function;
-    lookupOptions: IFormFieldServerLookup;
     store?: LookupStore<any>;
-    storeOptions: {
-        endPoint: IEndPoint;
-        endPointOptions?: IEndPointOptions;
-    };
     fetchDefault?: number;
     pageSize?: numbers;
     defaultParams?: DefaultQueryParams;
 }
-interface IAutoCompleteDefinition extends AttributeDefinition, IDecoration {
-    renderOption?: Function;
+interface IPasswordDefinition extends IAbstractField, IDecoration, ILengthValidation, IFunctionValidation, IRuleValidation, IRegexValidation {
+}
+interface IAutoCompleteDefinition extends IAbstractField, IDecoration {
     lookupOptions: {
         attribute?: string;
     };
@@ -152,29 +95,6 @@ interface IAutoCompleteDefinition extends AttributeDefinition, IDecoration {
         endPoint: IEndPoint;
         endPointOptions?: IEndPointOptions;
     };
-}
-interface IServerLookupDefinition extends AttributeDefinition, IDecoration {
-    displayAttribute?: string;
-    idAttribute?: string;
-    multiple?: boolean;
-    renderOption?: Function;
-    lookupOptions: IFormFieldServerLookup;
-    store?: LookupStore<any>;
-    storeOptions: {
-        endPoint: IEndPoint;
-        endPointOptions?: IEndPointOptions;
-    };
-}
-interface IServerCheckboxDefinition extends AttributeDefinition, IDecoration {
-    lookupOptions: IFormFieldServerLookup;
-    storeOptions: {
-        endPoint: IEndPoint;
-        endPointOptions?: IEndPointOptions;
-    };
-    flexDirection?: 'column' | 'row';
-    showSelectedOnly?: boolean;
-    pageSize?: numbers;
-    defaultParams?: DefaultQueryParams;
 }
 interface IEventListeners {
     onBlur: (data: any) => void;
@@ -185,10 +105,6 @@ interface IEventListeners {
 interface IFormFieldSelect {
     options?: Record<any, any>;
     defaultSelected: any;
-}
-interface IFormFieldServerLookup {
-    idAttribute?: string;
-    displayAttribute?: string;
 }
 interface IFormFieldError {
     status: boolean;
@@ -202,7 +118,7 @@ interface IFormFieldInput {
     displayValue?: any;
     toolkitOptions?: Record<string, any>;
     select?: IFormFieldSelect;
-    lookup?: IFormFieldServerLookup;
+    lookup?: LookupOptions;
 }
 interface IFormFieldManager {
     data: any;
@@ -216,19 +132,13 @@ interface IFormFieldManager {
     mutateOptions?: IMutateOptions;
     setMutateOptions?: (d: SetStateAction<IMutateOptions>) => void;
 }
-interface IFieldDefinition extends AttributeDefinition, LookupOptions {
-    type: string;
-}
-type IGetFieldManager = (fieldDef: AttributeDefinition, type: FieldType, ref: MutableRefObject<any>) => IFormFieldManager;
-interface IFormFieldInputDefinition extends IFieldDefinition {
-    toolkitOptions?: any;
-}
+type IGetFieldManager = (fieldDef: IAbstractField, type: FieldType, ref: MutableRefObject<any>) => IFormFieldManager;
 interface IFormListener {
     onSaveSuccess?: (data: any) => void;
     onSaveFailure?: (e: any) => void;
     preProcessSaveData?: (data: FormData) => FormData;
 }
-interface TextViewAttributeDefinition {
+interface TextViewAttributeDefinition extends IAbstractField {
     attribute: string;
     textAlign?: 'left' | 'right' | 'center';
     variant?: 'standard' | 'outlined';
@@ -240,14 +150,14 @@ interface IDateViewDefinition extends TextViewAttributeDefinition, IDecoration {
 }
 interface ILookupViewDefinition extends TextViewAttributeDefinition, IDecoration {
     displayAttribute: string;
-    lookupOptions?: IFormFieldServerLookup;
+    lookupOptions?: LookupOptions;
 }
 interface IOptionsViewDefinition extends TextViewAttributeDefinition, IDecoration {
     options: Record<any, any> | Record<string, any>;
 }
 declare const NoopFormListener: IFormListener;
-export type { ITextFieldDefinition, IRatingFieldDefinition, ISelectDefinition, IDateTimeDefinition, IFieldDefinition, AttributeDefinition, FieldType, INumberFieldDefinition, IIntegerFieldDefinition };
-export type { IServerCheckboxDefinition, ICheckboxGroupDefinition, IAutoCompleteDefinition, IRadioGroupOptions, IServerLookupDefinition, ISwitchDefinition, IFormListener, ICheckboxDefinition, IRadioGroupDefinition, IRangeSliderDefinition, strings, numbers, ITextViewDefinition, ILookupViewDefinition, IOptionsViewDefinition, IDateViewDefinition };
-export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldInputDefinition, IFormFieldManager, IGetFieldManager, IDecoration };
-export type { ITitle, IDecoratedTitle };
+export type { ITextFieldDefinition, INumberFieldDefinition, IIntegerFieldDefinition, ISwitchDefinition, IAutoCompleteDefinition, ISelectDefinition, IRatingFieldDefinition, IDatePickerDefinition, IDateTimePickerDefinition, IRangeSliderDefinition, ICheckboxDefinition, ICheckboxGroupDefinition, IServerCheckboxDefinition, IRadioGroupDefinition, IServerLookupDefinition, IPasswordDefinition, ITextViewDefinition, ILookupViewDefinition, IOptionsViewDefinition, IDateViewDefinition };
+export type { FieldType, IFormListener, IAbstractField };
+export type { IEventListeners, IFormFieldError, IFormFieldInput, IFormFieldSelect, IFormFieldManager, IGetFieldManager, IDecoration };
+export type { IPattern, ITitle, IDecoratedTitle, };
 export { NoopFormListener };

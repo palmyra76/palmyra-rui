@@ -1,5 +1,5 @@
 import { ICheckBoxField } from '../../form/interfaceFields';
-import { IServerCheckboxDefinition } from '../../form/interface';
+import { IMuiServerCheckBoxGroupDefinition } from './MuiTypes';
 
-declare const MuiServerCheckBox: import('react').ForwardRefExoticComponent<IServerCheckboxDefinition & import("react").RefAttributes<ICheckBoxField>>;
+declare const MuiServerCheckBox: import('react').ForwardRefExoticComponent<IMuiServerCheckBoxGroupDefinition & import('react').RefAttributes<ICheckBoxField>>;
 export default MuiServerCheckBox;

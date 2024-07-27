@@ -1,5 +1,5 @@
 
-import { ChartStore, GetRequest, QueryRequest } from "palmyra-wire";
+import { ChartStore, GetRequest, QueryRequest } from "@palmyralabs/palmyra-wire";
 import { StringFormat } from "../../../lib/main";
 
 class DummyChartStore implements ChartStore<any>{

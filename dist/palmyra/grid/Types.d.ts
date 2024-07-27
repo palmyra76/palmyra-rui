@@ -1,10 +1,11 @@
-import { MutableRefObject } from 'react';
-import { AttributeDefinition } from '../form/Definitions';
 import { CellContext, ColumnDef, OnChangeFn, Row, RowData, RowModel, RowSelectionState, Table } from '@tanstack/react-table';
+import { AttributeDefinition } from '../form/Definitions';
+import { MutableRefObject } from 'react';
+import { IPattern } from '../form/interface';
 
-interface ColumnDefinition extends AttributeDefinition {
+interface ColumnDefinition extends AttributeDefinition, IPattern {
     name: string;
-    title: string;
+    label: string;
     width?: string;
     hideTitle?: boolean;
     hideColumn?: boolean;

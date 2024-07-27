@@ -1,5 +1,5 @@
 import { MutableRefObject, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-import { TreeQueryStore } from 'palmyra-wire';
+import { TreeQueryStore } from "@palmyralabs/palmyra-wire";
 import { AiOutlineLoading } from "react-icons/ai";
 import { FaRegSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";

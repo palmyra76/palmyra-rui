@@ -1,78 +1,84 @@
-import { jsx as o, Fragment as M } from "react/jsx-runtime";
-import { forwardRef as h, useContext as P, useRef as d, useImperativeHandle as x } from "react";
-import { LocalizationProvider as L, DatePicker as R } from "@mui/x-date-pickers";
-import V from "dayjs";
-import { copyMuiOptions as O, getFieldLabel as j } from "./MuiUtil.js";
-import { FieldManagerContext as k } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import { jsx as n, Fragment as P } from "react/jsx-runtime";
+import { forwardRef as v, useContext as M, useRef as c, useImperativeHandle as k } from "react";
+import { LocalizationProvider as x, DatePicker as O } from "@mui/x-date-pickers";
+import L from "dayjs";
+import { copyMuiOptions as R, getFieldLabel as V } from "./MuiUtil.js";
+import { FieldManagerContext as j } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import A from "./FieldDecorator.js";
 import { A as Y } from "../../../chunks/AdapterDayjs.js";
-const G = h(function(t, i) {
-  const m = P(k), u = i || d(null), f = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = m(t, "date", u), { mutateOptions: F, setMutateOptions: s } = r, l = r.error, D = r.data, n = r.eventListeners, C = t.variant || "standard", b = t.autoFocus || !1, c = d(null), g = () => V(D);
-  x(u, () => ({
+const E = v(function(e, o) {
+  const m = M(j), u = o || c(null), f = e.displayPattern || e.serverPattern || "YYYY-MM-DD", s = m(e, "date", u), { mutateOptions: b, setMutateOptions: r } = s, l = s.error, D = s.data, i = s.eventListeners, g = e.variant || "standard", F = e.autoFocus || !1, d = c(null), C = () => L(D);
+  k(u, () => ({
     focus() {
-      c.current.focus();
+      d.current.focus();
     },
     isValid() {
       return !l.status;
     },
     getValue() {
-      return r.getData();
+      return s.getData();
     },
     clear() {
-      r.setData("", !0);
+      s.setData("", !0);
     },
-    setValue(e, a = !1) {
-      r.setData(e, a);
+    setValue(t, a = !1) {
+      s.setData(t, a);
     },
-    setVisible(e) {
-      s((a) => ({ ...a, visible: e }));
+    setVisible(t) {
+      r((a) => ({ ...a, visible: t }));
     },
-    setRequired(e) {
-      s((a) => ({ ...a, required: e }));
+    setRequired(t) {
+      r((a) => ({ ...a, required: t }));
     },
-    setReadOnly(e) {
-      s((a) => ({ ...a, readonly: e }));
+    setReadOnly(t) {
+      r((a) => ({ ...a, readonly: t }));
     },
-    setDisableFuture(e) {
-      s((a) => ({ ...a, disableFuture: e }));
+    setDisableFuture(t) {
+      r((a) => ({ ...a, disableFuture: t }));
     },
-    setAttribute(e) {
-      s((a) => ({ ...a, ...e }));
+    setAttribute(t) {
+      r((a) => ({ ...a, ...t }));
     },
     setCurrent() {
     }
-  }), [r]);
-  var v = O(t, g(), t.label), y = {
-    onBlur: n.onBlur,
-    onFocus: n.onFocus,
-    onChange: (e) => {
-      e && e.toDate ? n.onValueChange(e.toDate()) : n.onValueChange(void 0);
+  }), [s]);
+  var y = R(e, C(), e.label), h = {
+    onBlur: i.onBlur,
+    onFocus: i.onFocus,
+    onChange: (t) => {
+      t && t.toDate ? i.onValueChange(t.toDate()) : i.onValueChange(void 0);
     }
   };
-  return /* @__PURE__ */ o(M, { children: F.visible && /* @__PURE__ */ o(
+  return /* @__PURE__ */ n(P, { children: b.visible && /* @__PURE__ */ n(
     A,
     {
-      label: j(t),
-      customContainerClass: t.customContainerClass,
-      colspan: t.colspan,
-      customFieldClass: t.customFieldClass,
-      customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ o(L, { dateAdapter: Y, children: /* @__PURE__ */ o(
-        R,
+      label: V(e),
+      customContainerClass: e.customContainerClass,
+      colspan: e.colspan,
+      customFieldClass: e.customFieldClass,
+      customLabelClass: e.customLabelClass,
+      children: /* @__PURE__ */ n(x, { dateAdapter: Y, children: /* @__PURE__ */ n(
+        O,
         {
-          ...v,
-          readOnly: t.readonly,
-          disableFuture: t.disableFuture,
-          format: f,
           ...y,
-          autoFocus: b,
+          readOnly: e.readonly,
+          disableFuture: e.disableFuture,
+          disablePast: e.disablePast,
+          disableHighlightToday: e.disableHighlightToday,
+          displayWeekNumber: e.displayWeekNumber,
+          disableOpenPicker: e.disableOpenPicker,
+          format: f,
+          ...h,
+          autoFocus: F,
+          maxDate: e.maxDate,
+          minDate: e.minDate,
           slotProps: {
             textField: {
               error: l.status,
               helperText: l.message,
-              variant: C,
+              variant: g,
               fullWidth: !0,
-              inputRef: c
+              inputRef: d
             }
           }
         }
@@ -81,5 +87,5 @@ const G = h(function(t, i) {
   ) });
 });
 export {
-  G as default
+  E as default
 };

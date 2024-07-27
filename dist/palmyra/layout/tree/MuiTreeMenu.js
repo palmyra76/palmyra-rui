@@ -2,10 +2,11 @@ import { jsxs as a, jsx as i, Fragment as l } from "react/jsx-runtime";
 import W from "@emotion/styled";
 import { useNavigate as A } from "react-router-dom";
 import { ChevronRight as D } from "@mui/icons-material";
-import { TreeItem as R, TreeView as $ } from "@mui/x-tree-view";
+import { TreeItem as R, SimpleTreeView as $ } from "@mui/x-tree-view";
 import { SimpleIconProvider as F } from "../flexiLayout/IconProvider.js";
 import { useState as u, useEffect as G } from "react";
-/* empty css                            */const h = (n) => n.title ? n.title : n.name;
+import '../../../assets/MuiXTreeMenu.css';/* empty css                           */
+const h = (n) => n.title ? n.title : n.name;
 function Q(n) {
   const p = n.data, m = n.sidebarWidth, M = n.iconProvider || F, x = A(), [f, w] = u([]), [v, I] = u(null), [c, b] = u(null), y = (t, e) => {
     b(t);
@@ -40,7 +41,7 @@ function Q(n) {
       return e.children ? /* @__PURE__ */ i(
         N,
         {
-          nodeId: e.name,
+          itemId: e.name,
           className: `mui-tree ${d ? "selected" : ""}`,
           onSelect: d,
           label: /* @__PURE__ */ a(l, { children: [
@@ -67,7 +68,7 @@ function Q(n) {
         N,
         {
           className: `mui-tree ${d ? "selected" : ""}`,
-          nodeId: e.name,
+          itemId: e.name,
           label: /* @__PURE__ */ a("div", { onClick: (s) => {
             g(e);
           }, className: "mui-tree-menu-list", children: [
@@ -90,7 +91,7 @@ function Q(n) {
       $,
       {
         "aria-label": "rich object",
-        defaultExpanded: ["Simple Layout Demo"],
+        defaultExpandedItems: ["Simple Layout Demo"],
         sx: { height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: "auto" },
         children: z
       }

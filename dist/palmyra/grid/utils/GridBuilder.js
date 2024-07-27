@@ -1,6 +1,6 @@
 var u = Object.defineProperty;
 var d = (e, t, s) => t in e ? u(e, t, { enumerable: !0, configurable: !0, writable: !0, value: s }) : e[t] = s;
-var i = (e, t, s) => (d(e, typeof t != "symbol" ? t + "" : t, s), s);
+var i = (e, t, s) => d(e, typeof t != "symbol" ? t + "" : t, s);
 class r {
   constructor() {
     i(this, "columns", []);

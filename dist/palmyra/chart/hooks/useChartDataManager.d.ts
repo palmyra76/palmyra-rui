@@ -1,5 +1,5 @@
-import { DataTransformer } from '../Types';
 import { IEndPoint, IEndPointOptions, storeBacked } from '../../layout/Types';
+import { DataTransformer } from '../Types';
 
 interface IDataManagerInput extends storeBacked {
     filter?: any;

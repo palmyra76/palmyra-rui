@@ -1,5 +1,5 @@
 import { ISliderField } from '../../form/interfaceFields';
-import { IRangeSliderDefinition } from '../../form/interface';
+import { IMuiRangeSliderDefinition } from './MuiTypes';
 
-declare const MuiSlider: import('react').ForwardRefExoticComponent<IRangeSliderDefinition & import("react").RefAttributes<ISliderField>>;
+declare const MuiSlider: import('react').ForwardRefExoticComponent<IMuiRangeSliderDefinition & import('react').RefAttributes<ISliderField>>;
 export default MuiSlider;

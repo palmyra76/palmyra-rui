@@ -1,17 +1,18 @@
-import { jsx as o, Fragment as v } from "react/jsx-runtime";
-import { forwardRef as x, useContext as M, useRef as m, useImperativeHandle as h } from "react";
-import { TextField as R } from "@mui/material";
-import { copyMuiOptions as L, getFieldLabel as O } from "./MuiUtil.js";
-import { FieldManagerContext as V } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import y from "./FieldDecorator.js";
-const w = x(function(e, u) {
-  const f = M(V), i = u || m(null), s = f(e, "string", i), { mutateOptions: F, setMutateOptions: n } = s, r = s.error, l = s.eventListeners, c = m(null), g = e.variant || "standard", C = e.autoFocus || !1;
-  h(i, () => ({
+import { jsx as o, Fragment as M } from "react/jsx-runtime";
+import { forwardRef as h, useContext as R, useRef as F, useImperativeHandle as L } from "react";
+import { TextField as O } from "@mui/material";
+import { copyMuiOptions as V, getFieldLabel as y } from "./MuiUtil.js";
+import { FieldManagerContext as D } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import T from "./FieldDecorator.js";
+const A = h(function(e, i) {
+  var f;
+  const g = R(D), u = i || F(null), s = g(e, "string", u), { mutateOptions: C, setMutateOptions: n } = s, l = s.error, r = s.eventListeners, c = F(null), b = e.variant || "standard", v = e.autoFocus || !1;
+  L(u, () => ({
     focus() {
       c.current.focus();
     },
     isValid() {
-      return !r.status;
+      return !l.status;
     },
     getValue() {
       return s.getData();
@@ -35,37 +36,40 @@ const w = x(function(e, u) {
       n((a) => ({ ...a, ...t }));
     }
   }), [s]);
-  var d = L(e, s.data, e.label);
-  e.readonly && (d.inputProps = { readOnly: !0 });
-  var b = {
-    onBlur: l.onBlur,
-    onFocus: l.onFocus,
-    onChange: (t) => l.onValueChange(t.target.value)
+  const d = e.labelMode != "title" ? e.label : "";
+  var m = V(e, s.data, d);
+  e.readonly && (m.inputProps = { readOnly: !0 });
+  var x = {
+    onBlur: r.onBlur,
+    onFocus: r.onFocus,
+    onChange: (t) => r.onValueChange(t.target.value)
   };
-  return /* @__PURE__ */ o(v, { children: F.visible && /* @__PURE__ */ o(
-    y,
+  return /* @__PURE__ */ o(M, { children: C.visible && /* @__PURE__ */ o(
+    T,
     {
-      label: O(e),
+      label: y(e),
       customContainerClass: e.customContainerClass,
       colspan: e.colspan,
       customFieldClass: e.customFieldClass,
       customLabelClass: e.customLabelClass,
       children: /* @__PURE__ */ o(
-        R,
+        O,
         {
-          ...d,
-          variant: g,
+          ...m,
+          variant: b,
           fullWidth: !0,
           inputRef: c,
-          ...b,
-          error: r.status,
-          helperText: r.message,
-          autoFocus: C
+          ...x,
+          label: d,
+          error: l.status,
+          size: (f = e.fieldProps) == null ? void 0 : f.size,
+          helperText: l.message,
+          autoFocus: v
         }
       )
     }
   ) });
 });
 export {
-  w as default
+  A as default
 };

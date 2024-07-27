@@ -1,8 +1,8 @@
 import { jsx as m } from "react/jsx-runtime";
 import { createColumnHelper as c } from "@tanstack/react-table";
 import { formatColumn as d } from "./CellFormatter.js";
-import { getValueByKey as v } from "../../form/FormUtil.js";
-import { hasDot as b } from "../../utils/StringUtil.js";
+import { getValueByKey as b } from "../../form/FormUtil.js";
+import { hasDot as v } from "../../utils/StringUtil.js";
 import { getFormatConverter as g } from "../../utils/converter/FormatterFactory.js";
 const u = c();
 function k(r, o) {
@@ -50,13 +50,13 @@ function p(r, o) {
 function C(r) {
   var o = r.attribute ? r.attribute : r.name;
   const t = g(r);
-  return b(o) ? (e) => t.convert(v(o, e)) : (e) => t.convert(e[o]);
+  return v(o) ? (e) => t.convert(b(o, e)) : (e) => t.convert(e[o]);
 }
 function s(r) {
   return r.name ? r.name : r.attribute;
 }
 function y(r) {
-  return () => /* @__PURE__ */ m("span", { children: r.title });
+  return () => /* @__PURE__ */ m("span", { children: r.label });
 }
 function G(r) {
   return (o, t) => {

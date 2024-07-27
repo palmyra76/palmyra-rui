@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { DateView, LookupView, OptionsView, PalmyraForm, StoreFactory, TextView } from "../../../../lib/main";
-import { PalmyraStoreFactory } from "palmyra-wire";
+import { PalmyraStoreFactory } from "@palmyralabs/palmyra-wire";
 
 
 const BasicSetup = `<TextView

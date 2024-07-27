@@ -3,8 +3,7 @@ function q(e, r, t) {
 }
 function S(e, r) {
   var t = Object.create(e.prototype);
-  for (var n in r)
-    t[n] = r[n];
+  for (var n in r) t[n] = r[n];
   return t;
 }
 function $() {
@@ -251,12 +250,9 @@ function F(e, r, t, n) {
   return n <= 0 ? e = r = t = NaN : t <= 0 || t >= 1 ? e = r = NaN : r <= 0 && (e = NaN), new h(e, r, t, n);
 }
 function W(e) {
-  if (e instanceof h)
-    return new h(e.h, e.s, e.l, e.opacity);
-  if (e instanceof $ || (e = _(e)), !e)
-    return new h();
-  if (e instanceof h)
-    return e;
+  if (e instanceof h) return new h(e.h, e.s, e.l, e.opacity);
+  if (e instanceof $ || (e = _(e)), !e) return new h();
+  if (e instanceof h) return e;
   e = e.rgb();
   var r = e.r / 255, t = e.g / 255, n = e.b / 255, a = Math.min(r, t, n), i = Math.max(r, t, n), s = NaN, l = i - a, x = (i + a) / 2;
   return l ? (r === i ? s = (t - n) / l + (t < n) * 6 : t === i ? s = (n - r) / l + 2 : s = (r - t) / l + 4, l /= x < 0.5 ? i + a : 2 - i - a, s *= 60) : l = x > 0 && x < 1 ? 0 : s, new h(s, l, x, e.opacity);
@@ -306,8 +302,7 @@ function C(e, r, t) {
 const de = Math.PI / 180, be = 180 / Math.PI;
 var X = -0.14861, I = 1.78277, A = -0.29227, P = -0.90649, N = 1.97294, K = N * P, Q = N * I, T = I * A - P * X;
 function ge(e) {
-  if (e instanceof g)
-    return new g(e.h, e.s, e.l, e.opacity);
+  if (e instanceof g) return new g(e.h, e.s, e.l, e.opacity);
   e instanceof f || (e = V(e));
   var r = e.r / 255, t = e.g / 255, n = e.b / 255, a = (T * n + K * r - Q * t) / (T + K - Q), i = n - a, s = (N * (t - a) - A * i) / P, l = Math.sqrt(s * s + i * i) / (N * a * (1 - a)), x = l ? Math.atan2(s, i) * be - 120 : NaN;
   return new g(x < 0 ? x + 360 : x, l, a, e.opacity);

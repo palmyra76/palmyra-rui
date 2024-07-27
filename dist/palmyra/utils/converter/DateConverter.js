@@ -1,6 +1,6 @@
 var s = Object.defineProperty;
 var u = (e, t, r) => t in e ? s(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r;
-var a = (e, t, r) => (u(e, typeof t != "symbol" ? t + "" : t, r), r);
+var a = (e, t, r) => u(e, typeof t != "symbol" ? t + "" : t, r);
 import n from "dayjs";
 import { getValueByKey as i } from "../../form/FormUtil.js";
 class m {

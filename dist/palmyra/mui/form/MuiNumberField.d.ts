@@ -1,5 +1,5 @@
 import { ITextField } from '../../form/interfaceFields';
-import { INumberFieldDefinition } from '../../form/interface';
+import { IMuiNumberFieldDefinition } from './MuiTypes';
 
-declare const MuiNumberField: import('react').ForwardRefExoticComponent<INumberFieldDefinition & import("react").RefAttributes<ITextField>>;
+declare const MuiNumberField: import('react').ForwardRefExoticComponent<IMuiNumberFieldDefinition & import('react').RefAttributes<ITextField>>;
 export default MuiNumberField;

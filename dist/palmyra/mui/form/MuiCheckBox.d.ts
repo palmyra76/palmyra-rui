@@ -1,5 +1,5 @@
 import { ICheckBoxField } from '../../form/interfaceFields';
-import { ICheckboxDefinition } from '../../form/interface';
+import { IMuiCheckBoxDefinition } from './MuiTypes';
 
-declare const MuiCheckBox: import('react').ForwardRefExoticComponent<ICheckboxDefinition & import("react").RefAttributes<ICheckBoxField>>;
+declare const MuiCheckBox: import('react').ForwardRefExoticComponent<IMuiCheckBoxDefinition & import('react').RefAttributes<ICheckBoxField>>;
 export default MuiCheckBox;

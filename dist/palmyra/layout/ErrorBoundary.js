@@ -1,5 +1,5 @@
 import e from "react";
-class a extends e.Component {
+class n extends e.Component {
   constructor(r) {
     super(r), this.state = { hasError: !1 };
   }
@@ -14,5 +14,5 @@ class a extends e.Component {
   }
 }
 export {
-  a as ErrorBoundary
+  n as ErrorBoundary
 };

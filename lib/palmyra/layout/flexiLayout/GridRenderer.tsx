@@ -7,7 +7,7 @@ import { LayoutParamsContext, StoreFactoryContext } from "./FlexiLayoutContext";
 import { getActionPublishers } from '../../utils/pubsub/Publishers';
 import { mergeDeep } from '../../utils';
 import { IPageQueryable } from '../../form/interfaceFields';
-import { DefaultQueryParams } from 'palmyra-wire';
+import { DefaultQueryParams } from "@palmyralabs/palmyra-wire";
 import { ITitle } from '../../form/interface';
 
 interface GridRendererInput {

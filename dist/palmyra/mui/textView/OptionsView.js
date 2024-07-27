@@ -3,7 +3,8 @@ import { forwardRef as m, useContext as u, useRef as f, useImperativeHandle as v
 import { FieldManagerContext as g } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { getFieldLabel as x } from "../form/MuiUtil.js";
 import C from "../form/FieldDecorator.js";
-/* empty css                        */const N = m(function(e, l) {
+import '../../../assets/TextView.css';/* empty css                       */
+const N = m(function(e, l) {
   const n = u(g), i = l || f(null), s = e.textAlign || "left", o = e.variant || "standard", t = n(e, "select", i), c = t.getData();
   return v(i, () => ({
     getValue() {

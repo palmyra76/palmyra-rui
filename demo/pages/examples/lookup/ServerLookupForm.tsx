@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FieldGroupContainer, MuiServerLookup, PalmyraForm, StoreFactory, usePalmyraNewForm } from "../../../../lib/main";
 import CodeHighlighter from "../../../components/syntextHighlighter/CodeHighlighter";
 import { Button } from "@mui/material";
-import { PalmyraStoreFactory } from "palmyra-wire";
+import { PalmyraStoreFactory } from "@palmyralabs/palmyra-wire";
 
 const ServerLookupForm = () => {
   const [isValid, setValid] = useState(false);

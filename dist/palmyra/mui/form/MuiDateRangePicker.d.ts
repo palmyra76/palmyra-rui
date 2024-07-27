@@ -1,5 +1,5 @@
 import { IDateField } from '../../form/interfaceFields';
-import { IDateTimeDefinition } from '../../form/interface';
+import { IMuiDateRangePickerDefinition } from './MuiTypes';
 
-declare const MuiDateRangePicker: import('react').ForwardRefExoticComponent<IDateTimeDefinition & import("react").RefAttributes<IDateField>>;
+declare const MuiDateRangePicker: import('react').ForwardRefExoticComponent<IMuiDateRangePickerDefinition & import('react').RefAttributes<IDateField>>;
 export default MuiDateRangePicker;

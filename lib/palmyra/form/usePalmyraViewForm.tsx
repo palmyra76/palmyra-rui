@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { IEndPoint } from "../layout/Types";
-import { GetRequest } from 'palmyra-wire';
+import { GetRequest } from "@palmyralabs/palmyra-wire";
 import { StoreFactory } from "../../main";
 import { FormData } from "./Definitions";
 

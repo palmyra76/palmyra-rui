@@ -3,7 +3,8 @@ import { forwardRef as v, useContext as f, useRef as x } from "react";
 import { FieldManagerContext as b } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import g from "../form/FieldDecorator.js";
 import { copyMuiOptions as C, getFieldLabel as F } from "../form/MuiUtil.js";
-/* empty css                        */const R = v(function(e, a) {
+import '../../../assets/TextView.css';/* empty css                       */
+const R = v(function(e, a) {
   const s = f(b), o = a || x(null), i = s(e, "string", o), { mutateOptions: c } = i, l = i.getData(), r = e.textAlign || "left", d = e.variant || "standard";
   var n = C(e, l, e.label);
   return /* @__PURE__ */ t(m, { children: c.visible && /* @__PURE__ */ t(

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { DefaultQueryParams, AbstractQueryStore, IPagination, QueryRequest } from 'palmyra-wire';
+import { DefaultQueryParams, AbstractQueryStore, IPagination, QueryRequest } from "@palmyralabs/palmyra-wire";
 
 import { useKeyValue } from '../../main';
 import { IEndPointOptions } from '../layout/Types';

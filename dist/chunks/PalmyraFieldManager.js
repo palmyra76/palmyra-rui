@@ -21,7 +21,7 @@ function at(t, n, F, d, u) {
   var l = C(w({}, t));
   const L = n;
   var S = C({}), g = S.current, B = {};
-  (() => F && F == "new")() && w(l.current, B), A(() => {
+  F && F == "new" && w(l.current, B), A(() => {
     l.current = w({}, t);
   }, [t]);
   const y = (i, s, f) => {

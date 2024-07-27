@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { TreeQueryStore } from 'palmyra-wire';
+import { TreeQueryStore } from "@palmyralabs/palmyra-wire";
 import TreeView, { INode, ITreeViewOnExpandProps, ITreeViewOnSelectProps, NodeId } from "react-accessible-treeview";
 import cx from "classnames";
 

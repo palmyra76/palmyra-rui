@@ -7,7 +7,7 @@ import "./FieldDecorator.js";
 import { b as l } from "../../../chunks/ServerCardLayout.js";
 import "../../utils/StringUtil.js";
 import "../../form/FormUtil.js";
-import "../../../chunks/index.esm2.js";
+import "../../../chunks/index3.js";
 export {
   l as default
 };

@@ -41,7 +41,7 @@
     "validator": "^13.11.0"
   },
   "dependencies": {
-    "palmyra-wire": "github:palmyra76/palmyra-wire"
+    "@palmyralabs/palmyra-wire": "github:palmyra76/palmyra-wire"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",

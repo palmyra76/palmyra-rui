@@ -2,7 +2,7 @@ import { MutableRefObject, ReactNode, SetStateAction } from "react";
 import { IEndPoint } from "../layout";
 import { IMutateOptions } from "./interfaceFields";
 import { IEndPointOptions } from "../layout/Types";
-import { LookupStore, DefaultQueryParams } from 'palmyra-wire';
+import { LookupStore, DefaultQueryParams } from "@palmyralabs/palmyra-wire";
 import { FieldDefinition, IFunctionValidation, ILengthValidation, ILookupOptions, IRangeValidation, IRegexValidation, IRuleValidation, LookupOptions } from "./Definitions";
 import { IFieldEventListener, IFieldValueListener } from "./Types";
 import { numbers } from "../utils/CommonTypes";

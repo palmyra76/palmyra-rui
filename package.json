@@ -40,7 +40,9 @@
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.24.0",
-    "validator": "^13.12.0"
+    "validator": "^13.12.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1"
   },
   "devDependencies": {
     "@mui/x-tree-view": "^7.7.1",
@@ -53,7 +55,6 @@
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.14.1",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "eslint": "^9.5.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "glob": "^10.4.2",
@@ -73,6 +74,7 @@
     "**/*.css"
   ],
   "dependencies": {
+    "@palmyralabs/palmyra-wire": "^1.0.1",
     "@tanstack/table-core": "^8.17.3",
     "autosuggest-highlight": "^3.3.4",
     "chartjs-plugin-datalabels": "^2.2.0",
@@ -81,9 +83,6 @@
     "d3": "^7.9.0",
     "d3-scale-chromatic": "^3.1.0",
     "date-fns": "^3.6.0",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
-    "palmyra-wire": "github:palmyra76/palmyra-wire",
     "pubsub-js": "^1.9.4",
     "react-accessible-treeview": "^2.9.1",
     "react-draggable": "^4.4.6",

@@ -1,27 +1,27 @@
-import { u as m } from "../../../chunks/PalmyraStoreFactory.js";
+import { PalmyraStoreFactory as s } from "@palmyralabs/palmyra-wire";
 import { mergeDeep as u } from "../../utils/index.js";
-import { useEffect as h } from "react";
-const g = (t) => {
-  const c = new m({ baseUrl: "/api/palmyra" });
-  var n = {};
-  u(n, t.storeOptions);
-  const f = c.getChartStore(n, t.storeOptions.endPoint);
-  h(() => {
-    a(t.filter);
+import { useEffect as l } from "react";
+const E = (t) => {
+  const c = new s({ baseUrl: "/api/palmyra" });
+  var o = {};
+  u(o, t.storeOptions);
+  const f = c.getChartStore(o, t.storeOptions.endPoint);
+  l(() => {
+    n(t.filter);
   }, [t.filter]);
-  const o = (r) => t.transformData ? t.transformData(r) : r, i = (r) => {
-    t.onData(o(r));
-  }, s = (r) => {
+  const a = (r) => t.transformData ? t.transformData(r) : r, i = (r) => {
+    t.onData(a(r));
+  }, m = (r) => {
     if (t.onError) {
       t.onError(r);
       return;
     }
     t.onData(null);
-  }, a = (r) => {
-    f.query({ filter: r, limit: 2e3 }).then((e) => i(e)).catch((e) => s(e));
+  }, n = (r) => {
+    f.query({ filter: r, limit: 2e3 }).then((e) => i(e)).catch((e) => m(e));
   };
-  return { fetchData: a, transform: o };
+  return { fetchData: n, transform: a };
 };
 export {
-  g as useChartDataManager
+  E as useChartDataManager
 };

@@ -2,7 +2,8 @@ import { jsx as e, jsxs as l, Fragment as y } from "react/jsx-runtime";
 import { List as f, Toolbar as g, Stack as v, Typography as M, IconButton as S, Drawer as o } from "@mui/material";
 import { Menu as k } from "@mui/icons-material";
 import { useState as c } from "react";
-/* empty css                       */const T = (r) => {
+import '../../../assets/Sidebar.css';/* empty css                      */
+const T = (r) => {
   let h = document.body;
   const t = r.width, a = r.mobileOpen, m = r.setMobileOpen, s = r.responsive, p = r.SideMenu, [i, b] = c(!1), [d, u] = c(!1), x = () => {
     u(!d), b(!i);

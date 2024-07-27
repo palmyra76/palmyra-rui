@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FieldGroupContainer, MuiTextArea, MuiTextField, PalmyraForm, StoreFactory, usePalmyraNewForm } from "../../../../lib/main";
 import CodeHighlighter from "../../../components/syntextHighlighter/CodeHighlighter";
 import { Button } from "@mui/material";
-import { PalmyraStoreFactory } from "palmyra-wire";
+import { PalmyraStoreFactory } from "@palmyralabs/palmyra-wire";
 
 const BasicForm = () => {
   const [isValid, setValid] = useState(false);

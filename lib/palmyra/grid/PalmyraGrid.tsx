@@ -4,7 +4,7 @@ import { GridRenderer, TableLayout } from "../layout/flexiLayout";
 import { ColumnDefinition, GridCustomizer, IEndPoint, IExportOptions, IPageQueryable, PageContext, StoreFactory, TopicListener, topic } from "../../main";
 import { ActionOptions } from "../layout/Types";
 import { ITitle } from "../form/interface";
-import { DefaultQueryParams } from "palmyra-wire";
+import { DefaultQueryParams } from "@palmyralabs/palmyra-wire";
 
 interface IPalmyraGridInput {
     columns: ColumnDefinition[],

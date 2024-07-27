@@ -1,8 +1,8 @@
+import { IValidatableField } from '../form/Definitions';
 import { BaseValidator } from './BaseValidator';
-import { FieldDefinition } from '../form/Definitions';
 
 declare class TextValidator {
     validator: BaseValidator;
-    validate: (format: FieldDefinition) => void;
+    validate: (format: IValidatableField) => void;
 }
 export default TextValidator;

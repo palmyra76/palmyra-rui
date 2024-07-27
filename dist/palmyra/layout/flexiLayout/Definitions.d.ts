@@ -1,8 +1,8 @@
-import { Actionable, Positionable, Renderable, Titleable, storeBacked } from '../Types';
-import { ColumnDefinition } from '../../grid';
-import { strings } from '../../form/interface';
-import { FieldDefinition } from '../../form/Definitions';
 import { ChartType, StyleOptions, transformable } from '../../chart/Types';
+import { FieldDefinition } from '../../form/Definitions';
+import { ColumnDefinition } from '../../grid';
+import { strings } from '../../utils/CommonTypes';
+import { Actionable, Positionable, Renderable, Titleable, storeBacked } from '../Types';
 
 type SectionType = 'view' | 'form' | 'grid' | 'chart';
 type flexiPrimaryType = 'formNew' | 'formEdit' | 'formView' | 'dashboard' | 'grid' | 'card';

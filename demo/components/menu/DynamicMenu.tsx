@@ -1,5 +1,5 @@
 
-import { PalmyraTreeStore } from "palmyra-wire";
+import { PalmyraTreeStore } from "@palmyralabs/palmyra-wire";
 import { AsyncTreeMenu } from "../../../lib/main";
 
 const DynamicMenu = ({ sidebarWidth }) => {

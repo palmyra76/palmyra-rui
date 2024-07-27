@@ -1,5 +1,5 @@
 import { ITextField } from '../../form/interfaceFields';
-import { ITextFieldDefinition } from '../../form/interface';
+import { IMuiTextAreaDefinition } from './MuiTypes';
 
-declare const MuiTextArea: import('react').ForwardRefExoticComponent<ITextFieldDefinition & import("react").RefAttributes<ITextField>>;
+declare const MuiTextArea: import('react').ForwardRefExoticComponent<IMuiTextAreaDefinition & import('react').RefAttributes<ITextField>>;
 export default MuiTextArea;
