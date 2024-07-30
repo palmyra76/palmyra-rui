@@ -43,22 +43,21 @@ const MuiNumberField = forwardRef(function MuiNumberField(props: INumberFieldDef
             setReadOnly(readonly: boolean) {
                 setMutateOptions((d: IMutateOptions) => ({ ...d, readonly }));
             },
+            setDisabled(disabled: boolean) {
+                setMutateOptions((d: IMutateOptions) => ({ ...d, disabled }));
+            },
             setAttribute(options: IMutateOptions) {
                 setMutateOptions((d: IMutateOptions) => ({ ...d, ...options }));
             }
         };
     }, [fieldManager]);
 
-    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
-
-    if (props.readonly) {
-        inputProps.inputProps = { readOnly: true };
-    }
+    var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label, mutateOptions);
 
     var callbacks = {
         onBlur: eventListeners.onBlur,
         onFocus: eventListeners.onFocus,
-        onChange: (d: any) => (eventListeners.onValueChange(d.target.value.replace(/[^\d\.\+\-]/g, '')))
+        onChange: (d: any) => { if (!inputProps.readOnly) eventListeners.onValueChange(d.target.value.replace(/[^\d\.\+\-]/g, '')) }
     }
 
 
