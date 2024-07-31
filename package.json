@@ -45,7 +45,7 @@
     "jspdf": "^2.5.1"
   },
   "devDependencies": {
-    "@mui/x-tree-view": "^7.7.1",
+    "@mui/x-tree-view": "^6.0.0-beta.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
