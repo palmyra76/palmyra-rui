@@ -17,16 +17,21 @@ const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition,
     const displayFormat: string = props.displayPattern || "dd-MM-yyyy";
 
     var inputProps: any = copyMuiOptions(props, value, props.label);
-    console.log(value, 'vv');
 
     const parseDateFromString = (value: any) => {
         const formats = ['yyyy-MM-dd', 'dd-MM-yyyy', 'MM-dd-yyyy', 'dd-yyyy-MM', 'yyyy/MM/dd', 'dd/MM/yyyy',
             "yyyy-MM-dd'T'HH:mm:ss", "dd-MM-yyyy HH:mm", "MM-dd-yyyy h:mm a", "yyyy/MM/dd HH:mm:ss", "dd/MM/yyyy HH:mm"
         ];
-        for (const format of formats) {
-            const date = parse(value, format, new Date());
-            if (isValid(date)) {
-                return date;
+
+        if (typeof value === 'number' || (!isNaN(value) && !isNaN(parseInt(value)))) {
+            const date = new Date(Number(value));
+            return date;
+        } else if (typeof value === 'string') {
+            for (const format of formats) {
+                const date = parse(value, format, new Date());
+                if (isValid(date)) {
+                    return date;
+                }
             }
         }
         return null;
@@ -50,7 +55,7 @@ const DateView = forwardRef(function MuiLabelDisplay(props: IDateViewDefinition,
             {(props.label) ?
                 <div {...inputProps} className='text-view-field-container'>
                     <div className="text-view-label">{props.label}</div>
-                    <div className={ (variant == 'standard') ? "text-view-value" : "text-view-value-outlined"}>{formatValue(value)}</div>
+                    <div className={(variant == 'standard') ? "text-view-value" : "text-view-value-outlined"}>{formatValue(value)}</div>
                 </div> :
                 <div {...inputProps} style={{ textAlign: textAlign }}>
                     {formatValue(value)}
