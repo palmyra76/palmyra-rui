@@ -1,5 +1,5 @@
 import { u as v, p as P } from "../../chunks/PalmyraStoreFactory.js";
-var a = Object.defineProperty, s = (r, e, t) => e in r ? a(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t, i = (r, e, t) => (s(r, typeof e != "symbol" ? e + "" : e, t), t);
+var a = Object.defineProperty, s = (r, e, t) => e in r ? a(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t, i = (r, e, t) => s(r, typeof e != "symbol" ? e + "" : e, t);
 class u {
   constructor(e) {
     i(this, "root"), this.root = e;
@@ -36,7 +36,7 @@ class n {
   }
 }
 const d = new n();
-var l = Object.defineProperty, c = (r, e, t) => e in r ? l(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t, o = (r, e, t) => (c(r, typeof e != "symbol" ? e + "" : e, t), t);
+var l = Object.defineProperty, c = (r, e, t) => e in r ? l(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t, o = (r, e, t) => c(r, typeof e != "symbol" ? e + "" : e, t);
 class m {
   constructor() {
     o(this, "username"), o(this, "password");

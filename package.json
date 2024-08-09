@@ -82,7 +82,7 @@
     "date-fns": "^3.6.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
-    "palmyra-wire": "github:palmyra76/palmyra-wire",
+    "palmyra-wire": "github:palmyra76/palmyra-wire#v0",
     "pubsub-js": "^1.9.4",
     "react-accessible-treeview": "^2.8.1",
     "react-arborist": "^3.2.0",
