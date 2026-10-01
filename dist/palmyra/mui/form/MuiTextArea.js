@@ -1,12 +1,12 @@
 import { jsx as l, Fragment as b } from "react/jsx-runtime";
-import { forwardRef as x, useContext as R, useRef as d, useImperativeHandle as v } from "react";
-import { TextField as M } from "@mui/material";
-import { copyMuiOptions as h, getFieldLabel as L } from "./MuiUtil.js";
+import { forwardRef as x, useContext as R, useRef as d, useImperativeHandle as h } from "react";
+import { TextField as v } from "@mui/material";
+import { copyMuiOptions as M, getFieldLabel as L } from "./MuiUtil.js";
 import { FieldManagerContext as O } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import V from "./FieldDecorator.js";
-const P = x(function(t, u) {
+const I = x(function(t, u) {
   const f = R(O), i = u || d(null), s = f(t, "string", i), { mutateOptions: g, setMutateOptions: r } = s, n = s.error, o = s.eventListeners, C = t.autoFocus || !1, c = d(null);
-  v(i, () => ({
+  h(i, () => ({
     focus() {
       c.current.focus();
     },
@@ -35,8 +35,8 @@ const P = x(function(t, u) {
       r((a) => ({ ...a, ...e }));
     }
   }), [s]);
-  var m = h(t, s.data, t.label);
-  t.readonly && (m.inputProps = { readOnly: !0 });
+  var m = M(t, s.data, t.label);
+  t.readonly && (m.slotProps = { htmlInput: { readOnly: !0 } });
   var F = {
     onBlur: o.onBlur,
     onFocus: o.onFocus,
@@ -51,7 +51,7 @@ const P = x(function(t, u) {
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
       children: /* @__PURE__ */ l(
-        M,
+        v,
         {
           minRows: 2,
           maxRows: 5,
@@ -69,5 +69,5 @@ const P = x(function(t, u) {
   ) });
 });
 export {
-  P as default
+  I as default
 };

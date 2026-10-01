@@ -6,5 +6,5 @@ type FieldContainerProps = {
     field: any;
     index?: number;
 };
-declare const FieldContainer: ({ label, children, options, field }: FieldContainerProps) => import("react/jsx-runtime").JSX.Element;
+declare const FieldContainer: ({ label, children, options, field }: FieldContainerProps) => import("react").JSX.Element;
 export default FieldContainer;

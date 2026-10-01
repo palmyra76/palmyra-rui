@@ -2,11 +2,11 @@ import { jsx as s, Fragment as M } from "react/jsx-runtime";
 import { forwardRef as O, useContext as h, useRef as d, useImperativeHandle as I } from "react";
 import { Rating as L } from "@mui/material";
 import { copyMuiOptions as V, getFieldLabel as D } from "./MuiUtil.js";
-import { FieldManagerContext as z } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import B from "./FieldDecorator.js";
-import { Star as P, StarOutline as S } from "@mui/icons-material";
+import { FieldManagerContext as B } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import z from "./FieldDecorator.js";
+import { Star as P, StarBorder as S } from "@mui/icons-material";
 const G = O(function(e, l) {
-  const f = h(z), u = l || d(null), n = f(e, "string", u), { mutateOptions: g, setMutateOptions: o } = n, r = n.error, i = n.eventListeners, c = d(null), C = e.variant || "standard", F = e.autoFocus || !1, b = e.precision || 1, v = e.max || 5, y = e.icon || P, x = e.emptyIcon || S;
+  const f = h(B), u = l || d(null), n = f(e, "string", u), { mutateOptions: g, setMutateOptions: o } = n, r = n.error, i = n.eventListeners, c = d(null), C = e.variant || "standard", F = e.autoFocus || !1, b = e.precision || 1, v = e.max || 5, y = e.icon || P, x = e.emptyIcon || S;
   I(u, () => ({
     focus() {
       c.current.focus();
@@ -44,7 +44,7 @@ const G = O(function(e, l) {
     onChange: (t) => i.onValueChange(t.target.value)
   };
   return /* @__PURE__ */ s(M, { children: g.visible && /* @__PURE__ */ s(
-    B,
+    z,
     {
       label: D(e),
       customContainerClass: e.customContainerClass,

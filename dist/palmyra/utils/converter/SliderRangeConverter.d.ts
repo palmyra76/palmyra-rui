@@ -1,6 +1,6 @@
-import { IRangeSliderDefinition } from '../../form/interface';
-import { AttributeDefinition } from '../../form/Definitions';
 import { Converter } from '.';
+import { AttributeDefinition } from '../../form/Definitions';
+import { IRangeSliderDefinition } from '../../form/interface';
 
 type ISliderRange = [number, number];
 declare class SliderRangeConverter implements Converter<any, ISliderRange> {

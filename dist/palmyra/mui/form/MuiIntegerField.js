@@ -1,17 +1,17 @@
 import { jsx as o, Fragment as v } from "react/jsx-runtime";
-import { forwardRef as M, useContext as h, useRef as m, useImperativeHandle as x } from "react";
+import { forwardRef as h, useContext as M, useRef as m, useImperativeHandle as x } from "react";
 import { TextField as R } from "@mui/material";
 import { copyMuiOptions as D, getFieldLabel as L } from "./MuiUtil.js";
 import { FieldManagerContext as O } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import V from "./FieldDecorator.js";
-const p = M(function(e, u) {
-  const f = h(O), i = u || m(null), n = f(e, "integer", i), { mutateOptions: g, setMutateOptions: r } = n, s = n.error, l = n.eventListeners, c = m(null), F = e.variant || "standard", C = e.autoFocus || !1;
+const p = h(function(e, u) {
+  const f = M(O), i = u || m(null), n = f(e, "integer", i), { mutateOptions: g, setMutateOptions: s } = n, r = n.error, l = n.eventListeners, c = m(null), F = e.variant || "standard", C = e.autoFocus || !1;
   x(i, () => ({
     focus() {
       c.current.focus();
     },
     isValid() {
-      return !s.status;
+      return !r.status;
     },
     getValue() {
       return n.getData();
@@ -23,20 +23,20 @@ const p = M(function(e, u) {
       n.setData(t, a);
     },
     setVisible(t) {
-      r((a) => ({ ...a, visible: t }));
+      s((a) => ({ ...a, visible: t }));
     },
     setRequired(t) {
-      r((a) => ({ ...a, required: t }));
+      s((a) => ({ ...a, required: t }));
     },
     setReadOnly(t) {
-      r((a) => ({ ...a, readonly: t }));
+      s((a) => ({ ...a, readonly: t }));
     },
     setAttribute(t) {
-      r((a) => ({ ...a, ...t }));
+      s((a) => ({ ...a, ...t }));
     }
   }), [n]);
   var d = D(e, n.data, e.label);
-  e.readonly && (d.inputProps = { readOnly: !0 });
+  e.readonly && (d.slotProps = { htmlInput: { readOnly: !0 } });
   var b = {
     onBlur: l.onBlur,
     onFocus: l.onFocus,
@@ -58,8 +58,8 @@ const p = M(function(e, u) {
           fullWidth: !0,
           inputRef: c,
           ...b,
-          error: s.status,
-          helperText: s.message,
+          error: r.status,
+          helperText: r.message,
           autoFocus: C
         }
       )

@@ -1,6 +1,6 @@
-import { MutableRefObject } from 'react';
-import { AttributeDefinition } from '../form/Definitions';
 import { CellContext, ColumnDef, OnChangeFn, Row, RowData, RowModel, RowSelectionState, Table } from '@tanstack/react-table';
+import { AttributeDefinition } from '../form/Definitions';
+import { MutableRefObject } from 'react';
 
 interface ColumnDefinition extends AttributeDefinition {
     name: string;

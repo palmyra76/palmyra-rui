@@ -7,7 +7,7 @@ import { getCoreRowModel as G, useReactTable as L, flexRender as g } from "@tans
 import V from "./LoadingChild.js";
 function Y({
   columnDefs: p,
-  rowData: o,
+  rowData: t,
   onRowClick: m,
   onRowStyle: C,
   onHeaderStyle: u,
@@ -15,10 +15,10 @@ function Y({
   EmptyChild: x,
   customizer: l
 }) {
-  const T = (l == null ? void 0 : l.preProcessData) || ((n) => n), R = l != null && l.getTableRef ? l == null ? void 0 : l.getTableRef() : N(), v = l != null && l.getTableOptions ? l.getTableOptions() : {};
+  const T = (l == null ? void 0 : l.preProcessData) || ((n) => n), R = l != null && l.getTableRef ? l == null ? void 0 : l.getTableRef() : N(void 0), v = l != null && l.getTableOptions ? l.getTableOptions() : {};
   l.preProcessColumns && l.preProcessColumns(p);
   const P = {
-    data: T(o),
+    data: T(t),
     manualSorting: !0,
     manualFiltering: !0,
     manualPagination: !0,
@@ -31,27 +31,27 @@ function Y({
   H(() => {
     b(d);
   }, [d]);
-  const y = b ? (n, t) => {
+  const y = b ? (n, o) => {
     var a = { ...d };
-    t == "" ? delete a[n] : a[n] = t, S(a);
+    o == "" ? delete a[n] : a[n] = o, S(a);
   } : void 0;
   return /* @__PURE__ */ f(M, { component: j, sx: { border: "1px solid var(--border-color)", borderRadius: "5px" }, children: [
     /* @__PURE__ */ f(A, { "aria-label": "simple table", className: "table", children: [
-      /* @__PURE__ */ e(E, { className: "table-head", children: r.getHeaderGroups().map((n) => /* @__PURE__ */ e(h, { children: n.headers.map((t) => t.isPlaceholder ? null : /* @__PURE__ */ e(
+      /* @__PURE__ */ e(E, { className: "table-head", children: r.getHeaderGroups().map((n) => /* @__PURE__ */ e(h, { children: n.headers.map((o) => o.isPlaceholder ? null : /* @__PURE__ */ e(
         B,
         {
-          header: t,
+          header: o,
           onSortChange: y,
           onHeaderStyle: u,
           children: g(
-            t.column.columnDef.header,
-            t.getContext()
+            o.column.columnDef.header,
+            o.getContext()
           )
         },
-        t.id
+        o.id
       )) }, n.id)) }),
-      o == null || o == null || o.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e(O, { children: r.getRowModel().rows.map((n) => {
-        const t = C(n.original);
+      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e(O, { children: r.getRowModel().rows.map((n) => {
+        const o = C(n.original);
         return /* @__PURE__ */ e(h, { className: "table-row", children: n.getVisibleCells().map((a) => {
           var c;
           const i = a.column.columnDef.meta;
@@ -60,7 +60,7 @@ function Y({
             {
               style: {
                 ...((c = i == null ? void 0 : i.columnDef) == null ? void 0 : c.type) === "number" ? { textAlign: "end" } : {},
-                ...t
+                ...o
               },
               onClick: () => m(n.original),
               children: g(
@@ -72,12 +72,12 @@ function Y({
           );
         }) }, n.id);
       }) }),
-      o == null || o == null || o.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e("tfoot", { className: "table-footer", children: r.getFooterGroups().map((n) => /* @__PURE__ */ e("tr", { style: { textAlign: "end" }, children: n.headers.map((t) => /* @__PURE__ */ e("th", { children: t.isPlaceholder ? null : g(
-        t.column.columnDef.footer,
-        t.getContext()
-      ) }, t.id)) }, n.id)) })
+      t == null || t == null || t.length == 0 ? /* @__PURE__ */ e(s, {}) : /* @__PURE__ */ e("tfoot", { className: "table-footer", children: r.getFooterGroups().map((n) => /* @__PURE__ */ e("tr", { style: { textAlign: "end" }, children: n.headers.map((o) => /* @__PURE__ */ e("th", { children: o.isPlaceholder ? null : g(
+        o.column.columnDef.footer,
+        o.getContext()
+      ) }, o.id)) }, n.id)) })
     ] }),
-    o == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(V, {}) }) : o == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : o.length == 0 ? /* @__PURE__ */ e(x, {}) : /* @__PURE__ */ e(s, {})
+    t == null ? /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(V, {}) }) : t == null ? /* @__PURE__ */ e("div", { children: "Error while loading data" }) : t.length == 0 ? /* @__PURE__ */ e(x, {}) : /* @__PURE__ */ e(s, {})
   ] });
 }
 export {

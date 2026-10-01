@@ -1,7 +1,7 @@
-import { Titleable } from '../Types';
-import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from './Definitions';
+import { StoreFactory } from '@palmyralabs/palmyra-wire';
 import { FormData } from '../../form/Definitions';
-import { StoreFactory } from 'palmyra-wire';
+import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from './Definitions';
+import { Titleable } from '../Types';
 
 interface Parent {
     children?: any;

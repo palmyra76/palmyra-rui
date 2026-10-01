@@ -1,3 +1,3 @@
-declare const EmptyChildCard: () => import("react/jsx-runtime").JSX.Element;
-declare const NoopEmptyChildCard: () => import("react/jsx-runtime").JSX.Element;
+declare const EmptyChildCard: () => import("react").JSX.Element;
+declare const NoopEmptyChildCard: () => import("react").JSX.Element;
 export { EmptyChildCard, NoopEmptyChildCard };

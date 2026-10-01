@@ -5,8 +5,8 @@ import { copyMuiOptions as R, getFieldLabel as p } from "./MuiUtil.js";
 import { FieldManagerContext as L } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import D from "./FieldDecorator.js";
 import { Visibility as B, VisibilityOff as I } from "@mui/icons-material";
-const z = w(function(t, u) {
-  const g = y(L), c = u || f(null), [d, C] = M(!1), a = g(t, "string", c), { mutateOptions: F, setMutateOptions: o } = a, r = a.error, l = a.eventListeners, b = t.variant || "standard", h = t.autoFocus || !1, m = f(null);
+const z = w(function(e, u) {
+  const g = y(L), c = u || f(null), [d, C] = M(!1), a = g(e, "string", c), { mutateOptions: F, setMutateOptions: o } = a, r = a.error, l = a.eventListeners, b = e.variant || "standard", h = e.autoFocus || !1, m = f(null);
   V(c, () => ({
     focus() {
       m.current.focus();
@@ -20,39 +20,41 @@ const z = w(function(t, u) {
     clear() {
       a.setData("", !0);
     },
-    setValue(e, s = !1) {
-      a.setData(e, s);
+    setValue(t, s = !1) {
+      a.setData(t, s);
     },
-    setVisible(e) {
-      o((s) => ({ ...s, visible: e }));
+    setVisible(t) {
+      o((s) => ({ ...s, visible: t }));
     },
-    setRequired(e) {
-      o((s) => ({ ...s, required: e }));
+    setRequired(t) {
+      o((s) => ({ ...s, required: t }));
     },
-    setReadOnly(e) {
-      o((s) => ({ ...s, readonly: e }));
+    setReadOnly(t) {
+      o((s) => ({ ...s, readonly: t }));
     },
-    setAttribute(e) {
-      o((s) => ({ ...s, ...e }));
+    setAttribute(t) {
+      o((s) => ({ ...s, ...t }));
     }
   }), [a]);
-  var i = R(t, a.data, t.label);
-  t.readonly ? i.inputProps = { readOnly: !0 } : i.InputProps = {
-    endAdornment: /* @__PURE__ */ n(O, { onClick: () => C((e) => !e), children: d ? /* @__PURE__ */ n(B, {}) : /* @__PURE__ */ n(I, {}) })
+  var i = R(e, a.data, e.label);
+  e.readonly ? i.slotProps = { htmlInput: { readOnly: !0 } } : i.slotProps = {
+    input: {
+      endAdornment: /* @__PURE__ */ n(O, { onClick: () => C((t) => !t), children: d ? /* @__PURE__ */ n(B, {}) : /* @__PURE__ */ n(I, {}) })
+    }
   };
   var v = {
     onBlur: l.onBlur,
     onFocus: l.onFocus,
-    onChange: (e) => l.onValueChange(e.target.value)
+    onChange: (t) => l.onValueChange(t.target.value)
   };
   return /* @__PURE__ */ n(x, { children: F.visible && /* @__PURE__ */ n(
     D,
     {
-      label: p(t),
-      customContainerClass: t.customContainerClass,
-      colspan: t.colspan,
-      customFieldClass: t.customFieldClass,
-      customLabelClass: t.customLabelClass,
+      label: p(e),
+      customContainerClass: e.customContainerClass,
+      colspan: e.colspan,
+      customFieldClass: e.customFieldClass,
+      customLabelClass: e.customLabelClass,
       children: /* @__PURE__ */ n(
         P,
         {

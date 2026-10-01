@@ -1,8 +1,8 @@
+import { TreeQueryStore } from '@palmyralabs/palmyra-wire';
 import { IChildTreeRequest } from './types';
-import { TreeQueryStore } from 'palmyra-wire';
 
 interface IAsyncTreeMenuInput {
     store: TreeQueryStore<IChildTreeRequest, any>;
 }
-export default function AsyncTreeMenu(props: IAsyncTreeMenuInput): import("react/jsx-runtime").JSX.Element;
+export default function AsyncTreeMenu(props: IAsyncTreeMenuInput): import("react").JSX.Element;
 export {};

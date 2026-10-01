@@ -1,12 +1,12 @@
-import { jsx as a, Fragment as k, jsxs as D } from "react/jsx-runtime";
+import { jsx as r, Fragment as D, jsxs as R } from "react/jsx-runtime";
 import { forwardRef as M, useContext as y, useRef as C, useImperativeHandle as L } from "react";
 import { FormControl as S, FormControlLabel as V, Checkbox as B, FormHelperText as T } from "@mui/material";
 import { copyMuiOptions as j, getFieldLabel as q } from "./MuiUtil.js";
-import { FieldManagerContext as w } from "../../layout/flexiLayout/FlexiLayoutContext.js";
-import z from "./FieldDecorator.js";
-import { T as G, a as H } from "../../../chunks/index.esm2.js";
+import { FieldManagerContext as P } from "../../layout/flexiLayout/FlexiLayoutContext.js";
+import w from "./FieldDecorator.js";
+import { T as z, a as G } from "../../../chunks/index3.js";
 const K = M(function(t, f) {
-  const b = y(w), m = f || C(null), { options: l } = t, n = b(t, "checkbox", m), { mutateOptions: x, setMutateOptions: s } = n, g = n.data ? n.data.split(",") : [], F = t.flexDirection || "row", i = n.error, c = n.eventListeners, p = t.autoFocus || !1, u = C(null);
+  const b = y(P), m = f || C(null), { options: l } = t, n = b(t, "checkbox", m), { mutateOptions: x, setMutateOptions: s } = n, g = n.data ? n.data.split(",") : [], F = t.flexDirection || "row", i = n.error, c = n.eventListeners, p = t.autoFocus || !1, u = C(null);
   L(m, () => ({
     focus() {
       u.current.checked = !0, u.current.focus();
@@ -43,9 +43,9 @@ const K = M(function(t, f) {
   var h = j(t, n.data, t.label);
   t.readonly && (h.inputProps = { readOnly: !0 });
   function v(e, o) {
-    const r = n.data ? n.data.split(",") : [];
-    var d = r.indexOf(e);
-    o ? d < 0 && r.push(e) : d >= 0 && r.splice(d, 1), c.onValueChange(r.toString());
+    const a = n.data ? n.data.split(",") : [];
+    var d = a.indexOf(e);
+    o ? d < 0 && a.push(e) : d >= 0 && a.splice(d, 1), c.onValueChange(a.toString());
   }
   var O = {
     onBlur: c.onBlur,
@@ -54,39 +54,39 @@ const K = M(function(t, f) {
       v(e.target.value, e.target.checked);
     }
   };
-  const R = (e) => g.includes(e);
-  return /* @__PURE__ */ a(k, { children: x.visible && /* @__PURE__ */ a(
-    z,
+  const k = (e) => g.includes(e);
+  return /* @__PURE__ */ r(D, { children: x.visible && /* @__PURE__ */ r(
+    w,
     {
       label: q(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ D(S, { fullWidth: !0, error: i.status, ...h, style: { flexDirection: F }, children: [
-        l ? Object.keys(l).map((e, o) => /* @__PURE__ */ a(
+      children: /* @__PURE__ */ R(S, { fullWidth: !0, error: i.status, ...h, style: { flexDirection: F }, children: [
+        l ? Object.keys(l).map((e, o) => /* @__PURE__ */ r(
           V,
           {
             value: e,
-            control: /* @__PURE__ */ a(
+            control: /* @__PURE__ */ r(
               B,
               {
-                icon: /* @__PURE__ */ a(G, { style: { fontSize: "20px" } }),
-                checkedIcon: /* @__PURE__ */ a(H, { style: { fontSize: "20px" } }),
+                icon: /* @__PURE__ */ r(z, { style: { fontSize: "20px" } }),
+                checkedIcon: /* @__PURE__ */ r(G, { style: { fontSize: "20px" } }),
                 ...O,
-                checked: R(e),
+                checked: k(e),
                 autoFocus: p,
                 disabled: t.readonly,
-                inputRef: (r) => {
-                  o == 0 && (u.current = r);
-                }
+                slotProps: { input: { ref: (a) => {
+                  o == 0 && (u.current = a);
+                } } }
               }
             ),
             label: l[e]
           },
           e
-        )) : /* @__PURE__ */ a("div", { children: "No options provided" }),
-        /* @__PURE__ */ a(T, { className: "form-error-text", children: i.message })
+        )) : /* @__PURE__ */ r("div", { children: "No options provided" }),
+        /* @__PURE__ */ r(T, { className: "form-error-text", children: i.message })
       ] })
     }
   ) });

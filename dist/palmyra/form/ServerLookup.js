@@ -154,8 +154,10 @@ const ae = /* @__PURE__ */ P(ue), me = V(function(k, g) {
               autoFocus: !0,
               placeholder: "Type to search...",
               fullWidth: !0,
-              InputProps: {
-                startAdornment: /* @__PURE__ */ c(re, { position: "start", children: /* @__PURE__ */ c(J, {}) })
+              slotProps: {
+                input: {
+                  startAdornment: /* @__PURE__ */ c(re, { position: "start", children: /* @__PURE__ */ c(J, {}) })
+                }
               },
               onChange: (e) => U(e.target.value),
               onKeyDown: (e) => {

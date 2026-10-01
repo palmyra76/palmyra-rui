@@ -1,6 +1,6 @@
-import { ChartType, IChartOptions } from '..';
-import { MouseEventHandler, MutableRefObject } from 'react';
 import { Plugin, ChartType as ChartJsType } from 'chart.js';
+import { MouseEventHandler, MutableRefObject } from 'react';
+import { ChartType, IChartOptions } from '..';
 
 interface ListenerResult {
     onClick?: MouseEventHandler<any>;

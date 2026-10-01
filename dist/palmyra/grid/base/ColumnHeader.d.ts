@@ -3,5 +3,5 @@ declare const ColumnHeader: ({ header, children, onSortChange, onHeaderStyle }: 
     children: any;
     onSortChange: any;
     onHeaderStyle: any;
-}) => import("react/jsx-runtime").JSX.Element;
+}) => import("react").JSX.Element;
 export default ColumnHeader;

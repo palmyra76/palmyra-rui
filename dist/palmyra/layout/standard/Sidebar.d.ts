@@ -11,6 +11,6 @@ interface SidebarInput {
     responsive?: boolean;
     SideMenu: FC<ISideMenuInput>;
 }
-declare const Sidebar: (props: SidebarInput) => import("react/jsx-runtime").JSX.Element;
+declare const Sidebar: (props: SidebarInput) => import("react").JSX.Element;
 export { Sidebar };
 export type { SidebarInput };

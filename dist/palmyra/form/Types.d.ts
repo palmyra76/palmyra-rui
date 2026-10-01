@@ -1,5 +1,5 @@
-import { FieldDefinition, FormData, MuiFieldDef } from './Definitions';
 import { MutableRefObject } from 'react';
+import { FieldDefinition, FormData, MuiFieldDef } from './Definitions';
 
 type EventHandler = Record<FieldEvents, Function>;
 type FieldEvents = "onEntryComplete" | "onEntryClear" | "asyncValid";

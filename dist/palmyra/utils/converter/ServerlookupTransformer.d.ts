@@ -1,7 +1,7 @@
-import { IServerLookupDefinition } from '../../form/interface';
-import { AttributeDefinition } from '../../form/Definitions';
-import { Converter } from '.';
 import { MutableRefObject } from 'react';
+import { Converter } from '.';
+import { AttributeDefinition } from '../../form/Definitions';
+import { IServerLookupDefinition } from '../../form/interface';
 
 declare class ServerlookupTransformer implements Converter<any, any> {
     props: IServerLookupDefinition;

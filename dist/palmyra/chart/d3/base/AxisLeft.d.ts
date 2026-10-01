@@ -4,5 +4,5 @@ type AxisLeftProps = {
     yScale: ScaleLinear<number, number>;
     pixelsPerTick: number;
 };
-export declare const AxisLeft: ({ yScale, pixelsPerTick }: AxisLeftProps) => import("react/jsx-runtime").JSX.Element;
+export declare const AxisLeft: ({ yScale, pixelsPerTick }: AxisLeftProps) => import("react").JSX.Element;
 export {};

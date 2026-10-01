@@ -1,5 +1,5 @@
-import { AttributeDefinition, FieldDefinition } from '../../form/Definitions';
 import { Converter } from '.';
+import { AttributeDefinition, FieldDefinition } from '../../form/Definitions';
 
 declare class DateTimeConverter implements Converter<any, Date> {
     serverPattern: string;

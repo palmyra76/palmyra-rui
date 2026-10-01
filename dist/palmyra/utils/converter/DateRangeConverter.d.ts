@@ -1,5 +1,5 @@
-import { AttributeDefinition, FieldDefinition } from '../../form/Definitions';
 import { Converter } from '.';
+import { AttributeDefinition, FieldDefinition } from '../../form/Definitions';
 
 interface IDateRange {
     from?: Date;

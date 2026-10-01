@@ -2,6 +2,7 @@ import "react/jsx-runtime";
 import "react";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
 import { P as U } from "../../chunks/ServerCardLayout.js";
+import "@palmyralabs/palmyra-wire";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
 import "@mui/icons-material";
@@ -38,7 +39,6 @@ import "../mui/textView/OptionsView.js";
 import "../mui/textView/LookupView.js";
 import "../form/PalmyraForm.js";
 import "../../chunks/jspdf.es.min.js";
-import "react-dom";
 export {
   U as PalmyraGrid
 };

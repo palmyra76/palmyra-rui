@@ -43,7 +43,7 @@ const U = B(function(e, u) {
       return e.range ? [R, L] : 0;
   };
   var g = H(e, f(a.data), e.label);
-  e.readonly && (g.inputProps = { readOnly: !0 });
+  e.readonly && (g.slotProps = { input: { readOnly: !0 } });
   const O = (n, t, P) => {
     if (!Array.isArray(t)) {
       r.onValueChange(t);

@@ -9,6 +9,6 @@ interface CardLayoutInput {
     childKeyProvider: (data: any, index: number) => string | number;
     preProcess?: (data: any) => any;
 }
-declare const CardLayout: (props: CardLayoutInput) => import("react/jsx-runtime").JSX.Element;
+declare const CardLayout: (props: CardLayoutInput) => import("react").JSX.Element;
 export default CardLayout;
 export type { CardLayoutInput };

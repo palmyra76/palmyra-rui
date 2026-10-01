@@ -1,5 +1,5 @@
-import { GridCustomizer } from '..';
 import { ColumnDef, RowData } from '@tanstack/react-table';
+import { GridCustomizer } from '..';
 
 interface ITableX {
     columnDefs: ColumnDef<RowData, any>[];
@@ -11,5 +11,5 @@ interface ITableX {
     EmptyChild: React.FC;
     customizer: GridCustomizer;
 }
-export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild, customizer }: ITableX): import("react/jsx-runtime").JSX.Element;
+export default function TableX({ columnDefs, rowData, onRowClick, onRowStyle, onHeaderStyle, onSortColumn, EmptyChild, customizer }: ITableX): import("react").JSX.Element;
 export {};

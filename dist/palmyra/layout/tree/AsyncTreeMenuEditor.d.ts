@@ -1,6 +1,6 @@
-import { IChildTreeRequest } from './types';
-import { StoreFactory } from '../flexiLayout/Types';
 import { IEndPoint } from '..';
+import { StoreFactory } from '../flexiLayout/Types';
+import { IChildTreeRequest } from './types';
 
 interface IAsyncTreeEditorInput {
     storeFactory: StoreFactory<IChildTreeRequest>;
@@ -21,6 +21,6 @@ interface Node {
 interface IAsyncTreeMenuEditor {
     getValue: () => Node;
 }
-declare const AsyncTreeMenuEditor: import('react').ForwardRefExoticComponent<IAsyncTreeEditorInput & import("react").RefAttributes<IAsyncTreeMenuEditor>>;
+declare const AsyncTreeMenuEditor: import('react').ForwardRefExoticComponent<IAsyncTreeEditorInput & import('react').RefAttributes<IAsyncTreeMenuEditor>>;
 export default AsyncTreeMenuEditor;
 export type { IAsyncTreeEditorInput, IAsyncTreeMenuEditor };

@@ -1,5 +1,5 @@
-import { Positionable, Titleable, storeBacked } from '../layout/Types';
 import { strings } from '../form/interface';
+import { Positionable, Titleable, storeBacked } from '../layout/Types';
 
 interface ChartRegistry {
     Line: {};

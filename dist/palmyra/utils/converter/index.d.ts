@@ -1,5 +1,5 @@
-import { getFormatConverter } from './FormatterFactory';
 import { FieldDefinition } from '../../form/Definitions';
+import { getFormatConverter } from './FormatterFactory';
 
 interface Converter<TEXT, DATA> {
     /**

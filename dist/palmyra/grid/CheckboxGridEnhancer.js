@@ -2,7 +2,7 @@ import { jsx as o } from "react/jsx-runtime";
 import { useState as h, useRef as r, useEffect as S } from "react";
 import { getFilteredRowModel as f } from "@tanstack/react-table";
 const T = () => {
-  const [n, l] = h({}), t = r({}), c = r();
+  const [n, l] = h({}), t = r({}), c = r(void 0);
   return { getTableOptions: () => ({
     state: {
       rowSelection: n
@@ -11,11 +11,11 @@ const T = () => {
     onRowSelectionChange: l,
     getFilteredRowModel: f(),
     debug: !0
-  }), preProcessColumns: (i) => {
+  }), preProcessColumns: (g) => {
     const u = {
       id: "select",
       header: ({ table: e }) => /* @__PURE__ */ o(
-        g,
+        i,
         {
           checked: (() => {
             try {
@@ -34,7 +34,7 @@ const T = () => {
           e.getIsSelected() ? delete t.current[a] : t.current[a] = !0, e.getToggleSelectedHandler()(d);
         };
         return /* @__PURE__ */ o("div", { className: "px-1", children: /* @__PURE__ */ o(
-          g,
+          i,
           {
             checked: e.getIsSelected(),
             disabled: !e.getCanSelect(),
@@ -44,10 +44,10 @@ const T = () => {
         ) });
       }
     };
-    i.push(u);
+    g.push(u);
   }, getTableRef: () => c, getSelectedIds: () => t.current };
 };
-function g({
+function i({
   indeterminate: n,
   className: l = "",
   ...t

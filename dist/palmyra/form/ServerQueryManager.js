@@ -1,6 +1,7 @@
 import "react";
 import { u as V } from "../../chunks/ServerCardLayout.js";
 import "../layout/flexiLayout/FlexiLayoutContext.js";
+import "@palmyralabs/palmyra-wire";
 import "react/jsx-runtime";
 import "@mui/material";
 import "../layout/container/SectionContainer.js";
@@ -39,7 +40,6 @@ import "../mui/textView/OptionsView.js";
 import "../mui/textView/LookupView.js";
 import "./PalmyraForm.js";
 import "../../chunks/jspdf.es.min.js";
-import "react-dom";
 export {
   V as default
 };

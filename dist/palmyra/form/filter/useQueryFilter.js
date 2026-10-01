@@ -1,6 +1,6 @@
 import { useRef as c } from "react";
 const f = (i) => {
-  const o = i.gridRef || c(), n = (e, t) => {
+  const o = i.gridRef || c(void 0), n = (e, t) => {
     t ? o.current.setFilter((r) => ({ ...r, [e]: t })) : o.current.setFilter((r) => (delete r[e], { ...r }));
   };
   return { lookupFilter: {

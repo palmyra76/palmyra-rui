@@ -1,12 +1,12 @@
 function e() {
-  return e = Object.assign ? Object.assign.bind() : function(a) {
+  return e = Object.assign ? Object.assign.bind() : function(t) {
     for (var n = 1; n < arguments.length; n++) {
-      var t = arguments[n];
-      for (var r in t)
-        Object.prototype.hasOwnProperty.call(t, r) && (a[r] = t[r]);
+      var r = arguments[n];
+      for (var a in r)
+        ({}).hasOwnProperty.call(r, a) && (t[a] = r[a]);
     }
-    return a;
-  }, e.apply(this, arguments);
+    return t;
+  }, e.apply(null, arguments);
 }
 export {
   e as _

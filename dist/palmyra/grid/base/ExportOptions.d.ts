@@ -6,5 +6,5 @@ interface ExportInputs {
     exportData?: any;
     arrowStyle?: any;
 }
-declare const ExportOptions: (props: ExportInputs) => import("react/jsx-runtime").JSX.Element;
+declare const ExportOptions: (props: ExportInputs) => import("react").JSX.Element;
 export default ExportOptions;

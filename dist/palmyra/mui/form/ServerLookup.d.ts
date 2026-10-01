@@ -1,5 +1,5 @@
-import { IServerLookupField } from '../../form/interfaceFields';
 import { IServerLookupDefinition } from '../../form/interface';
+import { IServerLookupField } from '../../form/interfaceFields';
 
-declare const ServerLookup: import('react').ForwardRefExoticComponent<IServerLookupDefinition & import("react").RefAttributes<IServerLookupField>>;
+declare const ServerLookup: import('react').ForwardRefExoticComponent<IServerLookupDefinition & import('react').RefAttributes<IServerLookupField>>;
 export default ServerLookup;

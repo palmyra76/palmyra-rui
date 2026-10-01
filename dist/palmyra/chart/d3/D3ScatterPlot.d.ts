@@ -5,5 +5,5 @@ type ScatterplotProps = {
     height: number;
     data: ScatterDataInput;
 };
-declare const ScatterPlot: ({ width, height, data }: ScatterplotProps) => import("react/jsx-runtime").JSX.Element;
+declare const ScatterPlot: ({ width, height, data }: ScatterplotProps) => import("react").JSX.Element;
 export { ScatterPlot as D3ScatterPlot };

@@ -1,5 +1,5 @@
-import { AttributeDefinition } from '../../form/Definitions';
 import { Converter } from '.';
+import { AttributeDefinition } from '../../form/Definitions';
 
 declare class NoopConverter implements Converter<any, any> {
     getFieldData: (data: any, props: AttributeDefinition) => import('../../form/Definitions').InputType;

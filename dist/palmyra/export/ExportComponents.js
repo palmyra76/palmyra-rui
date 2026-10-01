@@ -1,5 +1,4 @@
 import { h, E as f } from "../../chunks/jspdf.es.min.js";
-import P from "react-dom";
 const s = {
   PNG: "image/png",
   JPEG: "image/jpeg",
@@ -8,47 +7,49 @@ const s = {
   fileName: "component.png",
   type: s.PNG,
   html2CanvasOptions: {}
-}, g = {
+}, P = {
   fileName: "component.jpg",
   type: s.JPEG,
   html2CanvasOptions: {}
-}, D = {
+}, g = {
   fileName: "component.pdf",
   type: s.PDF,
   html2CanvasOptions: {},
   pdfOptions: {}
-}, C = (t, o) => {
-  const e = document.createElement("a");
-  typeof e.download == "string" ? (e.href = t, e.download = o, document.body.appendChild(e), e.click(), document.body.removeChild(e)) : window.open(t);
-}, N = (t, o) => {
-  const { w: e, h: i, orientation: c, unit: p = "mm", pdfFormat: r } = o, n = e || t.width, m = i || t.height, l = c || n > m ? "l" : "p", a = r || "a4";
-  return new f(l, p, a);
-}, d = (t, o) => {
-  const { fileName: e, type: i, html2CanvasOptions: c, pdfOptions: p } = o;
+}, u = (t, e) => {
+  const o = document.createElement("a");
+  typeof o.download == "string" ? (o.href = t, o.download = e, document.body.appendChild(o), o.click(), document.body.removeChild(o)) : window.open(t);
+}, D = (t, e) => {
+  const { w: o, h: i, orientation: m, unit: p = "mm", pdfFormat: c } = e, n = o || t.width, r = i || t.height, a = m || n > r ? "l" : "p", d = c || "a4";
+  return new f(a, p, d);
+}, l = (t, e) => {
+  const { fileName: o, type: i, html2CanvasOptions: m, pdfOptions: p } = e;
   if (!t.current)
     throw new Error("'node' must be a RefObject");
-  const r = P.findDOMNode(t.current);
-  return h(r, {
+  if (!(t.current instanceof HTMLElement))
+    throw new Error("'node' must reference a DOM element");
+  const c = t.current;
+  return h(c, {
     scrollY: -window.scrollY,
     useCORS: !0,
-    ...c
+    ...m
   }).then((n) => {
     if (console.log(n.width), i === s.PDF) {
-      const m = N(n, p);
-      m.addImage(
+      const r = D(n, p);
+      r.addImage(
         n.toDataURL(s.PNG, 1),
         "PNG",
         p.x || 0,
         p.y || 0,
         p.w || n.width,
         p.h || n.height
-      ), m.save(e);
+      ), r.save(o);
     } else
-      C(n.toDataURL(i, 1), e);
+      u(n.toDataURL(i, 1), o);
   });
-}, F = (t, o = {}) => d(t, { ...w, ...o }), G = (t, o = {}) => d(t, { ...g, ...o }), O = (t, o = {}) => d(t, { ...D, ...o });
+}, C = (t, e = {}) => l(t, { ...w, ...e }), F = (t, e = {}) => l(t, { ...P, ...e }), G = (t, e = {}) => l(t, { ...g, ...e });
 export {
-  G as exportComponentAsJPEG,
-  O as exportComponentAsPDF,
-  F as exportComponentAsPNG
+  F as exportComponentAsJPEG,
+  G as exportComponentAsPDF,
+  C as exportComponentAsPNG
 };

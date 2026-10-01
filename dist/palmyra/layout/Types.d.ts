@@ -1,5 +1,5 @@
+import { IEndPoint, IEndPointOptions } from '@palmyralabs/palmyra-wire';
 import { ITitle } from '../form/interface';
-import { IEndPoint, IEndPointOptions } from 'palmyra-wire';
 
 type measure = string | number;
 interface Positionable {
@@ -12,8 +12,8 @@ interface Titleable {
     hideTitle?: boolean;
 }
 interface Renderable {
-    Container?: React.FC;
-    Renderer?: React.FC;
+    Container?: React.FC<any>;
+    Renderer?: React.FC<any>;
 }
 interface ActionOptions {
     onClick?: PublishAction;

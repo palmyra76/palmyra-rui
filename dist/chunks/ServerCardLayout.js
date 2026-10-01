@@ -13,36 +13,37 @@ import Dt from "../palmyra/mui/form/MuiIOSSwitch.js";
 import At from "../palmyra/mui/form/MuiPassword.js";
 import Lt from "../palmyra/mui/form/MuiNumberField.js";
 import Mt from "../palmyra/mui/form/MuiIntegerField.js";
-import Ve from "../palmyra/mui/form/FieldDecorator.js";
+import Ee from "../palmyra/mui/form/FieldDecorator.js";
 import "../palmyra/mui/form/MuiSlider.js";
 import Bt from "../palmyra/mui/form/MuiRating.js";
 /* empty css                                */import "../palmyra/mui/textView/DateView.js";
 import "../palmyra/mui/textView/OptionsView.js";
 import "../palmyra/mui/textView/LookupView.js";
 import { renderTitle as rt } from "../palmyra/mui/widget/InfoTooltip.js";
-import { FieldManagerContext as ge, StoreFactoryContext as Ee, LayoutParamsContext as ot } from "../palmyra/layout/flexiLayout/FlexiLayoutContext.js";
+import { FieldManagerContext as ge, StoreFactoryContext as Te, LayoutParamsContext as ot } from "../palmyra/layout/flexiLayout/FlexiLayoutContext.js";
 import { jsx as e, jsxs as h, Fragment as ie } from "react/jsx-runtime";
 import Qt, { useState as P, useRef as $, useEffect as U, forwardRef as Y, useContext as me, useImperativeHandle as re, useMemo as it } from "react";
-import { a as Te } from "./AsyncTreeMenu.js";
-import { FormControlLabel as $e, Checkbox as Je, FormControl as ae, FormHelperText as ze, Autocomplete as at, TextField as pe, CircularProgress as st, Button as ne, InputAdornment as qe, ClickAwayListener as Qe, Select as Ge, MenuItem as Ke, Pagination as je, Box as It, Stack as Vt } from "@mui/material";
-import Et from "../palmyra/layout/card/CardLayout.js";
-import Tt from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
+import { a as ze } from "./AsyncTreeMenu.js";
+import { FormControlLabel as $e, Checkbox as Je, FormControl as ae, FormHelperText as qe, Autocomplete as at, TextField as pe, CircularProgress as st, Button as ne, InputAdornment as Ie, ClickAwayListener as Qe, Select as Ge, MenuItem as Ke, Pagination as je, Box as Vt, Stack as Et } from "@mui/material";
+import Tt from "../palmyra/layout/card/CardLayout.js";
+import zt from "../palmyra/layout/flexiLayout/SectionRendererChart.js";
 import { copyMuiOptions as He, getFieldLabel as We } from "../palmyra/mui/form/MuiUtil.js";
 import { hasDot as he } from "../palmyra/utils/StringUtil.js";
-import { getValueByKey as fe, setValueByKey as zt } from "../palmyra/form/FormUtil.js";
-import { T as Ue, a as Ye, c as qt, d as Xe } from "./index.esm2.js";
+import { getValueByKey as fe, setValueByKey as qt } from "../palmyra/form/FormUtil.js";
+import { T as Ue, a as Ye, c as It, d as Xe } from "./index3.js";
 import { delay as lt, delayGenerator as Gt, mergeDeep as Kt } from "../palmyra/utils/index.js";
 import ct from "../palmyra/layout/container/SectionContainer.js";
 import jt from "../palmyra/layout/container/FieldGroupContainer.js";
 import { generateColumns as dt } from "../palmyra/grid/base/ColumnConverter.js";
 import ut from "../palmyra/grid/base/EmptyChildTable.js";
 import mt from "../palmyra/grid/base/TableX.js";
-import { KeyboardArrowDown as Ie, Menu as be, DensitySmall as Ce, DensityLarge as xe, Add as ht } from "@mui/icons-material";
+import { KeyboardArrowDown as Ve, Menu as be, DensitySmall as Ce, DensityLarge as xe, Add as ht } from "@mui/icons-material";
 import { NoopCustomizer as ft } from "../palmyra/grid/Types.js";
 import { convertToField as Ht } from "../palmyra/grid/base/GridFieldConverter.js";
 import { createFilterData as Wt } from "../palmyra/form/PalmyraFilterManager.js";
 import gt from "../palmyra/grid/base/ExportOptions.js";
 import "@tanstack/react-table";
+import "@palmyralabs/palmyra-wire";
 import "react-router-dom";
 /* empty css          */import "@emotion/styled";
 import "@mui/x-tree-view";
@@ -53,7 +54,6 @@ import "./ChartJS.js";
 import "dayjs";
 import "../palmyra/form/PalmyraForm.js";
 import "./jspdf.es.min.js";
-import "react-dom";
 import { getActionPublishers as Xt } from "../palmyra/utils/pubsub/Publishers.js";
 import { ErrorBoundary as pt } from "../palmyra/layout/ErrorBoundary.js";
 import _t from "../palmyra/layout/flexiLayout/SectionRendererInvalid.js";
@@ -61,19 +61,19 @@ import $t from "../palmyra/layout/flexiLayout/SectionRendererViewForm.js";
 import { u as Jt } from "./PalmyraFieldManager.js";
 import { useKeyValue as Ut } from "../palmyra/utils/pubsub/PubSubHelper.js";
 const se = (i) => {
-  var V, J;
-  const { store: t, quickSearch: l } = i, a = i.fetchAll != !1, [s, c] = P(i.endPointOptions), [v, g] = P(null), b = ((V = i.defaultParams) == null ? void 0 : V.filter) || {}, p = ((J = i.defaultParams) == null ? void 0 : J.sort) || {}, [x, u] = i.filterTopic ? Ut(i.filterTopic, b) : P(b), [F, y] = P({}), B = $(i.initialFetch == !1), N = i.pageSize ? i.pageSize : 15;
+  var E, J;
+  const { store: t, quickSearch: l } = i, a = i.fetchAll != !1, [s, c] = P(i.endPointOptions), [v, g] = P(null), b = ((E = i.defaultParams) == null ? void 0 : E.filter) || {}, p = ((J = i.defaultParams) == null ? void 0 : J.sort) || {}, [x, u] = i.filterTopic ? Ut(i.filterTopic, b) : P(b), [F, y] = P({}), B = $(i.initialFetch == !1), N = i.pageSize ? i.pageSize : 15;
   var D = N instanceof Array ? N : [N], R = N instanceof Array ? N[0] : N;
-  const [Q, L] = P({ limit: R, offset: 0, total: !0 }), [E, I] = P(null), X = () => Math.round(Q.offset / Q.limit), O = () => Q, M = (C) => {
+  const [Q, L] = P({ limit: R, offset: 0, total: !0 }), [T, V] = P(null), X = () => Math.round(Q.offset / Q.limit), O = () => Q, M = (C) => {
     L((n) => ({ limit: n.limit, total: n.total, offset: C * n.limit }));
-  }, T = (C) => {
+  }, z = (C) => {
     const n = C > 10 || C == -1 ? C : 15;
     L((f) => {
       const j = Math.floor(f.offset / n) * n;
       return { limit: n, total: f.total, offset: j };
     });
   }, A = () => x ? Object.keys(x).length == 0 : !1, _ = (C) => {
-    I((n) => (setTimeout(() => {
+    V((n) => (setTimeout(() => {
       i.onDataChange && i.onDataChange(C, n);
     }, 300), C));
   };
@@ -82,16 +82,16 @@ const se = (i) => {
       B.current = !1;
       return;
     }
-    (a || !A()) && q();
+    (a || !A()) && I();
   }, [Q, F, s]);
-  const z = () => ({
+  const q = () => ({
     sortOrder: F && Object.keys(F).length > 0 ? F : p,
     total: !0,
     endPointVars: s,
     ...Q,
     filter: { ...x, ...b }
-  }), q = () => {
-    const C = z();
+  }), I = () => {
+    const C = q();
     if (t)
       try {
         t.query(C).then((n) => {
@@ -122,16 +122,16 @@ const se = (i) => {
       y(C);
     },
     setEndPointOptions: c,
-    refreshData: q,
+    refreshData: I,
     gotoPage: M,
-    setPageSize: T,
+    setPageSize: z,
     getPageNo: X,
     getQueryLimit: O,
     setQueryLimit: L,
-    getQueryRequest: z,
+    getQueryRequest: q,
     filter: x,
     queryLimit: Q,
-    data: E,
+    data: T,
     totalRecords: v,
     pageSizeOptions: D
   };
@@ -140,7 +140,7 @@ function et(i) {
   return i ? Array.isArray(i) ? i : typeof i == "string" ? i.split(",") : [i] : [];
 }
 const Sr = Y(function(t, l) {
-  const a = me(ge), s = l || $(null), c = a(t, "checkbox", s), { mutateOptions: v, setMutateOptions: g } = c, [b, p] = P(!1), x = et(c.data), u = c.error, F = c.eventListeners, y = c.store, B = t.pageSize || -1, N = { store: y, pageSize: B, defaultParams: t.defaultParams }, { data: D } = se(N), R = D, Q = $(null), L = t.lookupOptions || {}, E = L.idAttribute || "id", I = L.displayAttribute || "name", X = t.showSelectedOnly && t.readonly, O = he(E) ? (m) => fe(E, m) : (m) => m[E], M = he(I) ? (m) => fe(I, m) : (m) => m[I];
+  const a = me(ge), s = l || $(null), c = a(t, "checkbox", s), { mutateOptions: v, setMutateOptions: g } = c, [b, p] = P(!1), x = et(c.data), u = c.error, F = c.eventListeners, y = c.store, B = t.pageSize || -1, N = { store: y, pageSize: B, defaultParams: t.defaultParams }, { data: D } = se(N), R = D, Q = $(null), L = t.lookupOptions || {}, T = L.idAttribute || "id", V = L.displayAttribute || "name", X = t.showSelectedOnly && t.readonly, O = he(T) ? (m) => fe(T, m) : (m) => m[T], M = he(V) ? (m) => fe(V, m) : (m) => m[V];
   re(s, () => ({
     focus() {
       Q.current.focus();
@@ -174,8 +174,8 @@ const Sr = Y(function(t, l) {
     getOptions() {
     }
   }), [c]);
-  var T = He(t, c.data, t.label);
-  t.readonly && (T.inputprops = { readOnly: !0 });
+  var z = He(t, c.data, t.label);
+  t.readonly && (z.inputprops = { readOnly: !0 });
   function A(m, d) {
     const S = et(c.data);
     var K = S.indexOf(m);
@@ -188,10 +188,10 @@ const Sr = Y(function(t, l) {
       A(m.target.value, m.target.checked);
     }
   };
-  const z = (m) => {
+  const q = (m) => {
     const d = m.toString();
     return x.includes(d);
-  }, q = (m) => {
+  }, I = (m) => {
     const d = m.target.checked;
     p(d);
     var S = [];
@@ -200,7 +200,7 @@ const Sr = Y(function(t, l) {
     }), F.onValueChange(S.toString());
   };
   return /* @__PURE__ */ e("div", { className: t.className, children: v.visible && /* @__PURE__ */ h(
-    Ve,
+    Ee,
     {
       label: We(t),
       customContainerClass: t.customContainerClass,
@@ -216,7 +216,7 @@ const Sr = Y(function(t, l) {
               {
                 icon: /* @__PURE__ */ e(Ue, { style: { fontSize: "20px" } }),
                 checkedIcon: /* @__PURE__ */ e(Ye, { style: { fontSize: "20px" } }),
-                onChange: q
+                onChange: I
               }
             ),
             label: "Select All"
@@ -228,9 +228,9 @@ const Sr = Y(function(t, l) {
             className: "MuiServerCheckBoxFormControl",
             fullWidth: !0,
             error: u.status,
-            ...T,
+            ...z,
             children: [
-              R ? R.filter((m) => X ? z(O(m)) : !0).map((m) => /* @__PURE__ */ e(
+              R ? R.filter((m) => X ? q(O(m)) : !0).map((m) => /* @__PURE__ */ e(
                 $e,
                 {
                   value: O(m),
@@ -240,7 +240,7 @@ const Sr = Y(function(t, l) {
                       icon: /* @__PURE__ */ e(Ue, { style: { fontSize: "20px" } }),
                       checkedIcon: /* @__PURE__ */ e(Ye, { style: { fontSize: "20px" } }),
                       ..._,
-                      checked: z(O(m)),
+                      checked: q(O(m)),
                       disabled: t.readonly
                     }
                   ),
@@ -248,7 +248,7 @@ const Sr = Y(function(t, l) {
                 },
                 O(m)
               )) : /* @__PURE__ */ e("div", { children: "No options provided" }),
-              /* @__PURE__ */ e(ze, { className: "form-error-text", children: u.message })
+              /* @__PURE__ */ e(qe, { className: "form-error-text", children: u.message })
             ]
           }
         )
@@ -256,7 +256,7 @@ const Sr = Y(function(t, l) {
     }
   ) });
 }), Yt = Gt(100), Zt = Y(function(t, l) {
-  const a = me(ge), s = l || $(null), c = $(null), v = $(0), [g, b] = P([]), [p, x] = P(""), [u, F] = P(!1), y = a(t, "serverlookup", s), B = t.store || y.store, N = t.lookupOptions || {}, D = N.idAttribute || "id", R = N.displayAttribute || "name", Q = R, L = t.defaultParams, E = {
+  const a = me(ge), s = l || $(null), c = $(null), v = $(0), [g, b] = P([]), [p, x] = P(""), [u, F] = P(!1), y = a(t, "serverlookup", s), B = t.store || y.store, N = t.lookupOptions || {}, D = N.idAttribute || "id", R = N.displayAttribute || "name", Q = R, L = t.defaultParams, T = {
     store: B,
     endPointOptions: t.storeOptions.endPointOptions,
     fetchAll: !0,
@@ -264,19 +264,19 @@ const Sr = Y(function(t, l) {
     quickSearch: Q,
     initialFetch: !1,
     defaultParams: L
-  }, I = se(E), X = y.eventListeners, O = y.error, { mutateOptions: M, setMutateOptions: T } = y, A = y.data, _ = u && g.length < (A ? 2 : 1), {
-    setQueryFilter: z,
-    setEndPointOptions: q,
+  }, V = se(T), X = y.eventListeners, O = y.error, { mutateOptions: M, setMutateOptions: z } = y, A = y.data, _ = u && g.length < (A ? 2 : 1), {
+    setQueryFilter: q,
+    setEndPointOptions: I,
     setQuickSearch: m,
     totalRecords: d,
     refreshData: S,
     getQueryRequest: K
-  } = I, W = I.data, V = he(D) ? (o) => fe(D, o) : (o) => o == null ? void 0 : o[D], J = he(R) ? (o) => fe(R, o) : (o) => o == null ? void 0 : o[R];
+  } = V, W = V.data, E = he(D) ? (o) => fe(D, o) : (o) => o == null ? void 0 : o[D], J = he(R) ? (o) => fe(R, o) : (o) => o == null ? void 0 : o[R];
   U(() => {
     var o = A != "" ? A : void 0;
     o && b([o]);
   }, [y.data]), U(() => {
-    const o = W ? [...W] : [], w = A != "" ? A : void 0, G = V(w), te = J(w);
+    const o = W ? [...W] : [], w = A != "" ? A : void 0, G = E(w), te = J(w);
     o && G && te && !oe(o, G) && o.unshift(w), b(o), v.current < d && (v.current = d);
   }, [W, d]), U(() => {
     lt(C);
@@ -309,7 +309,7 @@ const Sr = Y(function(t, l) {
   }, j = (o) => typeof o == "object" ? J(o) + "" : (console.log(o), "");
   function oe(o, w) {
     return o.find((G) => {
-      if (V(G) == w)
+      if (E(G) == w)
         return G;
     });
   }
@@ -330,43 +330,43 @@ const Sr = Y(function(t, l) {
       y.setData(o, w);
     },
     setVisible(o) {
-      T((w) => ({ ...w, visible: o }));
+      z((w) => ({ ...w, visible: o }));
     },
     setRequired(o) {
-      T((w) => ({ ...w, required: o }));
+      z((w) => ({ ...w, required: o }));
     },
     setReadOnly(o) {
-      T((w) => ({ ...w, readonly: o }));
+      z((w) => ({ ...w, readonly: o }));
     },
     setAttribute(o) {
-      T((w) => ({ ...w, ...o }));
+      z((w) => ({ ...w, ...o }));
     },
     setFilter(o) {
-      z(o);
+      q(o);
     },
     resetFilter() {
-      z({});
+      q({});
     },
     setEndPointOptions(o) {
-      q(o);
+      I(o);
     },
     getCurrentData: () => A,
     refresh: () => {
       S();
     },
     addFilter(o, w) {
-      z((G) => (G[o] = w, { ...G }));
+      q((G) => (G[o] = w, { ...G }));
     },
     setDefaultFilter(o) {
     },
     setSortOptions(o) {
     }
-  }), [y, z]);
+  }), [y, q]);
   var ee = He(t, A, t.label);
-  M.readonly && (ee.inputProps = { readOnly: !0 });
-  const le = (o, w) => o instanceof Array ? o.some((G) => V(G) == V(w)) : V(o) == V(w);
+  M.readonly && (ee.readOnly = !0);
+  const le = (o, w) => o instanceof Array ? o.some((G) => E(G) == E(w)) : E(o) == E(w);
   return /* @__PURE__ */ e(
-    Ve,
+    Ee,
     {
       label: We(t),
       customContainerClass: t.customContainerClass,
@@ -395,12 +395,15 @@ const Sr = Y(function(t, l) {
                 label: t.label,
                 autoFocus: t.autoFocus,
                 required: t.required,
-                InputProps: {
-                  ...o.InputProps,
-                  endAdornment: /* @__PURE__ */ h(ie, { children: [
-                    _ ? /* @__PURE__ */ e(st, { color: "inherit", size: 18 }) : null,
-                    o.InputProps.endAdornment
-                  ] })
+                slotProps: {
+                  ...o.slotProps,
+                  input: {
+                    ...o.slotProps.input,
+                    endAdornment: /* @__PURE__ */ h(ie, { children: [
+                      _ ? /* @__PURE__ */ e(st, { color: "inherit", size: 18 }) : null,
+                      o.slotProps.input.endAdornment
+                    ] })
+                  }
                 }
               }
             ),
@@ -417,7 +420,7 @@ const Sr = Y(function(t, l) {
             ...n
           }
         ),
-        /* @__PURE__ */ e(ze, { className: "form-error-text", children: O.message })
+        /* @__PURE__ */ e(qe, { className: "form-error-text", children: O.message })
       ] })
     }
   );
@@ -429,31 +432,31 @@ const Sr = Y(function(t, l) {
     pageSize: 15,
     quickSearch: R,
     initialFetch: !1
-  }, L = se(Q), E = y.eventListeners, I = y.error, { mutateOptions: X, setMutateOptions: O } = y, M = y.data, T = u && g.length < (M ? 2 : 1), { setQueryFilter: A, setEndPointOptions: _, setQuickSearch: z, totalRecords: q, refreshData: m } = L, d = L.data, S = he(D) ? (n) => fe(D, n) : (n) => n == null ? void 0 : n[D];
+  }, L = se(Q), T = y.eventListeners, V = y.error, { mutateOptions: X, setMutateOptions: O } = y, M = y.data, z = u && g.length < (M ? 2 : 1), { setQueryFilter: A, setEndPointOptions: _, setQuickSearch: q, totalRecords: I, refreshData: m } = L, d = L.data, S = he(D) ? (n) => fe(D, n) : (n) => n == null ? void 0 : n[D];
   U(() => {
     var n = M != "" ? M : void 0;
     n && b([n]);
   }, [y.data]), U(() => {
     const f = (d ? [...d] : []).map((oe) => S(oe)), j = M != "" ? M : void 0;
-    f && j && !J(f, j) && f.unshift(j), b(f), v.current < q && (v.current = q);
-  }, [d, q]), U(() => {
+    f && j && !J(f, j) && f.unshift(j), b(f), v.current < I && (v.current = I);
+  }, [d, I]), U(() => {
     lt(K);
   }, [p, u]);
   function K() {
-    u && (p.length > 0 && p != M ? z("*" + p + "*") : d ? z(null) : m());
+    u && (p.length > 0 && p != M ? q("*" + p + "*") : d ? q(null) : m());
   }
   var W = {
     onBlur: (n) => {
-      V(p), E.onBlur(p);
+      E(p), T.onBlur(p);
     },
-    onFocus: E.onFocus,
+    onFocus: T.onFocus,
     onChange: (n, f) => {
-      V(f);
+      E(f);
     },
     onInputChange: (n, f) => (x(f), !0)
   };
-  const V = (n) => {
-    E.onValueChange(n);
+  const E = (n) => {
+    T.onValueChange(n);
   };
   function J(n, f) {
     return n.find((j) => {
@@ -466,7 +469,7 @@ const Sr = Y(function(t, l) {
       c.current.focus();
     },
     isValid() {
-      return !I.status;
+      return !V.status;
     },
     clear() {
       y.setData(void 0, !0);
@@ -511,15 +514,15 @@ const Sr = Y(function(t, l) {
     }
   }), [y, A]);
   var C = He(t, M, t.label);
-  return X.readonly && (C.inputProps = { readOnly: !0 }), /* @__PURE__ */ e(
-    Ve,
+  return X.readonly && (C.readOnly = !0), /* @__PURE__ */ e(
+    Ee,
     {
       label: We(t),
       customContainerClass: t.customContainerClass,
       colspan: t.colspan,
       customFieldClass: t.customFieldClass,
       customLabelClass: t.customLabelClass,
-      children: /* @__PURE__ */ h(ae, { fullWidth: !0, error: I.status, children: [
+      children: /* @__PURE__ */ h(ae, { fullWidth: !0, error: V.status, children: [
         /* @__PURE__ */ e(
           at,
           {
@@ -540,12 +543,15 @@ const Sr = Y(function(t, l) {
                 autoFocus: t.autoFocus,
                 required: t.required,
                 ...C,
-                InputProps: {
-                  ...n.InputProps,
-                  endAdornment: /* @__PURE__ */ h(ie, { children: [
-                    T ? /* @__PURE__ */ e(st, { color: "inherit", size: 18 }) : null,
-                    n.InputProps.endAdornment
-                  ] })
+                slotProps: {
+                  ...n.slotProps,
+                  input: {
+                    ...n.slotProps.input,
+                    endAdornment: /* @__PURE__ */ h(ie, { children: [
+                      z ? /* @__PURE__ */ e(st, { color: "inherit", size: 18 }) : null,
+                      n.slotProps.input.endAdornment
+                    ] })
+                  }
                 }
               }
             ),
@@ -561,7 +567,7 @@ const Sr = Y(function(t, l) {
             ...W
           }
         ),
-        /* @__PURE__ */ e(ze, { className: "form-error-text", children: I.message })
+        /* @__PURE__ */ e(qe, { className: "form-error-text", children: V.message })
       ] })
     }
   );
@@ -681,7 +687,7 @@ const rn = (i) => {
   const c = {};
   Object.keys(s || {}).map((u) => {
     const F = s[u];
-    zt(u, c, F);
+    qt(u, c, F);
   });
   var { getFieldManager: v, getFilterData: g } = Wt(c);
   const b = () => {
@@ -709,7 +715,7 @@ const rn = (i) => {
     ) }) }),
     /* @__PURE__ */ h("div", { className: "grid-filter-btn-container", children: [
       /* @__PURE__ */ h(ne, { className: "secondary-filled-button", disableRipple: !0, onClick: b, children: [
-        /* @__PURE__ */ e(qt, { className: "button-icon" }),
+        /* @__PURE__ */ e(It, { className: "button-icon" }),
         "Reset"
       ] }),
       /* @__PURE__ */ h(ne, { className: "filled-button", disableRipple: !0, onClick: p, children: [
@@ -719,20 +725,20 @@ const rn = (i) => {
     ] })
   ] });
 }, an = Y(function(t, l) {
-  const { columns: a, children: s, EmptyChild: c, onRowClick: v, quickSearch: g, exportOptions: b, densityOption: p } = t, x = c || ut, u = t.customizer || ft, F = t.customButton, [y, B] = P(!1), [N, D] = P(!1), [R, Q] = P(!1), [L, E] = P("standard"), [I, X] = P(""), {
+  const { columns: a, children: s, EmptyChild: c, onRowClick: v, quickSearch: g, exportOptions: b, densityOption: p } = t, x = c || ut, u = t.customizer || ft, F = t.customButton, [y, B] = P(!1), [N, D] = P(!1), [R, Q] = P(!1), [L, T] = P("standard"), [V, X] = P(""), {
     setQueryFilter: O,
     setQuickSearch: M,
-    setSortColumns: T,
+    setSortColumns: z,
     setEndPointOptions: A,
     gotoPage: _,
-    setPageSize: z,
-    getPageNo: q,
+    setPageSize: q,
+    getPageNo: I,
     refreshData: m,
     setQueryLimit: d,
     getQueryLimit: S,
     getQueryRequest: K,
     data: W,
-    totalRecords: V,
+    totalRecords: E,
     queryLimit: J,
     pageSizeOptions: C,
     filter: n
@@ -758,14 +764,14 @@ const rn = (i) => {
     },
     getQueryLimit: () => S(),
     setSortOptions(r) {
-      T(r);
+      z(r);
     },
     getCurrentData: () => W
   }), [S]);
   const j = (r, k) => {
     _(k - 1);
   }, oe = dt(a, u), ee = (r) => {
-    E(r);
+    T(r);
   }, le = () => {
     B(!y);
   }, o = () => L === "compact" ? {
@@ -802,7 +808,7 @@ const rn = (i) => {
     v && v(r);
   }, Fe = (r) => {
     const k = parseInt(r.target.value, 10);
-    z(k);
+    q(k);
   }, we = (r) => {
     D(!N);
   }, Se = () => {
@@ -823,7 +829,7 @@ const rn = (i) => {
   }, Le = {
     transform: R ? "rotate(-180deg)" : "rotate(0deg)",
     transition: "transform 0.3s ease"
-  }, ve = Math.ceil(V / J.limit), de = q(), ue = J.limit, Me = de * ue + 1, Be = Math.min((de + 1) * ue, V);
+  }, ve = Math.ceil(E / J.limit), de = I(), ue = J.limit, Me = de * ue + 1, Be = Math.min((de + 1) * ue, E);
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ h("div", { children: [
     s,
     /* @__PURE__ */ h("div", { className: "grid-header", children: [
@@ -834,13 +840,15 @@ const rn = (i) => {
           {
             sx: { width: ye },
             type: "text",
-            value: I,
+            value: V,
             onChange: te,
             style: { border: "0px" },
             size: "small",
             placeholder: "Name",
-            InputProps: {
-              endAdornment: /* @__PURE__ */ e(qe, { position: "end", children: /* @__PURE__ */ e(Te, { className: "card-filter-icon" }) })
+            slotProps: {
+              input: {
+                endAdornment: /* @__PURE__ */ e(Ie, { position: "end", children: /* @__PURE__ */ e(ze, { className: "card-filter-icon" }) })
+              }
             }
           }
         ) }),
@@ -850,7 +858,7 @@ const rn = (i) => {
           /* @__PURE__ */ h(ne, { className: "grid-btn", disableRipple: !0, children: [
             G(),
             /* @__PURE__ */ e("span", { children: "Density" }),
-            /* @__PURE__ */ e(Ie, { style: De, className: "avathar-arrw-icon" })
+            /* @__PURE__ */ e(Ve, { style: De, className: "avathar-arrw-icon" })
           ] }),
           y && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ h("ul", { children: [
             /* @__PURE__ */ h("li", { onClick: () => ee("standard"), children: [
@@ -873,7 +881,7 @@ const rn = (i) => {
           /* @__PURE__ */ h(ne, { className: "grid-btn", disableRipple: !0, children: [
             /* @__PURE__ */ e(Xe, { className: "grid-button-icon" }),
             /* @__PURE__ */ e("span", { children: "Filter" }),
-            /* @__PURE__ */ e(Ie, { style: Ae, className: "avathar-arrw-icon" })
+            /* @__PURE__ */ e(Ve, { style: Ae, className: "avathar-arrw-icon" })
           ] }),
           N && /* @__PURE__ */ e("div", { className: "filter-dropdown-content", onClick: (r) => r.stopPropagation(), children: /* @__PURE__ */ e(
             bt,
@@ -916,7 +924,7 @@ const rn = (i) => {
         onRowClick: ce,
         onRowStyle: o,
         onHeaderStyle: w,
-        onSortColumn: T
+        onSortColumn: z
       }
     ) }),
     /* @__PURE__ */ e("div", { className: "grid-footer", children: /* @__PURE__ */ e("div", { className: "grid-filter", children: Pe && ve !== 0 && /* @__PURE__ */ e("div", { children: /* @__PURE__ */ h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
@@ -938,7 +946,7 @@ const rn = (i) => {
           " - ",
           Be,
           " of ",
-          V,
+          E,
           " Results"
         ] }) })
       ] }) }) : null }),
@@ -948,26 +956,26 @@ const rn = (i) => {
           count: ve,
           shape: "rounded",
           onChange: j,
-          page: q() + 1
+          page: I() + 1
         }
       ) })
     ] }) }) }) })
   ] }) });
 }), Or = Y(function(t, l) {
-  const { children: a, EmptyChild: s, onRowClick: c, quickSearch: v, exportOptions: g } = t, b = t.columns, p = s || ut, x = t.customizer || ft, u = t.customButton, F = t.title, [y, B] = P(!1), [N, D] = P(!1), [R, Q] = P("standard"), [L, E] = P(!1), [I, X] = P(""), {
+  const { children: a, EmptyChild: s, onRowClick: c, quickSearch: v, exportOptions: g } = t, b = t.columns, p = s || ut, x = t.customizer || ft, u = t.customButton, F = t.title, [y, B] = P(!1), [N, D] = P(!1), [R, Q] = P("standard"), [L, T] = P(!1), [V, X] = P(""), {
     setQueryFilter: O,
     setQuickSearch: M,
-    setSortColumns: T,
+    setSortColumns: z,
     setEndPointOptions: A,
     gotoPage: _,
-    setPageSize: z,
-    getPageNo: q,
+    setPageSize: q,
+    getPageNo: I,
     refreshData: m,
     setQueryLimit: d,
     getQueryLimit: S,
     getQueryRequest: K,
     data: W,
-    totalRecords: V,
+    totalRecords: E,
     queryLimit: J,
     pageSizeOptions: C,
     filter: n
@@ -993,7 +1001,7 @@ const rn = (i) => {
     },
     getQueryLimit: () => S(),
     setSortOptions(r) {
-      T(r);
+      z(r);
     },
     getCurrentData: () => W
   }), [S, f]), U(() => {
@@ -1039,7 +1047,7 @@ const rn = (i) => {
     c && c(r);
   }, Se = (r) => {
     const k = parseInt(r.target.value, 10);
-    z(k);
+    q(k);
   }, Oe = () => {
     D(!N);
   }, Re = () => {
@@ -1055,7 +1063,7 @@ const rn = (i) => {
   }, Le = {
     transform: N ? "rotate(-180deg)" : "rotate(0deg)",
     transition: "transform 0.3s ease"
-  }, ve = Math.ceil(V / J.limit), de = q(), ue = J.limit, Me = de * ue + 1, Be = Math.min((de + 1) * ue, V);
+  }, ve = Math.ceil(E / J.limit), de = I(), ue = J.limit, Me = de * ue + 1, Be = Math.min((de + 1) * ue, E);
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ h("div", { children: [
     a,
     /* @__PURE__ */ h("div", { className: "grid-header", children: [
@@ -1066,13 +1074,15 @@ const rn = (i) => {
           {
             sx: { width: Pe },
             type: "text",
-            value: I,
+            value: V,
             onChange: Fe,
             style: { border: "0px" },
             size: "small",
             placeholder: "Name",
-            InputProps: {
-              endAdornment: /* @__PURE__ */ e(qe, { position: "end", children: /* @__PURE__ */ e(Te, { className: "card-filter-icon" }) })
+            slotProps: {
+              input: {
+                endAdornment: /* @__PURE__ */ e(Ie, { position: "end", children: /* @__PURE__ */ e(ze, { className: "card-filter-icon" }) })
+              }
             }
           }
         ) }),
@@ -1082,7 +1092,7 @@ const rn = (i) => {
           /* @__PURE__ */ h(ne, { className: "grid-btn", disableRipple: !0, children: [
             ce(),
             /* @__PURE__ */ e("span", { children: "Density" }),
-            /* @__PURE__ */ e(Ie, { style: Ae, className: "avathar-arrw-icon" })
+            /* @__PURE__ */ e(Ve, { style: Ae, className: "avathar-arrw-icon" })
           ] }),
           y && /* @__PURE__ */ e("div", { className: "density-dropdown-content", children: /* @__PURE__ */ h("ul", { children: [
             /* @__PURE__ */ h("li", { onClick: () => o("standard"), children: [
@@ -1100,7 +1110,7 @@ const rn = (i) => {
           ] }) })
         ] }) }),
         f.some((r) => r.searchable) && /* @__PURE__ */ h("div", { className: "grid-header-button grid-filter-btn", children: [
-          /* @__PURE__ */ h(ne, { className: "grid-btn", disableRipple: !0, onClick: () => E(!0), children: [
+          /* @__PURE__ */ h(ne, { className: "grid-btn", disableRipple: !0, onClick: () => T(!0), children: [
             /* @__PURE__ */ e(Xe, { className: "grid-button-icon" }),
             /* @__PURE__ */ e("span", { children: "Filter" })
           ] }),
@@ -1111,7 +1121,7 @@ const rn = (i) => {
               setFilter: O,
               defaultFilter: n,
               isOpen: L,
-              onClose: () => E(!1)
+              onClose: () => T(!1)
             }
           )
         ] }),
@@ -1143,10 +1153,10 @@ const rn = (i) => {
         onRowClick: we,
         onRowStyle: G,
         onHeaderStyle: te,
-        onSortColumn: T
+        onSortColumn: z
       }
     ) }),
-    /* @__PURE__ */ e("div", { className: "grid-footer", children: /* @__PURE__ */ e("div", { className: "grid-filter", children: ke && V !== null && /* @__PURE__ */ e("div", { children: /* @__PURE__ */ h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
+    /* @__PURE__ */ e("div", { className: "grid-footer", children: /* @__PURE__ */ e("div", { className: "grid-filter", children: ke && E !== null && /* @__PURE__ */ e("div", { children: /* @__PURE__ */ h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
       /* @__PURE__ */ e("div", { style: { width: "50%" }, children: C && C.length > 1 ? /* @__PURE__ */ e(ae, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ h("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { children: "Showing" }) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
@@ -1165,7 +1175,7 @@ const rn = (i) => {
           " - ",
           Be,
           " of ",
-          V,
+          E,
           " Results"
         ] }) })
       ] }) }) : null }),
@@ -1175,7 +1185,7 @@ const rn = (i) => {
           count: ve,
           shape: "rounded",
           onChange: ee,
-          page: q() + 1
+          page: I() + 1
         }
       ) })
     ] }) }) }) })
@@ -1198,7 +1208,7 @@ const rn = (i) => {
     },
     actionOptions: t.actions
   };
-  return /* @__PURE__ */ e(ie, { children: /* @__PURE__ */ e(Ee.Provider, { value: c, children: /* @__PURE__ */ e(
+  return /* @__PURE__ */ e(ie, { children: /* @__PURE__ */ e(Te.Provider, { value: c, children: /* @__PURE__ */ e(
     Ct,
     {
       layout: D,
@@ -1218,7 +1228,7 @@ const rn = (i) => {
     }
   ) }) });
 }), sn = Y(function(t, l) {
-  const a = t.layout, [s, c] = P(a.fields), v = a.pagination ? a.pagination : [15], g = me(Ee), b = me(ot);
+  const a = t.layout, [s, c] = P(a.fields), v = a.pagination ? a.pagination : [15], g = me(Te), b = me(ot);
   var p = a.storeOptions || {}, x = {};
   Kt(x, p, b);
   const u = g.getGridStore(x, a.storeOptions.endPoint);
@@ -1271,7 +1281,7 @@ const rn = (i) => {
     case "grid":
       return /* @__PURE__ */ e(ln, { ...i });
     case "chart":
-      return /* @__PURE__ */ e(Tt, { ...i });
+      return /* @__PURE__ */ e(zt, { ...i });
     default:
       return /* @__PURE__ */ e(_t, { ...i });
   }
@@ -1287,7 +1297,7 @@ const xt = (i) => {
   const { layout: t, context: l } = i, a = t.sections;
   function s(c, v, g) {
     const { w: b, h: p } = dn(c.width, c.height);
-    return /* @__PURE__ */ e(It, { sx: { width: b, height: p }, children: /* @__PURE__ */ e(
+    return /* @__PURE__ */ e(Vt, { sx: { width: b, height: p }, children: /* @__PURE__ */ e(
       cn,
       {
         layout: c,
@@ -1358,7 +1368,7 @@ const xt = (i) => {
   const [a, s] = P(t.layout), c = t.mode ? t.mode : a.type ? a.type : "grid", v = t.layoutParams || {}, g = mn(c), b = $(0);
   return U(() => {
     s(t.layout), b.current < 999999 ? b.current++ : b.current = 0;
-  }, [t.layout]), /* @__PURE__ */ e(pt, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(Ee.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(ot.Provider, { value: v, children: /* @__PURE__ */ e(g, { ...t, ref: (p) => {
+  }, [t.layout]), /* @__PURE__ */ e(pt, { fallback: /* @__PURE__ */ e("p", { children: "FlexiLayoutRenderer: Something went wrong" }), children: /* @__PURE__ */ e(Te.Provider, { value: t.storeFactory, children: /* @__PURE__ */ e(ot.Provider, { value: v, children: /* @__PURE__ */ e(g, { ...t, ref: (p) => {
     l && (l.current = p);
   } }, b.current) }) }) });
 }), Pr = Y(function(t, l) {
@@ -1374,8 +1384,8 @@ const xt = (i) => {
     setQueryLimit: R,
     getQueryLimit: Q,
     data: L,
-    totalRecords: E,
-    pageSizeOptions: I,
+    totalRecords: T,
+    pageSizeOptions: V,
     queryLimit: X
   } = se(t), O = t.listKeyProvider || ((d, S) => S);
   re(b, () => ({
@@ -1405,28 +1415,30 @@ const xt = (i) => {
   }), [p]);
   const M = (d, S) => {
     B(S - 1);
-  }, T = (d) => {
+  }, z = (d) => {
     const S = d.target.value;
     y(S);
   }, A = (d) => {
     const S = parseInt(d.target.value, 10);
     N(S);
-  }, _ = 200, z = !!v, q = !!t.quickSearch, m = Math.ceil(E / X.limit);
+  }, _ = 200, q = !!v, I = !!t.quickSearch, m = Math.ceil(T / X.limit);
   return /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("div", { className: "card-page-container", children: /* @__PURE__ */ h("div", { children: [
     /* @__PURE__ */ h("div", { className: "card-header", children: [
       /* @__PURE__ */ e("div", { className: "card-left-content", children: rt(a) }),
       /* @__PURE__ */ h("div", { className: "card-right-content", children: [
-        q && /* @__PURE__ */ e(
+        I && /* @__PURE__ */ e(
           pe,
           {
             sx: { width: _ },
             type: "text",
-            onChange: T,
+            onChange: z,
             style: { border: "0px" },
             size: "small",
             placeholder: "Name",
-            InputProps: {
-              endAdornment: /* @__PURE__ */ e(qe, { position: "end", children: /* @__PURE__ */ e(Te, { className: "card-filter-icon" }) })
+            slotProps: {
+              input: {
+                endAdornment: /* @__PURE__ */ e(Ie, { position: "end", children: /* @__PURE__ */ e(ze, { className: "card-filter-icon" }) })
+              }
             }
           }
         ),
@@ -1434,7 +1446,7 @@ const xt = (i) => {
       ] })
     ] }),
     /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
-      Et,
+      Tt,
       {
         Child: s,
         childKeyProvider: O,
@@ -1444,7 +1456,7 @@ const xt = (i) => {
         EmptyChild: t.EmptyChild
       }
     ) }),
-    /* @__PURE__ */ e("div", { className: "card-pagination", children: z && m !== 0 && // <TablePagination
+    /* @__PURE__ */ e("div", { className: "card-pagination", children: q && m !== 0 && // <TablePagination
     //     component="div"
     //     count={totalRecords || 0}
     //     page={getPageNo()}
@@ -1454,26 +1466,26 @@ const xt = (i) => {
     //     onRowsPerPageChange={handleRowsPerPageChange}
     // />
     /* @__PURE__ */ h("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
-      /* @__PURE__ */ e("div", { children: I && I.length > 1 ? /* @__PURE__ */ e(ae, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ h("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
+      /* @__PURE__ */ e("div", { children: V && V.length > 1 ? /* @__PURE__ */ e(ae, { variant: "standard", sx: { m: 1, minWidth: 120 }, children: /* @__PURE__ */ h("div", { style: { display: "flex", alignItems: "center", gap: "10px" }, children: [
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e("span", { children: "Showing" }) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ e(
           Ge,
           {
             labelId: "rows-per-page-select-label",
             id: "rows-per-page-select",
-            defaultValue: I[0],
+            defaultValue: V[0],
             onChange: A,
             label: "Rows per page",
-            children: I.map((d) => /* @__PURE__ */ e(Ke, { value: d, children: d }, d))
+            children: V.map((d) => /* @__PURE__ */ e(Ke, { value: d, children: d }, d))
           }
         ) }),
         /* @__PURE__ */ e("div", { children: /* @__PURE__ */ h("span", { children: [
           "of ",
-          E,
+          T,
           " Results"
         ] }) })
       ] }) }) : null }),
-      /* @__PURE__ */ e("div", { style: {}, children: /* @__PURE__ */ e(Vt, { direction: "row", alignItems: "center", spacing: 1, children: /* @__PURE__ */ e(
+      /* @__PURE__ */ e("div", { style: {}, children: /* @__PURE__ */ e(Et, { direction: "row", spacing: 1, sx: { alignItems: "center" }, children: /* @__PURE__ */ e(
         je,
         {
           count: m,

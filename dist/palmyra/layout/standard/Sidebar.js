@@ -13,10 +13,8 @@ import { useState as c } from "react";
     /* @__PURE__ */ e("div", { className: "sidebar-header", children: /* @__PURE__ */ e(g, { sx: { marginBottom: "20px" }, children: /* @__PURE__ */ e(
       v,
       {
-        sx: { width: "100%" },
+        sx: { width: "100%", position: "relative", justifyContent: "center" },
         direction: "row",
-        position: "relative",
-        justifyContent: "center",
         children: /* @__PURE__ */ l(M, { variant: "h6", className: `sidebar-title ${i ? "" : "minimized"}`, children: [
           /* @__PURE__ */ e("div", { children: !s && /* @__PURE__ */ e(
             S,

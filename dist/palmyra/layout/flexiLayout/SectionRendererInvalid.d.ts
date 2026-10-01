@@ -1,4 +1,4 @@
 import { SectionRendererInput } from './Types';
 
-declare const SectionRendererInvalid: (props: SectionRendererInput) => import("react/jsx-runtime").JSX.Element;
+declare const SectionRendererInvalid: (props: SectionRendererInput) => import("react").JSX.Element;
 export default SectionRendererInvalid;

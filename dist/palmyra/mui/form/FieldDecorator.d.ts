@@ -7,5 +7,5 @@ type IFieldDecoratorInput = {
     customLabelClass?: string;
     index?: number;
 };
-declare const FieldDecorator: (props: IFieldDecoratorInput) => import("react/jsx-runtime").JSX.Element;
+declare const FieldDecorator: (props: IFieldDecoratorInput) => import("react").JSX.Element;
 export default FieldDecorator;

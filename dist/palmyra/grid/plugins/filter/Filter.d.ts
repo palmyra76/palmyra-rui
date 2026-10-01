@@ -4,5 +4,5 @@ declare const Filter: ({ columns, isOpen, onClose, setFilter, defaultFilter }: {
     onClose: any;
     setFilter: any;
     defaultFilter?: {};
-}) => import("react/jsx-runtime").JSX.Element;
+}) => import("react").JSX.Element;
 export default Filter;

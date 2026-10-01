@@ -1,2 +1,2 @@
-declare const EmptyChild: () => import("react/jsx-runtime").JSX.Element;
+declare const EmptyChild: () => import("react").JSX.Element;
 export default EmptyChild;

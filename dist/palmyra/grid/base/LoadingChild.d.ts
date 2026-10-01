@@ -1,2 +1,2 @@
-declare const LoadingChild: () => import("react/jsx-runtime").JSX.Element;
+declare const LoadingChild: () => import("react").JSX.Element;
 export default LoadingChild;

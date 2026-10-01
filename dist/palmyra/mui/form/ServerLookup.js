@@ -1,4 +1,4 @@
-import { jsx as l, jsxs as q, Fragment as _ } from "react/jsx-runtime";
+import { jsx as l, jsxs as I, Fragment as _ } from "react/jsx-runtime";
 import { forwardRef as $, useContext as ee, useRef as y, useState as b, useEffect as v, useImperativeHandle as te } from "react";
 import { FieldManagerContext as re } from "../../layout/flexiLayout/FlexiLayoutContext.js";
 import { u as ne } from "../../../chunks/ServerCardLayout.js";
@@ -16,7 +16,7 @@ const Ae = $(function(r, C) {
     pageSize: 15,
     quickSearch: B,
     initialFetch: !1
-  }, S = ne(H), p = n.eventListeners, g = n.error, { mutateOptions: z, setMutateOptions: d } = n, s = n.data, w = u && P.length < (s ? 2 : 1), { setQueryFilter: f, setEndPointOptions: N, setQuickSearch: k, totalRecords: O, refreshData: I } = S, m = S.data, i = T(h) ? (e) => Q(h, e) : (e) => e == null ? void 0 : e[h], F = T(c) ? (e) => Q(c, e) : (e) => e == null ? void 0 : e[c];
+  }, S = ne(H), g = n.eventListeners, p = n.error, { mutateOptions: z, setMutateOptions: d } = n, s = n.data, w = u && P.length < (s ? 2 : 1), { setQueryFilter: f, setEndPointOptions: N, setQuickSearch: k, totalRecords: O, refreshData: M } = S, m = S.data, i = T(h) ? (e) => Q(h, e) : (e) => e == null ? void 0 : e[h], F = T(c) ? (e) => Q(c, e) : (e) => e == null ? void 0 : e[c];
   v(() => {
     var e = s != "" ? s : void 0;
     e && V([e]);
@@ -27,18 +27,18 @@ const Ae = $(function(r, C) {
     oe(W);
   }, [a, u]);
   function W() {
-    u && (a.length > 0 && a != F(s) ? k("*" + a + "*") : m ? k(null) : I());
+    u && (a.length > 0 && a != F(s) ? k("*" + a + "*") : m ? k(null) : M());
   }
   var G = {
-    onBlur: p.onBlur,
-    onFocus: p.onFocus,
+    onBlur: g.onBlur,
+    onFocus: g.onFocus,
     onChange: (e, t) => {
       J(t);
     },
     onInputChange: (e, t) => (K(t), !0)
   };
   const J = (e) => {
-    p.onValueChange(e);
+    g.onValueChange(e);
   }, U = (e) => typeof e == "object" ? F(e) + "" : (console.log(e), "");
   function X(e, t) {
     return e.find((o) => {
@@ -51,7 +51,7 @@ const Ae = $(function(r, C) {
       A.current.focus();
     },
     isValid() {
-      return !g.status;
+      return !p.status;
     },
     clear() {
       r.multiple ? n.setData([], !0) : n.setData(void 0, !0);
@@ -85,7 +85,7 @@ const Ae = $(function(r, C) {
     },
     getCurrentData: () => s,
     refresh: () => {
-      I();
+      M();
     },
     addFilter(e, t) {
       f((o) => (o[e] = t, { ...o }));
@@ -95,8 +95,8 @@ const Ae = $(function(r, C) {
     setSortOptions(e) {
     }
   }), [n, f]);
-  var M = se(r, s, r.label);
-  z.readonly && (M.inputProps = { readOnly: !0 });
+  var q = se(r, s, r.label);
+  z.readonly && (q.readOnly = !0);
   const Y = (e, t) => e instanceof Array ? e.some((o) => i(o) == i(t)) : i(e) == i(t);
   return /* @__PURE__ */ l(
     le,
@@ -106,7 +106,7 @@ const Ae = $(function(r, C) {
       colspan: r.colspan,
       customFieldClass: r.customFieldClass,
       customLabelClass: r.customLabelClass,
-      children: /* @__PURE__ */ q(ae, { fullWidth: !0, error: g.status, children: [
+      children: /* @__PURE__ */ I(ae, { fullWidth: !0, error: p.status, children: [
         /* @__PURE__ */ l(
           ue,
           {
@@ -128,17 +128,20 @@ const Ae = $(function(r, C) {
                 label: r.label,
                 autoFocus: r.autoFocus,
                 required: r.required,
-                InputProps: {
-                  ...e.InputProps,
-                  endAdornment: /* @__PURE__ */ q(_, { children: [
-                    w ? /* @__PURE__ */ l(de, { color: "inherit", size: 18 }) : null,
-                    e.InputProps.endAdornment
-                  ] })
+                slotProps: {
+                  ...e.slotProps,
+                  input: {
+                    ...e.slotProps.input,
+                    endAdornment: /* @__PURE__ */ I(_, { children: [
+                      w ? /* @__PURE__ */ l(de, { color: "inherit", size: 18 }) : null,
+                      e.slotProps.input.endAdornment
+                    ] })
+                  }
                 }
               }
             ),
             getOptionLabel: U,
-            ...M,
+            ...q,
             options: P,
             open: u,
             onClose: () => {
@@ -150,7 +153,7 @@ const Ae = $(function(r, C) {
             ...G
           }
         ),
-        /* @__PURE__ */ l(fe, { className: "form-error-text", children: g.message })
+        /* @__PURE__ */ l(fe, { className: "form-error-text", children: p.message })
       ] })
     }
   );

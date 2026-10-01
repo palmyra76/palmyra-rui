@@ -7,7 +7,7 @@ import { FieldManagerContext as k } from "../../layout/flexiLayout/FlexiLayoutCo
 import A from "./FieldDecorator.js";
 import { A as Y } from "../../../chunks/AdapterDayjs.js";
 const G = h(function(t, i) {
-  const m = P(k), u = i || d(null), f = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = m(t, "date", u), { mutateOptions: F, setMutateOptions: s } = r, l = r.error, D = r.data, n = r.eventListeners, C = t.variant || "standard", b = t.autoFocus || !1, c = d(null), g = () => V(D);
+  const m = P(k), u = i || d(null), f = t.displayPattern || t.serverPattern || "YYYY-MM-DD", r = m(t, "date", u), { mutateOptions: F, setMutateOptions: s } = r, l = r.error, C = r.data, n = r.eventListeners, D = t.variant || "standard", b = t.autoFocus || !1, c = d(null), g = () => V(C);
   x(u, () => ({
     focus() {
       c.current.focus();
@@ -70,7 +70,7 @@ const G = h(function(t, i) {
             textField: {
               error: l.status,
               helperText: l.message,
-              variant: C,
+              variant: D,
               fullWidth: !0,
               inputRef: c
             }
