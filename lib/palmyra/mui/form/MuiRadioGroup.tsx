@@ -79,7 +79,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
                     <FormControlLabel key={v.value} value={v.value}
                         control={<Radio
                             icon={<IoMdRadioButtonOff size={24} />} checkedIcon={<RiRadioButtonFill size={24} />}
-                            inputRef={inputRef} autoFocus={autoFocus} />} label={v.label} />
+                            slotProps={{ input: { ref: inputRef } }} autoFocus={autoFocus} />} label={v.label} />
                 ))
                 console.log(result);
                 return result;
@@ -90,7 +90,7 @@ const MuiRadioGroup = forwardRef(function MuiRadioGroup(props: IRadioGroupDefini
                     <FormControlLabel key={index} value={key}
                         control={<Radio
                             icon={<IoMdRadioButtonOff size={24} />} checkedIcon={<RiRadioButtonFill size={24} />}
-                            inputRef={inputRef} autoFocus={autoFocus} />} label={options[key]} />
+                            slotProps={{ input: { ref: inputRef } }} autoFocus={autoFocus} />} label={options[key]} />
                 ))
             }
         }

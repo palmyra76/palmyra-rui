@@ -52,7 +52,7 @@ const MuiIntegerField = forwardRef(function MuiIntegerField(props: IIntegerField
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
     if (props.readonly) {
-        inputProps.inputProps = { readOnly: true };
+        inputProps.slotProps = { htmlInput: { readOnly: true } };
     }
 
     var callbacks = {

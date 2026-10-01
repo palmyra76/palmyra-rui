@@ -1,5 +1,5 @@
-import { ChartStoreFactory } from "palmyra-wire";
-import { ChartStore } from "palmyra-wire"
+import { ChartStoreFactory } from "@palmyralabs/palmyra-wire";
+import { ChartStore } from "@palmyralabs/palmyra-wire"
 import { DummyChartStore } from "./DummyChartStore";
 
 

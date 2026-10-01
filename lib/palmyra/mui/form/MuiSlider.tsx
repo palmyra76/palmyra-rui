@@ -71,7 +71,7 @@ const MuiSlider = forwardRef(function MuiSlider(props: IRangeSliderDefinition, r
     var inputProps: any = copyMuiOptions(props, getData(fieldManager.data), props.label);
 
     if (props.readonly) {
-        inputProps.inputProps = { readOnly: true };
+        inputProps.slotProps = { input: { readOnly: true } };
     }
 
     const onSliderChange = (

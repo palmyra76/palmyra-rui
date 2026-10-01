@@ -1,4 +1,4 @@
-import { IEndPoint, IEndPointOptions } from "palmyra-wire";
+import { IEndPoint, IEndPointOptions } from "@palmyralabs/palmyra-wire";
 import { ITitle } from "../form/interface";
 
 type measure = string | number;
@@ -18,8 +18,8 @@ interface Titleable {
 }
 
 interface Renderable {
-    Container?: React.FC, // Current container
-    Renderer?: React.FC // Child Renderer
+    Container?: React.FC<any>, // Current container
+    Renderer?: React.FC<any> // Child Renderer
 }
 
 interface ActionOptions {

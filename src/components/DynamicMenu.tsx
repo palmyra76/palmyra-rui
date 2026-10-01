@@ -1,5 +1,5 @@
 
-import { GetRequest, QueryRequest, QueryResponse, Tree, TreeQueryStore } from "palmyra-wire";
+import { GetRequest, QueryRequest, QueryResponse, Tree, TreeQueryStore } from "@palmyralabs/palmyra-wire";
 import { IChildTreeRequest } from "../../lib/palmyra/layout/tree/types";
 import { AsyncTreeMenu } from "../../lib/main";
 

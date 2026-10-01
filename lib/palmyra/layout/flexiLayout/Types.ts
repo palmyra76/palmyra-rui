@@ -1,4 +1,4 @@
-import { StoreFactory } from "palmyra-wire";
+import { StoreFactory } from "@palmyralabs/palmyra-wire";
 import { FormData } from "../../form/Definitions";
 import { FlexiLayoutDefinition, SectionDefinition, TabDefinition, flexiPrimaryType } from "./Definitions";
 import { Titleable } from "../Types";

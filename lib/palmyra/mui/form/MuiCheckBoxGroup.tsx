@@ -102,7 +102,7 @@ const MuiCheckBoxGroup = forwardRef(function MuiCheckBoxGroup(props: ICheckboxGr
                             control={<Checkbox icon={<TbSquareRounded style={{ fontSize: '20px' }} />} checkedIcon={<TbSquareRoundedCheckFilled style={{ fontSize: '20px' }} />}
                                 {...callbacks} checked={isSelected(key)} autoFocus={autoFocus}
                                 disabled={props.readonly}
-                                inputRef={(r) => { if (0 == i) inputRef.current = r }}
+                                slotProps={{ input: { ref: (r: any) => { if (0 == i) inputRef.current = r } } }}
                             />}
                             label={options[key]} />
                     ))

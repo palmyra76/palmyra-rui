@@ -5,11 +5,11 @@ import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
 import { FieldProperties } from './Types';
-import { QueryRequest } from 'palmyra-wire';
+import { QueryRequest } from '@palmyralabs/palmyra-wire';
 
 import { getValueByKey, setValueByKey } from './FormUtil';
 import { delay, hasDot } from '../utils';
-import { QueryStore } from 'palmyra-wire';
+import { QueryStore } from '@palmyralabs/palmyra-wire';
 import { Search } from '@mui/icons-material';
 
 interface LookupFieldProperties extends FieldProperties {
@@ -130,12 +130,14 @@ const ServerLookup = forwardRef(function ServerLookup(props: LookupFieldProperti
                             autoFocus
                             placeholder="Type to search..."
                             fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Search />
-                                    </InputAdornment>
-                                )
+                            slotProps={{
+                              input: {
+                                  startAdornment: (
+                                      <InputAdornment position="start">
+                                          <Search />
+                                      </InputAdornment>
+                                  )
+                              },
                             }}
                             onChange={(e) => setSearchText(e.target.value)}
                             onKeyDown={(e) => {

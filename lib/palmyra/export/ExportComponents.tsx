@@ -1,6 +1,5 @@
 import html2canvas from 'html2canvas';
 import JsPDF from 'jspdf';
-import ReactDOM from 'react-dom';
 import { MutableRefObject } from 'react';
 
 const fileType = {
@@ -84,8 +83,11 @@ const exportComponent = (node: any, props: ExportComponentInput) => {
         throw new Error("'node' must be a RefObject")
     }
 
-    //@ts-ignore
-    const element: HTMLElement = ReactDOM.findDOMNode(node.current);
+    // ReactDOM.findDOMNode was removed in React 19; the ref must point to a DOM element
+    if (!(node.current instanceof HTMLElement)) {
+        throw new Error("'node' must reference a DOM element")
+    }
+    const element: HTMLElement = node.current;
     return html2canvas(element, {
         scrollY: -window.scrollY,
         useCORS: true,

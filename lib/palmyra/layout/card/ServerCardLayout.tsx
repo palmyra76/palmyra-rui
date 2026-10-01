@@ -102,12 +102,14 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                                     style={{ border: "0px" }}
                                     size="small"
                                     placeholder="Name"
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <AiOutlineSearch className="card-filter-icon" />
-                                            </InputAdornment>
-                                        ),
+                                    slotProps={{
+                                      input: {
+                                          endAdornment: (  
+                                              <InputAdornment position="end">  
+                                                  <AiOutlineSearch className="card-filter-icon" />  
+                                              </InputAdornment>  
+                                          ),
+                                      },
                                     }}
                                 />
                             )}
@@ -166,7 +168,7 @@ const ServerCardLayout = forwardRef(function MuiSelect(props: ServerCardLayoutIn
                                     }
                                 </div>
                                 <div style={{}}>
-                                    <Stack direction="row" alignItems="center" spacing={1}>
+                                    <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                                         <Pagination count={totalPages} shape="rounded"
                                             onChange={nextPage} page={getPageNo() + 1}
                                         />

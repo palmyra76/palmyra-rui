@@ -13,7 +13,7 @@ interface IQueryFilterOutput {
 }
 
 const useQueryFilter = (props: IQueryFilterInput): IQueryFilterOutput => {
-    const gridRef = props.gridRef || useRef<IPalmyraGrid>();
+    const gridRef = props.gridRef || useRef<IPalmyraGrid>(undefined);
 
     const applyFilter = (key: string, v: string) => {
         if (v) {

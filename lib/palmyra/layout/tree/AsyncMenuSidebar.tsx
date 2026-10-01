@@ -5,7 +5,7 @@ import { FC, useState } from "react";
 import '../standard/Sidebar.scss';
 import AsyncTreeMenu from "../tree/AsyncTreeMenu";
 import { IEndPoint } from "..";
-import { PalmyraStoreFactory } from 'palmyra-wire';
+import { PalmyraStoreFactory } from '@palmyralabs/palmyra-wire';
 
 
 interface ISideMenuInput {
@@ -53,10 +53,8 @@ const AsyncMenuSidebar = (props: SidebarInput) => {
       <div className='sidebar-header'>
         <Toolbar sx={{ marginBottom: "20px" }}>
           <Stack
-            sx={{ width: "100%" }}
+            sx={{ width: "100%", position: "relative", justifyContent: "center" }}
             direction="row"
-            position={'relative'}
-            justifyContent="center"
           >
             <Typography variant="h6" className={`sidebar-title ${!isMinimized ? 'minimized' : ''}`}>
               <div>

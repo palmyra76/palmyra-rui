@@ -2,7 +2,7 @@ import { useRef, useImperativeHandle, forwardRef, useContext, MutableRefObject, 
 import { IAutoCompleteDefinition, IEventListeners, IFormFieldError, IFormFieldManager, IGetFieldManager } from '../../form/interface';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import { IMutateOptions, IServerLookupField } from '../../form/interfaceFields';
-import { LookupStore } from 'palmyra-wire';
+import { LookupStore } from '@palmyralabs/palmyra-wire';
 import useServerQuery, { IServerQueryInput } from '../../form/ServerQueryManager';
 import { delay, hasDot } from '../../utils';
 import { getValueByKey } from '../../form/FormUtil';
@@ -176,7 +176,7 @@ const MuiAutoComplete = forwardRef(function MuiAutoComplete(props: IAutoComplete
     var inputProps: any = copyMuiOptions(props, data, props.label);
 
     if (mutateOptions.readonly) {
-        inputProps.inputProps = { readOnly: true };
+        inputProps.readOnly = true;
     }
 
     return (
@@ -192,14 +192,17 @@ const MuiAutoComplete = forwardRef(function MuiAutoComplete(props: IAutoComplete
                     renderInput={(params) => <TextField {...params} inputRef={(i) => { inputRef.current = i; }}
                         variant={props.variant || 'standard'} label={props.label}
                         autoFocus={props.autoFocus} required={props.required} {...inputProps}
-                        InputProps={{
-                            ...params.InputProps,
-                            endAdornment: (
-                                <>
-                                    {loading ? <CircularProgress color="inherit" size={18} /> : null}
-                                    {params.InputProps.endAdornment}
-                                </>
-                            ),
+                        slotProps={{
+                            ...params.slotProps,
+                            input: {
+                                ...params.slotProps.input,
+                                endAdornment: (
+                                    <>
+                                        {loading ? <CircularProgress color="inherit" size={18} /> : null}
+                                        {params.slotProps.input.endAdornment}
+                                    </>
+                                ),
+                            },
                         }}
                     />}
                     {...inputProps}

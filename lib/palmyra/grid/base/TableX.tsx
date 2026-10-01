@@ -32,7 +32,7 @@ interface ITableX {
 export default function TableX({ columnDefs, rowData, onRowClick,
   onRowStyle, onHeaderStyle, onSortColumn, EmptyChild, customizer }: ITableX) {
   const preProcessData = customizer?.preProcessData || ((d: any) => d);
-  const tableRef: MutableRefObject<IReactTanstackTable> = customizer?.getTableRef ? customizer?.getTableRef() : useRef();
+  const tableRef: MutableRefObject<IReactTanstackTable> = customizer?.getTableRef ? customizer?.getTableRef() : useRef(undefined);
 
   const tableOptions = customizer?.getTableOptions ? customizer.getTableOptions() : {};
 

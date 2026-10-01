@@ -75,7 +75,7 @@ const MuiCheckBox = forwardRef(function MuiCheckBox(props: ICheckboxDefinition, 
                     control={<Checkbox  className="customCheckbox" icon={<Icon />} checkedIcon={<CheckedIcon />}
                         {...callbacks} checked={value} autoFocus={autoFocus}
                         disabled={props.disabled} readOnly={props.readonly}
-                        inputRef={(r) => { inputRef.current = r }}
+                        slotProps={{ input: { ref: (r: any) => { inputRef.current = r } } }}
                     />}
                     label={props.label} />
             </FormControl>

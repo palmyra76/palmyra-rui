@@ -1,1 +1,1 @@
-export * from 'palmyra-wire'
+export * from '@palmyralabs/palmyra-wire'

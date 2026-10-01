@@ -5,7 +5,7 @@ import { copyMuiOptions, getFieldLabel } from './MuiUtil';
 import { FieldManagerContext } from '../../layout/flexiLayout/FlexiLayoutContext';
 import FieldDecorator from './FieldDecorator';
 import { ITextField, IMutateOptions, IRatingField } from '../../form/interfaceFields';
-import {StarOutline, Star} from '@mui/icons-material';
+import { StarBorder as StarOutline, Star } from '@mui/icons-material';
 
 const MuiRating = forwardRef(function MuiTextField(props: IRatingFieldDefinition, ref: MutableRefObject<IRatingField>) {
     const getFieldManager: IGetFieldManager = useContext(FieldManagerContext);

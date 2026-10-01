@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
-import { TreeView, TreeItem } from "@mui/x-tree-view";
+import { SimpleTreeView, TreeItem } from "@mui/x-tree-view";
 import { MenuDef } from "..";
 import { IconProvider, SimpleIconProvider } from "../flexiLayout/IconProvider";
 import { useEffect, useState } from "react";
@@ -75,7 +75,7 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
 
             if (node.children) {
                 return (
-                    <StyledTreeItem key={index} nodeId={node.name}
+                    <StyledTreeItem key={index} itemId={node.name}
                         className={`mui-tree ${isSelected ? 'selected' : ''}`}
                         onSelect={isSelected}
                         label={(
@@ -110,7 +110,7 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
             } else {
                 return (
                     <StyledTreeItem className={`mui-tree ${isSelected ? 'selected' : ''}`}
-                        key={index} nodeId={node.name} label={(
+                        key={index} itemId={node.name} label={(
                             <div onClick={(e) => { handleSelectItem(node); }} className="mui-tree-menu-list">
                                 {!sidebarWidth && (
                                     <>
@@ -151,12 +151,12 @@ export default function MuiTreeMenu(props: TreeMenuInput) {
     const menu = renderMenu(appRoutes);
     return (
         <div>
-            <TreeView
+            <SimpleTreeView
                 aria-label="rich object"
-                defaultExpanded={['Simple Layout Demo']}
+                defaultExpandedItems={['Simple Layout Demo']}
                 sx={{ height: "70vh", flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
                 {menu}
-            </TreeView>
+            </SimpleTreeView>
             <div style={{ overflow: 'auto' }}>
                 {hoveredItem && renderDropdown()}
             </div>

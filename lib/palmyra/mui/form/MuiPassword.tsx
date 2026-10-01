@@ -55,14 +55,16 @@ const MuiPassword = forwardRef(function MuiTextField(props: ITextFieldDefinition
     var inputProps: any = copyMuiOptions(props, fieldManager.data, props.label);
 
     if (props.readonly) {
-        inputProps.inputProps = { readOnly: true };
+        inputProps.slotProps = { htmlInput: { readOnly: true } };
     } else {
-        inputProps.InputProps = {
-            endAdornment: (
-                <IconButton onClick={() => setShowPassword((f) => !f)}>
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-            ),
+        inputProps.slotProps = {
+            input: {
+                endAdornment: (
+                    <IconButton onClick={() => setShowPassword((f) => !f)}>
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                ),
+            }
         }
     }
 

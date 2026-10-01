@@ -21,7 +21,7 @@ const errorHandlerFactory: APIErrorHandlerFactory = () => {
 
 const SimpleChart = <T extends ChartType,>(props: ISimpleChartOptions<T>) => {
     const layout = props;
-    const chartRef = useRef<IChartJS>();
+    const chartRef = useRef<IChartJS>(undefined);
     const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api/palmyra" });
     var storeOptions = layout.storeOptions || {};
 

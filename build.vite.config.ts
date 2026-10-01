@@ -49,7 +49,8 @@ export default defineConfig({
         '@mui/styled-engine',
         '@mui/x-tree-view',
         '@tanstack', 
-        '@tanstack/react-table'
+        '@tanstack/react-table',
+        '@palmyralabs/palmyra-wire'
       ],
       input: Object.fromEntries(
         glob.sync('lib/**/*.{ts,tsx}').map(file => [

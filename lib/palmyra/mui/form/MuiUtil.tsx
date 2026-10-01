@@ -16,7 +16,7 @@ const copyMuiOptions = (props: AttributeDefinition, value: any, label?: string, 
     }
 
     if (mOptions.readonly) {
-        result.inputProps = { readOnly: true };
+        result.slotProps = { htmlInput: { readOnly: true } };
     }
 
     if (label) {

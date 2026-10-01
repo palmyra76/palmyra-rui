@@ -18,8 +18,8 @@ const ScatterPlot = ({ width, height, data }: ScatterplotProps) => {
     const boundsWidth = width - MARGIN.right - MARGIN.left;
     const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
-    const canvasRef = useRef();
-    const svgRef = useRef();
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const svgRef = useRef<SVGSVGElement>(null);
     const scaleRef = useRef({ xScale: null, yScale: null })
     const axisRef = useRef({ xAxis: null, yAxis: null });
 

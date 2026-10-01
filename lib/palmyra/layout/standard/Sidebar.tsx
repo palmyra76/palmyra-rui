@@ -49,10 +49,8 @@ const Sidebar = (props: SidebarInput) => {
       <div className='sidebar-header'>
         <Toolbar sx={{ marginBottom: "20px" }}>
           <Stack
-            sx={{ width: "100%" }}
+            sx={{ width: "100%", position: "relative", justifyContent: "center" }}
             direction="row"
-            position={'relative'}
-            justifyContent="center"
           >
             <Typography variant="h6" className={`sidebar-title ${!isMinimized ? 'minimized' : ''}`}>
               <div>

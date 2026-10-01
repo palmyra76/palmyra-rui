@@ -12,7 +12,7 @@ const TreeMenu = () => {
     const groupId = 1;
 
     const storeFactory: StoreFactory<any> = new PalmyraStoreFactory({ baseUrl: '/api' });
-    const treeRef = useRef<IAsyncTreeMenuEditor>();
+    const treeRef = useRef<IAsyncTreeMenuEditor>(undefined);
 
     const submitValue = () => {
         const formStore = storeFactory.getFormStore({}, '/palmyra/admin/acl/group/{groupId}');

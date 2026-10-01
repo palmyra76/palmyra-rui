@@ -9,11 +9,11 @@ import { ColumnDefinition, GridCustomizer, IExportOptions, NoopCustomizer } from
 import Filter from './plugins/filter/Filter';
 import useServerQuery, { IServerQueryInput } from '../form/ServerQueryManager';
 import { IPageQueryable } from '../form/interfaceFields';
-import { EXPORT_FORMAT, ExportRequest, IPagination } from "palmyra-wire"
+import { EXPORT_FORMAT, ExportRequest, IPagination } from "@palmyralabs/palmyra-wire"
 import { TbFilterShare } from "react-icons/tb";
 import { renderTitle } from '../mui/widget/InfoTooltip';
 import { ITitle } from '../form/interface';
-import { GridStore } from 'palmyra-wire';
+import { GridStore } from '@palmyralabs/palmyra-wire';
 import ExportOptions from './base/ExportOptions';
 
 
@@ -231,12 +231,14 @@ const GridX = forwardRef(function GridX(props: GridXOptions, ref: MutableRefObje
                   style={{ border: "0px" }}
                   size="small"
                   placeholder="Name"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <AiOutlineSearch className="card-filter-icon" />
-                      </InputAdornment>
-                    ),
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <AiOutlineSearch className="card-filter-icon" />
+                        </InputAdornment>
+                      ),
+                    },
                   }}
                 />
               )}
